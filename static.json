@@ -1,6 +1,6 @@
 {
   "root": ".",
-  "clean_urls": false,
+  "clean_urls": true,
   "routes": {
     "/**": "Home.html"
   }
