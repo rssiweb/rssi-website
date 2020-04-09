@@ -14,7 +14,7 @@ $(document).ready(function() {
  
  // If file name not avilable
  if(url == ''){
- url = 'index';
+ url = 'index.html';
  }
  
  // Loop all menu items
