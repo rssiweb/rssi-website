@@ -34,7 +34,7 @@ body {
 
 }
 
-.active {
+.active a{
   background-color: #4B88A7;
   color: whitesmoke;
 }
@@ -91,11 +91,6 @@ body {
 
 .dropdown-contentH a:hover {
   background-color: #ddd;
-}
-
-.active .dropdown-contentH a:active {
-   background-color: #4B88A7;
-  color: whitesmoke;
 }
 
 .dropdownH:hover .dropdown-contentH {
