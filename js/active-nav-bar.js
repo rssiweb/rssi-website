@@ -1,12 +1,45 @@
-$("a").each(function() {
-    if ((window.location.pathname.indexOf($(this).attr('href'))) > -1) {
-        $(this).addClass('active');
-    }
-});
+$(document).ready(function() {
 
-$(".sidebar a").each(function() {
-    //console.log($(this).attr('href'));
-    if ((window.location.pathname.indexOf($(this).attr('href'))) > -1) {
-        $(this).parent().addClass('active');
-    }
+ // Get current page URL
+ var url = window.location.href;
+
+ // remove # from URL
+ url = url.substring(0, (url.indexOf("#") == -1) ? url.length : url.indexOf("#"));
+
+ // remove parameters from URL
+ url = url.substring(0, (url.indexOf("?") == -1) ? url.length : url.indexOf("?"));
+
+ // select file name
+ url = url.substr(url.lastIndexOf("/") + 1);
+ 
+ // If file name not avilable
+ if(url == ''){
+ url = 'index.html';
+ }
+ 
+ // Loop all menu items
+ $('.navbarH').each(function(){
+
+  // select href
+  var href = $(this).find('a').attr('href');
+
+  // Check filename
+  if(url == href){
+
+   // Select parent class
+   var parentClass = $(this).parent('ul').attr('class');
+ 
+   if(parentClass == 'dropdownH'){
+ 
+    // Add class
+    $(this).addClass('subactive');
+    $(this).parents('.navbarH').addClass('active');
+   }else{
+
+    // Add class
+    $(this).addClass('active');
+   }
+ 
+  }
+ });
 });

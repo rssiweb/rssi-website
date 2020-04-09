@@ -34,8 +34,13 @@ body {
 
 }
 
-a.active {
+.active {
   background-color: #4B88A7;
+  color: whitesmoke;
+}
+
+.subactive{
+ background-color: #4B88A7;
   color: whitesmoke;
 }
 
