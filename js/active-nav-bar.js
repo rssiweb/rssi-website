@@ -18,7 +18,7 @@ $(document).ready(function() {
  }
  
  // Loop all menu items
- $('.navbarH').each(function(){
+ $('.menu li').each(function(){
 
   // select href
   var href = $(this).find('a').attr('href');
@@ -29,11 +29,11 @@ $(document).ready(function() {
    // Select parent class
    var parentClass = $(this).parent('ul').attr('class');
  
-   if(parentClass == 'dropdownH'){
+   if(parentClass == 'submenu'){
  
     // Add class
     $(this).addClass('subactive');
-    $(this).parents('.navbarH').addClass('active');
+    $(this).parents('.menu li').addClass('active');
    }else{
 
     // Add class

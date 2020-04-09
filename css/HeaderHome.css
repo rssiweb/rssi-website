@@ -1,7 +1,7 @@
 *{transition:all 0.3s ease-in-out;
 margin: 0;padding: 0;}
 
-.containerH{
+.containerH {
   clear:both;
   overflow:auto;
 	background-color: #181D23;
@@ -16,90 +16,67 @@ body {
 	
 }
 
-.navbarH {
-  overflow: hidden;
-  background-color: #181D23;
-	display: inline-block;
-	vertical-align: middle;
-	line-height: 23px;
+/* Menu */
+.menu {
+ list-style-type: none;
+ margin: 0;
+ padding: 0;
+ overflow: hidden;
+ background-color: darkturquoise;
 }
 
-.navbarH a {
-  float: left;
-  font-size: 13px;
-  color: whitesmoke;
-  text-align: center;
-  padding: 15px 10px;
-  text-decoration: none;
-
+.menu li {
+ float: left;
 }
 
-.active {
-  background-color: #4B88A7;
-  color: whitesmoke;
+.menu li a {
+ display: block;
+ color: white;
+ text-align: center;
+ padding: 14px 16px;
+ text-decoration: none;
+}
+
+.menu li ul{
+ display: none;
+}
+
+.menu li a:hover {
+ background-color: #2b90f5;
+}
+
+.active{
+ background: #2b90f5;
+}
+
+/* sub menu */
+.submenu{
+ position: absolute;
+ list-style: none;
+ color: black;
+ background-color: #f9f9f9;
+ min-width: 160px;
+ box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+ padding-left: 0;
+}
+
+.submenu li{
+ width: 100%;
+ float: none;
+}
+.submenu li a{
+ color: black;
+}
+.submenu li a:hover{
+ background-color: #ddd;
+}
+
+.menu li:hover .submenu{
+ display: block;
 }
 
 .subactive{
- background-color: #4B88A7;
-  color: whitesmoke;
-}
-
-
-.navbarH .icon {
-  display: none;
-}
-
-
-.dropdownH {
-  float: left;
-  overflow: hidden;
-	vertical-align: middle;
-	
-}
-
-.dropdownH .dropbtnH {
-  font-size: 13px;  
-  border: none;
-  outline: none;
-  color: whitesmoke;
-  padding: 15px 10px;
-  background-color: inherit;
-  font-family: inherit;
-	line-height: 23px;
-  
-}
-
-.navbarH a:hover, .dropdownH:hover .dropbtnH {
-  background-color: #4B88A7;
-	
-	
-	
-}
-
-.dropdown-contentH {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-contentH a {
-  float: none;
-  color: black;
-  padding: 10px 10px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.dropdown-contentH a:hover {
-  background-color: #ddd;
-}
-
-.dropdownH:hover .dropdown-contentH {
-  display: block;
+ background: #ddd;
 }
 
 

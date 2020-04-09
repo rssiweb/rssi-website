@@ -20,134 +20,30 @@
 <div class="containerH">
   <div class="logoH"><img src="images/WebsiteHeaderLogo.png" alt="" width="140px"/>
 	  
-	  
-	  
-    <navh>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <div class="navbarH" id="mynavbarH">
-		  
-	<a href="/home">Home</a>
-		  
-		  
-		  <div class="dropdownH">
-          <button class="dropbtnH">About us <i class="fa fa-caret-down"></i></button>
-          <div class="dropdown-contentH">
-			  <a href="/history">History</a>
-			  <a href="social-responsibility">Social responsibility</a>
-			  <a href="#">Our stength</a>
-			  <a href="/our-team">Our team</a>
-			  <a href="media-center">Media center</a>
-			  <a href="ngo-calender">NGO calender</a>
-		  </div>
-		  </div>
-		  
-		   <div class="dropdownH">
-          <button class="dropbtnH">Get involved <i class="fa fa-caret-down"></i></button>
-          <div class="dropdown-contentH">
-			  <a href="information-brochure" class="menu">Information Brochure</a>
-			  <a href="#">Registration</a>
-			  <a href="#">Profile Update</a>
-		  </div>
-		  </div>
-		  
-		  
-		   <div class="dropdownH">
-          <button class="dropbtnH">Students' corner <i class="fa fa-caret-down"></i></button>
-          <div class="dropdown-contentH">
-			  <a href="#">Admission</a>
-			  <a href="#">Class schedule</a>
-			  <a href="/result-portal" class="menu">Result portal</a>
-			  <a href="#">Scholarship programs</a>
-			  
-		  </div>
-		  </div>
-		  
-		  
-        <div class="dropdownH">
-          <button class="dropbtnH">Other information <i class="fa fa-caret-down"></i></button>
-          <div class="dropdown-contentH"><a href="https://attendence-brssi.herokuapp.com/">Phoenix</a><a href="donation-portal">Donation portal</a><a href="/website-disclaimer">Website disclaimer</a>
-		</div>
-        </div>
-        
-		<a href="#login"><i class="fas fa-user" style="font-size:15px;"></i></button></a>
-		
-		<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
-		  
-    </navh>
-  </div>
-</div>
-	</div>
+	<navh>  
 	
+	  
+    <ul class='menu'>
+ <li><a href="index.html">Home</a></li>
+ <li><a href="#">Get involved</a>
+  <ul class='submenu'>
+   <li><a href="/information-brochure.html">Info</a></li>
+   <li><a href="/result-portal.html">Result portal</a></li>
+   <li><a href="#">Admission</a></li>
+  </ul>
+ </li>
+ <li><a href="#">Blog</a></li>
+		</navh>
+</ul>
+</div>
+	</div>		
+		<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+	
+
 	
 	<!-- InstanceBeginEditable name="Change4" -->
 <body>
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-#block_container
-{
-    text-align:center;
-    
-}
-#bloc1, #bloc2
-{
-    display:inline-block;
-    
-}
 
-</style>
-</head>
-<body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<div id="block_container">
-
-<div style=" font: normal 14px arial, sans-serif; background-color: #F2F2F2; border: #638E41 0px solid; width: 100%; margin: 0 auto; padding:1%;" id="bloc1">
-
-   <marquee id="marquee" scrolldelay="100" onmouseover="this.stop();" onmouseout="this.start();">As a precautionary health measure for our volunteers, well-wishers, sponsors in light of COVID-19, we're operating administrative work from home. All academic and social activities are closed now for the unknown timeframe. You can directly call us at +91 7980168159 or can email us at rssi.connect@gmail.com. Thanks for your patience, as it may take longer than usual to connect with us.</marquee>
-
-</div>
-
-<!--<div id="bloc2">
- 
- <div>
-<input type="button"  id="btnLeft" value="&laquo;"></button>
-  <input type="button"  id="btnRight" value="&raquo;"></button></div>
-
-</div>-->
-
-
- </div>
-<script>
-    let marquee=document.getElementById('marquee');
-$('#btnRight').click(function(){
-    marquee.setAttribute('direction','right');
-    marquee.start();
-});
-$('#btnLeft').click(function(){
-   marquee.setAttribute('direction','left');
-   marquee.start();
-});
-$('#btnStop').click(function(){
-   marquee.stop();
-});
-$('#btnStart').click(function(){
-   marquee.start();
-});
-$('#btnFast').click(function(){
-  marquee.setAttribute('scrollamount',30);
-  marquee.start();
-});
-$('#btnSlow').click(function(){
-  marquee.setAttribute('scrollamount',2);
-  marquee.start();
-});
- </script>
-
-
-</body>
-</html>
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
