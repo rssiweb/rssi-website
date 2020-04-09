@@ -34,12 +34,16 @@ body {
 
 }
 
-.navbarH a:active, .dropdownH:active .dropbtnH {
+.active {
+  background-color: #4B88A7;
+  color: whitesmoke;
+}
+.navbarH a:active, .dropdownH:active .dropbtnH, .dropdownH:active .dropdown-contentH {
   background-color: #4B88A7;
   color: whitesmoke;
 }
 
-
+s
 .navbarH .icon {
   display: none;
 }
