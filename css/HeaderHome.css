@@ -84,3 +84,14 @@ body {
 .dropdownH:hover .dropdown-contentH {
   display: block;
 }
+@media (max-width: 880px) {
+ 
+	.containerH,
+	.navbarH,
+	.dropdownH,.dropdownH .dropbtnH,
+	.dropdown-contentH{
+		display: block;
+		width: 100%;
+		margin-bottom: 0px;
+		text-align: center;
+	}
