@@ -34,7 +34,7 @@ body {
 
 }
 
-.active {
+.navbarH a:active, .dropdownH:active .dropbtnH {
   background-color: #4B88A7;
   color: whitesmoke;
 }
@@ -68,6 +68,7 @@ body {
   background-color: #4B88A7;
 	
 	
+	
 }
 
 .dropdown-contentH {
@@ -95,6 +96,11 @@ body {
 .dropdownH:hover .dropdown-contentH {
   display: block;
 }
+
+
+
+
+
 @media (max-width: 880px) {
   .navbarH a:not(:first-child), .dropdownH .dropbtnH {
     display: none;
