@@ -25,7 +25,9 @@
     <navh>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <div class="navbarH"><a href="/home">Home</a>
+      <div class="navbarH" id="mynavbarH">
+		  
+		  <a href="/home" class="active">Home</a>
 		  
 		  
 		  <div class="dropdownH">
@@ -69,6 +71,8 @@
         </div>
         
 		<a href="#login"><i class="fas fa-user" style="font-size:15px;"></i></button></a>
+		
+		<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 		  
     </navh>
   </div>
@@ -107,9 +111,11 @@
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/popper.min.js"></script>
 <script src="../js/bootstrap-4.3.1.js"></script>
+	<!-- TemplateEndEditable -->
+	<script src="../js/responsive-header.js"></script>
 </body>
 	
-	<!-- TemplateEndEditable -->
+	
 	<!-- FOOTER -->
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
  

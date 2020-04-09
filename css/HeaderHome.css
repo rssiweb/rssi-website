@@ -34,6 +34,17 @@ body {
 
 }
 
+.active {
+  background-color: #4B88A7;
+  color: whitesmoke;
+}
+
+
+.navbarH .icon {
+  display: none;
+}
+
+
 .dropdownH {
   float: left;
   overflow: hidden;
@@ -85,13 +96,34 @@ body {
   display: block;
 }
 @media (max-width: 880px) {
- 
-	.containerH,
-	.navbarH,
-	.dropdownH,.dropdownH .dropbtnH,
-	.dropdown-contentH{
-		display: block;
-		width: 100%;
-		margin-bottom: 0px;
-		text-align: center;
-	}
+  .navbarH a:not(:first-child), .dropdownH .dropbtnH {
+    display: none;
+  }
+  .navbarH a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+
+
+@media screen and (max-width: 800px) {
+  .navbarH.responsive {position: relative;}
+  .navbarH.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .navbarH.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .navbarH.responsive .dropdownH {float: none;}
+  .navbarH.responsive .dropdown-contentH {position: relative;}
+  .navbarH.responsive .dropdownH .dropbtnH {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
