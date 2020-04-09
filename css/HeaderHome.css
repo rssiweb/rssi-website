@@ -34,7 +34,7 @@ body {
 
 }
 
-.active a{
+a.active {
   background-color: #4B88A7;
   color: whitesmoke;
 }
