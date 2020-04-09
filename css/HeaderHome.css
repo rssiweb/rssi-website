@@ -38,12 +38,8 @@ body {
   background-color: #4B88A7;
   color: whitesmoke;
 }
-.navbarH a:active, .dropdownH:active .dropbtnH, .dropdownH:active .dropdown-contentH {
-  background-color: #4B88A7;
-  color: whitesmoke;
-}
 
-s
+
 .navbarH .icon {
   display: none;
 }
@@ -95,6 +91,11 @@ s
 
 .dropdown-contentH a:hover {
   background-color: #ddd;
+}
+
+.active .dropdown-contentH a:active {
+   background-color: #4B88A7;
+  color: whitesmoke;
 }
 
 .dropdownH:hover .dropdown-contentH {
