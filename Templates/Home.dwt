@@ -1,100 +1,12 @@
-<!doctype html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<meta name="keywords" content="footer, address, phone, icons" />
-	<!-- TemplateBeginEditable name="EditRegion1" --><title>Home</title><!-- TemplateEndEditable -->
-	
-	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-	<!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">-->
-	<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
-	<style type="text/css">
-	@import url("../HeaderHome.css");	
-	<link rel="stylesheet" href="../style.css">
-	
-	
-	
-    </style>
-	
-
-	</head>
-	
-<link href="../footer.css" rel="stylesheet" type="text/css">
-<div class="container">
-  <div class="logo"><img src="https://res.cloudinary.com/hs4stt5kg/image/upload/v1586071063/faculties/WebsiteHeaderLogo.png" alt="" width="140px"/>
-    <nav>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <div class="navbar"><a href="#home">Home</a><a href="#news">News</a>
-        <div class="dropdown">
-          <button class="dropbtn">Dropdown<i class="fa fa-caret-down"></i></button>
-          <div class="dropdown-content"><a href="#">Link 1</a><a href="#">Link 2</a><a href="#">Link 3</a></div>
-        </div>
-        <a href="#home">Home1</a><a href="#news">News</a></div>
-    </nav>
-  </div>
-</div>
-	
-	<!-- TemplateBeginEditable name="EditRegion2" -->EditRegion1<!-- TemplateEndEditable -->
-	
-	<!-- FOOTER -->
- 
-		<footer class="footer-distributed">
-        
-     
- 
-			<div class="footer-left">
-          <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/faculties/WebsiteHeaderLogo.png">
-				<h3>Grow<span>Together</span></h3>
- 
-				<p class="footer-links">
-					<a href="https://www.rssi.in">Home</a>
-					|
-					
-					<a href="https://www.rssi.in/about-us">About</a>
-					|
-					<a href="https://www.rssi.in/contact">Contact</a>
-                    |
-                    <a href="https://www.rssi.in/website-disclaimer">Disclaimer</a>
-					
-				</p>
- 
-				<p class="footer-company-name">Official Site of RSSI © 2020. All Rights Reserved.</p>
-			</div>
- 
-			<div class="footer-center">
-				<div>
-					
-                    <i class="fas fa-map-marker-alt" style="font-size:15px;"></i>
-					  <p>Lodha Splendora, Vivant G 803<span>Ghodbunder Rd, Bhayandarpada, Thane West, Thane, Maharashtra 400615</span>
-</p>
-				</div>
- 
-				<div>
-					<i class="fas fa-mobile-alt"style="font-size:15px;"></i>
-					<p>+91 7980168159, +91 9717445551</p>
-				</div>
-				<div>
-					<i class="fas fa-at"style="font-size:15px;"></i>
-					<p><a href="mailto:rssi.connect@gmal.com">rssi.connect@gmal.com</a></p>
-				</div>
-			</div>
-			<div class="footer-right">
-				<p class="footer-company-about">
-					
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.9761131891837!2d72.95364931437992!3d19.28340495043243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7bb56299b7f91%3A0x2c4198811edd314a!2sRSSI!5e0!3m2!1sen!2sin!4v1586176475253!5m2!1sen!2sin" width=100% height="150" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                
-                <br><br>Site Contents owned, designed, developed, maintained and updated by the IT Department, RSSI.</p><br>
-				<div class="footer-icons">
-					<a href="https://www.facebook.com/rssi.edu"><i class="fab fa-facebook"></i></a>
-					<a href="https://g.page/rssi-mumbai/review?rc"><i class="fab fa-google"></i></a>
-					<a href="https://www.instagram.com/rssi_edu/"><i class="fab fa-instagram"></i></a>
-					<a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a>
-					<a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
-				</div>
-			</div>  
-		</footer>		
-</html>
+<link href="../css/HeaderHome.css" rel="stylesheet" type="text/css">
+<ul class='menu'>
+ <li><a href="index.html">Home</a></li>
+ <li><a href="#">info</a>
+  <ul class='submenu'>
+   <li><a href="/information-brochure">ib</a></li>
+   <li><a href="/result-portal">result portal</a></li>
+   <li><a href="#">React JS</a></li>
+  </ul>
+ </li>
+ <li><a href="#">Blog</a></li>
+</ul>
