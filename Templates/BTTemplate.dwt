@@ -7,7 +7,7 @@
 <!-- TemplateBeginEditable name="doctitle" -->
 <title>Home</title>
 <!-- TemplateEndEditable -->
-	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 <link href="../css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
 <link href="../css/HeaderHome.css" rel="stylesheet" type="text/css">
 <link href="../css/footer.css" rel="stylesheet" type="text/css">
