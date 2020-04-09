@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- InstanceBeginEditable name="doctitle" -->
+<!-- InstanceBeginEditable name="Change1" -->
 <title>Home</title>
 <!-- InstanceEndEditable -->
-	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
 <link href="css/HeaderHome.css" rel="stylesheet" type="text/css">
 <link href="css/footer.css" rel="stylesheet" type="text/css">
-<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceBeginEditable name="Change2" -->
 <!-- InstanceEndEditable -->
 </head>
 
@@ -25,7 +25,9 @@
     <navh>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <div class="navbarH"><a href="/home">Home</a>
+      <div class="navbarH" id="mynavbarH">
+		  
+	<a href="/home" class="active">Home</a>
 		  
 		  
 		  <div class="dropdownH">
@@ -43,7 +45,7 @@
 		   <div class="dropdownH">
           <button class="dropbtnH">Get involved <i class="fa fa-caret-down"></i></button>
           <div class="dropdown-contentH">
-			  <a href="information-brochure">Information Brochure</a>
+			  <a href="information-brochure" class="menu">Information Brochure</a>
 			  <a href="#">Registration</a>
 			  <a href="#">Profile Update</a>
 		  </div>
@@ -55,7 +57,7 @@
           <div class="dropdown-contentH">
 			  <a href="information-brochure">Admission</a>
 			  <a href="#">Class schedule</a>
-			  <a href="#">Result portal</a>
+			  <a href="/result-portal" class="menu">Result portal</a>
 			  <a href="#">Scholarship programs</a>
 			  
 		  </div>
@@ -69,6 +71,8 @@
         </div>
         
 		<a href="#login"><i class="fas fa-user" style="font-size:15px;"></i></button></a>
+		
+		<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 		  
     </navh>
   </div>
@@ -76,9 +80,9 @@
 	</div>
 	
 	
-	<!-- InstanceBeginEditable name="head1" -->
+	<!-- InstanceBeginEditable name="Change4" -->
 <body>
-	
+
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -88,14 +92,12 @@
 	
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="https://res.cloudinary.com/hs4stt5kg/image/upload/v1585764747/faculties/EmailHeader.jpg" alt="First slide" >
+      <img class="d-block w-100" src="images/carousel1.png" alt="First slide" >
 		<div class="carousel-caption d-none d-md-block">
     <h5></h5>
     <p></p>
   </div>	
     </div>
-	  
-  
   </div>
   <!--<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -106,12 +108,15 @@
     <span class="sr-only">Next</span>
   </a>-->
 </div>
+	<!-- InstanceEndEditable -->
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap-4.3.1.js"></script>
+<script src="js/responsive-header.js"></script>
+<script src="js/active-nav-bar.js"></script>
 </body>
 	
-	<!-- InstanceEndEditable -->
+	
 	<!-- FOOTER -->
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
  
