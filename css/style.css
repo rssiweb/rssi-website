@@ -348,14 +348,18 @@ footer {
     padding-top: 30px;
     padding-bottom: 20px;
     margin-bottom: 22px;
+	
 }
 
 #speakers .speakers-wrapper {
-    background: #ffffff;
+    background: #f9f9f9;
     padding-bottom: 22px;
+	
 }
 
-
+.imgcircle {
+  border-radius: 50%;
+}
 
 /*---------------------------------------
    Program section              

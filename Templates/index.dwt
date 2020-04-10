@@ -5,7 +5,9 @@
 RSSI
 http://www.rssi.in
 -->
+<!-- TemplateBeginEditable name="doctitle" -->
 <title>Welcome to RSSI</title>
+
 <meta name="description" content="">
 <meta name="author" content="">
 <meta charset="UTF-8">
@@ -104,8 +106,8 @@ http://www.rssi.in
         <div class="dropdownH">
           <button class="dropbtnH">Other information <i class="fa fa-caret-down"></i></button>
           <div class="dropdown-contentH">
-			  <a href="https://attendence-brssi.herokuapp.com/" class="smoothScroll">Phoenix</a><a href="/donation-portal" class="smoothScroll">Donation portal</a>
-			  <a href="/website-disclaimer" class="smoothScroll">Website disclaimer</a>
+		    <a href="https://attendence-brssi.herokuapp.com/" class="smoothScroll">Phoenix</a><a href="/donation-portal" class="smoothScroll">Donation portal</a>
+		    <a href="/website-disclaimer" class="smoothScroll">Website disclaimer</a>
 		</div>
         </div>
         
@@ -180,7 +182,7 @@ http://www.rssi.in
 		<div class="row">
 
 
-			<div class="wow fadeInUp col-md-6 col-sm-6" data-wow-delay="0.6s">
+		  <div class="wow fadeInUp col-md-6 col-sm-6" data-wow-delay="0.6s">
 				<h3>Our Purpose</h3>
 				<p>Empowering youth through education is the main focus of our organization. Mission Education is a regional level program of RSSI, Mumbai (mainly covering Thane area including Ghodbunder Rd, Bhayandarpada) which is committed to ensuring the basic education and healthcare of underprivileged children.</p>
 				<p>We believe that whether you are addressing healthcare, poverty, population control, unemployment or human rights, there's no better place to start than in the corridors of education.</p>
@@ -271,7 +273,7 @@ http://www.rssi.in
 
 				<div class="item wow fadeInUp col-md-3 col-sm-3" data-wow-delay="0.9s">
 					<div class="speakers-wrapper">
-						<img src="images/members-img1.jpg" class="img-responsive imgcircle" alt="members">
+					  <img src="images/members-img1.jpg" class="img-responsive imgcircle" alt="members">
 							<div class="speakers-thumb">
 								<h3>Rina Saha</h3>
 								<h6>Founder</h6>
@@ -281,7 +283,7 @@ http://www.rssi.in
 
 				<div class="item wow fadeInUp col-md-3 col-sm-3" data-wow-delay="0.6s">
 					<div class="speakers-wrapper">
-						<img src="images/members-img2.jpg" class="img-responsive imgcircle" alt="members">
+					  <img src="images/members-img2.jpg" class="img-responsive imgcircle" alt="members">
 							<div class="speakers-thumb">
 								<h3>Som</h3>
 								<h6>Co-Founder</h6>
@@ -291,7 +293,7 @@ http://www.rssi.in
 
 				<div class="item wow fadeInUp col-md-3 col-sm-3" data-wow-delay="0.9s">
 					<div class="speakers-wrapper">
-						<img src="images/members-img3.jpg" class="img-responsive imgcircle" alt="members">
+					  <img src="images/members-img3.jpg" class="img-responsive imgcircle" alt="members">
 							<div class="speakers-thumb">
 								<h3>Neel</h3>
 								<h6>Co-Founder</h6>
@@ -360,7 +362,7 @@ http://www.rssi.in
         						<p>Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet, wisi risus purus augue vulputate voluptate neque, curabitur dolor libero sodales vitae elit massa. Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet.</p>
 								<p>Nunc eu nibh vel augue mollis tincidunt id efficitur tortor. Sed pulvinar est sit amet tellus iaculis hendrerit. Mauris justo erat, rhoncus in arcu at, scelerisque tempor erat.</p>
       						</div>
-   						 </div>
+					  </div>
  					</div>
 
     				<div class="panel panel-default">
@@ -376,7 +378,7 @@ http://www.rssi.in
                             	<p>Nunc eu nibh vel augue mollis tincidunt id efficitur tortor. Sed pulvinar est sit amet tellus iaculis hendrerit. Mauris justo erat, rhoncus in arcu at, scelerisque tempor erat.</p>
         						<p>Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet, wisi risus purus augue vulputate voluptate neque, curabitur dolor libero sodales vitae elit massa. Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet.</p>
       						</div>
-   						 </div>
+					  </div>
  					</div>
 
  					<div class="panel panel-default">
@@ -392,10 +394,10 @@ http://www.rssi.in
                             	<p>Aenean vulputate finibus justo et feugiat. Ut turpis lacus, dapibus quis justo id, porttitor tempor justo. Quisque ut libero sapien. Integer tellus nisl, efficitur sed dolor at, vehicula finibus massa.</p>
         						<p>Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet, wisi risus purus augue vulputate voluptate neque, curabitur dolor libero sodales vitae elit massa. Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet.</p>
       						</div>
-   						 </div>
- 					 </div>
+					  </div>
+				  </div>
 
- 				 </div>
+			  </div>
 			</div>
 
 		</div>
@@ -439,7 +441,7 @@ http://www.rssi.in
 
 
 	
-	<!-- Back top -->
+<!-- Back top -->
 <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
 <!-- =========================
      FOOTER   
@@ -498,7 +500,7 @@ http://www.rssi.in
 					<a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
 				</div>
 			</div>  
-		</footer>		
+</footer>		
 
 <!-- =========================
      SCRIPTS   
@@ -521,4 +523,4 @@ http://www.rssi.in
 
 
 </body>
-</html>
+</html><!-- TemplateEndEditable -->

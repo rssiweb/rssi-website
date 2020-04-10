@@ -1,8 +1,4 @@
-<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="icon icon-bar"></span>
-				<span class="icon icon-bar"></span>
-				<span class="icon icon-bar"></span>
-			</button>*{transition:all 0.3s ease-in-out;
+*{transition:all 0.3s ease-in-out;
 margin: 0;padding: 0;}
 
 .containerH{
@@ -13,7 +9,7 @@ margin: 0;padding: 0;}
 
 navH{float:right;}
 
-.logoH img{float:left; margin: 7px 0px 5px 5px;}
+.logoH img {float:left; margin: 7px 0px 5px 5px;}
 
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -39,7 +35,7 @@ body {
 }
 
 a.active {
-  background-color: #4B88A7;
+  background-color: #f2545f;
   color: whitesmoke;
 }
 
@@ -69,7 +65,7 @@ a.active {
 }
 
 .navbarH a:hover, .dropdownH:hover .dropbtnH {
-  background-color: #4B88A7;
+  background-color: #f2545f/*#4B88A7*/;
 	
 	
 	
@@ -94,7 +90,8 @@ a.active {
 }
 
 .dropdown-contentH a:hover {
-  background-color: #ddd;
+  background-color: #f2545f;
+	color: whitesmoke;
 }
 
 .dropdownH:hover .dropdown-contentH {
