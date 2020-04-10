@@ -1,30 +1,27 @@
 <!doctype html>
 <html>
 <head>
+	<!-- TemplateBeginEditable name="Change1" -->
+<title>Home</title>
+<!-- TemplateEndEditable -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- TemplateBeginEditable name="Change1" -->
-<title>Home</title>
-<!-- TemplateEndEditable -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 <link href="../css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
 <link href="../css/HeaderHome.css" rel="stylesheet" type="text/css">
 <link href="../css/footer.css" rel="stylesheet" type="text/css">
 <!-- TemplateBeginEditable name="Change2" -->
 <!-- TemplateEndEditable -->
-</head>
-
+	</head>
 	
 	
 <div class="containerH">
-  <div class="logoH"><img src="../images/WebsiteHeaderLogo.png" alt="" width="140px"/>
-	  
-	  
-	  
+  <div class="logoH"><img src="../images/WebsiteHeaderLogo.png" alt="" width="140px"/>  
     <navh>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      
       <div class="navbarH" id="mynavbarH">
 		  
 	<a href="/home">Home</a>
@@ -71,7 +68,7 @@
         </div>
         
 		<a href="#login"><i class="fas fa-user" style="font-size:15px;"></i></button></a>
-		
+	
 		<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 		  
     </navh>
@@ -79,13 +76,12 @@
 </div>
 	</div>
 	
+<!-- TemplateBeginEditable name="Change4" -->	
 	
-	<!-- TemplateBeginEditable name="Change4" -->
 <body>
-
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+	  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
   </ol>
@@ -108,12 +104,13 @@
     <span class="sr-only">Next</span>
   </a>-->
 </div>
-	<!-- TemplateEndEditable -->
+<!-- TemplateEndEditable -->
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/popper.min.js"></script>
 <script src="../js/bootstrap-4.3.1.js"></script>
 <script src="../js/responsive-header.js"></script>
 <script src="../js/active-nav-bar.js"></script>
+	<script src="../js/scrolltext.js"></script>
 </body>
 	
 	

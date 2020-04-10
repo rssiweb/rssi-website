@@ -1,0 +1,23 @@
+let marquee=document.getElementById('marquee');
+$('#btnRight').click(function(){
+    marquee.setAttribute('direction','right');
+    marquee.start();
+});
+$('#btnLeft').click(function(){
+   marquee.setAttribute('direction','left');
+   marquee.start();
+});
+$('#btnStop').click(function(){
+   marquee.stop();
+});
+$('#btnStart').click(function(){
+   marquee.start();
+});
+$('#btnFast').click(function(){
+  marquee.setAttribute('scrollamount',30);
+  marquee.start();
+});
+$('#btnSlow').click(function(){
+  marquee.setAttribute('scrollamount',2);
+  marquee.start();
+});
