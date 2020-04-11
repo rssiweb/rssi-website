@@ -34,9 +34,14 @@ body {
 
 }
 
-a.active {
+.active a {
   background-color: #f2545f;
   color: whitesmoke;
+}
+
+.navbarH .nav .dropdownH .dropdown-contentH .active > a {
+    background-color: #f2545f !important;
+    color: whitesmoke !important;
 }
 
 
