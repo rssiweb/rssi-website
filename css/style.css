@@ -263,6 +263,16 @@ footer {
     -webkit-background-size: cover;
     background-size: cover;
     background-position: center center;
+	
+	
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-color: #030200;
+	
+	
     color: #ffffff;
     display: -webkit-box;
     display: -webkit-flex;
