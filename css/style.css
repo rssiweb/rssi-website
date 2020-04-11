@@ -344,9 +344,11 @@ footer {
 }
 
 #speakers img {
-  width: 100%;
+  width: 70%;
   max-width: 100%;
   height: auto;
+	display: inline;
+	margin: 0 auto;
 }
 
 #speakers .col-md-3 {
