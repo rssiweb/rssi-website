@@ -6,12 +6,3 @@ function myFunction() {
     x.className = "navbarH";
   }
 }
-
-function myFunction() {
-  var x = document.getElementById("mynavbarHo");
-  if (x.className === "navbarHo") {
-    x.className += " responsive";
-  } else {
-    x.className = "navbarHo";
-  }
-}

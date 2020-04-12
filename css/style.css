@@ -259,7 +259,7 @@ footer {
     Intro section              
 -----------------------------------------*/
 #intro {
-     background-image:
+background-image:
 linear-gradient(
       rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/intro-bg.jpg'); repeat-y fixed;
     -webkit-background-size: cover;
@@ -286,7 +286,6 @@ linear-gradient(
           align-items: center;
     height: 100vh;
     text-align: center;
-	
 }
 
 #intro h3 {
@@ -300,15 +299,11 @@ linear-gradient(
 -----------------------------------------*/
 #overview img {
   position: relative;
-  padding-bottom: 32px;
+  padding-bottom: 0px;/*32px*/
 }
 
-.overview-img-wide {
-    width: 10px;
-	overflow-x: hidden;
-	
-}
-.mySlides {display:none;}
+
+
 /*---------------------------------------
     Detail section              
 -----------------------------------------*/
@@ -755,3 +750,8 @@ footer {
   }
 
 }
+
+/*Scroll image*/
+.mySlides {display:none}
+.w3-left, .w3-right, .w3-badge {cursor:pointer}
+.w3-badge {height:13px;width:13px;padding:0}
