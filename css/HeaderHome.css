@@ -17,7 +17,7 @@ body {
 }
 
 .navbarH {
-  overflow: hidden;
+  overflow: auto;
   /*background-color: #454545;*/
 	display: inline-block;
 	vertical-align: middle;

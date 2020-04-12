@@ -346,11 +346,9 @@ linear-gradient(
 }
 
 #speakers img {
-  width: 70%;
+  width: 100%;
   max-width: 100%;
   height: auto;
-	display: inline;
-	margin: 0 auto;
 }
 
 #speakers .col-md-3 {
@@ -359,14 +357,13 @@ linear-gradient(
     padding-top: 30px;
     padding-bottom: 20px;
     margin-bottom: 22px;
-	
 }
 
 #speakers .speakers-wrapper {
-    background: #f9f9f9;
+    background: #ffffff;
     padding-bottom: 22px;
-	
 }
+
 
 .imgcircle {
   border-radius: 50%;
