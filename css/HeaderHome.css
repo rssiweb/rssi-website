@@ -36,7 +36,7 @@ body {
 
 a.active {
   background-color: #f2545f;
-  color: whitesmoke;
+  color: whitesmoke !important;
 }
 
 
@@ -161,11 +161,6 @@ a.active {
   padding: 15px 10px;
   text-decoration: none;
 
-}
-
-a.active {
-  background-color: #f2545f;
-  color: whitesmoke;
 }
 
 
