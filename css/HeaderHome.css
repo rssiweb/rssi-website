@@ -163,12 +163,6 @@ a.active {
 
 }
 
-a.active {
-  background-color: #f2545f;
-  color: whitesmoke;
-}
-
-
 .navbarHo .icon {
   display: none;
 }
@@ -262,4 +256,7 @@ a.active {
     width: 100%;
     text-align: left;
   }
-}
+/*<!.........................scroll image.....................>
+	..........................................................*/
+	
+	

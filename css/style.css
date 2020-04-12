@@ -259,7 +259,9 @@ footer {
     Intro section              
 -----------------------------------------*/
 #intro {
-    background: url('../images/intro-bg.jpg') 50% 0 repeat-y fixed;
+     background-image:
+linear-gradient(
+      rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/intro-bg.jpg'); repeat-y fixed;
     -webkit-background-size: cover;
     background-size: cover;
     background-position: center center;
@@ -284,6 +286,7 @@ footer {
           align-items: center;
     height: 100vh;
     text-align: center;
+	
 }
 
 #intro h3 {
@@ -300,8 +303,12 @@ footer {
   padding-bottom: 32px;
 }
 
-
-
+.overview-img-wide {
+    width: 10px;
+	overflow-x: hidden;
+	
+}
+.mySlides {display:none;}
 /*---------------------------------------
     Detail section              
 -----------------------------------------*/
