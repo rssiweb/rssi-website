@@ -8,6 +8,7 @@ body {
     font-family: 'Poppins', sans-serif;
     font-style: normal;
 		font-weight: 400;
+	overflow-x: hidden;
 }
 
 
@@ -52,6 +53,11 @@ a {
   outline: none;
 }
 
+p1 {
+    color: #707070;
+    font-size: 14px;
+    line-height: 20px;
+}
 
 /*---------------------------------------
     General               
@@ -299,7 +305,8 @@ linear-gradient(
 -----------------------------------------*/
 #overview img {
   position: relative;
-  padding-bottom: 0px;/*32px*/
+  padding: 0px;/*32px*/
+	margin: 0px;
 }
 
 
@@ -752,3 +759,7 @@ footer {
 .mySlides {display:none}
 .w3-left, .w3-right, .w3-badge {cursor:pointer}
 .w3-badge {height:13px;width:13px;padding:0}
+
+ul {
+    padding-left: 30px;
+}

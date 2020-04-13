@@ -11,13 +11,9 @@ navH{float:right;}
 
 .logoH img {float:left; margin: 7px 0px 5px 5px;}
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-	
-}
 
 .navbarH {
-  overflow: auto;
+  overflow: hidden;
   /*background-color: #454545;*/
 	display: inline-block;
 	vertical-align: middle;
