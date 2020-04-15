@@ -48,7 +48,7 @@ p {
     line-height: 24px;
 }
 
-.notice p {
+ps {
     line-height: 1;
 }
 
@@ -836,7 +836,7 @@ vertical-align: baseline;}
 }
 
 
-
+/*//// EVENT CALENDER///////*/
 
 hr.style5 {
 	background-color: #fff;
