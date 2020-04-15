@@ -48,9 +48,41 @@ p {
     line-height: 24px;
 }
 
+.notice p {
+    line-height: 1;
+}
+
 a {
   text-decoration: none !important;
   outline: none;
+}
+
+.notice a:link {
+  text-decoration: none !important;
+	color:#0089c9 !important;
+	font-family: Arial;
+	font-size: 13px;
+}
+
+.notice a:visited {
+  text-decoration: none !important;
+	color:#0089c9 !important;
+	font-family: Arial;
+	font-size: 13px;
+}
+
+.notice a:hover {
+  text-decoration: underline !important;
+	color:#0089c9 !important;
+	font-family: Arial;
+	font-size: 13px;
+}
+
+.notice a:active {
+  text-decoration: underline !important;
+	color:#0089c9 !important;
+	font-family: Arial;
+	font-size: 13px;
 }
 
 p1 {
@@ -775,13 +807,13 @@ vertical-align: baseline;}
 /* Create three equal columns that floats next to each other */
 .column1 {
   float: left;
-  width: 60%;
+  width: 40%;
   padding: 10px;
   height: 100%; /* Should be removed. Only for demonstration */
 }
 .column2 {
   float: left;
-  width: 40%;
+  width: 60%;
   padding: 10px;
   height: 100%; /* Should be removed. Only for demonstration */
 }
@@ -798,4 +830,36 @@ vertical-align: baseline;}
   .column1 {
     width: 100%;
   }
+	.column2 {
+    width: 100%;
+  }
+}
+
+
+
+
+hr.style5 {
+	background-color: #fff;
+	border-top: 2px dashed #8c8b8b;
+	margin: 0px;
+}
+
+
+/* Using panels to display blog date */
+.panel.date {
+    margin: 0px;
+    width: 60px;
+    text-align: center;
+}
+
+.panel.date .month {
+    padding: 2px 0px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.panel.date .day {
+    padding: 3px 0px;
+    font-weight: 700;
+    font-size: 1.5em;
 }
