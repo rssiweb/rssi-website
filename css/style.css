@@ -48,15 +48,23 @@ p {
     line-height: 24px;
 }
 
-ps {
-    line-height: 1;
-}
-
 a {
   text-decoration: none !important;
   outline: none;
 }
 
+/*---------------------------------------
+    UPDATE SECTION
+-----------------------------------------*/
+ps {
+    line-height: 1;
+}
+
+
+
+/*---------------------------------------
+    NOTICE-LINK DECORATION               
+-----------------------------------------*/
 .notice a:link {
   text-decoration: none !important;
 	color:#0089c9 !important;
@@ -84,7 +92,9 @@ a {
 	font-family: Arial;
 	font-size: 13px;
 }
-
+/*---------------------------------------
+    WHAT WE DID SO FAR               
+-----------------------------------------*/
 p1 {
     color: #707070;
     font-size: 14px;
@@ -98,7 +108,7 @@ p1 {
   margin-bottom: 32px;
 }
 
-#overview,
+#overview,#dashboard,#calender,
 #register {
   padding-top: 14rem;
   padding-bottom: 14rem;
@@ -119,7 +129,7 @@ footer {
   text-align: center;
 }
 
-#overview h3,
+#overview h3, #dashboard h3, #calender h3,
 #detail h3, #video h3,
 #register h3,
 #venue h3,
@@ -335,7 +345,7 @@ linear-gradient(
 /*---------------------------------------
    Overview  section              
 -----------------------------------------*/
-#overview img {
+#overview,#dashboard,#calender img {
   position: relative;
   padding: 0px;/*32px*/
 	margin: 0px;
@@ -787,7 +797,9 @@ footer {
 
 }
 
-/*Scroll image*/
+/*---------------------------------------
+   Scroll image under overview section     
+-----------------------------------------*/
 .mySlides {display:none}
 .w3-left, .w3-right, .w3-badge {cursor:pointer}
 .w3-badge {height:13px;width:13px;padding:0}
@@ -799,7 +811,9 @@ ul {
 .box { display:inline-block; 
 vertical-align: baseline;}
 
-/*layout*/
+/*---------------------------------------
+   LAYOUT 2 COLUMN CREATION     
+-----------------------------------------*/
 * {
   box-sizing: border-box;
 }
@@ -809,13 +823,13 @@ vertical-align: baseline;}
   float: left;
   width: 40%;
   padding: 10px;
-  height: 100%; /* Should be removed. Only for demonstration */
+ 
 }
 .column2 {
   float: left;
   width: 60%;
   padding: 10px;
-  height: 100%; /* Should be removed. Only for demonstration */
+  
 }
 
 /* Clear floats after the columns */
@@ -836,14 +850,9 @@ vertical-align: baseline;}
 }
 
 
-/*//// EVENT CALENDER///////*/
-
-hr.style5 {
-	background-color: #fff;
-	border-top: 2px dashed #8c8b8b;
-	margin: 0px;
-}
-
+/*---------------------------------------
+   DASHBOARD EVENT    
+-----------------------------------------*/
 
 /* Using panels to display blog date */
 .panel.date {
