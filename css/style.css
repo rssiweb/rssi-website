@@ -5,7 +5,7 @@ http://www.templatemo.com/tm-486-new-event
 
 body {
 		background: #ffffff;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Arial'/*'Poppins', sans-serif*/;
     font-style: normal;
 		font-weight: 400;
 	overflow-x: hidden;
@@ -45,7 +45,7 @@ h5 {
 p {
     color: #707070;
     font-size: 14px;
-    line-height: 24px;
+    line-height: 21px;
 }
 
 a {
@@ -60,7 +60,14 @@ ps {
     line-height: 1;
 }
 
-
+/*---------------------------------------
+    WHAT WE DID SO FAR               
+-----------------------------------------*/
+p1 {
+    color: #707070;
+    font-size: 14px;
+    line-height: 21px;
+}
 
 /*---------------------------------------
     NOTICE-LINK DECORATION               
@@ -92,14 +99,7 @@ ps {
 	font-family: Arial;
 	font-size: 13px;
 }
-/*---------------------------------------
-    WHAT WE DID SO FAR               
------------------------------------------*/
-p1 {
-    color: #707070;
-    font-size: 14px;
-    line-height: 20px;
-}
+
 
 /*---------------------------------------
     General               
@@ -235,11 +235,11 @@ footer {
 
 
 /*---------------------------------------
-    Navigation Links section              
+    Navigation Links section     101010         
 -----------------------------------------*/
 .custom-navbar {
     margin-bottom: 0;
-    background-color: #101010;
+    background-color: #454545;
 }
 
 .custom-navbar .navbar-brand {
@@ -295,7 +295,7 @@ footer {
         background: 0 0; 
     }
     .custom-navbar.top-nav-collapse {
-        background: #101010;
+        background: #454545;
         padding: 0;
     }
 
@@ -360,13 +360,91 @@ linear-gradient(
     background: #222;
     color: #ffffff;
 }
+#detail p {
+	
+    color: #909090;
+}
 
 #detail .fa {
   color: #f2545f;
   font-size: 48px;
 }
 
+/*---------------------------------------
+    CALENDER section            3498db  
+-----------------------------------------*/
+#calender .dn
+{
+     background-color: #EEEEEE;
+     background-image: url(../Images/icons/Pencil-48.png);
+     background-position: 9px 0px;
+     background-repeat: no-repeat;
+     border-left: solid 4px #3D7E9A;
+     line-height: 18px;
+     overflow: hidden;
+     padding: 15px 60px;
+}
 
+#calender ul {
+    padding-left: 30px;
+	color: #707070;
+}
+/*---------------------------------------
+   LAYOUT 2 COLUMN CREATION     
+-----------------------------------------*/
+* {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column1 {
+  float: left;
+  width: 40%;
+  padding: 10px;
+ 
+}
+.column2 {
+  float: left;
+  width: 60%;
+  padding: 10px;
+  
+}
+/*CALENDER section */
+.column3 {
+  float: left;
+  width: 55%;
+  padding: 10px;
+ 
+}
+.column4 {
+  float: left;
+  width: 45%;
+  padding-left: 30px;
+  
+}
+
+/* Clear floats after the columns */
+.row1:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column1 {
+    width: 100%;
+  }
+	.column2 {
+    width: 100%;
+  }
+	 .column3 {
+    width: 100%;
+  }
+	.column4 {
+    width: 100%;
+  }
+}
 
 /*---------------------------------------
     Video section              
@@ -804,50 +882,11 @@ footer {
 .w3-left, .w3-right, .w3-badge {cursor:pointer}
 .w3-badge {height:13px;width:13px;padding:0}
 
-ul {
-    padding-left: 30px;
-}
+
 
 .box { display:inline-block; 
 vertical-align: baseline;}
 
-/*---------------------------------------
-   LAYOUT 2 COLUMN CREATION     
------------------------------------------*/
-* {
-  box-sizing: border-box;
-}
-
-/* Create three equal columns that floats next to each other */
-.column1 {
-  float: left;
-  width: 40%;
-  padding: 10px;
- 
-}
-.column2 {
-  float: left;
-  width: 60%;
-  padding: 10px;
-  
-}
-
-/* Clear floats after the columns */
-.row1:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .column1 {
-    width: 100%;
-  }
-	.column2 {
-    width: 100%;
-  }
-}
 
 
 /*---------------------------------------
@@ -872,3 +911,4 @@ vertical-align: baseline;}
     font-weight: 700;
     font-size: 1.5em;
 }
+
