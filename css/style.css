@@ -5,7 +5,7 @@ http://www.templatemo.com/tm-486-new-event
 
 body {
 		background: #ffffff;
-    font-family: 'Arial'/*'Poppins', sans-serif*/;
+    font-family: 'Open Sans'/*'Poppins', sans-serif*/;
     font-style: normal;
 		font-weight: 400;
 	overflow-x: hidden;
@@ -43,7 +43,7 @@ h5 {
 }
 
 p {
-    color: #707070;
+    color: #444444;
     font-size: 14px;
     line-height: 21px;
 }
@@ -58,45 +58,55 @@ a {
 -----------------------------------------*/
 ps {
     line-height: 1;
+	font-size: 13px !important;
 }
 
 /*---------------------------------------
     WHAT WE DID SO FAR               
 -----------------------------------------*/
 p1 {
-    color: #707070;
+    color: #444444;
     font-size: 14px;
     line-height: 21px;
 }
 
+#calender p {
+    color: #444444;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+#calender ul {
+    padding-left: 30px;
+	color: #444444;
+}
+/*#calender h2 {
+  color: whitesmoke;
+}*/
 /*---------------------------------------
     NOTICE-LINK DECORATION               
 -----------------------------------------*/
 .notice a:link {
   text-decoration: none !important;
-	color:#0089c9 !important;
-	font-family: Arial;
+	color:#0060d0 !important;
 	font-size: 13px;
 }
 
 .notice a:visited {
   text-decoration: none !important;
-	color:#0089c9 !important;
-	font-family: Arial;
+	color:#0060d0 !important;
 	font-size: 13px;
 }
 
 .notice a:hover {
   text-decoration: underline !important;
-	color:#0089c9 !important;
-	font-family: Arial;
+	color:#0060d0 !important;
 	font-size: 13px;
 }
 
 .notice a:active {
   text-decoration: underline !important;
-	color:#0089c9 !important;
-	font-family: Arial;
+	color:#0060d0 !important;
 	font-size: 13px;
 }
 
@@ -371,24 +381,21 @@ linear-gradient(
 }
 
 /*---------------------------------------
-    CALENDER section            3498db  
+    CALENDER section            3498db,#3D7E9A  
 -----------------------------------------*/
 #calender .dn
 {
-     background-color: #EEEEEE;
-     background-image: url(../Images/icons/Pencil-48.png);
+     background-color: #fff;
      background-position: 9px 0px;
      background-repeat: no-repeat;
-     border-left: solid 4px #3D7E9A;
+     border-left: solid 6px #f2545f;
      line-height: 18px;
      overflow: hidden;
-     padding: 15px 60px;
+     padding: 15px 30px 25px 30px;
 }
 
-#calender ul {
-    padding-left: 30px;
-	color: #707070;
-}
+.media, .media-body {
+	overflow: auto;}
 /*---------------------------------------
    LAYOUT 2 COLUMN CREATION     
 -----------------------------------------*/
@@ -399,13 +406,13 @@ linear-gradient(
 /* Create three equal columns that floats next to each other */
 .column1 {
   float: left;
-  width: 40%;
+  width: 65%;
   padding: 10px;
  
 }
 .column2 {
   float: left;
-  width: 60%;
+  width: 35%;
   padding: 10px;
   
 }
@@ -422,6 +429,7 @@ linear-gradient(
   padding-left: 30px;
   
 }
+
 
 /* Clear floats after the columns */
 .row1:after {
@@ -889,6 +897,7 @@ vertical-align: baseline;}
 
 
 
+
 /*---------------------------------------
    DASHBOARD EVENT    
 -----------------------------------------*/
@@ -912,3 +921,106 @@ vertical-align: baseline;}
     font-size: 1.5em;
 }
 
+
+
+/*---------------------------------------
+   FOUNDER   
+-----------------------------------------*/
+
+.pt-100{
+    padding-top:100px;
+}
+.pb-100{
+    padding-bottom:100px;
+}
+.section-title {
+  margin-bottom: 60px;
+}
+.section-title p {
+	color: #777;
+	font-size: 16px;
+}
+.section-title h4 {
+	text-transform: capitalize;
+	font-size: 40px;
+	position: relative;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	font-weight: 600;
+}
+.section-title h4:before {
+	position: absolute;
+	content: "";
+	width: 60px;
+	height: 2px;
+	background-color: #F2545F;
+	bottom: 0;
+	left: 50%;
+	margin-left: -30px;
+}
+.section-title h4:after {
+	position: absolute;
+	background-color: #F2545F;
+	content: "";
+	width: 10px;
+	height: 10px;
+	bottom: -4px;
+	left: 50%;
+	margin-left: -5px;
+	border-radius: 50%;
+}
+
+.single-team img {
+  width: 250px;
+}
+.single-team {
+  position: relative;
+}
+.team-hover {
+  background-color: #F2545F;
+  color: #fff;
+  position: absolute;
+  bottom: -117px;
+  left: 0;
+  width: 250px;
+  padding: 10px;
+  text-align: center;
+  -webkit-transition: .4s;
+  transition:.4s
+}
+.team-hover h4 {
+  font-size: 20px;
+  text-transform: capitalize;
+}
+.team-hover h4 span {
+  display: block;
+  font-size: 14px;
+  font-weight: 300;
+  margin: 10px 0;
+}
+.team-hover a {
+  display: inline-block;
+  color: #fff;
+  padding: 0 5px;
+}
+.single-team:hover .team-hover {
+  bottom: 0;
+}
+.single-team{
+  overflow: hidden;
+}
+
+.column5 {
+  float: left;
+  width: 250px;
+  padding-left: 5px;
+  
+}
+.column5a {
+  float: left;
+  width: 420px;
+  padding: 20px;
+		position: relative;
+	display: inline;
+  
+}
