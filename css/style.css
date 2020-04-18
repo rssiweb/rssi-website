@@ -61,6 +61,11 @@ ps {
 	font-size: 13px !important;
 }
 
+.bg-primary {
+    color: #fff;
+    background-color: #F2545F !important;
+}
+
 /*---------------------------------------
     WHAT WE DID SO FAR               
 -----------------------------------------*/
@@ -88,25 +93,25 @@ p1 {
 -----------------------------------------*/
 .notice a:link {
   text-decoration: none !important;
-	color:#0060d0 !important;
+	color:#F2545F !important;
 	font-size: 13px;
 }
 
 .notice a:visited {
   text-decoration: none !important;
-	color:#0060d0 !important;
+	color:#F2545F !important;
 	font-size: 13px;
 }
 
 .notice a:hover {
   text-decoration: underline !important;
-	color:#0060d0 !important;
+	color:#F2545F !important;
 	font-size: 13px;
 }
 
 .notice a:active {
   text-decoration: underline !important;
-	color:#0060d0 !important;
+	color:#F2545F !important;
 	font-size: 13px;
 }
 
@@ -115,7 +120,7 @@ p1 {
     General               
 -----------------------------------------*/
 .section-title {
-  margin-bottom: 32px;
+  margin-bottom: 32px !important;
 }
 
 #overview,#dashboard,#calender,
