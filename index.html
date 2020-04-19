@@ -166,14 +166,15 @@ http://www.rssi.in
 			
 		<div class="row py-2">
         <!--Breaking box-->
-        <div class="col-1 col-md-3 col-lg-2 py-1 pr-md-0 mb-md-1">
+        <div class="col-1 col-md-3 col-lg-2 py-1 pr-md-0 mb-md-1" style="width: 10%">
             <div class="d-inline-block d-md-block bg-primary text-white text-center breaking-caret py-1 px-2">
-                <span class="fas fa-bolt" title="Updates"></span>
-                <span class="d-none d-md-inline-block">Updates</span>
+                
+                <!--<span class="d-none d-md-inline-block">Bulletin </span>-->
+				<span class="fas fa-angle-double-right" title="Updates"></span>
             </div>
         </div>
         <!--Breaking content-->
-           <div class="col-11 col-md-9 col-lg-10 pl-1 pl-md-2">
+           <div class="col-11 col-md-9 col-lg-10 pl-1 pl-md-2" style="width: 90%">
             <div class="breaking-box pt-2 pb-1">
                 <!--marque-->
                 <marquee behavior="scroll" scrollamount="5" direction="left" onmouseover="this.stop();" onmouseleave="this.start();">
@@ -186,132 +187,28 @@ http://www.rssi.in
 	
 </div></div>
 </section>
-<!-- =========================
-    DASHBOARD-EVENT SECTION   
-============================== -->
-<section id="dashboard" class="parallax-section" style="padding-top: 40px; padding-bottom: 60px; background-color: #f9f9f9">
-	<div class="container">
-		<div class="row">
-					
-<div class="row1">
-  <div class="column1">
-	  <h2>RSSI Dashboard (Live)</h2>
-<p>Last updated on <span id="datetime"></span></p><br>
-<div class="box">
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQhM9m81-pRLyTxw2FSwQMHwURHZfvnv8oUF6ScpTODWuK4jT_6c5emyE2aAmgHHFTWX7LrCC_V7W3A/pubchart?oid=1498381227&amp;format=interactive" frameborder="0" scrolling="no" height="183" align="left" ></iframe>
-</div>
-<div class="box">
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQhM9m81-pRLyTxw2FSwQMHwURHZfvnv8oUF6ScpTODWuK4jT_6c5emyE2aAmgHHFTWX7LrCC_V7W3A/pubchart?oid=2102046589&amp;format=interactive" frameborder="0" scrolling="no" height="183" align="left" ></iframe>
-			</div>
-  </div>
-  <div class="column2">
-	              <!-- Fluid width widget -->        
-    	    <div class="panel panel-danger">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        <span class="glyphicon glyphicon-calendar"></span> 
-                        Calendar Events
-                    </h3>
-                </div>
-                <div class="panel-body">
-                    <ul class="media-list">
-                        <li class="media">
-                            <div class="media-left">
-                                <div class="panel panel-danger text-center date">
-                                    <div class="panel-heading month">
-                                        <span class="panel-title strong">
-                                            May
-                                        </span>
-                                    </div>
-                                    <div class="panel-body day text-danger">
-                                        1
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    New website launch
-                                </h4>
-                                <p style="font-size: 12px; font-family: Gotham, 'Helvetica Neue', Helvetica, Arial, 'sans-serif'; line-height: 1.5">
-                                    Welcome to official website of RSSI. Let us know your user experience at rssi.connect@gmail.com
-                                </p>
-                            </div>
-                        </li>
-                       <!-- <li class="media">
-                            <div class="media-left">
-                                <div class="panel panel-danger text-center date">
-                                    <div class="panel-heading month">
-                                        <span class="panel-title strong">
-                                            Jan
-                                        </span>
-                                    </div>
-                                    <div class="panel-body text-danger day">
-                                        16
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    Aenean Consectetur Ultricies
-                                </h4>
-                                <p>
-                                    Curabitur vel malesuada tortor, sit amet ultricies mauris. Aenean consectetur ultricies luctus.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <div class="media-left">
-                                <div class="panel panel-danger text-center date">
-                                    <div class="panel-heading month">
-                                        <span class="panel-title strong all-caps">
-                                            Dec
-                                        </span>
-                                    </div>
-                                    <div class="panel-body text-danger day">
-                                        8
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    Praesent Tincidunt
-                                </h4>
-                                <p>
-                                    Sed convallis dignissim magna et dignissim. Praesent tincidunt sapien eu gravida dignissim.
-                                </p>
-                            </div>
-                        </li>-->
-                    </ul>
-                    <a href="#calender" class="btn btn-default btn-block">More Events »</a>
-                </div>
-            </div>
-            <!-- End fluid width widget -->
-				
-			
-</div></div>
-</section>
-
 	
-<!-- =========================
+	<!-- =========================
     OVERVIEW SECTION   
 ============================== -->
-<section id="overview" class="parallax-section" style="padding: 60px; background:#fff">
-	<div class="container">
-		<div class="row">
-
-
-			<!--<div class="wow fadeInUp col-md-6 col-sm-6" data-wow-delay="0.6s">-->
-			<div class="col-md-6 col-sm-6">
+<section id="overview" style="padding-top: 60px; padding-bottom: 60px; background-color: #f9f9f9">
+					
+<div class="row1">
+  <div class="column6">
 				
 				<h3>Empowering youth through education is the main focus of our organization.</h3>
 				<p>Mission Education is a regional level program of R.S Success Institute, Mumbai (mainly covering Thane area including Ghodbunder Rd, Bhayandarpada) which is committed to ensuring the basic education and healthcare of underprivileged children.</p>
 				<p>We believe that whether you are addressing healthcare, poverty, population control, unemployment or human rights, there's no better place to start than in the corridors of education.</p>
+	  
+	 
+	  <div style="margin-top:-10px">
+		  		<!--<a href="#footer" class="btn btn-lg btn-danger smoothScroll wow fadeInUp" data-wow-delay="0.6s">CONTACT US</a>-->
+				<a href="/information-brochure" class="btn btn-lg btn-danger smoothScroll wow fadeInUp" data-wow-delay="0.6s">DONATE NOW<!--<span class="fas fa-heart" title="Donate now"></span>--></a></div>
 				
 			</div>
-					
-			<!--<div class="wow fadeInUp col-md-6 col-sm-6" data-wow-delay="0.9s">-->
 			
-			<div class="col-md-6 col-sm-6">
+			
+  <div class="column6a">
 				
 				<div class="container" style="width: 100%">
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -434,15 +331,120 @@ http://www.rssi.in
       <span class="sr-only">Next</span>
     </a>
   </div>
-
+</div>
 
 				
 			</div>
 
 		</div>
-	</div>
 </section>
 
+
+<!-- =========================
+    DASHBOARD-EVENT SECTION   
+============================== -->
+<section id="dashboard" class="parallax-section" style="padding-top: 40px; padding-bottom: 60px; background-color: #fff">
+
+					
+<div class="row1">
+  <div class="column1">
+	  <h2>RSSI Dashboard (Live)</h2>
+<p>Last updated on <span id="datetime"></span></p><br>
+<div class="box">
+    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQhM9m81-pRLyTxw2FSwQMHwURHZfvnv8oUF6ScpTODWuK4jT_6c5emyE2aAmgHHFTWX7LrCC_V7W3A/pubchart?oid=1498381227&amp;format=interactive" frameborder="0" scrolling="no" height="183" align="left" ></iframe>
+</div>
+<div class="box">
+    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQhM9m81-pRLyTxw2FSwQMHwURHZfvnv8oUF6ScpTODWuK4jT_6c5emyE2aAmgHHFTWX7LrCC_V7W3A/pubchart?oid=2102046589&amp;format=interactive" frameborder="0" scrolling="no" height="183" align="left" ></iframe>
+			</div>
+  </div>
+  <div class="column2">
+	              <!-- Fluid width widget -->        
+    	    <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="fas fa-bullhorn"></span> 
+                        Announcement
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="media-list">
+                        <li class="media">
+                            <div class="media-left">
+                                <div class="panel panel-danger text-center date">
+                                    <div class="panel-heading month">
+                                        <span class="panel-title strong">
+                                            May
+                                        </span>
+                                    </div>
+                                    <div class="panel-body day text-danger">
+                                        1
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    Launch of our new website
+                                </h4>
+                                <p style="font-size: 12px; color: #909090; line-height: 21px">
+                                    We are proud to announce the launch of the newly redesigned RSSI website at  www.rssi.in.  The new site features a modern design, improved functionality, and easy access to essential information to help people effectively manage complexity and optimise their operational performance.
+                                </p>
+                            </div>
+                        </li>
+                       <!-- <li class="media">
+                            <div class="media-left">
+                                <div class="panel panel-danger text-center date">
+                                    <div class="panel-heading month">
+                                        <span class="panel-title strong">
+                                            Jan
+                                        </span>
+                                    </div>
+                                    <div class="panel-body text-danger day">
+                                        16
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    Aenean Consectetur Ultricies
+                                </h4>
+                                <p>
+                                    Curabitur vel malesuada tortor, sit amet ultricies mauris. Aenean consectetur ultricies luctus.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left">
+                                <div class="panel panel-danger text-center date">
+                                    <div class="panel-heading month">
+                                        <span class="panel-title strong all-caps">
+                                            Dec
+                                        </span>
+                                    </div>
+                                    <div class="panel-body text-danger day">
+                                        8
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    Praesent Tincidunt
+                                </h4>
+                                <p>
+                                    Sed convallis dignissim magna et dignissim. Praesent tincidunt sapien eu gravida dignissim.
+                                </p>
+                            </div>
+                        </li>-->
+                    </ul>
+                    <a href="#calender" class="btn btn-default btn-block">More Events »</a>
+                </div>
+            </div>
+            <!-- End fluid width widget -->
+				
+			
+</div></div>
+</section>
+
+	
 
 
 <!-- =========================
@@ -526,7 +528,8 @@ http://www.rssi.in
 			<div class="row">
 				<div class="col-xl-8 mx-auto text-center">
 					<div class="section-title">
-						<h2>Message from Founders' Desk</h2>
+						<h4>Message from Founders' Desk</h4>
+						
 						
 					</div>
 				</div>
@@ -565,8 +568,7 @@ http://www.rssi.in
 				
 	<div class="column5a">
     
-		    <span style="font-size:150px; color:#F2545F; line-height:0.9em;opacity:0.2">❝</span>
-				<p style="margin-top:-40px">Success doesn’t mean the absence of failure, it means the attainment of ultimate objectives. It means the progressive attainment of worthy goals and this is the philosophy statement of a brand called Success Institute.</p></div>
+		    <p style="margin-top:-40px"><span style="font-size:150px; color:#F2545F; line-height:0.9em;opacity:0.2">✔</span>Success doesn’t mean the absence of failure, it means the attainment of ultimate objectives. It means the progressive attainment of worthy goals and this is the philosophy statement of a brand called Success Institute.</p></div>
   
 		</div>
 		</div>
@@ -587,7 +589,7 @@ http://www.rssi.in
 					<p>Don’t hesitate to buzz!</p>
 			
 				</div></div>
-			<div class="wow fadeInUp col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10" data-wow-delay="0.9s">
+			<div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10">
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
   					<div class="panel panel-default">
@@ -669,46 +671,71 @@ http://www.rssi.in
 <!-- =========================
     SPONSORS SECTION   
 ============================== -->
-<section id="sponsors" class="parallax-section">
+<section id="speakers" class="parallax-section" style="padding: 10px; background:#fff">
 	<div class="container">
 		<div class="row">
 
-			<div class="wow bounceIn col-md-12 col-sm-12">
+			<div class="col-md-12 col-sm-12 wow bounceIn">
 				<div class="section-title">
-					<h2>Our Sponsors</h2>
-					<p>Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet.</p>
+					<h2>We have worked with</h2>
+					<p>Thank you for your generous support!</p>
 				</div>
 			</div>
 
-			<div class="wow fadeInUp col-md-3 col-sm-6 col-xs-6" data-wow-delay="0.3s">
-				<img src="images/sponsor-img1.jpg" class="img-responsive" alt="sponsors">	
-			</div>
+			<!-- Testimonial Owl Carousel section
+			================================================== -->
+			<div id="owl-speakers" class="owl-carousel">
 
-			<div class="wow fadeInUp col-md-3 col-sm-6 col-xs-6" data-wow-delay="0.6s">
-				<img src="images/sponsor-img2.jpg" class="img-responsive" alt="sponsors">	
-			</div>
+				<div class="col-md-3 col-sm-3">
+					<div class="speakers-wrapper">
+						<img src="images/sponsor-img1.jpg" class="img-responsive" alt="speakers">
+							
+					</div>
+				</div>
 
-			<div class="wow fadeInUp col-md-3 col-sm-6 col-xs-6" data-wow-delay="0.9s">
-				<img src="images/sponsor-img3.jpg" class="img-responsive" alt="sponsors">	
-			</div>
+				<div class="col-md-3 col-sm-3">
+					<div class="speakers-wrapper">
+						<img src="images/sponsor-img2.jpg" class="img-responsive" alt="speakers">
+							
+					</div>
+				</div>
 
-			<div class="wow fadeInUp col-md-3 col-sm-6 col-xs-6" data-wow-delay="1s">
-				<img src="images/sponsor-img4.jpg" class="img-responsive" alt="sponsors">	
+				<div class="col-md-3 col-sm-3">
+					<div class="speakers-wrapper">
+						<img src="images/sponsor-img3.jpg" class="img-responsive" alt="speakers">
+							
+					</div>
+				</div>
+
+				<div class="col-md-3 col-sm-3">
+					<div class="speakers-wrapper">
+						<img src="images/sponsor-img4.jpg" class="img-responsive" alt="speakers">
+							
+					</div>
+				</div>
+
+				<div class="col-md-3 col-sm-3">
+					<div class="speakers-wrapper">
+						<img src="images/sponsor-img4.jpg" class="img-responsive" alt="speakers">
+							
+					</div>
+				</div>
+				
 			</div>
 
 		</div>
 	</div>
 </section>
 
-
-
-	
-	<!-- Back top -->
-<a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
 <!-- =========================
      FOOTER   
 ============================== -->
-<footer class="footer-distributed">
+	
+		<!-- Back top -->
+<a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+	
+<section id="footer">
+		<footer class="footer-distributed">
         
      
  
@@ -762,7 +789,7 @@ http://www.rssi.in
 					<a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
 				</div>
 			</div>  
-		</footer>		
+	</footer>	</section>	
 
 <!-- =========================
      SCRIPTS   

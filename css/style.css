@@ -152,7 +152,7 @@ footer {
     padding-bottom: 12px;
 }
 
-#intro .btn,
+#intro .btn, #overview .btn,
 #contact .btn {
     background: transparent;
     border: 2px solid #ffffff;
@@ -168,7 +168,7 @@ footer {
     transition: all 0.4s ease-in-out;
 }
 
-#intro .btn-danger,
+#intro .btn-danger, #overview .btn-danger,
 #contact .btn-danger {
     background: #f2545f;
     border-color: transparent;
@@ -184,6 +184,14 @@ footer {
   color: #ffffff;
 }
 
+#overview .btn-danger:hover {
+  background: #f2545f;
+  border-color: transparent;
+	
+
+}
+#overview a:hover{text-decoration: underline !important;}
+
 #contact .btn-danger:hover {
   background: #222;
 }
@@ -194,11 +202,16 @@ footer {
     border-color: transparent;
 }
 
+#overview .btn-default:hover {
+    background: #ffffff;
+    color: #333333;
+    border-color: transparent;
+}
+
 .parallax-section {
   background-attachment: fixed !important;
   background-size: cover !important;
 }
-
 
 
 /*---------------------------------------
@@ -412,13 +425,13 @@ linear-gradient(
 .column1 {
   float: left;
   width: 65%;
-  padding: 10px;
+  padding: 0px 90px;
  
 }
 .column2 {
   float: left;
   width: 35%;
-  padding: 10px;
+  padding-right: 90px;
   
 }
 /*CALENDER section */
@@ -432,6 +445,19 @@ linear-gradient(
   float: left;
   width: 45%;
   padding-left: 30px;
+  
+}
+
+.column6 {
+  float: left;
+  width: 45%;
+  padding-left: 90px;
+   
+}
+.column6a {
+  float: left;
+  width: 55%;
+  padding: 0px 75px;
   
 }
 
@@ -457,6 +483,20 @@ linear-gradient(
 	.column4 {
     width: 100%;
   }
+		 .column5 {
+    width: 100%;
+  }
+	.column5a {
+    width: 100%;
+  }
+	
+	.column6 {
+    width: 100%;
+  }
+	.column6a {
+    width: 100%;
+  }
+	
 }
 
 /*---------------------------------------
@@ -508,6 +548,7 @@ linear-gradient(
 .imgcircle {
   border-radius: 50%;
 }
+
 
 /*---------------------------------------
    Program section              
@@ -946,11 +987,11 @@ vertical-align: baseline;}
 	font-size: 16px;
 }
 .section-title h4 {
-	text-transform: capitalize;
-	font-size: 40px;
+	text-transform: uppercase;
+	font-size: 30px;
 	position: relative;
 	padding-bottom: 20px;
-	margin-bottom: 20px;
+	margin-bottom: 50px;
 	font-weight: 600;
 }
 .section-title h4:before {
@@ -995,7 +1036,7 @@ vertical-align: baseline;}
 }
 .team-hover h4 {
   font-size: 20px;
-  text-transform: capitalize;
+  /*text-transform: uppercase;*/
 }
 .team-hover h4 span {
   display: block;
