@@ -167,6 +167,7 @@ footer {
     margin-right: 12px;
     -webkit-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
+	font-family: 'Poppins';
 }
 
 #intro .btn-danger, #overview .btn-danger,
