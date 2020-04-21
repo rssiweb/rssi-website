@@ -446,6 +446,7 @@ linear-gradient(
   float: left;
   width: 45%;
   padding-left: 30px;
+	overflow: hidden;
   
 }
 
