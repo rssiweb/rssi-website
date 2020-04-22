@@ -427,40 +427,36 @@ linear-gradient(
 .column1 {
   float: left;
   width: 60%;
-  padding: 0px 90px;
  
 }
 .column2 {
   float: left;
   width: 40%;
-  padding-right: 90px;
   
 }
 /*CALENDER section */
 .column3 {
   float: left;
   width: 55%;
-  padding: 10px;
  
 }
 .column4 {
   float: left;
   width: 45%;
-  padding-left: 30px;
-	overflow: hidden;
+  padding-left:2%;
+  overflow: hidden;
   
 }
 
 .column6 {
   float: left;
   width: 45%;
-  padding-left: 90px;
    
 }
 .column6a {
   float: left;
   width: 55%;
-  padding: 0px 75px;
+  padding-left:5%;
   
 }
 
@@ -502,7 +498,7 @@ padding-left: 1%;
     width: 100%;
   }
 	.column5 {
-    width: 100%;
+    width: 33.33%;
   }
 	.column5a {
     width: 100%;
@@ -1004,7 +1000,7 @@ vertical-align: baseline;}
 	color: #777;
 	font-size: 16px;
 }
-.section-title h4 {
+#team h2 {
 	text-transform: uppercase;
 	font-size: 30px;
 	position: relative;
@@ -1068,12 +1064,12 @@ vertical-align: baseline;}
 }
 
 .team-hoverF h4{
-  font-size: 16px;
+  font-size: 14px;
   /*text-transform: uppercase;*/
 }
 
 .team-hover h4{
-  font-size: 16px;
+  font-size: 14px;
   /*text-transform: uppercase;*/
 }
 .team-hover h4 span{
