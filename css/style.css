@@ -464,6 +464,21 @@ linear-gradient(
   
 }
 
+.column5 {
+  float: left;
+  width: 17%;
+padding-left: 1%;
+  
+}
+.column5a {
+  float: left;
+  width: 49%;
+  padding-left: 3%;
+  position: relative;
+  display: inline;
+  
+}
+
 
 /* Clear floats after the columns */
 .row1:after {
@@ -473,7 +488,7 @@ linear-gradient(
 }
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .column1 {
     width: 100%;
   }
@@ -1020,7 +1035,7 @@ vertical-align: baseline;}
 }*/
 
 .single-team img {
-  width: 200px;
+  width: 100%;
 }
 .single-team {
   position: relative;
@@ -1093,19 +1108,4 @@ vertical-align: baseline;}
 
 .single-team{
   overflow: hidden;
-}
-
-.column5 {
-  float: left;
-  width: 200px;
-  padding-left: 10px;
-  
-}
-.column5a {
-  float: left;
-  width: 420px;
-  padding-left: 50px;
-		position: relative;
-	display: inline;
-  
 }
