@@ -540,9 +540,9 @@ padding-left: 1%;
 }
 
 #speakers img {
-  width: 100%;
+  width: 140px;
   max-width: 100%;
-  height: auto;
+  height: 188px;
 }
 
 #speakers .col-md-3 {
