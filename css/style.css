@@ -54,6 +54,12 @@ a {
   outline: none;
 }
 
+a.active {
+  background-color: #f2545f !important;
+  color: whitesmoke !important;
+}
+
+
 /*---------------------------------------
     UPDATE SECTION
 -----------------------------------------*/

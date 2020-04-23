@@ -30,11 +30,6 @@ navH{float:right;}
 
 }
 
-a.active {
-  background-color: #f2545f;
-  color: whitesmoke !important;
-}
-
 
 .navbarH .icon {
   display: none;
