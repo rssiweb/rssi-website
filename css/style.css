@@ -153,7 +153,7 @@ footer {
     padding-bottom: 12px;
 }
 
-#intro .btn, #overview .btn,
+#intro .btn, #overview .btn, #donation .btn,
 #contact .btn {
     background: transparent;
     border: 2px solid #ffffff;
@@ -170,7 +170,7 @@ footer {
 	font-family: 'Poppins';
 }
 
-#intro .btn-danger, #overview .btn-danger,
+#intro .btn-danger, #overview .btn-danger, #donation .btn-danger,
 #contact .btn-danger {
     background: #f2545f;
     border-color: transparent;
@@ -188,11 +188,16 @@ footer {
 
 #overview .btn-danger:hover {
   background: #f2545f;
+    border-color: transparent;}
+    
+    #donation .btn-danger:hover {
+  background: #f2545f;
   border-color: transparent;
 	
 
 }
 #overview a:hover{text-decoration: underline !important;}
+#donation a:hover{text-decoration: underline !important;}
 
 #contact .btn-danger:hover {
   background: #222;
@@ -403,15 +408,30 @@ linear-gradient(
 /*---------------------------------------
     CALENDER section            3498db,#3D7E9A  
 -----------------------------------------*/
-#calender .dn
+.dn
 {
      background-color: #fff;
      background-position: 9px 0px;
      background-repeat: no-repeat;
-     border-left: solid 6px #f2545f;
+     border-left: solid 5px #f2545f;
      line-height: 18px;
      overflow: hidden;
-     padding: 15px 30px 25px 30px;
+     padding: 15px 30px 25px 15px;
+}
+
+/*---------------------------------------
+    donation account details section            3498db,#3D7E9A  
+-----------------------------------------*/
+
+.dnd
+{
+     background-color: #fff;
+     background-position: 9px 0px;
+     background-repeat: no-repeat;
+     border-left: solid 5px #f2545f;
+     line-height: 18px;
+     overflow: hidden;
+     padding: 15px 30px 15px 15px;
 }
 
 .media, .media-body {
@@ -460,6 +480,10 @@ linear-gradient(
   
 }
 
+/*---------------------------------------
+   founder     
+-----------------------------------------*/
+
 .column5 {
   float: left;
   width: 17%;
@@ -474,6 +498,35 @@ padding-left: 1%;
   display: inline;
   
 }
+
+/*---------------------------------------
+   donation    Account number abd QR code
+-----------------------------------------*/
+
+#donation .column6 {
+  float: left;
+  width: 50%;
+   
+}
+#donation .column6a {
+  float: left;
+  width: 50%;
+  padding-left:5%;
+  
+}
+
+
+.column7 {
+  float: left;
+  width: 70%;
+  
+}
+.column7a {
+  float: left;
+  width: 30%;
+  padding-top:3%;
+}
+
 
 
 /* Clear floats after the columns */
@@ -509,6 +562,13 @@ padding-left: 1%;
   }
 	.column6a {
     width: 100%;
+  }
+	
+    .column7 {
+    width: 100%;
+  }
+   .column7a {
+    width: 50%;
   }
 	
 }
