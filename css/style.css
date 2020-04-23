@@ -54,9 +54,14 @@ a {
   outline: none;
 }
 
-a.active {
-  background-color: #f2545f !important;
-  color: whitesmoke !important;
+.active a {
+  background-color: #f2545f;
+  color: whitesmoke;
+}
+
+.navbarH .nav .dropdownH .dropdown-contentH .active > a {
+    background-color: #f2545f !important;
+    color: whitesmoke !important;
 }
 
 
