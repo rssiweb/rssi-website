@@ -519,13 +519,13 @@ padding-left: 1%;
 
 .column7 {
   float: left;
-  width: 70%;
+  width: 75%;
   
 }
 .column7a {
   float: left;
-  width: 30%;
-  padding-top:3%;
+  width: 25%;
+  padding-top:1%;
 }
 
 
@@ -569,7 +569,7 @@ padding-left: 1%;
     width: 100%;
   }
    .column7a {
-    width: 50%;
+    width: 100%;
   }
 	
 }
