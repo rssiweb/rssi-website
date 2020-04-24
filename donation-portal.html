@@ -15,8 +15,6 @@ http://www.rssi.in
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
-
 <link href="css/HeaderHome.css" rel="stylesheet" type="text/css">
 <link href="css/footer.css" rel="stylesheet" type="text/css">
 <link href="css/spinner.css" rel="stylesheet" type="text/css">
@@ -26,7 +24,6 @@ http://www.rssi.in
 <link href="css/owl.carousel.css" rel="stylesheet" type="text/css">
 
 <!-- Main css -->
-<!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
@@ -35,13 +32,14 @@ http://www.rssi.in
 <link href='https://fonts.googleapis.com/css?family=Poppins:400,500,600' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
 
+
 </head>
 	
 <body data-spy="scroll" data-offset="50" data-target=".navbar-collapse">
 	
 <!-- =========================
      PRE LOADER       
-============================== -->
+============================== 
 
 	<div class="preloader">
 	<div class="sk-chase">
@@ -51,7 +49,7 @@ http://www.rssi.in
   <div class="sk-chase-dot"></div>
   <div class="sk-chase-dot"></div>
   <div class="sk-chase-dot"></div>
-		</div></div>
+		</div></div>-->
 	
 	
 <!-- =========================
@@ -68,14 +66,14 @@ http://www.rssi.in
 		  
 			<a href="/about-us" class="smoothScroll">About us</a>
 			<a href="/media-center" class="smoothScroll">Media center</a>
+            <a href="/donation-portal" class="smoothScroll">Donate</a>
 		  
 		 
 		  
 		   <div class="dropdownHo">
           <button class="dropbtnHo">Get involved <i class="fa fa-caret-down"></i></button>
           <div class="dropdown-contentHo">
-			 <a href="information-brochure" class="smoothScroll">Information Brochure</a>
-			  <a href="/registration" class="smoothScroll">Registration</a>
+			 <a href="/registration" class="smoothScroll">Registration</a>
 			  <a href="/profile-update" class="smoothScroll">Profile Update</a>
 			  <a href="/our-team" class="smoothScroll">Our team</a>
 		  </div>
@@ -94,14 +92,7 @@ http://www.rssi.in
 		  </div>
 		  
 		  
-        <div class="dropdownHo">
-          <button class="dropbtnHo">Other information <i class="fa fa-caret-down"></i></button>
-          <div class="dropdown-contentHo">
-			  <a href="https://attendence-brssi.herokuapp.com/" class="smoothScroll">Phoenix</a>
-			  <a href="/donation-portal" class="smoothScroll">Donation portal</a>
-			  <a href="/website-disclaimer" class="smoothScroll">Website disclaimer</a>
-		</div>
-        </div>
+        <a href="https://attendence-brssi.herokuapp.com/" class="smoothScroll">Phoenix</a>
         
 		<a href="/login" class="smoothScroll"><i class="fas fa-user" style="font-size:15px;"></i></a>
 			
@@ -113,6 +104,7 @@ http://www.rssi.in
 				</div>
 						</div>
 										
+		  	
 		  	
 <!-- =========================
      Donation portal   
@@ -223,30 +215,44 @@ http://www.rssi.in
 <!-- =========================
      SCRIPTS   
 ============================== -->
-
-
-
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="js/responsive-header.js"></script>
 <script src="js/active-nav-bar.js"></script>
+    
+<script>
+var dt = new Date();
+document.getElementById("datetime").innerHTML = dt.toLocaleString();
+</script>
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="js/jquery.newsTicker.js"></script>
+    <script>
+    		
+    		$(window).load(function(){
+	            $('code.language-javascript').mCustomScrollbar();
+	        });
+           
+            var nt_example1 = $('#nt-example1').newsTicker({
+                row_height: 80,
+                max_rows: 2,
+                duration: 4000,
+                prevButton: $('#nt-example1-prev'),
+                nextButton: $('#nt-example1-next')
+            });
+            
+            
+            
+        </script>
 
 <script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.parallax.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/smoothscroll.js"></script>
 <script src="js/wow.min.js"></script>
 <script src="js/custom.js"></script>
-
-<script>
-var dt = new Date();
-document.getElementById("datetime").innerHTML = dt.toLocaleString();
-</script>
 
 
 <!-- =========================

@@ -15,8 +15,6 @@ http://www.rssi.in
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
-
 <link href="css/HeaderHome.css" rel="stylesheet" type="text/css">
 <link href="css/footer.css" rel="stylesheet" type="text/css">
 <link href="css/spinner.css" rel="stylesheet" type="text/css">
@@ -26,7 +24,6 @@ http://www.rssi.in
 <link href="css/owl.carousel.css" rel="stylesheet" type="text/css">
 
 <!-- Main css -->
-<!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
@@ -34,6 +31,7 @@ http://www.rssi.in
 <link href='https://fonts.googleapis.com/css?family=Roboto:Regular 400' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Poppins:400,500,600' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
+
 
 </head>
 	
@@ -108,101 +106,48 @@ http://www.rssi.in
 										
 		  	
 		  	
-<!-- =========================
-    DASHBOARD-EVENT SECTION   
-============================== -->
-<section id="dashboard" style="padding: 5% 5.5%; background-color: #fff">
 
-					
-<div class="row1">
-  <div class="column1">
-	  <h2>RSSI Dashboard (Live)</h2>
-<p>Last updated on <span id="datetime"></span></p><br>
-<div class="box">
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQhM9m81-pRLyTxw2FSwQMHwURHZfvnv8oUF6ScpTODWuK4jT_6c5emyE2aAmgHHFTWX7LrCC_V7W3A/pubchart?oid=1498381227&amp;format=interactive" frameborder="0" scrolling="no" height="183" align="left" ></iframe>
-</div>
-<div class="box">
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQhM9m81-pRLyTxw2FSwQMHwURHZfvnv8oUF6ScpTODWuK4jT_6c5emyE2aAmgHHFTWX7LrCC_V7W3A/pubchart?oid=2102046589&amp;format=interactive" frameborder="0" scrolling="no" height="183" align="left" ></iframe>
-			</div>
-  </div>
-  <div class="column2">
-	              <!-- Fluid width widget -->        
-    	    <div class="panel panel-danger">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        <span class="fas fa-bullhorn"></span> 
-                        Announcement
-                    </h3>
-                </div>
-                <div class="panel-body">
-                    <marquee style="height: 200px" behavior="scroll" scrollamount="4" direction="up" onmouseover="this.stop();" onmouseleave="this.start();">
-                        
-                        <!--style="height: 170px; overflow-y: auto"-->
-                        
-                    <ul class="media-list">
-                        <li class="media">
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    Registration of RSSI
-                                </h4>
-								<p align="right" style="font-size: 12px; color: #909090;">
-                                    <i class="fas fa-pen"></i> Apr 24, 2020
-                                </p>
-                                <p style="font-size: 12px; color: #909090; line-height: 21px">
-                                    We are proud to announce the launch of the newly redesigned RSSI website at  www.rssi.in.  The new site features a modern design, improved functionality, and easy access to essential information to help people effectively manage complexity and optimise their operational performance.
-                                </p>
-                                <hr>                           
-                                
-                                
-                                 <h4 class="media-heading">
-                                    Launch of our new website
-                                </h4>
-								<p align="right" style="font-size: 12px; color: #909090;">
-                                    <i class="fas fa-pen"></i> Apr 21, 2020
-                                </p>
-                                <p style="font-size: 12px; color: #909090;">
-                                    We are proud to announce the launch of the newly redesigned RSSI website at  www.rssi.in.  The new site features a modern design, improved functionality, and easy access to essential information to help people effectively manage complexity and optimise their operational performance.
-                                </p>
-                                
-                                
-                            </div>
-                        </li>
-  
-                    </ul></marquee>
-                </div>
-            </div>
-            <!-- End fluid width widget -->
-				
-			
-</div></div>
-</section>				
 <!-- =========================
      SCRIPTS   
 ============================== -->
-
-
-
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<!--<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="js/responsive-header.js"></script>
 <script src="js/active-nav-bar.js"></script>
+    
+<script>
+var dt = new Date();
+document.getElementById("datetime").innerHTML = dt.toLocaleString();
+</script>
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="js/jquery.newsTicker.js"></script>
+    <script>
+    		
+    		$(window).load(function(){
+	            $('code.language-javascript').mCustomScrollbar();
+	        });
+           
+            var nt_example1 = $('#nt-example1').newsTicker({
+                row_height: 80,
+                max_rows: 2,
+                duration: 4000,
+                prevButton: $('#nt-example1-prev'),
+                nextButton: $('#nt-example1-next')
+            });
+            
+            
+            
+        </script>
 
 <script src="js/jquery.js"></script>
-<!--<script src="js/bootstrap.min.js"></script>-->
 <script src="js/jquery.parallax.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/smoothscroll.js"></script>
 <script src="js/wow.min.js"></script>
 <script src="js/custom.js"></script>
-
-<script>
-var dt = new Date();
-document.getElementById("datetime").innerHTML = dt.toLocaleString();
-</script>
 
 
 <!-- =========================
