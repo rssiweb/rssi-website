@@ -15,8 +15,6 @@ http://www.rssi.in
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
-
 <link href="css/HeaderHome.css" rel="stylesheet" type="text/css">
 <link href="css/footer.css" rel="stylesheet" type="text/css">
 <link href="css/spinner.css" rel="stylesheet" type="text/css">
@@ -26,7 +24,6 @@ http://www.rssi.in
 <link href="css/owl.carousel.css" rel="stylesheet" type="text/css">
 
 <!-- Main css -->
-<!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
@@ -69,11 +66,11 @@ http://www.rssi.in
 		  
 			<a href="/about-us" class="smoothScroll">About us</a>
 			<a href="/media-center" class="smoothScroll">Media center</a>
+            <a href="/donation-portal" class="smoothScroll">Donate</a>
 			
 		   <div class="dropdownH">
           <button class="dropbtnH">Get involved <i class="fa fa-caret-down"></i></button>
           <div class="dropdown-contentH">
-			  <a href="information-brochure" class="smoothScroll">Information Brochure</a>
 			  <a href="/registration" class="smoothScroll">Registration</a>
 			  <a href="/profile-update" class="smoothScroll">Profile Update</a>
 			  <a href="/our-team" class="smoothScroll">Our team</a>
@@ -92,15 +89,7 @@ http://www.rssi.in
 		  </div>
 		  </div>
 		  
-		  
-        <div class="dropdownH">
-          <button class="dropbtnH">Other information <i class="fa fa-caret-down"></i></button>
-          <div class="dropdown-contentH">
-			  <a href="https://attendence-brssi.herokuapp.com/" class="smoothScroll">Phoenix</a>
-			  <a href="/donation-portal" class="smoothScroll">Donation portal</a>
-			  <a href="/website-disclaimer" class="smoothScroll">Website disclaimer</a>
-		</div>
-        </div>
+		    <a href="https://attendence-brssi.herokuapp.com/" class="smoothScroll">Phoenix</a>
         
 		<a href="/login" class="smoothScroll"><i class="fas fa-user" style="font-size:15px;"></i></a>
 			
@@ -343,8 +332,8 @@ http://www.rssi.in
 			</div>
   </div>
   <div class="column2">
-	              <!-- Fluid width widget -->        
-    	    <div class="panel panel-danger">
+
+          <div class="panel panel-danger">
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         <span class="fas fa-bullhorn"></span> 
@@ -352,41 +341,28 @@ http://www.rssi.in
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <ul class="media-list">
-                        <li class="media">
-                           <!-- <div class="media-left">
-                                <div class="panel panel-danger text-center date">
-                                    <div class="panel-heading month">
-                                        <span class="panel-title strong">
-                                            May
-                                        </span>
-                                    </div>
-                                    <div class="panel-body day text-danger">
-                                        1
-                                    </div>
-                                </div>
-                            </div>-->
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    Launch of our new website
-                                </h4>
-								<p align="right" style="font-size: 12px; color: #909090; line-height: 21px">
-                                    <i class="fas fa-pen"></i> Apr 21, 2020
-                                </p>
-                                <p style="font-size: 12px; color: #909090; line-height: 21px">
-                                    We are proud to announce the launch of the newly redesigned RSSI website at  www.rssi.in.  The new site features a modern design, improved functionality, and easy access to essential information to help people effectively manage complexity and optimise their operational performance.
-                                </p>
-                            </div>
-                        </li>
-  
-                    </ul>
-                    <a href="#calender" class="btn btn-default btn-block">View more »</a>
-                </div>
+      
+      	<div id="nt-example1-container">
+						
+		                <ul id="nt-example1">
+                           <li> <ps class="h6 notice">a1  <a href="#">Read more...</a></ps></li>
+                           <li> <ps class="h6 notice">a2  <a href="#">Read more...</a></ps></li>
+                           <li> <ps class="h6 notice">a3  <a href="#">Read more...</a></ps></li>
+                           <li> <ps class="h6 notice">a4  <a href="#">Read more...</a></ps></li>
+                           <li> <ps class="h6 notice">a5  <a href="#">Read more...</a></ps></li>
+                           <li> <ps class="h6 notice">a6  <a href="#">Read more...</a></ps></li>
+		                    
+		                </ul>
+		                <i class="fa fa-arrow-down" id="nt-example1-prev"></i>
+                        <i class="fa fa-arrow-up" id="nt-example1-next"></i>
+                        
+		            </div>
+				</div>
+              
+              </div>
             </div>
-            <!-- End fluid width widget -->
-				
 			
-</div></div>
+</div>
 </section>
 <!-- =========================
     DETAIL SECTION   
@@ -783,19 +759,35 @@ http://www.rssi.in
      SCRIPTS   
 ============================== -->
 
+    
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="js/jquery.newsTicker.js"></script>
+    <script>
+    		
+    		$(window).load(function(){
+	            $('code.language-javascript').mCustomScrollbar();
+	        });
+           
+            var nt_example1 = $('#nt-example1').newsTicker({
+                row_height: 80,
+                max_rows: 2,
+                duration: 4000,
+                prevButton: $('#nt-example1-prev'),
+                nextButton: $('#nt-example1-next')
+            });
+            
+            
+            
+        </script>
 
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<!--<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="js/responsive-header.js"></script>
-<script src="js/active-nav-bar.js"></script>
 
 <script src="js/jquery.js"></script>
-<!--<script src="js/bootstrap.min.js"></script>-->
 <script src="js/jquery.parallax.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/smoothscroll.js"></script>

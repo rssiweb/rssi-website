@@ -447,12 +447,12 @@ linear-gradient(
 /* Create three equal columns that floats next to each other */
 .column1 {
   float: left;
-  width: 60%;
+  width: 55%;
  
 }
 .column2 {
   float: left;
-  width: 40%;
+  width: 45%;
   
 }
 /*CALENDER section */
@@ -1165,4 +1165,54 @@ vertical-align: baseline;}
 
 .single-team{
   overflow: hidden;
+}
+
+
+/* nt-example1 ANNOUNCEMENT*/
+
+/*#nt-example1 {
+	max-width: 620px;
+	margin: auto;
+}*/
+
+#nt-example1-container {
+	text-align: center;
+}
+
+#nt-example1-container i {
+	font-size: 15px;
+	margin: 8px;
+	cursor: pointer;
+	-webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+#nt-example1-container i:hover {
+	color: #333;
+}
+
+#nt-example1 li {
+	background-color: #f9f9f9;
+	overflow: hidden;
+	height: 80px;
+	padding: 5px;
+	text-align: left;
+	border-bottom: 1px dotted #2c8162;
+}
+
+#nt-example1 li:hover {
+	background: #FFF;
+}
+
+#nt-example1-container ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
 }
