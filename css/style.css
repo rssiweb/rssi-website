@@ -527,19 +527,24 @@ padding-left: 1%;
   .column1, .column2, .column3, .column4, .column5a, .column6, .column6a, #donation .column6, #donation .column6a, .column7  {
     width: 100%;
     padding-top: 5%;
+      padding-left: 0px;
   }
 
-    #calender.column3, #overview .column6 {width: 100%;}
+    #calender.column3, #overview .column6 {width: 100%; padding-left: 0px;}
     #calender h2 {margin-left: 10px;}
     
 	.column5 {
     width: 33.33%;
+        
   }
     
    .column7a {
     width: 50%;
     padding-top: 5%;
+    padding-left: 0px;
   }
+    
+   .marginleft {margin-left: 10px;}
 	
 }
 
