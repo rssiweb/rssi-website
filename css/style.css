@@ -1,8 +1,11 @@
 /*
 New Event
-http://www.templatemo.com/tm-486-new-event
+http://www.rssi.in
 */
 
+/*---------------------------------------
+    THIS WILL IMPACT ALL FONT OF THE WEBSITE WHERE NO SPECIFICATION IS MENTIONED              
+-----------------------------------------*/
 body {
 		background: #ffffff;
     font-family: 'Roboto'/*'Poppins', sans-serif*/;
@@ -13,7 +16,7 @@ body {
 
 
 /*---------------------------------------
-    Typorgraphy              
+ ALL WEBSITE FONT DESIGN          
 -----------------------------------------*/
 h1,h2,h3,h4,h5,h6 {
   font-weight: 600;
@@ -50,34 +53,19 @@ p {
 }
 
 a {
-  text-decoration: none !important;
-  outline: none;
+    text-decoration: none !important;
 }
-
-
 /*---------------------------------------
-    UPDATE SECTION
+    UPDATE SECTION - SCROLL FONT DESIGN
 -----------------------------------------*/
 ps {
     line-height: 1;
 	font-size: 13px !important;
 }
-
-.bg-primary {
-    color: #fff;
-    background-color: #F2545F !important;
-}
-
 /*---------------------------------------
-    WHAT WE DID SO FAR               
+    WHAT WE DID SO FAR - FIRST PARAGRAPH OF ANY LISTED ITEM  [ID NAME - CALENDER]            
 -----------------------------------------*/
 p1 {
-    color: #444444;
-    font-size: 14px;
-    line-height: 21px;
-}
-
-#calender p {
     color: #444444;
     font-size: 14px;
     line-height: 21px;
@@ -87,11 +75,16 @@ p1 {
     padding-left: 30px;
 	color: #444444;
 }
-/*#calender h2 {
-  color: whitesmoke;
-}*/
+
 /*---------------------------------------
-    NOTICE-LINK DECORATION               
+DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]            
+-----------------------------------------*/
+#detail p {
+	
+    color: #909090;
+}
+/*---------------------------------------
+    CLASS NAME- NOTICE : URL DECORATION               
 -----------------------------------------*/
 .notice a:link {
   text-decoration: none !important;
@@ -115,6 +108,18 @@ p1 {
   text-decoration: underline !important;
 	color:#F2545F !important;
 	font-size: 13px;
+}
+
+#overview a:hover{text-decoration: underline !important;}
+#donation a:hover{text-decoration: underline !important;}
+
+/*---------------------------------------
+    UPDATE SECTION - SCROLL TEXT BACKGROUNG COLOR
+-----------------------------------------*/
+
+.bg-primary {
+    color: #fff;
+    background-color: #F2545F !important;
 }
 
 
@@ -169,6 +174,7 @@ footer {
     -webkit-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
 	font-family: 'Poppins';
+    text-transform: uppercase;
 }
 
 #intro .btn-danger, #overview .btn-danger, #donation .btn-danger,
@@ -189,16 +195,15 @@ footer {
 
 #overview .btn-danger:hover {
   background: #f2545f;
-    border-color: transparent;}
+  border-color: transparent;}
     
-    #donation .btn-danger:hover {
+  #donation .btn-danger:hover {
   background: #f2545f;
   border-color: transparent;
 	
 
 }
-#overview a:hover{text-decoration: underline !important;}
-#donation a:hover{text-decoration: underline !important;}
+
 
 #contact .btn-danger:hover {
   background: #222;
@@ -372,11 +377,6 @@ linear-gradient(
     text-align: center;
 }
 
-#intro h3 {
-  letter-spacing: 2px;
-}
-
-
 
 /*---------------------------------------
    Overview  section              
@@ -396,10 +396,6 @@ linear-gradient(
     background: #222;
     color: #ffffff;
 }
-#detail p {
-	
-    color: #909090;
-}
 
 #detail .fa {
   color: #f2545f;
@@ -407,9 +403,9 @@ linear-gradient(
 }
 
 /*---------------------------------------
-    CALENDER section            3498db,#3D7E9A  
+    ONE SIDED BORDER RED PARAGRAPH DESIGN  
 -----------------------------------------*/
-.dn
+.dnd
 {
      background-color: #fff;
      background-position: 9px 0px;
@@ -420,31 +416,18 @@ linear-gradient(
      padding: 15px 30px 25px 15px;
 }
 
-/*---------------------------------------
-    donation account details section            3498db,#3D7E9A  
------------------------------------------*/
-
-.dnd
-{
-     background-color: #fff;
-     background-position: 9px 0px;
-     background-repeat: no-repeat;
-     border-left: solid 5px #f2545f;
-     line-height: 18px;
-     overflow: hidden;
-     padding: 15px 30px 15px 15px;
-}
-
 .media, .media-body {
 	overflow: auto;}
+
+
 /*---------------------------------------
-   LAYOUT 2 COLUMN CREATION     
+   LAYOUT COLUMN     
 -----------------------------------------*/
 * {
   box-sizing: border-box;
 }
 
-/* Create three equal columns that floats next to each other */
+/*DASH BOARD SECTION INDEX PAGE*/
 .column1 {
   float: left;
   width: 55%;
@@ -455,7 +438,7 @@ linear-gradient(
   width: 45%;
   
 }
-/*CALENDER section */
+/*WHAT WE DID-INDEX, ADMISSION, REGISTRATION*/
 .column3 {
   float: left;
   width: 55%;
@@ -469,21 +452,7 @@ linear-gradient(
   
 }
 
-.column6 {
-  float: left;
-  width: 45%;
-   
-}
-.column6a {
-  float: left;
-  width: 55%;
-  padding-left:5%;
-  
-}
-
-/*---------------------------------------
-   founder     
------------------------------------------*/
+/*FOUNDER - INDEX   */
 
 .column5 {
   float: left;
@@ -499,10 +468,20 @@ padding-left: 1%;
   display: inline;
   
 }
+/*OVERVIEW-INDEX, ABOUT US*/
+.column6 {
+  float: left;
+  width: 45%;
+   
+}
+.column6a {
+  float: left;
+  width: 55%;
+  padding-left:5%;
+  
+}
 
-/*---------------------------------------
-   donation    Account number abd QR code
------------------------------------------*/
+/*DONATION - TEXT AND IMAGE*/
 
 #donation .column6 {
   float: left;
@@ -516,7 +495,7 @@ padding-left: 1%;
   
 }
 
-
+/*DONATION - ACCOUNT NUMBER AND QR CODE*/
 .column7 {
   float: left;
   width: 75%;
@@ -528,7 +507,13 @@ padding-left: 1%;
   padding-top:1%;
 }
 
+/*UPDATE-INDEX FLAG*/
+#update .col-lg-2 {width: 5% !important;}
+#update .col-lg-10 {width: 95% !important;}
 
+@media screen and (width: 768px) {#update .col-lg-2 {width: 10% !important;}
+    #update .col-lg-10 {width: 100% !important;}}
+     
 
 /* Clear floats after the columns */
 .row1:after {
@@ -539,44 +524,21 @@ padding-left: 1%;
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
-  .column1 {
+  .column1, .column2, .column3, .column4, .column5a, .column6, .column6a, #donation .column6, #donation .column6a, .column7  {
     width: 100%;
+    padding-top: 5%;
   }
-	.column2 {
-    width: 100%;
-  }
-	 .column3 {
-    width: 100%;
-  }
-	.column4 {
-    width: 100%;
-  }
+
+    #calender.column3, #overview .column6 {width: 100%;}
+    #calender h2 {margin-left: 10px;}
+    
 	.column5 {
     width: 33.33%;
   }
-	.column5a {
-    width: 100%;
-  }
-	
-	.column6 {
-    width: 100%;
-  }
-	.column6a {
-    width: 100%;
-  }
     
-    #donation .column6 {
-    width: 100%;
-  }
-	#donation .column6a {
-    width: 100%;
-  }
-	
-    .column7 {
-    width: 100%;
-  }
    .column7a {
     width: 50%;
+    padding-top: 5%;
   }
 	
 }
@@ -1027,7 +989,7 @@ vertical-align: baseline;}
 
 
 /*---------------------------------------
-   DASHBOARD EVENT    
+   DASHBOARD EVENT - ANNOUNCEMENT SECTION   
 -----------------------------------------*/
 
 /* Using panels to display blog date */
@@ -1052,7 +1014,7 @@ vertical-align: baseline;}
 
 
 /*---------------------------------------
-   FOUNDER   
+   FOUNDER CSS ANIMATION TO GET THEIR DETAILS
 -----------------------------------------*/
 
 .pt-100{
@@ -1174,13 +1136,10 @@ vertical-align: baseline;}
   overflow: hidden;
 }
 
-
-/* nt-example1 ANNOUNCEMENT*/
-
-/*#nt-example1 {
-	max-width: 620px;
-	margin: auto;
-}*/
+/*---------------------------------------
+   nt-example1 ANNOUNCEMENT SCROLLING UP
+-----------------------------------------*/
+/* */
 
 #nt-example1-container {
 	text-align: center;
