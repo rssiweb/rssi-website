@@ -9,9 +9,9 @@ function myFunction1() {
 
 function myFunction() {
   var x = document.getElementById("mynavbarHo");
-  if (x.className === "navbarHo") {
+  if (x.className === "navbarHo navbar") {
     x.className += " responsive";
   } else {
-    x.className = "navbarHo";
+    x.className = "navbarHo navbar";
   }
 }

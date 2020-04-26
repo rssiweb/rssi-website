@@ -344,13 +344,10 @@ footer {
 #intro {
 background-image:
 linear-gradient(
-      rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/intro-bg.jpg'); repeat-y fixed;
+rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/intro-bg.jpg'); repeat-y:fixed;
     -webkit-background-size: cover;
     background-size: cover;
     background-position: center center;
-	
-	
-	-webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
 	background-repeat: no-repeat;
@@ -538,9 +535,7 @@ padding-left: 1%;
     padding-left: 0px;
   }
     
-   .marginleft h1,h2,h3,h4,h5,h6,p,a {margin-left: 10px;}
-	
-}
+   .marginleft h1,.marginleft h2,.marginleft h3,.marginleft h4,.marginleft h5,.marginleft h6,.marginleft p,.marginleft a {margin-left: 10px;}}
 
 /*---------------------------------------
     Video section              
