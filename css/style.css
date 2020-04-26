@@ -48,8 +48,8 @@ h5 {
 
 p {
     color: #444444;
-    font-size: 14px;
-    line-height: 21px;
+    font-size: 14px !important;
+    line-height: 21px !important;
 }
 
 a {
@@ -65,12 +65,6 @@ ps {
 /*---------------------------------------
     WHAT WE DID SO FAR - FIRST PARAGRAPH OF ANY LISTED ITEM  [ID NAME - CALENDER]            
 -----------------------------------------*/
-p1 {
-    color: #444444;
-    font-size: 14px;
-    line-height: 21px;
-}
-
 #calender ul {
     padding-left: 30px;
 	color: #444444;
@@ -410,7 +404,7 @@ linear-gradient(
      background-color: #fff;
      background-position: 9px 0px;
      background-repeat: no-repeat;
-     border-left: solid 5px #f2545f;
+     border-left: solid 3px #f2545f;
      line-height: 18px;
      overflow: hidden;
      padding: 15px 30px 25px 15px;
@@ -544,7 +538,7 @@ padding-left: 1%;
     padding-left: 0px;
   }
     
-   .marginleft {margin-left: 10px;}
+   .marginleft h1,h2,h3,h4,h5,h6,p,a {margin-left: 10px;}
 	
 }
 
