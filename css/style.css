@@ -549,7 +549,7 @@ padding-left: 1%;
   padding-left: 10px;
   display: inline-block;}
     
-   .marginleft h1,.marginleft h2,.marginleft h3,.marginleft h4,.marginleft h5,.marginleft h6,.marginleft p,.marginleft a {margin-left: 10px;}}
+   .marginleft h1,.marginleft h2,.marginleft h3,.marginleft h4,.marginleft h5,.marginleft h6,.marginleft p,.marginleft a, .marginlefttable {margin-left: 10px;}}
 
 /*---------------------------------------
     Video section              
