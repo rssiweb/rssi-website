@@ -502,7 +502,7 @@ padding-left: 1%;
 #update .col-lg-2 {width: 5% !important;}
 #update .col-lg-10 {width: 95% !important;}
 
-@media screen and (width: 768px) {#update .col-lg-2 {width: 10% !important;}
+@media screen and (width: 1024px) {#update .col-lg-2 {width: 10% !important;}
     #update .col-lg-10 {width: 100% !important;}}
      
 
@@ -518,7 +518,7 @@ padding-left: 1%;
   .column1, .column2, .column3, .column4, .column5a, .column6, .column6a, #donation .column6, #donation .column6a, .column7  {
     width: 100%;
     padding-top: 5%;
-      padding-left: 0px;
+    padding-left: 0px;
   }
 
     #calender.column3, #overview .column6 {width: 100%; padding-left: 0px;}
@@ -534,6 +534,20 @@ padding-left: 1%;
     padding-top: 5%;
     padding-left: 0px;
   }
+
+#update .col-lg-2 {width: 10% !important;
+  position: unset;
+  min-height: unset;
+  padding-right: unset;
+  padding-left: unset;
+  display: inline-block;}
+
+#update .col-lg-10 {width: 85% !important;
+  position: absolute;
+  min-height: unset;
+  padding-right: unset;
+  padding-left: 10px;
+  display: inline-block;}
     
    .marginleft h1,.marginleft h2,.marginleft h3,.marginleft h4,.marginleft h5,.marginleft h6,.marginleft p,.marginleft a {margin-left: 10px;}}
 
