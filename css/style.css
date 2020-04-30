@@ -447,13 +447,13 @@ rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/intro-bg.jpg'); repeat-y
 
 .column5 {
   float: left;
-  width: 17%;
+  width: 25%;
 padding-left: 1%;
   
 }
 .column5a {
   float: left;
-  width: 49%;
+  width: 25%;
   padding-left: 3%;
   position: relative;
   display: inline;
@@ -1025,7 +1025,7 @@ vertical-align: baseline;}
    FOUNDER CSS ANIMATION TO GET THEIR DETAILS
 -----------------------------------------*/
 
-.pt-100{
+/*.pt-100{
     padding-top:100px;
 }
 .pb-100{
@@ -1046,27 +1046,6 @@ vertical-align: baseline;}
 	margin-bottom: 50px;
 	font-weight: 600;
 }
-/*.section-title h4:before {
-	position: absolute;
-	content: "";
-	width: 60px;
-	height: 2px;
-	background-color: #F2545F;
-	bottom: 0;
-	left: 50%;
-	margin-left: -30px;
-}
-.section-title h4:after {
-	position: absolute;
-	background-color: #F2545F;
-	content: "";
-	width: 10px;
-	height: 10px;
-	bottom: -4px;
-	left: 50%;
-	margin-left: -5px;
-	border-radius: 50%;
-}*/
 
 .single-team img {
   width: 100%;
@@ -1103,12 +1082,12 @@ vertical-align: baseline;}
 
 .team-hoverF h4{
   font-size: 14px;
-  /*text-transform: uppercase;*/
+  /*text-transform: uppercase;
 }
 
 .team-hover h4{
   font-size: 14px;
-  /*text-transform: uppercase;*/
+  /*text-transform: uppercase;
 }
 .team-hover h4 span{
   display: block;
@@ -1142,6 +1121,124 @@ vertical-align: baseline;}
 
 .single-team{
   overflow: hidden;
+}*/
+
+.our-team{
+  position:relative;
+  overflow: hidden;
+  height: 310px;
+}
+.our-team .team-pic > img{
+  width: 92%;
+  height:auto;
+}
+.our-team .team-profile{
+  background:#F2545F;
+  padding: 0 24px;
+  position: absolute;
+  right: 0;
+  bottom: -52%;
+  width: 90%;
+  min-height:245px;
+  transition: all 0.25s ease 0s;
+}
+
+.our-team:hover .team-profile{
+  bottom:0px;
+}
+.our-team .team-profile:before{
+  content: "";
+  border-bottom: 30px solid #F2545F;
+  border-right: 262px solid transparent;
+  position: absolute;
+  top:-30px;
+  left: 0;
+}
+.our-team .team-title{
+  line-height: 22px;
+
+}
+.our-team .team-title:after{
+  content:"";
+  display: block;
+  width: 10%;
+  border-bottom:4px solid #fff;
+  padding-bottom:5px;
+}
+.our-team .team-title a{
+  font-size: 17px;
+  text-transform: uppercase;
+  font-weight:bold;
+  color: #fff;
+  display: block;
+  transition:all 0.2s linear 0s;
+}
+.our-team .team-title a:hover{
+  color:#fff;
+  text-decoration: none;
+}
+.our-team .team-title > small{
+  font-size: 14px;
+  color:#fff
+}
+
+.description a{
+  font-size: 13px;
+  color:#fff !important;
+}
+.description a:link {
+  text-decoration:none !important;
+}
+
+.description a:visited {
+  text-decoration:none !important;
+}
+
+.description a:hover {
+  text-decoration:underline !important;
+}
+
+.description a:active {
+  text-decoration:none !important;
+}
+
+.our-team .description{
+  color: #fff;
+  line-height: 25px;
+}
+.our-team .description:after{
+  content:"";
+  display:block;
+  border-bottom:1px solid #fff;
+  margin-top: 10px;
+}
+.our-team .team-social{
+  padding:0;
+}
+.our-team .team-social > li{
+  display: inline-block;
+  margin-right: 12px;
+}
+.our-team .team-social > li > a{
+  color:#fff;
+  font-size:15px;
+}
+.our-team .team-social > li > a:hover{
+  text-decoration: none;
+}
+@media only screen and (max-width: 990px) {
+  .our-team{
+      width: 310px;
+      margin: 0 auto 15px;
+  }
+  .our-team .team-profile:before{
+      border-right: 300px solid transparent;
+  }
+}
+@media only screen and (max-width: 359px) {
+  .our-team{
+      width: auto;
+  }
 }
 
 /*---------------------------------------
