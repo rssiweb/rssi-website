@@ -515,7 +515,7 @@ padding-left: 1%;
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
-  .column1, .column2, .column3, .column4, .column5a, .column6, .column6a, #donation .column6, #donation .column6a, .column7  {
+  .column1, .column2, .column3, .column4, .column5, .column5a, .column6, .column6a, #donation .column6, #donation .column6a, .column7  {
     width: 100%;
     padding-top: 5%;
     padding-left: 0px;
@@ -523,11 +523,6 @@ padding-left: 1%;
 
     #calender.column3, #overview .column6 {width: 100%; padding-left: 0px;}
     #calender h2 {margin-left: 10px;}
-    
-	.column5 {
-    width: 33.33%;
-        
-  }
     
    .column7a {
     width: 50%;
