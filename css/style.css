@@ -344,7 +344,7 @@ footer {
 #intro {
 background-image:
 linear-gradient(
-rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/intro-bg.jpg'); repeat-y:fixed;
+rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/intro-bg.jpg'); 50% 0 repeat-y;
     -webkit-background-size: cover;
     background-size: cover;
     background-position: center center;
@@ -925,7 +925,7 @@ footer {
 	line-height: 20px;
   }
 
-  #intro { height: 65vh; }
+  #intro { height: 65vh; width:auto; max-width: 100%;}
 
   #video iframe {
     margin-top: 42px;
