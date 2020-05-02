@@ -351,12 +351,12 @@ footer {
   color: #ffffff;
   display: -webkit-box;
   display: -webkit-flex;
-   display: -ms-flexbox;
+  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-   -webkit-align-items: center;
-    -ms-flex-align: center;
-        align-items: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   height: 100vh;
   text-align: center;
 }
@@ -444,8 +444,6 @@ padding-left: 1%;
   
 }
 .column5a {
-  float: left;
-  width: 25%;
   padding-left: 3%;
   position: relative;
   display: inline;
@@ -536,7 +534,11 @@ padding-left: 1%;
   padding-left: 10px;
   display: inline-block;}
     
-   .marginleft h1,.marginleft h2,.marginleft h3,.marginleft h4,.marginleft h5,.marginleft h6,.marginleft p,.marginleft a, .marginlefttable {margin-left: 10px;}}
+   .marginleft h1,.marginleft h2,.marginleft h3,.marginleft h4,.marginleft h5,.marginleft h6,.marginleft p,.marginleft a, .marginlefttable {margin-left: 10px;}
+  
+   #studentlist {margin-left: 10px;}
+  
+  }
 
 /*---------------------------------------
     Video section              
@@ -587,107 +589,6 @@ padding-left: 1%;
 .imgcircle {
   border-radius: 50%;
 }
-
-
-/*---------------------------------------
-   Program section              
------------------------------------------*/
-#program h4 {
-    color: #808080;
-    font-size: 12px;
-}
-
-#program h3 {
-  margin-top: 16px;
-}
-
-#program .program-divider {
-    border: 1px solid #f9f9f9;
-    margin-top: 32px;
-    margin-bottom: 42px;
-}
-
-#program span {
-    padding-right: 12px;
-}
-
-#program img {
-  border-radius: 50%;
-}
-
-.nav-tabs {
-  margin-bottom: 20px;
-}
-.nav-tabs > li {
-  float: left;
-  margin-bottom: -1px;
-}
-.nav-tabs > li > a {
-  color: #000000;
-  font-weight: 600;
-  margin-right: 2px;
-  line-height: 1.42857143;
-  border: none;
-  border-radius: 0px;
-}
-.nav-tabs > li > a:hover {
-  background-color: transparent;
-}
-.nav-tabs > li.active > a,
-.nav-tabs > li.active > a:hover,
-.nav-tabs > li.active > a:focus {
-  color: #f2545f;
-  cursor: default;
-  background-color: transparent;
-  border: 1px solid transparent;
-  border-bottom-color: #999;
-}
-.tab-content {
-  padding-top: 20px;
-}
-
-
-
-/*---------------------------------------
-    Regsiter section              
------------------------------------------*/
-#register {
-    background: url('../images/register-bg.jpg') 50% 0 repeat-y fixed;
-    -webkit-background-size: cover;
-    background-size: cover;
-    background-position: center center;
-    color: #ffffff;
-}
-
-#register .form-control {
-  background: transparent;
-  border: 2px solid #ffffff;
-  border-radius: 0px;
-  color: #ffffff;
-  margin-bottom: 16px;
-}
-
-#register input {
-  height: 45px;
-}
-
-#register input[type="submit"] {
-  background: #f2545f;
-  border-radius: 100px;
-  border: none;
-  color: #ffffff;
-  letter-spacing: 2px;
-  height: 50px;
-  margin-top: 12px;
-  transition: all 0.4s ease-in-out;
-}
-
-#register input[type="submit"]:hover {
-  background: #ffffff;
-  color: #222;
-}
-
-
 
 /*---------------------------------------
    Faq section              
@@ -753,154 +654,6 @@ padding-left: 1%;
 }
 
 
-
-/*---------------------------------------
-   Venue section              
------------------------------------------*/
-#venue {
-    background: url('../images/venue-bg.jpg') 50% 0 repeat-y fixed;
-    background-size: cover;
-    background-position: center center;
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-}
-
-#venue p {
-  padding-top: 12px;
-  padding-bottom: 18px;
-}
-
-
-
-/*---------------------------------------
-   Sponsors section              
------------------------------------------*/
-#sponsors img {
-  margin-top: 18px;
-}
-
-
-
-/*---------------------------------------
-   Contact section              
------------------------------------------*/
-#contact {
-    background: url('../images/contact-bg.jpg') 50% 0 repeat-y fixed;
-    background-size: cover;
-    background-position: center center;
-}
-
-#contact .contact_des {
-  padding-top: 3rem;
-  padding-right: 2rem;
-}
-
-#contact .contact_detail {
-  background: #ffffff;
-  padding: 5rem 5rem 12rem 5rem;
-}
-
-#contact .form-control {
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid #f0f0f0;
-  border-radius: 0px;
-  box-shadow: none;
-  margin-bottom: 16px;
-  transition: all 0.4s ease-in-out;
-}
-
-#contact .form-control:focus {
-  border-bottom-color: #999;
-}
-
-#contact input {
-  height: 45px;
-}
-
-#contact input[type="submit"] {
-  background: #222;
-  border-radius: 100px;
-  border: none;
-  color: #ffffff;
-  letter-spacing: 2px;
-  height: 50px;
-  margin-top: 12px;
-  transition: all 0.4s ease-in-out;
-}
-
-#contact input[type="submit"]:hover {
-  background: #f2545f;
-}
-
-
-
-/*---------------------------------------
-   Footer section              
------------------------------------------*/
-footer {
-  background-attachment: fixed;
-}
-
-
-
-/* Back top */
-.go-top {
-  background-color: #222;
-  bottom: 2em;
-  right: 2em;
-  color: #ffffff;
-  font-size: 32px;
-  display: none;
-  position: fixed;
-  text-decoration: none;
-  width: 60px;
-  height: 60px;
-  line-height: 60px;
-  text-align: center;
-  transition: all 0.4s ease-in-out;
-}
-
-.go-top:hover {
-    background: #f2545f;
-    color: #ffffff;
-}
-
-
-/*---------------------------------------
-   Social icon             
------------------------------------------*/
-.social-icon {
-    position: relative;
-    padding: 0;
-    margin: 0;
-}
-
-.social-icon li {
-    display: inline-block;
-    list-style: none;
-}
-
-.social-icon li a {
-    color: #666;
-    border-radius: 100px;
-    font-size: 16px;
-    text-decoration: none;
-    transition: all 0.4s ease-in-out;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    vertical-align: middle;
-}
-
-.social-icon li a:hover {
-    background: #f2545f;
-    color: #ffffff;
-}
-
-
-
 /*---------------------------------------
    Responsive styles            
 -----------------------------------------*/
@@ -917,7 +670,7 @@ footer {
 	line-height: 20px;
   }
 
-  #intro { height: 65vh; width:auto; max-width: 100%; background-attachment: scroll;}
+  #intro { height: 65vh;}
 
   #video iframe {
     margin-top: 42px;
@@ -963,7 +716,7 @@ footer {
 @media (max-width: 760px) {
 
   #intro {
-    height: 100vh; width:auto; max-width: 100%; background-attachment: scroll;
+    height: 100vh;
   }
 
 }
@@ -1011,104 +764,6 @@ vertical-align: baseline;}
 /*---------------------------------------
    FOUNDER CSS ANIMATION TO GET THEIR DETAILS
 -----------------------------------------*/
-
-/*.pt-100{
-    padding-top:100px;
-}
-.pb-100{
-    padding-bottom:100px;
-}
-.section-title {
-  margin-bottom: 60px;
-}
-.section-title p {
-	color: #777;
-	font-size: 16px;
-}
-#team h2 {
-	text-transform: uppercase;
-	font-size: 30px;
-	position: relative;
-	padding-bottom: 20px;
-	margin-bottom: 50px;
-	font-weight: 600;
-}
-
-.single-team img {
-  width: 100%;
-}
-.single-team {
-  position: relative;
-}
-.team-hover {
-  background-color: #F2545F;
-  color: #fff;
-  position: absolute;
-  bottom: -110px;
-  left: 0;
-  width: 65px;
-  padding: 5px 10px 10px 10px;
-  text-align: center;
-  -webkit-transition: .4s;
-  transition:.4s
-}
-
-
-.team-hoverF {
-  background-color: #F2545F;
-  color: #fff;
-  position: absolute;
-  bottom: -97px;
-  left: 0;
-  width: 65px;
-  padding: 5px 10px 10px 10px;
-  text-align: center;
-  -webkit-transition: .4s;
-  transition:.4s
-}
-
-.team-hoverF h4{
-  font-size: 14px;
-  /*text-transform: uppercase;
-}
-
-.team-hover h4{
-  font-size: 14px;
-  /*text-transform: uppercase;
-}
-.team-hover h4 span{
-  display: block;
-  font-size: 12px;
-  font-weight: 300;
-  margin: 10px 0;
-}
-.team-hoverF h4 span{
-  display: block;
-  font-size: 12px;
-  font-weight: 300;
-  margin: 10px 0;
-}
-.team-hover a{
-  display: inline-block;
-  color: #fff;
-  padding: 0 5px;
-}
-.team-hoverF a{
-  display: inline-block;
-  color: #fff;
-  padding: 0 5px;
-}
-.single-team:hover .team-hover{
-  bottom: 0;
-}
-
-.single-team:hover .team-hoverF{
-  bottom: 0;
-}
-
-.single-team{
-  overflow: hidden;
-}*/
 
 .our-team{
   position:relative;
