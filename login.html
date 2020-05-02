@@ -52,19 +52,20 @@
     <div style="margin: 0.3%;"><ps class="marginleft notice" style="margin-left: 3%;">
         <a href="/index">Home</a> &#62; Login</ps>
     </div>	
+<style>
 
-
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-    <a href="#" onclick="signOut();">Sign out</a>
-<script>
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
-  }
-</script>
+.middle {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}</style>
+    
+    <div class="g-signin2 middle" style="align: center" data-onsuccess="onSignIn"></div>
 
 <!-- =========================
      SCRIPTS   
