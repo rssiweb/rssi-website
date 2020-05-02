@@ -917,7 +917,7 @@ footer {
 	line-height: 20px;
   }
 
-  #intro { height: 65vh; width:auto; max-width: 100%;}
+  #intro { height: 65vh; width:auto; max-width: 100%; background-attachment: scroll;}
 
   #video iframe {
     margin-top: 42px;
@@ -963,7 +963,7 @@ footer {
 @media (max-width: 760px) {
 
   #intro {
-    height: 100vh;
+    height: 100vh; width:auto; max-width: 100%; background-attachment: scroll;
   }
 
 }
