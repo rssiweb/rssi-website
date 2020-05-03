@@ -307,6 +307,13 @@ footer {
   align-items: center;
   height: 100vh;
   text-align: center;
+  background-attachment: scroll !important;
+}
+
+@media screen and (min-width:480px) {
+  #intro {
+    background-attachment: fixed !important;
+  }
 }
 
 /*---------------------------------------
