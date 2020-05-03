@@ -4,7 +4,7 @@ margin: 0;padding: 0;}*/
 .containerH{
   clear:both;
   overflow:auto;
-  background-color: #454545;/*#181D23*/
+  background-color: #454545;
 }
 
 navH{float:right;}
@@ -14,7 +14,6 @@ navH{float:right;}
 
 .navbarH {
   overflow: hidden;
-  /*background-color: #454545;*/
 	display: inline-block;
 	vertical-align: middle;
 	line-height: 23px;
@@ -66,7 +65,8 @@ a.active {
 }
 
 .navbarH a:hover, .dropdownH:hover .dropbtnH {
-  background-color: #f2545f/*#4B88A7*/;
+  background-color: #f2545f;
+  color: whitesmoke !important;
 	
 	
 	
@@ -141,7 +141,7 @@ a.active {
 .containerHo{
   clear:both;
   overflow:auto;
-  background-color: #454545;/*#181D23*/
+  background-color: #454545;
 }
 
 .logoHo img {float:left; margin: 7px 0px 5px 5px; background-color: #454545;}
@@ -190,10 +190,8 @@ a.active {
 }
 
 .navbarHo a:hover, .dropdownHo:hover .dropbtnHo {
- background-color: #f2545f/*#4B88A7*/;
-	
-	
-	
+ background-color: #f2545f;
+ color: whitesmoke !important;
 }
 
 .dropdown-contentHo {
