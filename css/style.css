@@ -7,20 +7,19 @@ http://www.rssi.in
     THIS WILL IMPACT ALL FONT OF THE WEBSITE WHERE NO SPECIFICATION IS MENTIONED              
 -----------------------------------------*/
 body {
-		background: #ffffff;
-    font-family: 'Roboto'/*'Poppins', sans-serif*/;
-    font-style: normal;
-		font-weight: 400;
-	overflow-x: hidden;
+  background: #ffffff;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  overflow-x: hidden;
 }
-
 
 /*---------------------------------------
  ALL WEBSITE FONT DESIGN          
 -----------------------------------------*/
 h1,h2,h3,h4,h5,h6 {
   font-weight: 600;
-	font-family: 'Poppins';
+	font-family: 'Poppins' !important;
 }
 
 h3,h5 {
@@ -57,14 +56,14 @@ a {text-decoration: none !important;}
 -----------------------------------------*/
 ps {
     line-height: 1;
-	font-size: 13px !important;
+	  font-size: 13px !important;
 }
 /*---------------------------------------
     WHAT WE DID SO FAR - FIRST PARAGRAPH OF ANY LISTED ITEM  [ID NAME - CALENDER]            
 -----------------------------------------*/
 #calender ul {
     padding-left: 30px;
-	color: #444444;
+	  color: #444444;
 }
 
 /*---------------------------------------
@@ -216,54 +215,6 @@ footer {
   background-attachment: fixed !important;
   background-size: cover !important;
 }
-
-
-/*---------------------------------------
-    Preloader section              
------------------------------------------*/
-.preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 99999;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
-  background: none repeat scroll 0 0 #ffffff;
-}
-
-.sk-rotating-plane {
-  width: 50px;
-  height: 50px;
-  background-color: #222;
-  -webkit-animation: sk-rotatePlane 1.2s infinite ease-in-out;
-          animation: sk-rotatePlane 1.2s infinite ease-in-out; }
-
-@-webkit-keyframes sk-rotatePlane {
-  0% {
-    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-            transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
-  50% {
-    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-            transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
-  100% {
-    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-            transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
-
-@keyframes sk-rotatePlane {
-  0% {
-    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-            transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
-  50% {
-    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-            transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
-  100% {
-    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-            transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
-
 
 
 /*---------------------------------------
@@ -432,20 +383,7 @@ footer {
   
 }
 
-/*FOUNDER - INDEX   */
 
-.column5 {
-  float: left;
-  width: 25%;
-padding-left: 1%;
-  
-}
-.column5a {
-  padding-left: 3%;
-  position: relative;
-  display: inline;
-  
-}
 /*OVERVIEW-INDEX, ABOUT US, VIDEO*/
 .column6 {
   float: left;
@@ -502,7 +440,7 @@ padding-left: 1%;
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
-  .column1, .column2, .column3, .column4, .column5, .column5a, .column6, .column6a, #donation .column6, #donation .column6a, .column7  {
+  .column1, .column2, .column3, .column4, .column6, .column6a, #donation .column6, #donation .column6a, .column7  {
     width: 100%;
     padding-top: 5%;
     padding-left: 0px;
@@ -731,37 +669,11 @@ padding-left: 1%;
 vertical-align: baseline;}
 
 
-
-
-/*---------------------------------------
-   DASHBOARD EVENT - ANNOUNCEMENT SECTION   
------------------------------------------*/
-
-/* Using panels to display blog date */
-.panel.date {
-    margin: 0px;
-    width: 60px;
-    text-align: center;
-}
-
-.panel.date .month {
-    padding: 2px 0px;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.panel.date .day {
-    padding: 3px 0px;
-    font-weight: 700;
-    font-size: 1.5em;
-}
-
-
-
 /*---------------------------------------
    FOUNDER CSS ANIMATION TO GET THEIR DETAILS
 -----------------------------------------*/
 
+	
 .our-team{
   position:relative;
   overflow: hidden;
@@ -883,7 +795,6 @@ vertical-align: baseline;}
 /*---------------------------------------
    nt-example1 ANNOUNCEMENT SCROLLING UP
 -----------------------------------------*/
-/* */
 
 #nt-example1-container {
 	text-align: center;
@@ -1013,11 +924,6 @@ a.active {
   color: whitesmoke !important;
 }
 
-.subactive {
-  background-color: #f2545f;
-  color: whitesmoke !important;
-}
-
 
 .navbarH .icon {
   display: none;
@@ -1062,7 +968,7 @@ a.active {
 
 .dropdown-contentH a {
   float: none;
-  color: black;
+  color: #000;
   padding: 10px 10px;
   text-decoration: none;
   display: block;
@@ -1184,7 +1090,7 @@ a.active {
 
 .dropdown-contentHo a {
   float: none;
-  color: black;
+  color: #000;
   padding: 10px 10px;
   text-decoration: none;
   display: block;
