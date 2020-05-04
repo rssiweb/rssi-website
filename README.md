@@ -22,3 +22,23 @@ One Time setup respository on Github
  - git remote add origin <remote_URL_from_github>
  - git config --global user.email "you@example.com"
  - git config --global user.name "Somnath"
+
+
+
+Step 1
+git pull
+
+Step 2
+git rm -rf Folder1
+
+Step 3
+git rm -rf Folder1
+
+Step 4
+git add .
+
+Step 5
+git commit -m “Folder1 deleted”
+
+Step 6
+git push
