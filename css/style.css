@@ -291,8 +291,8 @@ footer {
 -----------------------------------------*/
 
 #intro {
-  background: linear-gradient(
-    rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/intro-bg.WebP') 50% 0 repeat-y;
+  /*background: linear-gradient(
+    rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/intro-bg.WebP') 50% 0 repeat-y;*/
   -webkit-background-size: cover;
   background-size: cover;
   background-position: center center;
@@ -613,10 +613,6 @@ footer {
   }
 
   #intro { height: 65vh;}
-
-  #video iframe {
-    margin-top: 42px;
-  }
 
   #contact .contact_detail {
   background: #ffffff;
