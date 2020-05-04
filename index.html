@@ -40,7 +40,18 @@ http://www.rssi.in
 <div class="containerH">
 <div class="navbar navbar-fixed-top custom-navbar" role="navigation">				
 
-<a href="/index"><div class="logoH"><img src="images/WebsiteHeaderLogo.webp" alt="RSSI Logo" width="140px"/></a>
+<a href="/index"><div class="logoH">
+	<!--<img src="images/WebsiteHeaderLogo.webp" alt="RSSI Logo" width="140px"/>-->
+
+<!--<picture>
+		<source srcset="images/WebsiteHeaderLogo.webp" type="image/webp" alt="RSSI Logo" width="140px">
+		<img src="images/WebsiteHeaderLogo.jpg" alt="RSSI Logo" width="140px"/>
+	</picture>
+	<img src="images/WebsiteHeaderLogo.webp" onerror="this.onerror=null; this.src='images/WebsiteHeaderLogo.jpg'" alt="RSSI Logo" width="140px">-->
+
+	<img data-jpg="images/WebsiteHeaderLogo.jpg" data-webp="images/WebsiteHeaderLogo.webp" id="myimg"> 
+
+</a>
 		<navh>
 		<div class="navbarH" id="mynavbarH">
 			
