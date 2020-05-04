@@ -290,9 +290,9 @@ footer {
     Intro section              
 -----------------------------------------*/
 
-#intro {
-  /*background: linear-gradient(
-    rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/intro-bg.WebP') 50% 0 repeat-y;*/
+#intro{
+background: linear-gradient(
+    rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/bg/intro-bg-min.png') 50% 0 repeat-y;
   -webkit-background-size: cover;
   background-size: cover;
   background-position: center center;
@@ -313,6 +313,8 @@ footer {
 @media screen and (min-width:480px) {
   #intro {
     background-attachment: fixed !important;
+    background: linear-gradient(
+    rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/bg/intro-bg.png') 50% 0 repeat-y;
   }
 }
 
