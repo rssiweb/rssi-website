@@ -13,7 +13,6 @@ body {
   font-weight: 400;
   overflow-x: hidden;
 }
-
 /*---------------------------------------
  ALL WEBSITE FONT DESIGN          
 -----------------------------------------*/
@@ -112,7 +111,6 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
     background-color: #F2545F !important;
 }
 
-
 /*---------------------------------------
     General               
 -----------------------------------------*/
@@ -190,10 +188,7 @@ footer {
   #donation .btn-danger:hover {
   background: #f2545f;
   border-color: transparent;
-	
-
 }
-
 
 #contact .btn-danger:hover {
   background: #222;
@@ -215,7 +210,6 @@ footer {
   background-attachment: fixed !important;
   background-size: cover !important;
 }
-
 
 /*---------------------------------------
     Navigation Links section     101010         
@@ -283,16 +277,13 @@ footer {
     }
 
 }
-
-
-
 /*---------------------------------------
-    Intro section              
+    Intro section              linear-gradient(
+    rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
 -----------------------------------------*/
 
 #intro{
-background: linear-gradient(
-    rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/bg/intro-bg-min.jpg') 50% 0 repeat-y;
+background: url('../images/bg/intro-bg-min.jpg') 50% 0 repeat-y;
   -webkit-background-size: cover;
   background-size: cover;
   background-position: center center;
@@ -313,9 +304,19 @@ background: linear-gradient(
 @media screen and (min-width:480px) {
   #intro {
     background-attachment: fixed !important;
-    background: linear-gradient(
-    rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/bg/intro-bg.jpg') 50% 0 repeat-y;
+    background: url('../images/bg/intro-bg.jpg') 50% 0 repeat-y;
   }
+}
+
+.body1 {
+  font-family: 'Comfortaa', serif;
+  font-size: 4vw; text-align: center;
+  color:#ffffff
+}
+.body2 {
+  font-family: 'Comfortaa', serif;
+  font-size: 3.5vw; text-align: center; margin-top:-1vw; 
+  color:#ffffff
 }
 
 /*---------------------------------------
@@ -326,9 +327,6 @@ background: linear-gradient(
   padding: 0px;/*32px*/
 	margin: 0px;
 }
-
-
-
 /*---------------------------------------
     Detail section              
 -----------------------------------------*/
@@ -355,10 +353,6 @@ background: linear-gradient(
      overflow: hidden;
      padding: 15px 30px 25px 15px;
 }
-
-.media, .media-body {
-	overflow: auto;}
-
 
 /*---------------------------------------
    LAYOUT COLUMN     
@@ -391,7 +385,6 @@ background: linear-gradient(
   overflow: hidden;
   
 }
-
 
 /*OVERVIEW-INDEX, ABOUT US, VIDEO*/
 .column6 {
@@ -490,9 +483,6 @@ background: linear-gradient(
 #video iframe {
   border: none;
 }
-
-
-
 /*---------------------------------------
    Speakers section              
 -----------------------------------------*/
@@ -596,8 +586,6 @@ background: linear-gradient(
 #faq .panel-heading .panel-title a[data-toggle="collapse"].collapsed::after {
   content: "+";
 }
-
-
 /*---------------------------------------
    Responsive styles            
 -----------------------------------------*/
@@ -678,7 +666,6 @@ vertical-align: baseline;}
    FOUNDER CSS ANIMATION TO GET THEIR DETAILS
 -----------------------------------------*/
 
-	
 .our-team{
   position:relative;
   overflow: hidden;
@@ -891,7 +878,6 @@ vertical-align: baseline;}
     color: #ffffff;
 }
 
-
 /*=========================
      HEADER HOME CSS-CUSTOM     
 ============================== */
@@ -906,14 +892,12 @@ navH{float:right;}
 
 .logoH img {float:left; margin: 7px 0px 5px 5px;}
 
-
 .navbarH {
   overflow: hidden;
 	display: inline-block;
 	vertical-align: middle;
 	line-height: 23px;
 }
-
 .navbarH a {
   float: left;
   font-size: 13px;
@@ -921,27 +905,21 @@ navH{float:right;}
   text-align: center;
   padding: 15px 10px;
   text-decoration: none;
-
 }
 
 a.active {
   background-color: #f2545f;
   color: whitesmoke !important;
 }
-
-
 .navbarH .icon {
   display: none;
 }
-
-
 .dropdownH {
   float: left;
   overflow: hidden;
   vertical-align: middle;
 	
 }
-
 .dropdownH .dropbtnH {
   font-size: 13px;  
   border: none;
@@ -950,16 +928,11 @@ a.active {
   padding: 15px 10px;
   background-color: inherit;
   font-family: inherit;
-  line-height: 23px;
-  
+  line-height: 23px; 
 }
-
 .navbarH a:hover, .dropdownH:hover .dropbtnH {
   background-color: #f2545f;
   color: whitesmoke !important;
-	
-	
-	
 }
 
 .dropdown-contentH {
@@ -970,7 +943,6 @@ a.active {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
-
 .dropdown-contentH a {
   float: none;
   color: #000;
@@ -979,20 +951,13 @@ a.active {
   display: block;
   text-align: left;
 }
-
 .dropdown-contentH a:hover {
   background-color: #f2545f;
 	color: whitesmoke;
 }
-
 .dropdownH:hover .dropdown-contentH {
   display: block;
 }
-
-
-
-
-
 @media (max-width: 880px) {
   .navbarH a:not(:first-child), .dropdownH .dropbtnH {
     display: none;
@@ -1002,9 +967,6 @@ a.active {
     display: block;
   }
 }
-
-
-
 @media screen and (max-width: 800px) {
   .navbarH.responsive {position: relative;}
   .navbarH.responsive a.icon {
@@ -1025,8 +987,6 @@ a.active {
     text-align: left;
   }
 }
-
-
 /*For other page*/
 .containerHo{
   clear:both;
@@ -1051,20 +1011,16 @@ a.active {
   text-align: center;
   padding: 15px 10px;
   text-decoration: none;
-
 }
-
 
 .navbarHo .icon {
   display: none;
 }
 
-
 .dropdownHo {
   float: left;
   overflow: hidden;
   vertical-align: middle;
-	
 }
 
 .dropdownHo .dropbtnHo {
@@ -1076,7 +1032,6 @@ a.active {
   background-color: inherit;
   font-family: inherit;
   line-height: 23px;
-  
 }
 
 .navbarHo a:hover, .dropdownHo:hover .dropbtnHo {
@@ -1111,10 +1066,6 @@ a.active {
   display: block;
 }
 
-
-
-
-
 @media (max-width: 880px) {
   .navbarHo a:not(:first-child), .dropdownHo .dropbtnHo {
     display: none;
@@ -1124,9 +1075,6 @@ a.active {
     display: block;
   }
 }
-
-
-
 @media screen and (max-width: 800px) {
   .navbarHo.responsive {position: relative;}
   .navbarHo.responsive a.icon {
@@ -1148,7 +1096,6 @@ a.active {
   }
 }
 
-
 #mynavbarHo.navbar {
     position: unset;
     min-height: unset;
@@ -1156,8 +1103,6 @@ a.active {
     border: none;
     border-radius:unset;
 }
-
-
 /*=========================
      FOOTER HOME CSS-CUSTOM     
 ============================== */
@@ -1175,7 +1120,6 @@ footer{
 	footer { position: static; }
 	header { padding-top:40px; }
 }
- 
  
 .footer-distributed{
 	background-color: #292929;
@@ -1244,8 +1188,7 @@ footer{
 .footer-distributed .footer-center{
 	width: 45%;
 }
- 
- 
+
 .footer-distributed .footer-center i{
 	background-color:  #33383b;
 	color: #ffffff;
@@ -1283,8 +1226,7 @@ footer{
 	color:  #e0ac1c;
 	text-decoration: none;
 }
- 
- 
+
 /* Footer Right */
  
 .footer-distributed .footer-right{

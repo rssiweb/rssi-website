@@ -23,7 +23,6 @@ http://www.rssi.in
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
 
-
 </head>
 	
 <body data-spy="scroll" data-offset="50" data-target=".navbar-collapse">
@@ -35,7 +34,8 @@ http://www.rssi.in
 <div class="containerH">
 <div class="navbar navbar-fixed-top custom-navbar" role="navigation">				
 
-<a href="/index"><div class="logoH"><img src="images/logo/WebsiteHeaderLogo.png" alt="RSSI Logo" width="140px"/></a></div>
+<div class="logoH"><a href="/index">
+	<img src="images/logo/WebsiteHeaderLogo.png" alt="RSSI Logo" width="140px"/></a></div>
 		<navh>
 		<div class="navbarH" id="mynavbarH">
 			
@@ -79,9 +79,7 @@ http://www.rssi.in
 				</div>
 						</div>
 								
-										
-		  	
-							
+															
 <!-- =========================
     INTRO SECTION   
 ============================== -->
@@ -91,22 +89,9 @@ http://www.rssi.in
 		<div class="row">
 
 			<div class="col-md-12 col-sm-12">
-				
-    <style>
-      body1 {
-        font-family: 'Comfortaa', serif;
-        font-size: 4vw; text-align: center; line-height:100%;
-        color:#ffffff
-      }
-		body2 {
-        font-family: 'Comfortaa', serif;
-        font-size: 3.5vw; text-align: center; line-height:0%; 
-        color:#ffffff
-      }
-    </style>
   
-  <body1><div class="wow bounceIn" data-wow-delay="0.9s">Welcome to a better tomorrow</div></body1><br>
-  <body2><div class="wow fadeInUp" data-wow-delay="1.6s">#Grow<span style="color:#e0ac1c">Together</span></div></body2><br>
+  <div class="wow bounceIn body1" data-wow-delay="0.9s">Welcome to a better tomorrow</div><br>
+  <div class="wow fadeInUp body2" data-wow-delay="1.6s">#Grow<span style="color:#e0ac1c">Together</span></div><br>
 
 			<div><a href="#overview" class="btn btn-lg btn-default smoothScroll wow fadeInUp hidden-xs" data-wow-delay="2.3s">LEARN MORE</a>
 				<a href="/registration" class="btn btn-lg btn-danger smoothScroll wow fadeInUp" data-wow-delay="2.3s">REGISTER NOW</a></div>
@@ -115,7 +100,6 @@ http://www.rssi.in
 		</div>
 	</div>
 </section>
-	
 	
 <!-- =========================
     UPDATE SECTION   
@@ -505,11 +489,9 @@ document.getElementById("datetime").innerHTML = dt.toLocaleString();
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="js/jquery.newsTicker.js"></script>
     <script>
-    		
     		$(window).load(function(){
 	            $('code.language-javascript').mCustomScrollbar();
 	        });
-           
             var nt_example1 = $('#nt-example1').newsTicker({
                 row_height: 80,
                 max_rows: 2,
@@ -517,49 +499,43 @@ document.getElementById("datetime").innerHTML = dt.toLocaleString();
                 prevButton: $('#nt-example1-prev'),
                 nextButton: $('#nt-example1-next')
             });
-            
-            
-            
         </script>
 
 <script src="js/jquery.parallax.js"></script>
 <script src="js/smoothscroll.js"></script>
 <script src="js/custom.js"></script>
-<script src="jquery.lazyload.js" type="text/javascript"></script>
-<script>
-
-	document.addEventListener("DOMContentLoaded", function() {
-	  var lazyloadImages = document.querySelectorAll("img.lazy");    
-	  var lazyloadThrottleTimeout;
-	  
-	  function lazyload () {
-		if(lazyloadThrottleTimeout) {
-		  clearTimeout(lazyloadThrottleTimeout);
-		}    
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+		var lazyloadImages = document.querySelectorAll("img.lazy");    
+		var lazyloadThrottleTimeout;
 		
-		lazyloadThrottleTimeout = setTimeout(function() {
-			var scrollTop = window.pageYOffset;
-			lazyloadImages.forEach(function(img) {
-				if(img.offsetTop < (window.innerHeight + scrollTop)) {
-				  img.src = img.dataset.src;
-				  img.classList.remove('lazy');
+		function lazyload () {
+			if(lazyloadThrottleTimeout) {
+			clearTimeout(lazyloadThrottleTimeout);
+			}    
+			
+			lazyloadThrottleTimeout = setTimeout(function() {
+				var scrollTop = window.pageYOffset;
+				lazyloadImages.forEach(function(img) {
+					if(img.offsetTop < (window.innerHeight + scrollTop)) {
+					img.src = img.dataset.src;
+					img.classList.remove('lazy');
+					}
+				});
+				if(lazyloadImages.length == 0) { 
+				document.removeEventListener("scroll", lazyload);
+				window.removeEventListener("resize", lazyload);
+				window.removeEventListener("orientationChange", lazyload);
 				}
-			});
-			if(lazyloadImages.length == 0) { 
-			  document.removeEventListener("scroll", lazyload);
-			  window.removeEventListener("resize", lazyload);
-			  window.removeEventListener("orientationChange", lazyload);
-			}
-		}, 20);
-	  }
-	  
-	  document.addEventListener("scroll", lazyload);
-	  window.addEventListener("resize", lazyload);
-	  window.addEventListener("orientationChange", lazyload);
-	});</script>
+			}, 20);
+		}
+		
+		document.addEventListener("scroll", lazyload);
+		window.addEventListener("resize", lazyload);
+		window.addEventListener("orientationChange", lazyload);
+		});</script>
+
 <script data-ad-client="ca-pub-9832883199874304" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-
 
 <!-- =========================
      FOOTER   

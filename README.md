@@ -42,3 +42,10 @@ git commit -m “Folder1 deleted”
 
 Step 6
 git push
+
+
+E:\RSSIWebsite>git fetch --all
+Fetching origin
+
+E:\RSSIWebsite>git reset --hard origin/master
+HEAD is now at 7ef1a78 lazy loading
