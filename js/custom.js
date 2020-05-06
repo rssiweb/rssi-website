@@ -126,3 +126,22 @@ function carousel() {
   x[slideIndex-1].style.display = "block";
   setTimeout(carousel, 2000); // Change image every 2 seconds
 }
+
+//RESPONSIVE HEADER//
+function myFunction1() {
+  var x = document.getElementById("mynavbarH");
+  if (x.className === "navbarH") {
+    x.className += " responsive";
+  } else {
+    x.className = "navbarH";
+  }
+}
+
+function myFunction() {
+  var x = document.getElementById("mynavbarHo");
+  if (x.className === "navbarHo navbar") {
+    x.className += " responsive";
+  } else {
+    x.className = "navbarHo navbar";
+  }
+}
