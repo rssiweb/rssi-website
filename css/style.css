@@ -219,7 +219,7 @@ footer {
 -----------------------------------------*/
 .custom-navbar {
     margin-bottom: 0;
-    background-color: #454545;
+    background-color: #484644;
 }
 
 .custom-navbar .navbar-brand {
@@ -275,7 +275,7 @@ footer {
         background: 0 0; 
     }
     .custom-navbar.top-nav-collapse {
-        background: #454545;
+        background: #484644;
         padding: 0;
     }
 
@@ -888,7 +888,7 @@ vertical-align: baseline;}
 .containerH{
   clear:both;
   overflow:auto;
-  background-color: #454545;
+  background-color: #484644;
 }
 
 navH{float:right;}
@@ -994,14 +994,14 @@ a.active {
 .containerHo{
   clear:both;
   overflow:auto;
-  background-color: #454545;
+  background-color: #484644;
 }
 
-.logoHo img {float:left; margin: 7px 0px 5px 5px; background-color: #454545;}
+.logoHo img {float:left; margin: 7px 0px 5px 5px; background-color: #484644;}
 
 .navbarHo {
   overflow: hidden;
-  background-color: #454545;
+  background-color: #484644;
   display: inline-block;
   vertical-align: middle;
   line-height: 23px;
@@ -1306,7 +1306,8 @@ footer{
       padding-bottom: 40px; } }
   .features_causes .card {
     border-radius: 0px;
-    border: 0;
+    border:0;
+    background-color:#f9f9f9;
     transition: all 300ms linear 0s;
     margin-bottom: 30px;
     overflow: hidden; }
@@ -1385,5 +1386,9 @@ footer{
     text-transform: uppercase;
     cursor: pointer;
     transition: all 300ms linear 0s;}
+
+  #project  a:active, a:hover, a:visited {
+      color: #fff;
+  }
     /* END OF CURRRENT PROJECT
 ============================================================================================ */
