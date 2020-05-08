@@ -11,7 +11,7 @@ http://www.rssi.in
 @import url("https://fonts.googleapis.com/css?family=Comfortaa");
 body {
   background: #ffffff;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
   overflow-x: hidden;
@@ -21,7 +21,7 @@ body {
 -----------------------------------------*/
 h1,h2,h3,h4,h5,h6 {
   font-weight: 600;
-	font-family: 'Poppins' !important;
+	font-family: "Poppins";
 }
 
 h3,h5 {
@@ -48,11 +48,13 @@ h5 {
 }
 
 p {
-    color: #444444;
+    color: #777777; /*#444444*/
     font-size: 14px !important;
     line-height: 21px !important;
 }
 a {text-decoration: none !important;}
+.hover a:hover{text-decoration: underline !important;}
+.white a:active, .white a:hover, .white a:visited {color: #fff;}
 /*---------------------------------------
     UPDATE SECTION - SCROLL FONT DESIGN
 -----------------------------------------*/
@@ -65,7 +67,7 @@ ps {
 -----------------------------------------*/
 #calender ul {
     padding-left: 30px;
-	  color: #444444;
+	  color: #777777;
 }
 
 /*---------------------------------------
@@ -102,8 +104,6 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
 	font-size: 13px;
 }
 
-#overview a:hover{text-decoration: underline !important;}
-#donation a:hover{text-decoration: underline !important;}
 
 /*---------------------------------------
     UPDATE SECTION - SCROLL TEXT BACKGROUNG COLOR
@@ -150,8 +150,7 @@ footer {
     padding-bottom: 12px;
 }
 
-#intro .btn, #overview .btn, #donation .btn,
-#contact .btn {
+.btn {
     background: transparent;
     border: 2px solid #ffffff;
     border-radius: 0px;
@@ -168,14 +167,9 @@ footer {
     text-transform: uppercase;
 }
 
-#intro .btn-danger, #overview .btn-danger, #donation .btn-danger,
-#contact .btn-danger {
+.btn-danger {
     background: #f2545f;
     border-color: transparent;
-}
-
-#contact .btn{
-  border-radius: 100px;
 }
 
 #intro .btn-danger:hover {
@@ -184,18 +178,11 @@ footer {
   color: #ffffff;
 }
 
-#overview .btn-danger:hover {
-  background: #f2545f;
-  border-color: transparent;}
-    
-  #donation .btn-danger:hover {
+.btn-danger:hover {
   background: #f2545f;
   border-color: transparent;
 }
 
-#contact .btn-danger:hover {
-  background: #222;
-}
 
 #intro .btn-default:hover {
     background: #ffffff;
@@ -203,7 +190,7 @@ footer {
     border-color: transparent;
 }
 
-#overview .btn-default:hover {
+.btn-default:hover {
     background: #ffffff;
     color: #333333;
     border-color: transparent;
@@ -320,6 +307,12 @@ background: url('../images/bg/intro-bg-min.jpg') 50% 0 repeat-y;
   font-family: 'Comfortaa', serif;
   font-size: 3.5vw; text-align: center; margin-top:-1vw; 
   color:#ffffff
+}
+
+.body2a {
+  font-family: 'Comfortaa', serif;
+  font-size: 27.32px; text-align: center; 
+  color:#777777
 }
 
 /*---------------------------------------
@@ -1307,7 +1300,7 @@ footer{
   .features_causes .card {
     border-radius: 0px;
     border:0;
-    background-color:#f9f9f9;
+    background-color:#fff;
     transition: all 300ms linear 0s;
     margin-bottom: 30px;
     overflow: hidden; }
@@ -1387,8 +1380,48 @@ footer{
     cursor: pointer;
     transition: all 300ms linear 0s;}
 
-  #project  a:active, a:hover, a:visited {
-      color: #fff;
-  }
     /* END OF CURRRENT PROJECT
+============================================================================================ */
+
+/* Start About Us Area css
+============================================================================================ */
+.about_area .about_thumb {
+  overflow: hidden;
+  display: inline-block; }
+.about_area .about_content h2 {
+  font-size: 36px;
+  margin-bottom: 30px; }
+  @media (max-width: 767px) {
+    .about_area .about_content h2 {
+      font-size: 25px; } }
+  @media (max-width: 1199px) {
+    .about_area .about_content h2 br {
+      display: none; } }
+.about_area .about_content p:last-of-type {
+  margin-bottom: 0; }
+.about_area .about_content .primary_btn {
+  margin-top: 35px; }
+.about_area .about_left {
+  padding-right: 0;
+  padding-left: 30px; }
+  @media (max-width: 991px) {
+    .about_area .about_left {
+      padding-right: 15px;
+      margin-top: 0px;
+      margin-bottom: 40px; } }
+.about_area .about_right {
+  padding: 110px 60px;
+  background: #ffffff;
+  margin-top: 70px;
+  margin-left: -40px;
+  z-index: 2;
+  box-shadow: 0px 5px 40px rgba(153, 153, 153, 0.2); }
+  @media (max-width: 1199px) {
+    .about_area .about_right {
+      padding: 50px 30px; } }
+  @media (max-width: 991px) {
+    .about_area .about_right {
+      margin-left: 0;
+      margin-top: 20px; } }
+/* End About Us Area css
 ============================================================================================ */
