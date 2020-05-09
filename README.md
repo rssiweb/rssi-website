@@ -55,3 +55,4 @@ git fetch origin d75e8d81318243376cf355c5ec4dfa84f3b
 git checkout FETCH_HEAD
 git checkout -b "rssiweb"
 git push --all
+git push --set-upstream origin rssiweb
