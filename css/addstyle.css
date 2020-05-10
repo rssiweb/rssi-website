@@ -643,9 +643,9 @@
 }
 
 .features_causes .card:hover .donation .primary_btn {
-    background: #47A4A5;
+    background: #ed4753;
     color: #fff;
-    border: 1px solid #47A4A5;
+    border: 1px solid #ed4753;
 }
 
 .features_causes .card:visited .donation .primary_btn {
