@@ -182,7 +182,7 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
 .carousel-caption{
   max-width: 100%;
   width:100%;
-  background-color: rgba(242, 84, 95, 0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   left: 0;
 }
 .carousel-caption p{
@@ -196,7 +196,7 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
   position: absolute;
   bottom: 20px;
   right: 20px;
-  background-color: rgba(242, 84, 95, 0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   padding-left: 20px;
   padding-right: 20px;
 }
