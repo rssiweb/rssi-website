@@ -669,7 +669,7 @@
     background: #F2545F;
     padding: 0px 50px;
     color: #fff;
-    font-family: "Roboto", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 12px;
     font-weight: 500;
     line-height: 48px;
@@ -756,3 +756,47 @@
 
 /* End About Us Area css
   ============================================================================================ */
+
+  .containerclass {
+    position: relative;
+   
+
+  }
+
+  .top-leftclass {
+    position: absolute;
+    top: 30%;
+    left: 16px;
+    width: 60%;
+  }
+
+/* End About Us Area css
+  ============================================================================================ */
+  #leadership {
+    background-color: #fffbfc;
+    padding: 100px 0;
+  }
+  #leadership .accordion .card {
+    border: none;
+  }
+  #leadership .accordion .card img {
+    height: 64px;
+    width: 64px;
+  }
+  #leadership .accordion .card .accordion-group .card-header {
+    background-color: #fffbfc;
+    padding: 10px;
+    border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px);
+  }
+  #leadership .accordion .card .accordion-group .card-header:hover {
+    background-color: #edb348;
+  }
+  #leadership .accordion .card .accordion-group .card-header a {
+    text-decoration: none;
+    color: #000;
+  }
+  #leadership .accordion .card .accordion-group .card-header:hover a,
+  #leadership .accordion .card .accordion-group .card-header:hover p
+  {
+    color: white;
+  }

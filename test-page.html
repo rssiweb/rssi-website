@@ -1,388 +1,930 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<!--
-RSSI
-http://www.rssi.in
--->
-<title>test</title>
-<meta name="description" content="">
-<meta name="author" content="">
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!--
+RSSI http://www.rssi.in -->
 
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<!-- Main css -->
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/test.css">
-<link rel="stylesheet" href="css/font-awesome_4_7_0.css">
-<link rel="stylesheet" href="css/animate.css">
+	<title>Test</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css?family=Roboto:Regular 400" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- Main css -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/addstyle.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/infinite-slider.css">
 
 </head>
-	
+
 <body data-spy="scroll" data-offset="50" data-target=".navbar-collapse">
-	
-<!-- =========================
+
+	<!-- =========================
      NAVIGATION LINKS     
 ============================== -->
-	
-<div class="containerH">
-<div class="navbar navbar-fixed-top custom-navbar" role="navigation">				
 
-<div class="logoH"><a href="/index">
-	<img src="images/logo/WebsiteHeaderLogo.png" alt="RSSI Logo" width="140px"/></a></div>
-		<navh>
-		<div class="navbarH" id="mynavbarH">
-			
-		 <a href="/index" class="smoothScroll">Home</a>
-		  
-			<a href="/about-us" class="smoothScroll">About us</a>
-			<a href="/media-center" class="smoothScroll">Media center</a>
-            <a href="/donation-portal" class="smoothScroll">Donate</a>
-			
-		   <div class="dropdownH">
-          <button class="dropbtnH">Get involved <i class="fa fa-caret-down"></i></button>
-          <div class="dropdown-contentH">
-			  <a href="/registration" class="smoothScroll">Registration</a>
-			  <a href="/profile-update" class="smoothScroll">Profile Update</a>
-			  <a href="/our-team" class="smoothScroll">Our team</a>
-		  </div>
-		  </div>
-		  
-		  
-		   <div class="dropdownH">
-          <button class="dropbtnH">Students' corner <i class="fa fa-caret-down"></i></button>
-          <div class="dropdown-contentH">
-			  <a href="/admission" class="smoothScroll">Admission</a>
-			  <a href="/class-schedule" class="smoothScroll">Class schedule</a>
-			  <a href="/result-portal" class="smoothScroll">Result portal</a>
-			  <a href="/scholarship-programs" class="smoothScroll">Scholarship programs</a>
-			  <a href="/miscellaneous" class="smoothScroll">Miscellaneous</a>
-			  
-		  </div>
-		  </div>
-		  
-		    <a href="https://attendence-brssi.herokuapp.com/" class="smoothScroll">Phoenix</a>
-        
-		<a href="https://sites.google.com/view/rssi-login" class="smoothScroll"><i class="fas fa-user" style="font-size:15px;"></i></a>
-			
-			<a href="javascript:void(0);" class="icon" onclick="myFunction1()"><i class="fas fa-bars" style="font-size:20px; color: whitesmoke;"></i></a>
-	
-			
-  </div>
-		</navh>
-				</div>
+	<div class="containerH">
+		<div class="navbar navbar-fixed-top custom-navbar" role="navigation">
+
+			<div class="logoH"><a href="/index">
+					<img src="images/logo/WebsiteHeaderLogo.png" alt="RSSI Logo" width="140px" /></a></div>
+			<navh>
+				<div class="navbarH" id="mynavbarH">
+
+					<a href="/index" class="smoothScroll">Home</a>
+
+					<a href="/about-us" class="smoothScroll">About us</a>
+					<a href="/media-center" class="smoothScroll">Media center</a>
+					<a href="/donation-portal" class="smoothScroll">Donate</a>
+
+					<div class="dropdownH">
+						<button class="dropbtnH">Get involved <i class="fa fa-caret-down"></i></button>
+						<div class="dropdown-contentH">
+							<a href="/registration" class="smoothScroll">Registration</a>
+							<a href="/profile-update" class="smoothScroll">Profile Update</a>
+							<a href="/our-team" class="smoothScroll">Our team</a>
 						</div>
-								
-															
-<!-- =========================
+					</div>
+
+
+					<div class="dropdownH">
+						<button class="dropbtnH">Students' corner <i class="fa fa-caret-down"></i></button>
+						<div class="dropdown-contentH">
+							<a href="/admission" class="smoothScroll">Admission</a>
+							<a href="/class-schedule" class="smoothScroll">Class schedule</a>
+							<a href="/result-portal" class="smoothScroll">Result portal</a>
+							<a href="/scholarship-programs" class="smoothScroll">Scholarship programs</a>
+							<a href="/miscellaneous" class="smoothScroll">Miscellaneous</a>
+
+						</div>
+					</div>
+
+					<a href="https://attendence-brssi.herokuapp.com/" rel="noopener noreferrer" target="_blank"
+						class="smoothScroll">Phoenix</a>
+
+					<a href="https://sites.google.com/view/rssi-login" rel="noopener noreferrer" target="_blank"
+						class="smoothScroll"><i class="fas fa-user" style="font-size:15px;"></i></a>
+
+					<a href="javascript:void(0);" class="icon" onclick="myFunction1()"><i class="fas fa-bars"
+							style="font-size:20px; color: whitesmoke;"></i></a>
+
+
+				</div>
+			</navh>
+		</div>
+	</div>
+
+
+	<!-- =========================
     INTRO SECTION   
 ============================== -->
-<section id="intro" class="parallax-section">
+	<section id="intro" class="parallax-section">
 
-	<div class="container">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-12 col-sm-12">
+
+					<div class="wow bounceIn body1" data-wow-delay="0.9s">Welcome to a better tomorrow</div><br>
+					<div class="wow fadeInUp body2" data-wow-delay="1.6s">#Grow<span
+							style="color:#e0ac1c">Together</span></div><br>
+
+					<div><a href="#overview" class="btn btn-lg btn-default smoothScroll wow fadeInUp hidden-xs"
+							data-wow-delay="2.3s">LEARN MORE</a>
+						<a href="/registration" class="btn btn-lg btn-danger smoothScroll wow fadeInUp"
+							data-wow-delay="2.3s">REGISTER NOW</a></div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- =========================
+    UPDATE SECTION   
+============================== -->
+	<section id="update" style="padding: 0.5% 5.5%; background-color: #fff">
+
+		<div class="row py-2">
+			<!--Breaking box-->
+			<div class="col-1 col-md-3 col-lg-2 py-1 pr-md-0 mb-md-1">
+				<div class="d-inline-block d-md-block bg-primary text-white text-center breaking-caret py-1 px-2">
+
+					<!--<span class="d-none d-md-inline-block">Bulletin </span>-->
+					<span class="fas fa-flag" title="Updates"></span>
+				</div>
+			</div>
+			<!--Breaking content-->
+			<div class="col-11 col-md-9 col-lg-10 pl-1 pl-md-2">
+				<div class="breaking-box pt-2 pb-1">
+					<!--marque-->
+					<marquee behavior="scroll" scrollamount="5" direction="left" onmouseover="this.stop();"
+						onmouseleave="this.start();">
+						<ps class="h6 notice"><span
+								class="position-relative mx-2 badge badge-primary rounded-0">COVID-19</span> As a
+							precautionary health measure for our volunteers, well-wishers, sponsors in light of
+							COVID-19, we're operating administrative work from home. All academic and social activities
+							which may cause of mass gathering are closed now for the unknown timeframe. For immediate
+							assistance directly call us at +91 7980168159 or email at <a
+								href="mailto:rssi.connect@gmail.com">rssi.connect@gmail.com</a>. Stay safe. Stay
+							inspired.</ps>
+
+					</marquee>
+				</div>
+			</div>
+		</div>
+
+
+	</section>
+
+	<!-- =========================
+    OVERVIEW SECTION   
+============================== -->
+	<section id="overview" style="padding: 5% 5.5%; background-color: #f9f9f9">
+
+		<div class="row1">
+			<div class="column6">
+
+				<h3>Empowering youth through education is the main focus of our organization.</h3>
+				<p>Mission Education is a regional level program of R.S Success Institute, Mumbai (mainly covering Thane
+					area including Ghodbunder Rd, Bhayandarpada) which is committed to ensuring the basic education and
+					healthcare of underprivileged children.</p>
+				<p>We believe that whether you are addressing healthcare, poverty, population control, unemployment or
+					human rights, there's no better place to start than in the corridors of education.</p>
+
+
+				<div style="margin-top:-10px" class="hover white">
+					<!--<a href="#footer" class="btn btn-lg btn-danger smoothScroll wow fadeInUp" data-wow-delay="0.6s">CONTACT US</a>-->
+					<a href="/donation-portal" class="btn btn-lg btn-danger smoothScroll">SPONSOR A KID
+						<!--<span class="fas fa-heart" title="Donate now"></span>--></a></div>
+
+			</div>
+
+
+			<div class="column6a">
+				<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+						<li data-target="#myCarousel" data-slide-to="3"></li>
+						<li data-target="#myCarousel" data-slide-to="4"></li>
+						<li data-target="#myCarousel" data-slide-to="5"></li>
+						<li data-target="#myCarousel" data-slide-to="6"></li>
+						<li data-target="#myCarousel" data-slide-to="7"></li>
+						<li data-target="#myCarousel" data-slide-to="8"></li>
+
+					</ol>
+
+
+					<div class="carousel-inner">
+
+						<div class="item active">
+							<img class="lazy" data-src="images/overview image/oi1.png" alt="Our Purpose"
+								class="img-responsive">
+							<div class="carousel-caption" style="width: 100%;">
+
+								<p>Rang Barse - Holi Event 2019 an initiative of RSSI, association with TCS and
+									Sarvebhyo Foundation</p>
+							</div>
+						</div>
+
+						<div class="item">
+							<img src="images/overview image/oi2.png" alt="Our Purpose"
+								class="img-responsive">
+							<div class="carousel-caption">
+
+								<p>Sunday free class under Shiksha project</p>
+							</div>
+						</div>
+
+						<div class="item">
+							<img src="images/overview image/oi3.png" alt="Our Purpose"
+								class="img-responsive">
+							<div class="carousel-caption">
+								<p>Father's Day celebration at RSSI Lucknow</p>
+							</div>
+						</div>
+
+						<div class="item">
+							<img src="images/overview image/oi4.png" alt="Our Purpose"
+								class="img-responsive">
+							<div class="carousel-caption">
+
+								<p>Yoga Class</p>
+							</div>
+						</div>
+
+						<div class="item">
+							<img class="lazy" data-src="images/overview image/oi5.png" alt="Our Purpose"
+								class="img-responsive">
+							<div class="carousel-caption">
+
+								<p>Annual Sports and Team Dinner – 2017</p>
+							</div>
+						</div>
+
+
+						<div class="item">
+							<img class="lazy" data-src="images/overview image/oi8.png" alt="Our Purpose"
+								class="img-responsive">
+							<div class="carousel-caption">
+
+								<p>Donation drive by a group of Ayesa employee</p>
+							</div>
+						</div>
+
+						<div class="item">
+							<img class="lazy" data-src="images/overview image/oi9.png" alt="Our Purpose"
+								class="img-responsive">
+							<div class="carousel-caption">
+
+								<p>Donation drive by a group of Ayesa employee</p>
+							</div>
+						</div>
+						<div class="item">
+							<img class="lazy" data-src="images/overview image/oi10.png" alt="Our Purpose"
+								class="img-responsive">
+							<div class="carousel-caption">
+
+								<p>Independence Day Celebration – 2018</p>
+							</div>
+						</div>
+
+						<div class="item">
+							<img class="lazy" data-src="images/overview image/oi11.png" alt="Our Purpose"
+								class="img-responsive">
+							<div class="carousel-caption">
+
+								<p>Commencement of Classes and academic activities for foundation Regular/Irregular
+									course (Lucknow Center) Q3 2018</p>
+							</div>
+						</div>
+
+					</div>
+
+
+					<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+						<span class="fas fa-chevron-left glyphicon-chevron-right"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="right carousel-control" href="#myCarousel" data-slide="next">
+						<span class="fas fa-chevron-right glyphicon-chevron-right"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+
+
+	<!-- =========================
+    DASHBOARD-EVENT SECTION   
+============================== -->
+	<section id="dashboard" style="padding: 5% 5.5%; background-color: #fff">
+
+
+		<div class="row1">
+			<div class="column1">
+				<h2>RSSI Dashboard (Live)</h2>
+				<p>Last updated on <span id="datetime"></span></p><br>
+				<div class="box">
+					<iframe
+						src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQhM9m81-pRLyTxw2FSwQMHwURHZfvnv8oUF6ScpTODWuK4jT_6c5emyE2aAmgHHFTWX7LrCC_V7W3A/pubchart?oid=1498381227&amp;format=interactive"
+						frameborder="0" scrolling="no" height="183" align="left"></iframe>
+				</div>
+				<div class="box">
+					<iframe
+						src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQhM9m81-pRLyTxw2FSwQMHwURHZfvnv8oUF6ScpTODWuK4jT_6c5emyE2aAmgHHFTWX7LrCC_V7W3A/pubchart?oid=2102046589&amp;format=interactive"
+						frameborder="0" scrolling="no" height="183" align="left"></iframe>
+				</div>
+			</div>
+			<div class="column2">
+
+				<div class="panel panel-danger">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							<span class="fas fa-bullhorn"></span>
+							Announcement
+						</h3>
+					</div>
+					<div class="panel-body">
+
+						<div id="nt-example1-container">
+
+							<ul id="nt-example1">
+
+								<li>
+									<p class="notice">We are proud to announce the launch of the newly redesigned RSSI
+										website at www.rssi.in. The new site features a modern design, improved
+										functionality, and easy access to essential information to help people
+										effectively manage complexity and optimise their operational performance. <a
+											href="#">Read more...</a></p>
+
+									<p align="right" style="font-size: 12px; color: #909090;"><i class="fas fa-pen"
+											style="font-size:10px;"></i>Apr 24, 2020</p>
+								</li>
+
+
+								<li>
+									<ps class="h6 notice">a2 <a href="#">Read more...</a></ps>
+								</li>
+								<li>
+									<ps class="h6 notice">a3 <a href="#">Read more...</a></ps>
+								</li>
+
+							</ul>
+							<i class="fa fa-arrow-down" id="nt-example1-prev"></i>
+							<i class="fa fa-arrow-up" id="nt-example1-next"></i>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<!-- =========================
+    DETAIL SECTION   
+============================== -->
+	<section id="detail" style="padding: 5% 5.5%; background-color: #222">
 		<div class="row">
 
-			<div class="col-md-12 col-sm-12">
-  
-  <div class="wow bounceIn body1" data-wow-delay="0.9s">Welcome to a better tomorrow</div><br>
-  <div class="wow fadeInUp body2" data-wow-delay="1.6s">#Grow<span style="color:#e0ac1c">Together</span></div><br>
+			<div class="wow fadeInLeft col-md-4 col-sm-4" data-wow-delay="0.3s">
+				<i class="fa fa-users"></i>
+				<h3>500+ Beneficiaries</h3>
+				<p>In past 2 years we have covered almost 500+ beneficiaries under our educational and health care
+					program. Health care program covers Feminine hygiene, basic personal hygiene for all. </p>
+			</div>
 
-			<div><a href="#overview" class="btn btn-lg btn-default smoothScroll wow fadeInUp hidden-xs" data-wow-delay="2.3s">LEARN MORE</a>
-				<a href="/registration" class="btn btn-lg btn-danger smoothScroll wow fadeInUp" data-wow-delay="2.3s">REGISTER NOW</a></div>
-			
-	  </div>
+			<div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="0.6s">
+				<i class="fa fa-hands-helping"></i>
+				<h3>25+ Volunteers</h3>
+				<p>Our journey started with 2 volunteers and gradually connected with more than 25 volunteers across the
+					world.</p>
+			</div>
+
+			<div class="wow fadeInRight col-md-4 col-sm-4" data-wow-delay="0.9s">
+				<i class="fa fa-map-marker-alt"></i>
+				<h3>3 Centre</h3>
+				<p>Our NGO division is now active in Mumbai. Mumbai centre of RSSI is a non-governmental organization, a
+					non-profit and voluntary citizens' group which is organized on a local level.</p>
+			</div>
+
 		</div>
-	</div>
-</section>
+	</section>
 
+	<!--================ Start About Us Area =================-->
+	<section class="about_area section_gap" id="abouthome" style="padding: 5% 5.5%; background-color: #f9f9f9">
+		<div class="container">
+			<div class="row">
+				<div class="single_about row">
+					<div class="col-lg-6 col-md-12 text-center about_left">
+						<div class="about_thumb">
+							<img class="card-img-top img-fluid lazy img-responsive"
+								data-src="images/about/abouthome.png" alt="about_us">
+							<div class="carousel-caption" style="width:50%">
 
-
-<!--================ Start About Us Area =================-->
-<section class="about_area section_gap">
-	<div class="container">
-		<div class="row">	
-			<div class="single_about row">
-				<div class="col-lg-6 col-md-12 text-center about_left">
-					<div class="about_thumb">
-						<img src="images/about-img.jpg" class="img-fluid" alt="">
+								<p>Award distribution - 2K19. Special thanks to Upasana Patel for her contributions to
+									drive the event and sponsoring cycle.</p>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class="col-lg-6 col-md-12 about_right">
-					<div class="about_content">
-						<h2>
-							We are nonprofit team <br>
-								and work worldwide
-						</h2>
-						<p>
-								Their multiply doesn't behold shall appear living heaven second 
-								roo lights. Itself hath thing for won't herb forth gathered good 
-								bear fowl kind give fly form winged for reason
-						</p>
-						<p>
-								Land their given the seasons herb lights fowl beast whales it 
-								after multiply fifth under to it waters waters created heaven 
-								very fill agenc to. Dry creepeth subdue them kind night behold 
-								rule stars him grass waters our without 
-						</p>
-						<a href="#" class="primary_btn">Learn more</a>
+					<div class="col-lg-6 col-md-12 about_right">
+						<div class="about_content">
+							<h3>WE ARE A GLOBAL COMMUNITY CHANGING THE WAY THE WORLD TACKLES POVERTY</h3><br>
+							<p>
+								The path out of poverty begins when the next generation can access quality healthcare
+								and a great education.
+							</p>
+							<p>
+								In developing countries, we focus on improving people’s health and wellbeing, helping
+								individuals lift themselves out of hunger and extreme poverty. In India, we seek to
+								ensure that all people especially those with the fewest resources can access the
+								opportunities they need to succeed in school and life.
+							</p>
+							<div class="hover white">
+
+								<a href="/about-us" class="btn btn-lg btn-danger smoothScroll">learn more</a></div>
+
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
-<!--================ End About Us Area =================-->
+		</div>
+	</section>
+	<!--================ End About Us Area =================-->
 
 
-<!-- =========================
-    WHAT WE DID SECTION   
+
+	<!-- =========================
+    OUR CURRENT PROJECTS  
 ============================== -->
-	
-<section id="calender" style="padding: 5% 5.5%; background-color: #fff">
 
-
-			<div class="row1">
-  <div class="column3 dnd marginleft">
-			<!--<div class="wow fadeInUp col-md-6 col-sm-6" data-wow-delay="0.6s">-->
-		<h2>What we did so far?</h2><br>
-				
-<ul>
-	<li><p>Mission Education: A regional level program on education, health care and overall development. Mainly covering Gomti Nagar area including Vibhuti Khand, Vishesh Khand, Vikrant Khand, and Vijayanti Khand.</p>
-		<ul>
-			<br><ol type = "1">
-		<li style="padding-left:0.2em"><p>Free regular classes (up to Intermediate +2).</p></li>
-		<li style="padding-left:0.2em"><p>Educational aid up to <span style = "font-family:arial">&#x20B9; </span>12,000 under Swabhiman Prakalpa.</p></li>
-		<li style="padding-left:0.2em"><p>Blanket, educational stationary, cycle distribution under donation drive.</p></li>
-		<li style="padding-left:0.2em"><p>Outdoor educational tour at Nawab Wajid Ali Shah Zoological Garden and Lucknow Metro.</p></li>
-		<li style="padding-left:0.2em"><p>Cultural celebration</p></li>
-		</ol></ul>
-		</li>
-		<br>
-<li><p>Awareness, sensitization on child sexual abuse.</p></li>
-<li><p>Menstrual Hygiene sensitization and donation of Sanitary Pads to underprivileged girls and women.</p></li>
-<li><p>Tree plantation, Swachh Bharat Mission and generic personal hygiene drive.</p></li></ul></div>
-
-
-			<!--</div>
-					
-			<div class="wow fadeInUp col-md-6 col-sm-6" data-wow-delay="0.9s">-->
-				<div class="column4">
-					
-				<embed width="100%" height="460" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRYPsFrA9JKuO-EguCbk5uwy51XZsNfHcCV-4efMSehrfsADbICSEApURAGxpLmAcBN4qm78TXrkPWS/pubhtml?gid=1626532305&single=true"></embed>
+	<section class="features_causes" id="project" style="padding: 5% 5.5%; background-color: #fff">
+		<div class="container">
+			<div class="text-center" style="padding: 0">
+				<div class="section-title">
+					<h1>Major Current <div class="textarea" style="display: inline-block; padding: 1%;"><span
+								class="body2a">Projects</span></div>
+					</h1>
+				</div><br><br>
+				<!--<div class="body2a">#Grow<span style="color:#e0ac1c">Together</span></div>-->
 			</div>
 
+			<div class="row">
+				<div class="col-lg-4 col-md-6">
+					<div class="card">
+						<div class="card-body">
+							<figure>
+								<img class="card-img-top img-fluid lazy" data-src="images/project/fc1.jpg" alt="project"
+									style="width:360px;height:270px;">
+							</figure>
+							<div class="card_inner_body">
+								<h4 class="card-title">Shiksha</h4>
+								<p class="card-text notice">
+									Shiksha (Education) is a regional level programme, which is committed to provide
+									basic education and healthcare to underprivileged kids. It covers education of 50+
+									beneficiaries so that they may be able to develop their educational standard. Free
+									classes, educational aid, outdoor educational tour, sports are covered under this
+									programme.
+
+
+								</p>
+								<div class="d-flex justify-content-between raised_goal">
+									<p>Raised: ₹500</p>
+									<p><span>Goal: ₹5000</span></p>
+								</div>
+								<div class="d-flex justify-content-between donation align-items-center">
+									<a href="/donation-portal" class="primary_btn">donate</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="card">
+						<div class="card-body">
+							<figure>
+								<img class="card-img-top img-fluid lazy" data-src="images/project/fc2.jpg" alt="project"
+									style="width:360px;height:270px;">
+							</figure>
+							<div class="card_inner_body">
+								<h4 class="card-title">Swabhiman</h4>
+
+								<p class="card-text notice">
+									Launched in 2017 to address the challenges through a simple yet effective approach. The programme is specifically aimed at realization of both individual and collective self-esteem and inner strength for marginalized and socially excluded women and adolescent girls through innovative community practices. <a
+										href="/swabhiman-prakalpa">Read more...</a>
+
+
+								</p><br>
+								<div class="d-flex justify-content-between raised_goal">
+									<p>Raised: ₹500</p>
+									<p><span>Goal: ₹5000</span></p>
+								</div>
+								<div class="d-flex justify-content-between donation align-items-center">
+									<a href="/donation-portal" class="primary_btn">donate</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="card">
+						<div class="card-body">
+							<figure>
+								<img class="card-img-top img-fluid lazy" data-src="images/project/fc3.jpg" alt="project"
+									style="width:360px;height:270px;">
+							</figure>
+							<div class="card_inner_body">
+								<h4 class="card-title">Suraksha</h4>
+								<p class="card-text">
+									For promotion of menstrual hygiene among adolescent girls in the age group of 10-19 year in rural areas to improve access to hygienic sanitary products and to educate girls about the menstrual cycle, so that they understand what to expect when they begin their periods, and how to care for themselves during menstruation.
+								</p>
+								<div class="d-flex justify-content-between raised_goal">
+									<p>Raised: ₹500</p>
+									<p><span>Goal: ₹5000</span></p>
+								</div>
+								<div class="d-flex justify-content-between donation align-items-center">
+									<a href="/donation-portal.html" class="primary_btn">donate</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	<!--</div>-->
-</section>
+	</section>
+
+	<!-- =========================
+    FOUNDER SECTION   
+============================== -->
+	<section id="team" style="padding: 5% 5.5%; background-color: #F0F0F0">
+		<h2 style="text-align:center">Message from Founders' Desk</h2><br>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-sm-6">
+					<div class="our-team">
+						<div class="team-pic">
+							<img class="lazy" data-src="images/members/members-img1.png">
+						</div>
+						<div class="team-profile">
+							<h3 class="team-title" style="font-family: Roboto;">
+								<a>Rina</a>
+								<small>Founder</small>
+							</h3>
+							<p class="description">Speak up for those who cannot speak for themselves.</p>
+							<ul class="team-social">
+								<li><a href="https://www.facebook.com/rina.saha.90410"><i
+											class="fab fa-facebook-f"></i></a></li>
+								<li><a href="#" class="fab fa-twitter"></a></li>
+								<li><a href="#" class="fab fa-linkedin-in"></a></li>
+								<li><a href="#" class="fab fa-instagram"></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-sm-6">
+					<div class="our-team">
+						<div class="team-pic">
+							<img class="lazy" data-src="images/members/members-img2.png">
+						</div>
+						<div class="team-profile">
+							<h3 class="team-title" style="font-family: Roboto;">
+								<a>Som</a>
+								<small>Co-founder</small>
+							</h3>
+							<p class="description">RSSI is a platform where you can work together to make someone smile
+								which is priceless.</p>
+							<ul class="team-social">
+								<li><a href="https://www.facebook.com/somnath.ecebppimt"><i
+											class="fab fa-facebook-f"></i></a></li>
+								<li><a href="#" class="fab fa-twitter"></a></li>
+								<li><a href="https://www.linkedin.com/in/somnath-saha-b10303162/"
+										class="fab fa-linkedin-in"></a></li>
+								<li><a href="#" class="fab fa-instagram"></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
 
 
-<!-- =========================
+
+				<div class="col-md-3 col-sm-6">
+					<div class="our-team">
+						<div class="our-team">
+							<div class="team-pic">
+								<img class="lazy" data-src="images/members/members-img3.png">
+							</div>
+							<div class="team-profile">
+								<h3 class="team-title" style="font-family: Roboto;">
+									<a>Neel</a>
+									<small>Co-founder</small>
+								</h3>
+								<p class="description">Not all of us can do great things, but we can do small things
+									with great love.</p>
+								<ul class="team-social">
+									<li><a href="https://www.facebook.com/nag.indranil"><i
+												class="fab fa-facebook-f"></i></a></li>
+									<li><a href="#" class="fab fa-twitter"></a></li>
+									<li><a href="https://www.linkedin.com/in/indranil-nag/"
+											class="fab fa-linkedin-in"></a></li>
+									<li><a href="#" class="fab fa-instagram"></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<p><span
+						style="font-size:150px; font-family: serif; font-style: italic; color:#F2545F; line-height:0.9em;opacity:0.2">&#10004;</span>Success
+					doesn’t mean the absence of failure, it means the attainment of ultimate objectives. It means the
+					progressive attainment of worthy goals and this is the philosophy statement of a brand called RSSI.
+				</p>
+			</div>
+	</section>
+	<!-- =========================
     FAQ SECTION   
 ============================== -->
-<section id="faq" style="padding: 5% 5.5%; background-color: #f9f9f9">
-	<div class="container" style="padding: 0">
-		<div class="row" style="padding: 0">
+	<section id="faq" style="padding: 5% 5.5%; background-color: #f9f9f9">
+		<div class="container" style="padding: 0">
+			<div class="row" style="padding: 0">
 
-			<!-- Section title
+				<!-- Section title
 			================================================== -->
-			<div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 text-center" style="padding: 0">
-				<div class="section-title">
-					<h2>Do you have Questions?</h2>
-					<p>Don't hesitate to buzz the number for more info</p>
+				<div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 text-center" style="padding: 0">
+					<div class="section-title">
+						<h2>Do you have Questions?</h2>
+						<p>Don't hesitate to buzz the number for more info</p>
+
+					</div>
+				</div>
+				<div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10" style="padding: 0">
+					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingOne">
+								<h4 class="panel-title">
+									<a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+										href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+										What is RSSI?
+									</a>
+								</h4>
+							</div>
+							<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+								aria-labelledby="headingOne">
+								<div class="panel-body">
+									<p>RSSI is a non-governmental organization, a non-profit and voluntary citizens'
+										group which is organized on a local level.</p>
+									<p>Our mission is to empower underprivileged children, youth and their families and
+										community through relevant education, innovative healthcare and market-focused
+										livelihood programmes. Mutual respect, trust & honesty are the three pillars of
+										our institute and we are thoroughly committed to them.</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingTwo">
+								<h4 class="panel-title">
+									<a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+										href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+										How old is RSSI?
+									</a>
+								</h4>
+							</div>
+							<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
+								aria-labelledby="headingTwo">
+								<div class="panel-body">
+									<p>R.S Success Institute came into existence in the year 2010, founded by Rina Saha.
+										At first, it started functioning from West Bengal and later in 2015 shifted to
+										Gomti Nagar, Lucknow. After completing 5 years of dedicated service in Lucknow
+										it moved to its new addressed Mumbai, Maharashtra.</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingThree">
+								<h4 class="panel-title">
+									<a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+										href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+										Which areas does RSSI work in?
+									</a>
+								</h4>
+							</div>
+							<div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
+								aria-labelledby="headingThree">
+								<div class="panel-body">
+									<p>RSSI has been working in the thematic areas of education, healthcare, youth
+										employability and empowerment of women and girls.</p>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<!-- =========================
+     client slider   
+============================== -->
+
+	<div class="container" style="margin-top: 2%;">
+		<div class="row">
+
+		<div style="text-align:center" class="section-title">
+			<h2>Our benevolent sponsors</h2>
+			<p>Every Donation Makes a Difference</p> <br>
+		</div>
 			
-				</div></div>
-			<div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10" style="padding: 0">
-				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
-  					<div class="panel panel-default">
-   						<div class="panel-heading" role="tab" id="headingOne">
-      						<h4 class="panel-title">
-        						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-          							 What is RSSI?
-        						</a>
-      						</h4>
-    					</div>
-   						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-      						<div class="panel-body">
-        						<p>RSSI is a non-governmental organization, a non-profit and voluntary citizens' group which is organized on a local level.</p>
-								<p>Our mission is to empower underprivileged children, youth and their families and community through relevant education, innovative healthcare and market-focused livelihood programmes. Mutual respect, trust & honesty are the three pillars of our institute and we are thoroughly committed to them.</p>
-      						</div>
-   						 </div>
- 					</div>
+		<section class="customer-logos slider">
 
-    				<div class="panel panel-default">
-   						<div class="panel-heading" role="tab" id="headingTwo">
-      						<h4 class="panel-title">
-        						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          							How old is RSSI?
-        						</a>
-      						</h4>
-    					</div>
-   						<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-      						<div class="panel-body">
-                            	<p>R.S Success Institute came into existence in the year 2010, founded by Rina Saha. At first, it started functioning from West Bengal and later in 2015 shifted to Gomti Nagar, Lucknow. After completing 5 years of dedicated service in Lucknow it moved to its new addressed Mumbai, Maharashtra.</p>
-      						</div>
-   						 </div>
- 					</div>
-
- 					<div class="panel panel-default">
-   						<div class="panel-heading" role="tab" id="headingThree">
-      						<h4 class="panel-title">
-        						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          							Which areas does RSSI work in?
-        						</a>
-      						</h4>
-    					</div>
-   						<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-      						<div class="panel-body">
-                            	<p>RSSI has been working in the thematic areas of education, healthcare, youth employability and empowerment of women and girls.</p>
-      						</div>
-   						 </div>
- 					 </div>
-
- 				 </div>
+			<div class="slide">
+				<a href="#" rel="noopener noreferrer" target="_self">
+					<img class="lazy"
+						data-src="https://res.cloudinary.com/hs4stt5kg/image/upload/c_scale,w_175/v1/faculties/VLKO17004.jpg"
+						alt="partners"></a>
+				<div class="containerc">
+					<div class="text-block">
+						<p>Sapnil Sharma</p>
+					</div>
+				</div>
 			</div>
 
+			<div class="slide"><a href="#" rel="noopener noreferrer" target="_self"><img class="lazy"
+						data-src="https://res.cloudinary.com/hs4stt5kg/image/upload/c_scale,h_470,w_350/v1557377190/faculties/Richa.jpg"
+						alt="partners"></a>
+				<div class="containerc">
+					<div class="text-block">
+						<p>Richa Singh</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="slide"><a href="#" rel="noopener noreferrer" target="_self"><img class="lazy"
+						data-src="https://res.cloudinary.com/hs4stt5kg/image/upload/c_scale,w_175/v1/faculties/VLKO18008.jpg"
+						alt="partners"></a>
+				<div class="containerc">
+					<div class="text-block">
+						<p>Anurag Khare</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="slide"><a href="#" rel="noopener noreferrer" target="_self"><img class="lazy"
+						data-src="https://res.cloudinary.com/hs4stt5kg/image/upload/c_scale,w_175/v1/faculties/VLKO18013.jpg"
+						alt="partners"></a>
+				<div class="containerc">
+					<div class="text-block">
+						<p>Upasna Patel</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="slide"><a href="#" rel="noopener noreferrer" target="_self"><img class="lazy"
+						data-src="https://res.cloudinary.com/hs4stt5kg/image/upload/c_scale,w_175/v1/faculties/VLKO17003.jpg"
+						alt="partners"></a>
+				<div class="containerc">
+					<div class="text-block">
+						<p>Gaurav Bagga</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="slide"><a href="#" rel="noopener noreferrer" target="_self"><img class="lazy"
+						data-src="https://res.cloudinary.com/hs4stt5kg/image/upload/c_scale,w_175/v1/faculties/Sidhant.jpg"
+						alt="partners"></a>
+				<div class="containerc">
+					<div class="text-block">
+						<p>Siddhant Srivastava</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="slide"><img class="lazy" data-src="https://res.cloudinary.com/hs4stt5kg/image/upload/c_scale,w_175/v1/faculties/blank.png" alt="partners"></div>
+			<div class="slide"><img class="lazy" data-src="https://res.cloudinary.com/hs4stt5kg/image/upload/c_scale,w_175/v1/faculties/blank.png" alt="partners"></div>
+
+		</section>
+
+		<div style="text-align:center">
+		    <button class="next slick-arrow" style="margin-top: 3%;"> &laquo; </button>	
+			<button class="prev slick-arrow" style="margin-top: 3%;"> &raquo; </button>
+			</div>	
+		
 		</div>
 	</div>
-</section>
 
-    
-<!-- =========================
+	<!-- =========================
      SCRIPTS   
 ============================== -->
-<script src="/js/pace.js"></script>
-<script src="js/jquery.js"></script>
-<script src="js/fontawsome.js"></script>
-<script src="js/bootstrap.min.js"></script>
-
-    
-<script>
-var dt = new Date();
-document.getElementById("datetime").innerHTML = dt.toLocaleString();
-</script>
-
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="js/jquery.newsTicker.js"></script>
-    <script>
-    		$(window).load(function(){
-	            $('code.language-javascript').mCustomScrollbar();
-	        });
-            var nt_example1 = $('#nt-example1').newsTicker({
-                row_height: 80,
-                max_rows: 2,
-                duration: 4000,
-                prevButton: $('#nt-example1-prev'),
-                nextButton: $('#nt-example1-next')
-            });
-        </script>
-
-<script src="js/jquery.parallax.js"></script>
-<script src="js/smoothscroll.js"></script>
-<script src="js/custom.js"></script>
+	<script src="js/pace.js"></script>
+	<script src="js/jquery.js" type="text/javascript"></script>
+	<script src="js/fontawsome.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/silk.js"></script>
+	<script src="js/carousel.js"></script>
+	<script src="js/jquery.newsTicker.js"></script>
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
-		var lazyloadImages = document.querySelectorAll("img.lazy");    
-		var lazyloadThrottleTimeout;
-		
-		function lazyload () {
-			if(lazyloadThrottleTimeout) {
-			clearTimeout(lazyloadThrottleTimeout);
-			}    
-			
-			lazyloadThrottleTimeout = setTimeout(function() {
-				var scrollTop = window.pageYOffset;
-				lazyloadImages.forEach(function(img) {
-					if(img.offsetTop < (window.innerHeight + scrollTop)) {
-					img.src = img.dataset.src;
-					img.classList.remove('lazy');
-					}
-				});
-				if(lazyloadImages.length == 0) { 
-				document.removeEventListener("scroll", lazyload);
-				window.removeEventListener("resize", lazyload);
-				window.removeEventListener("orientationChange", lazyload);
+		$(window).load(function () {
+			$('code.language-javascript').mCustomScrollbar();
+		});
+		var nt_example1 = $('#nt-example1').newsTicker({
+			row_height: 80,
+			max_rows: 2,
+			duration: 4000,
+			prevButton: $('#nt-example1-prev'),
+			nextButton: $('#nt-example1-next')
+		});
+	</script>
+
+
+
+
+	<script>
+		var dt = new Date();
+		document.getElementById("datetime").innerHTML = dt.toLocaleString();
+	</script>
+
+	<script src="js/jquery.parallax.js"></script>
+	<script src="js/smoothscroll.js"></script>
+	<script src="js/custom.js"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			var lazyloadImages = document.querySelectorAll("img.lazy");
+			var lazyloadThrottleTimeout;
+
+			function lazyload() {
+				if (lazyloadThrottleTimeout) {
+					clearTimeout(lazyloadThrottleTimeout);
 				}
-			}, 20);
-		}
-		
-		document.addEventListener("scroll", lazyload);
-		window.addEventListener("resize", lazyload);
-		window.addEventListener("orientationChange", lazyload);
+
+				lazyloadThrottleTimeout = setTimeout(function () {
+					var scrollTop = window.pageYOffset;
+					lazyloadImages.forEach(function (img) {
+						if (img.offsetTop < (window.innerHeight + scrollTop)) {
+							img.src = img.dataset.src;
+							img.classList.remove('lazy');
+						}
+					});
+					if (lazyloadImages.length == 0) {
+						document.removeEventListener("scroll", lazyload);
+						window.removeEventListener("resize", lazyload);
+						window.removeEventListener("orientationChange", lazyload);
+					}
+				}, 20);
+			}
+
+			document.addEventListener("scroll", lazyload);
+			window.addEventListener("resize", lazyload);
+			window.addEventListener("orientationChange", lazyload);
 		});</script>
 
-<script data-ad-client="ca-pub-9832883199874304" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script data-ad-client="ca-pub-9832883199874304" async
+		src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-<!-- =========================
+	<!-- =========================
      FOOTER   
 ============================== -->
-	
-		<!-- Back top -->
-<a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
-	
-<section id="footer" class="footer-distributed">
-				
-			 
-		 
-	<div class="footer-left">
-		<img src="images/logo/WebsiteHeaderLogo.png" alt="RSSI Logo"/>
-		<h3>Grow<span>Together</span></h3>
 
-		<p class="footer-links">
-			<a href="https://www.rssi.in">Home</a>
-			|
-			
-			<a href="https://www.rssi.in/about-us">About</a>
-			|
-			<a href="https://www.rssi.in/contact">Contact</a>
-			|
-			<a href="https://www.rssi.in/website-disclaimer">Disclaimer</a>
-			
-		</p>
+	<!-- Back top -->
+	<a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
 
-		<p class="footer-company-name">Official Site of RSSI © 2020. All Rights Reserved.</p>
-	</div>
+	<section id="footer" class="footer-distributed">
 
-	<div class="footer-center">
-		<div>
-			
-			<i class="fas fa-map-marker-alt" style="font-size:15px;"></i>
-			  <p>Lodha Splendora, Vivant G 803<span>Ghodbunder Rd, Bhayandarpada, Thane West, Thane, Maharashtra 400615</span>
-</p>
+
+
+		<div class="footer-left">
+			<img src="images/logo/WebsiteHeaderLogo.png" alt="RSSI Logo" />
+			<h3>Grow<span>Together</span></h3>
+
+			<p class="footer-links">
+				<a href="https://www.rssi.in">Home</a>
+				|
+
+				<a href="https://www.rssi.in/about-us">About</a>
+				|
+				<a href="https://www.rssi.in/contact">Contact</a>
+				|
+				<a href="https://www.rssi.in/website-disclaimer">Disclaimer</a>
+
+			</p>
+
+			<p class="footer-company-name">Official Site of RSSI © 2020. All Rights Reserved.</p>
 		</div>
 
-		<div>
-			<i class="fas fa-mobile-alt" style="font-size:15px;"></i>
-			<p>+91 7980168159, +91 9717445551</p>
+		<div class="footer-center">
+			<div>
+
+				<i class="fas fa-map-marker-alt" style="font-size:15px;"></i>
+				<p>Lodha Splendora, Vivant G 803<span>Ghodbunder Rd, Bhayandarpada, Thane West, Thane, Maharashtra
+						400615</span>
+				</p>
+			</div>
+
+			<div>
+				<i class="fas fa-mobile-alt" style="font-size:15px;"></i>
+				<p>+91 7980168159, +91 9717445551</p>
+			</div>
+			<div>
+				<i class="fas fa-at" style="font-size:15px;"></i>
+				<p><a href="mailto:rssi.connect@gmal.com">rssi.connect@gmal.com</a></p>
+			</div>
 		</div>
-		<div>
-			<i class="fas fa-at" style="font-size:15px;"></i>
-			<p><a href="mailto:rssi.connect@gmal.com">rssi.connect@gmal.com</a></p>
+		<div class="footer-right">
+			<p class="footer-company-about">
+
+				<iframe
+					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.9761131891837!2d72.95364931437992!3d19.28340495043243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7bb56299b7f91%3A0x2c4198811edd314a!2sRSSI!5e0!3m2!1sen!2sin!4v1586176475253!5m2!1sen!2sin"
+					width="100%" height="150" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+					tabindex="0"></iframe>
+
+				<br><br>Site Contents owned, designed, developed, maintained and updated by the IT Department, RSSI.</p>
+			<br>
+			<div class="footer-icons">
+				<a href="https://www.facebook.com/rssi.edu"><i class="fab fa-facebook"></i></a>
+				<a href="https://g.page/rssi-mumbai/review?rc"><i class="fab fa-google"></i></a>
+				<a href="https://www.instagram.com/rssi_edu/"><i class="fab fa-instagram"></i></a>
+				<a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a>
+				<a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+			</div>
 		</div>
-	</div>
-	<div class="footer-right">
-		<p class="footer-company-about">
-			
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.9761131891837!2d72.95364931437992!3d19.28340495043243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7bb56299b7f91%3A0x2c4198811edd314a!2sRSSI!5e0!3m2!1sen!2sin!4v1586176475253!5m2!1sen!2sin" width="100%" height="150" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-		
-		<br><br>Site Contents owned, designed, developed, maintained and updated by the IT Department, RSSI.</p><br>
-		<div class="footer-icons">
-			<a href="https://www.facebook.com/rssi.edu"><i class="fab fa-facebook"></i></a>
-			<a href="https://g.page/rssi-mumbai/review?rc"><i class="fab fa-google"></i></a>
-			<a href="https://www.instagram.com/rssi_edu/"><i class="fab fa-instagram"></i></a>
-			<a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a>
-			<a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
-		</div>
-	</div>  
-</section>	
+	</section>
 
 </body>
+
 </html>

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script src="/js/pace.js"></script>
 <script src="js/jquery.js"></script>
 <script>
     $(function(){
@@ -20,15 +19,12 @@
 
 
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<!-- Main css -->
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css?family=Roboto:Regular 400" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- Main css -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/addstyle.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/infinite-slider.css">
 <!-- =========================
      NAVIGATION LINKS     
 ============================== -->	
@@ -47,12 +43,43 @@
 <!-- =========================
      SCRIPTS   
 ============================== -->
-
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="js/pace.js"></script>
+<script src="js/jquery.js" type="text/javascript"></script>
+<script src="js/fontawsome.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/responsive-header.js"></script>
 <script src="js/jquery.parallax.js"></script>
+<script src="js/smoothscroll.js"></script>
 <script src="js/custom.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var lazyloadImages = document.querySelectorAll("img.lazy");
+        var lazyloadThrottleTimeout;
+
+        function lazyload() {
+            if (lazyloadThrottleTimeout) {
+                clearTimeout(lazyloadThrottleTimeout);
+            }
+
+            lazyloadThrottleTimeout = setTimeout(function () {
+                var scrollTop = window.pageYOffset;
+                lazyloadImages.forEach(function (img) {
+                    if (img.offsetTop < (window.innerHeight + scrollTop)) {
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                    }
+                });
+                if (lazyloadImages.length == 0) {
+                    document.removeEventListener("scroll", lazyload);
+                    window.removeEventListener("resize", lazyload);
+                    window.removeEventListener("orientationChange", lazyload);
+                }
+            }, 20);
+        }
+
+        document.addEventListener("scroll", lazyload);
+        window.addEventListener("resize", lazyload);
+        window.addEventListener("orientationChange", lazyload);
+    });</script>
 	
 <!-- =========================
      FOOTER   
