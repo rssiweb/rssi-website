@@ -275,6 +275,7 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
   border-color: transparent;
 }
 
+
 .primary_btn {
   display: inline-block;
   background: #F2545F;
@@ -293,11 +294,7 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
   text-transform: uppercase;
   cursor: pointer;
   transition: all 300ms linear 0s;
-}
 
-.primary_btn:hover {
-  background: #ed4753;
-  color: #fff;
 }
 
 .parallax-section {
