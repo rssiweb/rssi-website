@@ -137,6 +137,10 @@
     clear: both;
 }
 
+#videoNational .column6 {
+    padding-left: 5%;
+}
+
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 
 @media screen and (max-width: 800px) {
@@ -145,6 +149,11 @@
         padding-top: 5%;
         padding-left: 0px;
     }
+
+    #videoNational .column6 {
+        padding-left: 0;
+    }
+
     #calender.column3, #overview .column6 {
         width: 100%;
         padding-left: 0px;
