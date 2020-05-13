@@ -41,9 +41,9 @@
 
         // Toggle plus minus icon on show hide of collapse element
         $(".collapse").on('show.bs.collapse', function () {
-            $(this).prev(".card-header").find(".fas").removeClass("fa-chevron-up").addClass("fa-chevron-down");
-        }).on('hide.bs.collapse', function () {
             $(this).prev(".card-header").find(".fas").removeClass("fa-chevron-down").addClass("fa-chevron-up");
+        }).on('hide.bs.collapse', function () {
+            $(this).prev(".card-header").find(".fas").removeClass("fa-chevron-up").addClass("fa-chevron-down");
         });
     });
 </script>
@@ -102,7 +102,7 @@
                                             <div class="media-body">
                                                 <h5 class="mt-2">Indranil Nag</h5>
                                                 <p>Faculty</p>
-                                            </div><i class="fas fa-chevron-up"></i>
+                                            </div><i class="fas fa-chevron-down"></i>
 
                                         </div>
                                     </a>
@@ -136,7 +136,7 @@
                                             <div class="media-body">
                                                 <h5 class="mt-2">Sourabh Dhusia</h5>
                                                 <p>Faculty</p>
-                                            </div><i class="fas fa-chevron-up"></i>
+                                            </div><i class="fas fa-chevron-down"></i>
                                         </div>
                                     </a>
 
@@ -169,7 +169,7 @@
                                             <div class="media-body">
                                                 <h5 class="mt-2">Gaurav Bagga</h5>
                                                 <p>Faculty</p>
-                                            </div><i class="fas fa-chevron-up"></i>
+                                            </div><i class="fas fa-chevron-down"></i>
                                         </div>
                                     </a>
 
@@ -191,7 +191,7 @@
                 </div>
 
                 <div class="col-12 col-md-6 col-lg-4" style="margin-top: 20px;">
-                    <div id="accordion1" class="accordion">
+                    <div id="accordion" class="accordion">
                         <div class="card">
                             <div class="accordion-group">
                                 <div class="card-header collapsed" id="headingFour">
@@ -204,14 +204,14 @@
                                             <div class="media-body">
                                                 <h5 class="mt-2">Somnath Saha</h5>
                                                 <p>Faculty</p>
-                                            </div><i class="fas fa-chevron-up"></i>
+                                            </div><i class="fas fa-chevron-down"></i>
                                         </div>
                                     </a>
 
                                 </div>
 
                                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
-                                    data-parent="#accordion1">
+                                    data-parent="#accordion">
                                     <div class="card-body">
                                         <a href="https://us04web.zoom.us/j/4963604448?pwd=WmFBZFNkUkw3eEl2aXh6b1FXWXhvdz09"
                                             class="primary_btn">Connect&nbsp;&nbsp;<i
