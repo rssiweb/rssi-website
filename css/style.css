@@ -57,7 +57,8 @@ a {
 }
 
 .hover a:hover {
-  text-decoration: underline !important;
+  /*text-decoration: underline !important;*/
+  letter-spacing: 10px !important;
 }
 
 .white a {

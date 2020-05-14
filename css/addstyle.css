@@ -185,6 +185,9 @@
     .marginleft h1, .marginleft h2, .marginleft h3, .marginleft h4, .marginleft h5, .marginleft h6, .marginleft p, .marginleft a, .marginlefttable {
         margin-left: 10px;
     }
+    .marginright h1, .marginright h2, .marginright h3, .marginright h4, .marginright h5, .marginright h6, .marginright p, .marginright a, .marginrighttable {
+        margin-right: 5%;
+    }
     #studentlist {
         margin-left: 10px;
     }
