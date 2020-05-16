@@ -8,7 +8,7 @@
 }
 
 .black {
-  color: #000;
+  color: #000 !important;
 }
 
 @media(min-width:768px) {
