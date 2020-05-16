@@ -655,9 +655,10 @@
 }
 
 .features_causes .card:hover .donation .primary_btn {
-    background: #ed4753;
+    background: #F2545F;
     color: #fff;
-    border: 1px solid #ed4753;
+    border: 1px solid #F2545F;
+    letter-spacing: 5px;
 }
 
 .features_causes .card:visited .donation .primary_btn {
