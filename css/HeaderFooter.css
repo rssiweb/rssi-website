@@ -67,6 +67,7 @@
     color: whitesmoke !important;
   }
   .navbarH a:visited {color: whitesmoke;}
+  .dropdownH a:visited {color: #000;}
 
   .dropdownH .dropbtnH {
     font-size: 13px;
@@ -205,6 +206,7 @@
   }
 
   .navbarHo a:visited {color: whitesmoke;}
+  .dropdownHo a:visited {color: #000;}
   
   .dropdown-contentHo {
     display: none;
