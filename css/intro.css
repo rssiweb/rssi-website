@@ -1,0 +1,49 @@
+/*---------------------------------------
+    Intro section              linear-gradient(
+    rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+-----------------------------------------*/
+
+#intro {
+    background: url('../images/bg/intro-bg-min.jpg') 50% 0 repeat-y;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center center;
+    color: #ffffff;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-attachment: scroll !important;
+  }
+  
+  @media screen and (min-width:480px) {
+    #intro {
+      background-attachment: fixed !important;
+      background: url('../images/bg/intro-bg.jpg') 50% 0 repeat-y;
+    }
+  }
+  
+  .body1 {
+    font-family: 'Comfortaa', serif;
+    font-size: 4vw;
+    text-align: center;
+    color: #ffffff
+  }
+  
+  .body2 {
+    font-family: 'Comfortaa', serif;
+    font-size: 3.5vw;
+    text-align: center;
+    margin-top: -1vw;
+    color: #ffffff
+  }
+  
+  .body2a {
+    font-family: 'Comfortaa', serif;
+  }
