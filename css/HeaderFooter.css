@@ -531,7 +531,7 @@ footer {
 /*---------------------------------------
     Intro section              linear-gradient(
     rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
------------------------------------------*/
+-----------------------------------------
 
 #intro {
   background: url('../images/bg/intro-bg-min.jpg') 50% 0 repeat-y;
@@ -550,7 +550,7 @@ footer {
   height: 100vh;
   text-align: center;
   background-attachment: scroll !important;
-}
+}*/
 
 @media screen and (min-width:480px) {
   #intro {
