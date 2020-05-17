@@ -268,7 +268,7 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
 /* Back top */
 
 .go-top {
-  background-color: #222 !important;
+  background-color: #222;
   bottom: 2em;
   right: 2em;
   color: #ffffff !important;
