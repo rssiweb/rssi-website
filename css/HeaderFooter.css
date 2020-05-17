@@ -214,11 +214,11 @@ a.active {
   color: whitesmoke !important;
 }
 
-.navbarHo a:link {
+.navbarHo a:link, .navbarHo a:visited, .navbarHo a:hover, .navbarHo a:active {
   color: whitesmoke;
 }
 
-.dropdownHo a:link {
+.dropdownHo a:link, .dropdownHo a:visited, .dropdownHo a:hover,.dropdownHo a:active {
   color: black;
 }
 
