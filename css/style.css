@@ -16,6 +16,9 @@ body {
   line-height: 1.42857143;
   color: #444;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 /*---------------------------------------
  ALL WEBSITE FONT DESIGN          
@@ -260,4 +263,27 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
 .parallax-section {
   background-attachment: fixed !important;
   background-size: cover !important;
+}
+
+/* Back top */
+
+.go-top {
+  background-color: #222 !important;
+  bottom: 2em;
+  right: 2em;
+  color: #ffffff !important;
+  font-size: 32px;
+  display: none;
+  position: fixed;
+  text-decoration: none;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  transition: all 0.4s ease-in-out;
+}
+
+.go-top:hover {
+  background: #f2545f;
+  color: #ffffff;
 }
