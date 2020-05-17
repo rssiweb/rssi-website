@@ -7,10 +7,6 @@
   background-color: #484644;
 }
 
-.black {
-  color: #000 !important;
-}
-
 @media(min-width:768px) {
   .custom-navbar {
     padding: 20px 0;
@@ -72,6 +68,14 @@ a.active {
 .navbarH a:hover, .dropdownH:hover .dropbtnH {
   background-color: #f2545f;
   color: whitesmoke !important;
+}
+
+.navbarH a:link {
+  color: whitesmoke;
+}
+
+.dropdownH a:link {
+  color: black;
 }
 
 .dropdownH .dropbtnH {
@@ -208,6 +212,14 @@ a.active {
 .navbarHo a:hover, .dropdownHo:hover .dropbtnHo {
   background-color: #f2545f;
   color: whitesmoke !important;
+}
+
+.navbarHo a:link {
+  color: whitesmoke;
+}
+
+.dropdownHo a:link {
+  color: black;
 }
 
 .dropdown-contentHo {

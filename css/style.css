@@ -122,9 +122,11 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
   color: #F2545F !important;
   font-size: 13px;
 }
+
 /*---------------------------------------
     OUR MAJOR PROJECT
 -----------------------------------------*/
+
 .textarea {
   color: #fff;
   background-color: #F2545F;
@@ -134,19 +136,21 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
     OVERVIEW SECTION - ABOUT IMAGE background-color: rgba(0, 0, 0, 0.6);
 -----------------------------------------*/
 
-.carousel-caption{
+.carousel-caption {
   max-width: 100%;
-  width:100%;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.6);
   left: 0;
 }
-.carousel-caption p{
+
+.carousel-caption p {
   color: #fff;
 }
 
 /*---------------------------------------
     CLIENT SECTION - ABOUT IMAGE background-color: rgba(0, 0, 0, 0.6);
 -----------------------------------------*/
+
 .text-block {
   position: absolute;
   bottom: 20px;
@@ -156,7 +160,10 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
   padding-right: 20px;
 }
 
-.text-block p{color: #fff;}
+.text-block p {
+  color: #fff;
+}
+
 .containerc {
   position: relative;
 }
@@ -230,7 +237,6 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
   border-color: transparent;
 }
 
-
 .primary_btn {
   display: inline-block;
   background: #F2545F;
@@ -249,7 +255,6 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
   text-transform: uppercase;
   cursor: pointer;
   transition: all 300ms linear 0s;
-
 }
 
 .parallax-section {
