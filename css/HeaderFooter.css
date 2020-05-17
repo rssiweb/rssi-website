@@ -70,11 +70,11 @@ a.active {
   color: whitesmoke !important;
 }
 
-.navbarH a:link {
+.navbarH a:link, .navbarH a:visited, .navbarH a:hover, .navbarH a:active {
   color: whitesmoke;
 }
 
-.dropdownH a:link {
+.dropdownH a:link, .dropdownH a:visited, .dropdownH a:hover,.dropdownH a:active {
   color: black;
 }
 
