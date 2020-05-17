@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Exam portal</title>
+</head>
+
+<meta name="description" content="">
+<meta name="author" content="">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<script src="js/jquery.js"></script>
+<script>
+    $(function(){
+        $("#header").load("/header.html");
+        $("#footer").load("/footer.html");
+    });</script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="css/HeaderFooter.css">
+<!-- Main css -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/addstyle.css">
+
+<style>
+    .navbar {
+        padding: unset;
+    }
+</style>
+
+
+<script>
+    $(document).ready(function () {
+        // Add minus icon for collapse element which is open by default  fas fa-chevron-down
+        $(".collapse.show").each(function () {
+            $(this).prev(".card-header").find(".fas").addClass("fa-chevron-down").removeClass("fa-chevron-up");
+        });
+
+        // Toggle plus minus icon on show hide of collapse element
+        $(".collapse").on('show.bs.collapse', function () {
+            $(this).prev(".card-header").find(".fas").removeClass("fa-chevron-down").addClass("fa-chevron-up");
+        }).on('hide.bs.collapse', function () {
+            $(this).prev(".card-header").find(".fas").removeClass("fa-chevron-up").addClass("fa-chevron-down");
+        });
+    });
+</script>
+<!-- =========================
+     NAVIGATION LINKS     
+============================== -->
+
+<body>
+
+    <div id="header"></div>
+
+    <!-- NAVIGATION PATH -->
+
+        <img src="/images/exam.jpg" alt="" width="100%" />
+  
+
+    <div style="margin: 0.3%;">
+        <ps class="marginleft notice" style="margin-left: 3%;">
+            <a href="/index">Home</a> &#62; Exam portal</ps>
+    </div>
+
+    <!-- =========================
+    SMART CLASSROOM   
+============================== -->
+
+    <section id="leadership">
+        <div class="container" style="margin-top:-50px">
+            <div class="row">
+                <div class="col-12 col-md-6 offset-lg-2 col-lg-4" style="margin-top: 20px;">
+                    <div id="accordion" class="accordion">
+
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header collapsed" id="headingOne">
+
+                                    <a href="#collapseOne" data-toggle="collapse" data-target="#collapseOne"
+                                        aria-expanded="true" aria-controls="collapseOne">
+                                        <div class="media">
+                                            <img src="https://www.iconninja.com/files/308/841/301/team-network-social-group-media-users-myspace-icon.svg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body">
+                                                <h5 class="mt-2">English</h5>
+                                                
+                                            </div><i class="fas fa-chevron-down"></i>
+
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                    data-parent="#accordion">
+                                    <div class="card-body" style="font-size: 20px;">
+                                        <a href="https://us04web.zoom.us/j/2596138775?pwd=cjc4SWI5NUx1V3BpRCs5VjV4R2ZCZz09">English-001&nbsp;&nbsp;<i
+                                                class="fas fa-chevron-right"></i></a><br><br>
+
+                                                <a href="https://us04web.zoom.us/j/2596138775?pwd=cjc4SWI5NUx1V3BpRCs5VjV4R2ZCZz09">English-002&nbsp;&nbsp;<i
+                                                    class="fas fa-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header" id="headingTwo">
+
+                                    <a href="#collapseTwo" data-toggle="collapse" data-target="#collapseTwo"
+                                        aria-expanded="false" aria-controls="collapseTwo">
+                                        <div class="media">
+                                            <img src="https://www.iconninja.com/files/308/841/301/team-network-social-group-media-users-myspace-icon.svg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body">
+                                                <h5 class="mt-2">Hindi</h5>
+                                            </div><i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                    data-parent="#accordion">
+                                    <div class="card-body white hover">
+                                        <a href="https://us04web.zoom.us/j/9257246640?pwd=MkFQVXV0c2Z1V1cxb3lQRlZoSE0yZz09"
+                                            class="primary_btn">Connect&nbsp;&nbsp;<i
+                                                class="fas fa-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header" id="headingThree">
+
+                                    <a href="#collapseThree" data-toggle="collapse" data-target="#collapseThree"
+                                        aria-expanded="false" aria-controls="collapseThree">
+                                        <div class="media">
+                                            <img src="https://www.iconninja.com/files/308/841/301/team-network-social-group-media-users-myspace-icon.svg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body">
+                                                <h5 class="mt-2">Maths</h5>
+                                            </div><i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                    data-parent="#accordion">
+                                    <div class="card-body white hover">
+                                        <a href="https://us04web.zoom.us/j/7538140682?pwd=amlWZ3h0RmNOa1FENFgvSzdrQUUyZz09"
+                                            class="primary_btn">Connect&nbsp;&nbsp;<i
+                                                class="fas fa-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header" id="heading4">
+
+                                    <a href="#collapse4" data-toggle="collapse" data-target="#collapse4"
+                                        aria-expanded="false" aria-controls="collapse4">
+                                        <div class="media">
+                                            <img src="https://www.iconninja.com/files/308/841/301/team-network-social-group-media-users-myspace-icon.svg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body">
+                                                <h5 class="mt-2">Chemistry</h5>
+                                            </div><i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div id="collapse4" class="collapse" aria-labelledby="heading4"
+                                    data-parent="#accordion">
+                                    <div class="card-body">
+                                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSc3-AggvmILj_tcg9-2WvQQes9BitaXSzhabmkb-QRS0IMk_g/viewform">Chemistry-001-pH and pOH&nbsp;&nbsp;<i
+                                            class="fas fa-chevron-right"></i></a><br><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header" id="heading5">
+
+                                    <a href="#collapse5" data-toggle="collapse" data-target="#collapse5"
+                                        aria-expanded="false" aria-controls="collapse5">
+                                        <div class="media">
+                                            <img src="https://www.iconninja.com/files/308/841/301/team-network-social-group-media-users-myspace-icon.svg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body">
+                                                <h5 class="mt-2">GK</h5>
+                                            </div><i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div id="collapse5" class="collapse" aria-labelledby="heading5"
+                                    data-parent="#accordion">
+                                    <div class="card-body white hover">
+                                        <a href="https://us04web.zoom.us/j/72391936612?pwd=RDRrVzBZTlJHTndwQUF4akdnT3FEdz09"
+                                            class="primary_btn">Connect&nbsp;&nbsp;<i
+                                                class="fas fa-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header" id="heading6">
+
+                                    <a href="#collapse6" data-toggle="collapse" data-target="#collapse6"
+                                        aria-expanded="false" aria-controls="collapse6">
+                                        <div class="media">
+                                            <img src="https://www.iconninja.com/files/308/841/301/team-network-social-group-media-users-myspace-icon.svg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body">
+                                                <h5 class="mt-2">Computer</h5>
+                                            </div><i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div id="collapse6" class="collapse" aria-labelledby="heading4"
+                                    data-parent="#accordion">
+                                    <div class="card-body white hover">
+                                        <a href="https://us04web.zoom.us/j/72391936612?pwd=RDRrVzBZTlJHTndwQUF4akdnT3FEdz09"
+                                            class="primary_btn">Connect&nbsp;&nbsp;<i
+                                                class="fas fa-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- =========================
+     SCRIPTS   
+============================== -->
+    <script src="js/pace.js"></script>
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/fontawsome.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="js/jquery.parallax.js"></script>
+    <script src="js/custom.js"></script>
+
+    <!-- =========================
+     FOOTER   
+============================== -->
+    <!-- Back top -->
+    <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+<div id="footer"></div>
+</body>
+
+</html>
