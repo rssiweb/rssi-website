@@ -655,10 +655,9 @@
 }
 
 .features_causes .card:hover .donation .primary_btn {
-    background: #F2545F;
+    background: #47A4A5;
     color: #fff;
-    border: 1px solid #F2545F;
-    letter-spacing: 5px;
+    border: 1px solid #47A4A5;
 }
 
 .features_causes .card:visited .donation .primary_btn {
@@ -812,10 +811,10 @@
 
     }
 
-/* Testimonial*/
-    .demo{ background: #bd986b; }
+/* Testimonial bd986b*/
+    .demo{ background: #444; }
 	.testimonial{
-		background: #fff;
+		background: whitesmoke;
 		text-align: center;
 		padding: 30px 30px 50px;
 		margin: 0 15px 100px;
@@ -825,7 +824,7 @@
 	.testimonial:before,
 	.testimonial:after{
 		content: "";
-		border-top: 40px solid #fff;
+		border-top: 40px solid whitesmoke;
 		border-right: 125px solid transparent;
 		position: absolute;
 		bottom: -40px;
@@ -840,9 +839,9 @@
 	.testimonial .icon{
 		display: inline-block;
 		font-size: 80px;
-		color: #bd986b;
+		color: #444;
 		margin-bottom: 20px;
-		opacity: 0.6;
+		opacity: 0.2;
 	}
 	.testimonial .description{
 		font-size: 15px;
@@ -861,7 +860,7 @@
 		display: inline-block;
 		border: 2px solid #fff;
 		border-radius: 50%;
-		box-shadow: 0 0 2px 2px #daad86;
+		box-shadow: 0 0;/*#daad86;*/
 		overflow: hidden;
 		z-index: 1;
 		position: relative;
@@ -873,14 +872,14 @@
 	.testimonial .title{
 		font-size: 15px;
 		font-weight: bold;
-		color: #fff;
+		color: whitesmoke;
 		text-transform: capitalize;
 		margin: 0 0 5px 0;
 	}
 	.testimonial .post{
 		display: block;
 		font-size: 14px;
-		color: #ffd9b8;
+		color: whitesmoke;/*ffd9b8;*/
 	}
 	.owl-theme .owl-controls{
 		margin-top: 0;
@@ -888,15 +887,15 @@
 	.owl-theme .owl-controls .owl-page span{
 		width: 32px;
 		height: 10px;
-		background: #fff;
-		border: 2px solid #bd986b;
-		margin: 5px;
+		background: whitesmoke;
+		border: 2px solid #444;
+		margin: 20px 5px 5px 5px;
 		opacity: 1;
 	}
 	.owl-theme .owl-controls .owl-page.active span,
 	.owl-theme .owl-controls.clickable .owl-page:hover span{
-		background: #ffd9b8;
-		border-color: #fff;
+		background: #F2545F;
+		border-color: whitesmoke;
 	}
 	@media only screen and (max-width: 650px) and (min-width: 400px){
 		.testimonial:before{ border-right: 325px solid transparent; }
