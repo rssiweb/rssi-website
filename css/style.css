@@ -13,7 +13,7 @@ body {
   overflow-x: hidden;
   margin: 0;
   font-size: 14px;
-  line-height: 1.42857143;
+  /*line-height: 1.42857143;*/
   color: #444;
 }
 html {
@@ -198,27 +198,6 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
 
 .carousel-caption p {
   color: #fff;
-}
-
-/*---------------------------------------
-    CLIENT SECTION - ABOUT IMAGE background-color: rgba(0, 0, 0, 0.6);
------------------------------------------*/
-
-.text-block {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.text-block p {
-  color: #fff;
-}
-
-.containerc {
-  position: relative;
 }
 
 /*---------------------------------------
