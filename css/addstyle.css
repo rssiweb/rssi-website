@@ -120,6 +120,17 @@
     width: 95% !important;
 }
 
+.columnExam {
+    float: left;
+    width: 76%;
+}
+
+.columnExam2 {
+    float: left;
+    width: 24%;
+    padding-top: 1%;
+}
+
 @media screen and (width: 1024px) {
     #update .col-lg-2 {
         width: 10% !important;

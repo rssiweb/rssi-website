@@ -114,7 +114,6 @@ a {
 }
 
 .hover a:hover {
-  /*text-decoration: underline !important;*/
   letter-spacing: 10px !important;
 }
 
@@ -122,6 +121,7 @@ a {
   color: #fff !important;
 }
 
+.hoverdecoration a:hover {text-decoration: underline !important;}
 /*---------------------------------------
     UPDATE SECTION - SCROLL FONT DESIGN
 -----------------------------------------*/
@@ -289,7 +289,31 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
   transition: all 300ms linear 0s;
 }
 
-#project .primary_btn {text-transform: unset;}
+.exam_btn {
+  display: inline-block;
+  background: #F2545F;
+  padding: 0px 10px;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 1px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 30px;
+  border: 1px solid #F2545F;
+  border-radius: 0px;
+  outline: none !important;
+  box-shadow: none !important;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 300ms linear 0s;
+}
+.exam_btn:hover {
+  background: #47A4A5;
+  border: 1px solid #47A4A5;
+}
+
+#project .primary_btn, #leadership .exam_btn {text-transform: unset;}
 
 .parallax-section {
   background-attachment: fixed !important;
