@@ -4,23 +4,23 @@ body{
     width: 100%;
 }
 #hellobar-bar {
-    font-family: "Open Sans", sans-serif;
+    
     width: 100%;
     margin: 0;
     height: 30px;
     display: table;
-    font-size: 17px;
+    font-size: 13px;
     font-weight: 400;
     padding: .33em .5em;
     -webkit-font-smoothing: antialiased;
     color: #5c5e60;
     position: fixed;
-    background-color: white;
+    background-color: whitesmoke;
     box-shadow: 0 1px 3px 2px rgba(0,0,0,0.15);
 }
 #hellobar-bar.regular {
     height: 30px;
-    font-size: 14px;
+    font-size: 13px;
     padding: .2em .5em;
 }
 .hb-content-wrapper {
@@ -49,8 +49,8 @@ body{
     vertical-align: middle;
     margin: 5px 0;
     color: #ffffff;
-    background-color: #0099cc;
-    border-color: #0099cc;
+    background-color: #f2545f /*0099cc*/;
+    border-color: #f2545f/*0099cc*/;
 }
 .hb-cta-button {
     opacity: 1;
