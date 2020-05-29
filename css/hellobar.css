@@ -53,8 +53,8 @@ body{
     border-color: #47A4A5/*0099cc*/;
 }
 
-#hellobar-bar .hb-cta:hover {background-color: rgb(56, 163, 165);
-border-color: 1px solid rgb(56, 163, 165);}
+#hellobar-bar .hb-cta:hover {background-color: rgb(48, 139, 141);
+border-color: 1px solid rgb(48, 139, 141);}
 .hb-cta-button {
     opacity: 1;
     color: #fff;
