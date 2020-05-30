@@ -1,26 +1,18 @@
-body{
-    margin: 0;
-    padding: 0;
-    width: 100%;
-}
 #hellobar-bar {
-    font-family: "Roboto";
     width: 100%;
     margin: 0;
-    height: 30px;
     display: table;
-    font-size: 14px;
     font-weight: 400;
     padding: .33em .5em;
     -webkit-font-smoothing: antialiased;
-    color: #777777;
     position: fixed;
-    background-color: #f9f9f9;
+    background-color: #484644;
     box-shadow: 0 1px 3px 2px rgba(0,0,0,0.15);
 }
+
+#hellobar-bar p{color: whitesmoke;}
 #hellobar-bar.regular {
-    height: 65px;
-    font-size: 14px;
+    height: 67px;
     padding: .2em .5em;
 }
 .hb-content-wrapper {
@@ -48,16 +40,14 @@ body{
     display: inline-block;
     vertical-align: middle;
     margin: 5px 0;
-    color: #ffffff;
-    background-color: #47A4A5 /*0099cc*/;
-    border-color: #47A4A5/*0099cc*/;
+    background-color: #F25560 /*0099cc*/;
+    border-color: #F25560/*0099cc*/;
 }
 
-#hellobar-bar .hb-cta:hover {background-color: rgb(48, 139, 141);
-border-color: 1px solid rgb(48, 139, 141);}
+#hellobar-bar .hb-cta:hover {background-color: #e0ac1c;
+border-color: 1px solid #e0ac1c;}
 .hb-cta-button {
     opacity: 1;
-    color: #fff;
     display: block;
     cursor: pointer;
     line-height: 1.5;
@@ -85,8 +75,8 @@ border-color: 1px solid rgb(48, 139, 141);}
     right: 25px;
     width: 15px;
     height: 15px;
-    opacity: .3;
-    color: #000;
+    opacity: .9;
+    color: whitesmoke;
     cursor: pointer;
     position: absolute;
     text-align: center;
