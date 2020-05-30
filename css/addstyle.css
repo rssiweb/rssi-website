@@ -915,13 +915,6 @@
     
 
     /*popup image*/
-    #thover{
-        position:fixed;
-        background:#000;
-        width:100%;
-        height:100%;
-        opacity: .6
-      }
        
       #tpopup{
         position: absolute;
@@ -954,3 +947,4 @@
         cursor:pointer;
         box-shadow:0 0 10px 0 #000;
       }
+      #tclose:hover{background:#F2545F;}
