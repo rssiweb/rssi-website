@@ -1,58 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<title>Result portal</title>
-</head>
-    
-<meta name="description" content="">
-<meta name="author" content="">
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <head>
+        <!--
+RSSI
+http://www.rssi.in
+-->
+        <title>Result portal</title>
+    </head>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+        maximum-scale=1">
 
 
-<link rel="shortcut icon" href="images/logo/favicon.ico" type="image/x-icon" />
-<script src="js/jquery.js"></script>
-<script>
+    <link rel="shortcut icon" href="images/logo/favicon.ico" type="image/x-icon"
+        />
+    <script src="js/jquery.js"></script>
+    <script>
     $(function(){
         $("#header").load("/header.html");
         $("#footer").load("/footer.html");
     });</script>
-<link rel="stylesheet" href="css/HeaderFooter.css">
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<!-- Main css -->
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/addstyle.css">
-<!-- =========================
+    
+    <link rel="stylesheet" href="css/HeaderFooter.css">
+    <link rel="stylesheet" href="css/bootstrap_sheet.min.css">
+    
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/addstyle.css">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min_sheet.css" rel="stylesheet">
+    
+    <style>
+    body{line-height: unset;
+        }
+.navbar {padding: unset; font-weight: unset;}</style>
+    <!-- =========================
      NAVIGATION LINKS     
-============================== -->	
+============================== -->
+    <body>
 
-<body>
-	
-<div id="header"></div>
+        <div id="header"></div>
 
-<!-- NAVIGATION PATH -->
+        <!-- NAVIGATION PATH -->
 
-	<!--<img src="" alt="" width="100%"/><br>-->
-    <div style="margin: 0.3%;"><ps class="marginleft notice" style="margin-left: 3%;">
-        <a href="/index">Home</a> &#62; Result portal</ps>
-    </div>	
+        <!--<img src="" alt="" width="100%"/><br>-->
+        <div style="margin: 0.3%;"><ps class="marginleft notice"
+                style="margin-left: 3%;">
+                <a href="/index">Home</a> &#62; About us</ps>
+        </div>
 
-<!-- =========================
+
+
+        <body>
+            <div class="container text-center my-4">
+
+                <p>The data in the table comes from the
+                    google spreadsheet</p>
+
+                <!-- Table  -->
+                <table class="table table bordered table-striped"
+                    id="testTable">
+                    <!-- Table head -->
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>E-mail</th>
+                            <th>Marks</th>
+                        </tr>
+                    </thead>
+                    <!-- Table head -->
+
+                    <!-- Table body -->
+                    <tbody id="demo">
+
+
+                    </tbody>
+                    <!-- Table body -->
+                </table>
+                <!-- Table  -->
+
+            </div>
+
+
+            <!-- =========================
      SCRIPTS   
 ============================== -->
+            <script src="js/pace.js"></script>
+            <script src="js/fontawsome.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/jquery.parallax.js"></script>
+            <script src="js/custom.js"></script>
+            <!-- Bootstrap tooltips -->
+            <script type="text/javascript" src="js/popper.min.js"></script>
+            <!-- MDB core JavaScript -->
+            <script type="text/javascript" src="js/mdb.min.js"></script>
+            <script type="text/javascript">
+    $.getJSON("https://spreadsheets.google.com/feeds/list/1kKfSi40JeTtl2E8nc6ijfdn6IZZWC9oqqoYD_oFxkcU/od6/public/values?alt=json", function(data) {
 
-<script src="js/pace.js"></script>
-<script src="js/fontawsome.js"></script>
-<!--<script src="js/bootstrap.min.js"></script>-->
-<script src="js/jquery.parallax.js"></script>
-<script src="js/custom.js"></script>
-	
-<!-- =========================
+      var sheetData = data.feed.entry;
+
+      var i;
+      for (i = 0; i < sheetData.length; i++) {
+
+        var name = data.feed.entry[i]['gsx$_cn6ca']['$t'];
+        var age = data.feed.entry[i]['gsx$_cokwr']['$t'];
+        var email = data.feed.entry[i]['gsx$_cpzh4']['$t'];
+        var number = data.feed.entry[i]['gsx$_cre1l']['$t'];
+
+        document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + name + '</td>' + '<td>' + age + '</td>' + '<td>' + email + '</td>' + '<td>' + number + '</td>' +'</tr>');
+
+      }
+    });
+  </script>
+            <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var lazyloadImages = document.querySelectorAll("img.lazy");
+        var lazyloadThrottleTimeout;
+
+        function lazyload() {
+            if (lazyloadThrottleTimeout) {
+                clearTimeout(lazyloadThrottleTimeout);
+            }
+
+            lazyloadThrottleTimeout = setTimeout(function () {
+                var scrollTop = window.pageYOffset;
+                lazyloadImages.forEach(function (img) {
+                    if (img.offsetTop < (window.innerHeight + scrollTop)) {
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                    }
+                });
+                if (lazyloadImages.length == 0) {
+                    document.removeEventListener("scroll", lazyload);
+                    window.removeEventListener("resize", lazyload);
+                    window.removeEventListener("orientationChange", lazyload);
+                }
+            }, 20);
+        }
+
+        document.addEventListener("scroll", lazyload);
+        window.addEventListener("resize", lazyload);
+        window.addEventListener("orientationChange", lazyload);
+    });</script>
+            <!-- =========================
      FOOTER   
 ============================== -->
-<!-- Back top -->
-<a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>	
-<div id="footer"></div>	
-</body>
-</html>
+            <!-- Back top -->
+            <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+            <div id="footer"></div>
+        </body>
+    </html>
