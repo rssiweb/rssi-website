@@ -118,11 +118,11 @@ http://www.rssi.in
         var ExaminationName = data.feed.entry[i]['gsx$examinationname']['$t'];
         var Subject = data.feed.entry[i]['gsx$subject']['$t'];
         var FullMarks = data.feed.entry[i]['gsx$fullmarks']['$t'];
-        var FullMarks = data.feed.entry[i]['gsx$obtainedmarks']['$t'];
+        var ObtainedMarks = data.feed.entry[i]['gsx$obtainedmarks']['$t'];
         var Grade = data.feed.entry[i]['gsx$grade']['$t'];
         var GradeDescription = data.feed.entry[i]['gsx$gradedescription']['$t'];
 
-        document.getElementById('demo').innerHTML += ('<tr>' +'<td>' + ExaminationName + '</td>'+ '<td>' + Category + '</td>' + '<td>' + Name + '</td>' + '<td>' + Subject + '</td>' +'<td>' + FullMarks + '</td>' +'<td>' + FullMarks + '</td>' +'<td>' + Grade + '</td>' +'<td>' + GradeDescription + '</td>' +'</tr>');
+        document.getElementById('demo').innerHTML += ('<tr>' +'<td>' + ExaminationName + '</td>'+ '<td>' + Category + '</td>' + '<td>' + Name + '</td>' + '<td>' + Subject + '</td>' +'<td>' + FullMarks + '</td>' +'<td>' + ObtainedMarks + '</td>' +'<td>' + Grade + '</td>' +'<td>' + GradeDescription + '</td>' +'</tr>');
 
       }
     });
