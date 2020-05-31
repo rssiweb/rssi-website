@@ -25,23 +25,21 @@ http://www.rssi.in
         $("#header").load("/header.html");
         $("#footer").load("/footer.html");
     });</script>
-    
     <link rel="stylesheet" href="css/HeaderFooter.css">
     <link rel="stylesheet" href="css/bootstrap_sheet.min.css">
-    
+
     <!-- Main css -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/addstyle.css">
     <!-- Material Design Bootstrap -->
     <link href="css/mdb.min_sheet.css" rel="stylesheet">
-    
+
     <style>
-    body{line-height: unset;
-        }
-.navbar {padding: unset; font-weight: unset;}
-body, h1, h2, h3, h4, h5, h6 {
-    font-weight: unset;
-}</style>
+    body{line-height: unset;}
+    .navbar {padding: unset; font-weight: unset;}
+     body, h1, h2, h3, h4, h5, h6 {font-weight: unset;}
+    .text-center {text-align: left !important;}
+</style>
     <!-- =========================
      NAVIGATION LINKS     
 ============================== -->
@@ -71,10 +69,14 @@ body, h1, h2, h3, h4, h5, h6 {
                     <!-- Table head -->
                     <thead>
                         <tr>
+                            <th>Examination Name</th>
+                            <th>Category</th>
                             <th>Name</th>
-                            <th>Age</th>
-                            <th>E-mail</th>
-                            <th>Marks</th>
+                            <th>Subject</th>
+                            <th>Full Marks</th>
+                            <th>Obtained Marks</th>
+                            <th>Grade</th>
+                            <th>Grade Description</th>
                         </tr>
                     </thead>
                     <!-- Table head -->
@@ -111,12 +113,16 @@ body, h1, h2, h3, h4, h5, h6 {
       var i;
       for (i = 0; i < sheetData.length; i++) {
 
-        var name = data.feed.entry[i]['gsx$_cn6ca']['$t'];
-        var age = data.feed.entry[i]['gsx$_cokwr']['$t'];
-        var email = data.feed.entry[i]['gsx$_cpzh4']['$t'];
-        var number = data.feed.entry[i]['gsx$_cre1l']['$t'];
+        var Category = data.feed.entry[i]['gsx$category']['$t'];
+        var Name = data.feed.entry[i]['gsx$name']['$t'];
+        var ExaminationName = data.feed.entry[i]['gsx$examinationname']['$t'];
+        var Subject = data.feed.entry[i]['gsx$subject']['$t'];
+        var FullMarks = data.feed.entry[i]['gsx$fullmarks']['$t'];
+        var FullMarks = data.feed.entry[i]['gsx$obtainedmarks']['$t'];
+        var Grade = data.feed.entry[i]['gsx$grade']['$t'];
+        var GradeDescription = data.feed.entry[i]['gsx$gradedescription']['$t'];
 
-        document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + name + '</td>' + '<td>' + age + '</td>' + '<td>' + email + '</td>' + '<td>' + number + '</td>' +'</tr>');
+        document.getElementById('demo').innerHTML += ('<tr>' +'<td>' + ExaminationName + '</td>'+ '<td>' + Category + '</td>' + '<td>' + Name + '</td>' + '<td>' + Subject + '</td>' +'<td>' + FullMarks + '</td>' +'<td>' + FullMarks + '</td>' +'<td>' + Grade + '</td>' +'<td>' + GradeDescription + '</td>' +'</tr>');
 
       }
     });
