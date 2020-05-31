@@ -52,11 +52,13 @@ http://www.rssi.in
         <!--<img src="" alt="" width="100%"/><br>-->
         <div style="margin: 0.3%;"><ps class="marginleft notice"
                 style="margin-left: 3%;">
-                <a href="/index">Home</a> &#62; About us</ps>
+                <a href="/index">Home</a> &#62; Result portal</ps>
         </div>
 
 
-
+<div class="container">
+    <div class="row">
+        <div class="col">
         <body>
             <div class="container text-center my-4">
 
@@ -69,8 +71,8 @@ http://www.rssi.in
                     <!-- Table head -->
                     <thead>
                         <tr>
-                            <th>Examination Name</th>
                             <th>Category</th>
+                            <th>Student ID</th>
                             <th>Name</th>
                             <th>Subject</th>
                             <th>Full Marks</th>
@@ -92,7 +94,9 @@ http://www.rssi.in
 
             </div>
 
-
+        </div>
+    </div>
+</div>
             <!-- =========================
      SCRIPTS   
 ============================== -->
@@ -113,6 +117,7 @@ http://www.rssi.in
       var i;
       for (i = 0; i < sheetData.length; i++) {
 
+        var StudentID = data.feed.entry[i]['gsx$studentid']['$t'];
         var Category = data.feed.entry[i]['gsx$category']['$t'];
         var Name = data.feed.entry[i]['gsx$name']['$t'];
         var ExaminationName = data.feed.entry[i]['gsx$examinationname']['$t'];
@@ -122,7 +127,7 @@ http://www.rssi.in
         var Grade = data.feed.entry[i]['gsx$grade']['$t'];
         var GradeDescription = data.feed.entry[i]['gsx$gradedescription']['$t'];
 
-        document.getElementById('demo').innerHTML += ('<tr>' +'<td>' + ExaminationName + '</td>'+ '<td>' + Category + '</td>' + '<td>' + Name + '</td>' + '<td>' + Subject + '</td>' +'<td>' + FullMarks + '</td>' +'<td>' + ObtainedMarks + '</td>' +'<td>' + Grade + '</td>' +'<td>' + GradeDescription + '</td>' +'</tr>');
+        document.getElementById('demo').innerHTML += ('<tr>' +'<td>' + Category + '</td>'+ '<td>' + StudentID + '</td>' + '<td>' + Name + '</td>' + '<td>' + Subject + '</td>' +'<td>' + FullMarks + '</td>' +'<td>' + ObtainedMarks + '</td>' +'<td>' + Grade + '</td>' +'<td>' + GradeDescription + '</td>' +'</tr>');
 
       }
     });
