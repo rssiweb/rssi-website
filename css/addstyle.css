@@ -152,15 +152,20 @@
     padding-left: 5%;
 }
 
-.col1, .col3 {width:30%;}
-.col2 {width:20%;}
+.col1 {width: 35%; padding-left: 3%; margin-top: 25px;}
+.col2 {width:30%; margin-top: 25px;}
+.col3 {width:30%; margin-top: 20px;}
+
+
+
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
-    .column1, .column2, .column3, .column4, .column6, .column6a, #donation .column6, #donation .column6a, .column7, .col1, .col2, .col3 {
+    .column1, .column2, .column3, .column4, .column6, .column6a, #donation .column6, #donation .column6a, .column7 {
         width: 100%;
         padding-top: 5%;
         padding-left: 0px;
     }
+    .col1, .col2, .col3 {width: 100%; padding-left: 3%; margin-top: 10px;}
 
     #videoNational .column6 {
         padding-left: 0;

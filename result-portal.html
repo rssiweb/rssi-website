@@ -39,6 +39,20 @@ http://www.rssi.in
     .navbar {padding: unset; font-weight: unset; display: inline-block;}
      body, h1, h2, h3, h4, h5, h6 {font-weight: unset;}
     .text-center {text-align: left !important;}
+    .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #fff;}
+    .table-striped tbody tr {
+    background-color: rgba(0,0,0,.05);}
+    input, select {
+        width: 150px;
+    }
+
+    input:focus, textarea:focus, select:focus {
+        outline: none;    }
+.exam_btn:hover {
+  background: #90BAA4;
+  border: 1px solid #90BAA4;
+}
 </style>
     <!-- =========================
      NAVIGATION LINKS     
@@ -54,35 +68,38 @@ http://www.rssi.in
                 style="margin-left: 3%;">
                 <a href="/index">Home</a> &#62; Result portal</ps>
         </div>
-<br><br>
+        <br><br>
 
         <div class="container">
-            <div class="row">
-                <div class="col">
+            <span style="color: #F2545F; display: inline;">*</span>
+            <p style="display: inline;"> fields are required.</p>
+            <div class="row" style="background-color: rgb(255, 245, 194);min-height: 70px;">
+                
 
-                    <div class="col1" style="display:inline-block;">
-
-                        <p for="name" style="display: inline;">Please Enter Your
-                            Student ID<span style="color: #F2545F">*</span>&nbsp;</p>
+                    <div class="col1">
+                        <label for="name">Please Enter Your
+                            Student ID<span style="color: #F2545F">*</span>&nbsp;</label>
                         <input type="text" id="name" name="name" required
                             minlength="9" maxlength="9" size="12"
                             style="text-transform:uppercase">
                     </div>
 
-                    <div class="col2" style="display:inline-block;">
-                        <p for="ename" style="display: inline;">Examination
-                            Name<span style="color: #F2545F">*</span>&nbsp;</p>
+                    <div class="col2">
+                        <label for="ename">Examination Name<span
+                                style="color: #F2545F">*</span>&nbsp;</label>
                         <select name="ename" id="ename" required>
-                            <option value="select">Select</option>
+                            <option selected>Select</option>
                             <option>CT-001</option>
                         </select>
                     </div>
 
-                    <div class="col3" style="display:inline-block;">
-                        <button type="button" class="exam_btn" onclick="loaddata()"><i class="fas fa-search"></i> search</button>
+                    <div class="col3">
+                        <button type="button" class="exam_btn"
+                            onclick="loaddata()"><i class="fas fa-search"></i>
+                            search</button>
                     </div>
 
-                </div>
+               
             </div>
         </div>
 
@@ -96,16 +113,17 @@ http://www.rssi.in
                             <table class="table table bordered table-striped"
                                 id="testTable">
                                 <!-- Table head -->
-                                <thead>
+                                <thead style="background-color: whitesmoke;
+                                    font-style: oblique;">
                                     <tr>
-                                        <th>Category</th>
-                                        <th>Student ID</th>
-                                        <th>Name</th>
-                                        <th>Subject</th>
-                                        <th>Full Marks</th>
-                                        <th>Obtained Marks</th>
-                                        <th>Grade</th>
-                                        <th>Grade Description</th>
+                                        <th><b>Category</b></th>
+                                        <th><b>Student ID</b></th>
+                                        <th><b>Name</b></th>
+                                        <th><b>Subject</b></th>
+                                        <th><b>Full Marks</b></th>
+                                        <th><b>Obtained Marks</b></th>
+                                        <th><b>Grade</b></th>
+                                        <th><b>Grade Description</b></th>
                                     </tr>
                                 </thead>
                                 <!-- Table head -->
@@ -145,7 +163,7 @@ http://www.rssi.in
         $.getJSON("https://spreadsheets.google.com/feeds/list/1kKfSi40JeTtl2E8nc6ijfdn6IZZWC9oqqoYD_oFxkcU/od6/public/values?alt=json", function(data) {
             document.getElementById('demo').innerHTML = ""
 var sheetData = data.feed.entry;
-
+var record=0;
 var i;
 for (i = 0; i < sheetData.length; i++) {
 
@@ -158,12 +176,15 @@ for (i = 0; i < sheetData.length; i++) {
   var ObtainedMarks = data.feed.entry[i]['gsx$obtainedmarks']['$t'];
   var Grade = data.feed.entry[i]['gsx$grade']['$t'];
   var GradeDescription = data.feed.entry[i]['gsx$gradedescription']['$t'];
+
 if(StudentID===studentid && ExaminationName===testcode)
 {
-  document.getElementById('demo').innerHTML += ('<tr>' +'<td>' + Category + '</td>'+ '<td>' + StudentID + '</td>' + '<td>' + Name + '</td>' + '<td>' + Subject + '</td>' +'<td>' + FullMarks + '</td>' +'<td>' + ObtainedMarks + '</td>' +'<td>' + Grade + '</td>' +'<td>' + GradeDescription + '</td>' +'</tr>');
+  record+=1; document.getElementById('demo').innerHTML += ('<tr>' +'<td>' + Category + '</td>'+ '<td>' + StudentID + '</td>' + '<td>' + Name + '</td>' + '<td>' + Subject + '</td>' +'<td>' + FullMarks + '</td>' +'<td>' + ObtainedMarks + '</td>' +'<td>' + Grade + '</td>' +'<td>' + GradeDescription + '</td>' +'</tr>');
   }
 
+ // else {document.getElementById('demo').innerHTML= "no record2";}
 }
+if (record==0) {document.getElementById('demo').innerHTML= ('<br>'+'No record found.')}
 });
     }
   </script>
