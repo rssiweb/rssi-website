@@ -36,7 +36,7 @@ http://www.rssi.in
 
     <style>
     body{line-height: unset;}
-    .navbar {padding: unset; font-weight: unset;}
+    .navbar {padding: unset; font-weight: unset; display: inline-block;}
      body, h1, h2, h3, h4, h5, h6 {font-weight: unset;}
     .text-center {text-align: left !important;}
 </style>
@@ -63,7 +63,7 @@ http://www.rssi.in
                     <div class="col1" style="display:inline-block;">
 
                         <p for="name" style="display: inline;">Please Enter Your
-                            Student ID:&nbsp;</p>
+                            Student ID<span style="color: #F2545F">*</span>&nbsp;</p>
                         <input type="text" id="name" name="name" required
                             minlength="9" maxlength="9" size="12"
                             style="text-transform:uppercase">
@@ -71,7 +71,7 @@ http://www.rssi.in
 
                     <div class="col2" style="display:inline-block;">
                         <p for="ename" style="display: inline;">Examination
-                            Name:&nbsp;</p>
+                            Name<span style="color: #F2545F">*</span>&nbsp;</p>
                         <select name="ename" id="ename" required>
                             <option value="select">Select</option>
                             <option>CT-001</option>
@@ -79,7 +79,7 @@ http://www.rssi.in
                     </div>
 
                     <div class="col3" style="display:inline-block;">
-                        <button type="button" class="exam_btn" onclick="loaddata()">search</button>
+                        <button type="button" class="exam_btn" onclick="loaddata()"><i class="fas fa-search"></i> search</button>
                     </div>
 
                 </div>
