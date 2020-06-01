@@ -13,12 +13,8 @@ http://www.rssi.in
     <meta name="author" content="">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1,
-        maximum-scale=1">
-
-
-    <link rel="shortcut icon" href="images/logo/favicon.ico" type="image/x-icon"
-        />
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1">
+    <link rel="shortcut icon" href="images/logo/favicon.ico" type="image/x-icon"/>
     <script src="js/jquery.js"></script>
     <script>
     $(function(){
@@ -73,33 +69,34 @@ http://www.rssi.in
         <div class="container">
             <span style="color: #F2545F; display: inline;">*</span>
             <p style="display: inline;"> fields are required.</p>
-            <div class="row" style="background-color: rgb(255, 245, 194);min-height: 70px;">
-                
+            <div class="row" style="background-color: rgb(255, 245,
+                194);min-height: 70px;">
 
-                    <div class="col1">
-                        <label for="name">Please Enter Your
-                            Student ID<span style="color: #F2545F">*</span>&nbsp;</label>
-                        <input type="text" id="name" name="name" required
-                            minlength="9" maxlength="9" size="12"
-                            style="text-transform:uppercase">
-                    </div>
 
-                    <div class="col2">
-                        <label for="ename">Examination Name<span
-                                style="color: #F2545F">*</span>&nbsp;</label>
-                        <select name="ename" id="ename" required>
-                            <option selected>Select</option>
-                            <option>CT-001</option>
-                        </select>
-                    </div>
+                <div class="col1">
+                    <label for="name">Please Enter Your
+                        Student ID<span style="color: #F2545F">*</span>&nbsp;</label>
+                    <input type="text" id="name" name="name" required
+                        minlength="9" maxlength="9" size="12"
+                        style="text-transform:uppercase">
+                </div>
 
-                    <div class="col3">
-                        <button type="button" class="exam_btn"
-                            onclick="loaddata()"><i class="fas fa-search"></i>
-                            search</button>
-                    </div>
+                <div class="col2">
+                    <label for="ename">Examination Name<span
+                            style="color: #F2545F">*</span>&nbsp;</label>
+                    <select name="ename" id="ename" required>
+                        <option selected>Select</option>
+                        <option>CT-001</option>
+                    </select>
+                </div>
 
-               
+                <div class="col3">
+                    <button type="button" class="exam_btn"
+                        onclick="loaddata()"><i class="fas fa-search"></i>
+                        search</button>
+                </div>
+
+
             </div>
         </div>
 
@@ -108,10 +105,11 @@ http://www.rssi.in
             <div class="row">
                 <div class="col">
                     <body>
-                        <h2 style="margin-top:2%; font-size:20px;" align="center">Continuous Assessment Result - 2020</h2>
-                        <div class="container text-center my-4">
+                        <h2 style="margin-top:2%; font-size:20px;"
+                            align="center">Continuous Assessment Result - 2020</h2>
+                        <div class="container text-center my-4" style="overflow-x: auto;">
                             <!-- Table  -->
-                            <table class="table table bordered table-striped"
+                            <table class="table bordered table-striped"
                                 id="testTable">
                                 <!-- Table head -->
                                 <thead style="background-color: whitesmoke;
@@ -161,35 +159,47 @@ http://www.rssi.in
         var studentid=document.getElementById('name').value.toUpperCase()
         var testcode=document.getElementById('ename').value.toUpperCase()
         
-        $.getJSON("https://spreadsheets.google.com/feeds/list/1kKfSi40JeTtl2E8nc6ijfdn6IZZWC9oqqoYD_oFxkcU/od6/public/values?alt=json", function(data) {
+        $.getJSON("https://spreadsheets.google.com/feeds/list/1kKfSi40JeTtl2E8nc6ijfdn6IZZWC9oqqoYD_oFxkcU/od6/public/values?alt=json",
+        function(data) {
             document.getElementById('demo').innerHTML = ""
-var sheetData = data.feed.entry;
-var record=0;
-var i;
-for (i = 0; i < sheetData.length; i++) {
+            var sheetData = data.feed.entry;
+            var i;
+            var records = []
+            for (i = 0; i < sheetData.length; i++) {
+                var StudentID = data.feed.entry[i]['gsx$studentid']['$t'];
+                var Category = data.feed.entry[i]['gsx$category']['$t'];
+                var Name = data.feed.entry[i]['gsx$name']['$t'];
+                var ExaminationName = data.feed.entry[i]['gsx$examinationname']['$t'];
+                var Subject = data.feed.entry[i]['gsx$subject']['$t'];
+                var FullMarks = data.feed.entry[i]['gsx$fullmarks']['$t'];
+                var ObtainedMarks = data.feed.entry[i]['gsx$obtainedmarks']['$t'];
+                var Grade = data.feed.entry[i]['gsx$grade']['$t'];
+                var GradeDescription = data.feed.entry[i]['gsx$gradedescription']['$t'];
 
-  var StudentID = data.feed.entry[i]['gsx$studentid']['$t'];
-  var Category = data.feed.entry[i]['gsx$category']['$t'];
-  var Name = data.feed.entry[i]['gsx$name']['$t'];
-  var ExaminationName = data.feed.entry[i]['gsx$examinationname']['$t'];
-  var Subject = data.feed.entry[i]['gsx$subject']['$t'];
-  var FullMarks = data.feed.entry[i]['gsx$fullmarks']['$t'];
-  var ObtainedMarks = data.feed.entry[i]['gsx$obtainedmarks']['$t'];
-  var Grade = data.feed.entry[i]['gsx$grade']['$t'];
-  var GradeDescription = data.feed.entry[i]['gsx$gradedescription']['$t'];
+                if(StudentID===studentid && ExaminationName===testcode)
+                {
+                    // sort records
+                    records.push({Category:Category, StudentID:StudentID, Name:Name, Subject:Subject, FullMarks:FullMarks, ObtainedMarks:ObtainedMarks, Grade:Grade, GradeDescription:GradeDescription})
+                }
 
-if(StudentID===studentid && ExaminationName===testcode)
-{
-  record+=1; document.getElementById('demo').innerHTML += ('<tr>' +'<td>' + Category + '</td>'+ '<td>' + StudentID + '</td>' + '<td>' + Name + '</td>' + '<td>' + Subject + '</td>' +'<td>' + FullMarks + '</td>' +'<td>' + ObtainedMarks + '</td>' +'<td>' + Grade + '</td>' +'<td>' + GradeDescription + '</td>' +'</tr>');
-  }
-
- // else {document.getElementById('demo').innerHTML= "no record2";}
-}
-if (record==0) {document.getElementById('demo').innerHTML= ('<br>'+'No record found.')}
-});
+                // else {document.getElementById('demo').innerHTML= "no record2";}
+            }
+            if (records.length==0) {
+                document.getElementById('demo').innerHTML= ('<br>'+'No record found.')
+            } else {
+                var order = ["Hindi", "English","Math","Chemistry","Biology","Computer","General knowledge"]
+                order.forEach(sub => {
+                    records.forEach(item => {
+                        if(sub === item.Subject){
+                            document.getElementById('demo').innerHTML += ('<tr>' +'<td>' + item.Category + '</td>'+ '<td>' + item.StudentID + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Subject + '</td>' +'<td>' + item.FullMarks + '</td>' +'<td>' + item.ObtainedMarks + '</td>' +'<td>' + item.Grade + '</td>' +'<td>' + item.GradeDescription + '</td>' +'</tr>');
+                        }
+                    })
+                })
+                
+            }
+        });
     }
-  </script>
-            <script>
+
     document.addEventListener("DOMContentLoaded", function () {
         var lazyloadImages = document.querySelectorAll("img.lazy");
         var lazyloadThrottleTimeout;
