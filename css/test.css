@@ -1,137 +1,58 @@
-/* CURRENT PROJECT
-============================================================================================ */
-.features_causes {
-  padding-bottom: 100px; }
-  @media (max-width: 991px) {
-    .features_causes {
-      padding-bottom: 40px; } }
-  .features_causes .card {
-    border-radius: 0px;
-    border: 0;
-    transition: all 300ms linear 0s;
-    margin-bottom: 30px;
-    overflow: hidden; }
-    .features_causes .card p {
-      margin-bottom: 0; }
-    .features_causes .card .card-body {
-      padding: 0; }
-    .features_causes .card .card-img-top {
-      border-radius: 0px; }
-    .features_causes .card figure {
-      overflow: hidden;
-      margin: 0; }
-      .features_causes .card figure img {
-        transition: all 300ms linear 0s; }
-    .features_causes .card .card_inner_body {
-      padding: 40px 30px; }
-      .features_causes .card .card_inner_body h4 {
-        font-size: 20px; }
-        @media (max-width: 1199px) and (min-width: 992px) {
-          .features_causes .card .card_inner_body h4 {
-            font-size: 16px; } }
-    .features_causes .card .raised_goal {
-      margin-top: 25px;
-      margin-bottom: 20px; }
-      .features_causes .card .raised_goal span {
-        color: #F2545F; }
-    .features_causes .card .donation .primary_btn {
-      line-height: 34px;
-      padding: 0 20px; }
-    .features_causes .card .donation span {
-      color: #F2545F; }
-    .features_causes .card .card-text {
-      margin-bottom: 0; }
-    .features_causes .card:hover {
-      box-shadow: 0px 12px 40px rgba(153, 153, 153, 0.2); }
-      .features_causes .card:hover img {
-        transform: scale(1.2);
-        -webkit-transform: scale(1.2);
-        -moz-transform: scale(1.2);
-        -o-transform: scale(1.2);
-        -ms-transform: scale(1.2); }
-      .features_causes .card:hover .donation .primary_btn {
-        background: #47A4A5;
-        color: #fff;
-        border: 1px solid #47A4A5; }
+@media (width: 360px) {#tpopup{position: absolute;
+  width: 90%;
+  background: #fff;
+  left: 95%;
+  top: 60%;
+  border-radius: 5px;
+  padding: 60px 0;
+  text-align: center;
+  box-shadow: 0 0 10px 0 #000;}}
 
-        .features_causes .card:visited .donation .primary_btn {
-          background: #F2545F;
-          color: #fff;
-          border: 1px solid #F2545F; }
+  @media (width: 411px), (width: 414px) {#tpopup{position: absolute;
+      width: 90%;
+      background: #fff;
+      left: 83%;
+      top: 60%;
+      border-radius: 5px;
+      padding: 60px 0;
+      text-align: center;
+      box-shadow: 0 0 10px 0 #000;}}
 
+      @media (width: 375px) {#tpopup{position: absolute;
+          width: 90%;
+          background: #fff;
+          left: 90%;
+          top: 60%;
+          border-radius: 5px;
+          padding: 60px 0;
+          text-align: center;
+          box-shadow: 0 0 10px 0 #000;}}
 
-.justify-content-between {
-  -ms-flex-pack: justify !important;
-  justify-content: space-between !important;
-}
-.d-flex {
-  display: -ms-flexbox !important;
-  display: flex !important;
-  }
+          @media (width: 768px) {#tpopup{position: absolute;
+              width: 90%;
+              background: #fff;
+              left: 50%;
+              top: 50%;
+              border-radius: 5px;
+              padding: 60px 0;
+              text-align: center;
+              box-shadow: 0 0 10px 0 #000;}}
 
-  .primary_btn {
-    display: inline-block;
-    background: #F2545F;
-    padding: 0px 50px;
-    color: #fff;
-    font-family: "Roboto", sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 48px;
-    border: 1px solid #F2545F;
-    border-radius: 0px;
-    outline: none !important;
-    box-shadow: none !important;
-    text-align: center;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 300ms linear 0s;}
-    /* END OF CURRRENT PROJECT
-============================================================================================ */
+              @media (width: 1024px) {#tpopup{position: absolute;
+                  width: 90%;
+                  background: #fff;
+                  left: 37%;
+                  top: 50%;
+                  border-radius: 5px;
+                  padding: 60px 0;
+                  text-align: center;
+                  box-shadow: 0 0 10px 0 #000;}}
 
-/* Start About Us Area css
-============================================================================================ */
-.about_area .about_thumb {
-  overflow: hidden;
-  display: inline-block; }
-@media (max-width: 991px) {
-  .about_area .about_content {
-    text-align: center; } }
-.about_area .about_content h2 {
-  font-size: 36px;
-  margin-bottom: 30px; }
-  @media (max-width: 767px) {
-    .about_area .about_content h2 {
-      font-size: 25px; } }
-  @media (max-width: 1199px) {
-    .about_area .about_content h2 br {
-      display: none; } }
-.about_area .about_content p:last-of-type {
-  margin-bottom: 0; }
-.about_area .about_content .primary_btn {
-  margin-top: 35px; }
-.about_area .about_left {
-  padding-right: 0;
-  padding-left: 30px; }
-  @media (max-width: 991px) {
-    .about_area .about_left {
-      padding-right: 15px;
-      margin-top: 0px;
-      margin-bottom: 40px; } }
-.about_area .about_right {
-  padding: 110px 60px;
-  background: #ffffff;
-  margin-top: 70px;
-  margin-left: -40px;
-  z-index: 2;
-  box-shadow: 0px 5px 40px rgba(153, 153, 153, 0.2); }
-  @media (max-width: 1199px) {
-    .about_area .about_right {
-      padding: 50px 30px; } }
-  @media (max-width: 991px) {
-    .about_area .about_right {
-      margin-left: 0;
-      margin-top: 20px; } }
-
-/* End About Us Area css
-============================================================================================ */
+                  @media (width: 600px){ #tpopup {position: absolute;
+                      width: 90%;
+                      background: red;
+                      
+                      border-radius: 5px;
+                      padding: 60px 0;
+                      text-align: center;
+                      box-shadow: 0 0 10px 0 #000;}}
