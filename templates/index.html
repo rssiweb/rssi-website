@@ -993,10 +993,13 @@ RSSI http://www.rssi.in -->
 		$(document).ready(function () {
 			$("#secure_link_classroom").click(function (event) {
 				event.preventDefault();
-				var share_link = $(this).prop('href');
 				$("#tpopup").toggleClass('hidden');
 				$("#thover").toggleClass('hidden');
 			});
+		});
+		$("#tclose").click(function () {
+			$("#tpopup").toggleClass('hidden');
+			$("#thover").toggleClass('hidden');
 		});
 
 		document.addEventListener("DOMContentLoaded", function () {

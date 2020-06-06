@@ -95,16 +95,22 @@
 		
 
 	<!--secure link-->
-	<script type="text/javascript">
+	
+	<script src="/js/active-nav-bar.js"></script>
+	<script>
 		$(document).ready(function () {
+			console.log("loading now...");
 			$("#secure_link_classroom").click(function (event) {
 				event.preventDefault();
-				var share_link = $(this).prop('href');
 				$("#tpopup").toggleClass('hidden');
 				$("#thover").toggleClass('hidden');
 			});
-		});</script>
-		 	<script src="/js/active-nav-bar.js"></script>
+ 		$("#tclose").click(function () {
+			$("#tpopup").toggleClass('hidden');
+			$("#thover").toggleClass('hidden');
+		});
+		});
+	</script>
 	</body>
 
 </html>
