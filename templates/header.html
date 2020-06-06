@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="/css/login.css">
 	<body data-spy="scroll" data-offset="50" data-target=".navbar-collapse">
 
-		<!-- =========================
+<!-- =========================
      NAVIGATION LINKS     
 ============================== -->
 		<div class="containerHo">
@@ -94,23 +94,16 @@
 		</div>
 		
 
-	<!--JAVA SCRIPT-->
-		<script type="text/javascript">
-			$("#secure_link_classroom").click(function(event) {
-			   event.preventDefault();
-			   var share_link = $(this).prop('href');
-			   $("#tpopup").toggleClass('hidden');
-			   $("#thover").toggleClass('hidden');
+	<!--secure link-->
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#secure_link_classroom").click(function (event) {
+				event.preventDefault();
+				var share_link = $(this).prop('href');
+				$("#tpopup").toggleClass('hidden');
+				$("#thover").toggleClass('hidden');
 			});
-//closing popup
-			$(document).ready(function () {
-  $("#tclose").click(function () {
-    $("#thover").fadeOut();
-    $("#tpopup").fadeOut();
-  });
-
-});
-		 </script>
+		});</script>
 		 	<script src="/js/active-nav-bar.js"></script>
 	</body>
 
