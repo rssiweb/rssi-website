@@ -48,21 +48,6 @@ $(document).ready(function () {
   }
   initParallax();
 
-
-  /* Owl Carousel
------------------------------------------------*/
-
-  $(document).ready(function () {
-    $("#owl-speakers").owlCarousel({
-      autoPlay: 6000,
-      items: 7, //10 items above 1000px browser width
-      itemsDesktop: [1000, 5], //5 items between 1000px and 901px
-      itemsDesktopSmall: [900, 3], // betweem 900px and 601px
-      itemsTablet: [600, 2], //2 items between 600 and 0
-      itemsMobile: false // itemsMobile disabled - inherit from itemsTablet option
-    });
-  });
-
   /* Back top
   -----------------------------------------------*/
   $(window).scroll(function () {
@@ -78,10 +63,10 @@ $(document).ready(function () {
     $('html, body').animate({ scrollTop: 0 }, 500);
   })
 
-
+  
   /* wow
   -------------------------------*/
-  // new WOW({ mobile: false }).init();
+  new WOW({ mobile: false }).init();
 
 });
 
