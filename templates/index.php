@@ -62,7 +62,7 @@ RSSI http://www.rssi.in -->
 						<div class="dropdown-contentH">
 							<a href="/admission" class="smoothScroll">Admission</a>
 							<a href="#" class="smoothScroll" id="secure_link_classroom">Smart classroom</a>
-							<a href="/digital-library" class="smoothScroll">Digital library</a>
+							<a href="#" class="smoothScroll" id="secure_link_library">Digital library</a>
 							<a href="/online-exam" class="smoothScroll">Online Exam</a>
 							<a href="/result-portal" class="smoothScroll">Result portal</a>
 							<a href="/scholarship-programs" class="smoothScroll">Scholarship
@@ -111,6 +111,28 @@ RSSI http://www.rssi.in -->
 			</div>
 		</div>
 		<div id="tclose">X</div>
+	</div>
+
+		<!--------------- 
+		NEED TO COPY THIS SET FOR EVERY CECURED LINK -- DIGITAL LIBRARY
+	------------------------------------------------------>
+	
+	<div id="thover1" class="hidden"></div>
+	<div id="tpopup1" class="hidden" style="padding:20px; position: fixed;">
+		<!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
+		<div class="login-card">
+			<h1>Log-in</h1><br>
+			<form action="/secure/digital-library" method="post"> <!--Here we have to mention the secured URL path-->
+			<input type="text" name="user" placeholder="Username">
+			<input type="password" name="code" placeholder="Password"> <!--password name id always "code"-->
+			<input type="submit" name="login" class="login login-submit" value="login">
+		  </form>
+		
+		  <div class="login-help">
+		  <br><a>Forgot Password? Connect with RSSI admin team</a>
+		  </div>
+		</div>
+		<div id="tclose1">X</div>
 	</div>
 
 	<!-- =========================
@@ -988,8 +1010,9 @@ RSSI http://www.rssi.in -->
 			});
 		});</script>
 	<script src="/js/custom.js"></script>
-<!--secure link-->
+
 	<script type="text/javascript">
+	//secure link for SMART CLASSROOM
 		$(document).ready(function () {
 			$("#secure_link_classroom").click(function (event) {
 				event.preventDefault();
@@ -1001,6 +1024,22 @@ RSSI http://www.rssi.in -->
 			$("#tpopup").toggleClass('hidden');
 			$("#thover").toggleClass('hidden');
 		});
+
+		//secure link for DIGITAL LIBRARY
+
+		$(document).ready(function () {
+			console.log("loading now...");
+			$("#secure_link_library").click(function (event) {
+				event.preventDefault();
+				$("#tpopup1").toggleClass('hidden');
+				$("#thover1").toggleClass('hidden');
+			});
+ 		$("#tclose1").click(function () {
+			$("#tpopup1").toggleClass('hidden');
+			$("#thover1").toggleClass('hidden');
+		});
+		});
+
 
 		document.addEventListener("DOMContentLoaded", function () {
 			var lazyloadImages = document.querySelectorAll("img.lazy");
@@ -1127,6 +1166,7 @@ RSSI http://www.rssi.in -->
 
 			<div id="tclose">X</div>
 		</div>-->
+		Your IP address is: <? echo $_SERVER["REMOTE_ADDR"]; ?>
 </body>
 
 </html>
