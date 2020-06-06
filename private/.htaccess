@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Stop and Enter Details"
+AuthUserFile /private/.htmyxyz
+require valid-user
