@@ -15,6 +15,7 @@ RSSI http://www.rssi.in -->
 
 		<link rel="shortcut icon" href="/images/logo/favicon.ico" type="image/x-icon"
 			/>
+		<link rel="stylesheet" href="/css/login.css">
 		<link rel="stylesheet" href="/css/HeaderFooter.css">
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<!-- Main css -->
@@ -63,7 +64,7 @@ RSSI http://www.rssi.in -->
 							<button class="dropbtnH">Students' corner <i class="fa fa-caret-down"></i></button>
 							<div class="dropdown-contentH">
 								<a href="/admission" class="smoothScroll">Admission</a>
-								<a href="/smart-classroom" class="smoothScroll">Smart classroom</a>
+								<a href="#" class="smoothScroll" id="secure_link_classroom">Smart classroom</a>
 								<a href="/digital-library" class="smoothScroll">Digital library</a>
 								<a href="/online-exam" class="smoothScroll">Online Exam</a>
 								<a href="/result-portal" class="smoothScroll">Result portal</a>
@@ -95,7 +96,29 @@ RSSI http://www.rssi.in -->
 			</div>
 		</div>
 
-		<!-- =========================
+<!---------------------------------------------------------------------- 
+		NEED TO COPY THIS SET FOR EVERY SCECURED LINK
+------------------------------------------------------>
+	
+	<div id="thover" class="hidden"></div>
+	<div id="tpopup" class="hidden" style="padding:20px; position: fixed;">
+		<!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
+		<div class="login-card">
+			<h1>Log-in</h1><br>
+			<form action="/secure/smart-classroom" method="post"> <!--Here we have to mention the secured URL path-->
+			<input type="text" name="user" placeholder="Username">
+			<input type="password" name="code" placeholder="Password"> <!--password name id always "code"-->
+			<input type="submit" name="login" class="login login-submit" value="login">
+		  </form>
+		
+		  <div class="login-help">
+		  <br><a>Forgot Password? Connect with RSSI admin team</a>
+		  </div>
+		</div>
+		<div id="tclose">X</div>
+	</div>
+
+<!-- =========================
     INTRO SECTION   Welcome to a better tomorrow  Grow Together /class to hide button in mobile/ hidden-xs
 ============================== -->
 		<section id="intro" class="parallax-section">
@@ -997,7 +1020,23 @@ RSSI http://www.rssi.in -->
 		});
 	  });</script>
 			<script src="/js/custom.js"></script>
-			<script>
+			<!--JAVA SCRIPT-->
+			
+	<script type="text/javascript">
+		//closing popup
+				$(document).ready(function () {
+					$("#secure_link_classroom").click(function(event) {
+						event.preventDefault();
+						var share_link = $(this).prop('href');
+						$("#tpopup").toggleClass('hidden');
+						$("#thover").toggleClass('hidden');
+					});
+		
+					$("#tclose").click(function () {
+						$("#thover").fadeOut();
+						$("#tpopup").fadeOut();});
+				});
+
 		document.addEventListener("DOMContentLoaded", function () {
 			var lazyloadImages = document.querySelectorAll("img.lazy");
 			var lazyloadThrottleTimeout;
@@ -1121,11 +1160,11 @@ RSSI http://www.rssi.in -->
 		
 		<!-- Back top -->
 		<a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
-		<div id="thover"></div>
+		<!--<div id="thover"></div>
 		<div id="tpopup">
 			<img src="/images/PRIDE month.jpg" class="img-fluid img-responsive">
 
 			<div id="tclose">X</div>
-		</div>
+		</div>-->
 	</body>
 	</html>

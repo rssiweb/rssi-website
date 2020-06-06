@@ -4,7 +4,7 @@
 	<head>
 		<title>Header</title>
 	</head>
-
+	<link rel="stylesheet" href="/css/login.css">
 	<body data-spy="scroll" data-offset="50" data-target=".navbar-collapse">
 
 		<!-- =========================
@@ -43,7 +43,7 @@
 						<button class="dropbtnHo">Students' corner <i class="fa fa-caret-down"></i></button>
 						<div class="dropdown-contentHo">
 							<a href="/admission" class="smoothScroll">Admission</a>
-							<a href="/smart-classroom" class="smoothScroll">Smart classroom</a>
+							<a href="#" class="smoothScroll" id="secure_link_classroom">Smart classroom</a>
 							<a href="/digital-library" class="smoothScroll">Digital library</a>
 							<a href="/online-exam" class="smoothScroll">Online Exam</a>
 							<a href="/result-portal" class="smoothScroll">Result portal</a>
@@ -71,8 +71,47 @@
 			</navh>
 		</div>
 
+	<!--------------- 
+		NEED TO COPY THIS SET FOR EVERY CECURED LINK
+	------------------------------------------------------>
+	
+	<div id="thover" class="hidden"></div>
+		<div id="tpopup" class="hidden" style="padding:20px; position: fixed;">
+            <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
+            <div class="login-card">
+                <h1>Log-in</h1><br>
+                <form action="/secure/smart-classroom" method="post"> <!--Here we have to mention the secured URL path-->
+                <input type="text" name="user" placeholder="Username">
+                <input type="password" name="code" placeholder="Password"> <!--password name id always "code"-->
+                <input type="submit" name="login" class="login login-submit" value="login">
+			  </form>
+            
+              <div class="login-help">
+              <br><a>Forgot Password? Connect with RSSI admin team</a>
+              </div>
+            </div>
+			<div id="tclose">X</div>
+		</div>
+		
 
-		<script src="/js/active-nav-bar.js"></script>
+	<!--JAVA SCRIPT-->
+		<script type="text/javascript">
+			$("#secure_link_classroom").click(function(event) {
+			   event.preventDefault();
+			   var share_link = $(this).prop('href');
+			   $("#tpopup").toggleClass('hidden');
+			   $("#thover").toggleClass('hidden');
+			});
+//closing popup
+			$(document).ready(function () {
+  $("#tclose").click(function () {
+    $("#thover").fadeOut();
+    $("#tpopup").fadeOut();
+  });
+
+});
+		 </script>
+		 	<script src="/js/active-nav-bar.js"></script>
 	</body>
 
 </html>

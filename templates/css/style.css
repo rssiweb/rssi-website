@@ -344,3 +344,8 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
   color: #ffffff;
 }
 @media (max-width:767px){.hidden-xs{display:none!important}}
+
+
+.hidden{
+  display: none;
+}
