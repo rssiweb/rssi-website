@@ -23,7 +23,7 @@ def public_pages(name='index'):
 @app.route('/secure/<string:name>', methods=['GET', 'POST'])
 def secure_pages(name):
     user = request.form.get('user')
-    if user != 'admin':
+    if user != 'indigo':
         name = 'secure/unauthorized.html'
     else:
         code = request.form.get('code')
