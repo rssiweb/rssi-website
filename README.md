@@ -56,3 +56,6 @@ git checkout FETCH_HEAD
 git checkout -b "rssiweb"
 git push --all
 git push --set-upstream origin rssiweb
+
+
+pipenv run flask run
