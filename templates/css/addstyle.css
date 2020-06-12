@@ -967,6 +967,18 @@
     box-shadow: 0 0 10px 0 #000;
     z-index: 5001;
 }
+@media (max-width:880px){.tpopup {
+    position: fixed;
+    width: 90%;
+    background: #fff;
+    left: 5%;
+    top: 35%;
+    border-radius: 5px;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 0 10px 0 #000;
+    z-index: 5001;
+}}
 
 .tclose {
     position: absolute;
