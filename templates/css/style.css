@@ -177,6 +177,30 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
 }
 
 /*---------------------------------------
+    CLASS NAME- link : URL DECORATION               
+-----------------------------------------*/
+
+.link a:link {
+  text-decoration: none !important;
+  color: #F2545F !important;
+}
+
+.link a:visited {
+  text-decoration: none !important;
+  color: #F2545F !important;
+}
+
+.link a:hover {
+  text-decoration: underline !important;
+  color: #F2545F !important;
+}
+
+.link a:active {
+  text-decoration: underline !important;
+  color: #F2545F !important;
+}
+
+/*---------------------------------------
     OUR MAJOR PROJECT
 -----------------------------------------*/
 
