@@ -59,3 +59,22 @@ git push --set-upstream origin rssiweb
 
 
 pipenv run flask run
+
+
+Password change
+--------------------------
+heroku Login
+More
+Run console
+flask generate-hash-for 2310
+Run
+Save the session and copy the encripted value and paste it to
+Settings
+Reveal config variable
+paste the code
+
+Change in .env file offline
+---------------------------------
+Run new terminal and type
+pipenv run flask generate-hash-for 2310
+copy the code and replace it.
