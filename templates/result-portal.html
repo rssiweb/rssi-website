@@ -64,7 +64,6 @@ http://www.rssi.in
                 style="margin-left: 3%;">
                 <a href="/index">Home</a> &#62; Students' corner &#62; Result portal</ps>
         </div>
-        <br><br>
         <div class="container">
             <div clas="row">
 
@@ -78,83 +77,20 @@ http://www.rssi.in
             </div></div></div>
         </div>
         <div class="container">
-            <span style="color: #F2545F; display: inline;">*</span>
-            <p style="display: inline;"> fields are required.</p>
-            <div class="row" style="background-color: rgb(255, 245,
-                194);min-height: 70px;">
-
-
-                <div class="col1">
-                    <label for="name">Please Enter Your
-                        Student ID<span style="color: #F2545F">*</span>&nbsp;</label>
-                    <input type="text" id="name" name="name" required
-                        minlength="9" maxlength="9" size="12"
-                        style="text-transform:uppercase">
-                </div>
-
-                <div class="col2">
-                    <label for="ename">Examination Name<span
-                            style="color: #F2545F">*</span>&nbsp;</label>
-                    <select name="ename" id="ename" required>
-                        <option selected>Select</option>
-                        <option>QT1</option>
-                        <option>CT-002</option>
-                        <option>CT-001</option>
-                    </select>
-                </div>
-
-                <div class="col3">
-                    <button type="button" class="exam_btn"
-                        onclick="loaddata()"><i class="fas fa-search"></i>
-                        search</button>
-                </div>
-
-
-            </div>
-        </div>
-
-
-        <div class="container">
             <div class="row">
                 <div class="col">
                     <body>
                         <h2 style="margin-top:2%; font-size:20px;"
-                            align="center">Continuous Assessment Result - 2020</h2>
-                        <div class="container text-center my-4" style="overflow-x: auto;">
-                            <!-- Table  -->
-                            <table class="table bordered table-striped"
-                                id="testTable">
-                                <!-- Table head -->
-                                <thead style="background-color: whitesmoke;
-                                    font-style: oblique;">
-                                    <tr>
-                                        <th><b>Category</b></th>
-                                        <th><b>Student ID</b></th>
-                                        <th><b>Name</b></th>
-                                        <th><b>Subject</b></th>
-                                        <th><b>Full Marks</b></th>
-                                        <th><b>Obtained Marks</b></th>
-                                        <th><b>Grade</b></th>
-                                        <th><b>Grade Description</b></th>
-                                    </tr>
-                                </thead>
-                                <!-- Table head -->
+                            align="center">Continuous Assessment Result - 2020</h2></body></div></div></div>
 
-                                <!-- Table body -->
-                                <tbody id="demo">
-
-
-                                </tbody>
-                                <!-- Table body -->
-                            </table>
-                            <!-- Table  -->
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <!-- =========================
+       <div class="row" style="margin-left:2%;margin-right:2%;"> 
+        <div class="col" width="100%">
+            <embed id="studentlist" width="100%" height="700px"
+                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSlHj1qfbck_fHKM4xQIrY0ylWNKH2svmSnYt2ql7rdZs5E_Cj3dmT-Jm7mmkhPiJ4Dw8XtOA7KfeNJ/pubhtml?gid=1645644689&single=true"
+               seamless frameborder="0" scrolling="yes"></embed></div></div>
+       
+        
+<!-- =========================
      SCRIPTS   
 ============================== -->
             <script src="/js/pace.js"></script>
@@ -169,81 +105,8 @@ http://www.rssi.in
             <script type="text/javascript" src="/js/mdb.min.js"></script>
             <script type="text/javascript">
     
-    var loaddata=function(){
-        var studentid=document.getElementById('name').value.toUpperCase()
-        var testcode=document.getElementById('ename').value.toUpperCase()
-        
-        $.getJSON("https://spreadsheets.google.com/feeds/list/1kKfSi40JeTtl2E8nc6ijfdn6IZZWC9oqqoYD_oFxkcU/od6/public/values?alt=json",
-        function(data) {
-            document.getElementById('demo').innerHTML = ""
-            var sheetData = data.feed.entry;
-            var i;
-            var records = []
-            for (i = 0; i < sheetData.length; i++) {
-                var StudentID = data.feed.entry[i]['gsx$studentid']['$t'];
-                var Category = data.feed.entry[i]['gsx$category']['$t'];
-                var Name = data.feed.entry[i]['gsx$name']['$t'];
-                var ExaminationName = data.feed.entry[i]['gsx$examinationname']['$t'];
-                var Subject = data.feed.entry[i]['gsx$subject']['$t'];
-                var FullMarks = data.feed.entry[i]['gsx$fullmarks']['$t'];
-                var ObtainedMarks = data.feed.entry[i]['gsx$obtainedmarks']['$t'];
-                var Grade = data.feed.entry[i]['gsx$grade']['$t'];
-                var GradeDescription = data.feed.entry[i]['gsx$gradedescription']['$t'];
-
-                if(StudentID===studentid && ExaminationName===testcode)
-                {
-                    // sort records
-                    records.push({Category:Category, StudentID:StudentID, Name:Name, Subject:Subject, FullMarks:FullMarks, ObtainedMarks:ObtainedMarks, Grade:Grade, GradeDescription:GradeDescription})
-                }
-
-                // else {document.getElementById('demo').innerHTML= "no record2";}
-            }
-            if (records.length==0) {
-                document.getElementById('demo').innerHTML= ('<br>'+'No record found.')
-            } else {
-                var order = ["Hindi", "English","Physics","Chemistry","Math","Biology","Social science","Computer","General Knowledge"]
-                order.forEach(sub => {
-                    records.forEach(item => {
-                        if(sub === item.Subject){
-                            document.getElementById('demo').innerHTML += ('<tr>' +'<td>' + item.Category + '</td>'+ '<td>' + item.StudentID + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Subject + '</td>' +'<td>' + item.FullMarks + '</td>' +'<td>' + item.ObtainedMarks + '</td>' +'<td>' + item.Grade + '</td>' +'<td>' + item.GradeDescription + '</td>' +'</tr>');
-                        }
-                    })
-                })
-                
-            }
-        });
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-        var lazyloadImages = document.querySelectorAll("img.lazy");
-        var lazyloadThrottleTimeout;
-
-        function lazyload() {
-            if (lazyloadThrottleTimeout) {
-                clearTimeout(lazyloadThrottleTimeout);
-            }
-
-            lazyloadThrottleTimeout = setTimeout(function () {
-                var scrollTop = window.pageYOffset;
-                lazyloadImages.forEach(function (img) {
-                    if (img.offsetTop < (window.innerHeight + scrollTop)) {
-                        img.src = img.dataset.src;
-                        img.classList.remove('lazy');
-                    }
-                });
-                if (lazyloadImages.length == 0) {
-                    document.removeEventListener("scroll", lazyload);
-                    window.removeEventListener("resize", lazyload);
-                    window.removeEventListener("orientationChange", lazyload);
-                }
-            }, 20);
-        }
-
-        document.addEventListener("scroll", lazyload);
-        window.addEventListener("resize", lazyload);
-        window.addEventListener("orientationChange", lazyload);
-    });</script>
-            <!-- =========================
+    </script>
+<!-- =========================
      FOOTER   
 ============================== -->
             <!-- Back top -->
