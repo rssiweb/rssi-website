@@ -47,7 +47,7 @@ git push
 E:\RSSIWebsite>git fetch --all
 Fetching origin
 
-E:\RSSIWebsite>git reset --hard origin/master
+E:\RSSIWebsite>git reset --hard origin/rssiweb
 HEAD is now at 7ef1a78 lazy loading
 
 
