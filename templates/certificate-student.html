@@ -93,10 +93,10 @@ http://www.rssi.in
     <!--<img src="" alt="" width="100%"/><br>-->
     <div style="margin: 0.3%;">
         <ps class="marginleft notice" style="margin-left: 3%;">
-            <a href="/index">Home</a> &#62; e-Certificate</ps>
+            <a href="/index">Home</a> &#62; e-Certificate&#62; Student</ps>
     </div>
     <br><br>
-    <div class="container">
+    <!--<div class="container">
         <div clas="row">
 
             <div class="col">
@@ -110,7 +110,7 @@ http://www.rssi.in
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     <div class="container">
         <!--<span style="color: #F2545F; display: inline;"></span>-->
         <p style="display: inline;">You have to enter at least one value to
@@ -120,7 +120,7 @@ http://www.rssi.in
 
 
             <div class="col1">
-                <label for="name">Associate No/Student ID<span style="color: #F2545F"></span>&nbsp;</label>
+                <label for="name">Student ID<span style="color: #F2545F"></span>&nbsp;</label>
                 <input type="text" id="name" name="name" minlength="9" maxlength="9" size="12"
                     style="text-transform:uppercase">
             </div>
@@ -156,7 +156,7 @@ http://www.rssi.in
                             <thead style="background-color: whitesmoke;
                                 font-style: oblique;">
                                 <tr>
-                                    <th width="8%"><b>Associate No</b></th>
+                                    <th width="8%"><b>Student ID</b></th>
                                     <th width="14%"><b>Name</b></th>
                                     <th width="8%"><b>Issued on</b></th>
                                     <th width="14%"><b>Badge Name</b></th>
@@ -199,17 +199,17 @@ http://www.rssi.in
     <script type="text/javascript">
 
         var loaddata = function () {
-            var associateno = document.getElementById('name').value.toUpperCase()
+            var studentid = document.getElementById('name').value.toUpperCase()
             var certificateno = document.getElementById('ename').value.toUpperCase()
 
-            $.getJSON("https://spreadsheets.google.com/feeds/list/1jBzPNDjx9wyJcIpgZ66TLzvFPBDcqgmPx_LqOXC6h30/1/public/values?alt=json",
+            $.getJSON("https://spreadsheets.google.com/feeds/list/1J28bo_bSIvFSnvlNfTzwMuRA0RWClSWrJyQYz5aJBMA/1/public/values?alt=json",
                 function (data) {
                     document.getElementById('demo').innerHTML = ""
                     var sheetData = data.feed.entry;
                     var i;
                     var records = []
                     for (i = 0; i < sheetData.length; i++) {
-                        var AssociateNo = data.feed.entry[i]['gsx$associateno']['$t'];
+                        var Studentid = data.feed.entry[i]['gsx$studentid']['$t'];
                         var Name = data.feed.entry[i]['gsx$name']['$t'];
                         var Designation = data.feed.entry[i]['gsx$designation']['$t'];
                         var DOJ = data.feed.entry[i]['gsx$doj']['$t'];
@@ -221,9 +221,9 @@ http://www.rssi.in
                         var Issuedon = data.feed.entry[i]['gsx$issuedon']['$t'];
                         var CertificateNo = data.feed.entry[i]['gsx$certificateno']['$t'];
 
-                        if (AssociateNo === associateno || CertificateNo === certificateno) {
+                        if (Studentid === studentid || CertificateNo === certificateno) {
                             // sort records
-                            records.push({ Issuedon: Issuedon, BadgeName: BadgeName, CertificateNo: CertificateNo, Certificate: Certificate, Receivedfor: Receivedfor, Name: Name,AssociateNo:AssociateNo })
+                            records.push({ Issuedon: Issuedon, BadgeName: BadgeName, CertificateNo: CertificateNo, Certificate: Certificate, Receivedfor: Receivedfor, Name: Name, Studentid:Studentid })
                         }
 
                         // else {document.getElementById('demo').innerHTML= "no record2";}
@@ -233,7 +233,7 @@ http://www.rssi.in
                     } else {
                         records.forEach(item => {
                             {
-                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.AssociateNo + '</td>'+ '<td>' + item.Name + '</td>' + '<td>' + item.Issuedon + '</td>' + '<td>' + item.BadgeName + '</td>' + '<td>' + item.CertificateNo + '</td>' + '<td>' +'<span class="notice"><a href="'+item.Certificate+'"target="_blank">Download</a></span>'+ '</td>' +'<td>' + item.Receivedfor + '</td>'+'</tr>');
+                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Studentid + '</td>'+ '<td>' + item.Name + '</td>' + '<td>' + item.Issuedon + '</td>' + '<td>' + item.BadgeName + '</td>' + '<td>' + item.CertificateNo + '</td>' + '<td>' +'<span class="notice"><a href="'+item.Certificate+'"target="_blank">Download</a></span>'+ '</td>' +'<td>' + item.Receivedfor + '</td>'+'</tr>');
                             }
                         })
                     }
