@@ -229,11 +229,11 @@ http://www.rssi.in
                         // else {document.getElementById('demo').innerHTML= "no record2";}
                     }
                     if (records.length == 0) {
-                        document.getElementById('demo').innerHTML = ('<br>' + 'No record found.')
+                        document.getElementById('demo').innerHTML += ('<tr>' + '<td></td><td>' + '<p style="color:#F2545F">No record found.</p>'+'</td></tr>');
                     } else {
                         records.forEach(item => {
                             {
-                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Studentid + '</td>'+ '<td>' + item.Name + '</td>' + '<td>' + item.Issuedon + '</td>' + '<td>' + item.BadgeName + '</td>' + '<td>' + item.CertificateNo + '</td>' + '<td>' +'<span class="notice"><a href="'+item.Certificate+'"target="_blank">Download</a></span>'+ '</td>' +'<td>' + item.Receivedfor + '</td>'+'</tr>');
+                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Studentid + '</td>'+ '<td>' + item.Name + '</td>' + '<td>' + item.Issuedon + '</td>' + '<td>' + item.BadgeName + '</td>' + '<td>' + item.CertificateNo + '</td>' + '<td>' +'<span class="noticet"><a href="'+item.Certificate+'"target="_blank">Download</a></span>'+ '</td>' +'<td>' + item.Receivedfor + '</td>'+'</tr>');
                             }
                         })
                     }

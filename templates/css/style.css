@@ -176,6 +176,36 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
   font-size: 13px;
 }
 
+
+/*---------------------------------------
+    CLASS NAME- NOTICET : URL DECORATION for table              
+-----------------------------------------*/
+
+.noticet a:link {
+  text-decoration: none !important;
+  color: #F2545F !important;
+  font-size: 14px;
+}
+
+.noticet a:visited {
+  text-decoration: none !important;
+  color: #F2545F !important;
+  font-size: 14px;
+}
+
+.noticet a:hover {
+  text-decoration: underline !important;
+  color: #F2545F !important;
+  font-size: 14px;
+}
+
+.noticet a:active {
+  text-decoration: underline !important;
+  color: #F2545F !important;
+  font-size: 14px;
+}
+
+
 /*---------------------------------------
     CLASS NAME- link : URL DECORATION               
 -----------------------------------------*/
