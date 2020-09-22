@@ -221,7 +221,7 @@ http://www.rssi.in
                         var Issuedon = data.feed.entry[i]['gsx$issuedon']['$t'];
                         var CertificateNo = data.feed.entry[i]['gsx$certificateno']['$t'];
 
-                        if (Studentid === studentid || CertificateNo === certificateno) {
+                        if ((Studentid === studentid && CertificateNo === certificateno)||(studentid === "" && CertificateNo === certificateno)||(certificateno === "" && Studentid === studentid)) {
                             // sort records
                             records.push({ Issuedon: Issuedon, BadgeName: BadgeName, CertificateNo: CertificateNo, Certificate: Certificate, Receivedfor: Receivedfor, Name: Name, Studentid:Studentid })
                         }

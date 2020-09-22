@@ -221,11 +221,11 @@ http://www.rssi.in
                         var Issuedon = data.feed.entry[i]['gsx$issuedon']['$t'];
                         var CertificateNo = data.feed.entry[i]['gsx$certificateno']['$t'];
 
-                        if (AssociateNo === associateno || CertificateNo === certificateno) {
+                        if ((AssociateNo === associateno && CertificateNo === certificateno)||(certificateno==="" && AssociateNo === associateno)||(associateno==="" && CertificateNo === certificateno)) {
                             // sort records
                             records.push({ Issuedon: Issuedon, BadgeName: BadgeName, CertificateNo: CertificateNo, Certificate: Certificate, Receivedfor: Receivedfor, Name: Name,AssociateNo:AssociateNo })
                         }
-
+                        
                         // else {document.getElementById('demo').innerHTML= "no record2";}
                     }
                     if (records.length == 0) {

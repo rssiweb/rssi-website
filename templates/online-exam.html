@@ -2,7 +2,10 @@
 <html lang="en">
 
 <head>
-
+    <!--
+RSSI
+http://www.rssi.in
+-->
     <title>Exam portal</title>
 </head>
 
@@ -10,9 +13,8 @@
 <meta name="author" content="">
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-
+<meta name="viewport" content="width=device-width,
+        initial-scale=1,maximum-scale=1">
 <link rel="shortcut icon" href="/images/logo/favicon.ico" type="image/x-icon" />
 <script src="/js/jquery.js"></script>
 <script>
@@ -20,64 +22,73 @@
         $("#header").load("/header.html");
         $("#footer").load("/footer.html");
     });</script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="/css/HeaderFooter.css">
+<link rel="stylesheet" href="/css/bootstrap_sheet.min.css">
+
 <!-- Main css -->
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/addstyle.css">
-<link rel="stylesheet" href="/css/animate.css">
+<!-- Material Design Bootstrap -->
+<link href="/css/mdb.min_sheet.css" rel="stylesheet">
 
 <style>
+    body {
+        line-height: unset;
+    }
+
     .navbar {
         padding: unset;
+        font-weight: unset;
+        display: inline-block;
     }
 
-    /* css */
-    ul {
-        list-style: none;
-        padding: 0;
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: unset;
     }
 
-    li {
-        padding: 15px;
+    .text-center {
+        text-align: left !important;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
         background-color: #fff;
-        border-style: solid;
-        border-color: #999;
-        border-style: solid;
-        border-width: 0px 0px 1px 0px;
-        height: 80px;
     }
 
-    li:hover {
-        background-color: #f9f9f9;
+    .table-striped tbody tr {
+        background-color: #FAFAFB
     }
 
-    .badge-primary {
-        color: #fff;
-        background-color: #4CBA6F;
+    input,
+    select {
+        width: 150px;
     }
-    .retest {
-    color: #fff;
-    background-color: skyblue;
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: none;
+    }
+
+    .exam_btn:hover {
+        background: #90BAA4;
+        border: 1px solid #90BAA4;
+    }
+    .columnExam2 {
+    float: left;
+    width: unset !important;
+    padding-top: 1%;
+}
+table.table a {
+    margin: 0;
+    color: whitesmoke;
 }
 </style>
-
-
-<script>
-    $(document).ready(function () {
-        // Add minus icon for collapse element which is open by default  fas fa-chevron-down
-        $(".collapse.show").each(function () {
-            $(this).prev(".card-header").find(".fas").addClass("fa-chevron-down").removeClass("fa-chevron-up");
-        });
-
-        // Toggle plus minus icon on show hide of collapse element
-        $(".collapse").on('show.bs.collapse', function () {
-            $(this).prev(".card-header").find(".fas").removeClass("fa-chevron-down").addClass("fa-chevron-up");
-        }).on('hide.bs.collapse', function () {
-            $(this).prev(".card-header").find(".fas").removeClass("fa-chevron-up").addClass("fa-chevron-down");
-        });
-    });
-</script>
 <!-- =========================
      NAVIGATION LINKS     
 ============================== -->
@@ -121,1463 +132,221 @@
             </div>
         </div>
     </div>
-
-    <!-- =========================
-    SMART CLASSROOM   
-============================== -->
-
-    <section id="leadership">
-        <div class="container" style="margin-top:-50px">
-            <div class="row">
-                <div class="col-12 col-md-6 offset-lg-2 col-lg-4" style="margin-top: 20px;">
-                    <div id="accordion" class="accordion">
-
-
-                        <div class="card">
-                            <div class="accordion-group">
-                                <div class="card-header" id="headingTwo">
-
-                                    <a href="#collapseTwo" data-toggle="collapse" data-target="#collapseTwo"
-                                        aria-expanded="false" aria-controls="collapseTwo">
-                                        <div class="media">
-                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1590054894/subjects/hindi.jpg"
-                                                class="mr-3 rounded-circle" alt="...">
-                                            <div class="media-body">
-                                                <h5 class="mt-2">Hindi</h5>
-                                            </div><i class="fas fa-chevron-down"></i>
-                                        </div>
-                                    </a>
-
-                                </div>
-
-                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                    data-parent="#accordion">
-                                    <div class="card-body">
-                                        <ul>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">007-HND-LG3&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;">CT01</span>
-                                                    </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSfeHFPn7tGQGTsV6kl_rDY-2b2iarPUArnCvjEbjLl2Iz2XMA/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">006-HND-LG4+LG4S1+LG4S2&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;">CT01</span>
-                                                    </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/u/1/d/e/1FAIpQLSd_YrKNs2n1w2EZQiw-3z0fTy6kFPOs1Gg8Rq3Yd69GlF6e4Q/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">LG3-HND-QT1W&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                    </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://drive.google.com/file/d/1W5f7QP_aVLFjRoc2DLTCtV6rBNe8XF38/view">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">LG4/LG4S1/LG4S2-HND-QT1W&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                    </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://drive.google.com/file/d/1w8ECCiCUo64KYhoR-ELMyV34vkjTfzZx/view">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">001-Hindi-LG3</p>
-                                                    </b>
-                                                    <p>व्याकरण</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLScbQx62dmWu-rv9cIdAW4O2qKJ4Xy4jG26txj3aO3oQB48W2A/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">
-                                                            002-Hindi-LG4+LG4S&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p>काव्य एवं गद्द</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSeUgfbiBVHQ_1OBux80-oXiASZ9SxJpdyw9TdC-1qNV54upvw/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">003-Hindi-LG3&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p>मुहावरे एवं लोकोत्तियाँ</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSd8_VL3viyFtQFaKpevB8MS9xpmPboYYgkgW0ACUM4yAFoLog/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">004-Hindi-LG3&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p>व्याकरण</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSc_mcCFiXCc4NjKS0GsnVcsqlOaCO4G7McMnYM7_JdG-e4n7w/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">005-Hindi-LG4+LG4S&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p>हिंदी काव्य - अलंकार एवं छंद</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSeP1DbK7TLUcz4zzviy25WCGzZKjbRPGJnttGgHfeeyalfhHA/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-
-
-
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                        <div class="card">
-                            <div class="accordion-group">
-                                <div class="card-header collapsed" id="headingOne">
-
-                                    <a href="#collapseOne" data-toggle="collapse" data-target="#collapseOne"
-                                        aria-expanded="true" aria-controls="collapseOne">
-                                        <div class="media">
-                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1590055558/subjects/english.jpg"
-                                                class="mr-3 rounded-circle" alt="...">
-                                            <div class="media-body">
-                                                <h5 class="mt-2">English</h5>
-
-                                            </div><i class="fas fa-chevron-down"></i>
-
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                                    data-parent="#accordion">
-                                    <div class="card-body">
-                                        <!--<a href="#">No question paper is available at this moment. Please connect with
-                                            the exam cell.&nbsp;&nbsp;<i class="fas fa-pen"></i></a>-->
-                                        <ul>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">005-ENG-LG3&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;">CT01</span>
-                                                    </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSf9c2-uGzW6xh8kCk-MiF2plHKDivwU54lJ5790uIygjmeb2A/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">006-ENG-LG4+LG4S1+LG4S2&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;">CT01</span>
-                                                    </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSd_akVuckNS8P8Y1i6kyAzs8pMkticnmmCofK4lkU4pXoMTNA/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">LG3-ENG-QT1W&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                    </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://drive.google.com/file/d/1ijqzVBotzdxdaNV_W-_49BdJ1yv7ELsi/view">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">LG4/LG4S1/LG4S2-ENG-QT1W&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                    </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://drive.google.com/file/d/1sQYixh4DfpA-Eqrkc3XxXgJrCqmoPww5/view">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-
-
-
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">
-                                                            001-English-LG4+LG4S&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p>Noun, Pronoun, Comp</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSclcjIqHOOzZCw-51Lr0fEm94BsOk6kYVzOSTZiobIWX1cBiw/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">002-English-LG3&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p>Noun, Pronoun, Comp</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSd8uJWRjZf5_9o3GqEEip6tB08JqUxtigG5A6cU6xewJPt2og/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">
-                                                            003-English-LG4+LG4S&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p>Noun, Pronoun, Comp, Tenses</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSdXhzLtYw2HmC4zhsEY2b__OkePnAV2UThJLqfXJgFHMBd3qg/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">
-                                                            004-English-LG3&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p>Noun, Pronoun, Comp, Tense</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSd2Ep7ViOCMZqx5YwibKrGWnXTmvprZhX9U2F-5dIsaMQIsYA/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                        <div class="card">
-                            <div class="accordion-group">
-                                <div class="card-header" id="headingThree">
-
-                                    <a href="#collapseThree" data-toggle="collapse" data-target="#collapseThree"
-                                        aria-expanded="false" aria-controls="collapseThree">
-                                        <div class="media">
-                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1590054895/subjects/math.jpg"
-                                                class="mr-3 rounded-circle" alt="...">
-                                            <div class="media-body">
-                                                <h5 class="mt-2">Math</h5>
-                                            </div><i class="fas fa-chevron-down"></i>
-                                        </div>
-                                    </a>
-
-                                </div>
-
-                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                                    data-parent="#accordion">
-                                    <div class="card-body">
-                                        <ul>
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">008-MTH-LG4S1&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;">CT01</span>
-                                                        </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSfpGBC_V6dQ0zpI-VlaY3yFihjRvP8x9BmsvM1TVYIT-ZRhVQ/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">007-MTH-LG4S2(XI)&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;">CT01</span>
-                                                        </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSdxo2IdSQhtRvgyqEF5YkliQE52_JqAEWNyRfAPWDP_YOD1ag/formResponse">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-
-
-
-
-
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">006-MTH-LG4S2(XII)&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;">CT01</span>
-                                                        </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSfiuOjtyLGD3uyVYKeiAUNnB1Gaf1cAwKkmHoz-I59glL2T5Q/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">005-MTH-LG3&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;">CT01</span>
-                                                        </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLScLEgp6QWIal-c8lzx22igmYCcPqbKDSthZVypTNKwAViZcRg/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">LG3-MTH-QT1W&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://drive.google.com/file/d/1FbojSLjyYk4G2vRXsHu3GaUJeaqmxaIr/view">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">LG4S1/X-MTH-QT1W&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://drive.google.com/file/d/1SwKGfWBebtw8bDnEMJ_T9FZ4em5oAACQ/view">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">LG4S2/XI-MTH-QT1W&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://drive.google.com/file/d/1kaYw31SmxfTDej1mmOqcFUOyOA5SUw7R/view">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">LG4S2/XII-MTH-QT1W&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://drive.google.com/file/d/1dBqqBlNSbO4H45e15tNoXDUrDolTjjHf/view">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-
-
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">001-Math-LG3&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p>Simple Equations, Profit & Loss, Simple Interest</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSe94EoJjElKE6P-bDKpdjHOf2Ppz6LG8vFM6q98d7XlmkjZsg/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">002-Math-LG4S&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p>Area & Volume</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSfRyIycwO8T-tp1RLcJyu3P15SqMwXX98ao8V1nuSAjucmjXw/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">003-Math-LG4S&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p>SPEED & DISTANCE</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSeHUOct5-s7Edxv1lTki-kQYc6GACMcUsHd2ihkMOn030mnAg/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">004-Math-LG3&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p>Rational Numbers/परिमेय संख्या</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSfuKrfmtYaDFZ_9EJjHIfD-_KZpnioW5v2OxfrKsOnaqL9UdA/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-12 col-md-6 col-lg-4" style="margin-top: 20px;">
-                    <div id="accordion1" class="accordion">
-                        <div class="card">
-                            <div class="accordion-group">
-                                <div class="card-header" id="heading4">
-
-                                    <a href="#collapse4" data-toggle="collapse" data-target="#collapse4"
-                                        aria-expanded="false" aria-controls="collapse4">
-                                        <div class="media">
-                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1590054894/subjects/chemistry.jpg"
-                                                class="mr-3 rounded-circle" alt="...">
-                                            <div class="media-body">
-                                                <h5 class="mt-2">Chemistry</h5>
-                                            </div><i class="fas fa-chevron-down"></i>
-                                        </div>
-                                    </a>
-
-                                </div>
-
-                                <div id="collapse4" class="collapse" aria-labelledby="heading4"
-                                    data-parent="#accordion1">
-                                    <div class="card-body">
-
-                                        <ul>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">006-CHM-LG4S2(XI)&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;">CT01</span></p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSd5i0QK2Qt0A9RhFlrWcNV7dvI2XijBAc9xP8-eISpDwo4c5Q/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">004-CHM-LG4S1&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;">CT01</span></p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSfmzgGV1uH9anpJHfFG3zuS-ug_neH3uhQhHQ_g_nfI2HuSeQ/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">005-CHM-LG4S2(XII)&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;">CT01</span></p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSeVzu1JXjObHrU13AEmXEFsOIg8ZCUqksb8NYzqgwdyJwph_g/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-
-
-
-
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">LG4S1-CHM-QT1W&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;"></span></p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://drive.google.com/file/d/1wYeL2bcVmI6FqyuP4F9mqlEg5W3xHl0t/view">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">LG4S2-CHM-QT1W&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;"></span></p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://drive.google.com/file/d/1fgzD3YcxaVKCS3zQVqAT9PqyfoKt6xXn/view">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">001-Chemistry-LG4S</p>
-                                                    </b>
-                                                    <p>pH and pOH</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSc3-AggvmILj_tcg9-2WvQQes9BitaXSzhabmkb-QRS0IMk_g/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                       <p style="margin-bottom: 5px;">
-                                                            002-Chemistry-LG4S&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p>Valency, Formula & Balancing Equation</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSeAdxFTrG-hVJx5SE1z4fS6EucFw7eH36nYD8SlqvFyBTWArw/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                       <p style="margin-bottom: 5px;">
-                                                            003-Chemistry-LG4S&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p>Metals and Non metals-P1</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://drive.google.com/file/d/1AK2HtkA1IOuptgRD2-sze6ihvxItsQXh/view">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">Start</div>
-                                                </a>
-                                            </li>
-
-
-
-
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="card">
-                            <div class="accordion-group">
-                                <div class="card-header" id="headingphy">
-
-                                    <a href="#collapsephy" data-toggle="collapse" data-target="#collapsephy"
-                                        aria-expanded="false" aria-controls="collapsephy">
-                                        <div class="media">
-                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1590054894/subjects/physics.jpg"
-                                                class="mr-3 rounded-circle" alt="...">
-                                            <div class="media-body">
-                                                <h5 class="mt-2">Physics</h5>
-                                            </div><i class="fas fa-chevron-down"></i>
-                                        </div>
-                                    </a>
-
-                                </div>
-
-                                <div id="collapsephy" class="collapse" aria-labelledby="headingphy"
-                                    data-parent="#accordion1">
-                                    <div class="card-body notice">
-                                      <ul>  
-                                        <li>
-                                            <div style="display: inline-block;" class="columnExam">
-                                                <b>
-                                                    <p style="margin-bottom: 5px;">002-PHY-LG4S1&nbsp;&nbsp;<span
-                                                        class="position-relative mx-2 badge badge-primary rounded-0"
-                                                        style="font-size: 10px; letter-spacing: 1px;">CT01</span></p>
-                                                </b>
-                                                <p></p>
-                                            </div>
-
-                                            <a
-                                                href="https://docs.google.com/forms/d/e/1FAIpQLSd69MlJax2KYgIUa9L7URdJwX_NplEU6E9km4mxdja9eCfXKw/viewform">
-                                                <div class="columnExam2 exam_btn white"
-                                                    style="display: inline-block">
-                                                    Start</div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <div style="display: inline-block;" class="columnExam">
-                                                <b>
-                                                    <p style="margin-bottom: 5px;">001-PHY-LG4S2(XI+XII)&nbsp;&nbsp;<span
-                                                        class="position-relative mx-2 badge badge-primary rounded-0"
-                                                        style="font-size: 10px; letter-spacing: 1px;">CT01</span></p>
-                                                </b>
-                                                <p></p>
-                                            </div>
-
-                                            <a
-                                                href="https://docs.google.com/forms/d/e/1FAIpQLSdrY8AZdE0AqGFz1oHDa5ljIcU1W9Boom_W1MwrCwiP-R418w/viewform">
-                                                <div class="columnExam2 exam_btn white"
-                                                    style="display: inline-block">
-                                                    Start</div>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <div style="display: inline-block;" class="columnExam">
-                                                <b>
-                                                    <p style="margin-bottom: 5px;">LG4S1-PHY-QT1W&nbsp;&nbsp;<span
-                                                        class="position-relative mx-2 badge badge-primary rounded-0"
-                                                        style="font-size: 10px; letter-spacing: 1px;"></span></p>
-                                                </b>
-                                                <p></p>
-                                            </div>
-
-                                            <a
-                                                href="https://drive.google.com/file/d/1rwx1D60ZpAUr0jLwW6btt2j4_OL_vauV/view">
-                                                <div class="columnExam2 exam_btn white"
-                                                    style="display: inline-block">
-                                                    Start</div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <div style="display: inline-block;" class="columnExam">
-                                                <b>
-                                                    <p style="margin-bottom: 5px;">LG4S2-PHY-QT1W&nbsp;&nbsp;<span
-                                                        class="position-relative mx-2 badge badge-primary rounded-0"
-                                                        style="font-size: 10px; letter-spacing: 1px;"></span></p>
-                                                </b>
-                                                <p></p>
-                                            </div>
-
-                                            <a
-                                                href="https://drive.google.com/file/d/1m9WJwVsXHvexpfLxt8Ri8EAwU65naDQe/view">
-                                                <div class="columnExam2 exam_btn white"
-                                                    style="display: inline-block">
-                                                    Start</div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-
-
-                        <div class="card">
-                            <div class="accordion-group">
-                                <div class="card-header" id="heading5">
-
-                                    <a href="#collapse5" data-toggle="collapse" data-target="#collapse5"
-                                        aria-expanded="false" aria-controls="collapse5">
-                                        <div class="media">
-                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1590054894/subjects/gk.jpg"
-                                                class="mr-3 rounded-circle" alt="...">
-                                            <div class="media-body">
-                                                <h5 class="mt-2">GK</h5>
-                                            </div><i class="fas fa-chevron-down"></i>
-                                        </div>
-                                    </a>
-
-                                </div>
-
-                                <div id="collapse5" class="collapse" aria-labelledby="heading5"
-                                    data-parent="#accordion1">
-                                    <div class="card-body">
-                                        <ul>
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">003-GKA-LG3&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;">CT01</span>
-                                                    </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSdYAQlvBoSxLoJgDJ1z_LbhrQyryQmHZCRiab3bEAaEDEFnBg/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">LG3-GKA-QT1W&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                    </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://drive.google.com/file/d/1_Cqe3XqVMNVcyb5oJvH6AhaYAFFo-jL9/view">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                   <b>
-                                                        <p style="margin-bottom: 5px;">001-GK-LG3&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>                                                       
-                                                    <p>GK</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSej5bZd7GHYNTDt5dRoa-JEubIXbObF8Xigffar4DOZkBzk2g/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">002-GK-LG3&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p>Universe, Solar System, Photosynthesis, Water Cycle</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSdlZhaqSmbtcMP91wAZuBkGnHnZDR97M1-GsTxhzYTiZvBZnA/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="card">
-                            <div class="accordion-group">
-                                <div class="card-header" id="heading6">
-
-                                    <a href="#collapse6" data-toggle="collapse" data-target="#collapse6"
-                                        aria-expanded="false" aria-controls="collapse6">
-                                        <div class="media">
-                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1590054894/subjects/computer.jpg"
-                                                class="mr-3 rounded-circle" alt="...">
-                                            <div class="media-body">
-                                                <h5 class="mt-2">Computer</h5>
-                                            </div><i class="fas fa-chevron-down"></i>
-                                        </div>
-                                    </a>
-
-                                </div>
-
-                                <div id="collapse6" class="collapse" aria-labelledby="heading4"
-                                    data-parent="#accordion1">
-                                    <div class="card-body notice">
-                                        <ul>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">004-COM-LG3&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;">CT01</span>
-                                                    </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLScc76jF57ZHI9XrVbq7gejtQMYGFig3dHhVGSNiDeqV7KbKhA/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">002-COM-LG4+LG4S1&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;">CT01</span>
-                                                    </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSdPTJZKG1PVeXzU1kuhYd9ikQ_METqCswckbRCjWNZTgzgtwA/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">003-COM-LG4S2&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;">CT01</span>
-                                                    </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLScXlBuGuku6DWRPW5q5mROXbRbOMqiHuMqsaTObt7f3AecVIA/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-
-
-
-
-
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">LG4/LG4S1-COM-QT1W&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                    </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://drive.google.com/file/d/15LavVOsp87vKAnFd4gqvQwaxYV4Ar9Ir/view">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">LG4S2-COM-QT1W&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                    </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://drive.google.com/file/d/1FoZBwyglgToBGbF6QyV8b5g5Q1_bKDAE/view">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">001-COM-LG4+LG4S1+LG4S2&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;"></span></p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://drive.google.com/file/d/1bcEWqZ-7vovtWt458t6vKhp4F6CoYnmV/view">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-
-
-
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="card">
-                            <div class="accordion-group">
-                                <div class="card-header" id="heading7">
-
-                                    <a href="#collapse7" data-toggle="collapse" data-target="#collapse7"
-                                        aria-expanded="false" aria-controls="collapse7">
-                                        <div class="media">
-                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1590054894/subjects/biology.jpg"
-                                                class="mr-3 rounded-circle" alt="...">
-                                            <div class="media-body">
-                                                <h5 class="mt-2">Biology</h5>
-                                            </div><i class="fas fa-chevron-down"></i>
-                                        </div>
-                                    </a>
-
-                                </div>
-
-                                <div id="collapse7" class="collapse" aria-labelledby="heading7"
-                                    data-parent="#accordion1">
-                                    <div class="card-body notice">
-                                        <ul>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">003-BIO-LG4S1 &nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;">CT01</span>
-                                                    </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLSeVV_7Cc2wqeCfs5HxMvcShNkHsSrj0tDSRcLbZbmXRl7xa7g/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">LG4S1-BIO-QT1W&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                    </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://drive.google.com/file/d/1W_5DkhnW6x1r4kwB6AWA4MbXh65McUBm/view">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">001-Biology-LG4S/X&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;"></span></p>
-                                                    </b>
-                                                    <p>--</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://drive.google.com/file/d/1MO6S2kEDtxVI0xQ1s4-oXInQ1SEauLrB/view">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                       <p style="margin-bottom: 5px;">
-                                                        002-Biology-LG4S/XI&nbsp;&nbsp;<span
-                                                                class="position-relative mx-2 badge badge-primary rounded-0"
-                                                                style="font-size: 10px; letter-spacing: 1px;"></span>
-                                                        </p>
-                                                    </b>
-                                                    <p>--</p>
-                                                </div>
-
-                                                <a
-                                                    href="https://drive.google.com/file/d/1SsIJnCMND_NHe-FO8laVsZd-aHd9KC6V/view">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">Start</div>
-                                                </a>
-                                            </li>
-
-
-
-
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="card">
-                            <div class="accordion-group">
-                                <div class="card-header" id="heading8">
-
-                                    <a href="#collapse8" data-toggle="collapse" data-target="#collapse8"
-                                        aria-expanded="false" aria-controls="collapse8">
-                                        <div class="media">
-                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1590054894/subjects/history.jpg"
-                                                class="mr-3 rounded-circle" alt="...">
-                                            <div class="media-body">
-                                                <h5 class="mt-2">Social science</h5>
-                                            </div><i class="fas fa-chevron-down"></i>
-                                        </div>
-                                    </a>
-
-                                </div>
-
-                                <div id="collapse8" class="collapse" aria-labelledby="heading8"
-                                    data-parent="#accordion1">
-                                    <div class="card-body notice">
-                                        <ul>
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">001-SSC-LG3&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;">CT01</span>
-                                                    </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLScshgAlY0HPlbmSElbuL---rxzLGV7G4XS6xg8NnB6meDh4xg/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                       </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="card">
-                            <div class="accordion-group">
-                                <div class="card-header" id="heading6sc">
-
-                                    <a href="#collapse6sc" data-toggle="collapse" data-target="#collapse6sc"
-                                        aria-expanded="false" aria-controls="collapse6sc">
-                                        <div class="media">
-                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1590054894/subjects/science.jpg"
-                                                class="mr-3 rounded-circle" alt="...">
-                                            <div class="media-body">
-                                                <h5 class="mt-2">Science</h5>
-                                            </div><i class="fas fa-chevron-down"></i>
-                                        </div>
-                                    </a>
-
-                                </div>
-
-                                <div id="collapse6sc" class="collapse" aria-labelledby="heading6sc"
-                                    data-parent="#accordion1">
-                                    <div class="card-body notice">
-                                        
-                                        <ul>
-                                            <li>
-                                                <div style="display: inline-block;" class="columnExam">
-                                                    <b>
-                                                        <p style="margin-bottom: 5px;">001-SCE-LG3&nbsp;&nbsp;<span
-                                                            class="position-relative mx-2 badge badge-primary rounded-0"
-                                                            style="font-size: 10px; letter-spacing: 1px;">CT01</span>
-                                                    </p>
-                                                    </b>
-                                                    <p></p>
-                                                </div>
-
-                                                <a
-                                                    href="https://docs.google.com/forms/d/e/1FAIpQLScb6zu4ojwROfdhwFGCXjvPtu_UJrYKuFvkkAFg0yCaWmtnzA/viewform">
-                                                    <div class="columnExam2 exam_btn white"
-                                                        style="display: inline-block">
-                                                        Start</div>
-                                                </a>
-                                            </li>
-
-                                       </ul>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
+<br><br>
+    <div class="container">
+        <!--<span style="color: #F2545F; display: inline;"></span>-->
+        <p style="display: inline;">You have to enter at least one value to
+            get the question paper.</p>
+        <div class="row" style="background-color: rgb(255, 245,
+                194);height: 110%; padding-top: 0; padding-bottom: 1.5%;padding-left: 1.5%">
+
+
+            <div class="col2ass">
+                <label for="name">Category<span style="color: #F2545F"></span>&nbsp;</label>
+                <select name="name" id="name">
+                    <option selected>Select</option>
+                    <option>LG2</option>
+                    <option>LG3</option>
+                    <option>LG4</option>
+                    <option>LG4S1</option>
+                    <option>LG4S2</option>
+                </select></div>
+                <div class="col2ass">
+                <label for="name1">Subject<span style="color: #F2545F"></span>&nbsp;</label>
+                <select name="name1" id="name1">
+                    <option selected>Select</option>
+                    <option>Hindi</option>
+                    <option>English</option>
+                    <option>Physics</option>
+                    <option>Chemistry</option>
+                    <option>Mathematics</option>
+                    <option>Biology</option>
+                    <option>Science</option>
+                    <option>Social Science</option>
+                    <option>Computer</option>
+                    <option>GK/Current Affairs</option>
+                </select>
+            </div>
+            <div class="col2ass">
+                <label for="name2">Year<span style="color: #F2545F"></span>&nbsp;</label>
+                <select name="name2" id="name2">
+                    <option selected>Select</option>
+                    <option>2020-2021</option>
+                </select>
+            </div>
+
+           <div class="col2ass">
+            <label for="name3">Exam Name<span style="color: #F2545F"></span>&nbsp;</label>
+            <select name="name3" id="name3">
+                <option selected>Select</option>
+                <option>1/CT01</option>
+                <option>1/CT02</option>
+                <option>QT1</option>
+                <option>2/CT01</option>
+                <option>2/CT02</option>
+                <option>QT2</option>
+                <option>3/CT01</option>
+                <option>3/CT02</option>
+                <option>QT3</option>
+            </select>
+            </div>
+
+            <div class="col2">
+                <button type="button" class="exam_btn" onclick="loaddata()"><i class="fas fa-search"></i>
+                    search</button>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <body>
+                    <!--<h2 style="margin-top:2%; font-size:20px;" align="center">Question Bank</h2>-->
+                    <div class="container text-center my-4" style="overflow-x:
+                        auto;">
+                        <!-- Table  -->
+                        <table class="table bordered table-striped" id="testTable">
+                            <!-- Table head -->
+                            <thead style="background-color: whitesmoke;
+                                font-style: oblique;">
+                                <tr>
+                                    <th width="8%"><b>Category</b></th>
+                                    <th width="16%"><b>Subject</b></th>
+                                    <th width="16%"><b>Test Code</b></th>
+                                    <th width="16%"><b>Topic</b></th>
+                                    <th width="10%"><b>Full Marks</b></th>
+                                    <th width="14%"><b>Exam name</b></th>
+                                    <th><b>Question paper</b></th>
+                                    
+
+
+                                </tr>
+                            </thead>
+                            <!-- Table head -->
+
+                            <!-- Table body -->
+                            <tbody id="demo">
+
+
+                            </tbody>
+                            <!-- Table body -->
+                        </table>
+                        <!-- Table  -->
 
                     </div>
-                </div>
+
             </div>
         </div>
-    </section>
+    </div>
     <!-- =========================
      SCRIPTS   
 ============================== -->
     <script src="/js/pace.js"></script>
-    <script src="/js/jquery.js" type="text/javascript"></script>
     <script src="/js/fontawsome.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery.parallax.js"></script>
     <script src="/js/wow.min.js"></script>
     <script src="/js/custom.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="/js/mdb.min.js"></script>
+    <script type="text/javascript">
 
+        var loaddata = function () {
+       var category = document.getElementById('name').value
+       var subject = document.getElementById('name1').value
+       var year = document.getElementById('name2').value
+       var examname = document.getElementById('name3').value
 
+            $.getJSON("https://spreadsheets.google.com/feeds/list/1Ux0al5-LxKdx_3NHxhrsaDXtLXCQPbgxA0k1YEfEwxE/1/public/values?alt=json",
+                function (data) {
+                    document.getElementById('demo').innerHTML = ""
+                    var sheetData = data.feed.entry;
+                    var i;
+                    var records = []
+                    for (i = 0; i < sheetData.length; i++) {
+                        var Category = data.feed.entry[i]['gsx$category']['$t'];
+                        var Subject = data.feed.entry[i]['gsx$subject']['$t'];
+                        var Topic = data.feed.entry[i]['gsx$topic']['$t'];
+                        var Fullmarks = data.feed.entry[i]['gsx$fullmarks']['$t'];
+                        var Year = data.feed.entry[i]['gsx$year']['$t'];
+                        var Examname = data.feed.entry[i]['gsx$examname']['$t'];
+                        var Url = data.feed.entry[i]['gsx$url']['$t'];
+                        var Testcode = data.feed.entry[i]['gsx$testcode']['$t'];
+
+                        if ((Category === category && Subject === subject && Year === year && Examname === examname)||
+                        (Category === category && subject === 'Select' && year === 'Select' && examname === 'Select')||
+                        (category === 'Select' && Subject === subject && year === 'Select' && examname === 'Select')||
+                        (category === 'Select' && subject === 'Select' && Year === year && examname === 'Select')||
+                        (category === 'Select' && subject === 'Select' && year === 'Select' && Examname === examname)||
+
+                        (Category === category && Subject === subject && year === 'Select' && examname === 'Select')||
+                        (Category === category && subject === 'Select' && Year === year && examname === 'Select')||
+                        (Category === category && subject === 'Select' && year === 'Select' && Examname === examname)||
+                        (category === 'Select' && subject === 'Select' && Year === year && Examname === examname)||
+                        (category === 'Select' && Subject === subject && Year === year && examname === 'Select')||
+                        
+                        (Category === category && Subject === subject && Year === year && examname === 'Select')||
+                        (Category === category && Subject === subject && year === 'Select' && Examname === examname)||
+                        (Category === category && subject === 'Select' && Year === year && Examname === examname)||
+                        (category === 'Select' && Subject === subject && Year === year && Examname === examname)) {
+                            // sort records
+                            records.push({ Category: Category, Subject: Subject, Topic: Topic, Fullmarks: Fullmarks, Year: Year, Examname: Examname, Url:Url,Testcode:Testcode})
+                        }
+
+                        // else {document.getElementById('demo').innerHTML= "no record2";}
+                    }
+                    if (records.length == 0) {
+                        document.getElementById('demo').innerHTML += ('<tr>' + '<td></td><td>' + '<p style="color:#F2545F">No record found.</p>'+'</td></tr>');
+                    } else {
+                        var order = ["QT3", "3/CT02","3/CT01","QT2","2/CT02","2/CT01","QT1","1/CT02","1/CT01"]
+                        order.forEach(sub => {
+                        records.forEach(item => {
+                            if(sub === item.Examname){
+                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Category + '</td>'+ '<td>' + item.Subject + '</td>' + '<td>' + item.Testcode + '</td>'+'<td>' + item.Topic + '</td>' + '<td>' + item.Fullmarks + '</td>' + '<td>' + item.Examname + '</td>' + '<td>' +'<a href="'+item.Url+'"target="_self"><div class="columnExam2 exam_btn">Start</div></a>'+ '</td>' +'</tr>');
+                            }
+                    })
+                })
+                
+            }
+        });
+    }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var lazyloadImages = document.querySelectorAll("img.lazy");
+            var lazyloadThrottleTimeout;
+
+            function lazyload() {
+                if (lazyloadThrottleTimeout) {
+                    clearTimeout(lazyloadThrottleTimeout);
+                }
+
+                lazyloadThrottleTimeout = setTimeout(function () {
+                    var scrollTop = window.pageYOffset;
+                    lazyloadImages.forEach(function (img) {
+                        if (img.offsetTop < (window.innerHeight + scrollTop)) {
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                        }
+                    });
+                    if (lazyloadImages.length == 0) {
+                        document.removeEventListener("scroll", lazyload);
+                        window.removeEventListener("resize", lazyload);
+                        window.removeEventListener("orientationChange", lazyload);
+                    }
+                }, 20);
+            }
+
+            document.addEventListener("scroll", lazyload);
+            window.addEventListener("resize", lazyload);
+            window.addEventListener("orientationChange", lazyload);
+        });</script>
     <!-- =========================
      FOOTER   
 ============================== -->

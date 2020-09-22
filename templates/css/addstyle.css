@@ -155,6 +155,7 @@
 .col1 {width: 35%; padding-left: 3%; margin-top: 25px;}
 .col2 {width:30%; margin-top: 25px;}
 .col3 {width:30%; margin-top: 20px;}
+.col2ass {width:15%; margin-top: 25px;}
 
 
 
@@ -165,7 +166,7 @@
         padding-top: 5%;
         padding-left: 0px;
     }
-    .col1, .col2, .col3 {width: 100%; padding-left: 3%; margin-top: 10px;}
+    .col1, .col2,.col2ass, .col3 {width: 100%; padding-left: 3%; margin-top: 10px;}
 
     #videoNational .column6 {
         padding-left: 0;
