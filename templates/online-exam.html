@@ -123,11 +123,11 @@ table.table a {
                 <div style="text-align: right; width: 100%;" class="white hoverdecoration">
                     <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS7xMLLw8oFxfw9x8PSjCyB_-D-vdE_zVfgeHqXsE74QIdoEh60jiybeKVNT9XeBFDXqZB0Fe0cVmrQ/pubhtml?gid=1995146093&single=true"
                         target="_blank" class="primary_btn"
-                        style="padding-right:3vh; padding-left:3vh; margin-top: 1%;">CT evaluation&nbsp;&nbsp;<i class="fas fa-user-tie" style="font-size: 20px"></i></a>
+                        style="padding-right:3vh; padding-left:3vh; margin-top: 1%;">CT evaluation&nbsp;&nbsp;<i class="fas fa-clipboard-list" style="font-size: 20px"></i></a>
                         <a
                             href="https://docs.google.com/spreadsheets/d/1d1dfSWWh_aM7Eq2rZc3ZxXJ2uMpqKfchy0ciNSF4KxU/edit?usp=sharing"
                             target="_blank" class="primary_btn"
-                            style="padding-right:3vh; padding-left:3vh; margin-top: 1%; background-color: #90BAA4; border-color: #90BAA4;">QT evaluation&nbsp;&nbsp;<i class="fas fa-user-tie" style="font-size: 20px"></i></a>
+                            style="padding-right:3vh; padding-left:3vh; margin-top: 1%; background-color: #90BAA4; border-color: #90BAA4;">QT evaluation&nbsp;&nbsp;<i class="fas fa-clipboard-check" style="font-size: 20px"></i></a>
                 </div>
             </div>
         </div>
@@ -164,7 +164,7 @@ table.table a {
                     <option>Science</option>
                     <option>Social Science</option>
                     <option>Computer</option>
-                    <option>GK/Current Affairs</option>
+                    <option>GK</option>
                 </select>
             </div>
             <div class="col2ass">
@@ -216,12 +216,12 @@ table.table a {
                                 font-style: oblique;">
                                 <tr>
                                     <th width="8%"><b>Category</b></th>
-                                    <th width="16%"><b>Subject</b></th>
+                                    <th width="12%"><b>Subject</b></th>
                                     <th width="16%"><b>Test Code</b></th>
-                                    <th width="16%"><b>Topic</b></th>
-                                    <th width="10%"><b>Full Marks</b></th>
-                                    <th width="14%"><b>Exam name</b></th>
-                                    <th><b>Question paper</b></th>
+                                    <th width="5%"><b>FM</b></th>
+                                    <th width="10%"><b>Exam name</b></th>
+                                    <th width="15%"><b>Question paper</b></th>
+                                    <th><b>Topic</b></th>
                                     
 
 
@@ -309,7 +309,7 @@ table.table a {
                         order.forEach(sub => {
                         records.forEach(item => {
                             if(sub === item.Examname){
-                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Category + '</td>'+ '<td>' + item.Subject + '</td>' + '<td>' + item.Testcode + '</td>'+'<td>' + item.Topic + '</td>' + '<td>' + item.Fullmarks + '</td>' + '<td>' + item.Examname + '</td>' + '<td>' +'<a href="'+item.Url+'"target="_self"><div class="columnExam2 exam_btn">Start</div></a>'+ '</td>' +'</tr>');
+                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Category + '</td>'+ '<td>' + item.Subject + '</td>' + '<td>' + item.Testcode + '</td>'+ '<td>' + item.Fullmarks + '</td>' + '<td>' + item.Examname + '</td>' + '<td>' +'<a href="'+item.Url+'"target="_self"><div class="columnExam2 exam_btn">Start</div></a>'+ '</td>'+'<td>' + item.Topic + '</td>'+'</tr>');
                             }
                     })
                 })
