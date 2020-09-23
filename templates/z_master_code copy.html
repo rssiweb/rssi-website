@@ -101,12 +101,16 @@ table.table a {
         <span style="color: #F2545F; display: inline;">*</span>
         <p style="display: inline;"> fields are required.</p>
         <div class="row" style="background-color: rgb(255, 245,
-                194);height: 110%; padding-top: 0; padding-bottom: 1.5%;padding-left: 1.5%">
+                194); padding-top: 0; padding-bottom: 1.5%;padding-left: 1.5%"><!--height: 110%; -->
 
 
-<div class="col1">
+<div class="col2ass">
     <label for="name">Test Code<span style="color: #F2545F">*</span>&nbsp;</label>
-    <input type="text" id="name" name="name" required size="12"
+    <input type="text" id="name" name="name" required size="12">
+</div>
+<div class="col2ass">
+    <label for="name1">Password<span style="color: #F2545F">*</span>&nbsp;</label>
+    <input type="password" id="name1" name="name1" required size="12"
         style="text-transform:uppercase">
 </div>
 
@@ -174,7 +178,8 @@ table.table a {
     <script type="text/javascript">
 
         var loaddata = function () {
-       var testcode = document.getElementById('name').value
+       var testcode = document.getElementById('name').value.toUpperCase()
+       var password1 = document.getElementById('name1').value.toUpperCase()
 
             $.getJSON("https://spreadsheets.google.com/feeds/list/1I5WANuMzHDcb2m9-PoXIOV3aZIrABUGSfwPOPNh0HBY/1/public/values?alt=json",
                 function (data) {
@@ -187,7 +192,7 @@ table.table a {
                         var Password = data.feed.entry[i]['gsx$password']['$t'];
                         
 
-                        if (Testcode === testcode) {
+                        if (Testcode === testcode && password1 ==='RSSI') {
                             // sort records
                             records.push({ Testcode: Testcode, Password: Password})
                         }
