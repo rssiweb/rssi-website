@@ -110,8 +110,7 @@ table.table a {
 </div>
 <div class="col2ass">
     <label for="name1">PIN<span style="color: #F2545F">*</span>&nbsp;</label>
-    <input type="password" id="name1" name="name1" required size="12"
-        style="text-transform:uppercase">
+    <input type="password" id="name1" name="name1" required size="12">
 </div>
 
             <div class="col2">
@@ -179,7 +178,7 @@ table.table a {
 
         var loaddata = function () {
        var testcode = document.getElementById('name').value.toUpperCase()
-       var password1 = document.getElementById('name1').value.toUpperCase()
+       var password1 = document.getElementById('name1').value.toLowerCase()
 
             $.getJSON("https://spreadsheets.google.com/feeds/list/1I5WANuMzHDcb2m9-PoXIOV3aZIrABUGSfwPOPNh0HBY/1/public/values?alt=json",
                 function (data) {
@@ -192,7 +191,7 @@ table.table a {
                         var Password = data.feed.entry[i]['gsx$password']['$t'];
                         
 
-                        if (Testcode === testcode && password1 ==='RSSI') {
+                        if (Testcode === testcode && password1 ==='admin') {
                             // sort records
                             records.push({ Testcode: Testcode, Password: Password})
                         }
