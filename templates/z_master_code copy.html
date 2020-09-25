@@ -105,7 +105,7 @@ table.table a {
 
 
 <div class="col2ass">
-    <label for="name">Test Code<span style="color: #F2545F">*</span>&nbsp;</label>
+    <label for="name">Test ID<span style="color: #F2545F">*</span>&nbsp;</label>
     <input type="text" id="name" name="name" required size="12">
 </div>
 <div class="col2ass">
@@ -137,8 +137,8 @@ table.table a {
                             <thead style="background-color: whitesmoke;
                                 font-style: oblique;">
                                 <tr>
-                                    <th width="30%"><b>Test Code</b></th>
-                                    <th><b>Password</b></th>
+                                    <th width="30%"><b>Test ID</b></th>
+                                    <th><b>Test Code</b></th>
                                     </th>
                                     
 
@@ -189,9 +189,10 @@ table.table a {
                     for (i = 0; i < sheetData.length; i++) {
                         var Testcode = data.feed.entry[i]['gsx$testcode']['$t'];
                         var Password = data.feed.entry[i]['gsx$password']['$t'];
+                        var Flag = data.feed.entry[i]['gsx$flag']['$t'];
                         
 
-                        if (Testcode === testcode && password1 ==='admin') {
+                        if (Testcode === testcode && password1 ==='admin'&& Flag !== 'x') {
                             // sort records
                             records.push({ Testcode: Testcode, Password: Password})
                         }
