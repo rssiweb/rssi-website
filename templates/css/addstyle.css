@@ -829,6 +829,7 @@
     transform-origin: left top 0;
     margin-left: 80px;
     padding: 10px;
+    z-index: 10000;
 }
 
 /* Testimonial bd986b*/
