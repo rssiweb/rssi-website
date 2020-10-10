@@ -815,8 +815,6 @@
 }
 
 /* FEEDBACK BUTTON
-  ============================================================================================ */
-
 #feedback a {
     display: block;
     position: fixed;
@@ -831,7 +829,37 @@
     padding: 10px;
     z-index: 3;
 }
+  ============================================================================================ */
 
+#feedback a {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background: #F2545F;
+    color: whitesmoke;
+    transform: rotate(360deg);
+    float: right;
+    transform-origin: left top 0;
+    /*margin-left: 80px;*/
+    padding: 10px;
+    z-index: 3;
+}
+
+#feedback1 a {
+    display: block;
+    position: fixed;
+    top: 70%;
+    right: -125px;
+    background: #F2545F;
+    color: whitesmoke;
+    transform: rotate(90deg);
+    float: right;
+    transform-origin: left top 0;
+    margin-left: 80px;
+    padding: 10px;
+    z-index: 3;
+}
 /* Testimonial bd986b*/
 
 .demo {
