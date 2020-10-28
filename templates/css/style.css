@@ -47,20 +47,35 @@ html {
 @media screen and (min-width:480px) {
   #intro {
     background-attachment: fixed !important;
-    background:url('../images/bg/intro-bg.jpg') 50% 0 repeat-y;
+    background:linear-gradient(
+      rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/bg/intro-bg.jpg') 50% 0 repeat-y;
+  }
+  .body1 {
+    font-family: 'Comfortaa', serif;
+    font-size: 4vw !important;
+    text-align: center;
+    color: #ffffff
+  }
+  
+  .body2 {
+    font-family: 'Comfortaa', serif;
+    font-size: 3.5vw !important;
+    text-align: center;
+    margin-top: -1vw;
+    color: #ffffff
   }
 }
 
 .body1 {
   font-family: 'Comfortaa', serif;
-  font-size: 4vw;
+  font-size: 7vw;
   text-align: center;
   color: #ffffff
 }
 
 .body2 {
   font-family: 'Comfortaa', serif;
-  font-size: 3.5vw;
+  font-size: 6.5vw;
   text-align: center;
   margin-top: -1vw;
   color: #ffffff
