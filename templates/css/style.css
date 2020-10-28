@@ -27,7 +27,7 @@ html {
 
 #intro {
   background: linear-gradient(
-    rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/bg/intro-bg-min.jpg') 50% 0 repeat-y;
+    rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/bg/intro-bg-min.jpg') 50% 0 repeat-y;
   -webkit-background-size: cover;
   background-size: cover;
   background-position: center center;
