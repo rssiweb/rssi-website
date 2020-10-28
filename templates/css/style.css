@@ -48,7 +48,7 @@ html {
   #intro {
     background-attachment: fixed !important;
     background:linear-gradient(
-      rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/bg/intro-bg.jpg') 50% 0 repeat-y;
+      rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/bg/intro-bg.webp') 50% 0 repeat-y;
   }
   .body1 {
     font-family: 'Comfortaa', serif;
