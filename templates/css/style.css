@@ -26,7 +26,8 @@ html {
 -----------------------------------------*/
 
 #intro {
-  background: url('../images/bg/intro-bg-min.jpg') 50% 0 repeat-y;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/bg/intro-bg-min.jpg') 50% 0 repeat-y;
   -webkit-background-size: cover;
   background-size: cover;
   background-position: center center;
@@ -41,13 +42,14 @@ html {
   align-items: center;
   height: 100vh;
   text-align: center;
-  background-attachment: scroll !important;
+  background-attachment: fixed !important;
 }
 
 @media screen and (min-width:480px) {
   #intro {
     background-attachment: fixed !important;
-    background: url('../images/bg/intro-bg.jpg') 50% 0 repeat-y;
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/bg/intro-bg.jpg') 50% 0 repeat-y;
   }
 }
 
