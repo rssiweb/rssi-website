@@ -26,7 +26,8 @@ html {
 -----------------------------------------*/
 
 #intro {
-  background:url('../images/bg/intro-bg-min.jpg') 50% 0 repeat-y;
+  background:linear-gradient(
+    rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/bg/intro-bg-min.jpg') 50% 0 repeat-y;
   -webkit-background-size: cover;
   background-size: cover;
   background-position: center center;
@@ -48,7 +49,7 @@ html {
   #intro {
     background-attachment: fixed !important;
     background:linear-gradient(
-      rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/bg/intro-bg.jpg') 50% 0 repeat-y;
+      rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/bg/intro-bg.jpg') 50% 0 repeat-y;
   }
   .body1 {
     font-family: 'Comfortaa', serif;
