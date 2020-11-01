@@ -1,47 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+<head>
 
-        <title>Smart classroom</title>
-    </head>
+    <title>Smart classroom</title>
+</head>
 
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1,
+<meta name="description" content="">
+<meta name="author" content="">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1,
         maximum-scale=1">
 
 
-    <link rel="shortcut icon" href="/images/logo/favicon.ico" type="image/x-icon"
-        />
-    <script src="/js/jquery.js"></script>
-    <script>
+<link rel="shortcut icon" href="/images/logo/favicon.ico" type="image/x-icon" />
+<script src="/js/jquery.js"></script>
+<script>
     $(function () {
         $("#header").load("/header.html");
         $("#footer").load("/footer.html");
     });</script>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-        rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" href="/css/HeaderFooter.css">
-    <!-- Main css -->
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/addstyle.css">
-    <link rel="stylesheet" href="/css/animate.css">
-    <link rel="stylesheet" href="/css/hellobar.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="/css/HeaderFooter.css">
+<!-- Main css -->
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/addstyle.css">
+<link rel="stylesheet" href="/css/animate.css">
+<link rel="stylesheet" href="/css/hellobar.css">
 
-    <style>
+<style>
     .navbar {
         padding: unset;
     }
+
     #feedback a {
-        top:70%;
-    right: -120px;}
+        top: 70%;
+        right: -120px;
+    }
+    .checked {
+  color: orange;}
+  .badge {
+  padding-left: 9px;
+  padding-right: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+  background-color: #c67605;
+}
+#lblCartCount {
+    font-size: 10px;
+    background: #F2545F;
+    color: #fff;
+    padding: 0 5px;
+    vertical-align: top;
+    margin-left: -10px; 
+}
 </style>
-
-
-    <script>
+<script>
     $(document).ready(function () {
         // Add minus icon for collapse element which is open by default  fas fa-chevron-down
         $(".collapse.show").each(function () {
@@ -56,725 +76,611 @@
         });
     });
 </script>
-    <!-- =========================
+<!-- =========================
      NAVIGATION LINKS     
 ============================== -->
-    <body>
 
-        <div id="header"></div>
+<body>
 
-        <!-- NAVIGATION PATH -->
-        <div class="containerclass">
-            <img src="/images/banner-1.jpg" alt="" width="100%" />
-            <div class="top-leftclass">
+    <div id="header"></div>
 
-                <div class="section-title wow fadeIn" data-wow-delay="0.9s"
-                    style="margin-left: 2vw;">
-                    <h1 style="font-size: 4vw;">
-                        <div class="textarea body2a" style="display:
+    <!-- NAVIGATION PATH -->
+    <div class="containerclass">
+        <img src="/images/banner-1.jpg" alt="" width="100%" />
+        <div class="top-leftclass">
+
+            <div class="section-title wow fadeIn" data-wow-delay="0.9s" style="margin-left: 2vw;">
+                <h1 style="font-size: 4vw;">
+                    <div class="textarea body2a" style="display:
                             inline-block; padding: 1%;">Smart</div> Classroom
-                    </h1>
-                </div>
-
+                </h1>
             </div>
-        </div>
 
-        <div style="margin: 0.3%;">
-            <ps class="marginleft notice" style="margin-left: 3%;">
-                <a href="/index">Home</a> &#62; Students' corner &#62; Smart classroom</ps>
         </div>
-        <!-- =========================
+    </div>
+
+    <div style="margin: 0.3%;">
+        <ps class="marginleft notice" style="margin-left: 3%;">
+            <a href="/index">Home</a> &#62; Students' corner &#62; Smart
+            classroom</ps>
+    </div>
+    <!-- =========================
     SMART CLASSROOM   
 ============================== -->
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div style="text-align: right; width: 100%;" class="white
+                        hoverdecoration">
+                    <a href="https://docs.google.com/spreadsheets/d/1ufn8vcA5tcpoVvbTgGBO9NsXmiYgjmz54Qqg_L2GZxI/edit?usp=sharing"
+                        target="_blank" class="primary_btn" style="padding-right:3vh; padding-left:3vh;">Attendance
+                        Sheet&nbsp;&nbsp;<i class="fas fa-bookmark"></i></a>
+                    <a href="https://drive.google.com/file/d/1b3AcN68TJa7gIai_RTyJ5989Te-TXCbq/view" target="_blank"
+                        class="primary_btn" style="padding-right:3vh; padding-left:3vh;
+                            margin-top: 1%; background-color: #90BAA4;
+                            border-color: #90BAA4;">Class schedule&nbsp;&nbsp;<i class="fas fa-calendar-week" style="font-size:
+                                20px"></i></a>
+                </div>
+            </div>
+
+            <div class="dnd marginleft" style="margin-top:50px; margin-left:
+                    20px;">
+                <h3 style="font-size: 20px;">We’re here for you. No matter
+                    what your troubles are, we will help you.
+                    Click on any name from the below list and we are just a
+                    phone call away.</h3>
+            </div>
+        </div>
+    </div>
+    <section id="leadership">
         <div class="container">
             <div class="row">
-                <div class="col">
-                    <div style="text-align: right; width: 100%;" class="white
-                        hoverdecoration">
-                        <a
-                            href="https://docs.google.com/spreadsheets/d/1ufn8vcA5tcpoVvbTgGBO9NsXmiYgjmz54Qqg_L2GZxI/edit?usp=sharing"
-                            target="_blank" class="primary_btn"
-                            style="padding-right:3vh; padding-left:3vh;">Attendance
-                            Sheet&nbsp;&nbsp;<i class="fas fa-bookmark"></i></a>
+                <div class="col-12 col-md-6 offset-lg-2 col-lg-4" style="margin-top: 20px;">
+                    <div id="accordion" class="accordion">
 
-                            <a
-                            href="https://drive.google.com/file/d/1b3AcN68TJa7gIai_RTyJ5989Te-TXCbq/view"
-                            target="_blank" class="primary_btn"
-                            style="padding-right:3vh; padding-left:3vh; margin-top: 1%; background-color: #90BAA4; border-color: #90BAA4;">Class schedule&nbsp;&nbsp;<i class="fas fa-calendar-week" style="font-size: 20px"></i></a>
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header collapsed" id="headingOne">
+
+                                    <a href="#collapseOne" data-toggle="collapse" data-target="#collapseOne"
+                                        aria-expanded="true" aria-controls="collapseOne">
+                                        <div class="media">
+                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/Neel.jpg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body">
+                                                <h5 class="mt-2">Indranil
+                                                    Nag</h5>
+                                                <p>Faculty</p>
+                                            </div>
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                    data-parent="#accordion">
+                                    <div class="card-body white hover">
+                                        <a href="https://meet.google.com/dpb-sckz-but"
+                                            class="primary_btn">Connect&nbsp;&nbsp;<i class="fas
+                                                    fa-chevron-right"></i></a>
+                                    </div>
+                                    <p>Meeting code: dpb-sckz-but</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header" id="headingTwo">
+
+                                    <a href="#collapseTwo" data-toggle="collapse" data-target="#collapseTwo"
+                                        aria-expanded="false" aria-controls="collapseTwo">
+                                        <div class="media">
+                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VLKO18020.jpg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body">
+                                                <h5 class="mt-2">Sourabh
+                                                    Dhusia</h5>
+                                                <p>Faculty</p>
+                                            </div><i class="fas
+                                                    fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                    data-parent="#accordion">
+                                    <div class="card-body white hover">
+                                        <a href="https://meet.google.com/uzb-qfza-mvn"
+                                            class="primary_btn">Connect&nbsp;&nbsp;<i class="fas
+                                                    fa-chevron-right"></i></a>
+                                    </div>
+                                    <p>Meeting code: uzb-qfza-mvn</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header" id="headingThree">
+                                    <a href="#collapseThree" data-toggle="collapse" data-target="#collapseThree"
+                                        aria-expanded="false" aria-controls="collapseThree">
+                                        <div class="media">
+                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VLKO17003.jpg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body">
+                                                <h5 class="mt-2">Gaurav
+                                                    Bagga</h5>
+                                                <p>Faculty</p>
+                                            </div><i class="fas
+                                                    fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                    data-parent="#accordion">
+                                    <div class="card-body white hover">
+                                        <a href="https://meet.google.com/xez-fivm-ebu"
+                                            class="primary_btn">Connect&nbsp;&nbsp;<i class="fas
+                                                    fa-chevron-right"></i></a>
+                                    </div>
+                                    <p>Meeting code: xez-fivm-ebu</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header" id="heading4">
+
+                                    <a href="#collapse4" data-toggle="collapse" data-target="#collapse4"
+                                        aria-expanded="false" aria-controls="collapse4">
+                                        <div class="media">
+                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/Richa.jpg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body white
+                                                    hover">
+                                                <h5 class="mt-2">Richa Singh</h5>
+                                                <p>Faculty</p>
+                                            </div><i class="far fa-smile-beam" style="font-size:20px"></i>
+                                            <span class='badge badge-warning' id='lblCartCount'> 1 </span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div id="collapse4" class="collapse" aria-labelledby="heading4"
+                                    data-parent="#accordion">
+                                    <div class="card-body white hover">
+                                        <a href="https://meet.google.com/bpf-yncn-bpr"
+                                            class="primary_btn">Connect&nbsp;&nbsp;<i class="fas
+                                                    fa-chevron-right"></i></a>
+                                    </div>
+                                    <p>Meeting code: bpf-yncn-bpr</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header" id="heading5">
+
+                                    <a href="#collapse5" data-toggle="collapse" data-target="#collapse5"
+                                        aria-expanded="false" aria-controls="collapse5">
+                                        <div class="media">
+                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VBKP20018.jpg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body white
+                                                    hover">
+                                                <h5 class="mt-2">Pankaj
+                                                    Kumar Shaw</h5>
+                                                <p>Faculty</p>
+                                            </div><i class="fas
+                                                    fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div id="collapse5" class="collapse" aria-labelledby="heading5"
+                                    data-parent="#accordion">
+                                    <div class="card-body white hover">
+                                        <a href="https://meet.google.com/xzi-jxxz-hzz"
+                                            class="primary_btn">Connect&nbsp;&nbsp;<i class="fas
+                                                    fa-chevron-right"></i></a>
+                                    </div>
+                                    <p>Meeting code: xzi-jxxz-hzz</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header" id="heading6">
+
+                                    <a href="#collapse6" data-toggle="collapse" data-target="#collapse6"
+                                        aria-expanded="false" aria-controls="collapse6">
+                                        <div class="media">
+                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VLKO20006.jpg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body white
+                                                    hover">
+                                                <h5 class="mt-2">Nupur Soni</h5>
+                                                <p>Faculty</p>
+                                            </div><i class="far fa-smile-beam" style="font-size:20px"></i>
+                                            <span class='badge badge-warning' id='lblCartCount'> 1 </span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div id="collapse6" class="collapse" aria-labelledby="heading6"
+                                    data-parent="#accordion">
+                                    <div class="card-body white hover">
+                                        <a href="https://meet.google.com/fjh-egcm-hen"
+                                            class="primary_btn">Connect&nbsp;&nbsp;<i class="fas
+                                                    fa-chevron-right"></i></a>
+                                    </div>
+                                    <p>Meeting code: fjh-egcm-hen</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header" id="heading7">
+
+                                    <a href="#collapse7" data-toggle="collapse" data-target="#collapse7"
+                                        aria-expanded="false" aria-controls="collapse7">
+                                        <div class="media">
+                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VLKO20023.jpg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body white
+                                                    hover">
+                                                <h5 class="mt-2">Ajay
+                                                    Srivastava</h5>
+                                                <p>Faculty</p>
+                                            </div><i class="fas
+                                                    fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div id="collapse7" class="collapse" aria-labelledby="heading7"
+                                    data-parent="#accordion">
+                                    <div class="card-body white hover">
+                                        <a href="https://meet.google.com/kfh-nbyk-azs"
+                                            class="primary_btn">Connect&nbsp;&nbsp;<i class="fas
+                                                    fa-chevron-right"></i></a>
+                                    </div>
+                                    <p>Meeting code: kfh-nbyk-azs</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header" id="heading8">
+
+                                    <a href="#collapse8" data-toggle="collapse" data-target="#collapse8"
+                                        aria-expanded="false" aria-controls="collapse8">
+                                        <div class="media">
+                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VLKO20009.jpg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body white
+                                                    hover">
+                                                <h5 class="mt-2">Meghna Jha</h5>
+                                                <p>Faculty</p>
+                                            </div><i class="fas
+                                                    fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div id="collapse8" class="collapse" aria-labelledby="heading8"
+                                    data-parent="#accordion">
+                                    <div class="card-body white hover">
+                                        <a href="https://meet.google.com/rfq-txny-yix"
+                                            class="primary_btn">Connect&nbsp;&nbsp;<i class="fas
+                                                    fa-chevron-right"></i></a>
+                                    </div>
+                                    <p>Meeting code: rfq-txny-yix</p>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
 
-                <div class="dnd marginleft" style="margin-top:50px; margin-left:
-                    20px;">
-                    <h3 style="font-size: 20px;">We’re here for you. No matter
-                        what your troubles are, we will help you.
-                        Click on any name from the below list and we are just a
-                        phone call away.</h3>
+                <div class="col-12 col-md-6 col-lg-4" style="margin-top:
+                        20px;">
+                    <div id="accordion1" class="accordion">
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header collapsed" id="headingFour">
+
+                                    <a href="#collapseFour" data-toggle="collapse" data-target="#collapseFour"
+                                        aria-expanded="true" aria-controls="collapseFour">
+                                        <div class="media">
+                                            <img src="/images/members/members-img2.jpg" class="mr-3 rounded-circle"
+                                                alt="...">
+                                            <div class="media-body">
+                                                <h5 class="mt-2">Somnath
+                                                    Saha</h5>
+                                                <p>Faculty</p>
+                                            </div>
+                                            <!--<span class="fa fa-star checked" style="font-size: 10px;"></span>
+                                            <span class="fa fa-star checked" style="font-size: 10px;"></span>
+                                            <span class="fa fa-star checked" style="font-size: 10px;"></span>
+                                            <span class="fa fa-star checked" style="font-size: 10px;"></span>
+                                            <span class="fas fa-star-half-alt checked" style="font-size: 10px;"></span>-->
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                    data-parent="#accordion1">
+                                    <div class="card-body white hover">
+                                        <a href="https://meet.google.com/dxx-fkuy-ouk"
+                                            class="primary_btn">Connect&nbsp;&nbsp;<i class="fas
+                                                    fa-chevron-right"></i></a>
+                                    </div>
+                                    <p>Meeting code: dxx-fkuy-ouk</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header" id="heading9">
+
+                                    <a href="#collapse9" data-toggle="collapse" data-target="#collapse9"
+                                        aria-expanded="false" aria-controls="collapse9">
+                                        <div class="media">
+                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VLKO20012.jpg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body white
+                                                    hover">
+                                                <h5 class="mt-2">Akhil Singh</h5>
+                                                <p>Faculty</p>
+                                            </div><i class="far fa-smile-beam" style="font-size:20px"></i>
+                                            <span class='badge badge-warning' id='lblCartCount'> 1 </span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div id="collapse9" class="collapse" aria-labelledby="heading9"
+                                    data-parent="#accordion1">
+                                    <div class="card-body white hover">
+                                        <a href="https://meet.google.com/aby-bxuw-rbd"
+                                            class="primary_btn">Connect&nbsp;&nbsp;<i class="fas
+                                                    fa-chevron-right"></i></a>
+                                    </div>
+                                    <p>Meeting code: aby-bxuw-rbd</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header" id="heading9PK">
+
+                                    <a href="#collapse9PK" data-toggle="collapse" data-target="#collapse9PK"
+                                        aria-expanded="false" aria-controls="collapse9PK">
+                                        <div class="media">
+                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VLKO20016.jpg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body white
+                                                    hover">
+                                                <h5 class="mt-2">Pragati</h5>
+                                                <p>Faculty</p>
+                                            </div><i class="fas
+                                                    fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div id="collapse9PK" class="collapse" aria-labelledby="heading9PK"
+                                    data-parent="#accordion1">
+                                    <div class="card-body white hover">
+                                        <a href="https://meet.google.com/xxm-vvct-awr"
+                                            class="primary_btn">Connect&nbsp;&nbsp;<i class="fas
+                                                    fa-chevron-right"></i></a>
+                                    </div>
+                                    <p>Meeting code: xxm-vvct-awr</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header" id="heading9AB">
+
+                                    <a href="#collapse9AB" data-toggle="collapse" data-target="#collapse9AB"
+                                        aria-expanded="false" aria-controls="collapse9AB">
+                                        <div class="media">
+                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VBKP20017.jpg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body white
+                                                    hover">
+                                                <h5 class="mt-2">Avik Kr.
+                                                    Basu</h5>
+                                                <p>Faculty</p>
+                                            </div><i class="fas
+                                                    fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div id="collapse9AB" class="collapse" aria-labelledby="heading9AB"
+                                    data-parent="#accordion1">
+                                    <div class="card-body white hover">
+                                        <a href="https://meet.google.com/cpt-skrs-oyx"
+                                            class="primary_btn">Connect&nbsp;&nbsp;<i class="fas
+                                                    fa-chevron-right"></i></a>
+                                    </div>
+                                    <p>Meeting code: cpt-skrs-oyx</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header" id="heading9KV">
+
+                                    <a href="#collapse9KV" data-toggle="collapse" data-target="#collapse9KV"
+                                        aria-expanded="false" aria-controls="collapse9KV">
+                                        <div class="media">
+                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VLKO20020.jpg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body white
+                                                    hover">
+                                                <h5 class="mt-2">Kanchan
+                                                    Verma</h5>
+                                                <p>Faculty</p>
+                                            </div><i class="fas
+                                                    fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div id="collapse9KV" class="collapse" aria-labelledby="heading9KV"
+                                    data-parent="#accordion1">
+                                    <div class="card-body white hover">
+                                        <a href="https://meet.google.com/edx-qwoy-ohy"
+                                            class="primary_btn">Connect&nbsp;&nbsp;<i class="fas
+                                                    fa-chevron-right"></i></a>
+                                    </div>
+                                    <p>Meeting code: edx-qwoy-ohy</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header" id="heading9JD">
+
+                                    <a href="#collapse9JD" data-toggle="collapse" data-target="#collapse9JD"
+                                        aria-expanded="false" aria-controls="collapse9JD">
+                                        <div class="media">
+                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VBKP20021.jpg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body white
+                                                    hover">
+                                                <h5 class="mt-2">Jyoti Das</h5>
+                                                <p>Faculty</p>
+                                            </div><i class="fas
+                                                    fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div id="collapse9JD" class="collapse" aria-labelledby="heading9JD"
+                                    data-parent="#accordion1">
+                                    <div class="card-body white hover">
+                                        <a href="https://meet.google.com/bqe-kptx-jqr"
+                                            class="primary_btn">Connect&nbsp;&nbsp;<i class="fas
+                                                    fa-chevron-right"></i></a>
+                                    </div>
+                                    <p>Meeting code: bqe-kptx-jqr</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card">
+                            <div class="accordion-group">
+                                <div class="card-header" id="heading9L">
+
+                                    <a href="#collapse9L" data-toggle="collapse" data-target="#collapse9L"
+                                        aria-expanded="false" aria-controls="collapse9L">
+                                        <div class="media">
+                                            <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VLKO20022.jpg"
+                                                class="mr-3 rounded-circle" alt="...">
+                                            <div class="media-body white
+                                                    hover">
+                                                <h5 class="mt-2">Pradipti</h5>
+                                                <p>Faculty</p>
+                                            </div><i class="fas
+                                                    fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div id="collapse9L" class="collapse" aria-labelledby="heading9L"
+                                    data-parent="#accordion1">
+                                    <div class="card-body white hover">
+                                        <a href="https://meet.google.com/qoa-rqhk-ohr"
+                                            class="primary_btn">Connect&nbsp;&nbsp;<i class="fas
+                                                    fa-chevron-right"></i></a>
+                                    </div>
+                                    <p>Meeting code: qoa-rqhk-ohr</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
                 </div>
             </div>
         </div>
-        <section id="leadership">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-md-6 offset-lg-2 col-lg-4"
-                        style="margin-top: 20px;">
-                        <div id="accordion" class="accordion">
-
-                            <div class="card">
-                                <div class="accordion-group">
-                                    <div class="card-header collapsed"
-                                        id="headingOne">
-
-                                        <a href="#collapseOne"
-                                            data-toggle="collapse"
-                                            data-target="#collapseOne"
-                                            aria-expanded="true"
-                                            aria-controls="collapseOne">
-                                            <div class="media">
-                                                <img
-                                                    src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/Neel.jpg"
-                                                    class="mr-3 rounded-circle"
-                                                    alt="...">
-                                                <div class="media-body">
-                                                    <h5 class="mt-2">Indranil
-                                                        Nag</h5>
-                                                    <p>Faculty</p>
-                                                </div><i class="fas
-                                                    fa-chevron-down"></i>
-
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div id="collapseOne" class="collapse"
-                                        aria-labelledby="headingOne"
-                                        data-parent="#accordion">
-                                        <div class="card-body white hover">
-                                            <a
-                                                href="https://meet.google.com/dpb-sckz-but"
-                                                class="primary_btn">Connect&nbsp;&nbsp;<i
-                                                    class="fas
-                                                    fa-chevron-right"></i></a>
-                                        </div>
-                                        <p>Meeting code: dpb-sckz-but</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-                            <div class="card">
-                                <div class="accordion-group">
-                                    <div class="card-header" id="headingTwo">
-
-                                        <a href="#collapseTwo"
-                                            data-toggle="collapse"
-                                            data-target="#collapseTwo"
-                                            aria-expanded="false"
-                                            aria-controls="collapseTwo">
-                                            <div class="media">
-                                                <img
-                                                    src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VLKO18020.jpg"
-                                                    class="mr-3 rounded-circle"
-                                                    alt="...">
-                                                <div class="media-body">
-                                                    <h5 class="mt-2">Sourabh
-                                                        Dhusia</h5>
-                                                    <p>Faculty</p>
-                                                </div><i class="fas
-                                                    fa-chevron-down"></i>
-                                            </div>
-                                        </a>
-
-                                    </div>
-
-                                    <div id="collapseTwo" class="collapse"
-                                        aria-labelledby="headingTwo"
-                                        data-parent="#accordion">
-                                        <div class="card-body white hover">
-                                            <a
-                                                href="https://meet.google.com/uzb-qfza-mvn"
-                                                class="primary_btn">Connect&nbsp;&nbsp;<i
-                                                    class="fas
-                                                    fa-chevron-right"></i></a>
-                                        </div>
-                                        <p>Meeting code: uzb-qfza-mvn</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <div class="card">
-                                <div class="accordion-group">
-                                    <div class="card-header" id="headingThree">
-                                        <a href="#collapseThree"
-                                            data-toggle="collapse"
-                                            data-target="#collapseThree"
-                                            aria-expanded="false"
-                                            aria-controls="collapseThree">
-                                            <div class="media">
-                                                <img
-                                                    src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VLKO17003.jpg"
-                                                    class="mr-3 rounded-circle"
-                                                    alt="...">
-                                                <div class="media-body">
-                                                    <h5 class="mt-2">Gaurav
-                                                        Bagga</h5>
-                                                    <p>Faculty</p>
-                                                </div><i class="fas
-                                                    fa-chevron-down"></i>
-                                            </div>
-                                        </a>
-
-                                    </div>
-
-                                    <div id="collapseThree" class="collapse"
-                                        aria-labelledby="headingThree"
-                                        data-parent="#accordion">
-                                        <div class="card-body white hover">
-                                            <a
-                                                href="https://meet.google.com/xez-fivm-ebu"
-                                                class="primary_btn">Connect&nbsp;&nbsp;<i
-                                                    class="fas
-                                                    fa-chevron-right"></i></a>
-                                        </div>
-                                        <p>Meeting code: xez-fivm-ebu</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="card">
-                                <div class="accordion-group">
-                                    <div class="card-header" id="heading4">
-
-                                        <a href="#collapse4"
-                                            data-toggle="collapse"
-                                            data-target="#collapse4"
-                                            aria-expanded="false"
-                                            aria-controls="collapse4">
-                                            <div class="media">
-                                                <img
-                                                    src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/Richa.jpg"
-                                                    class="mr-3 rounded-circle"
-                                                    alt="...">
-                                                <div class="media-body white
-                                                    hover">
-                                                    <h5 class="mt-2">Richa Singh</h5>
-                                                    <p>Faculty</p>
-                                                </div><i class="fas
-                                                    fa-chevron-down"></i>
-                                            </div>
-                                        </a>
-
-                                    </div>
-
-                                    <div id="collapse4" class="collapse"
-                                        aria-labelledby="heading4"
-                                        data-parent="#accordion">
-                                        <div class="card-body white hover">
-                                            <a
-                                                href="https://meet.google.com/bpf-yncn-bpr"
-                                                class="primary_btn">Connect&nbsp;&nbsp;<i
-                                                    class="fas
-                                                    fa-chevron-right"></i></a>
-                                        </div>
-                                        <p>Meeting code: bpf-yncn-bpr</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-
-                            <div class="card">
-                                <div class="accordion-group">
-                                    <div class="card-header" id="heading5">
-
-                                        <a href="#collapse5"
-                                            data-toggle="collapse"
-                                            data-target="#collapse5"
-                                            aria-expanded="false"
-                                            aria-controls="collapse5">
-                                            <div class="media">
-                                                <img
-                                                    src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VBKP20018.jpg"
-                                                    class="mr-3 rounded-circle"
-                                                    alt="...">
-                                                <div class="media-body white
-                                                    hover">
-                                                    <h5 class="mt-2">Pankaj Kumar Shaw</h5>
-                                                    <p>Faculty</p>
-                                                </div><i class="fas
-                                                    fa-chevron-down"></i>
-                                            </div>
-                                        </a>
-
-                                    </div>
-
-                                    <div id="collapse5" class="collapse"
-                                        aria-labelledby="heading5"
-                                        data-parent="#accordion">
-                                        <div class="card-body white hover">
-                                            <a
-                                                href="https://meet.google.com/xzi-jxxz-hzz"
-                                                class="primary_btn">Connect&nbsp;&nbsp;<i
-                                                    class="fas
-                                                    fa-chevron-right"></i></a>
-                                        </div>
-                                        <p>Meeting code: xzi-jxxz-hzz</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <div class="card">
-                                <div class="accordion-group">
-                                    <div class="card-header" id="heading6">
-
-                                        <a href="#collapse6"
-                                            data-toggle="collapse"
-                                            data-target="#collapse6"
-                                            aria-expanded="false"
-                                            aria-controls="collapse6">
-                                            <div class="media">
-                                                <img
-                                                    src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VLKO20006.jpg"
-                                                    class="mr-3 rounded-circle"
-                                                    alt="...">
-                                                <div class="media-body white
-                                                    hover">
-                                                    <h5 class="mt-2">Nupur Soni</h5>
-                                                    <p>Faculty</p>
-                                                </div><i class="fas
-                                                    fa-chevron-down"></i>
-                                            </div>
-                                        </a>
-
-                                    </div>
-
-                                    <div id="collapse6" class="collapse"
-                                        aria-labelledby="heading6"
-                                        data-parent="#accordion">
-                                        <div class="card-body white hover">
-                                            <a
-                                                href="https://meet.google.com/fjh-egcm-hen"
-                                                class="primary_btn">Connect&nbsp;&nbsp;<i
-                                                    class="fas
-                                                    fa-chevron-right"></i></a>
-                                        </div>
-                                        <p>Meeting code: fjh-egcm-hen</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                           <div class="card">
-                                <div class="accordion-group">
-                                    <div class="card-header" id="heading7">
-
-                                        <a href="#collapse7"
-                                            data-toggle="collapse"
-                                            data-target="#collapse7"
-                                            aria-expanded="false"
-                                            aria-controls="collapse7">
-                                            <div class="media">
-                                                <img
-                                                    src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VLKO20023.jpg"
-                                                    class="mr-3 rounded-circle"
-                                                    alt="...">
-                                                <div class="media-body white
-                                                    hover">
-                                                    <h5 class="mt-2">Ajay Srivastava</h5>
-                                                    <p>Faculty</p>
-                                                </div><i class="fas
-                                                    fa-chevron-down"></i>
-                                            </div>
-                                        </a>
-
-                                    </div>
-
-                                    <div id="collapse7" class="collapse"
-                                        aria-labelledby="heading7"
-                                        data-parent="#accordion">
-                                        <div class="card-body white hover">
-                                            <a
-                                                href="https://meet.google.com/kfh-nbyk-azs"
-                                                class="primary_btn">Connect&nbsp;&nbsp;<i
-                                                    class="fas
-                                                    fa-chevron-right"></i></a>
-                                        </div>
-                                        <p>Meeting code: kfh-nbyk-azs</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="card">
-                                <div class="accordion-group">
-                                    <div class="card-header" id="heading8">
-
-                                        <a href="#collapse8"
-                                            data-toggle="collapse"
-                                            data-target="#collapse8"
-                                            aria-expanded="false"
-                                            aria-controls="collapse8">
-                                            <div class="media">
-                                                <img
-                                                    src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VLKO20009.jpg"
-                                                    class="mr-3 rounded-circle"
-                                                    alt="...">
-                                                <div class="media-body white
-                                                    hover">
-                                                    <h5 class="mt-2">Meghna Jha</h5>
-                                                    <p>Faculty</p>
-                                                </div><i class="fas
-                                                    fa-chevron-down"></i>
-                                            </div>
-                                        </a>
-
-                                    </div>
-
-                                    <div id="collapse8" class="collapse"
-                                        aria-labelledby="heading8"
-                                        data-parent="#accordion">
-                                        <div class="card-body white hover">
-                                            <a
-                                                href="https://meet.google.com/rfq-txny-yix"
-                                                class="primary_btn">Connect&nbsp;&nbsp;<i
-                                                    class="fas
-                                                    fa-chevron-right"></i></a>
-                                        </div>
-                                        <p>Meeting code: rfq-txny-yix</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-6 col-lg-4" style="margin-top:
-                        20px;">
-                        <div id="accordion1" class="accordion">
-                            <div class="card">
-                                <div class="accordion-group">
-                                    <div class="card-header collapsed"
-                                        id="headingFour">
-
-                                        <a href="#collapseFour"
-                                            data-toggle="collapse"
-                                            data-target="#collapseFour"
-                                            aria-expanded="true"
-                                            aria-controls="collapseFour">
-                                            <div class="media">
-                                                <img
-                                                    src="/images/members/members-img2.jpg"
-                                                    class="mr-3 rounded-circle"
-                                                    alt="...">
-                                                <div class="media-body">
-                                                    <h5 class="mt-2">Somnath
-                                                        Saha</h5>
-                                                    <p>Faculty</p>
-                                                </div><i class="fas
-                                                    fa-chevron-down"></i>
-                                            </div>
-                                        </a>
-
-                                    </div>
-
-                                    <div id="collapseFour" class="collapse"
-                                        aria-labelledby="headingFour"
-                                        data-parent="#accordion1">
-                                        <div class="card-body white hover">
-                                            <a
-                                                href="https://meet.google.com/dxx-fkuy-ouk"
-                                                class="primary_btn">Connect&nbsp;&nbsp;<i
-                                                    class="fas
-                                                    fa-chevron-right"></i></a>
-                                        </div>
-                                        <p>Meeting code: dxx-fkuy-ouk</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="accordion-group">
-                                    <div class="card-header" id="heading9">
-
-                                        <a href="#collapse9"
-                                            data-toggle="collapse"
-                                            data-target="#collapse9"
-                                            aria-expanded="false"
-                                            aria-controls="collapse9">
-                                            <div class="media">
-                                                <img
-                                                    src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VLKO20012.jpg"
-                                                    class="mr-3 rounded-circle"
-                                                    alt="...">
-                                                <div class="media-body white
-                                                    hover">
-                                                    <h5 class="mt-2">Akhil Singh</h5>
-                                                    <p>Faculty</p>
-                                                </div><i class="fas
-                                                    fa-chevron-down"></i>
-                                            </div>
-                                        </a>
-
-                                    </div>
-
-                                    <div id="collapse9" class="collapse"
-                                        aria-labelledby="heading9"
-                                        data-parent="#accordion1">
-                                        <div class="card-body white hover">
-                                            <a
-                                                href="https://meet.google.com/aby-bxuw-rbd"
-                                                class="primary_btn">Connect&nbsp;&nbsp;<i
-                                                    class="fas
-                                                    fa-chevron-right"></i></a>
-                                        </div>
-                                        <p>Meeting code: aby-bxuw-rbd</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            
-
-
-                            <div class="card">
-                                <div class="accordion-group">
-                                    <div class="card-header" id="heading9PK">
-
-                                        <a href="#collapse9PK"
-                                            data-toggle="collapse"
-                                            data-target="#collapse9PK"
-                                            aria-expanded="false"
-                                            aria-controls="collapse9PK">
-                                            <div class="media">
-                                                <img
-                                                    src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VLKO20016.jpg"
-                                                    class="mr-3 rounded-circle"
-                                                    alt="...">
-                                                <div class="media-body white
-                                                    hover">
-                                                    <h5 class="mt-2">Pragati</h5>
-                                                    <p>Faculty</p>
-                                                </div><i class="fas
-                                                    fa-chevron-down"></i>
-                                            </div>
-                                        </a>
-
-                                    </div>
-
-                                    <div id="collapse9PK" class="collapse"
-                                        aria-labelledby="heading9PK"
-                                        data-parent="#accordion1">
-                                        <div class="card-body white hover">
-                                            <a
-                                                href="https://meet.google.com/xxm-vvct-awr"
-                                                class="primary_btn">Connect&nbsp;&nbsp;<i
-                                                    class="fas
-                                                    fa-chevron-right"></i></a>
-                                        </div>
-                                        <p>Meeting code: xxm-vvct-awr</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <div class="accordion-group">
-                                    <div class="card-header" id="heading9AB">
-
-                                        <a href="#collapse9AB"
-                                            data-toggle="collapse"
-                                            data-target="#collapse9AB"
-                                            aria-expanded="false"
-                                            aria-controls="collapse9AB">
-                                            <div class="media">
-                                                <img
-                                                    src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VBKP20017.jpg"
-                                                    class="mr-3 rounded-circle"
-                                                    alt="...">
-                                                <div class="media-body white
-                                                    hover">
-                                                    <h5 class="mt-2">Avik Kr. Basu</h5>
-                                                    <p>Faculty</p>
-                                                </div><i class="fas
-                                                    fa-chevron-down"></i>
-                                            </div>
-                                        </a>
-
-                                    </div>
-
-                                    <div id="collapse9AB" class="collapse"
-                                        aria-labelledby="heading9AB"
-                                        data-parent="#accordion1">
-                                        <div class="card-body white hover">
-                                            <a
-                                                href="https://meet.google.com/cpt-skrs-oyx"
-                                                class="primary_btn">Connect&nbsp;&nbsp;<i
-                                                    class="fas
-                                                    fa-chevron-right"></i></a>
-                                        </div>
-                                        <p>Meeting code: cpt-skrs-oyx</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="card">
-                                <div class="accordion-group">
-                                    <div class="card-header" id="heading9KV">
-
-                                        <a href="#collapse9KV"
-                                            data-toggle="collapse"
-                                            data-target="#collapse9KV"
-                                            aria-expanded="false"
-                                            aria-controls="collapse9KV">
-                                            <div class="media">
-                                                <img
-                                                    src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VLKO20020.jpg"
-                                                    class="mr-3 rounded-circle"
-                                                    alt="...">
-                                                <div class="media-body white
-                                                    hover">
-                                                    <h5 class="mt-2">Kanchan Verma</h5>
-                                                    <p>Faculty</p>
-                                                </div><i class="fas
-                                                    fa-chevron-down"></i>
-                                            </div>
-                                        </a>
-
-                                    </div>
-
-                                    <div id="collapse9KV" class="collapse"
-                                        aria-labelledby="heading9KV"
-                                        data-parent="#accordion1">
-                                        <div class="card-body white hover">
-                                            <a
-                                                href="https://meet.google.com/edx-qwoy-ohy"
-                                                class="primary_btn">Connect&nbsp;&nbsp;<i
-                                                    class="fas
-                                                    fa-chevron-right"></i></a>
-                                        </div>
-                                        <p>Meeting code: edx-qwoy-ohy</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="card">
-                                <div class="accordion-group">
-                                    <div class="card-header" id="heading9JD">
-
-                                        <a href="#collapse9JD"
-                                            data-toggle="collapse"
-                                            data-target="#collapse9JD"
-                                            aria-expanded="false"
-                                            aria-controls="collapse9JD">
-                                            <div class="media">
-                                                <img
-                                                    src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VBKP20021.jpg"
-                                                    class="mr-3 rounded-circle"
-                                                    alt="...">
-                                                <div class="media-body white
-                                                    hover">
-                                                    <h5 class="mt-2">Jyoti Das</h5>
-                                                    <p>Faculty</p>
-                                                </div><i class="fas
-                                                    fa-chevron-down"></i>
-                                            </div>
-                                        </a>
-
-                                    </div>
-
-                                    <div id="collapse9JD" class="collapse"
-                                        aria-labelledby="heading9JD"
-                                        data-parent="#accordion1">
-                                        <div class="card-body white hover">
-                                            <a
-                                                href="https://meet.google.com/bqe-kptx-jqr"
-                                                class="primary_btn">Connect&nbsp;&nbsp;<i
-                                                    class="fas
-                                                    fa-chevron-right"></i></a>
-                                        </div>
-                                        <p>Meeting code: bqe-kptx-jqr</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="card">
-                                <div class="accordion-group">
-                                    <div class="card-header" id="heading9L">
-
-                                        <a href="#collapse9L"
-                                            data-toggle="collapse"
-                                            data-target="#collapse9L"
-                                            aria-expanded="false"
-                                            aria-controls="collapse9L">
-                                            <div class="media">
-                                                <img
-                                                    src="https://res.cloudinary.com/hs4stt5kg/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max/v1/faculties/VLKO20022.jpg"
-                                                    class="mr-3 rounded-circle"
-                                                    alt="...">
-                                                <div class="media-body white
-                                                    hover">
-                                                    <h5 class="mt-2">Pradipti</h5>
-                                                    <p>Faculty</p>
-                                                </div><i class="fas
-                                                    fa-chevron-down"></i>
-                                            </div>
-                                        </a>
-
-                                    </div>
-
-                                    <div id="collapse9L" class="collapse"
-                                        aria-labelledby="heading9L"
-                                        data-parent="#accordion1">
-                                        <div class="card-body white hover">
-                                            <a
-                                                href="https://meet.google.com/qoa-rqhk-ohr"
-                                                class="primary_btn">Connect&nbsp;&nbsp;<i
-                                                    class="fas
-                                                    fa-chevron-right"></i></a>
-                                        </div>
-                                        <p>Meeting code: qoa-rqhk-ohr</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- =========================
+    </section>
+    <!-- =========================
      SCRIPTS   
 ============================== -->
-        <script src="/js/pace.js"></script>
-        <script src="/js/jquery.js" type="text/javascript"></script>
-        <script src="/js/fontawsome.js"></script>
-        <script
-            src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-        <script src="/js/jquery.parallax.js"></script>
-        <script src="/js/custom.js"></script>
-        <script src="/js/wow.min.js"></script>
+    <script src="/js/pace.js"></script>
+    <script src="/js/jquery.js" type="text/javascript"></script>
+    <script src="/js/fontawsome.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.parallax.js"></script>
+    <script src="/js/custom.js"></script>
+    <script src="/js/wow.min.js"></script>
 
-        <!-- =========================
+    <!-- =========================
      FOOTER   
 ============================== -->
-        <!-- Back top -->
-        <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
-        <div id="footer"></div>		
-        <!--<div id="hellobar-bar" class="regular closable" style="top: 0%;">
+    <!-- Back top -->
+    <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+    <div id="footer"></div>
+    <!--<div id="hellobar-bar" class="regular closable" style="top: 0%;">
             <div class="hb-content-wrapper">
                 <div class="hb-text-wrapper">
                     <div class="hb-headline-text">
@@ -794,20 +700,20 @@
                     onClick="$('#hellobar-bar').fadeOut ()">&#10006;</a>
             </div>
         </div>-->
-        <!--<div id="feedback1"><a href="https://drive.google.com/file/d/1--hLyh7RsIjLZ8V-krK3y6Jc7M2R-6fh/view" target="blank">Code of Conduct</a></div>-->
-       <div id="thoverX" class="thover"></div>
-		<div id="tpopupX" class="tpopup">
-            <img src="/images/info.jpg" class="img-fluid img-responsive">
-            <!--<div class="embed-responsive embed-responsive-16by9">
+    <!--<div id="feedback1"><a href="https://drive.google.com/file/d/1--hLyh7RsIjLZ8V-krK3y6Jc7M2R-6fh/view" target="blank">Code of Conduct</a></div>-->
+    <div id="thoverX" class="thover"></div>
+    <div id="tpopupX" class="tpopup">
+        <img src="/images/info.jpg" class="img-fluid img-responsive">
+        <!--<div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="https://drive.google.com/file/d/1GBDcByr_eh98LtWfyQ517jaS6s696khY/preview" allowfullscreen></iframe>
             </div>-->
+        <div id="tcloseX" class="tclose">X</div>
+        <script>$("#tcloseX").click(function () {
+                $("#tpopupX").toggleClass('hidden');
+                $("#thoverX").toggleClass('hidden');
+            });</script>
+    </div>
 
-			<div id="tcloseX" class="tclose">X</div>
-			<script>$("#tcloseX").click(function () {
-				$("#tpopupX").toggleClass('hidden');
-				$("#thoverX").toggleClass('hidden');
-			  });</script>
-        </div>
-        
-    </body>
-</html> 
+</body>
+
+</html>
