@@ -43,6 +43,7 @@
 							<a href="/registration" class="smoothScroll">Registration</a>
 							<a href="https://drive.google.com/file/d/1IBuhQ0PnwBaZBE8gyJsvAiIqFF09WgXg/view"
 								class="smoothScroll" target="blank">Terms and Conditions</a>
+								<a href="#" class="smoothScroll" id="secure_link_mt">Mandatory training</a>
 						</div>
 					</div>
 
@@ -166,6 +167,46 @@
 		});
 		});
 	</script>
+
+<!--------------- 
+		NEED TO COPY THIS SET FOR EVERY SECURED LINK -- WBT
+	------------------------------------------------------>
+	
+	<div id="thover11" class="hidden thover"></div>
+		<div id="tpopup11" class="hidden tpopup" style="padding:20px; position: fixed;">
+            <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
+            <div class="login-card">
+                <h1>Log-in</h1><br>
+                <form action="/secure/digital-library" method="post"> <!--Here we have to mention the secured URL path-->
+                <input type="text" name="user" placeholder="Username">
+                <input type="password" name="code" placeholder="Password"> <!--password name id always "code"-->
+                <input type="submit" name="login" class="login login-submit" value="login">
+			  </form>
+            
+              <div class="login-help">
+              <br><a>Forgot Password? Connect with RSSI admin team</a>
+              </div>
+            </div>
+			<div id="tclose11" class="tclose">X</div>
+		</div>
+		
+
+	<!--secure link-->
+	<script>
+		$(document).ready(function () {
+			console.log("loading now...");
+			$("#secure_link_mt").click(function (event) {
+				event.preventDefault();
+				$("#tpopup11").toggleClass('hidden');
+				$("#thover11").toggleClass('hidden');
+			});
+ 		$("#tclose11").click(function () {
+			$("#tpopup11").toggleClass('hidden');
+			$("#thover11").toggleClass('hidden');
+		});
+		});
+	</script>
+
 
 <script src="/js/active-nav-bar.js"></script>
 

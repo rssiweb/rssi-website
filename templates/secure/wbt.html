@@ -79,6 +79,11 @@ http://www.rssi.in
         background: #90BAA4;
         border: 1px solid #90BAA4;
     }
+    .columnExam2 {
+        float: left;
+        width: unset !important;
+        padding-top: 1%;
+    }
 </style>
 <!-- =========================
      NAVIGATION LINKS     
@@ -93,42 +98,30 @@ http://www.rssi.in
     <!--<img src="" alt="" width="100%"/><br>-->
     <div style="margin: 0.3%;">
         <ps class="marginleft notice" style="margin-left: 3%;">
-            <a href="/index">Home</a> &#62; e-Certificate &#62; Student</ps>
+            <a href="/index">Home</a> &#62; Get involved &#62; WBT Training</ps>
     </div>
     <br><br>
-    <!--<div class="container">
-        <div clas="row">
 
-            <div class="col">
-                <div style="text-align: right; width: 100%;" class="white
-                        hoverdecoration">
-                    <a href="https://drive.google.com/file/d/1tHMtne1_2a9dakskzhfFRxtS5qt5JNnL/view" target="_blank"
-                        class="primary_btn" style="padding-right:3vh; padding-left:3vh;
-                            margin-top: 1%; background-color: #90BAA4;
-                            border-color: #90BAA4;">Gems criteria &nbsp;<i class="fas fa-award"
-                            style="font-size: 20px"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>-->
     <div class="container">
-        <!--<span style="color: #F2545F; display: inline;"></span>-->
         <p style="display: inline;">You have to enter at least one value to
-            get the certificate details.</p>
+            get the WBT details.</p>
         <div class="row" style="background-color: rgb(255, 245,
                 194);min-height: 70px;">
 
 
             <div class="col1">
-                <label for="name">Student ID<span style="color: #F2545F"></span>&nbsp;</label>
-                <input type="text" id="name" name="name" minlength="9" maxlength="9" size="12"
-                    style="text-transform:uppercase">
+                <label for="name">Course ID<span style="color: #F2545F"></span>&nbsp;</label>
+                <input type="text" id="name" name="name" minlength="6" maxlength="9" size="12">
             </div>
 
             <div class="col2">
-                <label for="ename">Certificate No<span style="color: #F2545F"></span>&nbsp;</label>
-                <input type="text" name="ename" id="ename" minlength="9" maxlength="9" size="12"
-                    style="text-transform:uppercase">
+                <label for="ename">Language<span style="color: #F2545F"></span>&nbsp;</label>
+                <select name="ename" id="ename">
+                    <option selected>Select</option>
+                    <option>English</option>
+                    <option>Hindi</option>
+                    <option>Bengali</option>
+                </select>
                 </select>
             </div>
 
@@ -147,7 +140,7 @@ http://www.rssi.in
             <div class="col">
 
                 <body>
-                    <h2 style="margin-top:2%; font-size:20px;" align="center">Get Certificate Details</h2>
+                    <h2 style="margin-top:2%; font-size:20px;" align="center">Get Web-Based Training Details</h2>
                     <div class="container text-center my-4" style="overflow-x:
                         auto;">
                         <!-- Table  -->
@@ -156,15 +149,12 @@ http://www.rssi.in
                             <thead style="background-color: whitesmoke;
                                 font-style: oblique;">
                                 <tr>
-                                    <th width="8%"><b>Student ID</b></th>
-                                    <th width="14%"><b>Name</b></th>
-                                    <th width="8%"><b>Issued on</b></th>
-                                    <th width="14%"><b>Badge Name</b></th>
-                                    <th width="10%"><b>Certificate No</b></th>
-                                    <th width="10%"><b>Certificate</b></th>
-                                    <th><b>Comment</b></th>
-
-
+                                    <th width="10%"><b>Course ID</b></th>
+                                    <th width="25%"><b>Course Name</b></th>
+                                    <th width="8%"><b>Language</b></th>
+                                    <th width="14%"><b>Passing marks</b></th>
+                                    <th width="10%"><b>Validity</b></th>
+                                    <th><b>URL</b></th>
                                 </tr>
                             </thead>
                             <!-- Table head -->
@@ -199,31 +189,28 @@ http://www.rssi.in
     <script type="text/javascript">
 
         var loaddata = function () {
-            var studentid = document.getElementById('name').value.toUpperCase()
-            var certificateno = document.getElementById('ename').value.toUpperCase()
+            var courseid = document.getElementById('name').value
+            var language = document.getElementById('ename').value
 
-            $.getJSON("https://spreadsheets.google.com/feeds/list/1J28bo_bSIvFSnvlNfTzwMuRA0RWClSWrJyQYz5aJBMA/2/public/values?alt=json",
+            $.getJSON("https://spreadsheets.google.com/feeds/list/1I5WANuMzHDcb2m9-PoXIOV3aZIrABUGSfwPOPNh0HBY/4/public/values?alt=json",
                 function (data) {
                     document.getElementById('demo').innerHTML = ""
                     var sheetData = data.feed.entry;
                     var i;
                     var records = []
                     for (i = 0; i < sheetData.length; i++) {
-                        var Studentid = data.feed.entry[i]['gsx$studentid']['$t'];
-                        var Name = data.feed.entry[i]['gsx$name']['$t'];
-                        var Designation = data.feed.entry[i]['gsx$designation']['$t'];
-                        var DOJ = data.feed.entry[i]['gsx$doj']['$t'];
-                        var Yearsofservice = data.feed.entry[i]['gsx$yearsofservice']['$t'];
-                        var Modeofservice = data.feed.entry[i]['gsx$modeofservice']['$t'];
-                        var BadgeName = data.feed.entry[i]['gsx$badgename']['$t'];
-                        var Receivedfor = data.feed.entry[i]['gsx$receivedfor']['$t'];
-                        var Certificate = data.feed.entry[i]['gsx$certificate']['$t'];
-                        var Issuedon = data.feed.entry[i]['gsx$issuedon']['$t'];
-                        var CertificateNo = data.feed.entry[i]['gsx$certificateno']['$t'];
+                        var Courseid = data.feed.entry[i]['gsx$courseid']['$t'];
+                        var Coursename = data.feed.entry[i]['gsx$coursename']['$t'];
+                        var Language = data.feed.entry[i]['gsx$language']['$t'];
+                        var Passingmarks = data.feed.entry[i]['gsx$passingmarks']['$t'];
+                        var Validity = data.feed.entry[i]['gsx$validity']['$t'];
+                        var Url = data.feed.entry[i]['gsx$url']['$t'];
+                        
+                       
 
-                        if ((Studentid === studentid && CertificateNo === certificateno)||(studentid === "" && CertificateNo === certificateno)||(certificateno === "" && Studentid === studentid)) {
+                        if ((Courseid === courseid && Language === language)||(language === "" && Courseid === courseid)||(courseid === "" && Language === language))  {
                             // sort records
-                            records.push({ Issuedon: Issuedon, BadgeName: BadgeName, CertificateNo: CertificateNo, Certificate: Certificate, Receivedfor: Receivedfor, Name: Name, Studentid:Studentid })
+                            records.push({ Courseid: Courseid, Coursename: Coursename, Language: Language, Passingmarks:Passingmarks, Validity: Validity, Url: Url})
                         }
 
                         // else {document.getElementById('demo').innerHTML= "no record2";}
@@ -233,7 +220,7 @@ http://www.rssi.in
                     } else {
                         records.forEach(item => {
                             {
-                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Studentid + '</td>'+ '<td>' + item.Name + '</td>' + '<td>' + item.Issuedon + '</td>' + '<td>' + item.BadgeName + '</td>' + '<td>' + item.CertificateNo + '</td>' + '<td>' +'<span class="noticet"><a href="'+item.Certificate+'"target="_blank">Download</a></span>'+ '</td>' +'<td>' + item.Receivedfor + '</td>'+'</tr>');
+                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Courseid + '</td>'+ '<td>' + item.Coursename + '</td>' + '<td>' + item.Language + '</td>' + '<td>' + item.Passingmarks + '</td>' + '<td>' + item.Validity + '</td>'  + '<td>' + '<a href="' + item.Url + '"target="_self"><div class="columnExam2 exam_btn">Start</div></a>' + '</td>' +'</tr>');
                             }
                         })
                     }
