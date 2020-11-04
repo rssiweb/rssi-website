@@ -117,7 +117,7 @@ http://www.rssi.in
             <div class="col2">
                 <label for="ename">Language<span style="color: #F2545F"></span>&nbsp;</label>
                 <select name="ename" id="ename">
-                    <option selected>Select</option>
+                    <option selected>--</option>
                     <option>English</option>
                     <option>Hindi</option>
                     <option>Bengali</option>
@@ -208,7 +208,7 @@ http://www.rssi.in
                         
                        
 
-                        if ((Courseid === courseid && Language === language)||(language === "" && Courseid === courseid)||(courseid === "" && Language === language))  {
+                        if ((Courseid === courseid && Language === language)||(language === '--' && Courseid === courseid)||(courseid === "" && Language === language))  {
                             // sort records
                             records.push({ Courseid: Courseid, Coursename: Coursename, Language: Language, Passingmarks:Passingmarks, Validity: Validity, Url: Url})
                         }
