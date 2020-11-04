@@ -153,7 +153,7 @@ http://www.rssi.in
                 <div class="col2ass">
                     <label for="name">Category<span style="color: #F2545F"></span>&nbsp;</label>
                     <select name="name" id="name">
-                        <option selected>Select</option>
+                        <option selected>--</option>
                         <option>LG2</option>
                         <option>LG3</option>
                         <option>LG4</option>
@@ -163,7 +163,7 @@ http://www.rssi.in
                 <div class="col2ass">
                     <label for="name1">Subject<span style="color: #F2545F"></span>&nbsp;</label>
                     <select name="name1" id="name1">
-                        <option selected>Select</option>
+                        <option selected>--</option>
                         <option>Hindi</option>
                         <option>English</option>
                         <option>Physics</option>
@@ -179,7 +179,7 @@ http://www.rssi.in
                 <div class="col2ass">
                     <label for="name2">Year<span style="color: #F2545F"></span>&nbsp;</label>
                     <select name="name2" id="name2">
-                        <option selected>Select</option>
+                        <option selected>--</option>
                         <option>2020-2021</option>
                     </select>
                 </div>
@@ -187,7 +187,7 @@ http://www.rssi.in
                 <div class="col2ass">
                     <label for="name3">Exam Name<span style="color: #F2545F"></span>&nbsp;</label>
                     <select name="name3" id="name3">
-                        <option selected>Select</option>
+                        <option selected>--</option>
                         <option>1/CT01</option>
                         <option>1/CT02</option>
                         <option>QT1</option>
@@ -310,22 +310,22 @@ http://www.rssi.in
                         var Testcode = data.feed.entry[i]['gsx$testcode']['$t'];
 
                         if ((Category === category && Subject === subject && Year === year && Examname === examname) ||
-                            (Category === category && subject === 'Select' && year === 'Select' && examname === 'Select') ||
-                            (category === 'Select' && Subject === subject && year === 'Select' && examname === 'Select') ||
-                            (category === 'Select' && subject === 'Select' && Year === year && examname === 'Select') ||
-                            (category === 'Select' && subject === 'Select' && year === 'Select' && Examname === examname) ||
-                            (category === 'Select' && Subject === subject && year === 'Select' && Examname === examname) ||
+                            (Category === category && subject === '--' && year === '--' && examname === '--') ||
+                            (category === '--' && Subject === subject && year === '--' && examname === '--') ||
+                            (category === '--' && subject === '--' && Year === year && examname === '--') ||
+                            (category === '--' && subject === '--' && year === '--' && Examname === examname) ||
+                            (category === '--' && Subject === subject && year === '--' && Examname === examname) ||
 
-                            (Category === category && Subject === subject && year === 'Select' && examname === 'Select') ||
-                            (Category === category && subject === 'Select' && Year === year && examname === 'Select') ||
-                            (Category === category && subject === 'Select' && year === 'Select' && Examname === examname) ||
-                            (category === 'Select' && subject === 'Select' && Year === year && Examname === examname) ||
-                            (category === 'Select' && Subject === subject && Year === year && examname === 'Select') ||
+                            (Category === category && Subject === subject && year === '--' && examname === '--') ||
+                            (Category === category && subject === '--' && Year === year && examname === '--') ||
+                            (Category === category && subject === '--' && year === '--' && Examname === examname) ||
+                            (category === '--' && subject === '--' && Year === year && Examname === examname) ||
+                            (category === '--' && Subject === subject && Year === year && examname === '--') ||
 
-                            (Category === category && Subject === subject && Year === year && examname === 'Select') ||
-                            (Category === category && Subject === subject && year === 'Select' && Examname === examname) ||
-                            (Category === category && subject === 'Select' && Year === year && Examname === examname) ||
-                            (category === 'Select' && Subject === subject && Year === year && Examname === examname)) {
+                            (Category === category && Subject === subject && Year === year && examname === '--') ||
+                            (Category === category && Subject === subject && year === '--' && Examname === examname) ||
+                            (Category === category && subject === '--' && Year === year && Examname === examname) ||
+                            (category === '--' && Subject === subject && Year === year && Examname === examname)) {
                             // sort records
                             records.push({ Category: Category, Subject: Subject, Topic: Topic, Fullmarks: Fullmarks, Year: Year, Examname: Examname, Url: Url, Testcode: Testcode })
                         }
