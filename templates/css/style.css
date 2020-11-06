@@ -415,6 +415,8 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
 }
 @media (max-width:767px){.hidden-xs{display:none!important}}
 
+@media (min-width:767px){.hidden-ys{display:none!important}}
+
 
 .hidden{
   display: none;
