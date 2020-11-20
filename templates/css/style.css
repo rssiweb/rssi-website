@@ -6,19 +6,21 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600");
 @import url("https://fonts.googleapis.com/css?family=Comfortaa");
 body {
-  background: #ffffff;
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
-  overflow-x: hidden;
-  margin: 0;
-  font-size: 14px;
-  /*line-height: 1.42857143;*/
-  color: #444;
+    background: #ffffff;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    overflow-x: hidden;
+    margin: 0;
+    font-size: 14px;
+    /*line-height: 1.42857143;*/
+    color: #444;
 }
+
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
+
 
 /*---------------------------------------
     Intro section              linear-gradient(
@@ -26,170 +28,181 @@ html {
 -----------------------------------------*/
 
 #intro {
-  background:linear-gradient(
-    rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url('../images/bg/intro-bg-min.jpg') 50% 0 repeat-y;
-  -webkit-background-size: cover;
-  background-size: cover;
-  background-position: center center;
-  color: #ffffff;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 100vh;
-  text-align: center;
-  background-attachment: scroll !important;
+    background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/bg/intro-bg-min.jpg') 50% 0 repeat-y;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center center;
+    color: #ffffff;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-attachment: scroll !important;
 }
 
 @media screen and (min-width:480px) {
-  #intro {
-    background-attachment: fixed !important;
-    background:linear-gradient(
-      rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/bg/intro-bg.jpg') 50% 0 repeat-y;
-  }
-  .body1 {
-    font-family: 'Comfortaa', serif;
-    font-size: 4vw !important;
-    text-align: center;
-    color: #ffffff
-  }
-  
-  .body2 {
-    font-family: 'Comfortaa', serif;
-    font-size: 3.5vw !important;
-    text-align: center;
-    margin-top: -1vw;
-    color: #ffffff
-  }
+    #intro {
+        background-attachment: fixed !important;
+        background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/bg/intro-bg.jpg') 50% 0 repeat-y;
+    }
+    .body1 {
+        font-family: 'Comfortaa', serif;
+        font-size: 4vw !important;
+        text-align: center;
+        color: #ffffff
+    }
+    .body2 {
+        font-family: 'Comfortaa', serif;
+        font-size: 3.5vw !important;
+        text-align: center;
+        margin-top: -1vw;
+        color: #ffffff
+    }
 }
 
 .body1 {
-  font-family: 'Comfortaa', serif;
-  font-size: 7vw;
-  text-align: center;
-  color: #ffffff
+    font-family: 'Comfortaa', serif;
+    font-size: 7vw;
+    text-align: center;
+    color: #ffffff
 }
 
 .body2 {
-  font-family: 'Comfortaa', serif;
-  font-size: 6.5vw;
-  text-align: center;
-  margin-top: -1vw;
-  color: #ffffff
+    font-family: 'Comfortaa', serif;
+    font-size: 6.5vw;
+    text-align: center;
+    margin-top: -1vw;
+    color: #ffffff
 }
 
 .body2a {
-  font-family: 'Comfortaa', serif;
+    font-family: 'Comfortaa', serif;
 }
+
 
 /*---------------------------------------
  ALL WEBSITE FONT DESIGN          
 -----------------------------------------*/
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  font-family: "Poppins";
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+    font-family: "Poppins";
 }
 
-h3, h5 {
-  font-weight: 500;
+h3,
+h5 {
+    font-weight: 500;
 }
 
 h1 {
-  font-size: 40px;
-  letter-spacing: 2px;
+    font-size: 40px;
+    letter-spacing: 2px;
 }
 
 h2 {
-  font-size: 30px;
-  text-transform: uppercase;
+    font-size: 30px;
+    text-transform: uppercase;
 }
 
 h3 {
-  line-height: 36px;
+    line-height: 36px;
 }
 
 h5 {
-  letter-spacing: 1px;
-  padding-top: 10px;
+    letter-spacing: 1px;
+    padding-top: 10px;
 }
 
 p {
-  color: #777777;
-  /*#444444*/
-  font-size: 14px !important;
-  line-height: 21px !important;
+    color: #777777;
+    /*#444444*/
+    font-size: 14px !important;
+    line-height: 21px !important;
 }
 
 a {
-  text-decoration: none !important;
+    text-decoration: none !important;
 }
 
 .hover a:hover {
-  letter-spacing: 10px !important;
+    letter-spacing: 10px !important;
 }
 
 .white a {
-  color: #fff !important;
+    color: #fff !important;
 }
 
-.hoverdecoration a:hover {text-decoration: underline !important;}
+.hoverdecoration a:hover {
+    text-decoration: underline !important;
+}
+
+
 /*---------------------------------------
     UPDATE SECTION - SCROLL FONT DESIGN
 -----------------------------------------*/
 
 ps {
-  line-height: 1;
-  font-size: 13px !important;
+    line-height: 1;
+    font-size: 13px !important;
 }
+
 
 /*---------------------------------------
     WHAT WE DID SO FAR - FIRST PARAGRAPH OF ANY LISTED ITEM  [ID NAME - CALENDER]            
 -----------------------------------------*/
 
 #calender ul {
-  padding-left: 30px;
-  color: #777777;
+    padding-left: 30px;
+    color: #777777;
 }
+
 
 /*---------------------------------------
 DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]            
 -----------------------------------------*/
 
 #detail p {
-  color: #909090;
+    color: #909090;
 }
+
 
 /*---------------------------------------
     CLASS NAME- NOTICE : URL DECORATION               
 -----------------------------------------*/
 
 .notice a:link {
-  text-decoration: none !important;
-  color: #F2545F !important;
-  font-size: 13px;
+    text-decoration: none !important;
+    color: #F2545F !important;
+    font-size: 13px;
 }
 
 .notice a:visited {
-  text-decoration: none !important;
-  color: #F2545F !important;
-  font-size: 13px;
+    text-decoration: none !important;
+    color: #F2545F !important;
+    font-size: 13px;
 }
 
 .notice a:hover {
-  text-decoration: underline !important;
-  color: #F2545F !important;
-  font-size: 13px;
+    text-decoration: underline !important;
+    color: #F2545F !important;
+    font-size: 13px;
 }
 
 .notice a:active {
-  text-decoration: underline !important;
-  color: #F2545F !important;
-  font-size: 13px;
+    text-decoration: underline !important;
+    color: #F2545F !important;
+    font-size: 13px;
 }
 
 
@@ -198,27 +211,27 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
 -----------------------------------------*/
 
 .noticet a:link {
-  text-decoration: none !important;
-  color: #F2545F !important;
-  font-size: 14px;
+    text-decoration: none !important;
+    color: #F2545F !important;
+    font-size: 14px;
 }
 
 .noticet a:visited {
-  text-decoration: none !important;
-  color: #F2545F !important;
-  font-size: 14px;
+    text-decoration: none !important;
+    color: #F2545F !important;
+    font-size: 14px;
 }
 
 .noticet a:hover {
-  text-decoration: underline !important;
-  color: #F2545F !important;
-  font-size: 14px;
+    text-decoration: underline !important;
+    color: #F2545F !important;
+    font-size: 14px;
 }
 
 .noticet a:active {
-  text-decoration: underline !important;
-  color: #F2545F !important;
-  font-size: 14px;
+    text-decoration: underline !important;
+    color: #F2545F !important;
+    font-size: 14px;
 }
 
 
@@ -227,197 +240,225 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
 -----------------------------------------*/
 
 .link a:link {
-  text-decoration: none !important;
-  color: #F2545F !important;
+    text-decoration: none !important;
+    color: #F2545F !important;
 }
 
 .link a:visited {
-  text-decoration: none !important;
-  color: #F2545F !important;
+    text-decoration: none !important;
+    color: #F2545F !important;
 }
 
 .link a:hover {
-  text-decoration: underline !important;
-  color: #F2545F !important;
+    text-decoration: underline !important;
+    color: #F2545F !important;
 }
 
 .link a:active {
-  text-decoration: underline !important;
-  color: #F2545F !important;
+    text-decoration: underline !important;
+    color: #F2545F !important;
 }
+
 
 /*---------------------------------------
     OUR MAJOR PROJECT
 -----------------------------------------*/
 
 .textarea {
-  color: #fff;
-  background-color: #F2545F;
+    color: #fff;
+    background-color: #F2545F;
 }
+
 
 /*---------------------------------------
     OVERVIEW SECTION - ABOUT IMAGE background-color: rgba(0, 0, 0, 0.6);
 -----------------------------------------*/
 
 .carousel-caption {
-  max-width: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  left: 0;
+    max-width: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    left: 0;
 }
 
 .carousel-caption p {
-  color: #fff;
+    color: #fff;
 }
+
 
 /*---------------------------------------
     UPDATE SECTION - SCROLL TEXT BACKGROUNG COLOR
 -----------------------------------------*/
 
 .bg-primary {
-  color: #fff;
-  background-color: #F2545F !important;
+    color: #fff;
+    background-color: #F2545F !important;
 }
+
 
 /*---------------------------------------
     General               
 -----------------------------------------*/
 
 .section-title {
-  margin-bottom: 32px !important;
+    margin-bottom: 32px !important;
 }
 
-#overview, #dashboard, #calender {
-  padding-top: 14rem;
-  padding-bottom: 14rem;
+#overview,
+#dashboard,
+#calender {
+    padding-top: 14rem;
+    padding-bottom: 14rem;
 }
 
-#detail, #video, #speakers, #sponsors {
-  padding-top: 10rem;
-  padding-bottom: 10rem;
+#detail,
+#video,
+#speakers,
+#sponsors {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
 }
 
-#detail, #speakers, #sponsors {
-  text-align: center;
+#detail,
+#speakers,
+#sponsors {
+    text-align: center;
 }
 
-#overview h3, #dashboard h3, #calender h3, #detail h3, #video h3 {
-  padding-bottom: 12px;
+#overview h3,
+#dashboard h3,
+#calender h3,
+#detail h3,
+#video h3 {
+    padding-bottom: 12px;
 }
 
 .btn {
-  background: transparent;
-  border: 2px solid #ffffff;
-  border-radius: 0px;
-  color: #ffffff;
-  font-weight: 600;
-  letter-spacing: 1px;
-  font-size: 12px;
-  padding: 14px 42px;
-  margin-top: 42px;
-  margin-right: 12px;
-  -webkit-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out;
-  font-family: 'Poppins';
-  text-transform: uppercase;
+    background: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 0px;
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 12px;
+    padding: 14px 42px;
+    margin-top: 42px;
+    margin-right: 12px;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    font-family: 'Poppins';
+    text-transform: uppercase;
 }
 
 .btn-danger {
-  background: #f2545f;
-  border-color: transparent;
+    background: #f2545f;
+    border-color: transparent;
 }
 
 #intro .btn-danger:hover {
-  background: transparent;
-  border-color: #ffffff;
-  color: #ffffff;
+    background: transparent;
+    border-color: #ffffff;
+    color: #ffffff;
 }
 
 #intro .btn-default:hover {
-  background: #ffffff;
-  color: #333333;
-  border-color: transparent;
+    background: #ffffff;
+    color: #333333;
+    border-color: transparent;
 }
 
 .primary_btn {
-  display: inline-block;
-  background: #F2545F;
-  padding: 0px 50px;
-  color: #fff;
-  font-family: "Poppins", sans-serif;
-  letter-spacing: 1px;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 48px;
-  border: 1px solid #F2545F;
-  border-radius: 0px;
-  outline: none !important;
-  box-shadow: none !important;
-  text-align: center;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 300ms linear 0s;
+    display: inline-block;
+    background: #F2545F;
+    padding: 0px 50px;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 1px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 48px;
+    border: 1px solid #F2545F;
+    border-radius: 0px;
+    outline: none !important;
+    box-shadow: none !important;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 300ms linear 0s;
 }
 
 .exam_btn {
-  display: inline-block;
-  background: #F2545F;
-  padding: 0px 10px;
-  color: #fff;
-  font-family: "Poppins", sans-serif;
-  letter-spacing: 1px;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 30px;
-  border: 1px solid #F2545F;
-  border-radius: 0px;
-  outline: none !important;
-  box-shadow: none !important;
-  text-align: center;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 300ms linear 0s;
-}
-.exam_btn:hover {
-  background: #47A4A5;
-  border: 1px solid #47A4A5;
+    display: inline-block;
+    background: #F2545F;
+    padding: 0px 10px;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 1px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 30px;
+    border: 1px solid #F2545F;
+    border-radius: 0px;
+    outline: none !important;
+    box-shadow: none !important;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 300ms linear 0s;
 }
 
-#project .primary_btn, #leadership .exam_btn {text-transform: unset;}
+.exam_btn:hover {
+    background: #47A4A5;
+    border: 1px solid #47A4A5;
+}
+
+#project .primary_btn,
+#leadership .exam_btn {
+    text-transform: unset;
+}
 
 .parallax-section {
-  background-attachment: fixed !important;
-  background-size: cover !important;
+    background-attachment: fixed !important;
+    background-size: cover !important;
 }
+
 
 /* Back top */
 
 .go-top {
-  background-color: #222;
-  bottom: 2em;
-  right: 2em;
-  color: #ffffff !important;
-  font-size: 32px;
-  display: none;
-  position: fixed;
-  text-decoration: none;
-  width: 60px;
-  height: 60px;
-  line-height: 60px;
-  text-align: center;
-  transition: all 0.4s ease-in-out;
-  z-index: 3;
+    background-color: #222;
+    bottom: 2em;
+    right: 2em;
+    color: #ffffff !important;
+    font-size: 32px;
+    display: none;
+    position: fixed;
+    text-decoration: none;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    transition: all 0.4s ease-in-out;
+    z-index: 3;
 }
 
 .go-top:hover {
-  background: #f2545f;
-  color: #ffffff;
+    background: #f2545f;
+    color: #ffffff;
 }
-@media (max-width:767px){.hidden-xs{display:none!important}}
 
-@media (min-width:767px){.hidden-ys{display:none!important}}
+@media (max-width:767px) {
+    .hidden-xs {
+        display: none!important
+    }
+}
 
+@media (min-width:767px) {
+    .hidden-ys {
+        display: none!important
+    }
+}
 
-.hidden{
-  display: none;
+.hidden {
+    display: none;
 }
