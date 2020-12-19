@@ -28,7 +28,7 @@ html {
 -----------------------------------------*/
 
 #intro {
-    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/bg/ezgif.com-gif-maker.gif') 50% 0 repeat-y;
+    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/bg/ezgif.com-gif-maker.gif') 50% 0 repeat-y;
     -webkit-background-size: cover;
     background-size: cover;
     background-position: center center;
