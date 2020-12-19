@@ -28,7 +28,7 @@ html {
 -----------------------------------------*/
 
 #intro {
-    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/bg/ezgif.com-gif-maker.gif') 50% 0 repeat-y;
+    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/bg/2intro-bg.jpg') 50% 0 repeat-y;
     -webkit-background-size: cover;
     background-size: cover;
     background-position: center center;
@@ -49,7 +49,7 @@ html {
 @media screen and (min-width:480px) {
     #intro {
         background-attachment: fixed !important;
-        background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/bg/ezgif.com-gif-maker.gif') 50% 0 repeat-y;
+        background: url('../images/bg/1intro-bg.jpg') 50% 0 repeat-y;
     }
     .body1 {
         font-family: 'Comfortaa', serif;
@@ -68,14 +68,14 @@ html {
 
 .body1 {
     font-family: 'Comfortaa', serif;
-    font-size: 7vw;
+    font-size: 10vw;
     text-align: center;
     color: #ffffff
 }
 
 .body2 {
     font-family: 'Comfortaa', serif;
-    font-size: 6.5vw;
+    font-size: 9.5vw;
     text-align: center;
     margin-top: -1vw;
     color: #ffffff
