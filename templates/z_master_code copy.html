@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--
+RSSI
+http://www.rssi.in
+-->
+    <title>Code</title>
+</head>
+
+<meta name="description" content="">
+<meta name="author" content="">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width,
+        initial-scale=1,maximum-scale=1">
+<link rel="shortcut icon" href="/images/logo/favicon.ico" type="image/x-icon" />
+<script src="/js/jquery.js"></script>
+<script>
+    $(function() {
+        $("#header").load("/header.html");
+        $("#footer").load("/footer.html");
+    });
+</script>
+<link rel="stylesheet" href="/css/HeaderFooter.css">
+<link rel="stylesheet" href="/css/bootstrap_sheet.min.css">
+
+<!-- Main css -->
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/addstyle.css">
+<!-- Material Design Bootstrap -->
+<!--<link href="/css/mdb.min_sheet.css" rel="stylesheet">-->
+
+<style>
+    body {
+        line-height: unset;
+    }
+    
+    .navbar {
+        padding: unset;
+        font-weight: unset;
+        display: inline-block;
+    }
+    
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: unset;
+    }
+    
+    .text-center {
+        text-align: left !important;
+    }
+    
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #fff;
+    }
+    
+    .table-striped tbody tr {
+        background-color: #FAFAFB
+    }
+    
+    input,
+    select {
+        width: 150px;
+    }
+    
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: none;
+    }
+    
+    .exam_btn:hover {
+        background: #90BAA4;
+        border: 1px solid #90BAA4;
+    }
+    
+    .columnExam2 {
+        float: left;
+        width: unset !important;
+        padding-top: 1%;
+    }
+    
+    table.table a {
+        margin: 0;
+        color: whitesmoke;
+    }
+</style>
+<!-- =========================
+     NAVIGATION LINKS     
+============================== -->
+
+<body>
+
+
+    <br><br>
+    <div class="container">
+        <span style="color: #F2545F; display: inline;">*</span>
+        <p style="display: inline;"> fields are required.</p>
+        <div class="row" style="background-color: rgb(255, 245,
+                194); padding-top: 0; padding-bottom: 1.5%;padding-left: 1.5%">
+            <!--height: 110%; -->
+
+
+            <div class="col2ass">
+                <label for="name">Test ID<span style="color: #F2545F">*</span>&nbsp;</label>
+                <input type="text" id="name" name="name" required size="12">
+            </div>
+            <div class="col2ass">
+                <label for="name1">PIN<span style="color: #F2545F">*</span>&nbsp;</label>
+                <input type="password" id="name1" name="name1" required size="12">
+            </div>
+
+            <div class="col2">
+                <button type="button" class="exam_btn" onclick="loaddata()"><i class="fas fa-search"></i>
+                    search</button>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <body>
+
+                    <div class="container text-center my-4" style="overflow-x:
+                        auto;">
+                        <!-- Table  -->
+                        <table class="table bordered table-striped" id="testTable">
+                            <!-- Table head -->
+                            <thead style="background-color: whitesmoke;
+                                font-style: oblique;">
+                                <tr>
+                                    <th width="30%"><b>Test ID</b></th>
+                                    <th><b>Test Code</b></th>
+                                    </th>
+
+
+
+                                </tr>
+                            </thead>
+                            <!-- Table head -->
+
+                            <!-- Table body -->
+                            <tbody id="demo">
+
+
+                            </tbody>
+                            <!-- Table body -->
+                        </table>
+                        <!-- Table  -->
+
+                    </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- =========================
+     SCRIPTS   
+============================== -->
+    <script src="/js/pace.js"></script>
+    <script src="/js/fontawsome.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.parallax.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/custom.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="/js/mdb.min.js"></script>
+    <script type="text/javascript">
+        var loaddata = function() {
+            var testcode = document.getElementById('name').value.toUpperCase()
+            var password1 = document.getElementById('name1').value.toLowerCase()
+
+            $.getJSON("https://spreadsheets.google.com/feeds/list/1I5WANuMzHDcb2m9-PoXIOV3aZIrABUGSfwPOPNh0HBY/1/public/values?alt=json",
+                function(data) {
+                    document.getElementById('demo').innerHTML = ""
+                    var sheetData = data.feed.entry;
+                    var i;
+                    var records = []
+                    for (i = 0; i < sheetData.length; i++) {
+                        var Testcode = data.feed.entry[i]['gsx$testcode']['$t'];
+                        var Password = data.feed.entry[i]['gsx$password']['$t'];
+                        var Flag = data.feed.entry[i]['gsx$flag']['$t'];
+
+
+                        if (Testcode === testcode && password1 === 'admin' && Flag !== 'x') {
+                            // sort records
+                            records.push({
+                                Testcode: Testcode,
+                                Password: Password
+                            })
+                        }
+
+                        // else {document.getElementById('demo').innerHTML= "no record2";}
+                    }
+                    if (records.length == 0) {
+                        document.getElementById('demo').innerHTML += ('<tr>' + '<td></td><td>' + '<p style="color:#F2545F">No record found.</p>' + '</td></tr>');
+                    } else {
+                        records.forEach(item => {
+                            {
+                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Testcode + '</td>' + '<td>' + item.Password + '</td>' + '</tr>');
+                            }
+                        })
+                    }
+                });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var lazyloadImages = document.querySelectorAll("img.lazy");
+            var lazyloadThrottleTimeout;
+
+            function lazyload() {
+                if (lazyloadThrottleTimeout) {
+                    clearTimeout(lazyloadThrottleTimeout);
+                }
+
+                lazyloadThrottleTimeout = setTimeout(function() {
+                    var scrollTop = window.pageYOffset;
+                    lazyloadImages.forEach(function(img) {
+                        if (img.offsetTop < (window.innerHeight + scrollTop)) {
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                        }
+                    });
+                    if (lazyloadImages.length == 0) {
+                        document.removeEventListener("scroll", lazyload);
+                        window.removeEventListener("resize", lazyload);
+                        window.removeEventListener("orientationChange", lazyload);
+                    }
+                }, 20);
+            }
+
+            document.addEventListener("scroll", lazyload);
+            window.addEventListener("resize", lazyload);
+            window.addEventListener("orientationChange", lazyload);
+        });
+    </script>
+    <!-- =========================
+     FOOTER   
+============================== -->
+    <!-- Back top -->
+    <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+    </body>
+
+</html>
