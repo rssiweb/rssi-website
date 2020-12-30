@@ -91,6 +91,9 @@ html {
     #intro .body1 {
         padding-right: 3%;
     }
+    #intro .col {
+        margin-top: -50%;
+    }
 }
 
 
