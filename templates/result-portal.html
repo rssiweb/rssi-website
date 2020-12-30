@@ -1,116 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <!--
+<head>
+    <!--
 RSSI
 http://www.rssi.in
 -->
-        <title>Result portal</title>
-    </head>
+    <title>Result portal</title>
+</head>
 
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1">
-    <link rel="shortcut icon" href="/images/logo/favicon.ico" type="image/x-icon"/>
-    <script src="/js/jquery.js"></script>
-    <script>
-    $(function(){
+<meta name="description" content="">
+<meta name="author" content="">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1">
+<link rel="shortcut icon" href="/images/logo/favicon.ico" type="image/x-icon" />
+<script src="/js/jquery.js"></script>
+<script>
+    $(function() {
         $("#header").load("/header.html");
         $("#footer").load("/footer.html");
-    });</script>
-    <link rel="stylesheet" href="/css/HeaderFooter.css">
-    <link rel="stylesheet" href="/css/bootstrap_sheet.min.css">
+    });
+</script>
+<link rel="stylesheet" href="/css/HeaderFooter.css">
+<link rel="stylesheet" href="/css/bootstrap_sheet.min.css">
 
-    <!-- Main css -->
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/addstyle.css">
-    <!-- Material Design Bootstrap -->
-    <link href="/css/mdb.min_sheet.css" rel="stylesheet">
+<!-- Main css -->
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/addstyle.css">
+<!-- Material Design Bootstrap -->
+<!--<link href="/css/mdb.min_sheet.css" rel="stylesheet">-->
 
-    <style>
-    body{line-height: unset;}
-    .navbar {padding: unset; font-weight: unset; display: inline-block;}
-     body, h1, h2, h3, h4, h5, h6 {font-weight: unset;}
-    .text-center {text-align: left !important;}
+<style>
+    body {
+        line-height: unset;
+    }
+    
+    .navbar {
+        padding: unset;
+        font-weight: unset;
+        display: inline-block;
+    }
+    
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: unset;
+    }
+    
+    .text-center {
+        text-align: left !important;
+    }
+    
     .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #fff;}
+        background-color: #fff;
+    }
+    
     .table-striped tbody tr {
-    background-color: #FAFAFB}
-    input, select {
+        background-color: #FAFAFB
+    }
+    
+    input,
+    select {
         width: 150px;
     }
-
-    input:focus, textarea:focus, select:focus {
-        outline: none;    }
-.exam_btn:hover {
-  background: #90BAA4;
-  border: 1px solid #90BAA4;
-}
+    
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: none;
+    }
+    
+    .exam_btn:hover {
+        background: #90BAA4;
+        border: 1px solid #90BAA4;
+    }
 </style>
-    <!-- =========================
+<!-- =========================
      NAVIGATION LINKS     
 ============================== -->
-    <body>
 
-        <div id="header"></div>
+<body>
 
-        <!-- NAVIGATION PATH -->
+    <div id="header"></div>
 
-        <!--<img src="" alt="" width="100%"/><br>-->
-        <div style="margin: 0.3%;"><ps class="marginleft notice"
-                style="margin-left: 3%;">
-                <a href="/index">Home</a> &#62; Students' corner &#62; Result portal</ps>
-        </div>
-        <div class="container">
-            <div clas="row">
+    <!-- NAVIGATION PATH -->
 
-       <!-- <div class="col">-->
+    <!--<img src="" alt="" width="100%"/><br>-->
+    <div style="margin: 0.3%;">
+        <ps class="marginleft notice" style="margin-left: 3%;">
+            <a href="/index">Home</a> &#62; Students' corner &#62; Result portal</ps>
+    </div>
+    <div class="container">
+        <div clas="row">
+
+            <!-- <div class="col">-->
             <div style="text-align: right; width: 100%;" class="white
                 hoverdecoration">
-                    <a
-                    href="https://drive.google.com/drive/folders/1E9KZrbs0rEv75aYWwGqd0izAvXtzV_Q-?usp=sharing"
-                    target="_blank" class="primary_btn"
-                    style="padding-right:3vh; padding-left:3vh; margin-top: 1%; background-color: #90BAA4; border-color: #90BAA4;">Results&nbsp;&nbsp;<i class="fas fa-poll" style="font-size: 20px"></i></a>
-            </div></div>
+                <a href="https://drive.google.com/drive/folders/1E9KZrbs0rEv75aYWwGqd0izAvXtzV_Q-?usp=sharing" target="_blank" class="primary_btn" style="padding-right:3vh; padding-left:3vh; margin-top: 1%; background-color: #90BAA4; border-color: #90BAA4;">Results&nbsp;&nbsp;<i class="fas fa-poll" style="font-size: 20px"></i></a>
+            </div>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <body>
-                        <h2 style="margin-top:2%; font-size:20px;"
-                            align="center">Continuous Assessment Result - 2020</h2></body></div></div></div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
 
-       <div class="row" style="margin-left:2%;margin-right:2%;"> 
+                <body>
+                    <h2 style="margin-top:2%; font-size:20px;" align="center">Continuous Assessment Result - 2020</h2>
+                </body>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-left:2%;margin-right:2%;">
         <div class="col" width="100%">
-            <embed id="studentlist" width="100%" height="500px"
-                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSlHj1qfbck_fHKM4xQIrY0ylWNKH2svmSnYt2ql7rdZs5E_Cj3dmT-Jm7mmkhPiJ4Dw8XtOA7KfeNJ/pubhtml?gid=1645644689&single=true"
-               seamless frameborder="0" scrolling="yes"></embed></div></div>
-       
-        
-<!-- =========================
+            <embed id="studentlist" width="100%" height="500px" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSlHj1qfbck_fHKM4xQIrY0ylWNKH2svmSnYt2ql7rdZs5E_Cj3dmT-Jm7mmkhPiJ4Dw8XtOA7KfeNJ/pubhtml?gid=1645644689&single=true" seamless frameborder="0" scrolling="yes"></embed>
+        </div>
+    </div>
+
+
+    <!-- =========================
      SCRIPTS   
 ============================== -->
-            <script src="/js/pace.js"></script>
-            <script src="/js/fontawsome.js"></script>
-            <script src="/js/bootstrap.min.js"></script>
-            <script src="/js/jquery.parallax.js"></script>
-            <script src="/js/wow.min.js"></script>
-            <script src="/js/custom.js"></script>
-            <!-- Bootstrap tooltips -->
-            <script type="text/javascript" src="/js/popper.min.js"></script>
-            <!-- MDB core JavaScript -->
-            <script type="text/javascript" src="/js/mdb.min.js"></script>
-            <script type="text/javascript">
-    
+    <script src="/js/pace.js"></script>
+    <script src="/js/fontawsome.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.parallax.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/custom.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="/js/mdb.min.js"></script>
+    <script type="text/javascript">
     </script>
-<!-- =========================
+    <!-- =========================
      FOOTER   
 ============================== -->
-            <!-- Back top -->
-            <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
-            <div id="footer"></div>
-        </body>
-    </html>
+    <!-- Back top -->
+    <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+    <div id="footer"></div>
+</body>
+
+</html>
