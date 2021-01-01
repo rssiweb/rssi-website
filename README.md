@@ -63,7 +63,7 @@ pipenv run flask run
 
 Password change
 --------------------------
-heroku Login
+heroku Login - rssi.connect@gmail.com
 More
 Run console
 flask generate-hash-for 2310
@@ -71,7 +71,8 @@ Run
 Save the session and copy the encripted value and paste it to
 Settings
 Reveal config variable
-paste the code
+paste the codes (SECURE_USER, INDIGO_CODE, SECURE1_USER, PASSWORD_CODE)
+DO NOT REMOVE Salt
 
 Change in .env file offline
 ---------------------------------
