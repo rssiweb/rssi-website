@@ -73,6 +73,8 @@
                     </div>
                 </div>
 
+                <a href="#" class="smoothScroll" id="secure_link_el">e-Learning</a>
+
                 <a href="https://docs.google.com/spreadsheets/d/1mjVN9VET3_ToFGDWRSSl7dAZO1sH1kNXgI66qPWfco8/edit?usp=sharing" rel="noopener noreferrer" target="_blank" class="smoothScroll">Phoenix</a>
 
                 <a href="https://sites.google.com/view/rssi-login" rel="noopener
@@ -210,9 +212,45 @@
         });
     </script>
 
+    <!--------------- 
+		NEED TO COPY THIS SET FOR EVERY CECURED LINK -- e-Learning
+	------------------------------------------------------>
 
+    <div id="thover111" class="hidden thover"></div>
+    <div id="tpopup111" class="hidden tpopup" style="padding:20px; position: fixed;">
+        <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
+        <div class="login-card">
+            <h1>Log-in</h1><br>
+            <form action="/secure1/e-learning" method="post">
+                <!--Here we have to mention the secured URL path-->
+                <input type="text" name="user" placeholder="Username">
+                <input type="password" name="code" placeholder="Password">
+                <!--password name id always "code"-->
+                <input type="submit" name="login" class="login login-submit" value="login">
+            </form>
+
+            <div class="login-help">
+                <br><a>Forgot Password? Connect with RSSI admin team</a>
+            </div>
+        </div>
+        <div id="tclose111" class="tclose">X</div>
+    </div>
+    <!--secure link-->
+    <script>
+        $(document).ready(function() {
+            console.log("loading now...");
+            $("#secure_link_el").click(function(event) {
+                event.preventDefault();
+                $("#tpopup111").toggleClass('hidden');
+                $("#thover111").toggleClass('hidden');
+            });
+            $("#tclose111").click(function() {
+                $("#tpopup111").toggleClass('hidden');
+                $("#thover111").toggleClass('hidden');
+            });
+        });
+    </script>
     <script src="/js/active-nav-bar.js"></script>
-
 </body>
 
 </html>
