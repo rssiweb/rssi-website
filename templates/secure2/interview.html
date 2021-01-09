@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <title>Interview</title>
+</head>
+<meta name=description content>
+<meta name=author content>
+<meta charset=UTF-8>
+<meta http-equiv=X-UA-Compatible content="IE=Edge">
+<meta name=viewport content="width=device-width, initial-scale=1,
+        maximum-scale=1">
+<link rel="shortcut icon" href=/images/logo/favicon.ico type=image/x-icon />
+<script src=/js/jquery.js></script>
+<script>
+    $(function() {
+        $("#header").load("/header.html");
+        $("#footer").load("/footer.html");
+    });
+</script>
+<link href=//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css rel=stylesheet id=bootstrap-css>
+<link rel=stylesheet href=/css/HeaderFooter.css>
+<link rel=stylesheet href=/css/style.css>
+<link rel=stylesheet href=/css/addstyle.css>
+<link rel=stylesheet href=/css/animate.css>
+<link rel=stylesheet href=/css/hellobar.css>
+<style>
+    body {
+        line-height: unset
+    }
+    
+    .navbar {
+        padding: unset;
+        font-weight: unset;
+        display: inline-block
+    }
+    
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: unset
+    }
+    
+    .text-center {
+        text-align: left !important
+    }
+    
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #fff
+    }
+    
+    .table-striped tbody tr {
+        background-color: #fafafb
+    }
+    
+    input,
+    select {
+        width: 150px
+    }
+    
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: 0
+    }
+    
+    .exam_btn:hover {
+        background: #90baa4;
+        border: 1px solid #90baa4
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        $(".collapse.show").each(function() {
+            $(this).prev(".card-header").find(".fas").addClass("fa-chevron-down").removeClass("fa-chevron-up");
+        });
+        $(".collapse").on('show.bs.collapse', function() {
+            $(this).prev(".card-header").find(".fas").removeClass("fa-chevron-down").addClass("fa-chevron-up");
+        }).on('hide.bs.collapse', function() {
+            $(this).prev(".card-header").find(".fas").removeClass("fa-chevron-up").addClass("fa-chevron-down");
+        });
+    });
+</script>
+
+<body oncontextmenu="return false">
+    <div id=header></div>
+    <div class=containerclass>
+        <img src=/images/interview.jpg alt width=100% />
+    </div>
+    <div style=margin:.3%>
+        <ps class="marginleft notice" style=margin-left:3%>
+            <a href=/index>Home</a> &#62; Interview
+        </ps>
+    </div>
+    <br><br>
+
+    <div class=container>
+        <p style=display:inline>Please enter Candidate's Registration ID to get the related details. Before you evaluate, please check candidate's status in the first row. To be eligible for the current round a candidate must clear the previous rounds.</p><br><br>
+        <div class=row style=background-color:#fff5c2;min-height:70px;width:100%>
+            <div class=col1>
+                <label for="name">Candidate's Registration ID<span style="color:#F2545F">*</span>&nbsp;</label>
+                <input type="text" id="name" name="name" minlength=12 maxlength=12 size="12" style="text-transform:uppercase" required>
+            </div>
+
+            <div class=col3>
+                <button type=button class=exam_btn onclick=loaddata()><i class="fas fa-search"></i>
+                    search</button>
+            </div>
+        </div>
+    </div>
+    <div class=container>
+        <div class=row>
+            <div class=col>
+
+                <body>
+                    <h2 style=margin-top:2%;font-size:20px align=center>where all the action is!</h2>
+                    <div class="container text-center my-4" style=overflow-x:auto>
+                        <table class="table bordered table-striped" id=testTable>
+                            <thead style=background-color:whitesmoke;font-style:oblique>
+                                <tr>
+                                    <th width="50%"><b>Reg. no-Name-Email ID</b></th>
+                                    <th><b>TR Status</b></th>
+                                    <th><b>MR Status</b></th>
+                                    <th><b>HR Status</b></th>
+                                </tr>
+                            </thead>
+                            <tbody id="demo">
+                            </tbody>
+                        </table>
+                        <table class="table bordered table-striped" id=testTable>
+                            <thead style=background-color:whitesmoke;font-style:oblique>
+                                <tr>
+                                    <th width="30%"><b>Course Details</b></th>
+                                    <th><b>Allocation Date</b></th>
+                                    <th><b>Class Alloted</b></th>
+                                    <th><b>Assignment</b></th>
+                                    <th><b>&nbsp;&nbsp;&nbsp;</b></th>
+
+                                </tr>
+                            </thead>
+                            <tbody id=demo1>
+                            </tbody>
+                            <thead style=background-color:whitesmoke;font-style:oblique>
+                                <tr>
+                                    <th><b>Learning Phase</b></th>
+                                    <th><b>Language proficiency</b></th>
+                                    <th><b>Supervisor (TR)</b></th>
+                                    <th><b>Reviewer (MR)</b></th>
+                                    <th><b>HR</b></th>
+                                </tr>
+                            </thead>
+                            <tbody id=demo2>
+                            </tbody>
+
+                        </table>
+                        <table class="table bordered table-striped" id=testTable>
+                            <br><br><span style="color:blueviolet"><b>We asked few questions at the time of registration. Let's see how he/she/they responded.</b></span><br><br>
+                            <thead style=background-color:whitesmoke;font-style:oblique>
+                                <tr>
+                                    <th><b>What are your hobbies?</b></th>
+                                </tr>
+                            </thead>
+                            <tbody id=demo3>
+                            </tbody>
+
+                            <thead style=background-color:whitesmoke;font-style:oblique>
+                                <tr>
+                                    <th><b>Complete this sentence: Education is the basic right of every person because_____________________.</b></th>
+                                </tr>
+                            </thead>
+                            <tbody id=demo4>
+                            </tbody>
+
+
+                            <thead style=background-color:whitesmoke;font-style:oblique>
+                                <tr>
+                                    <th><b>What is your ambition in life?</b></th>
+                                </tr>
+                            </thead>
+                            <tbody id=demo5>
+                            </tbody>
+
+                            <thead style=background-color:whitesmoke;font-style:oblique>
+                                <tr>
+                                    <th><b>What do you understand by diversity inclusion?</b></th>
+                                </tr>
+                            </thead>
+                            <tbody id=demo6>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/pace.js"></script>
+    <script src="/js/fontawsome.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.parallax.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/custom.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="/js/mdb.min.js"></script>
+    <script type="text/javascript">
+        var loaddata = function() {
+            var registrationno = document.getElementById('name').value.toUpperCase()
+            $.getJSON("https://spreadsheets.google.com/feeds/list/1J28bo_bSIvFSnvlNfTzwMuRA0RWClSWrJyQYz5aJBMA/3/public/values?alt=json",
+                function(data) {
+                    document.getElementById('demo').innerHTML = ""
+                    document.getElementById('demo1').innerHTML = ""
+                    document.getElementById('demo2').innerHTML = ""
+                    document.getElementById('demo3').innerHTML = ""
+                    document.getElementById('demo4').innerHTML = ""
+                    document.getElementById('demo5').innerHTML = ""
+                    document.getElementById('demo6').innerHTML = ""
+                    var sheetData = data.feed.entry;
+                    var i;
+                    var records = []
+                    for (i = 0; i < sheetData.length; i++) {
+                        var RegistrationNo = data.feed.entry[i]['gsx$registrationno']['$t'];
+                        var Name = data.feed.entry[i]['gsx$name']['$t'];
+                        var Emailid = data.feed.entry[i]['gsx$emailid']['$t'];
+                        var Allocationdate = data.feed.entry[i]['gsx$allocationdate']['$t'];
+                        var Supervisor = data.feed.entry[i]['gsx$supervisor']['$t'];
+                        var Reviewer = data.feed.entry[i]['gsx$reviewer']['$t'];
+                        var Hr = data.feed.entry[i]['gsx$hr']['$t'];
+                        var Learningphase = data.feed.entry[i]['gsx$learningphase']['$t'];
+                        var Attendanceqr = data.feed.entry[i]['gsx$attendanceqr']['$t'];
+                        var Googlefolder = data.feed.entry[i]['gsx$googlefolder']['$t'];
+                        var Grade = data.feed.entry[i]['gsx$grade']['$t'];
+                        var Remarks = data.feed.entry[i]['gsx$remarks']['$t'];
+                        var Certificate = data.feed.entry[i]['gsx$certificate']['$t'];
+                        var Colors = data.feed.entry[i]['gsx$colors']['$t'];
+                        var Classurl = data.feed.entry[i]['gsx$classurl']['$t'];
+                        var Coursename = data.feed.entry[i]['gsx$coursename']['$t'];
+                        var Mode = data.feed.entry[i]['gsx$mode']['$t'];
+                        var Assgclass = data.feed.entry[i]['gsx$assgclass']['$t'];
+                        var Trs = data.feed.entry[i]['gsx$trs']['$t'];
+                        var Trm = data.feed.entry[i]['gsx$trm']['$t'];
+                        var Mrs = data.feed.entry[i]['gsx$mrs']['$t'];
+                        var Mrm = data.feed.entry[i]['gsx$mrm']['$t'];
+                        var Hrs = data.feed.entry[i]['gsx$hrs']['$t'];
+                        var English = data.feed.entry[i]['gsx$english']['$t'];
+                        var Hindi = data.feed.entry[i]['gsx$hindi']['$t'];
+                        var Bengali = data.feed.entry[i]['gsx$bengali']['$t'];
+                        var Tform = data.feed.entry[i]['gsx$tform']['$t'];
+                        var Mform = data.feed.entry[i]['gsx$mform']['$t'];
+                        var Hrform = data.feed.entry[i]['gsx$hrform']['$t'];
+                        var Questiona = data.feed.entry[i]['gsx$questiona']['$t'];
+                        var Questionb = data.feed.entry[i]['gsx$questionb']['$t'];
+                        var Questionc = data.feed.entry[i]['gsx$questionc']['$t'];
+                        var Questiond = data.feed.entry[i]['gsx$questiond']['$t'];
+
+
+
+
+                        if (RegistrationNo === registrationno && Colors != '@#null#@') {
+                            records.push({
+                                RegistrationNo : RegistrationNo ,
+                                Name : Name ,
+                                Emailid : Emailid ,
+                                Allocationdate : Allocationdate ,
+                                Supervisor : Supervisor ,
+                                Hr : Hr ,
+                                Learningphase : Learningphase ,
+                                Attendanceqr : Attendanceqr ,
+                                Googlefolder : Googlefolder ,
+                                Grade : Grade ,
+                                Remarks : Remarks ,
+                                Certificate : Certificate ,
+                                Colors : Colors ,
+                                Classurl : Classurl ,
+                                Coursename : Coursename ,
+                                Mode : Mode ,
+                                Assgclass : Assgclass ,
+                                Trs : Trs ,
+                                Trm : Trm ,
+                                Mrs : Mrs ,
+                                Hrs : Hrs ,
+                                Mrm : Mrm ,
+                                English : English ,
+                                Hindi : Hindi ,
+                                Bengali : Bengali ,
+                                Tform : Tform ,
+                                Mform : Mform ,
+                                Hrform : Hrform ,
+                                Questiona : Questiona ,
+                                Questionb : Questionb ,
+                                Questionc : Questionc ,
+                                Questiond : Questiond,
+                                Reviewer: Reviewer
+
+                            })
+                        }
+                    }
+                    if (records.length == 0) {
+                        document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + '<p style="color:#F2545F">Error: Candidate&apos;s Registration ID is incorrect or doesn&apos;t exist in our database.</p>' + '</td></tr>');
+                    } else {
+                        records.forEach(item => {
+                            {
+                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.RegistrationNo + ' - ' + item.Name + ' - ' + item.Emailid + '</td>' + '<td>' + item.Trs + ' - ' + item.Trm + '</td><td>' + item.Mrs + ' - ' + item.Mrm + '</td><td>' + item.Hrs + '</td></tr>');
+                            } {
+                                document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + item.Coursename + ' - ' + item.Mode + '</td>' + '<td>' + item.Allocationdate + '</td><td>' + item.Assgclass + '</td><td>' + '<span class="noticet"><a href="' + item.Googlefolder + '"target="_blank">Google Drive Folder</a></span>' + '</td></tr>');
+                            } {
+                                document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Learningphase + '</td>' + '<td>English: ' + item.English + '<br><br> Hindi: ' + item.Hindi + '<br><br> Bengali: ' + item.Bengali + '</td><td>' + '<span class="noticet"><a href="' + item.Tform + '"target="_blank">' + item.Supervisor + '</a></span>' + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Mform + '"target="_blank">' + item.Reviewer + '</a></span>' + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Hrform + '"target="_blank">' + item.Hr + '</a></span>' + '</td></tr>');
+                            } {
+                                document.getElementById('demo3').innerHTML += ('<tr>' + '<td>' + item.Questiona + '</td></tr>');
+                            } {
+                                document.getElementById('demo4').innerHTML += ('<tr>' + '<td>' + item.Questionb + '</td></tr>');
+                            } {
+                                document.getElementById('demo5').innerHTML += ('<tr>' + '<td>' + item.Questionc + '</td></tr>');
+                            } {
+                                document.getElementById('demo6').innerHTML += ('<tr>' + '<td>' + item.Questiond + '</td></tr>');
+                            }
+                        })
+                    }
+                });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var lazyloadImages = document.querySelectorAll("img.lazy");
+            var lazyloadThrottleTimeout;
+
+            function lazyload() {
+                if (lazyloadThrottleTimeout) {
+                    clearTimeout(lazyloadThrottleTimeout);
+                }
+                lazyloadThrottleTimeout = setTimeout(function() {
+                    var scrollTop = window.pageYOffset;
+                    lazyloadImages.forEach(function(img) {
+                        if (img.offsetTop < (window.innerHeight + scrollTop)) {
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                        }
+                    });
+                    if (lazyloadImages.length == 0) {
+                        document.removeEventListener("scroll", lazyload);
+                        window.removeEventListener("resize", lazyload);
+                        window.removeEventListener("orientationChange", lazyload);
+                    }
+                }, 20);
+            }
+            document.addEventListener("scroll", lazyload);
+            window.addEventListener("resize", lazyload);
+            window.addEventListener("orientationChange", lazyload);
+        });
+    </script>
+    <script>
+        document.onkeypress = function(event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onmousedown = function(event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onkeydown = function(event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+    </script>
+    <a href=#back-top class=go-top><i class="fa fa-angle-up"></i></a>
+    <div id=footer></div>
+    </body>
+
+</html>

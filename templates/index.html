@@ -93,11 +93,14 @@ RSSI http://www.rssi.in -->
                             <a href="https://drive.google.com/file/d/1tHMtne1_2a9dakskzhfFRxtS5qt5JNnL/view" target="_blank" class="smoothScroll">Gems criteria</a>
                         </div>
                     </div>
-
+                    <div class="dropdownH">
+                        <button class="dropbtnH">Phoenix <i class="fa fa-caret-down"></i></button>
+                        <div class="dropdown-contentH">
+                            <a href="https://docs.google.com/spreadsheets/d/1mjVN9VET3_ToFGDWRSSl7dAZO1sH1kNXgI66qPWfco8/edit?usp=sharing" target="_blank" class="smoothScroll">Grade Summary Sheet</a>
+                            <a href="#" id="secure_link_sh" class="smoothScroll">Interview</a>
+                        </div>
+                    </div>
                     <a href="#" class="smoothScroll" id="secure_link_el">e-Learning</a>
-
-                    <a href="https://docs.google.com/spreadsheets/d/1mjVN9VET3_ToFGDWRSSl7dAZO1sH1kNXgI66qPWfco8/edit?usp=sharing" rel="noopener
-							noreferrer" target="_blank" class="smoothScroll">Phoenix</a>
 
                     <a href="https://sites.google.com/view/rssi-login" rel="noopener
 							noreferrer" target="_blank" class="smoothScroll active"><i class="fas fa-user" style="font-size:15px;"></i></a>
@@ -206,7 +209,29 @@ RSSI http://www.rssi.in -->
         </div>
         <div id="tclose111" class="tclose">X</div>
     </div>
+    <!--------------- 
+		NEED TO COPY THIS SET FOR EVERY CECURED LINK -- interview
+	------------------------------------------------------>
 
+    <div id="thover1111" class="hidden thover"></div>
+    <div id="tpopup1111" class="hidden tpopup" style="padding:20px; position: fixed;">
+        <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
+        <div class="login-card">
+            <h1>Log-in</h1><br>
+            <form action="/secure2/interview" method="post">
+                <!--Here we have to mention the secured URL path-->
+                <input type="text" name="user" placeholder="Username">
+                <input type="password" name="code" placeholder="Password">
+                <!--password name id always "code"-->
+                <input type="submit" name="login" class="login login-submit" value="login">
+            </form>
+
+            <div class="login-help">
+                <br><a>Forgot Password? Connect with RSSI admin team</a>
+            </div>
+        </div>
+        <div id="tclose1111" class="tclose">X</div>
+    </div>
     <!-- =========================
     INTRO SECTION   Welcome to a better tomorrow  Grow Together /class to hide button in mobile/ hidden-xs/Our Response to
 						COVID-19
@@ -1082,7 +1107,20 @@ RSSI http://www.rssi.in -->
             });
         });
 
+        //secure link for interview
 
+        $(document).ready(function() {
+            console.log("loading now...");
+            $("#secure_link_sh").click(function(event) {
+                event.preventDefault();
+                $("#tpopup1111").toggleClass('hidden');
+                $("#thover1111").toggleClass('hidden');
+            });
+            $("#tclose1111").click(function() {
+                $("#tpopup1111").toggleClass('hidden');
+                $("#thover1111").toggleClass('hidden');
+            });
+        });
 
         document.addEventListener("DOMContentLoaded", function() {
             var lazyloadImages = document.querySelectorAll("img.lazy");
