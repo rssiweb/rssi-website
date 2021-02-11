@@ -332,10 +332,11 @@ http://www.rssi.in
                     if (records.length == 0) {
                         document.getElementById('demo').innerHTML += ('<tr>' + '<td></td><td>' + '<p style="color:#F2545F">No record found.</p>' + '</td></tr>');
                     } else {
-                        var order = ["QT3", "3/CT02", "3/CT01", "QT2", "2/CT02", "2/CT01", "QT1", "1/CT02", "1/CT01"]
+                        var order = ["LG3", "LG4", "LG4S1", "LG4S2"]
+                            // var order = ["1/CT01", "1/CT02", "QT1", "2/CT01", "2/CT02", "QT2", "3/CT01", "3/CT02", "QT3"]
                         order.forEach(sub => {
                             records.forEach(item => {
-                                if (sub === item.Examname) {
+                                if (sub === item.Category) {
                                     document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Category + '</td>' + '<td>' + item.Subject + '</td>' + '<td>' + item.Testcode + '</td>' + '<td>' + item.Fullmarks + '</td>' + '<td>' + item.Examname + '</td>' + '<td>' + '<a href="' + item.Url + '"target="_self"><div class="columnExam2 exam_btn">Start</div></a>' + '</td>' + '<td>' + item.Topic + '</td>' + '</tr>');
                                 }
                             })
