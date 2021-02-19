@@ -251,6 +251,7 @@ login</button>
                     var Questionb = data.feed.entry[i]['gsx$questionb']['$t'];
                     var Questionc = data.feed.entry[i]['gsx$questionc']['$t'];
                     var Questiond = data.feed.entry[i]['gsx$questiond']['$t'];
+                    var Rlink = data.feed.entry[i]['gsx$rlink']['$t'];
 
                     if ((Emailid === emailid && Colors === colors)) {
                         records.push({
@@ -286,7 +287,8 @@ login</button>
                             Questionb : Questionb ,
                             Questionc : Questionc ,
                             Questiond : Questiond,
-                            Reviewer: Reviewer
+                            Reviewer: Reviewer,
+                            Rlink: Rlink
 
                         })
                     }
@@ -298,7 +300,7 @@ login</button>
                         {
                             document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<h7>' + item.Coursename + ' ' + item.Mode + '</h7></td></tr>');
                         } {
-                            document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.RegistrationNo + '-' + item.Name + '-' + item.Emailid + '</td>' + '<td>' + item.Allocationdate + '</td>' + '<td>' + item.Assgclass + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Classurl + '"target="_blank">' + item.Supervisor + '</a></span>' + '</td>' + '<td>' + item.Reviewer + '</td>' + '<td>' + item.Hr + '</td>' + '</tr>');
+                            document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.RegistrationNo + '-' + item.Name + '-' + item.Emailid + '</td>' + '<td>' + item.Allocationdate + '</td>' + '<td>' + item.Assgclass + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Classurl + '"target="_blank">' + item.Supervisor + '</a></span>' + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Rlink + '"target="_blank">' + item.Reviewer + '</a></span></td>' + '<td>' + item.Hr + '</td>' + '</tr>');
                         } {
                             document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Learningphase + '</td>' + '<td>' + '<img src="' + item.Attendanceqr + '" alt="" width="100%" />' + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Googlefolder + '"target="_blank">Google Drive Folder</a></span>' + '</td>' + '<td>' + item.Grade + '</td>' + '<td>' + item.Remarks + '</td>' + '<td>' + item.Certificate + '</td>' + '</tr>');
                         }
