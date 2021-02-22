@@ -137,7 +137,7 @@
                                     <th width="50%"><b>Reg. no-Name-Email ID</b></th>
                                     <th><b>TR Status</b></th>
                                     <th><b>MR Status</b></th>
-                                    <th><b>HR Status</b></th>
+                                    <th width="20%"><b>HR Status</b></th>
                                 </tr>
                             </thead>
                             <tbody id="demo">
@@ -318,7 +318,7 @@
                     } else {
                         records.forEach(item => {
                             {
-                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.RegistrationNo + ' - ' + item.Name + ' - ' + item.Emailid + '</td>' + '<td>' + item.Trs + ' - ' + item.Trm + '</td><td>' + item.Mrs + ' - ' + item.Mrm + '</td><td>' + item.Hrs + '</td></tr>');
+                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.RegistrationNo + ' - ' + item.Name + ' - ' + item.Emailid + '</td>' + '<td>' + item.Trs + ' - ' + item.Trm + '</td><td>' + item.Mrs + ' - ' + item.Mrm + '</td><td>' + item.Hrs + ' <br><br> ' + item.Remarks + '</td></tr>');
                             } {
                                 document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + item.Coursename + ' - ' + item.Mode + '</td>' + '<td>' + item.Allocationdate + '</td><td>' + item.Assgclass + '</td><td>' + '<span class="noticet"><a href="' + item.Googlefolder + '"target="_blank">Google Drive Folder</a></span>' + '</td></tr>');
                             } {
