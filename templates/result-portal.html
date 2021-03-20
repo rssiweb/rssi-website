@@ -90,7 +90,7 @@ http://www.rssi.in
      NAVIGATION LINKS     
 ============================== -->
 
-<body>
+<body oncontextmenu="return false">
 
     <div id="header"></div>
 
@@ -241,10 +241,13 @@ http://www.rssi.in
                     if (records.length == 0) {
                         document.getElementById('demo').innerHTML += ('<tr>' + '<td></td><td>' + '<p style="color:#F2545F">No record found.</p>' + '</td></tr>');
                     } else {
-                        records.forEach(item => {
-                            {
-                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Year + '</td>' + '<td>' + item.Examname + '</td>' + '<td>' + item.Studentid + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Category + '/' + item.Class + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Result + '"target="_blank">Download</a></span>' + '</td>' + '</tr>');
-                            }
+                        var order = ["2021-2022", "2020-2021"]
+                        order.forEach(sub => {
+                            records.forEach(item => {
+                                if (sub === item.Year) {
+                                    document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Year + '</td>' + '<td>' + item.Examname + '</td>' + '<td>' + item.Studentid + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Category + '/' + item.Class + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Result + '"target="_blank">Download</a></span>' + '</td>' + '</tr>');
+                                }
+                            })
                         })
                     }
                 });
@@ -279,6 +282,26 @@ http://www.rssi.in
             window.addEventListener("resize", lazyload);
             window.addEventListener("orientationChange", lazyload);
         });
+    </script>
+    <script>
+        document.onkeypress = function(event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onmousedown = function(event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onkeydown = function(event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
     </script>
     <!-- =========================
      FOOTER   
