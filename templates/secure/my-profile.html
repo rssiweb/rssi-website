@@ -2,7 +2,7 @@
 <html lang=en>
 
 <head>
-    <title>Profile</title>
+    <title>My Profile</title>
 </head>
 <meta name=description content>
 <meta name=author content>
@@ -90,7 +90,7 @@
     <div id=header></div>
     <div style=margin:.3%>
         <ps class="marginleft notice" style=margin-left:3%>
-            <a href=/index>Home</a> &#62; Students' corner &#62; Profile
+            <a href=/index>Home</a> &#62; Students' corner &#62; My Profile
         </ps>
     </div>
     <div class=container>
@@ -150,7 +150,7 @@ login</button>
                                         <th><b>Photo</b></th>
                                         <th colspan="2"><b>Student Details</b></th>
                                         <th><b>Profile Status</b></th>
-                                        <th><b>Last Refresh</b></th>
+                                        <th colspan="2"><b>Last Refresh</b></th>
                                     </tr>
                                 </tr>
                             </thead>
@@ -159,12 +159,12 @@ login</button>
                             <thead style=background-color:whitesmoke;font-style:oblique>
                                 <tr>
                                     <th><b>Admission Date</b></th>
-                                    <th><b>Name of Vendor Foundation</b></th>
                                     <th><b>Preferred Branch of RSSI</b></th>
                                     <th><b>Class/Category</b></th>
                                     <th><b>Date of Birth</b></th>
                                     <th><b>Student Aadhaar</b></th>
-                                    <th><b>Guardian Aadhaar</b></th>
+                                    <th colspan="2"><b>Name of Vendor Foundation</b></th>
+
 
                                 </tr>
                             </thead>
@@ -173,12 +173,14 @@ login</button>
                             <thead style=background-color:whitesmoke;font-style:oblique>
                                 <tr>
                                     <th><b>Guardian's Name</b></th>
+                                    <th><b>Guardian Aadhaar</b></th>
                                     <th><b>Postal Address</b></th>
-                                    <th><b>Contact/Email Address</b></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
+                                    <th colspan="2"><b>Contact/Email Address</b></th>
+                                    <th><b>Family monthly income</b></th>
+                                    <th><b>Total number of family members</b></th>
+
+
+
 
                                 </tr>
                             </thead>
@@ -188,12 +190,13 @@ login</button>
                             <thead style=background-color:whitesmoke;font-style:oblique>
                                 <tr>
                                     <th><b>School Admission Required</b></th>
-                                    <th><b>Name Of The Subjects</b></th>
+                                    <th width=25%><b>Name Of The Subjects</b></th>
                                     <th><b>Name Of The School</b></th>
                                     <th><b>Name Of The Board</b></th>
                                     <th><b>Medium</b></th>
-                                    <th><b>Result</b></th>
-                                    <th></th>
+                                    <th colspan="2"><b>My Document</b></th>
+
+
                                 </tr>
                             </thead>
                             <tbody id=demo3>
@@ -201,18 +204,16 @@ login</button>
                             <thead style=background-color:whitesmoke;font-style:oblique>
                                 <tr>
 
-                                    <th><b>Family monthly income</b></th>
-                                    <th><b>Total number of family members</b></th>
-                                    <th><b>Fees</b></th>
-                                    <th><b>Library Status</b></th>
-                                    <th><b>Remarks</b></th>
-                                    <th></th>
-                                    <th></th>
+                                    <th colspan="2"><b>Fees</b></th>
+                                    <th colspan="2"><b>Library Status</b></th>
+                                    <th colspan="3"><b>Class URL</b></th>
+
                                 </tr>
                             </thead>
                             <tbody id=demo4>
                             </tbody>
                         </table>
+
                     </div>
             </div>
         </div>
@@ -228,7 +229,7 @@ login</button>
     <script type=text/javascript src=/js/mdb.min.js></script>
     <script type=text/javascript>
         var loaddata = function() {
-            var emailid = document.getElementById('name').value
+            var studentid = document.getElementById('name').value
             var colors = document.getElementById('ename').value
             $.getJSON("https://spreadsheets.google.com/feeds/list/1txikdGtRVE4YTuaPc_O7wkK93WDgus3-7BI5DvNDX_U/1/public/values?alt=json", function(data) {
                 document.getElementById('demo1').innerHTML = ""
@@ -267,11 +268,11 @@ login</button>
                     var Selectdateofformsubmission = data.feed.entry[i]['gsx$selectdateofformsubmission']['$t'];
                     var Status = data.feed.entry[i]['gsx$status']['$t'];
                     var Effectivefrom = data.feed.entry[i]['gsx$effectivefrom']['$t'];
-                    var Remarks = data.feed.entry[i]['gsx$remarks']['$t'];
+                    var Remarks1 = data.feed.entry[i]['gsx$remarks1']['$t'];
                     var Nameofvendorfoundation = data.feed.entry[i]['gsx$nameofvendorfoundation']['$t'];
                     var Photourl = data.feed.entry[i]['gsx$photourl']['$t'];
                     var Bookststus = data.feed.entry[i]['gsx$bookststus']['$t'];
-                    var Result = data.feed.entry[i]['gsx$result']['$t'];
+                    var Mydocument = data.feed.entry[i]['gsx$mydocument']['$t'];
                     var Profilestatus = data.feed.entry[i]['gsx$profilestatus']['$t'];
                     var Lastupdatedon = data.feed.entry[i]['gsx$lastupdatedon']['$t'];
                     var Totalnumberoffamilymembers = data.feed.entry[i]['gsx$totalnumberoffamilymembers']['$t'];
@@ -279,8 +280,9 @@ login</button>
                     var Medium = data.feed.entry[i]['gsx$medium']['$t'];
                     var Selectdateofformsubmission = data.feed.entry[i]['gsx$selectdateofformsubmission']['$t'];
                     var Fees = data.feed.entry[i]['gsx$fees']['$t'];
+                    var Classurl = data.feed.entry[i]['gsx$classurl']['$t'];
 
-                    if ((Studentid === emailid && Colors === colors)) {
+                    if ((Studentid === studentid && Colors === colors)) {
                         records.push({
                             Studentid : Studentid,
                             Rollnumber: Rollnumber,
@@ -308,18 +310,19 @@ login</button>
                             Selectdateofformsubmission: Selectdateofformsubmission,
                             Status: Status,
                             Effectivefrom: Effectivefrom,
-                            Remarks: Remarks,
+                            Remarks1: Remarks1,
                             Nameofvendorfoundation: Nameofvendorfoundation,
                             Photourl: Photourl,
                             Bookststus: Bookststus,
-                            Result: Result,
+                            Mydocument: Mydocument,
                             Profilestatus: Profilestatus,
                             Lastupdatedon: Lastupdatedon,
                             Totalnumberoffamilymembers: Totalnumberoffamilymembers,
                             Familymonthlyincome: Familymonthlyincome,
                             Medium: Medium,
                             Selectdateofformsubmission: Selectdateofformsubmission,
-                            Fees: Fees
+                            Fees: Fees,
+                            Classurl: Classurl
 
 
                         })
@@ -330,15 +333,15 @@ login</button>
                 } else {
                     records.forEach(item => {
                         {
-                            document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Photourl + '" alt="" width="100px"/>' + '</td>' + '<td colspan="2">Name - <b>' + item.Studentname + '</b><br><br>Student ID - <b>' + item.Studentid + '</b>, Roll No - <b>' + item.Rollnumber + '</b><br><br><b>' + item.Gender + ' (' + item.Age + ' Years)</b></td>' + '<td>' + item.Profilestatus + '</td>' + '<td>' + item.Lastupdatedon + '</td>' + '</tr>');
+                            document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Photourl + '" alt="" width="100px"/>' + '</td>' + '<td colspan="2">Name - <b>' + item.Studentname + '</b><br><br>Student ID - <b>' + item.Studentid + '</b>, Roll No - <b>' + item.Rollnumber + '</b><br><br><b>' + item.Gender + ' (' + item.Age + ' Years)</b></td>' + '<td>' + item.Profilestatus + '<br><br>' + item.Remarks1 + '</td>' + '<td colspan="2">' + item.Lastupdatedon + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Selectdateofformsubmission + '</td>' + '<td>' + item.Nameofvendorfoundation + '</td>' + '<td>' + item.Preferredbranch + '</td>' + '<td>' + item.Class + '/' + item.Category + '</td>' + '<td>' + item.Dateofbirth + '</td>' + '<td>' + item.Studentaadhar + '</td><td>' + item.Guardianaadhar + '</td>' + '</tr>');
+                            document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Selectdateofformsubmission + '</td>' + '<td>' + item.Preferredbranch + '</td>' + '<td>' + item.Class + '/' + item.Category + '</td>' + '<td>' + item.Dateofbirth + '</td>' + '<td>' + item.Studentaadhar + '</td>' + '<td colspan="2">' + item.Nameofvendorfoundation + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Relationwithstudent + ' - ' + item.Guardiansname + '</td>' + '<td>' + item.Postaladdress + '</td><td>' + item.Contact + '/' + item.Emailaddress + '</td>' + '</tr>');
+                            document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Relationwithstudent + ' - ' + item.Guardiansname + '</td>' + '<td>' + item.Guardianaadhar + '</td>' + '<td>' + item.Postaladdress + '</td><td colspan="2">' + item.Contact + '/' + item.Emailaddress + '</td>' + '<td>' + item.Familymonthlyincome + '</td>' + '<td>' + item.Totalnumberoffamilymembers + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo3').innerHTML += ('<tr>' + '<td>' + item.Schooladmissionrequired + '</td><td>' + item.Nameofthesubjects + '</td>' + '<td>' + item.Nameoftheschool + '</td>' + '<td>' + item.Nameoftheboard + '</td>' + '<td>' + item.Medium + '</td>' + '<td>' + '<span class="noticet"><a href="https://www.rssi.in/result-portal" target="_blank">View</a></span>' + '</td>' + '</tr>');
+                            document.getElementById('demo3').innerHTML += ('<tr>' + '<td>' + item.Schooladmissionrequired + '</td><td>' + item.Nameofthesubjects + '</td>' + '<td>' + item.Nameoftheschool + '</td>' + '<td>' + item.Nameoftheboard + '</td>' + '<td>' + item.Medium + '</td>' + '<td>' + item.Mydocument + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo4').innerHTML += ('<tr>' + '<td>' + item.Familymonthlyincome + '</td>' + '<td>' + item.Totalnumberoffamilymembers + '</td>' + '<td>' + item.Fees + '</td>' + '<td>' + item.Bookststus + '</td>' + '<td>' + item.Remarks + '</td>' + '</tr>');
+                            document.getElementById('demo4').innerHTML += ('<tr>' + '<td colspan="2">' + item.Fees + '</td>' + '<td colspan="2">' + item.Bookststus + '</td>' + '<td colspan="3">' + item.Classurl + '</td>' + '</tr>');
                         }
                     })
                 }
@@ -404,12 +407,38 @@ login</button>
             }
         }
     </script>
-    <!-- <div id="thoverX" class="thover"></div>
-    <div id="tpopupX" class="tpopup">
-        <img src="/images/infob.jpg" class="img-fluid img-responsive">
-        <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="https://drive.google.com/file/d/1GBDcByr_eh98LtWfyQ517jaS6s696khY/preview" allowfullscreen></iframe>
+    <!-- =========================
+     FOOTER   
+============================== -->
+    <!-- Back top -->
+    <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+    <div id="footer"></div>
+    <!--<div id="hellobar-bar" class="regular closable" style="top: 0%;">
+        <div class="hb-content-wrapper">
+            <div class="hb-text-wrapper">
+                <div class="hb-headline-text">
+                    <p><span>Please find the schedule of QT3-21 exam.</span></p>
+                </div>
+            </div>
+            <a href="https://drive.google.com/file/d/1_dHtXCSjpPVBYRFC3fi69WvXQxoGGqyK/view" target="_self" class="hb-cta hb-cta-button
+                    btnh">
+                <div class="hb-text-holder">
+                    <p style="color: white">Click Here</p>
+                </div>
+            </a>
         </div>
+
+        <div class="hb-close-wrapper">
+            <a href="javascript:void(0);" class="icon-close" onClick="$('#hellobar-bar').fadeOut ()">&#10006;</a>
+        </div>
+    </div>-->
+    <div id="feedback1"><a href="https://drive.google.com/file/d/1--hLyh7RsIjLZ8V-krK3y6Jc7M2R-6fh/view" target="blank">Code of Conduct</a></div>
+    <div id="thoverX" class="thover"></div>
+    <div id="tpopupX" class="tpopup">
+        <img src="/images/infob1.jpg" class="img-fluid img-responsive">
+        <!-- <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://drive.google.com/file/d/1GBDcByr_eh98LtWfyQ517jaS6s696khY/preview" allowfullscreen></iframe>
+        </div>-->
         <div id="tcloseX" class="tclose">X</div>
         <script>
             $("#tcloseX").click(function() {
@@ -417,9 +446,8 @@ login</button>
                 $("#thoverX").toggleClass('hidden');
             });
         </script>
-    </div>-->
-    <a href=#back-top class=go-top><i class="fa fa-angle-up"></i></a>
-    <div id=footer></div>
+    </div>
+
     </body>
 
 </html>

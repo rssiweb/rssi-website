@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <title>My Account</title>
+</head>
+<meta name=description content>
+<meta name=author content>
+<meta charset=UTF-8>
+<meta http-equiv=X-UA-Compatible content="IE=Edge">
+<meta name=viewport content="width=device-width, initial-scale=1,
+        maximum-scale=1">
+<link rel="shortcut icon" href=/images/logo/favicon.ico type=image/x-icon />
+<script src=/js/jquery.js></script>
+<script>
+    $(function() {
+        $("#header").load("/header.html");
+        $("#footer").load("/footer.html");
+    });
+</script>
+<link href=//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css rel=stylesheet id=bootstrap-css>
+<link rel=stylesheet href=/css/HeaderFooter.css>
+<link rel=stylesheet href=/css/style.css>
+<link rel=stylesheet href=/css/addstyle.css>
+<link rel=stylesheet href=/css/animate.css>
+<link rel=stylesheet href=/css/hellobar.css>
+<style>
+    body {
+        line-height: unset
+    }
+    
+    .navbar {
+        padding: unset;
+        font-weight: unset;
+        display: inline-block
+    }
+    
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: unset
+    }
+    
+    .text-center {
+        text-align: left!important
+    }
+    
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #fff
+    }
+    
+    .table-striped tbody tr {
+        background-color: #fafafb
+    }
+    
+    input,
+    select {
+        width: 150px
+    }
+    
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: 0
+    }
+    
+    .exam_btn:hover {
+        background: #90baa4;
+        border: 1px solid #90baa4
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        $(".collapse.show").each(function() {
+            $(this).prev(".card-header").find(".fas").addClass("fa-chevron-down").removeClass("fa-chevron-up");
+        });
+        $(".collapse").on('show.bs.collapse', function() {
+            $(this).prev(".card-header").find(".fas").removeClass("fa-chevron-down").addClass("fa-chevron-up");
+        }).on('hide.bs.collapse', function() {
+            $(this).prev(".card-header").find(".fas").removeClass("fa-chevron-up").addClass("fa-chevron-down");
+        });
+    });
+</script>
+
+<body oncontextmenu="return false">
+    <div id=header></div>
+    <div style=margin:.3%>
+        <ps class="marginleft notice" style=margin-left:3%>
+            <a href=/index>Home</a> &#62; Students' corner &#62; My Profile
+        </ps>
+    </div>
+    <div class=container>
+        <div class=row style=text-align:right;width:101.5%>
+            <div class=col>
+                <div class="white hoverdecoration">
+                    <a href=https://drive.google.com/file/d/1b3AcN68TJa7gIai_RTyJ5989Te-TXCbq/view target=_blank class=primary_btn style=padding-right:3vh;padding-left:3vh;margin-top:1%;background-color:#90baa4;border-color:#90baa4>Class schedule&nbsp;&nbsp;<i class="fas fa-calendar-week" style=font-size:20px></i></a>
+                </div>
+            </div>
+        </div>
+    </div><br>
+    <div id=thover11 class="hidden thover"></div>
+    <div id=tpopup11 class="hidden tpopup" style=padding:20px;position:fixed>
+        <div class=login-card>
+            <h1>Log-in</h1><br>
+            <form action=/secure1/wbt method=post>
+                <input type=text name=user placeholder=Username>
+                <input type=password name=code placeholder=Password>
+                <input type=submit name=login class="login login-submit" value=login>
+            </form>
+            <div class=login-help>
+                <br><a>Forgot Password? Connect with RSSI admin team</a>
+            </div>
+        </div>
+        <div id=tclose11 class=tclose>X</div>
+    </div>
+    <div class=container>
+        <p style=display:inline>You have to enter both Student ID and password (Last two digit of your registered mobile number and month (mm) of your Date of birth) to access your account. If my registered mobile number is 1234567898 and date of birth is 26/03/2002, my account
+            password is 9803.</p><br><br>
+        <div class=row style=background-color:#fff5c2;min-height:70px;width:100%>
+            <div class=col1>
+                <label for=name>Associate Number<span style=color:#F2545F>*</span>&nbsp;</label>
+                <input type=text id=name name=name size=12 style=text-transform:uppercase required>
+            </div>
+            <div class=col2>
+                <label for=ename>Password (4 Digits)<span style=color:#F2545F>*</span>&nbsp;</label>
+                <input type=password name=ename id=ename minlength=4 maxlength=8 size=12 style=width:fit-content;height:25px;padding:2px required>
+                </select>
+            </div>
+            <div class=col3>
+                <button type=button class=exam_btn onclick=loaddata()><i class="fas fa-sign-in-alt"></i>
+login</button>
+            </div>
+        </div>
+    </div>
+    <div class=container>
+        <div class=row>
+            <div class=col>
+
+                <body>
+                    <h2 style=margin-top:2%;font-size:20px align=center>where all the action is!</h2>
+                    <div class="container text-center my-4" style=overflow-x:auto>
+                        <table class="table bordered table-striped" id=testTable>
+                            <thead style=background-color:whitesmoke;font-style:oblique>
+                                <tr>
+                                    <tr>
+                                        <th><b>Photo</b></th>
+                                        <th colspan="2"><b>Volunteer Details</b></th>
+                                        <th><b>Association Status</b></th>
+                                        <th colspan="2"><b>Last Refresh</b></th>
+                                    </tr>
+                                </tr>
+                            </thead>
+                            <tbody id=demo1>
+                            </tbody>
+                            <thead style=background-color:whitesmoke;font-style:oblique>
+                                <tr>
+                                    <th><b>Date of Join</b></th>
+                                    <th><b>Preferred Branch of RSSI</b></th>
+                                    <th><b>Position</b></th>
+                                    <th><b>Date of Birth</b></th>
+                                    <th><b>National Identifier</b></th>
+                                    <th colspan="2"><b>Last 4 digits of Identifier</b></th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody id=demo>
+                            </tbody>
+                            <thead style=background-color:whitesmoke;font-style:oblique>
+                                <tr>
+                                    <th><b>How you would like to be addressed?</b></th>
+                                    <th colspan="2"><b>Current Address</b></th>
+                                    <th><b colspan="2">Permanent Address</b></th>
+                                    <th colspan="2"><b>Contact/Email Address</b></th>
+                                </tr>
+                            </thead>
+                            <tbody id=demo2>
+                            </tbody>
+
+                            <thead style=background-color:whitesmoke;font-style:oblique>
+                                <tr>
+
+                                    <th><b>Language Details</b></th>
+                                    <th width=25%><b>Work Experience</b></th>
+                                    <th colspan="3"><b>My Document</b></th>
+                                    <th colspan="3"><b>Account Approved by</b></th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody id=demo3>
+                            </tbody>
+                            <thead style=background-color:whitesmoke;font-style:oblique>
+                                <tr>
+
+                                    <th><b>Class Allotment</b></th>
+                                    <th><b>Class URL</b></th>
+                                    <th><b>Class attendance</b></th>
+                                    <th colspan="3"><b>Notification</b></th>
+
+                                </tr>
+                            </thead>
+                            <tbody id=demo4>
+                            </tbody>
+                        </table>
+
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script src=/js/pace.js></script>
+    <script src=/js/fontawsome.js></script>
+    <script src=/js/bootstrap.min.js></script>
+    <script src=/js/jquery.parallax.js></script>
+    <script src=/js/wow.min.js></script>
+    <script src=/js/custom.js></script>
+    <script type=text/javascript src=/js/popper.min.js></script>
+    <script type=text/javascript src=/js/mdb.min.js></script>
+    <script type=text/javascript>
+        var loaddata = function() {
+            var studentid = document.getElementById('name').value
+            var colors = document.getElementById('ename').value
+            $.getJSON("https://spreadsheets.google.com/feeds/list/1D7NY7ZbNpjwHzM7JjJufP3h-uBXJNC77L--fj3YBBXg/1/public/values?alt=json", function(data) {
+                document.getElementById('demo1').innerHTML = ""
+                document.getElementById('demo').innerHTML = ""
+                document.getElementById('demo2').innerHTML = ""
+                document.getElementById('demo3').innerHTML = ""
+                document.getElementById('demo4').innerHTML = ""
+
+                var sheetData = data.feed.entry;
+                var i;
+                var records = []
+                for (i = 0; i < sheetData.length; i++) {
+                    var doj = data.feed.entry[i]['gsx$doj']['$t'];
+                    var associatenumber = data.feed.entry[i]['gsx$associatenumber']['$t'];
+                    var fullname = data.feed.entry[i]['gsx$fullname']['$t'];
+                    var email = data.feed.entry[i]['gsx$email']['$t'];
+                    var basebranch = data.feed.entry[i]['gsx$basebranch']['$t'];
+                    var permanentaddress = data.feed.entry[i]['gsx$permanentaddress']['$t'];
+                    var gender = data.feed.entry[i]['gsx$gender']['$t'];
+                    var dateofbirth = data.feed.entry[i]['gsx$dateofbirth']['$t'];
+                    var howyouwouldliketobeaddressed = data.feed.entry[i]['gsx$howyouwouldliketobeaddressed']['$t'];
+                    var currentaddress = data.feed.entry[i]['gsx$currentaddress']['$t'];
+                    var languagedetailsenglish = data.feed.entry[i]['gsx$languagedetailsenglish']['$t'];
+                    var workexperience = data.feed.entry[i]['gsx$workexperience']['$t'];
+                    var nationalidentifier = data.feed.entry[i]['gsx$nationalidentifier']['$t'];
+                    var uploadyourphoto = data.feed.entry[i]['gsx$uploadyourphoto']['$t'];
+                    var yourthoughtabouttheworkyouareengagedwith = data.feed.entry[i]['gsx$yourthoughtabouttheworkyouareengagedwith']['$t'];
+                    var Postaladdress = data.feed.entry[i]['gsx$postaladdress']['$t'];
+                    var Nameofthesubjects = data.feed.entry[i]['gsx$nameofthesubjects']['$t'];
+                    var Preferredbranch = data.feed.entry[i]['gsx$preferredbranch']['$t'];
+                    var Nameoftheschool = data.feed.entry[i]['gsx$nameoftheschool']['$t'];
+                    var Nameoftheboard = data.feed.entry[i]['gsx$nameoftheboard']['$t'];
+                    var Stateofdomicile = data.feed.entry[i]['gsx$stateofdomicile']['$t'];
+                    var Emailaddress = data.feed.entry[i]['gsx$emailaddress']['$t'];
+                    var Schooladmissionrequired = data.feed.entry[i]['gsx$schooladmissionrequired']['$t'];
+                    var Selectdateofformsubmission = data.feed.entry[i]['gsx$selectdateofformsubmission']['$t'];
+                    var Status = data.feed.entry[i]['gsx$status']['$t'];
+                    var Effectivefrom = data.feed.entry[i]['gsx$effectivefrom']['$t'];
+                    var Remarks1 = data.feed.entry[i]['gsx$remarks1']['$t'];
+                    var Nameofvendorfoundation = data.feed.entry[i]['gsx$nameofvendorfoundation']['$t'];
+                    var Photourl = data.feed.entry[i]['gsx$photourl']['$t'];
+                    var Bookststus = data.feed.entry[i]['gsx$bookststus']['$t'];
+                    var Mydocument = data.feed.entry[i]['gsx$mydocument']['$t'];
+                    var Profilestatus = data.feed.entry[i]['gsx$profilestatus']['$t'];
+                    var Lastupdatedon = data.feed.entry[i]['gsx$lastupdatedon']['$t'];
+                    var Totalnumberoffamilymembers = data.feed.entry[i]['gsx$totalnumberoffamilymembers']['$t'];
+                    var Familymonthlyincome = data.feed.entry[i]['gsx$familymonthlyincome']['$t'];
+                    var Medium = data.feed.entry[i]['gsx$medium']['$t'];
+                    var Selectdateofformsubmission = data.feed.entry[i]['gsx$selectdateofformsubmission']['$t'];
+                    var Fees = data.feed.entry[i]['gsx$fees']['$t'];
+                    var Classurl = data.feed.entry[i]['gsx$classurl']['$t'];
+
+                    if ((Studentid === studentid && Colors === colors)) {
+                        records.push({
+                            Studentid : Studentid,
+                            Rollnumber: Rollnumber,
+                            Studentname: Studentname,
+                            Category: Category,
+                            Gender: Gender,
+                            Age: Age,
+                            Class: Class,
+                            Profile: Profile,
+                            Contact: Contact,
+                            Guardiansname: Guardiansname,
+                            Relationwithstudent: Relationwithstudent,
+                            Studentaadhar: Studentaadhar,
+                            Guardianaadhar: Guardianaadhar,
+                            Dateofbirth: Dateofbirth,
+                            Colors: Colors,
+                            Postaladdress: Postaladdress,
+                            Nameofthesubjects: Nameofthesubjects,
+                            Preferredbranch: Preferredbranch,
+                            Nameoftheschool: Nameoftheschool,
+                            Nameoftheboard: Nameoftheboard,
+                            Stateofdomicile: Stateofdomicile,
+                            Emailaddress : Emailaddress,
+                            Schooladmissionrequired: Schooladmissionrequired,
+                            Selectdateofformsubmission: Selectdateofformsubmission,
+                            Status: Status,
+                            Effectivefrom: Effectivefrom,
+                            Remarks1: Remarks1,
+                            Nameofvendorfoundation: Nameofvendorfoundation,
+                            Photourl: Photourl,
+                            Bookststus: Bookststus,
+                            Mydocument: Mydocument,
+                            Profilestatus: Profilestatus,
+                            Lastupdatedon: Lastupdatedon,
+                            Totalnumberoffamilymembers: Totalnumberoffamilymembers,
+                            Familymonthlyincome: Familymonthlyincome,
+                            Medium: Medium,
+                            Selectdateofformsubmission: Selectdateofformsubmission,
+                            Fees: Fees,
+                            Classurl: Classurl
+
+
+                        })
+                    }
+                }
+                if (records.length == 0) {
+                    document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<p style="color:#F2545F">Error: Login failed. Please enter valid credentials.</p>' + '</td></tr>');
+                } else {
+                    records.forEach(item => {
+                        {
+                            document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Photourl + '" alt="" width="100px"/>' + '</td>' + '<td colspan="2">Name - <b>' + item.Studentname + '</b><br><br>Student ID - <b>' + item.Studentid + '</b>, Roll No - <b>' + item.Rollnumber + '</b><br><br><b>' + item.Gender + ' (' + item.Age + ' Years)</b></td>' + '<td>' + item.Profilestatus + '<br><br>' + item.Remarks1 + '</td>' + '<td colspan="2">' + item.Lastupdatedon + '</td>' + '</tr>');
+                        } {
+                            document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Selectdateofformsubmission + '</td>' + '<td>' + item.Preferredbranch + '</td>' + '<td>' + item.Class + '/' + item.Category + '</td>' + '<td>' + item.Dateofbirth + '</td>' + '<td>' + item.Studentaadhar + '</td>' + '<td colspan="2">' + item.Nameofvendorfoundation + '</td>' + '</tr>');
+                        } {
+                            document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Relationwithstudent + ' - ' + item.Guardiansname + '</td>' + '<td>' + item.Guardianaadhar + '</td>' + '<td>' + item.Postaladdress + '</td><td colspan="2">' + item.Contact + '/' + item.Emailaddress + '</td>' + '<td>' + item.Familymonthlyincome + '</td>' + '<td>' + item.Totalnumberoffamilymembers + '</td>' + '</tr>');
+                        } {
+                            document.getElementById('demo3').innerHTML += ('<tr>' + '<td>' + item.Schooladmissionrequired + '</td><td>' + item.Nameofthesubjects + '</td>' + '<td>' + item.Nameoftheschool + '</td>' + '<td>' + item.Nameoftheboard + '</td>' + '<td>' + item.Medium + '</td>' + '<td>' + item.Mydocument + '</td>' + '</tr>');
+                        } {
+                            document.getElementById('demo4').innerHTML += ('<tr>' + '<td colspan="2">' + item.Fees + '</td>' + '<td colspan="2">' + item.Bookststus + '</td>' + '<td colspan="3">' + item.Classurl + '</td>' + '</tr>');
+                        }
+                    })
+                }
+            });
+        }
+        $(document).ready(function() {
+            console.log("loading now...");
+            $("#secure_link_mt").click(function(event) {
+                event.preventDefault();
+                $("#tpopup11").toggleClass('hidden');
+                $("#thover11").toggleClass('hidden');
+            });
+            $("#tclose11").click(function() {
+                $("#tpopup11").toggleClass('hidden');
+                $("#thover11").toggleClass('hidden');
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+            var lazyloadImages = document.querySelectorAll("img.lazy");
+            var lazyloadThrottleTimeout;
+
+            function lazyload() {
+                if (lazyloadThrottleTimeout) {
+                    clearTimeout(lazyloadThrottleTimeout);
+                }
+                lazyloadThrottleTimeout = setTimeout(function() {
+                    var scrollTop = window.pageYOffset;
+                    lazyloadImages.forEach(function(img) {
+                        if (img.offsetTop < (window.innerHeight + scrollTop)) {
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                        }
+                    });
+                    if (lazyloadImages.length == 0) {
+                        document.removeEventListener("scroll", lazyload);
+                        window.removeEventListener("resize", lazyload);
+                        window.removeEventListener("orientationChange", lazyload);
+                    }
+                }, 20);
+            }
+            document.addEventListener("scroll", lazyload);
+            window.addEventListener("resize", lazyload);
+            window.addEventListener("orientationChange", lazyload);
+        });
+    </script>
+    <script>
+        document.onkeypress = function(event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onmousedown = function(event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onkeydown = function(event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+    </script>
+    <!-- =========================
+     FOOTER   
+============================== -->
+    <!-- Back top -->
+    <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+    <div id="footer"></div>
+    <!--<div id="hellobar-bar" class="regular closable" style="top: 0%;">
+        <div class="hb-content-wrapper">
+            <div class="hb-text-wrapper">
+                <div class="hb-headline-text">
+                    <p><span>Please find the schedule of QT3-21 exam.</span></p>
+                </div>
+            </div>
+            <a href="https://drive.google.com/file/d/1_dHtXCSjpPVBYRFC3fi69WvXQxoGGqyK/view" target="_self" class="hb-cta hb-cta-button
+                    btnh">
+                <div class="hb-text-holder">
+                    <p style="color: white">Click Here</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="hb-close-wrapper">
+            <a href="javascript:void(0);" class="icon-close" onClick="$('#hellobar-bar').fadeOut ()">&#10006;</a>
+        </div>
+    </div>-->
+    <div id="feedback1"><a href="https://drive.google.com/file/d/1--hLyh7RsIjLZ8V-krK3y6Jc7M2R-6fh/view" target="blank">Code of Conduct</a></div>
+    <!--<div id="thoverX" class="thover"></div>
+    <div id="tpopupX" class="tpopup">
+        <img src="/images/infob1.jpg" class="img-fluid img-responsive">
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://drive.google.com/file/d/1GBDcByr_eh98LtWfyQ517jaS6s696khY/preview" allowfullscreen></iframe>
+        </div>
+        <div id="tcloseX" class="tclose">X</div>
+        <script>
+            $("#tcloseX").click(function() {
+                $("#tpopupX").toggleClass('hidden');
+                $("#thoverX").toggleClass('hidden');
+            });
+        </script>
+    </div>-->
+
+    </body>
+
+</html>
