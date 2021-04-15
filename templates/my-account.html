@@ -223,7 +223,7 @@ login</button>
     <script type=text/javascript src=/js/mdb.min.js></script>
     <script type=text/javascript>
         var loaddata = function() {
-            var associatenumber = document.getElementById('name').value
+            var associatenumber = document.getElementById('name').value.toUpperCase()
             var colors = document.getElementById('ename').value
             $.getJSON("https://spreadsheets.google.com/feeds/list/1D7NY7ZbNpjwHzM7JjJufP3h-uBXJNC77L--fj3YBBXg/1/public/values?alt=json", function(data) {
                 document.getElementById('demo1').innerHTML = ""
@@ -244,18 +244,14 @@ login</button>
                     var Permanentaddress = data.feed.entry[i]['gsx$permanentaddress']['$t'];
                     var Gender = data.feed.entry[i]['gsx$gender']['$t'];
                     var Dateofbirth = data.feed.entry[i]['gsx$dateofbirth']['$t'];
-                    var Howyouwouldliketobeaddressed = data.feed.entry[i]['gsx$howyouwouldliketobeaddressed']['$t'];
                     var Currentaddress = data.feed.entry[i]['gsx$currentaddress']['$t'];
                     var Languagedetailsenglish = data.feed.entry[i]['gsx$languagedetailsenglish']['$t'];
                     var Workexperience = data.feed.entry[i]['gsx$workexperience']['$t'];
                     var Nationalidentifier = data.feed.entry[i]['gsx$nationalidentifier']['$t'];
-                    var Uploadyourphoto = data.feed.entry[i]['gsx$uploadyourphoto']['$t'];
-                    var Yourthoughtabouttheworkyouareengagedwith = data.feed.entry[i]['gsx$yourthoughtabouttheworkyouareengagedwith']['$t'];
                     var Applicationnumber = data.feed.entry[i]['gsx$applicationnumber']['$t'];
                     var Position = data.feed.entry[i]['gsx$position']['$t'];
                     var Approvedby = data.feed.entry[i]['gsx$approvedby']['$t'];
                     var Gm = data.feed.entry[i]['gsx$gm']['$t'];
-                    var Associationstatus = data.feed.entry[i]['gsx$associationstatus']['$t'];
                     var Effectivedate = data.feed.entry[i]['gsx$effectivedate']['$t'];
                     var Remarks = data.feed.entry[i]['gsx$remarks']['$t'];
                     var Phone = data.feed.entry[i]['gsx$phone']['$t'];
@@ -263,9 +259,15 @@ login</button>
                     var Astatus = data.feed.entry[i]['gsx$astatus']['$t'];
                     var Badge = data.feed.entry[i]['gsx$badge']['$t'];
                     var Colors = data.feed.entry[i]['gsx$colors']['$t'];
+                    var Languagedetailshindi = data.feed.entry[i]['gsx$languagedetailshindi']['$t'];
+                    var Photo = data.feed.entry[i]['gsx$photo']['$t'];
+                    var Mydoc = data.feed.entry[i]['gsx$mydoc']['$t'];
+                    var Class = data.feed.entry[i]['gsx$class']['$t'];
+                    var Notification = data.feed.entry[i]['gsx$notification']['$t'];
+                    var Lastupdatedon = data.feed.entry[i]['gsx$lastupdatedon']['$t'];
 
 
-                    if ((Studentid === studentid && Colors === colors)) {
+                    if ((Associatenumber === associatenumber && Colors === colors)) {
                         records.push({
                             Doj: Doj,
                             Associatenumber: Associatenumber,
@@ -275,18 +277,14 @@ login</button>
                             Permanentaddress: Permanentaddress,
                             Gender: Gender,
                             Dateofbirth: Dateofbirth,
-                            Howyouwouldliketobeaddressed: Howyouwouldliketobeaddressed,
                             Currentaddress: Currentaddress,
                             Languagedetailsenglish: Languagedetailsenglish,
                             Workexperience: Workexperience,
                             Nationalidentifier: Nationalidentifier,
-                            Uploadyourphoto: Uploadyourphoto,
-                            Yourthoughtabouttheworkyouareengagedwith: Yourthoughtabouttheworkyouareengagedwith,
                             Applicationnumber: Applicationnumber,
                             Position: Position,
                             Approvedby: Approvedby,
                             Gm: Gm,
-                            Associationstatus: Associationstatus,
                             Effectivedate: Effectivedate,
                             Remarks: Remarks,
                             Phone: Phone,
@@ -294,7 +292,12 @@ login</button>
                             Astatus: Astatus,
                             Badge: Badge,
                             Colors: Colors,
-                            Lastupdatedon: Lastupdatedon
+                            Lastupdatedon: Lastupdatedon,
+                            Languagedetailshindi: Languagedetailshindi,
+                            Photo: Photo,
+                            Mydoc: Mydoc,
+                            Class: Class,
+                            Notification: Notification
                         })
                     }
                 }
@@ -303,15 +306,15 @@ login</button>
                 } else {
                     records.forEach(item => {
                         {
-                            document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Uploadyourphoto + '" alt="" width="100px"/>' + '</td>' + '<td colspan="2">Name - <b>' + item.Fullname + '</b><br><br>Associate number - <b>' + item.Associatenumber + '</b>, Application number - <b>' + item.Applicationnumber + '</b><br><br><b>' + item.Gender + ' (' + item.Age + ' Years)</b></td>' + '<td>' + item.Astatus + '<br><br>' + item.Remarks + '</td>' + '<td colspan="2">' + item.Lastupdatedon + '</td>' + '</tr>');
+                            document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Photo + '" alt="" width="100px"/>' + '</td>' + '<td colspan="2">Name - <b>' + item.Fullname + '</b><br><br>Associate number - <b>' + item.Associatenumber + '</b><br><br><b>' + item.Gender + ' (' + item.Age + ' Years)</b></td>' + '<td>' + item.Astatus + '<br><br>' + item.Remarks + '</td>' + '<td colspan="2">' + item.Lastupdatedon + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Doj + '</td>' + '<td>' + item.Basebranch + '</td>' + '<td>' + item.Position + '/' + item.Dateofbirth + '</td>' + '<td>' + item.Nationalidentifier + '</td>' + '<td>' + item.Identifier + '</td>' + '</tr>');
+                            document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Doj + ' (Ref. ' + item.Applicationnumber + ')</td>' + '<td>' + item.Basebranch + '</td>' + '<td>' + item.Position + '</td><td>' + item.Dateofbirth + '</td>' + '<td>' + item.Nationalidentifier + '</td>' + '<td colspan="2">' + item.Identifier + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Howyouwouldliketobeaddressed + '</td>' + '<td>' + item.Currentaddress + '</td>' + '<td>' + item.Permanentaddress + '</td><td colspan="2">' + item.Phone + '/' + item.Email + '</td>' + '</tr>');
+                            document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Howyouwouldliketobeaddressed + '</td>' + '<td colspan="2">' + item.Currentaddress + '</td>' + '<td colspan="2">' + item.Permanentaddress + '</td><td colspan="2">' + item.Phone + '/' + item.Email + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo3').innerHTML += ('<tr>' + '<td>' + item.Languagedetailsenglish + '</td><td>' + item.Nameofthesubjects + '</td>' + '<td>' + item.Nameoftheschool + '</td>' + '<td>' + item.Nameoftheboard + '</td>' + '<td>' + item.Medium + '</td>' + '<td>' + item.Mydocument + '</td>' + '</tr>');
+                            document.getElementById('demo3').innerHTML += ('<tr>' + '<td>' + item.Languagedetailsenglish + ', ' + item.Languagedetailshindi + '</td><td>' + item.Workexperience + '</td>' + '<td colspan="3">' + item.Mydoc + '</td>' + '<td colspan="3">' + item.Approvedby + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo4').innerHTML += ('<tr>' + '<td colspan="2">' + item.Fees + '</td>' + '<td colspan="2">' + item.Bookststus + '</td>' + '<td colspan="3">' + item.Classurl + '</td>' + '</tr>');
+                            document.getElementById('demo4').innerHTML += ('<tr>' + '<td>' + item.Class + '</td>' + '<td>' + item.Gm + '</td>' + '<td colspan="3">' + item.Notification + '</td>' + '</tr>');
                         }
                     })
                 }
