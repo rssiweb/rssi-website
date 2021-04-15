@@ -229,7 +229,7 @@ login</button>
     <script type=text/javascript src=/js/mdb.min.js></script>
     <script type=text/javascript>
         var loaddata = function() {
-            var studentid = document.getElementById('name').value
+            var studentid = document.getElementById('name').value.toUpperCase()
             var colors = document.getElementById('ename').value
             $.getJSON("https://spreadsheets.google.com/feeds/list/1txikdGtRVE4YTuaPc_O7wkK93WDgus3-7BI5DvNDX_U/1/public/values?alt=json", function(data) {
                 document.getElementById('demo1').innerHTML = ""
