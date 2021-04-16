@@ -72,6 +72,10 @@
         background: #90baa4;
         border: 1px solid #90baa4
     }
+    
+    #feedback1 a {
+        right: -115px;
+    }
 </style>
 <script>
     $(document).ready(function() {
@@ -118,8 +122,8 @@
         <div id=tclose11 class=tclose>X</div>
     </div>
     <div class=container>
-        <p style=display:inline>You have to enter both Student ID and password (Last two digit of your registered mobile number and month (mm) of your Date of birth) to access your account. If my registered mobile number is 1234567898 and date of birth is 26/03/2002, my account
-            password is 9803.</p><br><br>
+        <p style=display:inline>You have to enter both Associate Number and password (Last two digit of your registered mobile number and month (mm) of your Date of birth) to access your account. If my registered mobile number is 1234567898 and date of birth is 26/03/2002, my
+            account password is 9803.</p><br><br>
         <div class=row style=background-color:#fff5c2;min-height:70px;width:100%>
             <div class=col1>
                 <label for=name>Associate Number<span style=color:#F2545F>*</span>&nbsp;</label>
@@ -147,10 +151,10 @@ login</button>
                             <thead style=background-color:whitesmoke;font-style:oblique>
                                 <tr>
                                     <tr>
-                                        <th><b>Photo</b></th>
+                                        <th width=25%><b>Photo</b></th>
                                         <th colspan="2"><b>Volunteer Details</b></th>
-                                        <th><b>Association Status</b></th>
-                                        <th colspan="2"><b>Last Refresh</b></th>
+                                        <th colspan="2"><b>Association Status</b></th>
+                                        <th colspan="2"><b>Badge</b></th>
                                     </tr>
                                 </tr>
                             </thead>
@@ -159,11 +163,12 @@ login</button>
                             <thead style=background-color:whitesmoke;font-style:oblique>
                                 <tr>
                                     <th><b>Date of Join</b></th>
-                                    <th><b>Preferred Branch of RSSI</b></th>
-                                    <th><b>Position</b></th>
+                                    <th><b>Base Branch</b></th>
+                                    <th><b>Deputed Branch</b></th>
+                                    <th><b>Designation</b></th>
                                     <th><b>Date of Birth</b></th>
                                     <th><b>National Identifier</b></th>
-                                    <th colspan="2"><b>Last 4 digits of Identifier</b></th>
+                                    <th><b>Last 4 digits of Identifier</b></th>
 
 
                                 </tr>
@@ -174,7 +179,7 @@ login</button>
                                 <tr>
                                     <th><b>How you would like to be addressed?</b></th>
                                     <th colspan="2"><b>Current Address</b></th>
-                                    <th><b colspan="2">Permanent Address</b></th>
+                                    <th colspan="2"><b>Permanent Address</b></th>
                                     <th colspan="2"><b>Contact/Email Address</b></th>
                                 </tr>
                             </thead>
@@ -199,8 +204,9 @@ login</button>
 
                                     <th><b>Class Allotment</b></th>
                                     <th><b>Class URL</b></th>
-                                    <th><b>Class attendance</b></th>
-                                    <th colspan="3"><b>Notification</b></th>
+                                    <th colspan="2"><b>Class attendance</b></th>
+                                    <th colspan="2"><b>Notification</b></th>
+                                    <th><b>Last Refresh</b></th>
 
                                 </tr>
                             </thead>
@@ -265,6 +271,10 @@ login</button>
                     var Class = data.feed.entry[i]['gsx$class']['$t'];
                     var Notification = data.feed.entry[i]['gsx$notification']['$t'];
                     var Lastupdatedon = data.feed.entry[i]['gsx$lastupdatedon']['$t'];
+                    var Age = data.feed.entry[i]['gsx$age']['$t'];
+                    var Howyouwouldliketobeaddressed = data.feed.entry[i]['gsx$howyouwouldliketobeaddressed']['$t'];
+                    var Depb = data.feed.entry[i]['gsx$depb']['$t'];
+                    var Attd = data.feed.entry[i]['gsx$attd']['$t'];
 
 
                     if ((Associatenumber === associatenumber && Colors === colors)) {
@@ -297,7 +307,11 @@ login</button>
                             Photo: Photo,
                             Mydoc: Mydoc,
                             Class: Class,
-                            Notification: Notification
+                            Notification: Notification,
+                            Age: Age,
+                            Howyouwouldliketobeaddressed: Howyouwouldliketobeaddressed,
+                            Depb: Depb,
+                            Attd: Attd
                         })
                     }
                 }
@@ -306,15 +320,15 @@ login</button>
                 } else {
                     records.forEach(item => {
                         {
-                            document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Photo + '" alt="" width="100px"/>' + '</td>' + '<td colspan="2">Name - <b>' + item.Fullname + '</b><br><br>Associate number - <b>' + item.Associatenumber + '</b><br><br><b>' + item.Gender + ' (' + item.Age + ' Years)</b></td>' + '<td>' + item.Astatus + '<br><br>' + item.Remarks + '</td>' + '<td colspan="2">' + item.Lastupdatedon + '</td>' + '</tr>');
+                            document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Photo + '" alt="" width="100px"/>' + '</td>' + '<td colspan="2">Name - <b>' + item.Fullname + '</b><br><br>Associate number - <b>' + item.Associatenumber + '</b><br><br><b>' + item.Gender + ' (' + item.Age + ' Years)</b></td>' + '<td colspan="2">' + item.Astatus + '<br><br>' + item.Remarks + '</td>' + '<td colspan="2">' + item.Badge + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Doj + ' (Ref. ' + item.Applicationnumber + ')</td>' + '<td>' + item.Basebranch + '</td>' + '<td>' + item.Position + '</td><td>' + item.Dateofbirth + '</td>' + '<td>' + item.Nationalidentifier + '</td>' + '<td colspan="2">' + item.Identifier + '</td>' + '</tr>');
+                            document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Doj + ' (Ref. ' + item.Applicationnumber + ')</td>' + '<td>' + item.Basebranch + '</td>' + '<td>' + item.Depb + '</td>' + '<td>' + item.Position + '</td><td>' + item.Dateofbirth + '</td>' + '<td>' + item.Nationalidentifier + '</td>' + '<td colspan="2">' + item.Identifier + '</td>' + '</tr>');
                         } {
                             document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Howyouwouldliketobeaddressed + '</td>' + '<td colspan="2">' + item.Currentaddress + '</td>' + '<td colspan="2">' + item.Permanentaddress + '</td><td colspan="2">' + item.Phone + '/' + item.Email + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo3').innerHTML += ('<tr>' + '<td>' + item.Languagedetailsenglish + ', ' + item.Languagedetailshindi + '</td><td>' + item.Workexperience + '</td>' + '<td colspan="3">' + item.Mydoc + '</td>' + '<td colspan="3">' + item.Approvedby + '</td>' + '</tr>');
+                            document.getElementById('demo3').innerHTML += ('<tr>' + '<td> English - ' + item.Languagedetailsenglish + '; Hindi - ' + item.Languagedetailshindi + '</td><td>' + item.Workexperience + '</td>' + '<td colspan="3">' + item.Mydoc + '</td>' + '<td colspan="3">' + item.Approvedby + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo4').innerHTML += ('<tr>' + '<td>' + item.Class + '</td>' + '<td>' + item.Gm + '</td>' + '<td colspan="3">' + item.Notification + '</td>' + '</tr>');
+                            document.getElementById('demo4').innerHTML += ('<tr>' + '<td>' + item.Class + '</td>' + '<td><span class="noticet"><a href="' + item.Gm + '" target="_blank">' + item.Gm + '</a></span></td>' + '<td colspan="2">' + item.Attd + '</td>' + '<td colspan="2">' + item.Notification + '</td>' + '<td>' + item.Lastupdatedon + '</td>' + '</tr>');
                         }
                     })
                 }
@@ -405,13 +419,13 @@ login</button>
             <a href="javascript:void(0);" class="icon-close" onClick="$('#hellobar-bar').fadeOut ()">&#10006;</a>
         </div>
     </div>-->
-    <div id="feedback1"><a href="https://drive.google.com/file/d/1--hLyh7RsIjLZ8V-krK3y6Jc7M2R-6fh/view" target="blank">Code of Conduct</a></div>
-    <!--<div id="thoverX" class="thover"></div>
+    <div id="feedback1"><a href="#" target="blank">TERMS OF USE</a></div>
+    <div id="thoverX" class="thover"></div>
     <div id="tpopupX" class="tpopup">
         <img src="/images/infob1.jpg" class="img-fluid img-responsive">
-        <div class="embed-responsive embed-responsive-16by9">
+        <!--<div class="embed-responsive embed-responsive-16by9">
             <iframe class="embed-responsive-item" src="https://drive.google.com/file/d/1GBDcByr_eh98LtWfyQ517jaS6s696khY/preview" allowfullscreen></iframe>
-        </div>
+        </div>-->
         <div id="tcloseX" class="tclose">X</div>
         <script>
             $("#tcloseX").click(function() {
@@ -419,7 +433,7 @@ login</button>
                 $("#thoverX").toggleClass('hidden');
             });
         </script>
-    </div>-->
+    </div>
 
     </body>
 

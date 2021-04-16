@@ -102,8 +102,7 @@ RSSI http://www.rssi.in -->
                     </div>
                     <a href="#" class="smoothScroll" id="secure_link_el">e-Learning</a>
 
-                    <a href="https://sites.google.com/view/rssi-login" rel="noopener
-							noreferrer" target="_blank" class="smoothScroll active"><i class="fas fa-user" style="font-size:15px;"></i></a>
+                    <a href="#" class="smoothScroll active" id="myacc"><i class="fas fa-user" style="font-size:15px;"></i></a>
 
                     <a href="javascript:void(0);" class="icon" onclick="myFunction1()"><i class="fas fa-bars"
 							style="font-size:20px; color: whitesmoke;"></i></a>
@@ -231,6 +230,29 @@ RSSI http://www.rssi.in -->
             </div>
         </div>
         <div id="tclose1111" class="tclose">X</div>
+    </div>
+    <!--------------- 
+		NEED TO COPY THIS SET FOR EVERY CECURED LINK -- MY ACCOUNT
+	------------------------------------------------------>
+
+    <div id="thover11111" class="hidden thover"></div>
+    <div id="tpopup11111" class="hidden tpopup" style="padding:20px; position: fixed;">
+        <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
+        <div class="login-card">
+            <h1>Log-in</h1><br>
+            <form action="/secure2/my-account" method="post">
+                <!--Here we have to mention the secured URL path-->
+                <input type="text" name="user" placeholder="Username">
+                <input type="password" name="code" placeholder="Password">
+                <!--password name id always "code"-->
+                <input type="submit" name="login" class="login login-submit" value="login">
+            </form>
+
+            <div class="login-help">
+                <br><a>Forgot Password? Connect with RSSI admin team</a>
+            </div>
+        </div>
+        <div id="tclose11111" class="tclose">X</div>
     </div>
     <!-- =========================
     INTRO SECTION   Welcome to a better tomorrow  Grow Together /class to hide button in mobile/ hidden-xs/Our Response to
@@ -1121,6 +1143,22 @@ RSSI http://www.rssi.in -->
                 $("#thover1111").toggleClass('hidden');
             });
         });
+
+        //secure link for MY ACCOUNT
+
+        $(document).ready(function() {
+            console.log("loading now...");
+            $("#myacc").click(function(event) {
+                event.preventDefault();
+                $("#tpopup11111").toggleClass('hidden');
+                $("#thover11111").toggleClass('hidden');
+            });
+            $("#tclose11111").click(function() {
+                $("#tpopup11111").toggleClass('hidden');
+                $("#thover11111").toggleClass('hidden');
+            });
+        });
+
 
         document.addEventListener("DOMContentLoaded", function() {
             var lazyloadImages = document.querySelectorAll("img.lazy");
