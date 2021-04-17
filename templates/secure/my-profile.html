@@ -172,7 +172,7 @@ login</button>
                             </tbody>
                             <thead style=background-color:whitesmoke;font-style:oblique>
                                 <tr>
-                                    <th><b>Guardian's Name</b></th>
+                                    <th width=20%><b>Guardian's Name</b></th>
                                     <th><b>Guardian Aadhaar</b></th>
                                     <th><b>Postal Address</b></th>
                                     <th colspan="2"><b>Contact/Email Address</b></th>
@@ -212,6 +212,15 @@ login</button>
                             </thead>
                             <tbody id=demo4>
                             </tbody>
+                            <thead style=background-color:whitesmoke;font-style:oblique>
+                                <tr>
+
+                                    <th colspan="10"><b>Notification</b></th>
+
+                                </tr>
+                            </thead>
+                            <tbody id=demo5>
+                            </tbody>
                         </table>
 
                     </div>
@@ -237,6 +246,7 @@ login</button>
                 document.getElementById('demo2').innerHTML = ""
                 document.getElementById('demo3').innerHTML = ""
                 document.getElementById('demo4').innerHTML = ""
+                document.getElementById('demo5').innerHTML = ""
 
                 var sheetData = data.feed.entry;
                 var i;
@@ -281,6 +291,7 @@ login</button>
                     var Selectdateofformsubmission = data.feed.entry[i]['gsx$selectdateofformsubmission']['$t'];
                     var Fees = data.feed.entry[i]['gsx$fees']['$t'];
                     var Classurl = data.feed.entry[i]['gsx$classurl']['$t'];
+                    var Notice = data.feed.entry[i]['gsx$notice']['$t'];
 
                     if ((Studentid === studentid && Colors === colors)) {
                         records.push({
@@ -322,7 +333,8 @@ login</button>
                             Medium: Medium,
                             Selectdateofformsubmission: Selectdateofformsubmission,
                             Fees: Fees,
-                            Classurl: Classurl
+                            Classurl: Classurl,
+                            Notice: Notice
 
 
                         })
@@ -342,6 +354,8 @@ login</button>
                             document.getElementById('demo3').innerHTML += ('<tr>' + '<td>' + item.Schooladmissionrequired + '</td><td>' + item.Nameofthesubjects + '</td>' + '<td>' + item.Nameoftheschool + '</td>' + '<td>' + item.Nameoftheboard + '</td>' + '<td>' + item.Medium + '</td>' + '<td>' + item.Mydocument + '</td>' + '</tr>');
                         } {
                             document.getElementById('demo4').innerHTML += ('<tr>' + '<td colspan="2">' + item.Fees + '</td>' + '<td colspan="2">' + item.Bookststus + '</td>' + '<td colspan="3">' + item.Classurl + '</td>' + '</tr>');
+                        } {
+                            document.getElementById('demo5').innerHTML += ('<tr>' + '<td colspan="10">' + item.Notice + '</td>' + '</tr>');
                         }
                     })
                 }
