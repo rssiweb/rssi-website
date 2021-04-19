@@ -2,7 +2,7 @@
 <html lang=en>
 
 <head>
-    <title>RSSI Students</title>
+    <title>RSSI Volunteer</title>
 </head>
 <meta name=description content>
 <meta name=author content>
@@ -90,7 +90,7 @@
     <div id=header></div>
     <div style=margin:.3%>
         <ps class="marginleft notice" style=margin-left:3%>
-            <a href=/index>Home</a> &#62; RSSI Students
+            <a href=/index>Home</a> &#62; RSSI Volunteer
         </ps>
     </div>
     <!--<div class=container>
@@ -103,28 +103,19 @@
         </div>
     </div>--><br>
     <div class=container>
-        <p style=display:inline>You have to enter both category and status to get student details.</p><br><br>
+        <p style=display:inline>Please enter volunteer status to get the details.</p><br><br>
         <div class=row style=background-color:#fff5c2;min-height:70px;width:100%>
             <div class=col1>
-                <label for=name>Category<span style=color:#F2545F>*</span>&nbsp;</label>
+                <label for=name>Volunteer status<span style=color:#F2545F>*</span>&nbsp;</label>
                 <select name="name" id="name" required>
-                    <option selected>--</option>
-                    <option>LG2-A</option>
-                    <option>LG2-B</option>
-                    <option>LG2-C</option>
-                    <option>LG3</option>
-                    <option>LG4</option>
-                    <option>LG4S1</option>
-                    <option>LG4S2</option>
-                </select>
-            </div>
-            <div class=col2>
-                <label for=ename>Status<span style=color:#F2545F>*</span>&nbsp;</label>
-                <select name="ename" id="ename" required>
                     <option selected>--</option>
                     <option>Active</option>
                     <option>Inactive</option>
                 </select>
+            </div>
+            <div class=col2>
+                <label for=ename>Flag<span style=color:#F2545F></span>&nbsp;</label>
+                <input type=text name=ename id=ename maxlength=2 style=width:50px;height:25px;padding:2px>
             </div>
             <!--<div class=col2>
                 <label for=ename>Password (4 Digits)<span style=color:#F2545F>*</span>&nbsp;</label>
@@ -143,19 +134,18 @@
             <div class=col>
 
                 <body>
-                    <h2 style=margin-top:2%;font-size:20px align=center>Student details</h2>
+                    <h2 style=margin-top:2%;font-size:20px align=center>Volunteer details</h2>
                     <div class="container text-center my-4" style=overflow-x:auto>
                         <table class="table bordered table-striped" id=testTable>
                             <thead style=background-color:whitesmoke;font-style:oblique>
                                 <tr>
                                     <tr>
                                         <th><b>Photo</b></th>
-                                        <th width=26%><b>Student Details</b></th>
-                                        <th><b>Class/Category</b></th>
-                                        <th><b>Name Of The Subjects</b></th>
-                                        <th><b>Medium/Name of The Board</b></th>
-                                        <th><b>Profile Status</b></th>
-                                        <th><b>Badge</b></th>
+                                        <th width=23%><b>Volunteer Details</b></th>
+                                        <th><b>Designation</b></th>
+                                        <th width=20%><b>Class Allotment</b></th>
+                                        <th width=9%><b>Class URL</b></th>
+                                        <th><b>Association Status</b></th>
                                     </tr>
                                 </tr>
                             </thead>
@@ -178,113 +168,99 @@
     <script type=text/javascript src=/js/mdb.min.js></script>
     <script type=text/javascript>
         var loaddata = function() {
-            var category = document.getElementById('name').value
-            var filterstatus = document.getElementById('ename').value
-            $.getJSON("https://spreadsheets.google.com/feeds/list/1txikdGtRVE4YTuaPc_O7wkK93WDgus3-7BI5DvNDX_U/1/public/values?alt=json", function(data) {
+            var filterstatus = document.getElementById('name').value
+            var today = document.getElementById('ename').value
+            $.getJSON("https://spreadsheets.google.com/feeds/list/1D7NY7ZbNpjwHzM7JjJufP3h-uBXJNC77L--fj3YBBXg/1/public/values?alt=json", function(data) {
                 document.getElementById('demo1').innerHTML = ""
 
                 var sheetData = data.feed.entry;
                 var i;
                 var records = []
                 for (i = 0; i < sheetData.length; i++) {
-                    var Studentid = data.feed.entry[i]['gsx$studentid']['$t'];
-                    var Rollnumber = data.feed.entry[i]['gsx$rollnumber']['$t'];
-                    var Category = data.feed.entry[i]['gsx$category']['$t'];
-                    var Studentname = data.feed.entry[i]['gsx$studentname']['$t'];
+                    var Doj = data.feed.entry[i]['gsx$doj']['$t'];
+                    var Associatenumber = data.feed.entry[i]['gsx$associatenumber']['$t'];
+                    var Fullname = data.feed.entry[i]['gsx$fullname']['$t'];
+                    var Email = data.feed.entry[i]['gsx$email']['$t'];
+                    var Basebranch = data.feed.entry[i]['gsx$basebranch']['$t'];
+                    var Permanentaddress = data.feed.entry[i]['gsx$permanentaddress']['$t'];
                     var Gender = data.feed.entry[i]['gsx$gender']['$t'];
-                    var Age = data.feed.entry[i]['gsx$age']['$t'];
-                    var Class = data.feed.entry[i]['gsx$class']['$t'];
-                    var Profile = data.feed.entry[i]['gsx$profile']['$t'];
-                    var Contact = data.feed.entry[i]['gsx$contact']['$t'];
-                    var Guardiansname = data.feed.entry[i]['gsx$guardiansname']['$t'];
-                    var Relationwithstudent = data.feed.entry[i]['gsx$relationwithstudent']['$t'];
-                    var Studentaadhar = data.feed.entry[i]['gsx$studentaadhar']['$t'];
-                    var Guardianaadhar = data.feed.entry[i]['gsx$guardianaadhar']['$t'];
                     var Dateofbirth = data.feed.entry[i]['gsx$dateofbirth']['$t'];
-                    var Colors = data.feed.entry[i]['gsx$colors']['$t'];
-                    var Postaladdress = data.feed.entry[i]['gsx$postaladdress']['$t'];
-                    var Nameofthesubjects = data.feed.entry[i]['gsx$nameofthesubjects']['$t'];
-                    var Preferredbranch = data.feed.entry[i]['gsx$preferredbranch']['$t'];
-                    var Nameoftheschool = data.feed.entry[i]['gsx$nameoftheschool']['$t'];
-                    var Nameoftheboard = data.feed.entry[i]['gsx$nameoftheboard']['$t'];
-                    var Stateofdomicile = data.feed.entry[i]['gsx$stateofdomicile']['$t'];
-                    var Emailaddress = data.feed.entry[i]['gsx$emailaddress']['$t'];
-                    var Schooladmissionrequired = data.feed.entry[i]['gsx$schooladmissionrequired']['$t'];
-                    var Selectdateofformsubmission = data.feed.entry[i]['gsx$selectdateofformsubmission']['$t'];
-                    var Status = data.feed.entry[i]['gsx$status']['$t'];
-                    var Effectivefrom = data.feed.entry[i]['gsx$effectivefrom']['$t'];
-                    var Remarks1 = data.feed.entry[i]['gsx$remarks1']['$t'];
-                    var Nameofvendorfoundation = data.feed.entry[i]['gsx$nameofvendorfoundation']['$t'];
-                    var Photourl = data.feed.entry[i]['gsx$photourl']['$t'];
-                    var Bookststus = data.feed.entry[i]['gsx$bookststus']['$t'];
-                    var Mydocument = data.feed.entry[i]['gsx$mydocument']['$t'];
-                    var Profilestatus = data.feed.entry[i]['gsx$profilestatus']['$t'];
-                    var Lastupdatedon = data.feed.entry[i]['gsx$lastupdatedon']['$t'];
-                    var Totalnumberoffamilymembers = data.feed.entry[i]['gsx$totalnumberoffamilymembers']['$t'];
-                    var Familymonthlyincome = data.feed.entry[i]['gsx$familymonthlyincome']['$t'];
-                    var Medium = data.feed.entry[i]['gsx$medium']['$t'];
-                    var Selectdateofformsubmission = data.feed.entry[i]['gsx$selectdateofformsubmission']['$t'];
-                    var Fees = data.feed.entry[i]['gsx$fees']['$t'];
-                    var Classurl = data.feed.entry[i]['gsx$classurl']['$t'];
-                    var Notice = data.feed.entry[i]['gsx$notice']['$t'];
+                    var Currentaddress = data.feed.entry[i]['gsx$currentaddress']['$t'];
+                    var Languagedetailsenglish = data.feed.entry[i]['gsx$languagedetailsenglish']['$t'];
+                    var Workexperience = data.feed.entry[i]['gsx$workexperience']['$t'];
+                    var Nationalidentifier = data.feed.entry[i]['gsx$nationalidentifier']['$t'];
+                    var Applicationnumber = data.feed.entry[i]['gsx$applicationnumber']['$t'];
+                    var Position = data.feed.entry[i]['gsx$position']['$t'];
+                    var Approvedby = data.feed.entry[i]['gsx$approvedby']['$t'];
+                    var Gm = data.feed.entry[i]['gsx$gm']['$t'];
+                    var Effectivedate = data.feed.entry[i]['gsx$effectivedate']['$t'];
+                    var Remarks = data.feed.entry[i]['gsx$remarks']['$t'];
+                    var Phone = data.feed.entry[i]['gsx$phone']['$t'];
+                    var Identifier = data.feed.entry[i]['gsx$identifier']['$t'];
+                    var Astatus = data.feed.entry[i]['gsx$astatus']['$t'];
                     var Badge = data.feed.entry[i]['gsx$badge']['$t'];
+                    var Colors = data.feed.entry[i]['gsx$colors']['$t'];
+                    var Languagedetailshindi = data.feed.entry[i]['gsx$languagedetailshindi']['$t'];
+                    var Photo = data.feed.entry[i]['gsx$photo']['$t'];
+                    var Mydoc = data.feed.entry[i]['gsx$mydoc']['$t'];
+                    var Class = data.feed.entry[i]['gsx$class']['$t'];
+                    var Notification = data.feed.entry[i]['gsx$notification']['$t'];
+                    var Lastupdatedon = data.feed.entry[i]['gsx$lastupdatedon']['$t'];
+                    var Age = data.feed.entry[i]['gsx$age']['$t'];
+                    var Howyouwouldliketobeaddressed = data.feed.entry[i]['gsx$howyouwouldliketobeaddressed']['$t'];
+                    var Depb = data.feed.entry[i]['gsx$depb']['$t'];
+                    var Attd = data.feed.entry[i]['gsx$attd']['$t'];
                     var Filterstatus = data.feed.entry[i]['gsx$filterstatus']['$t'];
+                    var Today = data.feed.entry[i]['gsx$today']['$t'];
 
-                    if ((Category === category && Filterstatus === filterstatus)) {
+                    if ((Filterstatus === filterstatus && Today >= today) || (Filterstatus === filterstatus && today === "")) {
                         records.push({
-                            Studentid : Studentid,
-                            Rollnumber: Rollnumber,
-                            Studentname: Studentname,
-                            Category: Category,
+                            Doj: Doj,
+                            Associatenumber: Associatenumber,
+                            Fullname: Fullname,
+                            Email: Email,
+                            Basebranch: Basebranch,
+                            Permanentaddress: Permanentaddress,
                             Gender: Gender,
-                            Age: Age,
-                            Class: Class,
-                            Profile: Profile,
-                            Contact: Contact,
-                            Guardiansname: Guardiansname,
-                            Relationwithstudent: Relationwithstudent,
-                            Studentaadhar: Studentaadhar,
-                            Guardianaadhar: Guardianaadhar,
                             Dateofbirth: Dateofbirth,
-                            Colors: Colors,
-                            Postaladdress: Postaladdress,
-                            Nameofthesubjects: Nameofthesubjects,
-                            Preferredbranch: Preferredbranch,
-                            Nameoftheschool: Nameoftheschool,
-                            Nameoftheboard: Nameoftheboard,
-                            Stateofdomicile: Stateofdomicile,
-                            Emailaddress : Emailaddress,
-                            Schooladmissionrequired: Schooladmissionrequired,
-                            Selectdateofformsubmission: Selectdateofformsubmission,
-                            Status: Status,
-                            Effectivefrom: Effectivefrom,
-                            Remarks1: Remarks1,
-                            Nameofvendorfoundation: Nameofvendorfoundation,
-                            Photourl: Photourl,
-                            Bookststus: Bookststus,
-                            Mydocument: Mydocument,
-                            Profilestatus: Profilestatus,
-                            Lastupdatedon: Lastupdatedon,
-                            Totalnumberoffamilymembers: Totalnumberoffamilymembers,
-                            Familymonthlyincome: Familymonthlyincome,
-                            Medium: Medium,
-                            Selectdateofformsubmission: Selectdateofformsubmission,
-                            Fees: Fees,
-                            Classurl: Classurl,
+                            Currentaddress: Currentaddress,
+                            Languagedetailsenglish: Languagedetailsenglish,
+                            Workexperience: Workexperience,
+                            Nationalidentifier: Nationalidentifier,
+                            Applicationnumber: Applicationnumber,
+                            Position: Position,
+                            Approvedby: Approvedby,
+                            Gm: Gm,
+                            Effectivedate: Effectivedate,
+                            Remarks: Remarks,
+                            Phone: Phone,
+                            Identifier: Identifier,
+                            Astatus: Astatus,
                             Badge: Badge,
-                            Notice: Notice,
-                            Filterstatus: Filterstatus
+                            Colors: Colors,
+                            Lastupdatedon: Lastupdatedon,
+                            Languagedetailshindi: Languagedetailshindi,
+                            Photo: Photo,
+                            Mydoc: Mydoc,
+                            Class: Class,
+                            Notification: Notification,
+                            Age: Age,
+                            Howyouwouldliketobeaddressed: Howyouwouldliketobeaddressed,
+                            Depb: Depb,
+                            Attd: Attd,
+                            Filterstatus: Filterstatus,
+                            Today: Today
 
 
                         })
                     }
                 }
                 if (records.length == 0) {
-                    document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<p style="color:#F2545F">Error: Login failed. Please enter valid credentials.</p>' + '</td></tr>');
+                    document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<p style="color:#F2545F">Error: No Data Found.</p>' + '</td></tr>');
                 } else {
                     records.forEach(item => {
                         {
-                            document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Photourl + '" alt="" width="75px"/>' + '</td>' + '<td>Name - <b>' + item.Studentname + '</b><br><br>Student ID - <b>' + item.Studentid + '</b>, Roll No - <b>' + item.Rollnumber + '</b><br><br><b>' + item.Gender + ' (' + item.Age + ' Years)</b></td>' + '<td>' + item.Class + '/' + item.Category + '</td>' + '<td>' + item.Nameofthesubjects + '</td>' + '<td>' + item.Medium + '/' + item.Nameoftheboard + '</td>' + '<td>' + item.Profilestatus + '<br><br>' + item.Remarks1 + '</td>' + '<td>' + item.Badge + '</td>' + '</tr>');
+                            document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Photo + '" alt="" width="100px"/>' + '</td>' + '<td>Name - <b>' + item.Fullname + '</b><br><br>Associate number - <b>' + item.Associatenumber + '</b><br><br><b>' + item.Gender + ' (' + item.Age + ' Years)</b><br><br>' + item.Badge + '</td><td>' + item.Position + '</td>' + '<td>' + item.Class + '</td>' + '<td><span class="noticet"><a href="' + item.Gm + '" target="_blank">' + item.Gm + '</a></span></td>' + '<td>' + item.Astatus + '<br><br>' + item.Effectivedate + ' - ' + item.Remarks + '</td>' + '</tr>');
                         }
                     })
                 }
