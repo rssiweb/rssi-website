@@ -144,13 +144,14 @@ login</button>
                     <h2 style=margin-top:2%;font-size:20px align=center>where all the action is!</h2>
                     <div class="container text-center my-4" style=overflow-x:auto>
                         <table class="table bordered table-striped" id=testTable>
+                            <span style="color:blueviolet"><b>Personal Details:</b></span><br><br>
                             <thead style=background-color:whitesmoke;font-style:oblique>
                                 <tr>
                                     <tr>
                                         <th><b>Photo</b></th>
                                         <th colspan="2"><b>Student Details</b></th>
                                         <th><b>Profile Status</b></th>
-                                        <th colspan="2"><b>Last Refresh</b></th>
+                                        <th colspan="2"><b>Badge</b></th>
                                     </tr>
                                 </tr>
                             </thead>
@@ -174,8 +175,8 @@ login</button>
                                 <tr>
                                     <th width=20%><b>Guardian's Name</b></th>
                                     <th><b>Guardian Aadhaar</b></th>
-                                    <th><b>Postal Address</b></th>
-                                    <th colspan="2"><b>Contact/Email Address</b></th>
+                                    <th width=20%><b>Postal Address</b></th>
+                                    <th><b>Contact/Email Address</b></th>
                                     <th><b>Family monthly income</b></th>
                                     <th><b>Total number of family members</b></th>
 
@@ -186,7 +187,9 @@ login</button>
                             </thead>
                             <tbody id=demo2>
                             </tbody>
-
+                        </table>
+                        <table class="table bordered table-striped" id=testTable>
+                            <span style="color:blueviolet"><b>Educational details and miscellaneous:</b></span><br><br>
                             <thead style=background-color:whitesmoke;font-style:oblique>
                                 <tr>
                                     <th><b>School Admission Required</b></th>
@@ -204,9 +207,9 @@ login</button>
                             <thead style=background-color:whitesmoke;font-style:oblique>
                                 <tr>
 
-                                    <th colspan="2"><b>Fees</b></th>
-                                    <th colspan="2"><b>Library Status</b></th>
-                                    <th colspan="3"><b>Class URL</b></th>
+                                    <th colspan="2"><b>Class URL</b></th>
+                                    <th colspan="4"><b>Fees</b></th>
+
 
                                 </tr>
                             </thead>
@@ -215,7 +218,17 @@ login</button>
                             <thead style=background-color:whitesmoke;font-style:oblique>
                                 <tr>
 
-                                    <th colspan="10"><b>Notification</b></th>
+                                    <th colspan="10"><b>Library Status</b></th>
+
+                                </tr>
+                            </thead>
+                            <tbody id=demo6>
+                            </tbody>
+                            <thead style=background-color:whitesmoke;font-style:oblique>
+                                <tr>
+
+                                    <th colspan="5"><b>Notification</b></th>
+                                    <th><b>Last Refresh</b></th>
 
                                 </tr>
                             </thead>
@@ -247,6 +260,7 @@ login</button>
                 document.getElementById('demo3').innerHTML = ""
                 document.getElementById('demo4').innerHTML = ""
                 document.getElementById('demo5').innerHTML = ""
+                document.getElementById('demo6').innerHTML = ""
 
                 var sheetData = data.feed.entry;
                 var i;
@@ -292,6 +306,7 @@ login</button>
                     var Fees = data.feed.entry[i]['gsx$fees']['$t'];
                     var Classurl = data.feed.entry[i]['gsx$classurl']['$t'];
                     var Notice = data.feed.entry[i]['gsx$notice']['$t'];
+                    var Badge = data.feed.entry[i]['gsx$badge']['$t'];
 
                     if ((Studentid === studentid && Colors === colors)) {
                         records.push({
@@ -334,6 +349,7 @@ login</button>
                             Selectdateofformsubmission: Selectdateofformsubmission,
                             Fees: Fees,
                             Classurl: Classurl,
+                            Badge: Badge,
                             Notice: Notice
 
 
@@ -345,17 +361,19 @@ login</button>
                 } else {
                     records.forEach(item => {
                         {
-                            document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Photourl + '" alt="" width="100px"/>' + '</td>' + '<td colspan="2">Name - <b>' + item.Studentname + '</b><br><br>Student ID - <b>' + item.Studentid + '</b>, Roll No - <b>' + item.Rollnumber + '</b><br><br><b>' + item.Gender + ' (' + item.Age + ' Years)</b></td>' + '<td>' + item.Profilestatus + '<br><br>' + item.Remarks1 + '</td>' + '<td colspan="2">' + item.Lastupdatedon + '</td>' + '</tr>');
+                            document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Photourl + '" alt="" width="100px"/>' + '</td>' + '<td colspan="2">Name - <b>' + item.Studentname + '</b><br><br>Student ID - <b>' + item.Studentid + '</b>, Roll No - <b>' + item.Rollnumber + '</b><br><br><b>' + item.Gender + ' (' + item.Age + ' Years)</b></td>' + '<td>' + item.Profilestatus + '<br><br>' + item.Remarks1 + '</td>' + '<td colspan="2">' + item.Badge + '</td>' + '</tr>');
                         } {
                             document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Selectdateofformsubmission + '</td>' + '<td>' + item.Preferredbranch + '</td>' + '<td>' + item.Class + '/' + item.Category + '</td>' + '<td>' + item.Dateofbirth + '</td>' + '<td>' + item.Studentaadhar + '</td>' + '<td colspan="2">' + item.Nameofvendorfoundation + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Relationwithstudent + ' - ' + item.Guardiansname + '</td>' + '<td>' + item.Guardianaadhar + '</td>' + '<td>' + item.Postaladdress + '</td><td colspan="2">' + item.Contact + '/' + item.Emailaddress + '</td>' + '<td>' + item.Familymonthlyincome + '</td>' + '<td>' + item.Totalnumberoffamilymembers + '</td>' + '</tr>');
+                            document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Relationwithstudent + ' - ' + item.Guardiansname + '</td>' + '<td>' + item.Guardianaadhar + '</td>' + '<td>' + item.Postaladdress + '</td><td>' + item.Contact + '<br>' + item.Emailaddress + '</td>' + '<td>' + item.Familymonthlyincome + '</td>' + '<td>' + item.Totalnumberoffamilymembers + '</td>' + '</tr>');
                         } {
                             document.getElementById('demo3').innerHTML += ('<tr>' + '<td>' + item.Schooladmissionrequired + '</td><td>' + item.Nameofthesubjects + '</td>' + '<td>' + item.Nameoftheschool + '</td>' + '<td>' + item.Nameoftheboard + '</td>' + '<td>' + item.Medium + '</td>' + '<td>' + item.Mydocument + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo4').innerHTML += ('<tr>' + '<td colspan="2">' + item.Fees + '</td>' + '<td colspan="2">' + item.Bookststus + '</td>' + '<td colspan="3">' + item.Classurl + '</td>' + '</tr>');
+                            document.getElementById('demo4').innerHTML += ('<tr>' + '<td colspan="2">' + item.Classurl + '</td>' + '<td colspan="4">' + item.Fees + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo5').innerHTML += ('<tr>' + '<td colspan="10">' + item.Notice + '</td>' + '</tr>');
+                            document.getElementById('demo5').innerHTML += ('<tr>' + '<td colspan="5">' + item.Notice + '</td>' + '<td>' + item.Lastupdatedon + '</td>' + '</tr>');
+                        } {
+                            document.getElementById('demo6').innerHTML += ('<tr>' + '<td colspan="10">' + item.Bookststus + '</td>' + '</tr>');
                         }
                     })
                 }
