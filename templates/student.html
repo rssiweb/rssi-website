@@ -90,10 +90,10 @@
     <div id=header></div>
     <div style=margin:.3%>
         <ps class="marginleft notice" style=margin-left:3%>
-            <a href=/index>Home</a> &#62; Students' corner &#62; My Profile
+            <a href=/index>Home</a> &#62; Students
         </ps>
     </div>
-    <div class=container>
+    <!--<div class=container>
         <div class=row style=text-align:right;width:101.5%>
             <div class=col>
                 <div class="white hoverdecoration">
@@ -101,24 +101,38 @@
                 </div>
             </div>
         </div>
-    </div><br>
-
+    </div>--><br>
     <div class=container>
-        <p style=display:inline>You have to enter both Student ID and password (Last two digit of your registered mobile number and month (mm) of your Date of birth) to access your account. If my registered mobile number is 1234567898 and date of birth is 26/03/2002, my account
-            password is 9803.</p><br><br>
+        <p style=display:inline>You have to enter both category and status to get student details.</p><br><br>
         <div class=row style=background-color:#fff5c2;min-height:70px;width:100%>
             <div class=col1>
-                <label for=name>Student ID<span style=color:#F2545F>*</span>&nbsp;</label>
-                <input type=text id=name name=name size=12 style=text-transform:uppercase required>
+                <label for=name>Category<span style=color:#F2545F>*</span>&nbsp;</label>
+                <select name="name" id="name" required>
+                    <option selected>--</option>
+                    <option>LG2</option>
+                    <option>LG3</option>
+                    <option>LG4</option>
+                    <option>LG4S1</option>
+                    <option>LG4S2</option>
+                </select>
             </div>
             <div class=col2>
+                <label for=ename>Status<span style=color:#F2545F>*</span>&nbsp;</label>
+                <select name="ename" id="ename" required>
+                    <option selected>--</option>
+                    <option>Active</option>
+                    <option>Inactive</option>
+                </select>
+            </div>
+            <!--<div class=col2>
                 <label for=ename>Password (4 Digits)<span style=color:#F2545F>*</span>&nbsp;</label>
                 <input type=password name=ename id=ename minlength=4 maxlength=8 size=12 style=width:fit-content;height:25px;padding:2px required>
                 </select>
-            </div>
+            </div>-->
             <div class=col3>
-                <button type=button class=exam_btn onclick=loaddata()><i class="fas fa-sign-in-alt"></i>
-login</button>
+                <button type="button" class="exam_btn" onclick="loaddata()"><i
+                    class="fas fa-search"></i>
+                search</button>
             </div>
         </div>
     </div>
@@ -127,96 +141,23 @@ login</button>
             <div class=col>
 
                 <body>
-                    <h2 style=margin-top:2%;font-size:20px align=center>where all the action is!</h2>
+                    <h2 style=margin-top:2%;font-size:20px align=center>Student details</h2>
                     <div class="container text-center my-4" style=overflow-x:auto>
                         <table class="table bordered table-striped" id=testTable>
-                            <span style="color:blueviolet"><b>Personal Details:</b></span><br><br>
                             <thead style=background-color:whitesmoke;font-style:oblique>
                                 <tr>
-                                    <th><b>Photo</b></th>
-                                    <th colspan="2"><b>Student Details</b></th>
-                                    <th><b>Profile Status</b></th>
-                                    <th colspan="2"><b>Badge</b></th>
+                                    <tr>
+                                        <th><b>Photo</b></th>
+                                        <th width=26%><b>Student Details</b></th>
+                                        <th><b>Class/Category</b></th>
+                                        <th><b>Name Of The Subjects</b></th>
+                                        <th><b>Medium/Name of The Board</b></th>
+                                        <th><b>Profile Status</b></th>
+                                        <th><b>Badge</b></th>
+                                    </tr>
                                 </tr>
                             </thead>
                             <tbody id=demo1>
-                            </tbody>
-                            <thead style=background-color:whitesmoke;font-style:oblique>
-                                <tr>
-                                    <th><b>Admission Date</b></th>
-                                    <th><b>Preferred Branch of RSSI</b></th>
-                                    <th><b>Class/Category</b></th>
-                                    <th><b>Date of Birth</b></th>
-                                    <th><b>Student Aadhaar</b></th>
-                                    <th colspan="2"><b>Name of Vendor Foundation</b></th>
-
-
-                                </tr>
-                            </thead>
-                            <tbody id=demo>
-                            </tbody>
-                            <thead style=background-color:whitesmoke;font-style:oblique>
-                                <tr>
-                                    <th width=20%><b>Guardian's Name</b></th>
-                                    <th><b>Guardian Aadhaar</b></th>
-                                    <th width=20%><b>Postal Address</b></th>
-                                    <th><b>Contact/Email Address</b></th>
-                                    <th><b>Family monthly income</b></th>
-                                    <th><b>Total number of family members</b></th>
-
-
-
-
-                                </tr>
-                            </thead>
-                            <tbody id=demo2>
-                            </tbody>
-                        </table>
-                        <table class="table bordered table-striped" id=testTable>
-                            <span style="color:blueviolet"><b>Educational details and miscellaneous:</b></span><br><br>
-                            <thead style=background-color:whitesmoke;font-style:oblique>
-                                <tr>
-                                    <th><b>School Admission Required</b></th>
-                                    <th width=25%><b>Name Of The Subjects</b></th>
-                                    <th><b>Name Of The School</b></th>
-                                    <th><b>Name Of The Board</b></th>
-                                    <th><b>Medium</b></th>
-                                    <th colspan="2"><b>My Document</b></th>
-
-
-                                </tr>
-                            </thead>
-                            <tbody id=demo3>
-                            </tbody>
-                            <thead style=background-color:whitesmoke;font-style:oblique>
-                                <tr>
-
-                                    <th colspan="2"><b>Class URL</b></th>
-                                    <th colspan="4"><b>Fees</b></th>
-
-
-                                </tr>
-                            </thead>
-                            <tbody id=demo4>
-                            </tbody>
-                            <thead style=background-color:whitesmoke;font-style:oblique>
-                                <tr>
-
-                                    <th colspan="10"><b>Library Status</b></th>
-
-                                </tr>
-                            </thead>
-                            <tbody id=demo6>
-                            </tbody>
-                            <thead style=background-color:whitesmoke;font-style:oblique>
-                                <tr>
-
-                                    <th colspan="5"><b>Notification</b></th>
-                                    <th><b>Last Refresh</b></th>
-
-                                </tr>
-                            </thead>
-                            <tbody id=demo5>
                             </tbody>
                         </table>
 
@@ -235,16 +176,10 @@ login</button>
     <script type=text/javascript src=/js/mdb.min.js></script>
     <script type=text/javascript>
         var loaddata = function() {
-            var studentid = document.getElementById('name').value.toUpperCase()
-            var colors = document.getElementById('ename').value
+            var category = document.getElementById('name').value
+            var filterstatus = document.getElementById('ename').value
             $.getJSON("https://spreadsheets.google.com/feeds/list/1txikdGtRVE4YTuaPc_O7wkK93WDgus3-7BI5DvNDX_U/1/public/values?alt=json", function(data) {
                 document.getElementById('demo1').innerHTML = ""
-                document.getElementById('demo').innerHTML = ""
-                document.getElementById('demo2').innerHTML = ""
-                document.getElementById('demo3').innerHTML = ""
-                document.getElementById('demo4').innerHTML = ""
-                document.getElementById('demo5').innerHTML = ""
-                document.getElementById('demo6').innerHTML = ""
 
                 var sheetData = data.feed.entry;
                 var i;
@@ -291,8 +226,9 @@ login</button>
                     var Classurl = data.feed.entry[i]['gsx$classurl']['$t'];
                     var Notice = data.feed.entry[i]['gsx$notice']['$t'];
                     var Badge = data.feed.entry[i]['gsx$badge']['$t'];
+                    var Filterstatus = data.feed.entry[i]['gsx$filterstatus']['$t'];
 
-                    if ((Studentid === studentid && Colors === colors)) {
+                    if ((Category === category && Filterstatus === filterstatus)) {
                         records.push({
                             Studentid : Studentid,
                             Rollnumber: Rollnumber,
@@ -334,7 +270,8 @@ login</button>
                             Fees: Fees,
                             Classurl: Classurl,
                             Badge: Badge,
-                            Notice: Notice
+                            Notice: Notice,
+                            Filterstatus: Filterstatus
 
 
                         })
@@ -345,19 +282,7 @@ login</button>
                 } else {
                     records.forEach(item => {
                         {
-                            document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Photourl + '" alt="" width="100px"/>' + '</td>' + '<td colspan="2">Name - <b>' + item.Studentname + '</b><br><br>Student ID - <b>' + item.Studentid + '</b>, Roll No - <b>' + item.Rollnumber + '</b><br><br><b>' + item.Gender + ' (' + item.Age + ' Years)</b></td>' + '<td>' + item.Profilestatus + '<br><br>' + item.Remarks1 + '</td>' + '<td colspan="2">' + item.Badge + '</td>' + '</tr>');
-                        } {
-                            document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Selectdateofformsubmission + '</td>' + '<td>' + item.Preferredbranch + '</td>' + '<td>' + item.Class + '/' + item.Category + '</td>' + '<td>' + item.Dateofbirth + '</td>' + '<td>' + item.Studentaadhar + '</td>' + '<td colspan="2">' + item.Nameofvendorfoundation + '</td>' + '</tr>');
-                        } {
-                            document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Relationwithstudent + ' - ' + item.Guardiansname + '</td>' + '<td>' + item.Guardianaadhar + '</td>' + '<td>' + item.Postaladdress + '</td><td>' + item.Contact + '<br>' + item.Emailaddress + '</td>' + '<td>' + item.Familymonthlyincome + '</td>' + '<td>' + item.Totalnumberoffamilymembers + '</td>' + '</tr>');
-                        } {
-                            document.getElementById('demo3').innerHTML += ('<tr>' + '<td>' + item.Schooladmissionrequired + '</td><td>' + item.Nameofthesubjects + '</td>' + '<td>' + item.Nameoftheschool + '</td>' + '<td>' + item.Nameoftheboard + '</td>' + '<td>' + item.Medium + '</td>' + '<td>' + item.Mydocument + '</td>' + '</tr>');
-                        } {
-                            document.getElementById('demo4').innerHTML += ('<tr>' + '<td colspan="2">' + item.Classurl + '</td>' + '<td colspan="4">' + item.Fees + '</td>' + '</tr>');
-                        } {
-                            document.getElementById('demo5').innerHTML += ('<tr>' + '<td colspan="5">' + item.Notice + '</td>' + '<td>' + item.Lastupdatedon + '</td>' + '</tr>');
-                        } {
-                            document.getElementById('demo6').innerHTML += ('<tr>' + '<td colspan="10">' + item.Bookststus + '</td>' + '</tr>');
+                            document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Photourl + '" alt="" width="75px"/>' + '</td>' + '<td>Name - <b>' + item.Studentname + '</b><br><br>Student ID - <b>' + item.Studentid + '</b>, Roll No - <b>' + item.Rollnumber + '</b><br><br><b>' + item.Gender + ' (' + item.Age + ' Years)</b></td>' + '<td>' + item.Class + '/' + item.Category + '</td>' + '<td>' + item.Nameofthesubjects + '</td>' + '<td>' + item.Medium + '/' + item.Nameoftheboard + '</td>' + '<td>' + item.Profilestatus + '<br><br>' + item.Remarks1 + '</td>' + '<td>' + item.Badge + '</td>' + '</tr>');
                         }
                     })
                 }
@@ -448,13 +373,13 @@ login</button>
             <a href="javascript:void(0);" class="icon-close" onClick="$('#hellobar-bar').fadeOut ()">&#10006;</a>
         </div>
     </div>-->
-    <div id="feedback1"><a href="https://drive.google.com/file/d/1--hLyh7RsIjLZ8V-krK3y6Jc7M2R-6fh/view" target="blank">Code of Conduct</a></div>
-    <div id="thoverX" class="thover"></div>
+    <!--<div id="feedback1"><a href="https://drive.google.com/file/d/1--hLyh7RsIjLZ8V-krK3y6Jc7M2R-6fh/view" target="blank">Code of Conduct</a></div>-->
+    <!--<div id="thoverX" class="thover"></div>
     <div id="tpopupX" class="tpopup">
         <img src="/images/infob1.jpg" class="img-fluid img-responsive">
-        <!-- <div class="embed-responsive embed-responsive-16by9">
+        <div class="embed-responsive embed-responsive-16by9">
             <iframe class="embed-responsive-item" src="https://drive.google.com/file/d/1GBDcByr_eh98LtWfyQ517jaS6s696khY/preview" allowfullscreen></iframe>
-        </div>-->
+        </div>
         <div id="tcloseX" class="tclose">X</div>
         <script>
             $("#tcloseX").click(function() {
@@ -462,7 +387,7 @@ login</button>
                 $("#thoverX").toggleClass('hidden');
             });
         </script>
-    </div>
+    </div>-->
 
     </body>
 

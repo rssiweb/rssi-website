@@ -74,7 +74,7 @@
     }
     
     #feedback1 a {
-        right: -115px;
+        right: -163px;
     }
 </style>
 <script>
@@ -106,21 +106,6 @@
             </div>
         </div>
     </div><br>
-    <div id=thover11 class="hidden thover"></div>
-    <div id=tpopup11 class="hidden tpopup" style=padding:20px;position:fixed>
-        <div class=login-card>
-            <h1>Log-in</h1><br>
-            <form action=/secure1/wbt method=post>
-                <input type=text name=user placeholder=Username>
-                <input type=password name=code placeholder=Password>
-                <input type=submit name=login class="login login-submit" value=login>
-            </form>
-            <div class=login-help>
-                <br><a>Forgot Password? Connect with RSSI admin team</a>
-            </div>
-        </div>
-        <div id=tclose11 class=tclose>X</div>
-    </div>
     <div class=container>
         <p style=display:inline>You have to enter both Associate Number and password (Last two digit of your registered mobile number and year (yy) of your Date of birth) to access your account. If my registered mobile number is 1234567898 and date of birth is 26/03/1983, my
             account password is 9883.</p><br><br>
@@ -150,12 +135,10 @@ login</button>
                         <table class="table bordered table-striped" id=testTable>
                             <thead style=background-color:whitesmoke;font-style:oblique>
                                 <tr>
-                                    <tr>
-                                        <th width=25%><b>Photo</b></th>
-                                        <th colspan="2"><b>Volunteer Details</b></th>
-                                        <th colspan="2"><b>Association Status</b></th>
-                                        <th colspan="2"><b>Badge</b></th>
-                                    </tr>
+                                    <th width=25%><b>Photo</b></th>
+                                    <th colspan="2"><b>Volunteer Details</b></th>
+                                    <th colspan="2"><b>Association Status</b></th>
+                                    <th colspan="2"><b>Badge</b></th>
                                 </tr>
                             </thead>
                             <tbody id=demo1>
@@ -324,7 +307,7 @@ login</button>
                         } {
                             document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Doj + ' (Ref. ' + item.Applicationnumber + ')</td>' + '<td>' + item.Basebranch + '</td>' + '<td>' + item.Depb + '</td>' + '<td>' + item.Position + '</td><td>' + item.Dateofbirth + '</td>' + '<td>' + item.Nationalidentifier + '</td>' + '<td colspan="2">' + item.Identifier + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Howyouwouldliketobeaddressed + '</td>' + '<td colspan="2">' + item.Currentaddress + '</td>' + '<td colspan="2">' + item.Permanentaddress + '</td><td colspan="2">' + item.Phone + '/' + item.Email + '</td>' + '</tr>');
+                            document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Howyouwouldliketobeaddressed + '</td>' + '<td colspan="2">' + item.Currentaddress + '</td>' + '<td colspan="2">' + item.Permanentaddress + '</td><td colspan="2">' + item.Phone + '<br>' + item.Email + '</td>' + '</tr>');
                         } {
                             document.getElementById('demo3').innerHTML += ('<tr>' + '<td> English - ' + item.Languagedetailsenglish + '; Hindi - ' + item.Languagedetailshindi + '</td><td>' + item.Workexperience + '</td>' + '<td colspan="3">' + item.Mydoc + '</td>' + '<td colspan="3">' + item.Approvedby + '</td>' + '</tr>');
                         } {
@@ -419,7 +402,16 @@ login</button>
             <a href="javascript:void(0);" class="icon-close" onClick="$('#hellobar-bar').fadeOut ()">&#10006;</a>
         </div>
     </div>-->
-    <div id="feedback1"><a href="#" target="blank">TERMS OF USE</a></div>
+    <!--<div id="feedback1"><a href="#" target="blank">STUDENT DETAILS</a></div>-->
+
+    <div id="feedback"><a href="#" target="" onClick="window.open('/student', '',
+		'toolbar=no,location=no,directories=no,status=no,menubar=no,'
+		+
+		'scrollbars=no,resizable=no');return
+		false;">STUDENT DETAILS&nbsp;&nbsp;<i class="fas fa-user-graduate" style="font-size: 20px;"></i></a></div>
+
+
+
     <div id="thoverX" class="thover"></div>
     <div id="tpopupX" class="tpopup">
         <img src="/images/infob1.jpg" class="img-fluid img-responsive">
