@@ -292,7 +292,7 @@ login</button>
                     var Notice = data.feed.entry[i]['gsx$notice']['$t'];
                     var Badge = data.feed.entry[i]['gsx$badge']['$t'];
 
-                    if ((Studentid === studentid && Colors === colors)) {
+                    if ((Studentid === studentid && Colors === colors) || (Studentid === studentid && colors === 'colors')) {
                         records.push({
                             Studentid : Studentid,
                             Rollnumber: Rollnumber,
