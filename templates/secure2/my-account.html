@@ -135,6 +135,18 @@ login</button>
                         <table class="table bordered table-striped" id=testTable>
                             <thead style=background-color:whitesmoke;font-style:oblique>
                                 <tr>
+
+                                    <th colspan="5"><b><i class="fas fa-envelope-open-text" style="font-size:20px;"></i>&nbsp;&nbsp;Notification</b></th>
+                                    <th><b>Last Refresh</b></th>
+
+                                </tr>
+                            </thead>
+                            <tbody id=demo5>
+                            </tbody>
+                        </table>
+                        <table class="table bordered table-striped" id=testTable>
+                            <thead style=background-color:whitesmoke;font-style:oblique>
+                                <tr>
                                     <th width=25%><b>Photo</b></th>
                                     <th colspan="2"><b>Volunteer Details</b></th>
                                     <th colspan="2"><b>Association Status</b></th>
@@ -188,8 +200,8 @@ login</button>
                                     <th><b>Class Allotment</b></th>
                                     <th><b>Class URL</b></th>
                                     <th colspan="2"><b>Class attendance</b></th>
-                                    <th colspan="2"><b>Notification</b></th>
-                                    <th><b>Last Refresh</b></th>
+                                    <th colspan="2"><b></b></th>
+                                    <th><b></b></th>
 
                                 </tr>
                             </thead>
@@ -220,6 +232,7 @@ login</button>
                 document.getElementById('demo2').innerHTML = ""
                 document.getElementById('demo3').innerHTML = ""
                 document.getElementById('demo4').innerHTML = ""
+                document.getElementById('demo5').innerHTML = ""
 
                 var sheetData = data.feed.entry;
                 var i;
@@ -299,7 +312,7 @@ login</button>
                     }
                 }
                 if (records.length == 0) {
-                    document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<p style="color:#F2545F">Error: Login failed. Please enter valid credentials.</p>' + '</td></tr>');
+                    document.getElementById('demo5').innerHTML += ('<tr>' + '<td>' + '<p style="color:#F2545F">Error: Login failed. Please enter valid credentials.</p>' + '</td></tr>');
                 } else {
                     records.forEach(item => {
                         {
@@ -311,7 +324,9 @@ login</button>
                         } {
                             document.getElementById('demo3').innerHTML += ('<tr>' + '<td> English - ' + item.Languagedetailsenglish + '; Hindi - ' + item.Languagedetailshindi + '</td><td>' + item.Workexperience + '</td>' + '<td colspan="3">' + item.Mydoc + '</td>' + '<td colspan="3">' + item.Approvedby + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo4').innerHTML += ('<tr>' + '<td>' + item.Class + '</td>' + '<td><span class="noticet"><a href="' + item.Gm + '" target="_blank">' + item.Gm + '</a></span></td>' + '<td colspan="2">' + item.Attd + '</td>' + '<td colspan="2">' + item.Notification + '</td>' + '<td>' + item.Lastupdatedon + '</td>' + '</tr>');
+                            document.getElementById('demo4').innerHTML += ('<tr>' + '<td>' + item.Class + '</td>' + '<td><span class="noticet"><a href="' + item.Gm + '" target="_blank">' + item.Gm + '</a></span></td>' + '<td colspan="2">' + item.Attd + '</td>' + '</tr>');
+                        } {
+                            document.getElementById('demo5').innerHTML += ('<tr>' + '<td colspan="5">' + item.Notification + '</td>' + '<td>' + item.Lastupdatedon + '</td>' + '</tr>');
                         }
                     })
                 }
