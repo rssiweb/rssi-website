@@ -46,7 +46,7 @@
     }
     
     .text-center {
-        text-align: left!important
+        text-align: left !important
     }
     
     .table-striped tbody tr:nth-of-type(odd) {
@@ -97,7 +97,8 @@
         <div class=row style=text-align:right;width:101.5%>
             <div class=col>
                 <div class="white hoverdecoration">
-                    <a href=https://drive.google.com/file/d/1b3AcN68TJa7gIai_RTyJ5989Te-TXCbq/view target=_blank class=primary_btn style=padding-right:3vh;padding-left:3vh;margin-top:1%;background-color:#90baa4;border-color:#90baa4>Class schedule&nbsp;&nbsp;<i class="fas fa-calendar-week" style=font-size:20px></i></a>
+                    <a href=https://drive.google.com/file/d/1b3AcN68TJa7gIai_RTyJ5989Te-TXCbq/view target=_blank class=primary_btn style=padding-right:3vh;padding-left:3vh;margin-top:1%;background-color:#90baa4;border-color:#90baa4>Class
+                        schedule&nbsp;&nbsp;<i class="fas fa-calendar-week" style=font-size:20px></i></a>
                 </div>
             </div>
         </div>
@@ -118,7 +119,7 @@
             </div>
             <div class=col3>
                 <button type=button class=exam_btn onclick=loaddata()><i class="fas fa-sign-in-alt"></i>
-login</button>
+                    login</button>
             </div>
         </div>
     </div>
@@ -129,6 +130,18 @@ login</button>
                 <body>
                     <h2 style=margin-top:2%;font-size:20px align=center>where all the action is!</h2>
                     <div class="container text-center my-4" style=overflow-x:auto>
+                        <table class="table bordered table-striped" id=testTable>
+                            <thead style=background-color:whitesmoke;font-style:oblique>
+                                <tr>
+
+                                    <th colspan="5"><b><i class="fas fa-envelope-open-text" style="font-size:20px;"></i>&nbsp;&nbsp;Notification</b></th>
+                                    <th><b>Last Refresh</b></th>
+
+                                </tr>
+                            </thead>
+                            <tbody id=demo5>
+                            </tbody>
+                        </table>
                         <table class="table bordered table-striped" id=testTable>
                             <span style="color:blueviolet"><b>Personal Details:</b></span><br><br>
                             <thead style=background-color:whitesmoke;font-style:oblique>
@@ -149,8 +162,6 @@ login</button>
                                     <th><b>Date of Birth</b></th>
                                     <th><b>Student Aadhaar</b></th>
                                     <th colspan="2"><b>Name of Vendor Foundation</b></th>
-
-
                                 </tr>
                             </thead>
                             <tbody id=demo>
@@ -163,10 +174,6 @@ login</button>
                                     <th><b>Contact/Email Address</b></th>
                                     <th><b>Family monthly income</b></th>
                                     <th><b>Total number of family members</b></th>
-
-
-
-
                                 </tr>
                             </thead>
                             <tbody id=demo2>
@@ -207,16 +214,6 @@ login</button>
                                 </tr>
                             </thead>
                             <tbody id=demo6>
-                            </tbody>
-                            <thead style=background-color:whitesmoke;font-style:oblique>
-                                <tr>
-
-                                    <th colspan="5"><b>Notification</b></th>
-                                    <th><b>Last Refresh</b></th>
-
-                                </tr>
-                            </thead>
-                            <tbody id=demo5>
                             </tbody>
                         </table>
 
@@ -341,7 +338,7 @@ login</button>
                     }
                 }
                 if (records.length == 0) {
-                    document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<p style="color:#F2545F">Error: Login failed. Please enter valid credentials.</p>' + '</td></tr>');
+                    document.getElementById('demo5').innerHTML += ('<tr>' + '<td>' + '<p style="color:#F2545F">Error: Login failed. Please enter valid credentials.</p>' + '</td></tr>');
                 } else {
                     records.forEach(item => {
                         {
