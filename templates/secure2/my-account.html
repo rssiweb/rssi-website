@@ -347,7 +347,7 @@ login</button>
                 } else {
                     records.forEach(item => {
                         {
-                            document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Photo + '" alt="" width="100px"/>' + '</td>' + '<td colspan="2">Name - <b>' + item.Fullname + '</b><br><br>Associate number - <b>' + item.Associatenumber + '</b><br><br><b>' + item.Gender + ' (' + item.Age + ' Years)</b></td>' + '<td colspan="2">' + item.Astatus + '<br><br>' + item.Remarks + '</td>' + '<td colspan="2">' + item.Badge + '</td>' + '</tr>');
+                            document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Photo + '" alt="" width="100px"/>' + '</td>' + '<td colspan="2">Name - <b>' + item.Fullname + '</b><br><br>Associate number - <b>' + item.Associatenumber + '</b><br><br><b>' + item.Gender + ' (' + item.Age + ' Years)</b></td>' + '<td colspan="2">' + item.Astatus + '<br><br>' + item.Effectivedate + '&nbsp;' + item.Remarks + '</td>' + '<td colspan="2">' + item.Badge + '</td>' + '</tr>');
                         } {
                             document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Doj + ' (Ref. ' + item.Applicationnumber + ')</td>' + '<td>' + item.Basebranch + '</td>' + '<td>' + item.Depb + '</td>' + '<td>' + item.Position + '</td><td>' + item.Dateofbirth + '</td>' + '<td>' + item.Nationalidentifier + '</td>' + '<td colspan="2">' + item.Identifier + '</td>' + '</tr>');
                         } {
