@@ -230,9 +230,15 @@
                     var Notice = data.feed.entry[i]['gsx$notice']['$t'];
                     var Badge = data.feed.entry[i]['gsx$badge']['$t'];
                     var Filterstatus = data.feed.entry[i]['gsx$filterstatus']['$t'];
+                    var Attd = data.feed.entry[i]['gsx$attd']['$t'];
+                    var Allocationdate = data.feed.entry[i]['gsx$allocationdate']['$t'];
+                    var Maxclass = data.feed.entry[i]['gsx$maxclass']['$t'];
 
                     if ((Category === category && Filterstatus === filterstatus)) {
                         records.push({
+                            Attd: Attd,
+                            Allocationdate: Allocationdate,
+                            Maxclass: Maxclass,
                             Studentid : Studentid,
                             Rollnumber: Rollnumber,
                             Studentname: Studentname,
@@ -285,7 +291,7 @@
                 } else {
                     records.forEach(item => {
                         {
-                            document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Photourl + '" alt="" width="75px"/>' + '</td>' + '<td>Name - <b>' + item.Studentname + '</b><br><br>Student ID - <b>' + item.Studentid + '</b>, Roll No - <b>' + item.Rollnumber + '</b><br><br><b>' + item.Gender + ' (' + item.Age + ' Years)</b></td>' + '<td>' + item.Class + '/' + item.Category + '</td>' + '<td>' + item.Nameofthesubjects + '</td>' + '<td>' + item.Medium + '/' + item.Nameoftheboard + '</td>' + '<td>' + item.Profilestatus + '<br><br>' + item.Remarks1 + '</td>' + '<td>' + item.Badge + '</td>' + '</tr>');
+                            document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Photourl + '" alt="" width="75px"/>' + '</td>' + '<td>Name - <b>' + item.Studentname + '</b><br><br>Student ID - <b>' + item.Studentid + '</b>, Roll No - <b>' + item.Rollnumber + '</b><br><br><b>' + item.Gender + ' (' + item.Age + ' Years)</b></td>' + '<td>' + item.Class + '/' + item.Category + '</td>' + '<td>' + item.Nameofthesubjects + '<br><br> Attendance - ' + item.Attd + '</td>' + '<td>' + item.Medium + '/' + item.Nameoftheboard + '</td>' + '<td>' + item.Profilestatus + '<br><br>' + item.Remarks1 + '</td>' + '<td>' + item.Badge + '</td>' + '</tr>');
                         }
                     })
                 }
