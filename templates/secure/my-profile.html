@@ -216,6 +216,21 @@
                             <tbody id=demo6>
                             </tbody>
                         </table>
+                        <table class="table bordered table-striped" id=testTable>
+                            <span style="color:blueviolet"><b>Allocation details:</b></span><br><br>
+                            <thead style=background-color:whitesmoke;font-style:oblique>
+                                <tr>
+
+                                    <th><b>Academic session</b></th>
+                                    <th><b>Class allotted<br>(Academic session start date to today)</b></th>
+                                    <th><b>Attendance percentage<br>(Inc. Extra class)</b></th>
+                                    <th colspan="2"><b>Remarks</b></th>
+
+                                </tr>
+                            </thead>
+                            <tbody id=demo7>
+                            </tbody>
+                        </table>
 
                     </div>
             </div>
@@ -242,6 +257,7 @@
                 document.getElementById('demo4').innerHTML = ""
                 document.getElementById('demo5').innerHTML = ""
                 document.getElementById('demo6').innerHTML = ""
+                document.getElementById('demo7').innerHTML = ""
 
                 var sheetData = data.feed.entry;
                 var i;
@@ -288,9 +304,16 @@
                     var Classurl = data.feed.entry[i]['gsx$classurl']['$t'];
                     var Notice = data.feed.entry[i]['gsx$notice']['$t'];
                     var Badge = data.feed.entry[i]['gsx$badge']['$t'];
+                    var Attd = data.feed.entry[i]['gsx$attd']['$t'];
+                    var Allocationdate = data.feed.entry[i]['gsx$allocationdate']['$t'];
+                    var Maxclass = data.feed.entry[i]['gsx$maxclass']['$t'];
 
                     if ((Studentid === studentid && Colors === colors) || (Studentid === studentid && colors === 'colors')) {
                         records.push({
+
+                            Attd: Attd,
+                            Allocationdate: Allocationdate,
+                            Maxclass: Maxclass,
                             Studentid : Studentid,
                             Rollnumber: Rollnumber,
                             Studentname: Studentname,
@@ -355,6 +378,8 @@
                             document.getElementById('demo5').innerHTML += ('<tr>' + '<td colspan="5">' + item.Notice + '</td>' + '<td>' + item.Lastupdatedon + '</td>' + '</tr>');
                         } {
                             document.getElementById('demo6').innerHTML += ('<tr>' + '<td colspan="10">' + item.Bookststus + '</td>' + '</tr>');
+                        } {
+                            document.getElementById('demo7').innerHTML += ('<tr>' + '<td>' + item.Allocationdate + '</td>' + '<td>' + item.Maxclass + '</td>' + '<td colspan="2">' + item.Attd + '</td>' + '</tr>');
                         }
                     })
                 }

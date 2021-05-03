@@ -200,7 +200,7 @@ login</button>
                                     <th><b>Class Allotment</b></th>
                                     <th><b>Class URL</b></th>
                                     <th colspan="2"><b>Class attendance</b></th>
-                                    <th colspan="2"><b></b></th>
+                                    <th colspan="2"><b>Evaluation path</b></th>
                                     <th><b></b></th>
 
                                 </tr>
@@ -294,6 +294,7 @@ login</button>
                     var Leave = data.feed.entry[i]['gsx$leave']['$t'];
                     var Feedback = data.feed.entry[i]['gsx$feedback']['$t'];
                     var Ctp = data.feed.entry[i]['gsx$ctp']['$t'];
+                    var Evaluationpath = data.feed.entry[i]['gsx$evaluationpath']['$t'];
 
 
                     if ((Associatenumber === associatenumber && Colors === colors) || (Associatenumber === associatenumber && colors === 'colors')) {
@@ -336,7 +337,8 @@ login</button>
                             Depb: Depb,
                             Attd: Attd,
                             Feedback: Feedback,
-                            Ctp: Ctp
+                            Ctp: Ctp,
+                            Evaluationpath: Evaluationpath
                         })
                     }
                 }
@@ -353,7 +355,7 @@ login</button>
                         } {
                             document.getElementById('demo3').innerHTML += ('<tr>' + '<td> English - ' + item.Languagedetailsenglish + '; Hindi - ' + item.Languagedetailshindi + '</td><td>' + item.Workexperience + '</td>' + '<td colspan="3">' + item.Mydoc + '</td>' + '<td colspan="3">' + item.Approvedby + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo4').innerHTML += ('<tr>' + '<td>' + item.Class + '</td>' + '<td><span class="noticet"><a href="' + item.Gm + '" target="_blank">' + item.Gm + '</a></span></td>' + '<td colspan="2">' + item.Attd + '</td>' + '</tr>');
+                            document.getElementById('demo4').innerHTML += ('<tr>' + '<td>' + item.Class + '</td>' + '<td><span class="noticet"><a href="' + item.Gm + '" target="_blank">' + item.Gm + '</a></span></td>' + '<td colspan="2">' + item.Attd + '</td>' + '<td colspan="2">' + item.Evaluationpath + '</td>' + '</tr>');
                         } {
                             document.getElementById('demo5').innerHTML += ('<tr>' + '<td colspan="5">' + item.Notification + '</td>' + '<td>' + item.Lastupdatedon + '</td>' + '</tr>');
                         } {
