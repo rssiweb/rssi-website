@@ -260,7 +260,7 @@
                 } else {
                     records.forEach(item => {
                         {
-                            document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Photo + '" alt="" width="100px"/>' + '</td>' + '<td>Name - <b>' + item.Fullname + '</b><br><br>Associate number - <b>' + item.Associatenumber + '</b><br><br><b>' + item.Gender + ' (' + item.Age + ' Years)</b><br><br>' + item.Badge + '</td><td>' + item.Position + '</td>' + '<td>' + item.Class + '</td>' + '<td><span class="noticet"><a href="' + item.Gm + '" target="_blank">' + item.Gm + '</a></span></td>' + '<td>' + item.Astatus + '<br><br>' + item.Effectivedate + ' - ' + item.Remarks + '</td>' + '</tr>');
+                            document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Photo + '" alt="" width="100px"/>' + '</td>' + '<td>Name - <b>' + item.Fullname + '</b><br><br>Associate number - <b>' + item.Associatenumber + '</b><br><br><b>' + item.Gender + ' (' + item.Age + ' Years)</b><br><br>' + item.Badge + '</td><td>' + item.Position + '</td>' + '<td>' + item.Class + '</td>' + '<td><span class="noticet"><a href="' + item.Gm + '" target="_blank">' + item.Gm + '</a></span></td>' + '<td>' + item.Astatus + '<br><br>' + item.Effectivedate + '&nbsp;' + item.Remarks + '</td>' + '</tr>');
                         }
                     })
                 }
