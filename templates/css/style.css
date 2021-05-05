@@ -438,8 +438,7 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
     transition: all 300ms linear 0s;
 }
 
-.exam_btn:hover,
-.exam_btn1:hover {
+.exam_btn:hover {
     background: #47A4A5;
     border: 1px solid #47A4A5;
 }
@@ -493,4 +492,13 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
 
 .hidden {
     display: none;
+}
+
+@media print {
+    .noprint {
+        visibility: hidden;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
 }

@@ -97,7 +97,7 @@
             <a href=/index>Home</a> &#62; My Account
         </ps>
     </div>
-    <div class=container>
+    <div class="container noprint">
         <div class=row style=text-align:right;width:101.5%>
             <div class=col>
                 <div class="white hoverdecoration">
@@ -106,7 +106,7 @@
             </div>
         </div>
     </div><br>
-    <div class=container>
+    <div class="container noprint">
         <p style=display:inline>You have to enter both Associate Number and password (Last two digit of your registered mobile number and year (yy) of your Date of birth) to access your account. If my registered mobile number is 1234567898 and date of birth is 26/03/1983, my
             account password is 9883.</p><br><br>
         <div class=row style=background-color:#fff5c2;min-height:70px;width:100%>
@@ -122,6 +122,7 @@
             <div class=col3>
                 <button type=button class=exam_btn onclick=loaddata()><i class="fas fa-sign-in-alt"></i>
 login</button>
+                <button type=button class=exam_btn1 onclick="window.print();return false;" title="Print"><i class="fas fas fa-print"></i></button>
             </div>
         </div>
     </div>
@@ -430,7 +431,7 @@ login</button>
 ============================== -->
     <!-- Back top -->
     <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
-    <div id="footer"></div>
+    <div id="footer" class="noprint"></div>
     <!--<div id="hellobar-bar" class="regular closable" style="top: 0%;">
         <div class="hb-content-wrapper">
             <div class="hb-text-wrapper">
@@ -452,7 +453,7 @@ login</button>
     </div>-->
     <!--<div id="feedback1"><a href="#" target="blank">STUDENT DETAILS</a></div>-->
 
-    <div id="feedback"><a href="#" target="" onClick="window.open('/JVBckLpTeR15jS+mrY2MyjNRVifiA6rxeWBCX0b0nww=', '',
+    <div id="feedback" class="noprint"><a href="#" target="" onClick="window.open('/JVBckLpTeR15jS+mrY2MyjNRVifiA6rxeWBCX0b0nww=', '',
 		'toolbar=no,location=no,directories=no,status=no,menubar=no,'
 		+
 		'scrollbars=no,resizable=no');return
