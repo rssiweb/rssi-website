@@ -2,12 +2,15 @@
    Overview  section              
 -----------------------------------------*/
 
-#overview, #dashboard, #calender img {
+#overview,
+#dashboard,
+#calender img {
     position: relative;
     padding: 0px;
     /*32px*/
     margin: 0px;
 }
+
 
 /*---------------------------------------
       Detail section              
@@ -23,6 +26,7 @@
     font-size: 48px;
 }
 
+
 /*---------------------------------------
       ONE SIDED BORDER RED PARAGRAPH DESIGN  
   -----------------------------------------*/
@@ -37,6 +41,7 @@
     padding: 15px 30px 25px 15px;
 }
 
+
 /*---------------------------------------
      LAYOUT COLUMN     
   -----------------------------------------*/
@@ -44,6 +49,7 @@
 * {
     box-sizing: border-box;
 }
+
 
 /*DASH BOARD SECTION INDEX PAGE*/
 
@@ -56,6 +62,7 @@
     float: left;
     width: 45%;
 }
+
 
 /*WHAT WE DID-INDEX, ADMISSION, REGISTRATION*/
 
@@ -71,6 +78,7 @@
     overflow: hidden;
 }
 
+
 /*OVERVIEW-INDEX, ABOUT US, VIDEO*/
 
 .column6 {
@@ -83,6 +91,7 @@
     width: 55%;
     padding-left: 5%;
 }
+
 
 /*DONATION - TEXT AND IMAGE*/
 
@@ -97,6 +106,7 @@
     padding-left: 5%;
 }
 
+
 /*DONATION - ACCOUNT NUMBER AND QR CODE*/
 
 .column7 {
@@ -109,6 +119,7 @@
     width: 25%;
     padding-top: 1%;
 }
+
 
 /*UPDATE-INDEX FLAG*/
 
@@ -140,6 +151,7 @@
     }
 }
 
+
 /* Clear floats after the columns */
 
 .row1:after {
@@ -152,26 +164,57 @@
     padding-left: 5%;
 }
 
-.col1 {width: 35%; padding-left: 3%; margin-top: 25px;}
-.col2 {width:30%; margin-top: 25px;}
-.col3 {width:30%; margin-top: 20px;}
-.col2ass {width:15%; margin-top: 25px;}
+.col1 {
+    width: 35%;
+    padding-left: 3%;
+    margin-top: 25px;
+}
 
+.col2 {
+    width: 30%;
+    margin-top: 25px;
+}
+
+.col3 {
+    width: 30%;
+    margin-top: 20px;
+}
+
+.col2ass {
+    width: 15%;
+    margin-top: 25px;
+}
 
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+
 @media screen and (max-width: 800px) {
-    .column1, .column2, .column3, .column4, .column6, .column6a, #donation .column6, #donation .column6a, .column7 {
+    .column1,
+    .column2,
+    .column3,
+    .column4,
+    .column6,
+    .column6a,
+    #donation .column6,
+    #donation .column6a,
+    .column7 {
         width: 100%;
         padding-top: 5%;
         padding-left: 0px;
     }
-    .col1, .col2,.col2ass, .col3 {width: 100%; padding-left: 3%; margin-top: 10px;}
-
+    .col1,
+    .col2,
+    .col2ass,
+    .col3 {
+        width: 100%;
+        padding-left: 3%;
+        margin-top: 10px;
+    }
     #videoNational .column6 {
         padding-left: 0;
     }
-    #calender.column3, #overview .column6 {
+    #calender.column3,
+    #overview .column6 {
         width: 100%;
         padding-left: 0px;
     }
@@ -199,16 +242,33 @@
         padding-left: 10px;
         display: inline-block;
     }
-    .marginleft h1, .marginleft h2, .marginleft h3, .marginleft h4, .marginleft h5, .marginleft h6, .marginleft p, .marginleft a, .marginlefttable {
+    .marginleft h1,
+    .marginleft h2,
+    .marginleft h3,
+    .marginleft h4,
+    .marginleft h5,
+    .marginleft h6,
+    .marginleft p,
+    .marginleft a,
+    .marginlefttable {
         margin-left: 10px;
     }
-    .marginright h1, .marginright h2, .marginright h3, .marginright h4, .marginright h5, .marginright h6, .marginright p, .marginright a, .marginrighttable {
+    .marginright h1,
+    .marginright h2,
+    .marginright h3,
+    .marginright h4,
+    .marginright h5,
+    .marginright h6,
+    .marginright p,
+    .marginright a,
+    .marginrighttable {
         margin-right: 5%;
     }
     #studentlist {
         margin-left: 10px;
     }
 }
+
 
 /*---------------------------------------
       Video section              
@@ -217,6 +277,7 @@
 #video iframe {
     border: none;
 }
+
 
 /*---------------------------------------
      Speakers section              
@@ -258,6 +319,7 @@
 .imgcircle {
     border-radius: 50%;
 }
+
 
 /*---------------------------------------
      Faq section              
@@ -323,6 +385,7 @@
     content: "+";
 }
 
+
 /*---------------------------------------
      Responsive styles            
   -----------------------------------------*/
@@ -351,7 +414,8 @@
     .custom-navbar .navbar-brand {
         line-height: 20px;
     }
-    #detail .col-md-4, #register form {
+    #detail .col-md-4,
+    #register form {
         padding-top: 32px;
     }
     .nav-tabs>li>a {
@@ -370,9 +434,10 @@
 
 @media (max-width: 760px) {
     #intro {
-        height: 100vh;
+        height: 40vh;
     }
 }
+
 
 /*---------------------------------------
      Scroll image under overview section     
@@ -382,7 +447,9 @@
     display: none
 }
 
-.w3-left, .w3-right, .w3-badge {
+.w3-left,
+.w3-right,
+.w3-badge {
     cursor: pointer
 }
 
@@ -396,6 +463,7 @@
     display: inline-block;
     vertical-align: baseline;
 }
+
 
 /*---------------------------------------
      FOUNDER CSS ANIMATION TO GET THEIR DETAILS
@@ -534,6 +602,7 @@
     }
 }
 
+
 /*---------------------------------------
      nt-example1 ANNOUNCEMENT SCROLLING UP
   -----------------------------------------*/
@@ -579,6 +648,7 @@
     margin-inline-end: 0px;
     padding-inline-start: 0px;
 }
+
 
 /* CURRENT PROJECT
 ============================================================================================ */
@@ -693,8 +763,10 @@
     display: flex !important;
 }
 
+
 /* END OF CURRRENT PROJECT
   ============================================================================================ */
+
 
 /* Start About Us Area css
   ============================================================================================ */
@@ -764,6 +836,7 @@
     }
 }
 
+
 /* Smart class on image text
   ============================================================================================ */
 
@@ -784,6 +857,7 @@
     left: 70%;
     width: 60%;
 }
+
 
 /* Smart class
   ============================================================================================ */
@@ -817,9 +891,11 @@
     color: #000;
 }
 
-#leadership .accordion .card .accordion-group .card-header:hover a, #leadership .accordion .card .accordion-group .card-header:hover p {
+#leadership .accordion .card .accordion-group .card-header:hover a,
+#leadership .accordion .card .accordion-group .card-header:hover p {
     color: white;
 }
+
 
 /* FEEDBACK BUTTON
 #feedback a {
@@ -852,9 +928,10 @@
     padding: 10px 15px;
     z-index: 3;
 }
+
 #feedback a:hover {
     text-decoration: underline !important;
-  }
+}
 
 #feedback1 a {
     display: block;
@@ -870,6 +947,8 @@
     padding: 10px;
     z-index: 0;
 }
+
+
 /* Testimonial bd986b*/
 
 .demo {
@@ -885,7 +964,8 @@
     height: 300px;
 }
 
-.testimonial:before, .testimonial:after {
+.testimonial:before,
+.testimonial:after {
     content: "";
     border-top: 40px solid whitesmoke;
     border-right: 125px solid transparent;
@@ -968,7 +1048,8 @@
     opacity: 1;
 }
 
-.owl-theme .owl-controls .owl-page.active span, .owl-theme .owl-controls.clickable .owl-page:hover span {
+.owl-theme .owl-controls .owl-page.active span,
+.owl-theme .owl-controls.clickable .owl-page:hover span {
     background: #F2545F;
     border-color: whitesmoke;
 }
@@ -981,6 +1062,7 @@
         border-left: 325px solid transparent;
     }
 }
+
 
 /*Login form 1*/
 
@@ -995,6 +1077,7 @@
     z-index: 5000;
 }
 
+
 /*.tpopup {
     position: fixed;
     width: 60%;
@@ -1008,21 +1091,9 @@
     z-index: 5001;
 }*/
 
-.tpopup {position: fixed;
-  width: 60%;
-  background: #fff;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 5px;
-  padding: 20px 0;
-  text-align: center;
-  box-shadow: 0 0 10px 0 #000;
-  z-index: 5001;
-}
-
-@media (max-width:880px){.tpopup {position: fixed;
-    width: 90%;
+.tpopup {
+    position: fixed;
+    width: 60%;
     background: #fff;
     top: 50%;
     left: 50%;
@@ -1032,7 +1103,24 @@
     text-align: center;
     box-shadow: 0 0 10px 0 #000;
     z-index: 5001;
-  }}
+}
+
+@media (max-width:880px) {
+    .tpopup {
+        position: fixed;
+        width: 90%;
+        background: #fff;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 5px;
+        padding: 20px 0;
+        text-align: center;
+        box-shadow: 0 0 10px 0 #000;
+        z-index: 5001;
+    }
+}
+
 
 /*@media (max-width:880px){.tpopup {
     position: fixed;

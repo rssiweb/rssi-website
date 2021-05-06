@@ -28,7 +28,7 @@ html {
 -----------------------------------------*/
 
 #intro {
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/bg/2intro-bg.jpg') 50% 0 repeat-y;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/bg/1intro-bg.jpg') 50% 0 repeat-y;
     -webkit-background-size: cover;
     background-size: cover;
     background-position: center center;
@@ -41,19 +41,20 @@ html {
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    height: 100vh;
+    height: 50vh;
     text-align: center;
-    background-attachment: scroll !important;
+    background-attachment: fixed !important;
 }
 
 @media screen and (min-width:480px) {
-    #intro {
+    /*#intro {
         background-attachment: fixed !important;
         background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/bg/1intro-bg.jpg') 50% 0 repeat-y;
-    }
+        height: 50vh;
+    }*/
     .body1 {
         font-family: 'Comfortaa', serif;
-        font-size: 4vw !important;
+        font-size: 2.7vw !important;
         text-align: center;
         color: #ffffff;
     }
@@ -68,16 +69,21 @@ html {
 
 .body1 {
     font-family: 'Comfortaa', serif;
-    font-size: 9vw;
+    font-size: 5vw;
     color: #ffffff;
 }
 
 .body2 {
     font-family: 'Comfortaa', serif;
-    font-size: 9.5vw;
+    font-size: 2.7vw;
     text-align: center;
     margin-top: -1vw;
     color: #ffffff
+}
+
+#intro .row {
+    margin-right: 30px;
+    margin-left: 30px;
 }
 
 .body2a {
@@ -86,13 +92,13 @@ html {
 
 @media (max-width:767px) {
     #intro .btn {
-        margin-top: 0px;
+        margin-top: 10px;
     }
     #intro .body1 {
         padding-right: 3%;
     }
     #intro .col {
-        margin-top: 70%;
+        margin-top: 30%;
     }
 }
 
