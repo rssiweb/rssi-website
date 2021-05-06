@@ -1,0 +1,424 @@
+------------------------------------- Cover menu - Index -------------------------------------
+<!-- =========================
+     NAVIGATION LINKS     
+============================== -->
+<div class="containerH">
+    <div class="navbar navbar-fixed-top custom-navbar" role="navigation">
+
+        <div class="logoH">
+            <a href="/index">
+                <img src="/images/logo/WebsiteHeaderLogo.png" alt="RSSI Logo" width="140px" /></a>
+        </div>
+        <navh>
+            <div class="navbarH" id="mynavbarH">
+
+
+
+                <a href="/index" class="smoothScroll">Home</a>
+                <div class="dropdownH">
+                    <button class="dropbtnH">NGO <i class="fa fa-caret-down"></i></button>
+                    <div class="dropdown-contentH">
+                        <a href="/about-us" class="smoothScroll">History</a>
+                        <a href="/our-team" class="smoothScroll">Our team</a>
+                        <a href="https://drive.google.com/file/d/1S2aUfIhiU-wmEF6qw9MSYPao4dm2BPly/view" class="smoothScroll" target="blank">NGO Calendar</a>
+                        <a href="https://drive.google.com/file/d/1Z28N7bOJf2Pog9-WzY4Lw4oLr96LZ-ZG/view" class="smoothScroll" target="blank">Holiday list</a>
+                    </div>
+                </div>
+
+                <a href="/media-center" class="smoothScroll">Media center</a>
+                <a href="/donation-portal" class="smoothScroll">Donate</a>
+
+                <div class="dropdownH">
+                    <button class="dropbtnH">Get involved <i class="fa fa-caret-down"></i></button>
+                    <div class="dropdown-contentH">
+                        <a href="/registration" class="smoothScroll">Registration</a>
+                        <a href="https://drive.google.com/file/d/1IBuhQ0PnwBaZBE8gyJsvAiIqFF09WgXg/view" class="smoothScroll" target="blank">Terms and Conditions</a>
+                        <a href="#" class="smoothScroll" id="secure_link_mt">Mandatory training</a>
+
+                    </div>
+                </div>
+
+
+                <div class="dropdownH">
+                    <button class="dropbtnH">Students' corner <i class="fa fa-caret-down"></i></button>
+                    <div class="dropdown-contentH">
+                        <a href="/admission" class="smoothScroll">Admission</a>
+                        <a href="#" class="smoothScroll" id="secure_link_classroom">My Profile</a>
+                        <a href="/online-exam" class="smoothScroll">Online Exam</a>
+                        <a href="/result-portal" class="smoothScroll">Result portal</a>
+                        <a href="/scholarship-programs" class="smoothScroll">Scholarship
+                                programs</a>
+                        <a href="https://drive.google.com/file/d/1--hLyh7RsIjLZ8V-krK3y6Jc7M2R-6fh/view" class="smoothScroll">Code of Conduct</a>
+                        <a href="/miscellaneous" class="smoothScroll">Miscellaneous</a>
+
+                    </div>
+                </div>
+
+                <!--<a href="/swanirbhar" class="smoothScroll">Swanirbhar</a>-->
+                <div class="dropdownH">
+                    <button class="dropbtnH">e-Certificate <i class="fa fa-caret-down"></i></button>
+                    <div class="dropdown-contentH">
+                        <a href="/certificate-student" class="smoothScroll">Student</a>
+                        <a href="/certificate-assoc" class="smoothScroll">Associate</a>
+                        <a href="https://drive.google.com/file/d/1tHMtne1_2a9dakskzhfFRxtS5qt5JNnL/view" target="_blank" class="smoothScroll">Gems criteria</a>
+                    </div>
+                </div>
+                <div class="dropdownH">
+                    <button class="dropbtnH">Phoenix <i class="fa fa-caret-down"></i></button>
+                    <div class="dropdown-contentH">
+                        <a href="https://docs.google.com/spreadsheets/d/1mjVN9VET3_ToFGDWRSSl7dAZO1sH1kNXgI66qPWfco8/edit?usp=sharing" target="_blank" class="smoothScroll">Grade Summary Sheet</a>
+                        <a href="#" id="secure_link_sh" class="smoothScroll">Interview</a>
+                    </div>
+                </div>
+                <a href="#" class="smoothScroll" id="secure_link_el">e-Learning</a>
+
+                <a href="#" class="smoothScroll active" id="myacc"><i class="fas fa-user"
+                            style="font-size:15px;"></i></a>
+
+                <a href="javascript:void(0);" class="icon" onclick="myFunction1()"><i class="fas fa-bars"
+                            style="font-size:20px; color: whitesmoke;"></i></a>
+
+
+            </div>
+        </navh>
+    </div>
+</div>
+
+<!---------------------------------------------------------------------- 
+		SCECURED LINK SMART CLASSROOM
+------------------------------------------------------>
+
+<div id="thover" class="hidden thover"></div>
+<div id="tpopup" class="hidden tpopup" style="padding:20px; position: fixed;">
+    <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
+    <div class="login-card">
+        <h1>Log-in</h1><br>
+        <form action="/secure/my-profile" method="post">
+            <!--Here we have to mention the secured URL path-->
+            <input type="text" name="user" placeholder="Username">
+            <input type="password" name="code" placeholder="Password">
+            <!--password name id always "code"-->
+            <input type="submit" name="login" class="login login-submit" value="login">
+        </form>
+
+        <div class="login-help">
+            <br><a>Forgot Password? Connect with RSSI admin team</a>
+        </div>
+    </div>
+    <div id="tclose" class="tclose">X</div>
+</div>
+
+<!--------------- 
+		NEED TO COPY THIS SET FOR EVERY CECURED LINK -- DIGITAL LIBRARY
+	------------------------------------------------------>
+
+<div id="thover1" class="hidden thover"></div>
+<div id="tpopup1" class="hidden tpopup" style="padding:20px; position: fixed;">
+    <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
+    <div class="login-card">
+        <h1>Log-in</h1><br>
+        <form action="/secure/digital-library" method="post">
+            <!--Here we have to mention the secured URL path-->
+            <input type="text" name="user" placeholder="Username">
+            <input type="password" name="code" placeholder="Password">
+            <!--password name id always "code"-->
+            <input type="submit" name="login" class="login login-submit" value="login">
+        </form>
+
+        <div class="login-help">
+            <br><a>Forgot Password? Connect with RSSI admin team</a>
+        </div>
+    </div>
+    <div id="tclose1" class="tclose">X</div>
+</div>
+
+<!--------------- 
+		NEED TO COPY THIS SET FOR EVERY CECURED LINK -- WBT
+	------------------------------------------------------>
+
+<div id="thover11" class="hidden thover"></div>
+<div id="tpopup11" class="hidden tpopup" style="padding:20px; position: fixed;">
+    <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
+    <div class="login-card">
+        <h1>Log-in</h1><br>
+        <form action="/secure1/wbt" method="post">
+            <!--Here we have to mention the secured URL path-->
+            <input type="text" name="user" placeholder="Username">
+            <input type="password" name="code" placeholder="Password">
+            <!--password name id always "code"-->
+            <input type="submit" name="login" class="login login-submit" value="login">
+        </form>
+
+        <div class="login-help">
+            <br><a>Forgot Password? Connect with RSSI admin team</a>
+        </div>
+    </div>
+    <div id="tclose11" class="tclose">X</div>
+</div>
+
+<!--------------- 
+		NEED TO COPY THIS SET FOR EVERY CECURED LINK -- e-Learning
+	------------------------------------------------------>
+
+<div id="thover111" class="hidden thover"></div>
+<div id="tpopup111" class="hidden tpopup" style="padding:20px; position: fixed;">
+    <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
+    <div class="login-card">
+        <h1>Log-in</h1><br>
+        <form action="/secure1/e-learning" method="post">
+            <!--Here we have to mention the secured URL path-->
+            <input type="text" name="user" placeholder="Username">
+            <input type="password" name="code" placeholder="Password">
+            <!--password name id always "code"-->
+            <input type="submit" name="login" class="login login-submit" value="login">
+        </form>
+
+        <div class="login-help">
+            <br><a>Forgot Password? Connect with RSSI admin team</a>
+        </div>
+    </div>
+    <div id="tclose111" class="tclose">X</div>
+</div>
+<!--------------- 
+		NEED TO COPY THIS SET FOR EVERY CECURED LINK -- interview
+	------------------------------------------------------>
+
+<div id="thover1111" class="hidden thover"></div>
+<div id="tpopup1111" class="hidden tpopup" style="padding:20px; position: fixed;">
+    <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
+    <div class="login-card">
+        <h1>Log-in</h1><br>
+        <form action="/secure2/interview" method="post">
+            <!--Here we have to mention the secured URL path-->
+            <input type="text" name="user" placeholder="Username">
+            <input type="password" name="code" placeholder="Password">
+            <!--password name id always "code"-->
+            <input type="submit" name="login" class="login login-submit" value="login">
+        </form>
+
+        <div class="login-help">
+            <br><a>Forgot Password? Connect with RSSI admin team</a>
+        </div>
+    </div>
+    <div id="tclose1111" class="tclose">X</div>
+</div>
+<!--------------- 
+		NEED TO COPY THIS SET FOR EVERY CECURED LINK -- MY ACCOUNT
+	------------------------------------------------------>
+
+<div id="thover11111" class="hidden thover"></div>
+<div id="tpopup11111" class="hidden tpopup" style="padding:20px; position: fixed;">
+    <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
+    <div class="login-card">
+        <h1>Log-in</h1><br>
+        <form action="/secure2/my-account" method="post">
+            <!--Here we have to mention the secured URL path-->
+            <input type="text" name="user" placeholder="Username">
+            <input type="password" name="code" placeholder="Password">
+            <!--password name id always "code"-->
+            <input type="submit" name="login" class="login login-submit" value="login">
+        </form>
+
+        <div class="login-help">
+            <br><a>Forgot Password? Connect with RSSI admin team</a>
+        </div>
+    </div>
+    <div id="tclose11111" class="tclose">X</div>
+</div>
+<!-- =========================
+    INTRO SECTION   Welcome to a better tomorrow  Grow Together /class to hide button in mobile/ hidden-xs/Our Response to
+						COVID-19
+============================== -->
+<section id="intro" class="parallax-section">
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col" style="text-align: -webkit-right;">
+
+                <div class="wow fadeIn body1" style="text-align: -webkit-right;" data-wow-delay="0.9s">Your help can unbox a million dreams!</div><br>
+                <!--<div class="wow fadeInUp body2" style="text-align: -webkit-right;" data-wow-delay="1.6s">#Stay<span style="color:#e0ac1c">Connected</span></div>-->
+
+
+
+                <div><a href="#project" class="btn btn-lg btn-default smoothScroll
+								wow fadeInUp hidden-xs" data-wow-delay="2.3s">LEARN MORE</a>
+                    <a href="/donation-portal" class="btn btn-lg btn-danger smoothScroll wow
+								fadeInUp" data-wow-delay="2.3s">DONATE NOW</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    //secure link for SMART CLASSROOM
+    $(document).ready(function() {
+        $("#secure_link_classroom").click(function(event) {
+            event.preventDefault();
+            $("#tpopup").toggleClass('hidden');
+            $("#thover").toggleClass('hidden');
+        });
+    });
+    $("#tclose").click(function() {
+        $("#tpopup").toggleClass('hidden');
+        $("#thover").toggleClass('hidden');
+    });
+
+    //secure link for DIGITAL LIBRARY
+
+    $(document).ready(function() {
+        console.log("loading now...");
+        $("#secure_link_library").click(function(event) {
+            event.preventDefault();
+            $("#tpopup1").toggleClass('hidden');
+            $("#thover1").toggleClass('hidden');
+        });
+        $("#tclose1").click(function() {
+            $("#tpopup1").toggleClass('hidden');
+            $("#thover1").toggleClass('hidden');
+        });
+    });
+
+    //secure link for WBT
+
+    $(document).ready(function() {
+        console.log("loading now...");
+        $("#secure_link_mt").click(function(event) {
+            event.preventDefault();
+            $("#tpopup11").toggleClass('hidden');
+            $("#thover11").toggleClass('hidden');
+        });
+        $("#tclose11").click(function() {
+            $("#tpopup11").toggleClass('hidden');
+            $("#thover11").toggleClass('hidden');
+        });
+    });
+
+    //secure link for e-Learning
+
+    $(document).ready(function() {
+        console.log("loading now...");
+        $("#secure_link_el").click(function(event) {
+            event.preventDefault();
+            $("#tpopup111").toggleClass('hidden');
+            $("#thover111").toggleClass('hidden');
+        });
+        $("#tclose111").click(function() {
+            $("#tpopup111").toggleClass('hidden');
+            $("#thover111").toggleClass('hidden');
+        });
+    });
+
+    //secure link for interview
+
+    $(document).ready(function() {
+        console.log("loading now...");
+        $("#secure_link_sh").click(function(event) {
+            event.preventDefault();
+            $("#tpopup1111").toggleClass('hidden');
+            $("#thover1111").toggleClass('hidden');
+        });
+        $("#tclose1111").click(function() {
+            $("#tpopup1111").toggleClass('hidden');
+            $("#thover1111").toggleClass('hidden');
+        });
+    });
+
+    //secure link for MY ACCOUNT
+
+    $(document).ready(function() {
+        console.log("loading now...");
+        $("#myacc").click(function(event) {
+            event.preventDefault();
+            $("#tpopup11111").toggleClass('hidden');
+            $("#thover11111").toggleClass('hidden');
+        });
+        $("#tclose11111").click(function() {
+            $("#tpopup11111").toggleClass('hidden');
+            $("#thover11111").toggleClass('hidden');
+        });
+    });
+</script>
+
+<!-- =========================
+     FOOTER   
+============================== -->
+<section id="footer" class="footer-distributed">
+
+
+
+    <div class="footer-left">
+        <img src="/images/logo/WebsiteHeaderLogo.png" alt="RSSI Logo" />
+        <h3>Grow<span>Together</span></h3>
+
+        <p class="footer-links">
+            <a href="/index">Home</a> |
+
+            <a href="/about-us">About</a> |
+            <a href="/contact">Contact</a> |
+            <a href="/website-disclaimer">Disclaimer</a>
+
+        </p>
+
+        <p class="footer-company-name">Reg. Number - U80101WB2020NPL237900</p>
+        <p class="footer-company-name">Official Site of RSSI © 2020. All Rights Reserved.
+        </p>
+    </div>
+
+    <div class="footer-center">
+        <div>
+
+            <i class="fas fa-map-marker-alt" style="font-size:15px;"></i>
+            <!--<p>Lodha Splendora, Vivant G 803<span>Ghodbunder Rd, Bhayandarpada, Thane
+                    West, Thane, Maharashtra
+                    400615</span>
+            </p>-->
+            <p>C 1/117 (2nd Floor)<span>Vishesh Khand 1, Gomti Nagar, Lucknow, Uttar Pradesh 226010
+                </span>
+            </p>
+        </div>
+
+        <div>
+            <i class="fas fa-mobile-alt" style="font-size:15px;"></i>
+            <p>+91 7980168159, +91 9717445551</p>
+        </div>
+        <div>
+            <i class="fas fa-at" style="font-size:15px;"></i>
+            <p><a href="mailto:rssi.connect@gmal.com">info@rssi.in</a></p>
+        </div>
+    </div>
+    <div class="footer-right">
+        <p class="footer-company-about">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.2751943560916!2d81.01270751436473!3d26.862996468696917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399be3fc575228e3%3A0xbbc4182b61aa1609!2sRSSI!5e0!3m2!1sen!2sin!4v1594978845672!5m2!1sen!2sin"
+                width="100%" height="150" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+            <br><br>Site Contents owned, designed, developed, maintained and updated by the IT Department, RSSI.
+        </p>
+        <br>
+
+
+
+
+        <div style="display: inline-block;">
+            <p style="color: #92999f;">Visitor count: </p>
+        </div>
+
+        <div style="display: inline;" class="statcounter">
+            <a title="hit counter" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/11357816/0/b3dd2d5c/0/" alt="hit counter"></a>
+        </div>
+
+        <!-- End of Statcounter Code -->
+
+
+        <br>
+        <div class="footer-icons">
+            <a href="https://www.facebook.com/rssi.in"><i class="fab fa-facebook"></i></a>
+            <a href="https://g.page/rssi-mumbai/review?rc"><i class="fab fa-google"></i></a>
+            <a href="https://www.instagram.com/rssi_edu/"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+</section>
