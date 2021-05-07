@@ -2,7 +2,9 @@
     THIS WILL IMPACT ALL FONT OF THE WEBSITE WHERE NO SPECIFICATION IS MENTIONED              
 -----------------------------------------*/
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap|Poppins:400,500,600|Comfortaa');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa');
 body {
     background: #ffffff;
     font-family: "Roboto";
