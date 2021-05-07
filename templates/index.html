@@ -35,57 +35,57 @@ RSSI http://www.rssi.in -->
 
 <div id="header"></div>
 
-<!-- =========================
+<body data-spy="scroll" data-offset="50" data-target=".navbar-collapse">
+
+    <!-- =========================
     UPDATE SECTION   
 ============================== -->
-<section id="update" style="padding: 0.5% 5.5%; background-color: #fff">
+    <section id="update" style="padding: 0.5% 5.5%; background-color: #fff">
 
-    <div class="row py-2">
-        <!--Breaking box-->
-        <div class="col-1 col-md-3 col-lg-2 py-1 pr-md-0 mb-md-1">
-            <div class="d-inline-block d-md-block bg-primary text-white text-center
+        <div class="row py-2">
+            <!--Breaking box-->
+            <div class="col-1 col-md-3 col-lg-2 py-1 pr-md-0 mb-md-1">
+                <div class="d-inline-block d-md-block bg-primary text-white text-center
 						breaking-caret py-1 px-2">
 
-                <!--<span class="d-none d-md-inline-block">Bulletin </span>-->
-                <span class="fas fa-flag" title="Updates"></span>
-            </div>
-        </div>
-        <!--Breaking content-->
-        <div class="col-11 col-md-9 col-lg-10 pl-1 pl-md-2">
-            <div class="breaking-box pt-2 pb-1">
-                <!--marque-->
-                <marquee behavior="scroll" scrollamount="5" direction="left" onmouseover="this.stop();" onmouseleave="this.start();">
-                    <ps class="h6 notice"><span class="position-relative mx-2 badge badge-primary rounded-0">COVID-19</span> In response to the second wave of COVID-19, we have enabled our Smart Education Program for all students, regardless of their financial status. Using
-                        which more than 50% of the total strength of our students are able to avail the advantages of online classroom facilities. For more information, please call us directly at +91 7980168159 or or email at <a href="mailto:info@rssi.in">info@rssi.in</a>.
-                        Stay safe. Stay inspired.
-                    </ps>
-
-                </marquee>
-            </div>
-        </div>
-    </div>
-
-
-</section>
-<section id="intro" class="parallax-section">
-    <div class="container">
-        <div class="row">
-
-            <div class="col" style="text-align: -webkit-left;">
-
-                <div class="wow fadeIn body1" style="text-align: -webkit-left;" data-wow-delay="0.5s">Help a journey - from childhood to livelihood</div>
-                <div><a href="#project" class="btn btn-lg btn-default smoothScroll
-                        wow fadeInUp hidden-xs" data-wow-delay="1.3s">LEARN MORE</a>
-                    <a href="/donation-portal" class="btn btn-lg btn-danger smoothScroll wow
-                        fadeInUp" data-wow-delay="1.3s">DONATE NOW</a>
+                    <!--<span class="d-none d-md-inline-block">Bulletin </span>-->
+                    <span class="fas fa-flag" title="Updates"></span>
                 </div>
+            </div>
+            <!--Breaking content-->
+            <div class="col-11 col-md-9 col-lg-10 pl-1 pl-md-2">
+                <div class="breaking-box pt-2 pb-1">
+                    <!--marque-->
+                    <marquee behavior="scroll" scrollamount="5" direction="left" onmouseover="this.stop();" onmouseleave="this.start();">
+                        <ps class="h6 notice"><span class="position-relative mx-2 badge badge-primary rounded-0">COVID-19</span> In response to the second wave of COVID-19, we have enabled our Smart Education Program for all students, regardless of their financial status.
+                            Using which more than 50% of the total strength of our students are able to avail the advantages of online classroom facilities. For more information, please call us directly at +91 7980168159 or or email at <a href="mailto:info@rssi.in">info@rssi.in</a>.
+                            Stay safe. Stay inspired.
+                        </ps>
 
+                    </marquee>
+                </div>
             </div>
         </div>
-    </div>
-</section>
 
-<body data-spy="scroll" data-offset="50" data-target=".navbar-collapse" onload="checkCookie()">
+
+    </section>
+    <section id="intro" class="parallax-section">
+        <div class="container">
+            <div class="row">
+
+                <div class="col" style="text-align: -webkit-left;">
+
+                    <div class="wow fadeIn body1" style="text-align: -webkit-left;" data-wow-delay="0.5s">Help a journey - from childhood to livelihood</div>
+                    <div><a href="#project" class="btn btn-lg btn-default smoothScroll
+                        wow fadeInUp hidden-xs" data-wow-delay="1.3s">LEARN MORE</a>
+                        <a href="/donation-portal" class="btn btn-lg btn-danger smoothScroll wow
+                        fadeInUp" data-wow-delay="1.3s">DONATE NOW</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- =========================
     OVERVIEW SECTION   
 ============================== -->
@@ -884,15 +884,18 @@ RSSI http://www.rssi.in -->
             return "";
         }
 
-        function checkCookie() {
-            var user = getCookie("username");
-            if (user != "") {
-                alert(greet + " " + user + ", Welcome back");
-            } else {
-                user = prompt("Please enter your name:", "");
-                if (user != "" && user != null) {
-                    setCookie("username", user, 365);
+        onload = function checkCookie() {
+            if (localStorage.getItem("hasCodeRunBefore") === null) {
+                var user = getCookie("username");
+                if (user != "") {
+                    alert(greet + " " + user + ", Welcome back");
+                } else {
+                    user = prompt("Please enter your name:", "");
+                    if (user != "" && user != null) {
+                        setCookie("username", user, 365);
+                    }
                 }
+                localStorage.setItem("hasCodeRunBefore", true);
             }
         }
     </script>
