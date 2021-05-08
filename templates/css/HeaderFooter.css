@@ -168,11 +168,7 @@
                 z-index: 100;
             }
             .navbarHo a {
-                padding: 14px !important;
-            }
-            .navbarHo a:hover,
-            .dropdownHo:hover .dropbtnHo {
-                background-color: unset !important;
+                padding: 14px 10px !important;
             }
         }
         
