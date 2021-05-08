@@ -1160,3 +1160,10 @@
 .link-btn {
     text-decoration: underline !important;
 }
+
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled),
+button:not(:disabled) {
+    outline: none;
+}
