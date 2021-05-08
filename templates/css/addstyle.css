@@ -1156,3 +1156,7 @@
 .tclose:hover {
     background: #F2545F;
 }
+
+.link-btn {
+    text-decoration: underline !important;
+}
