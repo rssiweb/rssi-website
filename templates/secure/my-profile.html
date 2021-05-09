@@ -473,9 +473,9 @@
     <div id="thoverX" class="thover"></div>
     <div id="tpopupX" class="tpopup">
         <img src="/images/infob1.jpg" class="img-fluid img-responsive">
-        <div class="embed-responsive embed-responsive-16by9">
+        <!--<div class="embed-responsive embed-responsive-16by9">
             <iframe class="embed-responsive-item" src="/images/covid.mp4" allowfullscreen></iframe>
-        </div>
+        </div>-->
         <div id="tcloseX" class="tclose">X</div>
         <script>
             $("#tcloseX").click(function() {
@@ -484,6 +484,12 @@
             });
         </script>
     </div>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <form action="?" method="POST">
+        <div class="g-recaptcha" data-sitekey="6LfyP80aAAAAAF9QiPQf0X_leVIb60TioqjWAk3Q"></div>
+        <br/>
+        <input type="submit" value="Submit">
+    </form>
 
     </body>
 
