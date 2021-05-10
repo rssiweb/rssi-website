@@ -21,6 +21,12 @@ html {
     scroll-behavior: smooth;
 }
 
+*,
+*:focus,
+*:hover {
+    outline: none;
+}
+
 
 /*---------------------------------------
     Intro section              linear-gradient(
