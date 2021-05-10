@@ -891,7 +891,7 @@ RSSI http://www.rssi.in -->
     <script type="text/javascript" src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.js"></script>
 
     <!--Div where the WhatsApp will be rendered-->
-    <div id="WAButton" style="position: roght; top:50%; z-index: 1000;"></div>
+    <div id="WAButton" style="z-index: 1000;"></div>
     <script type="text/javascript">
         $(function() {
             $('#WAButton').floatingWhatsApp({
@@ -899,7 +899,7 @@ RSSI http://www.rssi.in -->
                 headerTitle: 'Chat with us on WhatsApp!', //Popup Title
                 popupMessage: 'Hello, how can we help you?', //Popup Message
                 showPopup: true, //Enables popup display
-                buttonImage: '<img src="/images/whatsapp.svg" />', //Button Image
+                buttonImage: '<img src="/images/whatsapp.svg" style="height:65px;width:65px"/>', //Button Image
                 //headerColor: 'crimson', //Custom header color
                 //backgroundColor: 'crimson', //Custom background button color
                 position: "right" //Position: left | right
