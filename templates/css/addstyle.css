@@ -948,6 +948,21 @@
     z-index: 0;
 }
 
+#feedback_index a {
+    display: block;
+    position: fixed;
+    top: 50%;
+    right: -122px;
+    background: #F2545F;
+    color: whitesmoke;
+    transform: rotate(90deg);
+    float: right;
+    transform-origin: left top 0;
+    margin-left: 80px;
+    padding: 10px;
+    z-index: 3;
+}
+
 
 /* Testimonial bd986b*/
 
