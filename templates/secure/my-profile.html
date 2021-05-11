@@ -384,18 +384,7 @@
                 }
             });
         }
-        $(document).ready(function() {
-            console.log("loading now...");
-            $("#secure_link_mt").click(function(event) {
-                event.preventDefault();
-                $("#tpopup11").toggleClass('hidden');
-                $("#thover11").toggleClass('hidden');
-            });
-            $("#tclose11").click(function() {
-                $("#tpopup11").toggleClass('hidden');
-                $("#thover11").toggleClass('hidden');
-            });
-        });
+
         document.addEventListener("DOMContentLoaded", function() {
             var lazyloadImages = document.querySelectorAll("img.lazy");
             var lazyloadThrottleTimeout;
