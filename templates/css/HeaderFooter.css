@@ -524,7 +524,17 @@
                 margin-right: 0;
             }
         }
+        /*GOOGLE TRANSLATE*/
         
         #google_translate_element img {
             width: fit-content;
         }
+        
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+        }
+        
+        body {
+            top: 0px !important;
+        }
+        /*GOOGLE TRANSLATE END*/
