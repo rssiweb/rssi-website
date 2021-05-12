@@ -537,4 +537,15 @@
         body {
             top: 0px !important;
         }
+        
+        #google_translate_element a,
+        #google_translate_element a:hover {
+            padding: 0px !important;
+            background-color: unset !important;
+        }
+        
+        .goog-te-gadget-simple {
+            background-color: unset !important;
+            margin-top: 10px !important;
+        }
         /*GOOGLE TRANSLATE END*/
