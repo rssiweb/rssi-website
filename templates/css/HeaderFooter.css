@@ -524,3 +524,7 @@
                 margin-right: 0;
             }
         }
+        
+        #google_translate_element img {
+            width: fit-content;
+        }
