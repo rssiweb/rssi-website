@@ -548,4 +548,8 @@
             background-color: unset !important;
             margin-top: 10px !important;
         }
+        
+        .goog-te-gadget-simple .goog-te-menu-value {
+            color: whitesmoke!important;
+        }
         /*GOOGLE TRANSLATE END*/
