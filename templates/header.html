@@ -17,7 +17,7 @@
             <a href="/index">
                 <img src="/images/logo/WebsiteHeaderLogo.png" alt="RSSI Logo" width="140px" /></a>
         </div>
-        <div id="google_translate_element1" class="hidden-ys" style="display: inline-flex;"></div>
+        <div id="google_translate_element1" style="display: inline-flex;"></div>
         <navh>
             <div class="navbarHo navbar" id="mynavbarHo">
                 <div id="google_translate_element" class="hidden-xs" style="display: inline-flex;"></div>
@@ -323,47 +323,29 @@
         });
     </script>
     <script src="/js/active-nav-bar.js"></script>
-    <!--<script type="text/javascript">
+    <script>
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                includedLanguages: "hi,en,bn"
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>-->
-    <script type="text/javascript">
-        var duplicate_google_translate_counter = 0; //this stops google adding button multiple times
 
-        function googleTranslateElementInit() {
-            if (duplicate_google_translate_counter == 0) {
+            //  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,zh-CN,nl,fr,ru,ja,es,ko,pt', layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT}, 'google_translate_element');
+
+            if ($(window).width() < 760) {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                    includedLanguages: "hi,en,bn"
+                }, 'google_translate_element1');
+
+            } else {
                 new google.translate.TranslateElement({
                     pageLanguage: 'en',
                     layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
                     includedLanguages: "hi,en,bn"
                 }, 'google_translate_element');
             }
-            duplicate_google_translate_counter++;
+
         }
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-    <script type="text/javascript">
-        var duplicate_google_translate_counter = 0; //this stops google adding button multiple times
-
-        function googleTranslateElementInit1() {
-            if (duplicate_google_translate_counter == 0) {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'en',
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                    includedLanguages: "hi,en,bn"
-                }, 'google_translate_element1');
-            }
-            duplicate_google_translate_counter++;
-        }
-    </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit1"></script>
 </body>
 
 </html>
