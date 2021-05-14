@@ -130,109 +130,133 @@
 
                 <body>
                     <h2 style=margin-top:2%;font-size:20px align=center>where all the action is!</h2>
-                    <div class="container text-center my-4" style=overflow-x:auto>
-                        <table class="table bordered table-striped" id=testTable>
-                            <thead style=background-color:whitesmoke;font-style:oblique>
-                                <tr>
 
-                                    <th colspan="5"><b><i class="fas fa-info-circle" style="font-size:20px;"></i>&nbsp;&nbsp;Info</b></th>
-                                    <th><b>Last Refresh</b></th>
+                    <div class="row noprint" style="text-align: right; margin-left: 0px; margin-right: 15px;">
+                        <span class="notice" style=" width:100%; ">
+                        <a id="myBtn" href="##" style="font-size:14px;">Daily planner</a><!--&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" style="font-size:14px" target="" onClick="window.open('/JVBckLpTeR15jS+mrY2MyjNRVifiA6rxeWBCX0b0nww=', '',
+                'toolbar=no,location=no,directories=no,status=no,menubar=no,'
+                +
+                'scrollbars=no,resizable=no');return
+                false;">Students details</a>-->
+                    </span>
+                    </div>
 
-                                </tr>
-                            </thead>
-                            <tbody id=demo5>
-                            </tbody>
+                    <div class="tabset">
+                        <!-- Tab 1 -->
+                        <input type="radio" name="tabset" id="tab1" aria-controls="class" checked>
+                        <label for="tab1">Class Details</label>
+                        <!-- Tab 2 -->
+                        <input type="radio" name="tabset" id="tab2" aria-controls="allocation">
+                        <label for="tab2">Allocation Details</label>
+                        <!-- Tab 3 -->
+                        <input type="radio" name="tabset" id="tab3" aria-controls="personal">
+                        <label for="tab3">Personal Details</label>
+                        <!--<input type="radio" name="tabset" id="tab4" aria-controls="mydoc">
+                        <label for="tab4">My Document</label>-->
+
+                        <div class="tab-panels" style="overflow-x:auto">
+                            <section id="class" class="tab-panel">
+                                <table class="table bordered table-striped" id=testTable>
+                                    <thead style=background-color:whitesmoke;font-style:oblique>
+                                        <tr>
+
+                                            <th width="35%"><b>Class URL</b></th>
+                                            <th width="15%"><b>Applications</b></th>
+                                            <th><b>Annual Fee</b></th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id=demo4>
+                                    </tbody>
+                                    <thead style=background-color:whitesmoke;font-style:oblique>
+                                        <tr>
+
+                                            <th colspan="3"><b>Library Status</b></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id=demo6>
+                                    </tbody>
+                                </table>
+                            </section>
+                            <section id="allocation" class="tab-panel">
+                                <table class="table bordered table-striped" id=testTable>
+                                    <thead style=background-color:whitesmoke;font-style:oblique>
+                                        <tr>
+
+                                            <th><b>Academic session</b></th>
+                                            <th><b>Class allotted<br>(Academic session start date to today)</b></th>
+                                            <th><b>Attendance percentage<br>(Inc. Extra class)</b></th>
+                                            <th colspan="2"><b>Remarks</b></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id=demo7>
+                                    </tbody>
+                                </table>
+                            </section>
+                            <section id="allocation" class="tab-panel">
+                                <table class="table bordered table-striped" id=testTable>
+                                    <thead style=background-color:whitesmoke;font-style:oblique>
+                                        <tr>
+                                            <th><b>Photo</b></th>
+                                            <th colspan="2"><b>Student Details</b></th>
+                                            <th><b>Profile Status</b></th>
+                                            <th colspan="2"><b>Badge</b></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id=demo1>
+                                    </tbody>
+                                    <thead style=background-color:whitesmoke;font-style:oblique>
+                                        <tr>
+                                            <th><b>Admission Date</b></th>
+                                            <th><b>Preferred Branch of RSSI</b></th>
+                                            <th><b>Class/Category</b></th>
+                                            <th><b>Date of Birth</b></th>
+                                            <th><b>Student Aadhaar</b></th>
+                                            <th colspan="2"><b>Name of Vendor Foundation</b></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id=demo>
+                                    </tbody>
+                                    <thead style=background-color:whitesmoke;font-style:oblique>
+                                        <tr>
+                                            <th width=20%><b>Guardian's Name</b></th>
+                                            <th><b>Guardian Aadhaar</b></th>
+                                            <th width=20%><b>Postal Address</b></th>
+                                            <th><b>Contact/Email Address</b></th>
+                                            <th><b>Family monthly income</b></th>
+                                            <th><b>Total number of family members</b></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id=demo2>
+                                    </tbody>
+                                    <thead style=background-color:whitesmoke;font-style:oblique>
+                                        <tr>
+                                            <th><b>School Admission Required</b></th>
+                                            <th width=25%><b>Name Of The Subjects</b></th>
+                                            <th><b>Name Of The School</b></th>
+                                            <th><b>Name Of The Board</b></th>
+                                            <th><b>Medium</b></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id=demo3>
+                                    </tbody>
+                                </table>
+                            </section>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row" style="text-align: right;margin-left: 0px; margin-right: 15px;">
+                        <table id=testTable style="width: 100%;">
+                            <tr>
+                                <th><b>Last refreshed on</b></th>
+                            </tr>
+                            <tbody id=demo5></tbody>
                         </table>
-                        <table class="table bordered table-striped" id=testTable>
-                            <span style="color:blueviolet"><b>Personal Details:</b></span><br><br>
-                            <thead style=background-color:whitesmoke;font-style:oblique>
-                                <tr>
-                                    <th><b>Photo</b></th>
-                                    <th colspan="2"><b>Student Details</b></th>
-                                    <th><b>Profile Status</b></th>
-                                    <th colspan="2"><b>Badge</b></th>
-                                </tr>
-                            </thead>
-                            <tbody id=demo1>
-                            </tbody>
-                            <thead style=background-color:whitesmoke;font-style:oblique>
-                                <tr>
-                                    <th><b>Admission Date</b></th>
-                                    <th><b>Preferred Branch of RSSI</b></th>
-                                    <th><b>Class/Category</b></th>
-                                    <th><b>Date of Birth</b></th>
-                                    <th><b>Student Aadhaar</b></th>
-                                    <th colspan="2"><b>Name of Vendor Foundation</b></th>
-                                </tr>
-                            </thead>
-                            <tbody id=demo>
-                            </tbody>
-                            <thead style=background-color:whitesmoke;font-style:oblique>
-                                <tr>
-                                    <th width=20%><b>Guardian's Name</b></th>
-                                    <th><b>Guardian Aadhaar</b></th>
-                                    <th width=20%><b>Postal Address</b></th>
-                                    <th><b>Contact/Email Address</b></th>
-                                    <th><b>Family monthly income</b></th>
-                                    <th><b>Total number of family members</b></th>
-                                </tr>
-                            </thead>
-                            <tbody id=demo2>
-                            </tbody>
-                        </table>
-                        <table class="table bordered table-striped" id=testTable>
-                            <span style="color:blueviolet"><b>Educational details and miscellaneous:</b></span><br><br>
-                            <thead style=background-color:whitesmoke;font-style:oblique>
-                                <tr>
-                                    <th><b>School Admission Required</b></th>
-                                    <th width=25%><b>Name Of The Subjects</b></th>
-                                    <th><b>Name Of The School</b></th>
-                                    <th><b>Name Of The Board</b></th>
-                                    <th><b>Medium</b></th>
-                                    <th colspan="2"><b>Digital Library</b></th>
-
-
-                                </tr>
-                            </thead>
-                            <tbody id=demo3>
-                            </tbody>
-                            <thead style=background-color:whitesmoke;font-style:oblique>
-                                <tr>
-
-                                    <th colspan="2"><b>Class URL</b></th>
-                                    <th colspan="4"><b>Annual Fee</b></th>
-
-
-                                </tr>
-                            </thead>
-                            <tbody id=demo4>
-                            </tbody>
-                            <thead style=background-color:whitesmoke;font-style:oblique>
-                                <tr>
-
-                                    <th colspan="10"><b>Library Status</b></th>
-
-                                </tr>
-                            </thead>
-                            <tbody id=demo6>
-                            </tbody>
-                        </table>
-                        <table class="table bordered table-striped" id=testTable>
-                            <span style="color:blueviolet"><b>Allocation details:</b></span><br><br>
-                            <thead style=background-color:whitesmoke;font-style:oblique>
-                                <tr>
-
-                                    <th><b>Academic session</b></th>
-                                    <th><b>Class allotted<br>(Academic session start date to today)</b></th>
-                                    <th><b>Attendance percentage<br>(Inc. Extra class)</b></th>
-                                    <th colspan="2"><b>Remarks</b></th>
-
-                                </tr>
-                            </thead>
-                            <tbody id=demo7>
-                            </tbody>
-                        </table>
-
                     </div>
             </div>
         </div>
@@ -360,7 +384,7 @@
                     }
                 }
                 if (records.length == 0) {
-                    document.getElementById('demo5').innerHTML += ('<tr>' + '<td>' + '<p style="color:#F2545F">Error: Login failed. Please enter valid credentials.</p>' + '</td></tr>');
+                    document.getElementById('demo3').innerHTML += ('<tr>' + '<td>' + '<p style="color:#F2545F">Error: Login failed. Please enter valid credentials.</p>' + '</td></tr>');
                 } else {
                     records.forEach(item => {
                         {
@@ -370,13 +394,13 @@
                         } {
                             document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Relationwithstudent + ' - ' + item.Guardiansname + '</td>' + '<td>' + item.Guardianaadhar + '</td>' + '<td>' + item.Postaladdress + '</td><td>' + item.Contact + '<br>' + item.Emailaddress + '</td>' + '<td>' + item.Familymonthlyincome + '</td>' + '<td>' + item.Totalnumberoffamilymembers + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo3').innerHTML += ('<tr>' + '<td>' + item.Schooladmissionrequired + '</td><td>' + item.Nameofthesubjects + '</td>' + '<td>' + item.Nameoftheschool + '</td>' + '<td>' + item.Nameoftheboard + '</td>' + '<td>' + item.Medium + '</td>' + '<td>' + item.Mydocument + '</td>' + '</tr>');
+                            document.getElementById('demo3').innerHTML += ('<tr>' + '<td>' + item.Schooladmissionrequired + '</td><td>' + item.Nameofthesubjects + '</td>' + '<td>' + item.Nameoftheschool + '</td>' + '<td>' + item.Nameoftheboard + '</td>' + '<td>' + item.Medium + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo4').innerHTML += ('<tr>' + '<td colspan="2">' + item.Classurl + '</td>' + '<td colspan="4">' + item.Fees + '</td>' + '</tr>');
+                            document.getElementById('demo4').innerHTML += ('<tr>' + '<td>' + item.Classurl + '</td>' + '<td>' + item.Mydocument + '</td>' + '<td>' + item.Fees + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo5').innerHTML += ('<tr>' + '<td colspan="5">' + item.Notice + '</td>' + '<td>' + item.Lastupdatedon + '</td>' + '</tr>');
+                            document.getElementById('demo5').innerHTML += ('<tr>' + '<td>' + item.Lastupdatedon + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo6').innerHTML += ('<tr>' + '<td colspan="10">' + item.Bookststus + '</td>' + '</tr>');
+                            document.getElementById('demo6').innerHTML += ('<tr>' + '<td>' + item.Bookststus + '</td>' + '</tr>');
                         } {
                             document.getElementById('demo7').innerHTML += ('<tr>' + '<td>' + item.Allocationdate + '</td>' + '<td>' + item.Maxclass + '</td>' + '<td colspan="2">' + item.Attd + '</td>' + '</tr>');
                         }
@@ -482,6 +506,170 @@
             });
         </script>
     </div>
+    <style>
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+        /* Modal Content */
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 100vh;
+        }
+        
+        @media (max-width:767px) {
+            .modal-content {
+                width: 50vh;
+            }
+        }
+        /* The Close Button */
+        
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            text-align: right;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
+    <!-- Trigger/Open The Modal -->
+    <!--<button id="myBtn">Open Modal</button>-->
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <iframe src="https://calendar.google.com/calendar/embed?height=300&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FKolkata&amp;src=aW5mb0Byc3NpLmlu&amp;color=%23039BE5&amp;showNav=1&amp;showTabs=0&amp;showDate=1&amp;showPrint=0&amp;showCalendars=0&amp;title=RSSI%20Class%20Schedule&amp;mode=AGENDA"
+                style="border-width:0" width="100%" height="300" frameborder="0" scrolling="no"></iframe>
+        </div>
+
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    <style>
+        /* CSS for the main interaction */
+        
+        .tabset>input[type="radio"] {
+            position: absolute;
+            left: -200vw;
+        }
+        
+        .tabset .tab-panel {
+            display: none;
+        }
+        
+        .tabset>input:first-child:checked~.tab-panels>.tab-panel:first-child,
+        .tabset>input:nth-child(3):checked~.tab-panels>.tab-panel:nth-child(2),
+        .tabset>input:nth-child(5):checked~.tab-panels>.tab-panel:nth-child(3),
+        .tabset>input:nth-child(7):checked~.tab-panels>.tab-panel:nth-child(4),
+        .tabset>input:nth-child(9):checked~.tab-panels>.tab-panel:nth-child(5),
+        .tabset>input:nth-child(11):checked~.tab-panels>.tab-panel:nth-child(6) {
+            display: block;
+        }
+        /* Styling */
+        
+        .tabset>label {
+            position: relative;
+            display: inline-block;
+            padding: 15px 15px 25px;
+            border: 1px solid transparent;
+            border-bottom: 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .tabset>label::after {
+            content: "";
+            position: absolute;
+            left: 15px;
+            bottom: 10px;
+            width: 22px;
+            height: 4px;
+            background: #8d8d8d;
+        }
+        
+        .tabset>label:hover,
+        .tabset>input:focus+label {
+            color: #06c;
+        }
+        
+        .tabset>label:hover::after,
+        .tabset>input:focus+label::after,
+        .tabset>input:checked+label::after {
+            background: #06c;
+        }
+        
+        .tabset>input:checked+label {
+            border-color: #ccc;
+            border-bottom: 1px solid #fff;
+            margin-bottom: -1px;
+        }
+        
+        .tab-panel {
+            padding: 30px 0;
+            border-top: 1px solid #ccc;
+        }
+    </style>
+
     </body>
 
 </html>
