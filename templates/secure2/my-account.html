@@ -132,6 +132,15 @@ login</button>
 
                 <body>
                     <h2 style=margin-top:2%;font-size:20px align=center>where all the action is!</h2>
+                    <div class="row noprint" style="text-align: right; margin-left: 0px; margin-right: 15px;">
+                        <span class="notice" style=" width:100%; ">
+                        <a id="myBtn" href="##" style="font-size:14px;">Daily planner</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" style="font-size:14px" target="" onClick="window.open('/JVBckLpTeR15jS+mrY2MyjNRVifiA6rxeWBCX0b0nww=', '',
+                'toolbar=no,location=no,directories=no,status=no,menubar=no,'
+                +
+                'scrollbars=no,resizable=no');return
+                false;">Students details</a>
+                    </span>
+                    </div>
 
                     <div class="tabset">
                         <!-- Tab 1 -->
@@ -247,23 +256,20 @@ login</button>
                                     </thead>
                                     <tbody id=demo5>
                                     </tbody>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <div class="row notice" style="text-align: left; margin-left: 0px; margin-right: 0px;">
-                                            <a id="myBtn" href="##" style="font-size:14px;">Daily planner</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" style="font-size:14px" target="" onClick="window.open('/JVBckLpTeR15jS+mrY2MyjNRVifiA6rxeWBCX0b0nww=', '',
-                                    'toolbar=no,location=no,directories=no,status=no,menubar=no,'
-                                    +
-                                    'scrollbars=no,resizable=no');return
-                                    false;">Students details</a></div>
-                                    </td>
                                 </table>
                             </section>
                         </div>
 
                     </div>
-
+                    <hr>
+                    <div class="row" style="text-align: right;margin-left: 0px; margin-right: 15px;">
+                        <table id=testTable style="width: 100%;">
+                            <tr>
+                                <th><b>Last refreshed on</b></th>
+                            </tr>
+                            <tbody id=demo7></tbody>
+                        </table>
+                    </div>
 
             </div>
         </div>
@@ -287,6 +293,7 @@ login</button>
                 document.getElementById('demo4').innerHTML = ""
                 document.getElementById('demo5').innerHTML = ""
                 document.getElementById('demo6').innerHTML = ""
+                document.getElementById('demo7').innerHTML = ""
 
                 var sheetData = data.feed.entry;
                 var i;
@@ -397,6 +404,8 @@ login</button>
                             document.getElementById('demo5').innerHTML += ('<tr>' + '<td>' + item.Mydoc + '</td>' + '<td></td>' + '<td>' + item.Notification + '</td>' + '</tr>');
                         } {
                             document.getElementById('demo6').innerHTML += ('<tr>' + '<td>' + item.Allocationdate + '</td>' + '<td>' + item.Maxclass + '</td>' + '<td>' + item.Classtaken + ' (' + item.Ctp + ')' + '</td>' + '<td>' + item.Leave + '</td>' + '<td>' + item.Feedback + '</td>' + '</tr>');
+                        } {
+                            document.getElementById('demo7').innerHTML += ('<tr>' + '<td>' + item.Lastupdatedon + '</td>' + '</tr>');
                         }
                     })
                 }
