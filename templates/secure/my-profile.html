@@ -195,6 +195,18 @@
                                     <tbody id=demo7>
                                     </tbody>
                                 </table>
+                                <table class="table bordered table-striped" id=testTable>
+                                    <thead style=background-color:whitesmoke;font-style:oblique>
+                                        <tr>
+                                            <th><b>Leaves Approved</th>
+                                            <th><b>Apply Leave</b></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id=demo8>
+                                    </tbody>
+                                </table>
+                                <hr>
+                                <b>Note:&nbsp;</b></b>
                             </section>
                             <section id="allocation" class="tab-panel">
                                 <table class="table bordered table-striped" id=testTable>
@@ -239,7 +251,7 @@
                                             <th><b>Name Of The School</b></th>
                                             <th><b>Name Of The Board</b></th>
                                             <th><b>Medium</b></th>
-                                            <th></th>
+                                            <th><b>Admission form</b></th>
                                         </tr>
                                     </thead>
                                     <tbody id=demo3>
@@ -281,6 +293,7 @@
                 document.getElementById('demo5').innerHTML = ""
                 document.getElementById('demo6').innerHTML = ""
                 document.getElementById('demo7').innerHTML = ""
+                document.getElementById('demo8').innerHTML = ""
 
                 var sheetData = data.feed.entry;
                 var i;
@@ -330,10 +343,20 @@
                     var Attd = data.feed.entry[i]['gsx$attd']['$t'];
                     var Allocationdate = data.feed.entry[i]['gsx$allocationdate']['$t'];
                     var Maxclass = data.feed.entry[i]['gsx$maxclass']['$t'];
+                    var Cltaken = data.feed.entry[i]['gsx$cltaken']['$t'];
+                    var Sltaken = data.feed.entry[i]['gsx$sltaken']['$t'];
+                    var Othtaken = data.feed.entry[i]['gsx$othtaken']['$t'];
+                    var Filename = data.feed.entry[i]['gsx$filename']['$t'];
+                    var Leaveapply = data.feed.entry[i]['gsx$leaveapply']['$t'];
 
                     if ((Studentid === studentid && Colors === colors) || (Studentid === studentid && colors === 'colors')) {
                         records.push({
-
+                            Othtaken: Othtaken,
+                            Profile: Profile,
+                            Filename: Filename,
+                            Leaveapply: Leaveapply,
+                            Cltaken: Cltaken,
+                            Sltaken: Sltaken,
                             Attd: Attd,
                             Allocationdate: Allocationdate,
                             Maxclass: Maxclass,
@@ -344,7 +367,6 @@
                             Gender: Gender,
                             Age: Age,
                             Class: Class,
-                            Profile: Profile,
                             Contact: Contact,
                             Guardiansname: Guardiansname,
                             Relationwithstudent: Relationwithstudent,
@@ -384,7 +406,7 @@
                     }
                 }
                 if (records.length == 0) {
-                    document.getElementById('demo3').innerHTML += ('<tr>' + '<td>' + '<p style="color:#F2545F">Error: Login failed. Please enter valid credentials.</p>' + '</td></tr>');
+                    document.getElementById('demo4').innerHTML += ('<tr>' + '<td>' + '<p style="color:#F2545F">Error: Login failed. Please enter valid credentials.</p>' + '</td></tr>');
                 } else {
                     records.forEach(item => {
                         {
@@ -394,7 +416,7 @@
                         } {
                             document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Relationwithstudent + ' - ' + item.Guardiansname + '</td>' + '<td>' + item.Guardianaadhar + '</td>' + '<td>' + item.Postaladdress + '</td><td>' + item.Contact + '<br>' + item.Emailaddress + '</td>' + '<td>' + item.Familymonthlyincome + '</td>' + '<td>' + item.Totalnumberoffamilymembers + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo3').innerHTML += ('<tr>' + '<td>' + item.Schooladmissionrequired + '</td><td>' + item.Nameofthesubjects + '</td>' + '<td>' + item.Nameoftheschool + '</td>' + '<td>' + item.Nameoftheboard + '</td>' + '<td>' + item.Medium + '</td>' + '</tr>');
+                            document.getElementById('demo3').innerHTML += ('<tr>' + '<td>' + item.Schooladmissionrequired + '</td><td>' + item.Nameofthesubjects + '</td>' + '<td>' + item.Nameoftheschool + '</td>' + '<td>' + item.Nameoftheboard + '</td>' + '<td>' + item.Medium + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Profile + '" target="_blank">' + item.Filename + '</a></span>' + '</td>' + '</tr>');
                         } {
                             document.getElementById('demo4').innerHTML += ('<tr>' + '<td>' + item.Classurl + '</td>' + '<td>' + item.Mydocument + '</td>' + '<td>' + item.Fees + '</td>' + '</tr>');
                         } {
@@ -403,6 +425,8 @@
                             document.getElementById('demo6').innerHTML += ('<tr>' + '<td>' + item.Bookststus + '</td>' + '</tr>');
                         } {
                             document.getElementById('demo7').innerHTML += ('<tr>' + '<td>' + item.Allocationdate + '</td>' + '<td>' + item.Maxclass + '</td>' + '<td colspan="2">' + item.Attd + '</td>' + '</tr>');
+                        } {
+                            document.getElementById('demo8').innerHTML += ('<tr>' + '<td>' + '<span style=line-height:1.5>Casual Leave - ' + item.Cltaken + '<br>Sick Leave - ' + item.Sltaken + '<br>Other Leave - ' + item.Othtaken + '</span>' + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Leaveapply + '" target="_blank">Apply for Leave</a></span>' + '</td>' + '</tr>');
                         }
                     })
                 }
@@ -491,10 +515,10 @@
             <a href="javascript:void(0);" class="icon-close" onClick="$('#hellobar-bar').fadeOut ()">&#10006;</a>
         </div>
     </div>-->
-    <div id="feedback_index" class="noprint"><a href="https://drive.google.com/file/d/1--hLyh7RsIjLZ8V-krK3y6Jc7M2R-6fh/view" target="blank">Code of Conduct</a></div>
+    <!-- <div id="feedback_index" class="noprint"><a href="https://drive.google.com/file/d/1--hLyh7RsIjLZ8V-krK3y6Jc7M2R-6fh/view" target="blank">Code of Conduct</a></div>
     <div id="thoverX" class="thover"></div>
     <div id="tpopupX" class="tpopup">
-        <!--<img src="/images/infob1.jpg" class="img-fluid img-responsive">-->
+        <img src="/images/infob1.jpg" class="img-fluid img-responsive">
         <div class="embed-responsive embed-responsive-16by9">
             <iframe class="embed-responsive-item" src="/images/covid1.mp4" allowfullscreen></iframe>
         </div>
@@ -505,7 +529,7 @@
                 $("#thoverX").toggleClass('hidden');
             });
         </script>
-    </div>
+    </div>-->
     <style>
         .modal {
             display: none;
