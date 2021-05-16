@@ -189,6 +189,20 @@ login</button>
                                     <tbody id=demo6>
                                     </tbody>
                                 </table>
+                                <table class="table bordered table-striped" id=testTable>
+                                    <thead style=background-color:whitesmoke;font-style:oblique>
+                                        <tr>
+                                            <th><b>Opening Leave Balance</b></th>
+                                            <th><b>Leaves Approved</th>
+                                            <th><b>Leave Balance<br></b></th>
+                                            <th><b>Apply Leave</b></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id=demo8>
+                                    </tbody>
+                                </table>
+                                <hr>
+                                <b>Note:&nbsp;</b>The opening balance refers to the leave till the allocation end date.</b>
                             </section>
                             <section id="personal" class="tab-panel">
                                 <table class="table bordered table-striped" id=testTable>
@@ -294,6 +308,7 @@ login</button>
                 document.getElementById('demo5').innerHTML = ""
                 document.getElementById('demo6').innerHTML = ""
                 document.getElementById('demo7').innerHTML = ""
+                document.getElementById('demo8').innerHTML = ""
 
                 var sheetData = data.feed.entry;
                 var i;
@@ -339,10 +354,36 @@ login</button>
                     var Feedback = data.feed.entry[i]['gsx$feedback']['$t'];
                     var Ctp = data.feed.entry[i]['gsx$ctp']['$t'];
                     var Evaluationpath = data.feed.entry[i]['gsx$evaluationpath']['$t'];
+                    var Leaveapply = data.feed.entry[i]['gsx$leaveapply']['$t'];
+                    var Cl = data.feed.entry[i]['gsx$cl']['$t'];
+                    var Sl = data.feed.entry[i]['gsx$sl']['$t'];
+                    var El = data.feed.entry[i]['gsx$el']['$t'];
+                    var Cltaken = data.feed.entry[i]['gsx$cltaken']['$t'];
+                    var Sltaken = data.feed.entry[i]['gsx$sltaken']['$t'];
+                    var Eltaken = data.feed.entry[i]['gsx$eltaken']['$t'];
+                    var Clbal = data.feed.entry[i]['gsx$clbal']['$t'];
+                    var Elbal = data.feed.entry[i]['gsx$elbal']['$t'];
+                    var Slbal = data.feed.entry[i]['gsx$slbal']['$t'];
+                    var Othtaken = data.feed.entry[i]['gsx$othtaken']['$t'];
+                    var Profile = data.feed.entry[i]['gsx$profile']['$t'];
+                    var Filename = data.feed.entry[i]['gsx$filename']['$t'];
 
 
                     if ((Associatenumber === associatenumber && Colors === colors) || (Associatenumber === associatenumber && colors === 'colors')) {
                         records.push({
+                            Othtaken: Othtaken,
+                            Profile: Profile,
+                            Filename: Filename,
+                            Leaveapply: Leaveapply,
+                            Cl: Cl,
+                            Sl: Sl,
+                            El: El,
+                            Cltaken: Cltaken,
+                            Sltaken: Sltaken,
+                            Eltaken: Eltaken,
+                            Clbal: Clbal,
+                            Elbal: Elbal,
+                            Slbal: Slbal,
                             Allocationdate: Allocationdate,
                             Maxclass: Maxclass,
                             Classtaken: Classtaken,
@@ -401,11 +442,13 @@ login</button>
                         } {
                             document.getElementById('demo4').innerHTML += ('<tr>' + '<td>' + item.Class + '</td>' + '<td><span class="noticet"><a href="' + item.Gm + '" target="_blank">' + item.Gm + '</a></span></td>' + '<td colspan="2">' + item.Attd + '</td>' + '<td colspan="2">' + item.Evaluationpath + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo5').innerHTML += ('<tr>' + '<td>' + item.Mydoc + '</td>' + '<td></td>' + '<td>' + item.Notification + '</td>' + '</tr>');
+                            document.getElementById('demo5').innerHTML += ('<tr>' + '<td>' + item.Mydoc + '</td>' + '<td><span class="noticet"><a href="' + item.Profile + '" target="_blank">' + item.Filename + '</a></span></td>' + '<td>' + item.Notification + '</td>' + '</tr>');
                         } {
                             document.getElementById('demo6').innerHTML += ('<tr>' + '<td>' + item.Allocationdate + '</td>' + '<td>' + item.Maxclass + '</td>' + '<td>' + item.Classtaken + ' (' + item.Ctp + ')' + '</td>' + '<td>' + item.Leave + '</td>' + '<td>' + item.Feedback + '</td>' + '</tr>');
                         } {
                             document.getElementById('demo7').innerHTML += ('<tr>' + '<td>' + item.Lastupdatedon + '</td>' + '</tr>');
+                        } {
+                            document.getElementById('demo8').innerHTML += ('<tr>' + '<td>' + '<span style=line-height:1.5>Casual Leave - ' + item.Cl + '<br>Sick Leave - ' + item.Sl + '<br>Earned Leave - ' + item.El + '</span></td>' + '<td><span style=line-height:1.5>Casual Leave - ' + item.Cltaken + '<br>Sick Leave - ' + item.Sltaken + '<br>Earned Leave - ' + item.Eltaken + '<br>Other Leave - ' + item.Othtaken + '</span></td>' + '<td><span style=line-height:1.5>Casual Leave - ' + item.Clbal + '<br>Sick Leave - ' + item.Slbal + '<br>Earned Leave - ' + item.Elbal + '</span></td>' + '<td><span class="noticet"><a href="' + item.Leaveapply + '" target="_blank">Apply for Leave</a></span></td>' + '</tr>');
                         }
                     })
                 }
@@ -505,9 +548,9 @@ login</button>
 
 
 
-    <div id="thoverX" class="thover"></div>
+    <!--<div id="thoverX" class="thover"></div>
     <div id="tpopupX" class="tpopup">
-        <!--<img src="/images/infob1.jpg" class="img-fluid img-responsive">-->
+        <img src="/images/infob1.jpg" class="img-fluid img-responsive">
         <div class="embed-responsive embed-responsive-16by9">
             <iframe class="embed-responsive-item" src="/images/covid1.mp4" allowfullscreen></iframe></div>
         <div id="tcloseX" class="tclose notranslate">X</div>
@@ -517,7 +560,7 @@ login</button>
                 $("#thoverX").toggleClass('hidden');
             });
         </script>
-    </div>
+    </div>-->
     <style>
         .modal {
             display: none;
