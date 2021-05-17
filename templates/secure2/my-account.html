@@ -496,16 +496,24 @@ login</button>
 ============================== -->
     <!-- Back top -->
     <script>
-        $(document).scroll(function() {
-
-            if ($(this).scrollTop() >= 300) {
-                $('#return-to-top').fadeIn(200);
-            } else {
-                $('#return-to-top').fadeOut(200);
-            }
+        $(document).ready(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('#back-to-top').fadeIn();
+                } else {
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            // scroll body to 0px on click
+            $('#back-to-top').click(function() {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 400);
+                return false;
+            });
         });
     </script>
-    <a href="#header" id="return-to-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+    <a id="back-to-top" href="#" class="go-top" role="button"><i class="fa fa-angle-up"></i></a>
 
     <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
     <!-- Glow Cookies v3.0.1 -->
