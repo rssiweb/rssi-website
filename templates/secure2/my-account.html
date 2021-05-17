@@ -18,6 +18,7 @@
         $("#footer").load("/footer.html");
     });
 </script>
+<!--<link rel="stylesheet" href="/css/bootstrap.min.css">-->
 <link href=//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css rel=stylesheet id=bootstrap-css>
 <link rel=stylesheet href=/css/HeaderFooter.css>
 <link rel=stylesheet href=/css/style.css>
@@ -77,18 +78,6 @@
         right: -163px;
     }
 </style>
-<script>
-    $(document).ready(function() {
-        $(".collapse.show").each(function() {
-            $(this).prev(".card-header").find(".fas").addClass("fa-chevron-down").removeClass("fa-chevron-up");
-        });
-        $(".collapse").on('show.bs.collapse', function() {
-            $(this).prev(".card-header").find(".fas").removeClass("fa-chevron-down").addClass("fa-chevron-up");
-        }).on('hide.bs.collapse', function() {
-            $(this).prev(".card-header").find(".fas").removeClass("fa-chevron-up").addClass("fa-chevron-down");
-        });
-    });
-</script>
 
 <body oncontextmenu="return false">
     <div id=header></div>
@@ -291,7 +280,6 @@ login</button>
 
     <script src=/js/pace.js></script>
     <script src=/js/fontawsome.js></script>
-    <script src=/js/bootstrap.min.js></script>
     <script src=/js/jquery.parallax.js></script>
     <script src=/js/wow.min.js></script>
     <script src=/js/custom.js></script>
@@ -506,6 +494,18 @@ login</button>
     <!-- =========================
      FOOTER   
 ============================== -->
+    <!-- Back top -->
+    <script>
+        $(document).scroll(function() {
+
+            if ($(this).scrollTop() >= 300) {
+                $('#return-to-top').fadeIn(200);
+            } else {
+                $('#return-to-top').fadeOut(200);
+            }
+        });
+    </script>
+    <a href="#header" id="return-to-top" class="go-top"><i class="fa fa-angle-up"></i></a>
 
     <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
     <!-- Glow Cookies v3.0.1 -->
@@ -517,8 +517,6 @@ login</button>
         });
     </script>
     <div id="footer" class="noprint"></div>
-    <!-- Back top -->
-    <a id="bttbutton" href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
     <!--<div id="hellobar-bar" class="regular closable" style="top: 0%;">
         <div class="hb-content-wrapper">
             <div class="hb-text-wrapper">
@@ -724,7 +722,6 @@ login</button>
             border-top: 1px solid #ccc;
         }
     </style>
-
     </body>
 
 </html>

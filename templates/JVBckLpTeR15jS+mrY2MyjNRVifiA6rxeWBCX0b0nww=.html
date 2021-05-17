@@ -349,7 +349,17 @@
      FOOTER   
 ============================== -->
     <!-- Back top -->
-    <a id="bttbutton" href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+    <script>
+        $(document).scroll(function() {
+
+            if ($(this).scrollTop() >= 300) {
+                $('#return-to-top').fadeIn(200);
+            } else {
+                $('#return-to-top').fadeOut(200);
+            }
+        });
+    </script>
+    <a href="#header" id="return-to-top" class="go-top"><i class="fa fa-angle-up"></i></a>
     <div id="footer" class="noprint"></div>
     <!--<div id="hellobar-bar" class="regular closable" style="top: 0%;">
         <div class="hb-content-wrapper">
