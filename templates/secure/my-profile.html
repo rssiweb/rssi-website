@@ -155,14 +155,14 @@
                 <tbody id=demo9></tbody>
             </table>
         </div>
-        <div class="row noprint" style=text-align:right;width:101.5%>
+        <!--<div class="row noprint" style=text-align:right;width:101.5%>
             <div class=col>
                 <div class="white hoverdecoration">
                     <a href=https://drive.google.com/file/d/1b3AcN68TJa7gIai_RTyJ5989Te-TXCbq/view target=_blank class=primary_btn style=padding-right:3vh;padding-left:3vh;margin-top:1%;background-color:#90baa4;border-color:#90baa4>Class
                         schedule&nbsp;&nbsp;<i class="fas fa-calendar-week" style=font-size:20px></i></a>
                 </div>
             </div>
-        </div>
+        </div>-->
     </div><br>
 
     <div class="container noprint">
@@ -196,7 +196,7 @@
 
                     <div class="row noprint" style="text-align: right; margin-left: 0px; margin-right: 15px;">
                         <span class="notice" style=" width:100%; ">
-                        <a id="myBtn" href="##" style="font-size:14px;">Daily planner</a><!--&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" style="font-size:14px" target="" onClick="window.open('/JVBckLpTeR15jS+mrY2MyjNRVifiA6rxeWBCX0b0nww=', '',
+                        <a id="myBtn" href="##" style="font-size:14px;">Daily planner</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href=https://drive.google.com/file/d/1b3AcN68TJa7gIai_RTyJ5989Te-TXCbq/view target=_blank style="font-size:14px;">Class schedule</a><!--&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" style="font-size:14px" target="" onClick="window.open('/JVBckLpTeR15jS+mrY2MyjNRVifiA6rxeWBCX0b0nww=', '',
                 'toolbar=no,location=no,directories=no,status=no,menubar=no,'
                 +
                 'scrollbars=no,resizable=no');return
@@ -792,19 +792,30 @@
             greet = 'Good Evening';
     </script>
     <script>
-        var time = new Date().getTime();
-        $(document.body).bind("mousemove keypress", function(e) {
-            time = new Date().getTime();
-        });
+        var inactivityTime = function() {
+            var time;
+            document.onload = resetTimer;
+            document.onmousemove = resetTimer;
+            document.onmousedown = resetTimer; // touchscreen presses
+            document.ontouchstart = resetTimer;
+            document.onclick = resetTimer; // touchpad clicks
+            document.onkeydown = resetTimer; // onkeypress is deprectaed
+            document.addEventListener('scroll', resetTimer, true); // improved; see comments
 
-        function refresh() {
-            if (new Date().getTime() - time >= 600000)
-                window.location.reload(true);
-            else
-                setTimeout(refresh, 10000);
+            function logout() {
+                alert("Your session has expired, please login again.")
+                location.href = '/index.html'
+            }
+
+            function resetTimer() {
+                clearTimeout(time);
+                time = setTimeout(logout, 600000)
+                    // 1000 milliseconds = 1 second
+            }
+        };
+        window.onload = function() {
+            inactivityTime();
         }
-
-        setTimeout(refresh, 10000);
     </script>
     <script>
         // When the user clicks on div, open the popup
