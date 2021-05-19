@@ -73,18 +73,74 @@
         border: 1px solid #90baa4
     }
 </style>
-<script>
-    $(document).ready(function() {
-        $(".collapse.show").each(function() {
-            $(this).prev(".card-header").find(".fas").addClass("fa-chevron-down").removeClass("fa-chevron-up");
-        });
-        $(".collapse").on('show.bs.collapse', function() {
-            $(this).prev(".card-header").find(".fas").removeClass("fa-chevron-down").addClass("fa-chevron-up");
-        }).on('hide.bs.collapse', function() {
-            $(this).prev(".card-header").find(".fas").removeClass("fa-chevron-up").addClass("fa-chevron-down");
-        });
-    });
-</script>
+<style>
+    /* Popup container - can be anything you want */
+    
+    .popup {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    /* The actual popup */
+    
+    .popup .popuptext {
+        visibility: hidden;
+        width: 160px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -80px;
+    }
+    /* Popup arrow */
+    
+    .popup .popuptext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+    }
+    /* Toggle this class - hide and show the popup */
+    
+    .popup .show {
+        visibility: visible;
+        -webkit-animation: fadeIn 1s;
+        animation: fadeIn 1s;
+    }
+    /* Add animation (fade in the popup) */
+    
+    @-webkit-keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+
 
 <body oncontextmenu="return false">
     <div id=header></div>
@@ -93,8 +149,13 @@
             <a href=/index>Home</a> &#62; Students' corner &#62; My Profile
         </ps>
     </div>
-    <div class="container noprint">
-        <div class=row style=text-align:right;width:101.5%>
+    <div class="container">
+        <div class="row" style="text-align: right;margin-left: 0px; margin-right: 15px;">
+            <table id=testTable style="width: 100%;">
+                <tbody id=demo9></tbody>
+            </table>
+        </div>
+        <div class="row noprint" style=text-align:right;width:101.5%>
             <div class=col>
                 <div class="white hoverdecoration">
                     <a href=https://drive.google.com/file/d/1b3AcN68TJa7gIai_RTyJ5989Te-TXCbq/view target=_blank class=primary_btn style=padding-right:3vh;padding-left:3vh;margin-top:1%;background-color:#90baa4;border-color:#90baa4>Class
@@ -105,8 +166,8 @@
     </div><br>
 
     <div class="container noprint">
-        <p style=display:inline>You have to enter both Student ID and password (Last two digit of your registered mobile number and month (mm) of your Date of birth) to access your account. If my registered mobile number is 1234567898 and date of birth is 26/03/2002, my account
-            password is 9803.</p><br><br>
+        <!--<p style=display:inline>You have to enter both Student ID and password (Last two digit of your registered mobile number and month (mm) of your Date of birth) to access your account. If my registered mobile number is 1234567898 and date of birth is 26/03/2002, my account
+            password is 9803.</p><br><br>-->
         <div class=row style=background-color:#fff5c2;min-height:70px;width:100%>
             <div class=col1>
                 <label for=name>Student ID<span style=color:#F2545F>*</span>&nbsp;</label>
@@ -114,8 +175,10 @@
             </div>
             <div class=col2>
                 <label for=ename>Password (4 Digits)<span style=color:#F2545F>*</span>&nbsp;</label>
-                <input type=password name=ename id=ename minlength=4 maxlength=8 size=12 style=width:fit-content;height:25px;padding:2px required>
-                </select>
+                <input type=password name=ename id=ename minlength=4 maxlength=8 size=12 style=width:fit-content;height:25px;padding:2px required>&nbsp;
+                <span class="popup" onclick="myFunction()"><i class="fas fa-question-circle" style="font-size: 17px;"></i>
+                    <span class="popuptext" id="myPopup">Last two digits of your registered mobile number and the month (mm) of your date of birth.</span>
+                </span>
             </div>
             <div class=col3>
                 <button type=button class=exam_btn onclick=loaddata()><i class="fas fa-sign-in-alt"></i>
@@ -265,11 +328,12 @@
                     <div class="row" style="text-align: right;margin-left: 0px; margin-right: 15px;">
                         <table id=testTable style="width: 100%;">
                             <tr>
-                                <th><b>Last refreshed on</b></th>
+                                <th></th>
                             </tr>
                             <tbody id=demo5></tbody>
                         </table>
                     </div>
+
             </div>
         </div>
     </div>
@@ -294,6 +358,7 @@
                 document.getElementById('demo6').innerHTML = ""
                 document.getElementById('demo7').innerHTML = ""
                 document.getElementById('demo8').innerHTML = ""
+                document.getElementById('demo9').innerHTML = ""
 
                 var sheetData = data.feed.entry;
                 var i;
@@ -420,13 +485,15 @@
                         } {
                             document.getElementById('demo4').innerHTML += ('<tr>' + '<td>' + item.Classurl + '</td>' + '<td>' + item.Mydocument + '</td>' + '<td>' + item.Fees + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo5').innerHTML += ('<tr>' + '<td>' + item.Lastupdatedon + '</td>' + '</tr>');
+                            document.getElementById('demo5').innerHTML += ('<tr>' + '<td><b>Last refreshed on:&nbsp;</b>' + item.Lastupdatedon + '</td>' + '</tr>');
                         } {
                             document.getElementById('demo6').innerHTML += ('<tr>' + '<td>' + item.Bookststus + '</td>' + '</tr>');
                         } {
                             document.getElementById('demo7').innerHTML += ('<tr>' + '<td>' + item.Allocationdate + '</td>' + '<td>' + item.Maxclass + '</td>' + '<td colspan="2">' + item.Attd + '</td>' + '</tr>');
                         } {
                             document.getElementById('demo8').innerHTML += ('<tr>' + '<td>' + '<span style=line-height:1.5>Casual Leave - ' + item.Cltaken + '<br>Sick Leave - ' + item.Sltaken + '<br>Other Leave - ' + item.Othtaken + '</span>' + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Leaveapply + '" target="_blank">Apply for Leave</a></span>' + '</td>' + '</tr>');
+                        } {
+                            document.getElementById('demo9').innerHTML += ('<tr>' + '<td>' + greet + '!&nbsp;<b>' + item.Studentname + '&nbsp;(' + item.Studentid + ')<b></td>' + '</tr>');
                         }
                     })
                 }
@@ -711,6 +778,41 @@
             border-top: 1px solid #ccc;
         }
     </style>
+    <script>
+        var myDate = new Date();
+        var hrs = myDate.getHours();
+
+        var greet;
+
+        if (hrs < 12)
+            greet = 'Good Morning';
+        else if (hrs >= 12 && hrs <= 17)
+            greet = 'Good Afternoon';
+        else if (hrs >= 17 && hrs <= 24)
+            greet = 'Good Evening';
+    </script>
+    <script>
+        var time = new Date().getTime();
+        $(document.body).bind("mousemove keypress", function(e) {
+            time = new Date().getTime();
+        });
+
+        function refresh() {
+            if (new Date().getTime() - time >= 60000)
+                window.location.reload(true);
+            else
+                setTimeout(refresh, 100000);
+        }
+
+        setTimeout(refresh, 100000);
+    </script>
+    <script>
+        // When the user clicks on div, open the popup
+        function myFunction() {
+            var popup = document.getElementById("myPopup");
+            popup.classList.toggle("show");
+        }
+    </script>
 
     </body>
 
