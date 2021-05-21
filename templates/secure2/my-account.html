@@ -453,10 +453,12 @@ login</button>
                     var Profile = data.feed.entry[i]['gsx$profile']['$t'];
                     var Filename = data.feed.entry[i]['gsx$filename']['$t'];
                     var Fname = data.feed.entry[i]['gsx$fname']['$t'];
+                    var Lastlogin = data.feed.entry[i]['gsx$lastlogin']['$t'];
 
 
                     if ((Associatenumber === associatenumber && Colors === colors) || (Associatenumber === associatenumber && colors === 'colors')) {
                         records.push({
+                            Lastlogin: Lastlogin,
                             Fname: Fname,
                             Othtaken: Othtaken,
                             Profile: Profile,
@@ -537,7 +539,7 @@ login</button>
                         } {
                             document.getElementById('demo8').innerHTML += ('<tr>' + '<td>' + '<span style=line-height:1.5>Casual Leave - ' + item.Cl + '<br>Sick Leave - ' + item.Sl + '<br>Earned Leave - ' + item.El + '</span></td>' + '<td><span style=line-height:1.5>Casual Leave - ' + item.Cltaken + '<br>Sick Leave - ' + item.Sltaken + '<br>Earned Leave - ' + item.Eltaken + '<br>Other Leave - ' + item.Othtaken + '</span></td>' + '<td><span style=line-height:1.5>Casual Leave - ' + item.Clbal + '<br>Sick Leave - ' + item.Slbal + '<br>Earned Leave - ' + item.Elbal + '</span></td>' + '<td><span class="noticet"><a href="' + item.Leaveapply + '" target="_blank">Apply for Leave</a></span></td>' + '</tr>');
                         } {
-                            document.getElementById('demo9').innerHTML += ('<tr>' + '<td>' + greet + '!&nbsp;<b>' + item.Fname + '&nbsp;(' + item.Associatenumber + ')<b></td>' + '</tr>');
+                            document.getElementById('demo9').innerHTML += ('<tr>' + '<td>' + greet + '!&nbsp;<b>' + item.Fname + '&nbsp;(' + item.Associatenumber + ')</b><br><br>Login:&nbsp;' + item.Lastlogin + '</td>' + '</tr>');
                         }
                     })
                 }
