@@ -178,28 +178,44 @@
             </div>
         </div>-->
     </div><br>
-    <div class="container noprint">
-        <!--<p style=display:inline>You have to enter both Associate Number and password (Last two digit of your registered mobile number and year (yy) of your Date of birth) to access your account. If my registered mobile number is 1234567898 and date of birth is 26/03/1983, my account
+    <form name="submit-to-google-sheet">
+        <div class="container noprint">
+            <!--<p style=display:inline>You have to enter both Associate Number and password (Last two digit of your registered mobile number and year (yy) of your Date of birth) to access your account. If my registered mobile number is 1234567898 and date of birth is 26/03/1983, my account
         password is 9883.</p><br><br>-->
-        <div class=row style=background-color:#fff5c2;min-height:70px;width:100%>
-            <div class=col1>
-                <label for=name>Associate Number<span style=color:#F2545F>*</span>&nbsp;</label>
-                <input type=text id=name name=name size=12 style=text-transform:uppercase required>
-            </div>
-            <div class=col2>
-                <label for=ename>Password (4 Digits)<span style=color:#F2545F>*</span>&nbsp;</label>
-                <input type=password name=ename id=ename minlength=4 maxlength=8 size=12 style=width:fit-content;height:25px;padding:2px required>&nbsp;
-                <span class="popup" onclick="myFunction()"><i class="fas fa-question-circle" style="font-size: 17px;"></i>
+            <div class=row style=background-color:#fff5c2;min-height:70px;width:100%>
+                <div class=col1>
+                    <label for=name>Associate Number<span style=color:#F2545F>*</span>&nbsp;</label>
+                    <input type=text id=name name=name size=12 style=text-transform:uppercase required>
+                </div>
+                <div class=col2>
+                    <label for=ename>Password (4 Digits)<span style=color:#F2545F>*</span>&nbsp;</label>
+                    <input type=password name=ename id=ename minlength=4 maxlength=8 size=12 style=width:fit-content;height:25px;padding:2px required>&nbsp;
+                    <span class="popup" onclick="myFunction()"><i class="fas fa-question-circle" style="font-size: 17px;"></i>
                 <span class="popuptext" id="myPopup">Last two digits of your registered mobile number and the year (yy) of your date of birth.</span>
-                </span>
-            </div>
-            <div class=col3>
-                <button type=button class=exam_btn onclick=loaddata()><i class="fas fa-sign-in-alt"></i>
+                    </span>
+                </div>
+                <div class=col3>
+                    <button type=submit class=exam_btn onclick=loaddata()><i class="fas fa-sign-in-alt"></i>
 login</button>
-                <button type=button class=exam_btn1 onclick="window.print();return false;" title="Print"><i class="fas fas fa-print"></i></button>
+                    <button type=button class=exam_btn1 onclick="window.print();return false;" title="Print"><i class="fas fas fa-print"></i></button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbywfx7rePOdeE4DczhdyHPj1KZkTROcaKkYoLo_GGoia9KbfKHe/exec'
+        const form = document.forms['submit-to-google-sheet']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, {
+                    method: 'POST',
+                    body: new FormData(form)
+                })
+                .then(response => console.log('Success!', response))
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
     <div class=container>
         <div class=row>
             <div class=col>
