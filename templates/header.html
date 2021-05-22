@@ -287,13 +287,6 @@
     <!--------------- 
 		NEED TO COPY THIS SET FOR EVERY CECURED LINK -- MY ACCOUNT
 	------------------------------------------------------>
-    <script type="text/javascript">
-        function createTarget(t) {
-            window.open("", t, "width=1000,height=550");
-            return true;
-        }
-    </script>
-
     <div id="thover11111" class="hidden thover"></div>
     <div id="tpopup11111" class="hidden tpopup" style="padding:20px; position: fixed;">
         <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
@@ -328,12 +321,22 @@
             });
         });
     </script>
+    <!------------------------------------
+        For pop-up secure window
+    -------------------------------------->
+    <script type="text/javascript">
+        function createTarget(t) {
+            window.open("", t, "width=1000,height=550");
+            return true;
+        }
+    </script>
+
     <script src="/js/active-nav-bar.js"></script>
+    <!------------------------------------
+        For Google translate
+    -------------------------------------->
     <script>
         function googleTranslateElementInit() {
-
-            //  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,zh-CN,nl,fr,ru,ja,es,ko,pt', layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT}, 'google_translate_element');
-
             if ($(window).width() < 760) {
                 new google.translate.TranslateElement({
                     pageLanguage: 'en',
