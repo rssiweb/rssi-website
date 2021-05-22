@@ -625,7 +625,6 @@ login</button>
             policyLink: '/website-disclaimer'
         });
     </script>
-    <div id="footer" class="noprint"></div>
     <!--<div id="hellobar-bar" class="regular closable" style="top: 0%;">
         <div class="hb-content-wrapper">
             <div class="hb-text-wrapper">
@@ -876,6 +875,20 @@ login</button>
         function myFunctionn() {
             var popup = document.getElementById("myPopup");
             popup.classList.toggle("show");
+        }
+    </script>
+    <!--protected by reCAPTCHA-->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfJRc0aAAAAAEhNPCD7ju6si7J4qRUCBSN_8RsL"></script>
+    <script>
+        function onClick(e) {
+            e.preventDefault();
+            grecaptcha.ready(function() {
+                grecaptcha.execute('6LfJRc0aAAAAAEhNPCD7ju6si7J4qRUCBSN_8RsL', {
+                    action: 'submit'
+                }).then(function(token) {
+                    // Add your logic to submit to your backend server here.
+                });
+            });
         }
     </script>
 </body>
