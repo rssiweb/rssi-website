@@ -428,9 +428,11 @@
                     var Othtaken = data.feed.entry[i]['gsx$othtaken']['$t'];
                     var Filename = data.feed.entry[i]['gsx$filename']['$t'];
                     var Leaveapply = data.feed.entry[i]['gsx$leaveapply']['$t'];
+                    var Lastlogin = data.feed.entry[i]['gsx$lastlogin']['$t'];
 
                     if ((Studentid === studentid && Colors === colors) || (Studentid === studentid && colors === 'colors')) {
                         records.push({
+                            Lastlogin: Lastlogin,
                             Othtaken: Othtaken,
                             Profile: Profile,
                             Filename: Filename,
@@ -508,7 +510,7 @@
                         } {
                             document.getElementById('demo8').innerHTML += ('<tr>' + '<td>' + '<span style=line-height:1.5>Casual Leave - ' + item.Cltaken + '<br>Sick Leave - ' + item.Sltaken + '<br>Other Leave - ' + item.Othtaken + '</span>' + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Leaveapply + '" target="_blank">Apply for Leave</a></span>' + '</td>' + '</tr>');
                         } {
-                            document.getElementById('demo9').innerHTML += ('<tr>' + '<td>' + greet + '!&nbsp;<b>' + item.Studentname + '&nbsp;(' + item.Studentid + ')<b></td>' + '</tr>');
+                            document.getElementById('demo9').innerHTML += ('<tr>' + '<td><span style="line-height:1.5">' + greet + '!&nbsp;<b>' + item.Studentname + '&nbsp;(' + item.Studentid + ')</b><br>Last Login:&nbsp;' + item.Lastlogin + '</span></td>' + '</tr>');
                         }
                     })
                 }
