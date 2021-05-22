@@ -84,7 +84,7 @@
         </navh>
     </div>
     <!--------------- 
-		NEED TO COPY THIS SET FOR EVERY CECURED LINK -- SMART CLASSROOM
+		NEED TO COPY THIS SET FOR EVERY CECURED LINK -- MY PROFILE
 	------------------------------------------------------>
 
     <div id="thover" class="hidden thover"></div>
@@ -92,7 +92,7 @@
         <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
         <div class="login-card">
             <h1>Log-in</h1><br>
-            <form action="/secure/my-profile" method="post">
+            <form action="/secure/my-profile" onsubmit="return createTarget(this.target)" target="formtarget" method="post">
                 <!--Here we have to mention the secured URL path-->
                 <input type="text" name="user" placeholder="Username">
                 <input type="password" name="code" placeholder="Password">
