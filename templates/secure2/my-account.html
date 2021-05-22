@@ -145,13 +145,13 @@
         }
     }
     
-    .icon i {
+    #icon.icon i {
         color: #CED4DA !important;
         font-size: 17px;
         padding: 5px;
     }
     
-    .icon i:hover {
+    #icon.icon i:hover {
         color: #fff !important;
         background-color: #4DABF7;
     }
@@ -190,7 +190,7 @@
                 <div class=col2>
                     <label for=ename>Password (4 Digits)<span style=color:#F2545F>*</span>&nbsp;</label>
                     <input type=password name=ename id=ename minlength=4 maxlength=8 size=12 style=width:fit-content;height:25px;padding:2px required>&nbsp;
-                    <span class="popup" onclick="myFunction()"><i class="fas fa-question-circle" style="font-size: 17px;"></i>
+                    <span class="popup" onclick="myFunctionn()"><i class="fas fa-question-circle" style="font-size: 17px;"></i>
                 <span class="popuptext" id="myPopup">Last two digits of your registered mobile number and the year (yy) of your date of birth.</span>
                     </span>
                 </div>
@@ -222,7 +222,7 @@ login</button>
                 <h2 style=margin-top:2%;font-size:20px align=center>where all the action is!</h2>
                 <div class="row noprint" style="text-align: right; margin-left: 0px; margin-right: 15px;">
                     <span class="notice" style=" width:100%; ">
-                        <a id="myBtn" href="##" style="font-size:14px;">Daily planner</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href=https://drive.google.com/file/d/1b3AcN68TJa7gIai_RTyJ5989Te-TXCbq/view target=_blank style="font-size:14px;">Class schedule</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" style="font-size:14px" class="icon" target="" onClick="window.open('/JVBckLpTeR15jS+mrY2MyjNRVifiA6rxeWBCX0b0nww=', '',
+                        <a id="myBtn" href="##" style="font-size:14px;">Daily planner</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href=https://drive.google.com/file/d/1b3AcN68TJa7gIai_RTyJ5989Te-TXCbq/view target=_blank style="font-size:14px;">Class schedule</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a id="icon" href="#" style="font-size:14px" class="icon" target="" onClick="window.open('/JVBckLpTeR15jS+mrY2MyjNRVifiA6rxeWBCX0b0nww=', '',
                 'toolbar=yes,location=yes,directories=no,status=no,menubar=yes,'
                 +
                 'scrollbars=yes,resizable=no,copyhistory=yes, width=1000, height=500');return
@@ -874,7 +874,7 @@ login</button>
     </script>
     <script>
         // When the user clicks on div, open the popup
-        function myFunction() {
+        function myFunctionn() {
             var popup = document.getElementById("myPopup");
             popup.classList.toggle("show");
         }
