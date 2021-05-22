@@ -287,13 +287,19 @@
     <!--------------- 
 		NEED TO COPY THIS SET FOR EVERY CECURED LINK -- MY ACCOUNT
 	------------------------------------------------------>
+    <script type="text/javascript">
+        function createTarget(t) {
+            window.open("", t, "width=1000,height=550");
+            return true;
+        }
+    </script>
 
     <div id="thover11111" class="hidden thover"></div>
     <div id="tpopup11111" class="hidden tpopup" style="padding:20px; position: fixed;">
         <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
         <div class="login-card">
             <h1>Log-in</h1><br>
-            <form action="/secure2/my-account" method="post">
+            <form action="/secure2/my-account" onsubmit="return createTarget(this.target)" target="formtarget" method="post">
                 <!--Here we have to mention the secured URL path-->
                 <input type="text" name="user" placeholder="Username">
                 <input type="password" name="code" placeholder="Password">
