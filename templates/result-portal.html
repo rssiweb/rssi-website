@@ -160,12 +160,10 @@ http://www.rssi.in
                             <thead style="background-color: whitesmoke;
                                 font-style: oblique;">
                                 <tr>
-                                    <th width="10%"><b>Academic year</b></th>
-                                    <th width="10%"><b>Exam name</b></th>
-                                    <th width="8%"><b>Student ID</b></th>
-                                    <th width="14%"><b>Name</b></th>
-                                    <th width="8%"><b>Category/Class</b></th>
-                                    <th width="14%"><b>Result</b></th>
+                                    <th><b>Student ID</b></th>
+                                    <th><b>Exam name</b></th>
+                                    <th><b>Category-Class</b></th>
+                                    <th><b>Result</b></th>
 
                                 </tr>
                             </thead>
@@ -240,7 +238,7 @@ http://www.rssi.in
                         order.forEach(sub => {
                             records.forEach(item => {
                                 if (sub === item.Year) {
-                                    document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Year + '</td>' + '<td>' + item.Examname + '</td>' + '<td>' + item.Studentid + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Category + '/' + item.Class + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Result + '"target="_blank">Download</a></span>' + '</td>' + '</tr>');
+                                    document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Studentid + '<td>' + item.Examname + '</td>' + '<td>' + item.Category + '-' + item.Class + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Result + '"target="_blank">Download</a></span>' + '</td>' + '</tr>');
                                 }
                             })
                         })
