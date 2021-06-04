@@ -508,3 +508,8 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
         top: 0;
     }
 }
+
+input:read-only {
+    /*   background-color: #ededed;*/
+    opacity: .8;
+}
