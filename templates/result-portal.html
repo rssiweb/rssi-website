@@ -90,14 +90,14 @@ http://www.rssi.in
      NAVIGATION LINKS     
 ============================== -->
 
-<!--<body oncontextmenu="return false">-->
+<body oncontextmenu="return false">
 
-<!--<div id="header"></div>-->
+    <!--<div id="header"></div>-->
 
-<!-- NAVIGATION PATH -->
+    <!-- NAVIGATION PATH -->
 
-<!--<img src="" alt="" width="100%" /><br>-->
-<!-- <div style="margin: 0.3%;">
+    <!--<img src="" alt="" width="100%" /><br>-->
+    <!-- <div style="margin: 0.3%;">
     <ps class="marginleft notice" style="margin-left: 3%;">
         <a href="/index">Home</a> &#62; Students' corner &#62; Result portal</ps>
 </div>
@@ -113,222 +113,222 @@ http://www.rssi.in
 </div>
 
 <br><br>-->
-<div class="container">
-    <!--<span style="color: #F2545F; display: inline;"></span>
+    <div class="container">
+        <!--<span style="color: #F2545F; display: inline;"></span>
     <p style="display: inline;">All (*) marked fields are mandatory. </p>-->
-    <div class="row" style="background-color: rgb(255, 245,
+        <div class="row" style="background-color: rgb(255, 245,
                 194);height: 110%; padding-top: 0; padding-bottom:
                 1.5%;padding-left: 1.5%">
 
 
-        <!--<div class="col2ass">
+            <!--<div class="col2ass">
             <label for="name">Student ID<span style="color: #F2545F">*</span>&nbsp;</label>-->
-        <input type="text" id="name" name="name" minlength="9" maxlength="12" size="12" style="text-transform:uppercase; color:#232323; display:none" readonly>
-        <!--<div class="col2ass">
+            <input type="text" id="name" name="name" minlength="9" maxlength="12" size="12" style="text-transform:uppercase; color:#232323; display:none" readonly>
+            <!--<div class="col2ass">
             <label for="ename">Date of Birth<span style="color: #F2545F">*</span>&nbsp;</label>-->
-        <input type="text" name="ename" id="ename" minlength="10" maxlength="10" size="12" style="text-transform:uppercase;color:#232323; display:none" readonly>
-        <div class="col1">
-            <label for="name1">Academic year<span style="color: #F2545F"></span>&nbsp;</label>
-            <select name="name1" id="name1">
+            <input type="text" name="ename" id="ename" minlength="10" maxlength="10" size="12" style="text-transform:uppercase;color:#232323; display:none" readonly>
+            <div class="col1">
+                <label for="name1">Academic year<span style="color: #F2545F"></span>&nbsp;</label>
+                <select name="name1" id="name1">
                         <option selected>--</option>
                         <option>2021-2022</option>
                         <option>2020-2021</option>
                     </select>
-        </div>
+            </div>
 
-        <div class="col2">
-            <button type="button" class="exam_btn" onclick="loaddata()"><i class="fas fa-search"></i>
+            <div class="col2">
+                <button type="button" class="exam_btn" onclick="loaddata()"><i class="fas fa-search"></i>
                     search</button>
+            </div>
+
+
         </div>
-
-
     </div>
-</div>
 
 
-<div class="container">
-    <div class="row">
-        <div class="col">
+    <div class="container">
+        <div class="row">
+            <div class="col">
 
-            <body>
-                <!--<h2 style="margin-top:2%; font-size:20px;" align="center">Download your Marksheet</h2>-->
-                <div class="container text-center my-4" style="overflow-x:
+                <body>
+                    <!--<h2 style="margin-top:2%; font-size:20px;" align="center">Download your Marksheet</h2>-->
+                    <div class="container text-center my-4" style="overflow-x:
                         auto;">
-                    <!-- Table  -->
-                    <table class="table bordered table-striped" id="testTable">
-                        <!-- Table head -->
-                        <thead style="background-color: whitesmoke;
+                        <!-- Table  -->
+                        <table class="table bordered table-striped" id="testTable">
+                            <!-- Table head -->
+                            <thead style="background-color: whitesmoke;
                                 font-style: oblique;">
-                            <tr>
-                                <th width="10%"><b>Academic year</b></th>
-                                <th width="10%"><b>Exam name</b></th>
-                                <th width="8%"><b>Student ID</b></th>
-                                <th width="14%"><b>Name</b></th>
-                                <th width="8%"><b>Category/Class</b></th>
-                                <th width="14%"><b>Result</b></th>
+                                <tr>
+                                    <th width="10%"><b>Academic year</b></th>
+                                    <th width="10%"><b>Exam name</b></th>
+                                    <th width="8%"><b>Student ID</b></th>
+                                    <th width="14%"><b>Name</b></th>
+                                    <th width="8%"><b>Category/Class</b></th>
+                                    <th width="14%"><b>Result</b></th>
 
-                            </tr>
-                        </thead>
-                        <!-- Table head -->
+                                </tr>
+                            </thead>
+                            <!-- Table head -->
 
-                        <!-- Table body -->
-                        <tbody id="demo">
+                            <!-- Table body -->
+                            <tbody id="demo">
 
 
-                        </tbody>
-                        <!-- Table body -->
-                    </table>
-                    <!-- Table  -->
+                            </tbody>
+                            <!-- Table body -->
+                        </table>
+                        <!-- Table  -->
 
-                </div>
+                    </div>
 
+            </div>
         </div>
     </div>
-</div>
-<!-- =========================
+    <!-- =========================
      SCRIPTS   
 ============================== -->
-<script src="/js/pace.js"></script>
-<script src="/js/fontawsome.js"></script>
-<script src="/js/smoothscroll.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/jquery.parallax.js"></script>
-<script src="/js/wow.min.js"></script>
-<script src="/js/custom.js"></script>
-<script type="text/javascript">
-    var loaddata = function() {
-        var studentid = document.getElementById('name').value.toUpperCase()
-        var dob = document.getElementById('ename').value
-        var year = document.getElementById('name1').value.toUpperCase()
+    <script src="/js/pace.js"></script>
+    <script src="/js/fontawsome.js"></script>
+    <script src="/js/smoothscroll.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.parallax.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/custom.js"></script>
+    <script type="text/javascript">
+        var loaddata = function() {
+            var studentid = document.getElementById('name').value.toUpperCase()
+            var dob = document.getElementById('ename').value
+            var year = document.getElementById('name1').value.toUpperCase()
 
-        $.getJSON("https://spreadsheets.google.com/feeds/list/1mok8YX8--25LNcB47MMnmAZEiBQ0lmjfOkmsfCh8_XA/1/public/values?alt=json",
-            function(data) {
-                document.getElementById('demo').innerHTML = ""
-                var sheetData = data.feed.entry;
-                var i;
-                var records = []
-                for (i = 0; i < sheetData.length; i++) {
-                    var Studentid = data.feed.entry[i]['gsx$studentid']['$t'];
-                    var Name = data.feed.entry[i]['gsx$name']['$t'];
-                    var Category = data.feed.entry[i]['gsx$category']['$t'];
-                    var Class = data.feed.entry[i]['gsx$class']['$t'];
-                    var Result = data.feed.entry[i]['gsx$result']['$t'];
-                    var Examname = data.feed.entry[i]['gsx$examname']['$t'];
-                    var Year = data.feed.entry[i]['gsx$year']['$t'];
-                    var Dob = data.feed.entry[i]['gsx$dob']['$t'];
+            $.getJSON("https://spreadsheets.google.com/feeds/list/1mok8YX8--25LNcB47MMnmAZEiBQ0lmjfOkmsfCh8_XA/1/public/values?alt=json",
+                function(data) {
+                    document.getElementById('demo').innerHTML = ""
+                    var sheetData = data.feed.entry;
+                    var i;
+                    var records = []
+                    for (i = 0; i < sheetData.length; i++) {
+                        var Studentid = data.feed.entry[i]['gsx$studentid']['$t'];
+                        var Name = data.feed.entry[i]['gsx$name']['$t'];
+                        var Category = data.feed.entry[i]['gsx$category']['$t'];
+                        var Class = data.feed.entry[i]['gsx$class']['$t'];
+                        var Result = data.feed.entry[i]['gsx$result']['$t'];
+                        var Examname = data.feed.entry[i]['gsx$examname']['$t'];
+                        var Year = data.feed.entry[i]['gsx$year']['$t'];
+                        var Dob = data.feed.entry[i]['gsx$dob']['$t'];
 
-                    if ((Studentid === studentid && Dob === dob && Year === year) || (Studentid === studentid && Dob === dob && year === "--")) {
-                        // sort records
-                        records.push({
-                            Studentid: Studentid,
-                            Name: Name,
-                            Category: Category,
-                            Class: Class,
-                            Result: Result,
-                            Examname: Examname,
-                            Year: Year,
-                            Dob: Dob,
-                        })
+                        if ((Studentid === studentid && Dob === dob && Year === year) || (Studentid === studentid && Dob === dob && year === "--")) {
+                            // sort records
+                            records.push({
+                                Studentid: Studentid,
+                                Name: Name,
+                                Category: Category,
+                                Class: Class,
+                                Result: Result,
+                                Examname: Examname,
+                                Year: Year,
+                                Dob: Dob,
+                            })
+                        }
+
+                        // else {document.getElementById('demo').innerHTML= "no record2";}
                     }
-
-                    // else {document.getElementById('demo').innerHTML= "no record2";}
-                }
-                if (records.length == 0) {
-                    document.getElementById('demo').innerHTML += ('<tr>' + '<td></td><td>' + '<p style="color:#F2545F">No record found.</p>' + '</td></tr>');
-                } else {
-                    var order = ["2021-2022", "2020-2021"]
-                    order.forEach(sub => {
-                        records.forEach(item => {
-                            if (sub === item.Year) {
-                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Year + '</td>' + '<td>' + item.Examname + '</td>' + '<td>' + item.Studentid + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Category + '/' + item.Class + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Result + '"target="_blank">Download</a></span>' + '</td>' + '</tr>');
-                            }
+                    if (records.length == 0) {
+                        document.getElementById('demo').innerHTML += ('<tr>' + '<td></td><td>' + '<p style="color:#F2545F">No record found.</p>' + '</td></tr>');
+                    } else {
+                        var order = ["2021-2022", "2020-2021"]
+                        order.forEach(sub => {
+                            records.forEach(item => {
+                                if (sub === item.Year) {
+                                    document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Year + '</td>' + '<td>' + item.Examname + '</td>' + '<td>' + item.Studentid + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Category + '/' + item.Class + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Result + '"target="_blank">Download</a></span>' + '</td>' + '</tr>');
+                                }
+                            })
                         })
-                    })
-                }
-            });
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-        var lazyloadImages = document.querySelectorAll("img.lazy");
-        var lazyloadThrottleTimeout;
-
-        function lazyload() {
-            if (lazyloadThrottleTimeout) {
-                clearTimeout(lazyloadThrottleTimeout);
-            }
-
-            lazyloadThrottleTimeout = setTimeout(function() {
-                var scrollTop = window.pageYOffset;
-                lazyloadImages.forEach(function(img) {
-                    if (img.offsetTop < (window.innerHeight + scrollTop)) {
-                        img.src = img.dataset.src;
-                        img.classList.remove('lazy');
                     }
                 });
-                if (lazyloadImages.length == 0) {
-                    document.removeEventListener("scroll", lazyload);
-                    window.removeEventListener("resize", lazyload);
-                    window.removeEventListener("orientationChange", lazyload);
-                }
-            }, 20);
         }
 
-        document.addEventListener("scroll", lazyload);
-        window.addEventListener("resize", lazyload);
-        window.addEventListener("orientationChange", lazyload);
-    });
-</script>
-<script>
-    document.onkeypress = function(event) {
-        event = (event || window.event);
-        if (event.keyCode == 123) {
-            return false;
+        document.addEventListener("DOMContentLoaded", function() {
+            var lazyloadImages = document.querySelectorAll("img.lazy");
+            var lazyloadThrottleTimeout;
+
+            function lazyload() {
+                if (lazyloadThrottleTimeout) {
+                    clearTimeout(lazyloadThrottleTimeout);
+                }
+
+                lazyloadThrottleTimeout = setTimeout(function() {
+                    var scrollTop = window.pageYOffset;
+                    lazyloadImages.forEach(function(img) {
+                        if (img.offsetTop < (window.innerHeight + scrollTop)) {
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                        }
+                    });
+                    if (lazyloadImages.length == 0) {
+                        document.removeEventListener("scroll", lazyload);
+                        window.removeEventListener("resize", lazyload);
+                        window.removeEventListener("orientationChange", lazyload);
+                    }
+                }, 20);
+            }
+
+            document.addEventListener("scroll", lazyload);
+            window.addEventListener("resize", lazyload);
+            window.addEventListener("orientationChange", lazyload);
+        });
+    </script>
+    <script>
+        document.onkeypress = function(event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
         }
-    }
-    document.onmousedown = function(event) {
-        event = (event || window.event);
-        if (event.keyCode == 123) {
-            return false;
+        document.onmousedown = function(event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
         }
-    }
-    document.onkeydown = function(event) {
-        event = (event || window.event);
-        if (event.keyCode == 123) {
-            return false;
+        document.onkeydown = function(event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
         }
-    }
-</script>
-<script>
-    var hashParams = window.location.hash.substr(1).split('&'); // substr(1) to remove the `#`
-    for (var i = 0; i < hashParams.length; i++) {
-        var p = hashParams[i].split('=');
-        document.getElementById(p[0]).value = decodeURIComponent(p[1]);;
-    }
-</script>
-<!-- =========================
+    </script>
+    <script>
+        var hashParams = window.location.hash.substr(1).split('&'); // substr(1) to remove the `#`
+        for (var i = 0; i < hashParams.length; i++) {
+            var p = hashParams[i].split('=');
+            document.getElementById(p[0]).value = decodeURIComponent(p[1]);;
+        }
+    </script>
+    <!-- =========================
      FOOTER   
 ============================== -->
-<!-- Back top -->
-<script>
-    $(document).ready(function() {
-        $(window).scroll(function() {
-            if ($(this).scrollTop() > 50) {
-                $('#back-to-top').fadeIn();
-            } else {
-                $('#back-to-top').fadeOut();
-            }
+    <!-- Back top -->
+    <script>
+        $(document).ready(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('#back-to-top').fadeIn();
+                } else {
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            // scroll body to 0px on click
+            $('#back-to-top').click(function() {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 400);
+                return false;
+            });
         });
-        // scroll body to 0px on click
-        $('#back-to-top').click(function() {
-            $('body,html').animate({
-                scrollTop: 0
-            }, 400);
-            return false;
-        });
-    });
-</script>
-<a id="back-to-top" href="#" class="go-top" role="button"><i class="fa fa-angle-up"></i></a>
-<!--<script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
+    </script>
+    <a id="back-to-top" href="#" class="go-top" role="button"><i class="fa fa-angle-up"></i></a>
+    <!--<script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
  Glow Cookies v3.0.1
 <script>
     glowCookies.start('en', {
@@ -337,7 +337,7 @@ http://www.rssi.in
         policyLink: '/website-disclaimer'
     });
 </script> -->
-<!--<div id="footer"></div>-->
-</body>
+    <!--<div id="footer"></div>-->
+    </body>
 
 </html>
