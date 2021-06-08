@@ -49,7 +49,8 @@
                     <button class="dropbtnHo">Students' corner <i class="fa fa-caret-down"></i></button>
                     <div class="dropdown-contentHo">
                         <a href="/admission" class="smoothScroll">Admission</a>
-                        <a href="https://login.rssi.in/rssi-student/home.php" target="_blank" class="smoothScroll">My Profile</a>
+                        <a href="https://login.rssi.in/rssi-student/home.php" target="_blank" class="smoothScroll">My
+                            Profile</a>
                         <!--id="secure_link_classroom" [FOR FLUX]-->
                         <!--<a href="/online-exam" class="smoothScroll">Online Exam</a>
                         <a href="/result-portal" class="smoothScroll">Result portal</a>-->
@@ -78,95 +79,14 @@
                     </div>
                 </div>
                 <a href="/donation-portal" class="smoothScroll">Donate</a>
-                <a href="https://login.rssi.in/rssi-member/home.php" target="_blank" class="smoothScroll"><i class="fas fa-user" style="font-size:15px;"></i></a>
+                <a href="https://login.rssi.in/rssi-member/home.php" target="_blank" class="smoothScroll"><i
+                        class="fas fa-user" style="font-size:15px;"></i></a>
                 <!--id="myacc"-->
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()"><i class="fas fa-bars"
                         style="font-size:17px; color: whitesmoke;"></i></a>
             </div>
         </navh>
     </div>
-    <!--------------- 
-		NEED TO COPY THIS SET FOR EVERY CECURED LINK -- MY PROFILE
-	------------------------------------------------------>
-
-    <div id="thover" class="hidden thover"></div>
-    <div id="tpopup" class="hidden tpopup" style="padding:20px; position: fixed;">
-        <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
-        <div class="login-card">
-            <h1>Log-in</h1><br>
-            <form action="/secure/my-profile" onsubmit="return createTarget(this.target)" target="formtarget" method="post">
-                <!--Here we have to mention the secured URL path-->
-                <input type="text" name="user" placeholder="Username">
-                <input type="password" name="code" placeholder="Password">
-                <!--password name id always "code"-->
-                <input type="submit" name="login" class="login login-submit" value="login">
-            </form>
-
-            <div class="login-help">
-                <br><a>Forgot Password? Connect with RSSI admin team</a>
-            </div>
-        </div>
-        <div id="tclose" class="tclose notranslate">X</div>
-    </div>
-
-
-    <!--secure link-->
-    <script>
-        $(document).ready(function() {
-            console.log("loading now...");
-            $("#secure_link_classroom").click(function(event) {
-                event.preventDefault();
-                $("#tpopup").toggleClass('hidden');
-                $("#thover").toggleClass('hidden');
-            });
-            $("#tclose").click(function() {
-                $("#tpopup").toggleClass('hidden');
-                $("#thover").toggleClass('hidden');
-            });
-        });
-    </script>
-
-
-    <!--------------- 
-		NEED TO COPY THIS SET FOR EVERY SECURED LINK -- DIGITAL LIBRARY
-	------------------------------------------------------>
-
-    <div id="thover1" class="hidden thover"></div>
-    <div id="tpopup1" class="hidden tpopup" style="padding:20px; position: fixed;">
-        <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
-        <div class="login-card">
-            <h1>Log-in</h1><br>
-            <form action="/secure/digital-library" method="post">
-                <!--Here we have to mention the secured URL path-->
-                <input type="text" name="user" placeholder="Username">
-                <input type="password" name="code" placeholder="Password">
-                <!--password name id always "code"-->
-                <input type="submit" name="login" class="login login-submit" value="login">
-            </form>
-
-            <div class="login-help">
-                <br><a>Forgot Password? Connect with RSSI admin team</a>
-            </div>
-        </div>
-        <div id="tclose1" class="tclose notranslate">X</div>
-    </div>
-
-
-    <!--secure link-->
-    <script>
-        $(document).ready(function() {
-            console.log("loading now...");
-            $("#secure_link_library").click(function(event) {
-                event.preventDefault();
-                $("#tpopup1").toggleClass('hidden');
-                $("#thover1").toggleClass('hidden');
-            });
-            $("#tclose1").click(function() {
-                $("#tpopup1").toggleClass('hidden');
-                $("#thover1").toggleClass('hidden');
-            });
-        });
-    </script>
 
     <!--------------- 
 		NEED TO COPY THIS SET FOR EVERY SECURED LINK -- WBT
@@ -286,43 +206,6 @@
         });
     </script>
 
-    <!--------------- 
-		NEED TO COPY THIS SET FOR EVERY CECURED LINK -- MY ACCOUNT
-	------------------------------------------------------>
-    <div id="thover11111" class="hidden thover"></div>
-    <div id="tpopup11111" class="hidden tpopup" style="padding:20px; position: fixed;">
-        <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
-        <div class="login-card">
-            <h1>Log-in</h1><br>
-            <form action="/secure2/my-account" onsubmit="return createTarget(this.target)" target="formtarget" method="post">
-                <!--Here we have to mention the secured URL path-->
-                <input type="text" name="user" placeholder="Username">
-                <input type="password" name="code" placeholder="Password">
-                <!--password name id always "code"-->
-                <input type="submit" name="login" class="login login-submit" value="login">
-            </form>
-
-            <div class="login-help">
-                <br><a>Forgot Password? Connect with RSSI admin team</a>
-            </div>
-        </div>
-        <div id="tclose11111" class="tclose notranslate">X</div>
-    </div>
-    <!--secure link-->
-    <script>
-        $(document).ready(function() {
-            console.log("loading now...");
-            $("#myacc").click(function(event) {
-                event.preventDefault();
-                $("#tpopup11111").toggleClass('hidden');
-                $("#thover11111").toggleClass('hidden');
-            });
-            $("#tclose11111").click(function() {
-                $("#tpopup11111").toggleClass('hidden');
-                $("#thover11111").toggleClass('hidden');
-            });
-        });
-    </script>
     <!------------------------------------
         For pop-up secure window
     -------------------------------------->
