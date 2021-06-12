@@ -471,7 +471,7 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
 .go-top {
     background-color: #222;
     bottom: 2em;
-    right: 2em;
+    right: 3em;
     color: #ffffff !important;
     font-size: 32px;
     display: none;
