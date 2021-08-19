@@ -135,7 +135,7 @@
                 </select>
             </div>
             <div class=col3>
-                <button type=button class=exam_btn onclick=loaddata()><i class="fas fa-sign-in-alt"></i>
+                <button type="button1" class=exam_btn onclick=loaddata()><i class="fas fa-sign-in-alt"></i>
 login</button>
             </div>
         </div>
@@ -208,49 +208,49 @@ login</button>
         var loaddata = function() {
             var emailid = document.getElementById('name').value
             var colors = document.getElementById('ename').value
-            $.getJSON("https://spreadsheets.google.com/feeds/list/1J28bo_bSIvFSnvlNfTzwMuRA0RWClSWrJyQYz5aJBMA/2/public/values?alt=json", function(data) {
+            $.getJSON("https://sheets.googleapis.com/v4/spreadsheets/1J28bo_bSIvFSnvlNfTzwMuRA0RWClSWrJyQYz5aJBMA/values/TTP_Database?alt=json&key=AIzaSyAO7Z3VLtKImi3UGFE6n6QKhDqfDBBCT3o", function(data) {
                 document.getElementById('demo1').innerHTML = ""
                 document.getElementById('demo').innerHTML = ""
                 document.getElementById('demo2').innerHTML = ""
-                var sheetData = data.feed.entry;
+                var sheetData = data.values;
                 var i;
                 var records = []
                 for (i = 0; i < sheetData.length; i++) {
-                    var RegistrationNo = data.feed.entry[i]['gsx$registrationno']['$t'];
-                    var Name = data.feed.entry[i]['gsx$name']['$t'];
-                    var Emailid = data.feed.entry[i]['gsx$emailid']['$t'];
-                    var Allocationdate = data.feed.entry[i]['gsx$allocationdate']['$t'];
-                    var Supervisor = data.feed.entry[i]['gsx$supervisor']['$t'];
-                    var Reviewer = data.feed.entry[i]['gsx$reviewer']['$t'];
-                    var Hr = data.feed.entry[i]['gsx$hr']['$t'];
-                    var Learningphase = data.feed.entry[i]['gsx$learningphase']['$t'];
-                    var Attendanceqr = data.feed.entry[i]['gsx$attendanceqr']['$t'];
-                    var Googlefolder = data.feed.entry[i]['gsx$googlefolder']['$t'];
-                    var Grade = data.feed.entry[i]['gsx$grade']['$t'];
-                    var Remarks = data.feed.entry[i]['gsx$remarks']['$t'];
-                    var Certificate = data.feed.entry[i]['gsx$certificate']['$t'];
-                    var Colors = data.feed.entry[i]['gsx$colors']['$t'];
-                    var Classurl = data.feed.entry[i]['gsx$classurl']['$t'];
-                    var Coursename = data.feed.entry[i]['gsx$coursename']['$t'];
-                    var Mode = data.feed.entry[i]['gsx$mode']['$t'];
-                    var Assgclass = data.feed.entry[i]['gsx$assgclass']['$t'];
-                    var Trs = data.feed.entry[i]['gsx$trs']['$t'];
-                    var Trm = data.feed.entry[i]['gsx$trm']['$t'];
-                    var Mrs = data.feed.entry[i]['gsx$mrs']['$t'];
-                    var Mrm = data.feed.entry[i]['gsx$mrm']['$t'];
-                    var Hrs = data.feed.entry[i]['gsx$hrs']['$t'];
-                    var English = data.feed.entry[i]['gsx$english']['$t'];
-                    var Hindi = data.feed.entry[i]['gsx$hindi']['$t'];
-                    var Bengali = data.feed.entry[i]['gsx$bengali']['$t'];
-                    var Tform = data.feed.entry[i]['gsx$tform']['$t'];
-                    var Mform = data.feed.entry[i]['gsx$mform']['$t'];
-                    var Hrform = data.feed.entry[i]['gsx$hrform']['$t'];
-                    var Questiona = data.feed.entry[i]['gsx$questiona']['$t'];
-                    var Questionb = data.feed.entry[i]['gsx$questionb']['$t'];
-                    var Questionc = data.feed.entry[i]['gsx$questionc']['$t'];
-                    var Questiond = data.feed.entry[i]['gsx$questiond']['$t'];
-                    var Rlink = data.feed.entry[i]['gsx$rlink']['$t'];
-                    var Hlink = data.feed.entry[i]['gsx$hlink']['$t'];
+                    var RegistrationNo = sheetData[i][2];
+                    var Name = sheetData[i][3];
+                    var Emailid = sheetData[i][4];
+                    var Allocationdate = sheetData[i][12];
+                    var Supervisor = sheetData[i][13];
+                    var Reviewer = sheetData[i][17];
+                    var Hr = sheetData[i][20];
+                    var Learningphase = sheetData[i][23];
+                    var Attendanceqr = sheetData[i][24];
+                    var Googlefolder = sheetData[i][26];
+                    var Grade = sheetData[i][35];
+                    var Remarks = sheetData[i][36];
+                    var Certificate = sheetData[i][37];
+                    var Colors = sheetData[i][38];
+                    var Classurl = sheetData[i][16];
+                    var Coursename = sheetData[i][0];
+                    var Mode = sheetData[i][1];
+                    var Assgclass = sheetData[i][15];
+                    var Trs = sheetData[i][28];
+                    var Trm = sheetData[i][29];
+                    var Mrs = sheetData[i][31];
+                    var Mrm = sheetData[i][32];
+                    var Hrs = sheetData[i][34];
+                    var English = sheetData[i][5];
+                    var Hindi = sheetData[i][6];
+                    var Bengali = sheetData[i][7];
+                    var Tform = sheetData[i][27];
+                    var Mform = sheetData[i][30];
+                    var Hrform = sheetData[i][33];
+                    var Questiona = sheetData[i][8];
+                    var Questionb = sheetData[i][9];
+                    var Questionc = sheetData[i][10];
+                    var Questiond = sheetData[i][11];
+                    var Rlink = sheetData[i][18];
+                    var Hlink = sheetData[i][21];
 
                     if ((Emailid === emailid && Colors === colors)) {
                         records.push({
@@ -368,6 +368,25 @@ login</button>
             }
         }
     </script>
+    <script>
+        // Initiate an Ajax request on button click
+        $(document).on("click", "button1", function() {
+            // Adding timestamp to set cache false
+            $.get("e-learning.html?v=" + $.now(), function(data) {
+                $("body").html(data);
+            });
+        });
+
+        // Add remove loading class on body element depending on Ajax request status
+        $(document).on({
+            ajaxStart: function() {
+                $("body").addClass("loading");
+            },
+            ajaxStop: function() {
+                $("body").removeClass("loading");
+            }
+        });
+    </script>
     <!-- <div id="thoverX" class="thover"></div>
     <div id="tpopupX" class="tpopup">
         <img src="/images/infob.jpg" class="img-fluid img-responsive">
@@ -412,6 +431,7 @@ login</button>
         });
     </script>
     <div id=footer></div>
+    <div class="overlay"></div>
     </body>
 
 </html>

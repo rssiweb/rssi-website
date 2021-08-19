@@ -127,7 +127,7 @@ http://www.rssi.in
             </div>
 
             <div class="col3">
-                <button type="button" class="exam_btn" onclick="loaddata()"><i class="fas fa-search"></i>
+                <button type="button1" class="exam_btn" onclick="loaddata()"><i class="fas fa-search"></i>
                     search</button>
             </div>
 
@@ -189,19 +189,19 @@ http://www.rssi.in
             var courseid = document.getElementById('name').value
             var language = document.getElementById('ename').value
 
-            $.getJSON("https://spreadsheets.google.com/feeds/list/1I5WANuMzHDcb2m9-PoXIOV3aZIrABUGSfwPOPNh0HBY/4/public/values?alt=json",
+            $.getJSON("https://sheets.googleapis.com/v4/spreadsheets/1I5WANuMzHDcb2m9-PoXIOV3aZIrABUGSfwPOPNh0HBY/values/wbt?alt=json&key=AIzaSyAO7Z3VLtKImi3UGFE6n6QKhDqfDBBCT3o",
                 function(data) {
                     document.getElementById('demo').innerHTML = ""
-                    var sheetData = data.feed.entry;
+                    var sheetData = data.values;
                     var i;
                     var records = []
                     for (i = 0; i < sheetData.length; i++) {
-                        var Courseid = data.feed.entry[i]['gsx$courseid']['$t'];
-                        var Coursename = data.feed.entry[i]['gsx$coursename']['$t'];
-                        var Language = data.feed.entry[i]['gsx$language']['$t'];
-                        var Passingmarks = data.feed.entry[i]['gsx$passingmarks']['$t'];
-                        var Validity = data.feed.entry[i]['gsx$validity']['$t'];
-                        var Url = data.feed.entry[i]['gsx$url']['$t'];
+                        var Courseid = sheetData[i][0];
+                        var Coursename = sheetData[i][1];
+                        var Language = sheetData[i][2];
+                        var Passingmarks = sheetData[i][3];
+                        var Validity = sheetData[i][4];
+                        var Url = sheetData[i][5];
 
 
 
@@ -220,7 +220,7 @@ http://www.rssi.in
                         // else {document.getElementById('demo').innerHTML= "no record2";}
                     }
                     if (records.length == 0) {
-                        document.getElementById('demo').innerHTML += ('<tr>' + '<td></td><td>' + '<p style="color:#F2545F">No record found.</p>' + '</td></tr>');
+                        document.getElementById('demo').innerHTML += ('<tr>' + '<td colspan="3">' + '<p style="color:#F2545F">No record found.</p>' + '</td></tr>');
                     } else {
                         records.forEach(item => {
                             {
@@ -261,6 +261,26 @@ http://www.rssi.in
             window.addEventListener("orientationChange", lazyload);
         });
     </script>
+    <script>
+        // Initiate an Ajax request on button click
+        $(document).on("click", "button1", function() {
+            // Adding timestamp to set cache false
+            $.get("wbt.html?v=" + $.now(), function(data) {
+                $("body").html(data);
+            });
+        });
+
+        // Add remove loading class on body element depending on Ajax request status
+        $(document).on({
+            ajaxStart: function() {
+                $("body").addClass("loading");
+            },
+            ajaxStop: function() {
+                $("body").removeClass("loading");
+            }
+        });
+    </script>
+    <div class="overlay"></div>
     <!-- =========================
      FOOTER   
 ============================== -->

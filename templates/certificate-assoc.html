@@ -131,7 +131,7 @@ http://www.rssi.in
             </div>
 
             <div class="col3">
-                <button type="button" class="exam_btn" onclick="loaddata()"><i class="fas fa-search"></i>
+                <button type="button1" class="exam_btn" onclick="loaddata()"><i class="fas fa-search"></i>
                     search</button>
             </div>
 
@@ -196,24 +196,24 @@ http://www.rssi.in
             var associateno = document.getElementById('name').value.toUpperCase()
             var certificateno = document.getElementById('ename').value.toUpperCase()
 
-            $.getJSON("https://spreadsheets.google.com/feeds/list/1I5WANuMzHDcb2m9-PoXIOV3aZIrABUGSfwPOPNh0HBY/5/public/values?alt=json",
+            $.getJSON("https://sheets.googleapis.com/v4/spreadsheets/1I5WANuMzHDcb2m9-PoXIOV3aZIrABUGSfwPOPNh0HBY/values/Associate?alt=json&key=AIzaSyAO7Z3VLtKImi3UGFE6n6QKhDqfDBBCT3o",
                 function(data) {
                     document.getElementById('demo').innerHTML = ""
-                    var sheetData = data.feed.entry;
+                    var sheetData = data.values;
                     var i;
                     var records = []
                     for (i = 0; i < sheetData.length; i++) {
-                        var AssociateNo = data.feed.entry[i]['gsx$associateno']['$t'];
-                        var Name = data.feed.entry[i]['gsx$name']['$t'];
-                        var Designation = data.feed.entry[i]['gsx$designation']['$t'];
-                        var DOJ = data.feed.entry[i]['gsx$doj']['$t'];
-                        var Yearsofservice = data.feed.entry[i]['gsx$yearsofservice']['$t'];
-                        var Modeofservice = data.feed.entry[i]['gsx$modeofservice']['$t'];
-                        var BadgeName = data.feed.entry[i]['gsx$badgename']['$t'];
-                        var Receivedfor = data.feed.entry[i]['gsx$receivedfor']['$t'];
-                        var Certificate = data.feed.entry[i]['gsx$certificate']['$t'];
-                        var Issuedon = data.feed.entry[i]['gsx$issuedon']['$t'];
-                        var CertificateNo = data.feed.entry[i]['gsx$certificateno']['$t'];
+                        var AssociateNo = sheetData[i][0];
+                        var Name = sheetData[i][1];
+                        var Designation = sheetData[i][2];
+                        var DOJ = sheetData[i][3];
+                        var Yearsofservice = sheetData[i][4];
+                        var Modeofservice = sheetData[i][5];
+                        var BadgeName = sheetData[i][6];
+                        var Receivedfor = sheetData[i][7];
+                        var Certificate = sheetData[i][8];
+                        var Issuedon = sheetData[i][9];
+                        var CertificateNo = sheetData[i][10];
 
                         if ((AssociateNo === associateno && CertificateNo === certificateno) || (certificateno === "" && AssociateNo === associateno) || (associateno === "" && CertificateNo === certificateno)) {
                             // sort records
@@ -231,7 +231,7 @@ http://www.rssi.in
                         // else {document.getElementById('demo').innerHTML= "no record2";}
                     }
                     if (records.length == 0) {
-                        document.getElementById('demo').innerHTML += ('<tr>' + '<td></td><td>' + '<p style="color:#F2545F">No record found.</p>' + '</td></tr>');
+                        document.getElementById('demo').innerHTML += ('<tr>' + '<td colspan="3">' + '<p style="color:#F2545F">No record found.</p>' + '</td></tr>');
                     } else {
                         records.forEach(item => {
                             {
@@ -272,6 +272,26 @@ http://www.rssi.in
             window.addEventListener("orientationChange", lazyload);
         });
     </script>
+    <script>
+        // Initiate an Ajax request on button click
+        $(document).on("click", "button1", function() {
+            // Adding timestamp to set cache false
+            $.get("certificate-assoc.html?v=" + $.now(), function(data) {
+                $("body").html(data);
+            });
+        });
+
+        // Add remove loading class on body element depending on Ajax request status
+        $(document).on({
+            ajaxStart: function() {
+                $("body").addClass("loading");
+            },
+            ajaxStop: function() {
+                $("body").removeClass("loading");
+            }
+        });
+    </script>
+    <div class="overlay"></div>
     <!-- =========================
      FOOTER   
 ============================== -->
