@@ -25,12 +25,15 @@
                         <h3 class="panel-title"><b>Payment Details</b></h3>
                         <p style="line-height: 2;">After making payment, please fill this form.</p>
                     </div>
-                    <form name="submit-to-google-sheet" id="submit-to-google-sheet" action="" method="POST" onSubmit="alert('Your response has been recorded.');">
-                        <br><label for="fname">Your name</label><br>
-                        <input type="text" required id="fname" name="fname"><br><br>
+                    <form name="submit-to-google-sheet" id="submit-to-google-sheet" action="" method="POST" onSubmit="alert('Your response has been recorded. However, we have not yet verified your payment. After verification you will receive a confirmation email from RSSI within 2 business days.');">
+                        <br><label for="fname">Registration number</label><br>
+                        <input type="text" required id="fname" name="fname" placeholder="B2LKOXXXXXXX"><br><br>
 
                         <label for="email">Registered email ID</label><br>
-                        <input type="email" required id="email" name="email"><br><br>
+                        <input type="email" required id="email" name="email" placeholder="abc@xyz.com"><br><br>
+
+                        <label for="email">Unique payment code</label><br>
+                        <input type="upi" required id="upi" name="upi" placeholder="13 digit Unique payment code"><br><br>
 
                         <label for="transactionid">Transaction ID</label><br>
                         <input type="text" required id="transactionid" name="transactionid"><br><br>
