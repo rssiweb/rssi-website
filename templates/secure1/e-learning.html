@@ -316,8 +316,9 @@
                 <div class=col3>
                     <button type="submit" class=exam_btn onclick=loaddata()><i class="fas fa-sign-in-alt"></i>
                         login</button>
-                    <button type=button class=exam_btn1 onclick="window.print();return false;" title="Print"><i
-                            class="fas fas fa-print"></i></button>
+                    <!--<button type=button class=exam_btn1 onclick="window.print();return false;" title="Print"><i
+                            class="fas fas fa-print"></i></button>-->
+                    <button type="button" class=exam_btn1 onclick=loaddata() title="Reload"><i class="fas fa-sync-alt"></i></button>
                 </div>
             </div>
         </div>
@@ -344,7 +345,7 @@
                     <div class="row noprint" style="text-align: right; margin-left: 0px; margin-right: 15px;">
                         <span class="notice" style=" width:100%; ">
                             <a id="myBtn" href="##" style="font-size:14px;">Daily planner</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
-                            href=# id=secure_link_mt style="font-size:14px;">WBT</a>
+                                href=# id=secure_link_mt style="font-size:14px;">WBT</a>
                         </span>
                     </div>
 
@@ -437,6 +438,9 @@
                                             <th><b>Reg. no</b></th>
                                             <th><b>Name</b></th>
                                             <th><b>Email ID</b></th>
+                                            <th><b>Contact</b></th>
+                                            <th><b>College Name</b></th>
+                                            <th><b>Major Subject</b></th>
                                         </tr>
                                         <tbody id=demo6></tbody>
                                 </table>
@@ -508,6 +512,9 @@
                         var attstatus = sheetData[i][61];
                         var Attendancep = sheetData[i][44];
                         var lastlogin = sheetData[i][62];
+                        var clgname = sheetData[i][63];
+                        var majorsub = sheetData[i][64];
+                        var contact = sheetData[i][65];
 
                         if ((Emailid === emailid && Colors === colors)) {
                             records.push({
@@ -550,7 +557,10 @@
                                 lastout: lastout,
                                 attstatus: attstatus,
                                 Attendancep: Attendancep,
-                                lastlogin: lastlogin
+                                lastlogin: lastlogin,
+                                clgname: clgname,
+                                majorsub: majorsub,
+                                contact: contact
 
                             })
                         }
@@ -572,7 +582,7 @@
                             } {
                                 document.getElementById('demo5').innerHTML += ('<tr>' + '<td>' + item.Grade + '</td>' + '<td>' + item.Remarks + '</td>' + '<td>' + '<span class="noticet"><a href="https://www.rssi.in/certificate-student" target="_blank">' + item.Certificate + '</a></span></td>' + '</tr>');
                             } {
-                                document.getElementById('demo6').innerHTML += ('<tr>' + '<td>' + item.RegistrationNo + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Emailid + '</td>' + '</tr>');
+                                document.getElementById('demo6').innerHTML += ('<tr>' + '<td>' + item.RegistrationNo + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Emailid + '</td>' + '<td>' + item.contact + '</td>' + '<td>' + item.clgname + '</td>' + '<td>' + item.majorsub + '</td>' + '</tr>');
                             } {
                                 document.getElementById('demo').innerHTML += ('<tr>' + '<td><span style="line-height:1.5">' + greet + '!&nbsp;<b>' + item.Name + '&nbsp;(' + item.RegistrationNo + ')</b><br>Last Login:&nbsp;' + item.lastlogin + '</span></td>' + '</tr>');
                             }
