@@ -344,7 +344,7 @@
                 <body>
                     <div class="row noprint" style="text-align: right; margin-left: 0px; margin-right: 15px;">
                         <span class="notice" style=" width:100%; ">
-                            <a id="myBtn" href="##" style="font-size:14px;">Daily planner</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+                            <a id="myBtn" href="##" style="font-size:14px;">Daily planner</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://drive.google.com/file/d/1b3AcN68TJa7gIai_RTyJ5989Te-TXCbq/view" target="_blank" style="font-size:14px;">Weekly schedule</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
                                 href=# id=secure_link_mt style="font-size:14px;">WBT</a>
                         </span>
                     </div>
@@ -370,7 +370,7 @@
                                             <th><b>Course Name</b></th>
                                             <th><b>Allocation Date</b></th>
                                             <th><b>Class Alloted</b></th>
-                                            <th><b>Supervisor</b></th>
+                                            <th><b>Faculty</b></th>
                                             <th><b>Assignment</b></th>
                                         </tr>
                                     </thead>
@@ -515,9 +515,13 @@
                         var clgname = sheetData[i][63];
                         var majorsub = sheetData[i][64];
                         var contact = sheetData[i][65];
+                        var Supervisor2 = sheetData[i][66];
+                        var Classurl2 = sheetData[i][67];
 
                         if ((Emailid === emailid && Colors === colors)) {
                             records.push({
+                                Classurl2: Classurl2,
+                                Supervisor2: Supervisor2,
                                 RegistrationNo : RegistrationNo ,
                                 Name : Name ,
                                 Emailid : Emailid ,
@@ -570,7 +574,7 @@
                     } else {
                         records.forEach(item => {
                             {
-                                document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + item.Coursename + ' ' + item.Mode + '</td>' + '<td>' + item.Allocationdate + '</td><td>' + item.Assgclass + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Classurl + '"target="_blank">' + item.Supervisor + '</a></span>' + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Googlefolder + '"target="_blank">Google Drive Folder</a></span>' + '</td></tr>');
+                                document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + item.Coursename + ' ' + item.Mode + '</td>' + '<td>' + item.Allocationdate + '</td><td>' + item.Assgclass + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Classurl + '"target="_blank">' + item.Supervisor + '</a></span><br><br>' + '<span class="noticet"><a href="' + item.Classurl2 + '"target="_blank">' + item.Supervisor2 + '</a></span>' + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Googlefolder + '"target="_blank">Google Drive Folder</a></span>' + '</td></tr>');
                             }
 
                             {
