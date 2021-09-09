@@ -42,6 +42,11 @@ http://www.rssi.in
             background: #90baa4;
             border: 1px solid #90baa4
         }
+        
+        a.disabled {
+            pointer-events: none;
+            cursor: default;
+        }
     </style>
 </head>
 <!-- =========================
@@ -51,13 +56,6 @@ http://www.rssi.in
 <body>
 
     <div id="header"></div>
-    <!--<br><br><br>
-    <div class="container">
-        <div class="row">
-            <div class="alert alert-danger" role="alert"><b>Registration Closed</b>
-            </div>
-        </div>
-    </div><br><br><br><br><br>-->
 
     <!--<div style="margin: 0.3%;">
         <ps class="marginleft notice" style="margin-left: 3%;">
@@ -79,6 +77,15 @@ http://www.rssi.in
             </div>
         </div>
     </section>
+
+    <!--<br><br><br>-->
+    <div class="container">
+        <div class="row">
+            <div class="alert alert-danger" role="alert"><b>RSSI x RPMC Teachers' Training Program-Batch 2 - Registration Closed</b>
+            </div>
+        </div>
+    </div><br>
+    <!--<br><br><br><br>-->
 
     <!-- =========================
     REGISTRATION   
@@ -114,10 +121,10 @@ http://www.rssi.in
                     <br><br>After a successful transaction, fill the payment details form with the required information, i.e., Registration Number (which you will receive after registration), Registered Email ID and Transaction ID. Do not share Transaction
                     ID with others.
                 </p>
+                <!--class="exam_btn"-->
                 <div class="row">
                     <div class="col" style="text-align: -webkit-center; ">
-                        <button onclick="location.href='/payment';" class="exam_btn" style="margin-top: 5%; padding: 10px 20px;" data-wow-delay="1.3s"><!--<i class="fas fa-credit-card" style="font-size: 20px;"></i>&nbsp;-->Click here to pay
-                            online</button>
+                        <button type="button" disabled onclick="location.href='/payment';" class="disabled" style="margin-top: 5%; padding: 10px 20px;" data-wow-delay="1.3s">Click here to pay online</button>
                     </div>
                 </div>
 
