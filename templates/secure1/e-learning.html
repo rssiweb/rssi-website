@@ -367,9 +367,9 @@
                                     <thead style=background-color:whitesmoke;font-style:oblique>
                                         <tr>
 
-                                            <th><b>Course Name</b></th>
-                                            <th><b>Allocation Date</b></th>
+                                            <th><b>Course Details and Allocation Date</b></th>
                                             <th><b>Class Alloted</b></th>
+                                            <th><b>Hands-On topics</b></th>
                                             <th><b>Faculty</b></th>
                                             <th><b>Assignment</b></th>
                                         </tr>
@@ -517,9 +517,13 @@
                         var contact = sheetData[i][65];
                         var Supervisor2 = sheetData[i][66];
                         var Classurl2 = sheetData[i][67];
+                        var Handson_RSSI = sheetData[i][68];
+                        var Handson_RPMC = sheetData[i][69];
 
                         if ((Emailid === emailid && Colors === colors)) {
                             records.push({
+                                Handson_RPMC: Handson_RPMC,
+                                Handson_RSSI: Handson_RSSI,
                                 Classurl2: Classurl2,
                                 Supervisor2: Supervisor2,
                                 RegistrationNo : RegistrationNo ,
@@ -574,7 +578,7 @@
                     } else {
                         records.forEach(item => {
                             {
-                                document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + item.Coursename + ' ' + item.Mode + '</td>' + '<td>' + item.Allocationdate + '</td><td>' + item.Assgclass + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Classurl + '"target="_blank">' + item.Supervisor + '</a></span><br><br>' + '<span class="noticet"><a href="' + item.Classurl2 + '"target="_blank">' + item.Supervisor2 + '</a></span>' + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Googlefolder + '"target="_blank">Google Drive Folder</a></span>' + '</td></tr>');
+                                document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + item.Coursename + ' - ' + item.Mode + '<br><br>' + item.Allocationdate + '</td><td>' + item.Assgclass + '</td>' + '<td>Topic1&nbsp;-&nbsp;' + item.Handson_RSSI + '<br><br>Topic2&nbsp;-&nbsp;' + item.Handson_RPMC + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Classurl + '"target="_blank">' + item.Supervisor + '</a></span><br><br>' + '<span class="noticet"><a href="' + item.Classurl2 + '"target="_blank">' + item.Supervisor2 + '</a></span>' + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Googlefolder + '"target="_blank">Google Drive Folder</a></span>' + '</td></tr>');
                             }
 
                             {

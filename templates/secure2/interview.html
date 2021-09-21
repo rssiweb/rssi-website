@@ -108,22 +108,23 @@
     </div>
 
     <br><br>
+    <form method="dialog">
+        <div class=container>
+            <p style=display:inline>Please enter Candidate's Registration ID to get the related details. Before you evaluate, please check candidate's status in the first row. To be eligible for the current round a candidate must clear the previous rounds.</p><br><br>
+            <div class=row style=background-color:#fff5c2;min-height:70px;width:100%>
+                <div class=col1>
+                    <label for="name">Candidate's Registration ID<span style="color:#F2545F">*</span>&nbsp;</label>
+                    <input type="text" id="name" name="name" minlength=12 maxlength=12 size="12" style="text-transform:uppercase" required>
+                </div>
 
-    <div class=container>
-        <p style=display:inline>Please enter Candidate's Registration ID to get the related details. Before you evaluate, please check candidate's status in the first row. To be eligible for the current round a candidate must clear the previous rounds.</p><br><br>
-        <div class=row style=background-color:#fff5c2;min-height:70px;width:100%>
-            <div class=col1>
-                <label for="name">Candidate's Registration ID<span style="color:#F2545F">*</span>&nbsp;</label>
-                <input type="text" id="name" name="name" minlength=12 maxlength=12 size="12" style="text-transform:uppercase" required>
-            </div>
-
-            <div class=col3>
-                <button type="button1" class=exam_btn onclick=loaddata()><i class="fas fa-search"></i>
+                <div class=col3>
+                    <button type="submit" class=exam_btn onclick=loaddata()><i class="fas fa-search"></i>
                     search</button>
-                <button type="button1" class=exam_btn1 onclick=loaddata() title="Reload"><i class="fas fa-sync-alt"></i></button>
+                    <button type="button1" class=exam_btn1 onclick=loaddata() title="Reload"><i class="fas fa-sync-alt"></i></button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
     <div class=container>
         <div class=row>
             <div class=col>
@@ -146,11 +147,11 @@
                         <table class="table bordered table-striped" id=testTable>
                             <thead style=background-color:whitesmoke;font-style:oblique>
                                 <tr>
-                                    <th width="30%"><b>Course Details</b></th>
-                                    <th><b>Allocation Date</b></th>
+                                    <th width="30%"><b>Course Details and Allocation Date</b></th>
                                     <th><b>Class Alloted</b></th>
+                                    <th><b>Hands-On topics</b></th>
                                     <th><b>Assignment</b></th>
-                                    <th><b>&nbsp;&nbsp;&nbsp;</b></th>
+                                    <th><b>&nbsp;&nbsp;</b></th>
 
                                 </tr>
                             </thead>
@@ -211,14 +212,13 @@
         </div>
     </div>
 
-    <script src="/js/pace.js"></script>
-    <script src="/js/fontawsome.js"></script>
-    <script src="/js/smoothscroll.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.parallax.js"></script>
-    <script src="/js/wow.min.js"></script>
-    <script src="/js/custom.js"></script>
-    <script type="text/javascript">
+    <script src=/js/pace.js></script>
+    <script src=/js/fontawsome.js></script>
+    <script src=/js/bootstrap.min.js></script>
+    <script src=/js/jquery.parallax.js></script>
+    <script src=/js/wow.min.js></script>
+    <script src=/js/custom.js></script>
+    <script type=text/javascript>
         var loaddata = function() {
             var registrationno = document.getElementById('name').value.toUpperCase()
             $.getJSON("https://sheets.googleapis.com/v4/spreadsheets/1J28bo_bSIvFSnvlNfTzwMuRA0RWClSWrJyQYz5aJBMA/values/TTP_Database?alt=json&key=AIzaSyAO7Z3VLtKImi3UGFE6n6QKhDqfDBBCT3o",
@@ -270,9 +270,14 @@
                         var Rlink = sheetData[i][18];
                         var Hlink = sheetData[i][21];
                         var Attendancep = sheetData[i][44];
+                        var Handson_RSSI = sheetData[i][68];
+                        var Handson_RPMC = sheetData[i][69];
+
 
                         if (RegistrationNo === registrationno && Colors != '@#null#@') {
                             records.push({
+                                Handson_RPMC: Handson_RPMC,
+                                Handson_RSSI: Handson_RSSI,
                                 RegistrationNo : RegistrationNo ,
                                 Name : Name ,
                                 Emailid : Emailid ,
@@ -318,7 +323,7 @@
                             {
                                 document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.RegistrationNo + ' - ' + item.Name + ' - ' + item.Emailid + '</td>' + '<td>' + item.Trs + ' - ' + item.Trm + '</td><td>' + item.Mrs + ' - ' + item.Mrm + '</td><td>' + item.Hrs + ' <br><br> ' + item.Remarks + '</td></tr>');
                             } {
-                                document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + item.Coursename + ' - ' + item.Mode + '</td>' + '<td>' + item.Allocationdate + '</td><td>' + item.Assgclass + '</td><td>' + '<span class="noticet"><a href="' + item.Googlefolder + '"target="_blank">Google Drive Folder</a></span>' + '</td></tr>');
+                                document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + item.Coursename + ' - ' + item.Mode + '<br><br>' + item.Allocationdate + '</td>' + '<td>' + item.Assgclass + '</td>' + '<td>Topic1&nbsp;-&nbsp;' + item.Handson_RSSI + '<br><br>Topic2&nbsp;-&nbsp;' + item.Handson_RPMC + '</td><td>' + '<span class="noticet"><a href="' + item.Googlefolder + '"target="_blank">Google Drive Folder</a></span>' + '</td></tr>');
                             } {
                                 document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Learningphase + '<br><br><b><span>Attendance - </b>' + item.Attendancep + '&nbsp; as of&nbsp;' + today + '</td>' + '<td>English: ' + item.English + '<br><br> Hindi: ' + item.Hindi + '<br><br> Bengali: ' + item.Bengali + '</td><td>' + '<span class="noticet"><a href="' + item.Tform + '"target="_blank">' + item.Supervisor + '</a></span>' + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Mform + '"target="_blank">' + item.Reviewer + '</a></span>' + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Hrform + '"target="_blank">' + item.Hr + '</a></span>' + '</td></tr>');
                             } {
