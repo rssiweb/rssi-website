@@ -272,10 +272,12 @@
                         var Attendancep = sheetData[i][44];
                         var Handson_RSSI = sheetData[i][68];
                         var Handson_RPMC = sheetData[i][69];
+                        var ExTR = sheetData[i][70];
 
 
                         if (RegistrationNo === registrationno && Colors != '@#null#@') {
                             records.push({
+                                ExTR: ExTR,
                                 Handson_RPMC: Handson_RPMC,
                                 Handson_RSSI: Handson_RSSI,
                                 RegistrationNo : RegistrationNo ,
@@ -325,7 +327,7 @@
                             } {
                                 document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + item.Coursename + ' - ' + item.Mode + '<br><br>' + item.Allocationdate + '</td>' + '<td>' + item.Assgclass + '</td>' + '<td>Topic1&nbsp;-&nbsp;' + item.Handson_RSSI + '<br><br>Topic2&nbsp;-&nbsp;' + item.Handson_RPMC + '</td><td>' + '<span class="noticet"><a href="' + item.Googlefolder + '"target="_blank">Google Drive Folder</a></span>' + '</td></tr>');
                             } {
-                                document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Learningphase + '<br><br><b><span>Attendance - </b>' + item.Attendancep + '&nbsp; as of&nbsp;' + today + '</td>' + '<td>English: ' + item.English + '<br><br> Hindi: ' + item.Hindi + '<br><br> Bengali: ' + item.Bengali + '</td><td>' + '<span class="noticet"><a href="' + item.Tform + '"target="_blank">' + item.Supervisor + '</a></span>' + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Mform + '"target="_blank">' + item.Reviewer + '</a></span>' + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Hrform + '"target="_blank">' + item.Hr + '</a></span>' + '</td></tr>');
+                                document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Learningphase + '<br><br><b><span>Attendance - </b>' + item.Attendancep + '&nbsp; as of&nbsp;' + today + '</td>' + '<td>English: ' + item.English + '<br><br> Hindi: ' + item.Hindi + '<br><br> Bengali: ' + item.Bengali + '</td><td>' + '<span class="noticet"><a href="' + item.Tform + '"target="_blank">' + item.Supervisor + '</a></span>' + '<br><br>' + '<span class="noticet"><a href="' + item.ExTR + '"target="_blank">' + 'External panel' + '</a></span>' + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Mform + '"target="_blank">' + item.Reviewer + '</a></span>' + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Hrform + '"target="_blank">' + item.Hr + '</a></span>' + '</td></tr>');
                             } {
                                 document.getElementById('demo3').innerHTML += ('<tr>' + '<td>' + item.Questiona + '</td></tr>');
                             } {
