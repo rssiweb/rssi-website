@@ -13,6 +13,7 @@
     <link rel="shortcut icon" href=/images/logo/favicon.ico type=image/x-icon />
     <script src=/js/jquery.js></script>
     <link href=//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css rel=stylesheet id=bootstrap-css>
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
     <link rel=stylesheet href=/css/HeaderFooter.css>
     <link rel=stylesheet href=/css/style.css>
     <link rel=stylesheet href=/css/addstyle.css>
@@ -382,6 +383,7 @@
                                         <tr>
 
                                             <th><b>Learning Phase</b></th>
+                                            <th><b>Hands-on Date Sheet</b></th>
 
                                         </tr>
                                     </thead>
@@ -582,7 +584,7 @@
                             }
 
                             {
-                                document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Learningphase + '</td>' + '</tr>');
+                                document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Learningphase + '</td>' + '<td>' + '<span class="noticet"><a href="https://drive.google.com/file/d/1OCh47biJZQLCz6S03JA-7KRYSlEUTclh/view"target="_blank">RSSI hands-on schedule</a></span><br><br><span class="noticet"><a href="https://drive.google.com/file/d/1RkhM637Ik0-7OjQyfGCzI-tW22YOsJBN/view"target="_blank">RPMC hands-on schedule</a></span>&nbsp;&nbsp;<span class="badge badge-warning">new</span></td>' + '</tr>');
                             } {
                                 document.getElementById('demo3').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Attendanceqr + '" alt="" width="100%" />' + '</td>' + '<td>' + today + '</td>' + '<td>' + item.firstin + '</td>' + '<td>' + item.lastout + '</td>' + '<td>' + item.attstatus + '</td>' + '<td>' + item.Attendancep + '</td>' + '</tr>');
                             } {
