@@ -101,7 +101,13 @@
             <div class=col>
                 <div class="white hoverdecoration">
                     <!--<a href=https://docs.google.com/spreadsheets/d/1J28bo_bSIvFSnvlNfTzwMuRA0RWClSWrJyQYz5aJBMA/edit?usp=sharing target=_blank class=primary_btn style=padding-right:3vh;padding-left:3vh;margin-top:1%>database&nbsp;&nbsp;<i class="fas fa-database" style=font-size:20px></i></a>-->
-                    <a href=https://drive.google.com/file/d/1OCh47biJZQLCz6S03JA-7KRYSlEUTclh/view target=_blank class=primary_btn style=padding-right:3vh;padding-left:3vh;margin-top:1%;background-color:#90baa4;border-color:#90baa4>mapping doc&nbsp;&nbsp;<i class="fas fa-code-branch" style=font-size:20px></i></a>
+                    <!--<a href=https://drive.google.com/file/d/1OCh47biJZQLCz6S03JA-7KRYSlEUTclh/view target=_blank class=primary_btn style=padding-right:3vh;padding-left:3vh;margin-top:1%;background-color:#90baa4;border-color:#90baa4>mapping doc&nbsp;&nbsp;<i class="fas fa-code-branch" style=font-size:20px></i></a>-->
+
+                    <select id="select" onchange="var win = window.open(this.value, '_blank'); win.focus();">
+                        <option value="">Select documnet</option>
+                        <option value="https://drive.google.com/file/d/1OCh47biJZQLCz6S03JA-7KRYSlEUTclh/view">RSSI hands-on schedule</option>
+                        <option value="https://drive.google.com/file/d/1RkhM637Ik0-7OjQyfGCzI-tW22YOsJBN/view">RPMC hands-on schedule</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -119,8 +125,9 @@
 
                 <div class=col3>
                     <button type="submit" class=exam_btn onclick=loaddata()><i class="fas fa-search"></i>
-                    search</button>
-                    <button type="button1" class=exam_btn1 onclick=loaddata() title="Reload"><i class="fas fa-sync-alt"></i></button>
+                        search</button>
+                    <button type="button1" class=exam_btn1 onclick=loaddata() title="Reload"><i
+                            class="fas fa-sync-alt"></i></button>
                 </div>
             </div>
         </div>
@@ -173,7 +180,8 @@
 
                         </table>
                         <table class="table bordered table-striped" id=testTable>
-                            <br><br><span style="color:blueviolet"><b>We asked few questions at the time of registration. Let's see how he/she/they responded.</b></span><br><br>
+                            <br><br><span style="color:blueviolet"><b>We asked few questions at the time of
+                                    registration. Let's see how he/she/they responded.</b></span><br><br>
                             <thead style=background-color:whitesmoke;font-style:oblique>
                                 <tr>
                                     <th><b>What are your hobbies?</b></th>
@@ -184,7 +192,8 @@
 
                             <thead style=background-color:whitesmoke;font-style:oblique>
                                 <tr>
-                                    <th><b>Complete this sentence: Education is the basic right of every person because_____________________.</b></th>
+                                    <th><b>Complete this sentence: Education is the basic right of every person
+                                            because_____________________.</b></th>
                                 </tr>
                             </thead>
                             <tbody id=demo4>
