@@ -105,6 +105,7 @@
 
                     <select id="select" onchange="var win = window.open(this.value, '_blank'); win.focus();">
                         <option value="">Select document</option>
+                        <option value="https://drive.google.com/file/d/1dzr-6sKG_kD8ExfLrTJC_dDLSnls_ALZ/view">Managerial Interview (MR) mapping</option>
                         <option value="https://drive.google.com/file/d/1QD_ox28KOzioGb6UsqpQ01Xb99oi1khB/view">Technical Interview mapping</option>
                         <option value="https://drive.google.com/file/d/1OCh47biJZQLCz6S03JA-7KRYSlEUTclh/view">RSSI hands-on schedule</option>
                         <option value="https://drive.google.com/file/d/1RkhM637Ik0-7OjQyfGCzI-tW22YOsJBN/view">RPMC hands-on schedule</option>
@@ -341,7 +342,7 @@
                     } else {
                         records.forEach(item => {
                             {
-                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.RegistrationNo + ' - ' + item.Name + ' - ' + item.Emailid + '</td>' + '<td>' + item.Trs + ' - ' + item.Trm + '%' + ' <br><br> ' + item.ITRcom + '<br><br> ' + item.ETRcom + '</td><td>' + item.Mrs + ' - ' + item.Mrm + '%' + ' <br><br> ' + item.MRcom + '</td><td>' + item.Hrs + ' <br><br> ' + item.Remarks + '</td></tr>');
+                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.RegistrationNo + ' - ' + item.Name + ' - ' + item.Emailid + '</td>' + '<td>' + item.Trs + ' - ' + item.Trm + '%' + ' <br><br> ' + item.ITRcom + '<br><br> ' + item.ETRcom + '</td><td>' + item.Mrs + ' - ' + item.Mrm + ' <br><br> ' + item.MRcom + '</td><td>' + item.Hrs + ' <br><br> ' + item.Remarks + '</td></tr>');
                             } {
                                 document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + item.Coursename + ' - ' + item.Mode + '<br><br>' + item.Allocationdate + '</td>' + '<td>' + item.Assgclass + '</td>' + '<td colspan="2">Topic1&nbsp;-&nbsp;' + item.Handson_RSSI + '<br><br>Topic2&nbsp;-&nbsp;' + item.Handson_RPMC + '</td><td colspan="2">' + '<span class="noticet"><a href="' + item.Googlefolder + '"target="_blank">Google Drive Folder</a></span>' + '</td></tr>');
                             } {
