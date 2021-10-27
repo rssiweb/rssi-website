@@ -285,10 +285,16 @@
                         var Handson_RSSI = sheetData[i][68];
                         var Handson_RPMC = sheetData[i][69];
                         var ExTR = sheetData[i][70];
+                        var ITRcom = sheetData[i][73];
+                        var ETRcom = sheetData[i][74];
+                        var MRcom = sheetData[i][75];
 
 
                         if (RegistrationNo === registrationno && Colors != '@#null#@') {
                             records.push({
+                                ITRcom: ITRcom,
+                                ETRcom: ETRcom,
+                                MRcom: MRcom,
                                 ExTR: ExTR,
                                 Handson_RPMC: Handson_RPMC,
                                 Handson_RSSI: Handson_RSSI,
@@ -335,7 +341,7 @@
                     } else {
                         records.forEach(item => {
                             {
-                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.RegistrationNo + ' - ' + item.Name + ' - ' + item.Emailid + '</td>' + '<td>' + item.Trs + ' - ' + item.Trm + '%</td><td>' + item.Mrs + ' - ' + item.Mrm + '%</td><td>' + item.Hrs + ' <br><br> ' + item.Remarks + '</td></tr>');
+                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.RegistrationNo + ' - ' + item.Name + ' - ' + item.Emailid + '</td>' + '<td>' + item.Trs + ' - ' + item.Trm + '%' + ' <br><br> ' + item.ITRcom + '<br><br> ' + item.ETRcom + '</td><td>' + item.Mrs + ' - ' + item.Mrm + '%' + ' <br><br> ' + item.MRcom + '</td><td>' + item.Hrs + ' <br><br> ' + item.Remarks + '</td></tr>');
                             } {
                                 document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + item.Coursename + ' - ' + item.Mode + '<br><br>' + item.Allocationdate + '</td>' + '<td>' + item.Assgclass + '</td>' + '<td colspan="2">Topic1&nbsp;-&nbsp;' + item.Handson_RSSI + '<br><br>Topic2&nbsp;-&nbsp;' + item.Handson_RPMC + '</td><td colspan="2">' + '<span class="noticet"><a href="' + item.Googlefolder + '"target="_blank">Google Drive Folder</a></span>' + '</td></tr>');
                             } {
