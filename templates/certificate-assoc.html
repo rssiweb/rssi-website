@@ -132,10 +132,10 @@ http://www.rssi.in
             </div>
 
             <div class="col3">
-                <button type="button1" class="exam_btn" onclick="loaddata()"><i class="fas fa-search"></i>
+                <button type="button1" name="submit" id="submit" class="exam_btn" onclick="loaddata()"><i
+                        class="fas fa-search"></i>
                     search</button>
             </div>
-
 
         </div>
     </div>
@@ -325,6 +325,7 @@ http://www.rssi.in
             policyLink: '/website-disclaimer'
         });
     </script>
+    <!--USING URL AUTO FILL THE FORM AND SUBMIT-->
     <script>
         var hashParams = window.location.hash.substr(1).split('&'); // substr(1) to remove the `#`
         for (var i = 0; i < hashParams.length; i++) {
@@ -332,6 +333,13 @@ http://www.rssi.in
             document.getElementById(p[0]).value = decodeURIComponent(p[1]);;
         }
     </script>
+    <script>
+        jQuery(function() {
+            jQuery('#submit').click();
+        });
+    </script>
+    <!--END USING URL AUTO FILL THE FORM AND SUBMIT-->
+
     <div id="footer"></div>
     </body>
 
