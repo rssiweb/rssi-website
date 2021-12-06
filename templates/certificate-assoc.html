@@ -94,7 +94,8 @@ http://www.rssi.in
     <!--<img src="" alt="" width="100%"/><br>-->
     <div style="margin: 0.3%;">
         <ps class="marginleft notice" style="margin-left: 3%;">
-            <a href="/index">Home</a> &#62; e-Certificate&#62; Associate</ps>
+            <a href="/index">Home</a> &#62; e-Certificate&#62; Associate
+        </ps>
     </div>
     <br><br>
     <div class="container">
@@ -323,6 +324,13 @@ http://www.rssi.in
             //facebookPixel: '',
             policyLink: '/website-disclaimer'
         });
+    </script>
+    <script>
+        var hashParams = window.location.hash.substr(1).split('&'); // substr(1) to remove the `#`
+        for (var i = 0; i < hashParams.length; i++) {
+            var p = hashParams[i].split('=');
+            document.getElementById(p[0]).value = decodeURIComponent(p[1]);;
+        }
     </script>
     <div id="footer"></div>
     </body>

@@ -60,6 +60,7 @@ git push --set-upstream origin rssiweb
 
 pipenv run flask run
 
+pip install pipenv
 
 Password change
 --------------------------
