@@ -60,7 +60,12 @@ git push --set-upstream origin rssiweb
 
 pipenv run flask run
 
+pipenv --rm
+pipenv install
+
 pip install pipenv
+pip3 install pipenv
+
 pip install flask
 To activate this project's virtualenv, run pipenv shell.
 Alternatively, run a command inside the virtualenv with pipenv run.
