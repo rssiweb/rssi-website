@@ -31,3 +31,5 @@ jobs:
 
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@master
+        with:
+          RELEASE_BRANCHES: master,main,dockerize
