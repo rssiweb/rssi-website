@@ -1,15 +1,14 @@
-FROM python:3.10-slim
+FROM python:3.8-slim
 
-COPY ./app/Pipfile /app/Pipfile
-COPY ./app/Pipfile.lock /app/Pipfile.lock
+COPY Pipfile /app/Pipfile
+COPY Pipfile.lock /app/Pipfile.lock
+ADD ./rssiweb /app/rssiweb
 
 WORKDIR /app
 
 RUN pip install --upgrade pip pipenv
 RUN pipenv install --system --deploy 
 
-ADD ./app /app
-
 EXPOSE 80
 
-ENTRYPOINT ["gunicorn", "app:app", "-b", "0.0.0.0:80"]
+ENTRYPOINT ["gunicorn", "rssiweb:create_app()", "-b", "0.0.0.0:80"]

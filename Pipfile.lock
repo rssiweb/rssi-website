@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "9787a81a3a2ce51f3a758089ae423108069fea9b260a3e5ed07a3adb4f5b0d4a"
+            "sha256": "4b2051d8368a1c0c0ace5af74f2d6f8c21e2e4ad8adce4c0a547b079f2d03d5d"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.10"
+            "python_version": "3.8"
         },
         "sources": [
             {
@@ -130,6 +130,10 @@
             ],
             "markers": "python_version >= '3.6'",
             "version": "==2.0.1"
+        },
+        "rssiweb": {
+            "path": "./rssiweb",
+            "version": "==0.0.0"
         },
         "setuptools": {
             "hashes": [

@@ -1,20 +1,8 @@
-from flask import Flask, render_template, request
-from whitenoise import WhiteNoise
+from flask import Blueprint, render_template, request
 import hashlib
 import os
 
-autorefresh = os.getenv("AUTO_REFRESH") == "True"
-app = Flask(__name__)
-app.wsgi_app = WhiteNoise(app.wsgi_app, autorefresh=autorefresh)
-my_static_folders = (
-    ("templates/css", "css"),
-    ("templates/js", "js"),
-    ("templates/images", "images"),
-    ("templates/images/logo", ""),
-)
-for folder, prefix in my_static_folders:
-    app.wsgi_app.add_files(folder, prefix)
-
+app = Blueprint('main', __name__, url_prefix='')
 
 def is_authorized(folder):
     """

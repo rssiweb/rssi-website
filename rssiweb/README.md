@@ -1,21 +1,23 @@
-1 To Open Terminal
+## For any changes
+- To Open Terminal
 	Win + R => type cmd
-2 Go to website folder, type following in terminal
+- Go to website folder, type following in terminal
 	- E: 
 	- cd RSSIWebsite
-3 See the changes
+- See the changes
 	- git status
-4 Stage the changes (if modified the existing file)
+- Stage the changes (if modified the existing file)
 	- git stage -u
-5 Stage the changes (if adding new files)
+- Stage the changes (if adding new files)
 	- git add <path_to_file>
-6 Commit the changes
+- Commit the changes
 	- git commit -m "your message"
-7 Push the changes to remote
+- Push the changes to remote
 	- git push origin -u master
 
+## First Time setup
 One Time setup respository on Github
- - create a new repository and copy <remote_URL_from_github> (https://github.com/sahasomnath/RSSIWebsite.git)
+ - create a new repository and copy <remote_URL_from_github> (https://github.com/rssiweb/RSSIWebsite.git)
  - open the terminal in website folder(step 1 and step 2)
  - git init
  - git add . (to add all files in current directory)
@@ -25,31 +27,15 @@ One Time setup respository on Github
 
 
 
-Step 1
-git pull
+ - `git pull`
+ - `git rm -rf Folder1`
+ - `git rm -rf Folder1`
+ - `git add .`
+ - `git commit -m “Folder1 deleted”`
+ - `git push`
 
-Step 2
-git rm -rf Folder1
-
-Step 3
-git rm -rf Folder1
-
-Step 4
-git add .
-
-Step 5
-git commit -m “Folder1 deleted”
-
-Step 6
-git push
-
-
-E:\RSSIWebsite>git fetch --all
-Fetching origin
-
-E:\RSSIWebsite>git reset --hard origin/rssiweb
-HEAD is now at 7ef1a78 lazy loading
-
+Pull changes form github
+- `git fetch --all`
 
 git fetch origin d75e8d81318243376cf355c5ec4dfa84f3b
 git checkout FETCH_HEAD
@@ -72,16 +58,9 @@ Alternatively, run a command inside the virtualenv with pipenv run.
 
 Password change
 --------------------------
-heroku Login - rssi.connect@gmail.com
-More
-Run console
-flask generate-hash-for 2310
-Run
-Save the session and copy the encripted value and paste it to
-Settings
-Reveal config variable
-paste the codes (SECURE_USER, INDIGO_CODE, SECURE1_USER, PASSWORD_CODE)
-DO NOT REMOVE Salt
+you can visit the portal at /generate-hash-for/<password-here>
+copy the hash and put it in the github secrets
+
 
 Change in .env file offline
 ---------------------------------

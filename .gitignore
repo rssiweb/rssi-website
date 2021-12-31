@@ -1,3 +1,7 @@
 .py[co]
 .env
 .vscode/
+.pytest_cache
+*.egg-info
+build/
+__pycache__/
