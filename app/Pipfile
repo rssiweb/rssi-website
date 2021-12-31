@@ -9,7 +9,6 @@ verify_ssl = true
 flask = "*"
 gunicorn = "*"
 whitenoise = "*"
-click = "*"
 
 [requires]
 python_version = "3.10.1"

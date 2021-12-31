@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 from whitenoise import WhiteNoise
 import hashlib
-import click
 import os
 
 autorefresh = os.getenv("AUTO_REFRESH") == "True"
@@ -11,6 +10,7 @@ my_static_folders = (
     ("templates/css", "css"),
     ("templates/js", "js"),
     ("templates/images", "images"),
+    ("templates/images/logo", ""),
 )
 for folder, prefix in my_static_folders:
     app.wsgi_app.add_files(folder, prefix)
@@ -35,7 +35,6 @@ def is_authorized(folder):
         hashed_code = hashlib.sha512(content).hexdigest()
         return hashed_code == os.getenv(f"{user.upper()}_CODE")
 
-
 @app.route("/<string:name>")
 @app.route("/")
 def public_pages(name="index"):
@@ -52,10 +51,11 @@ def secure_pages(folder, name):
     return render_template(name)
 
 
-@app.cli.command("generate-hash-for")
-@click.argument("code")
+@app.route("/generate-hash-for/<string:code>", methods=["GET"])
 def set_code(code):
     salt = os.getenv("SALT")
+    if not salt:
+        return "SALT not set"
     content = (salt + code).encode()
     hashed_code = hashlib.sha512(content).hexdigest()
-    print(hashed_code)
+    return str(hashed_code)
