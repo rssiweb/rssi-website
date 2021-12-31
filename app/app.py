@@ -18,7 +18,8 @@ for folder, prefix in my_static_folders:
 
 def is_authorized(folder):
     """
-    given a folder it checks the username and password from 2 environment variables
+    given a folder it checks the username and password from 2
+    environment variables
     - <FOLDER>_USER to contain the username for this folder
     - <USER>_CODE to contain the hashed code for the user
     """
@@ -34,6 +35,7 @@ def is_authorized(folder):
         content = (salt + code).encode()
         hashed_code = hashlib.sha512(content).hexdigest()
         return hashed_code == os.getenv(f"{user.upper()}_CODE")
+
 
 @app.route("/<string:name>")
 @app.route("/")
