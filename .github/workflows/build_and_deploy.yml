@@ -30,8 +30,21 @@ jobs:
       - name: Test with pytest
         run: |
           pipenv run pytest .
-
+  
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@master
         env:
           RELEASE_BRANCHES: master,main,dockerize
+  deploy:
+    needs: test
+    environment: prod
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: rssingo/website
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        tag_semver: true
