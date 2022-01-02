@@ -3,6 +3,8 @@ on:
   push:
     branches: [ dockerize ]
   workflow_dispatch:
+env:
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -31,5 +33,5 @@ jobs:
 
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@master
-        with:
+        env:
           RELEASE_BRANCHES: master,main,dockerize
