@@ -44,6 +44,8 @@ jobs:
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
         name: rssingo/website
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: ghcr.io
+        tag_names: true
         tag_semver: true
