@@ -1,4 +1,4 @@
-name: Test and create Tag
+name: Build and Publish
 on:
   push:
     branches: [ dockerize ]
@@ -37,7 +37,6 @@ jobs:
           RELEASE_BRANCHES: master,main,dockerize
   deploy:
     needs: test
-    environment: prod
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
