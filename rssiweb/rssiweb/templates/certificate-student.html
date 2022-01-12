@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--
+RSSI
+http://www.rssi.in
+-->
+    <title>Certificate portal</title>
+</head>
+
+<meta name="description" content="">
+<meta name="author" content="">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width,
+        initial-scale=1,maximum-scale=1">
+<link rel="shortcut icon" href="/images/logo/favicon.ico" type="image/x-icon" />
+<script src="/js/jquery.js"></script>
+<script>
+    $(function() {
+        $("#header").load("/header.html");
+        $("#footer").load("/footer.html");
+    });
+</script>
+<link rel="stylesheet" href="/css/HeaderFooter.css">
+<link rel="stylesheet" href="/css/bootstrap_sheet.min.css">
+
+<!-- Main css -->
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/addstyle.css">
+<!-- Material Design Bootstrap -->
+<!--<link href="/css/mdb.min_sheet.css" rel="stylesheet">-->
+
+<style>
+    body {
+        line-height: unset;
+    }
+    
+    .navbar {
+        padding: unset;
+        font-weight: unset;
+        display: inline-block;
+    }
+    
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: unset;
+    }
+    
+    .text-center {
+        text-align: left !important;
+    }
+    
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #fff;
+    }
+    
+    .table-striped tbody tr {
+        background-color: #FAFAFB
+    }
+    
+    input,
+    select {
+        width: 150px;
+    }
+    
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: none;
+    }
+    
+    .exam_btn:hover {
+        background: #90BAA4;
+        border: 1px solid #90BAA4;
+    }
+</style>
+<!-- =========================
+     NAVIGATION LINKS     
+============================== -->
+
+<body>
+
+    <div id="header"></div>
+
+    <!-- NAVIGATION PATH -->
+
+    <!--<img src="" alt="" width="100%"/><br>-->
+    <div style="margin: 0.3%;">
+        <ps class="marginleft notice" style="margin-left: 3%;">
+            <a href="/index">Home</a> &#62; e-Certificate &#62; Student</ps>
+    </div>
+    <br><br>
+    <!--<div class="container">
+        <div clas="row">
+
+            <div class="col">
+                <div style="text-align: right; width: 100%;" class="white
+                        hoverdecoration">
+                    <a href="https://drive.google.com/file/d/1tHMtne1_2a9dakskzhfFRxtS5qt5JNnL/view" target="_blank"
+                        class="primary_btn" style="padding-right:3vh; padding-left:3vh;
+                            margin-top: 1%; background-color: #90BAA4;
+                            border-color: #90BAA4;">Gems criteria &nbsp;<i class="fas fa-award"
+                            style="font-size: 20px"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div class="container">
+        <!--<span style="color: #F2545F; display: inline;"></span>-->
+        <p style="display: inline;">You have to enter at least one value to get the certificate details.</p>
+        <div class="row" style="background-color: rgb(255, 245,
+                194);min-height: 70px;">
+
+
+            <div class="col1">
+                <label for="name">Student ID/Reg. ID<span style="color: #F2545F"></span>&nbsp;</label>
+                <input type="text" id="name" name="name" minlength="9" maxlength="12" size="12" style="text-transform:uppercase">
+            </div>
+
+            <div class="col2">
+                <label for="ename">Certificate No<span style="color: #F2545F"></span>&nbsp;</label>
+                <input type="text" name="ename" id="ename" minlength="9" maxlength="9" size="12" style="text-transform:uppercase">
+                </select>
+            </div>
+
+            <div class="col3">
+                <button type="button1" class="exam_btn" onclick="loaddata()"><i class="fas fa-search"></i>
+                    search</button>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <body>
+                    <h2 style="margin-top:2%; font-size:20px;" align="center">Get Certificate Details</h2>
+                    <div class="container text-center my-4" style="overflow-x:
+                        auto;">
+                        <!-- Table  -->
+                        <table class="table bordered table-striped" id="testTable">
+                            <!-- Table head -->
+                            <thead style="background-color: whitesmoke;
+                                font-style: oblique;">
+                                <tr>
+                                    <th width="8%"><b>Student ID</b></th>
+                                    <th width="14%"><b>Name</b></th>
+                                    <th width="8%"><b>Issued on</b></th>
+                                    <th width="14%"><b>Badge Name</b></th>
+                                    <th width="10%"><b>Certificate No</b></th>
+                                    <th width="10%"><b>Certificate</b></th>
+                                    <th><b>Comment</b></th>
+
+
+                                </tr>
+                            </thead>
+                            <!-- Table head -->
+
+                            <!-- Table body -->
+                            <tbody id="demo">
+
+
+                            </tbody>
+                            <!-- Table body -->
+                        </table>
+                        <!-- Table  -->
+
+                    </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- =========================
+     SCRIPTS   
+============================== -->
+    <script src="/js/pace.js"></script>
+    <script src="/js/fontawsome.js"></script>
+    <script src="/js/smoothscroll.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.parallax.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/custom.js"></script>
+    <script type="text/javascript">
+        var loaddata = function() {
+            var studentid = document.getElementById('name').value.toUpperCase()
+            var certificateno = document.getElementById('ename').value.toUpperCase()
+
+            $.getJSON("https://sheets.googleapis.com/v4/spreadsheets/1I5WANuMzHDcb2m9-PoXIOV3aZIrABUGSfwPOPNh0HBY/values/Student?alt=json&key=AIzaSyAO7Z3VLtKImi3UGFE6n6QKhDqfDBBCT3o",
+                function(data) {
+                    document.getElementById('demo').innerHTML = ""
+                    var sheetData = data.values;
+                    var i;
+                    var records = []
+                    for (i = 0; i < sheetData.length; i++) {
+                        var Studentid = sheetData[i][0];
+                        var Name = sheetData[i][1];
+                        var Designation = sheetData[i][2];
+                        var DOJ = sheetData[i][3];
+                        var Yearsofservice = sheetData[i][4];
+                        var Modeofservice = sheetData[i][5];
+                        var BadgeName = sheetData[i][6];
+                        var Receivedfor = sheetData[i][7];
+                        var Certificate = sheetData[i][8];
+                        var Issuedon = sheetData[i][9];
+                        var CertificateNo = sheetData[i][10];
+
+                        if ((Studentid === studentid && CertificateNo === certificateno) || (studentid === "" && CertificateNo === certificateno) || (certificateno === "" && Studentid === studentid)) {
+                            // sort records
+                            records.push({
+                                Issuedon: Issuedon,
+                                BadgeName: BadgeName,
+                                CertificateNo: CertificateNo,
+                                Certificate: Certificate,
+                                Receivedfor: Receivedfor,
+                                Name: Name,
+                                Studentid: Studentid
+                            })
+                        }
+
+                        // else {document.getElementById('demo').innerHTML= "no record2";}
+                    }
+                    if (records.length == 0) {
+                        document.getElementById('demo').innerHTML += ('<tr>' + '<td colspan="3">' + '<p style="color:#F2545F">No record found.</p>' + '</td></tr>');
+                    } else {
+                        records.forEach(item => {
+                            {
+                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Studentid + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Issuedon + '</td>' + '<td>' + item.BadgeName + '</td>' + '<td>' + item.CertificateNo + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Certificate + '"target="_blank">Download</a></span>' + '</td>' + '<td>' + item.Receivedfor + '</td>' + '</tr>');
+                            }
+                        })
+                    }
+                });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var lazyloadImages = document.querySelectorAll("img.lazy");
+            var lazyloadThrottleTimeout;
+
+            function lazyload() {
+                if (lazyloadThrottleTimeout) {
+                    clearTimeout(lazyloadThrottleTimeout);
+                }
+
+                lazyloadThrottleTimeout = setTimeout(function() {
+                    var scrollTop = window.pageYOffset;
+                    lazyloadImages.forEach(function(img) {
+                        if (img.offsetTop < (window.innerHeight + scrollTop)) {
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                        }
+                    });
+                    if (lazyloadImages.length == 0) {
+                        document.removeEventListener("scroll", lazyload);
+                        window.removeEventListener("resize", lazyload);
+                        window.removeEventListener("orientationChange", lazyload);
+                    }
+                }, 20);
+            }
+
+            document.addEventListener("scroll", lazyload);
+            window.addEventListener("resize", lazyload);
+            window.addEventListener("orientationChange", lazyload);
+        });
+    </script>
+    <script>
+        // Initiate an Ajax request on button click
+        $(document).on("click", "button1", function() {
+            // Adding timestamp to set cache false
+            $.get("certificate-student.html?v=" + $.now(), function(data) {
+                $("body").html(data);
+            });
+        });
+
+        // Add remove loading class on body element depending on Ajax request status
+        $(document).on({
+            ajaxStart: function() {
+                $("body").addClass("loading");
+            },
+            ajaxStop: function() {
+                $("body").removeClass("loading");
+            }
+        });
+    </script>
+    <div class="overlay"></div>
+    <!-- =========================
+     FOOTER   
+============================== -->
+    <!-- Back top -->
+    <script>
+        $(document).ready(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('#back-to-top').fadeIn();
+                } else {
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            // scroll body to 0px on click
+            $('#back-to-top').click(function() {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 400);
+                return false;
+            });
+        });
+    </script>
+    <a id="back-to-top" href="#" class="go-top" role="button"><i class="fa fa-angle-up"></i></a>
+    <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
+    <!-- Glow Cookies v3.0.1 -->
+    <script>
+        glowCookies.start('en', {
+            analytics: 'G-S25QWTFJ2S',
+            //facebookPixel: '',
+            policyLink: '/website-disclaimer'
+        });
+    </script>
+    <div id="footer"></div>
+    </body>
+
+</html>

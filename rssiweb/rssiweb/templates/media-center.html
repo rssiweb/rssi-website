@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--
+RSSI
+http://www.rssi.in
+-->
+    <title>Media Center</title>
+</head>
+
+<meta name="description" content="">
+<meta name="author" content="">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width,
+        initial-scale=1,maximum-scale=1">
+<link rel="shortcut icon" href="/images/logo/favicon.ico" type="image/x-icon" />
+<script src="/js/jquery.js"></script>
+<script>
+    $(function() {
+        $("#header").load("/header.html");
+        $("#footer").load("/footer.html");
+    });
+</script>
+<link rel="stylesheet" href="/css/HeaderFooter.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+<!-- Main css -->
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/addstyle.css">
+<!-- Material Design Bootstrap -->
+<!--<link href="/css/mdb.min_sheet.css" rel="stylesheet">-->
+
+<style>
+    .navbar {
+        padding: unset;
+        display: inline-block;
+    }
+    
+    hr {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border: 0;
+        border-top: 2px solid #eee;
+    }
+    
+    p1 {
+        font-size: 13px;
+        color: #777777;
+        line-height: 21px !important;
+    }
+    
+    .colm {
+        float: left;
+        width: 33.33%;
+        padding: 5px;
+        margin-left: -5px;
+    }
+    /* Clearfix (clear floats) */
+    
+    .rowm::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    
+    .container {
+        margin-left: 0;
+    }
+    
+    .col {
+        margin-left: 4%;
+    }
+    
+    @media screen and (max-width: 800px) {
+        .colm {
+            width: 100%;
+        }
+        .col {
+            margin-left: 5%;
+        }
+    }
+</style>
+
+<!-- =========================
+     NAVIGATION LINKS     
+============================== -->
+
+<body>
+
+    <div id="header"></div>
+
+    <!-- NAVIGATION PATH -->
+
+    <!--<img class="lazy" data-src="" alt="" width="100%"/><br>-->
+    <div style="margin: 0.3%;">
+        <ps class="marginleft notice" style="margin-left: 3%;">
+            <a href="/index">Home</a> &#62; Media Center
+        </ps>
+    </div>
+
+    <br><br>
+
+    <div id="display" class="container">
+        <div class="row">
+            <div class="col">
+
+                <!--Parent-Teacher Meeting - End of QT1/2021
+                <br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;14-Aug-2021</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img src="https://drive.google.com/uc?id=1QgewjNg_Z9nt7FRlzhnJr6hoswIZOqHi" style="width:100%"></div>
+                </div>
+
+                <hr>-->Our students participated in Azadi Ka Amrit Mahotsav organized by Ministry of Culture, Government of India.
+                <br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;14-Aug-2021</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img src="https://drive.google.com/uc?id=1jZERx8gj6Bu9onrGgz-dCPaMYuP2KAMc" style="width:100%"></div>
+                </div>
+                <hr>RSSI organized various student activities on the occasion of International Youth Day.
+                <br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;12-Aug-2021</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img src="https://drive.google.com/uc?id=1Rw2ghqxdY5mvMGNtTeRVLh69KD7caOfT" style="width:100%"></div>
+                    <div class="colm"><img src="https://drive.google.com/uc?id=17yVW6n-n1ZPJYP94fUi1QLUUi-lo-AQH" style="width:100%"></div>
+                </div>
+                <hr>Successful execution of Teacher training program (1st batch) in collaboration with Raja Peary Mohan College, West Bengal.
+                <br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;3-Aug-2021</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img src="https://drive.google.com/uc?id=1LmKus6XoqRgh8aVIb-KvjRf4TcaKAmA5" style="width:100%"></div>
+                </div>
+
+                <hr>Online exam QT1/2021 was conducted for class 6th to 12th.
+                <br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;31-Jul-2021</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img src="https://drive.google.com/uc?id=1RFu4vf26jkL-eUODjBPYHdQUSlUHFU5g" style="width:100%"></div>
+                </div>
+
+                <br>
+                <hr>Introducing a non-virtual library for all local students.<br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;14-May-2021</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img src="https://drive.google.com/uc?id=1GZD9B_PICOcAKHmjnWcu4IwtQ3-uZSRe" style="width:100%"></div>
+                    <div class="colm"><img src="https://drive.google.com/uc?id=1Pa8tHKizlXQ-FXYQ6lnUsvvjF1dAelF9" style="width:100%"></div>
+                </div>
+                <br>
+
+                <!--<hr>Launched our first customized internal web-portal for both students and faculties.<br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;1-May-2021</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img src="https://drive.google.com/uc?id=1N2gwaBmM4-l2YYxQPAePuVsyB7M4tsRR" style="width:100%"></div>
+                </div>
+                <br>-->
+                <hr>Session on basic hygiene and soap distribution.<br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;2-Apr-2021</p1><br><br>
+                <div class="rowm">
+                    <!--<div class="colm"><img src="https://drive.google.com/uc?id=1SHAyVMt49_zDrcE3zIojjEV_Fo7PwkbD" style="width:100%"></div>-->
+                    <div class="colm"><img src="https://drive.google.com/uc?id=1ekyjQEmKnxq-h3iz1aR5pmUsBv7_2PbL" style="width:100%"></div>
+                    <div class="colm"><img src="https://drive.google.com/uc?id=1EYWBQ3T686Ko3N8PS2K15zY09J5ySjb-" style="width:100%"></div>
+                </div>
+                <br>
+
+
+                <hr>Holi Celebration.<br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;21-Mar-2021</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img src="https://drive.google.com/uc?id=1nldiTSBQ7KVV9hvpp9nC1jrJfIYnnvj5" style="width:100%"></div>
+                    <!--<div class="colm"><img src="https://drive.google.com/uc?id=1e5r62yG7dLdKdsBjl1waPnfnsEJuWJBZ" style="width:100%"></div>-->
+                    <div class="colm"><img src="https://drive.google.com/uc?id=17xUV-EKImCLpL8pOEIRM_HjUNdQz6M2m" style="width:100%"></div>
+                </div>
+                <br>
+
+                <hr>The training program on digital education has been successfully completed for new trainee volunteers in collaboration with Raja Peary Mohan College (affiliated to University of Calcutta). After training, the successful candidate has been
+                provided with provisional certificate.<br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;1-Mar-2021</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1fygzvCk6gKpem9Pe4NK0O6UB9OJnlCaZ" style="width:100%"></div>
+                </div>
+                <br>
+
+                <hr>Arrangement for offline evaluation.<br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;28-Feb-2021</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1Az_F7UeKZcidl7M5_S9IcGlfZ9u06hUG" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1vdcTJPw_V53prfvHAssqEx2zE5PoAHfG"></div>
+                </div>
+                <br>
+
+                <hr>Offline examination. Academic year - QT3-2021<br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;15-Feb-2021</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1qmdO3f0zX5VfDeZDYOK64FnepgJhxWOS" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1aSN0qwXBfZWJejweGqjL6oT4mYlA28-O" style="width:100%"></div>
+                </div>
+                <br>
+
+                <hr>Republic day celebration.<br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;26-Jan-2021</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=16DCfhHm1hBSMajxB1RY7qp79iwxqvdYb" style="width:100%"></div>
+                </div>
+                <br>
+
+                <hr>Commencement of offline classes and academic activities for LG2. Academic year - 2021-2022<br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;15-Jan-2021</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img src="https://drive.google.com/uc?id=1-Zr2q6ZCKl5HlLHYmSo0-kPlp0qrtV55" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1DPimTEKRi9o4dNQ9CuSy2v7e-AhBvDJt" style="width:100%"></div>
+                </div>
+                <br>
+
+
+                <hr>Christmas Day celebration at Shalimar Park<br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;25-Dec-2020</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1s1SI14huVLQoNJLofpiZLbyrG_2OCHo9" style="width:100%"></div>
+                    <div class="colm"><iframe class="embed-responsive-item" style="width:100%; height: 270px; border: 0vw;" src="https://drive.google.com/file/d/1pzouE8y78MhFOSZdq5qXLrmyVlkOStwc/preview" allowfullscreen></iframe></div>
+                </div>
+                <br>
+
+                <hr> RSSI Promotional Video<br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;12-Dec-2020</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><iframe class="embed-responsive-item" style="width:100%; height: 265px; border: 0vw;" src="https://drive.google.com/file/d/151XCry5_VgR1YpM3_US_8hflYjYyhoYl/preview" allowfullscreen></iframe></div>
+                </div>
+                <br>
+
+                <hr>Sawchhta Week<br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;02-Oct-2020</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><iframe class="embed-responsive-item" style="width:100%; height: 265px; border: 0vw;" src="https://drive.google.com/file/d/1kQgLI8YcC5MQnXZl3XrUarbTEqjbumim/preview" allowfullscreen></iframe></div>
+                </div>
+                <br>
+
+                <hr> Srishti, a sky where dreams can fly high.<br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;23-Aug-2020</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><iframe class="embed-responsive-item" style="width:100%; height: 265px; border: 0vw;" src="https://drive.google.com/file/d/1yRK-LDdb1ypPBRS9okxBmShHog0cZF7j/preview" allowfullscreen></iframe></div>
+                </div>
+                <br>
+
+                <hr> Donation drive by Ayesa<br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;22-July-2019</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1_4ay4Jw-EMvcRaKDy_dmPPRC5lwmDtM8" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=11SicvcU6AgbOIs-siQRuGIY2zL8xfdjh" style="width:100%"></div>
+                </div>
+                <br>
+                <p class="noticet ">For more Photos and Videos, please &nbsp;<a href="https://drive.google.com/open?id=1faHatJm356V6G65-0tkdvfkWp2j83Vly " target="_blank ">Click
+                        Here</a></p>
+
+                <hr> Educational Trip - Lucknow Metro<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;07-July-2019</p1><br><br>
+                <div class="rowm">
+                    <div class="colm">
+                        <img class="lazy" data-src="https://drive.google.com/uc?id=1EcOw_GZ7AfrXy_lO1Ka3ETMcehyfwMdj" style="width:100%">
+                    </div>
+                    <div class="colm">
+                        <img class="lazy" data-src="https://drive.google.com/uc?id=1VP6Pjy8RUalJcKxAf0hzQg9BCU1ljor_" style="width:100%">
+                    </div>
+                </div><br>
+                <p class="noticet ">For more Photos and Videos, please &nbsp;<a href="https://drive.google.com/open?id=1w813As_LWADb_4n5Xb4GD2eOBzPMN1FE " target="_blank ">Click
+                        Here</a></p>
+
+
+                <hr> Yoga Class.<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;16-Jun-2019</p1><br><br>
+                <div class="rowm">
+                    <div class="colm">
+                        <img class="lazy" data-src="https://drive.google.com/uc?id=16njDN6m6cEOL-xsWvNCIzFzJYk_B0txz" style="width:100%">
+                    </div>
+                    <div class="colm">
+                        <img class="lazy" data-src="https://drive.google.com/uc?id=1L_Ti7VGll7Mk378Wh4CVsfghExjCAH6q" style="width:100%">
+                    </div>
+                </div>
+                <br>
+                <hr> Awareness program on Menstrual hygiene, Phase III.<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;16-Jun-2019</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" height="400 " data-src="https://drive.google.com/uc?id=1_UIRF0393ag9G37WreJU0npspQ1wkES7" width="300 ">
+                    </div>
+                </div>
+                <hr> Father's Day celebration at RSSI Lucknow<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;16-Jun-2019</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1jdZTrrpzcvAND77WKE-muwNcPg1fcAd4" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1rFlIJFmMpHaEXibuJcL5AJCsOxwPYoN2" style="width:100%"></div>
+                </div><br>
+                <p class="noticet ">For more Photos and Videos, please &nbsp;<a href="https://drive.google.com/open?id=1tB9S-vuJrWhC6qNdlU-zez7IK4G2cY3c " target="_blank ">Click
+                        Here</a></p>
+
+                <hr> Ifter 2019 organized by RSSI Lucknow<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;02-Jun-2019</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1QLHeQ-kxfkDpeExQ2SZEGke_LmyiuOZ-" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1z5OCa_JP0bXmsQ6pNcGzp9KQOzqZAmuL" style="width:100%"></div>
+                </div><br>
+
+                <hr> Eidee A reason to smile - Eid celebration 2019 an initiative of RSSI, association with TCS and Sarvebhyo Foundation<br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;02-Jun-2019</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1RAMg2WgmHFpPglXcLK54tV5B__3ekvjM" style="width:100%;"></div>
+                </div><br>
+
+                <p class="noticet ">For more Photos and Videos, please&nbsp;<a href="https://drive.google.com/drive/folders/1_Qj5Lt4iZn2LU8UnvezpfN5eRKO8ZYW_?usp=sharing " target="_blank ">Click Here</a></p>
+
+                <hr> Award distribution - 2K19. Special thanks to Upasana (Read Upasana Patel) for her contributions to drive the event and sponsoring cycle. Thank​ ​you​ ​for​ ​your​ ​generous​ ​support! Beneficiary details - Mohd Amir, Age 13, Secured 1st
+                position in Q4 examination (80.83%). In school awarded double promotion to class 5.<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;05-May-2019</p1><br><br>
+
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1eelbxS7K9mHi3HyybIyxTpexf5cp0r-p" style="width:100%"></div>
+                </div>
+                <br>
+
+                <hr> Rang Barse - Holi Event 2019 an initiative of RSSI, association with TCS and Sarvebhyo Foundation
+                <br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;17-Mar-2019</p1><br><br>
+
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=187LMJqpMRkILB-xE6pj-4LE4X7U-by2F" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1MIF-4LSg48Xm_j7tvfKzu0-DVq76MGZw" style="width:100%"></div>
+                </div><br>
+
+                <p class="noticet ">For more Photos and Videos, please&nbsp;<a href="https://drive.google.com/drive/folders/1YEf_TxTRGoWBg6VeibyX-aUhTX9mE-VQ " target="_blank ">Click Here</a></p>
+
+                <hr> Republic Day and Annual Sports – 2019 an initiative of RSSI, association with TCS<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;26-Jan-2019</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1NXOziEKrfcd9JwcapgiB5JneBAUZ463r" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1zrKfJI6jmPlUaYmXLL8w8HKC8qdgBRXZ" style="width:100%">
+                    </div>
+                </div><br>
+
+                <p class="noticet ">For more Photos and Videos, please&nbsp;<a href="https://goo.gl/sMyyv4 " target="_blank ">Click Here</a></p>
+
+
+                <hr> Christmas and Annual Day Celebration – 2018 Co-sponsored by Tata Consultancy Services.<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;25-Dec-2018</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1zaAdvGHA79ber5MUwpRP-d335YJwoYw2" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1xnz5K_64u2xoNyQiWz7ptr7zUekKzA8z" style="width:100%"></div>
+                </div><br>
+
+                <p class="noticet ">For more Photos and Videos, please&nbsp;<a href="https://goo.gl/XAGXn4 " target="_blank ">Click Here</a></p>
+
+                <hr> Cycle distribution under Swabhiman Prakalpa (Q3 2018).<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;21-Dec-2018</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1XXSI0HgSJ1sVrbMe_rqAT9H49_2iPDJT" style="width:100%"></div>
+                </div><br>
+
+                <hr> Diya - Enlighten Smiles, Diwali Celebration. Powered by TCS-Maitree and in collaboration with Sarvebhyo Foundation
+                <br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;05-Nov-2018</p1><br><br>
+
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1uljmk4eWaeB60b3rFRPxM-wiNg6rn93H" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1zwoVYslKZctJm0v9xiQqO-S3YO42hXFT" style="width:100%"></div>
+                </div><br>
+                <p class="noticet ">For more Photos and Videos, please&nbsp;<a href="https://goo.gl/43hm4j " target="_blank ">Click Here</a></p>
+                <hr> Our new classroom. In collaboration with Little Friend School<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;30-Sep-2018</p1><br><br>
+                <div class="rowm">
+                    <div class="colm">
+                        <img class="lazy" data-src="https://drive.google.com/uc?id=1t7LS6yos1i_x3KYppBHiiOgA3icpIS1r" style="width:100%">
+                    </div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1Tcj-e3TRUmV06SrS1lho7KnTIC2IIZ2x" style="width:100%"></div>
+                </div><br>
+                <hr> Awareness program on Menstrual hygiene, Phase II. In collaboration with TCS and Sarvebhyo Foundation
+                <br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;1-Sep-2018</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1JPoDSD8yd3MYva83k_1XFkiK3Gb4wMBl" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=16-nMhvIzKQHC3xn-lRjp8-Vj0yyP9H1Q" style="width:100%"></div>
+                </div><br>
+
+                <p class="noticet ">For more Photos and Videos, please&nbsp;<a href="https://drive.google.com/drive/folders/1LjqyclFPe_TaMwVGFSBSKc4wvowmdzG9 " target="_blank ">Click Here</a></p>
+
+                <hr> Awareness program on Sexual abuse and Menstrual hygiene (Especially for Girls, age of 10-20 Years Old), in collaboration with TCS and Sarvebhyo Foundation<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;20-Aug-2018</p1><br><br>
+
+
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1kVZhiepAK8BJ_1iyUYxK1ZCzANu4eCoi" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1iJO56LV11BIP3fZPzwF4HEuqpyVEPAa7" style="width:100%"></div>
+                </div><br>
+                <p class="noticet ">For more Photos and Videos, please&nbsp;<a href="https://drive.google.com/open?id=1qztAXtP-c2Z6oUKTBAVhhlp4WhDcyCDY " target="_blank ">Click Here</a></p>
+
+                <hr> Independence Day Celebration – 2018<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;15-Aug-2018</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1ybo15LnU_IqHdJ5Mn9EhfSrETva-3eiw" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1sV7iNX4yxuJ5WRY7DT_qtvv1tcNmT9NC" style="width:100%"> </div>
+                </div><br>
+
+                <p class="noticet ">For more Photos and Videos, please&nbsp;<a href="https://drive.google.com/open?id=1lY6Sds03635cNd0g0Dcc63wEoE7wDNSx " target="_blank ">Click Here</a></p>
+
+                <hr> Commencement of Classes and academic activities for foundation Regular/Irregular course (Lucknow Center) Q3 2018.
+                <br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;16-July-2018</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1hFXPKNxbg8Zx531NfV-jH76s5rslf9j8" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1IXcsDdm2qmUEmXgg0uelb9uUjGfzsAO6" style="width:100%"> </div>
+                </div><br>
+
+
+                <hr> School Admission - RSSI Slot 1 (Primary Section 5 and Pre Secondary Section 8). Primary School, Gulam Hussain Purwa, Address: Gomti Nagar Rd, Vibhuti Khand, Gomti Nagar, Lucknow, Uttar Pradesh 226010.
+                <br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;03-Apr-2018</p1><br><br>
+
+
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=16pYk0c27FA15A4Bp2TsSvcY5iWq_2wXN" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1gXddWwZWzO3FJeRGANmIUEptsj-JwUxR" style="width:100%"></div>
+                </div><br>
+
+                <hr> Educational trips at Nawab Wajid Ali Shah Zoological Garden.<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;11-Mar-2018</p1><br><br>
+
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1DxWlqV3DjZ3Q9LWVVKB1MDWfHYKOh3UW" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1pNqSyp-eerkK337iCmD58tdQReS8_Ij4" style="width:100%"></div>
+                </div><br>
+                <p class="noticet ">For more Photos and Videos, please&nbsp;<a href="https://drive.google.com/open?id=1K-GWmO5Lyns9vSNBcIj73B_0hd2UBkrC " target="_blank ">Click
+                        Here</a></p>
+
+                <hr> First-term examination, 2018 - Publication of results and Award distribution.<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;17-Feb-2018</p1><br><br>
+
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1-sv7Nxx-tquYOKzID4LcYkwp2ngSxDTu" style="width:100%"> </div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1UUh7mJKkeZYsP34vzTXhjAktNRNoRbCx" style="width:100%"></div>
+                </div><br>
+
+                <p class="noticet ">For more Photos and Videos, please&nbsp;<a href="https://drive.google.com/drive/folders/1wnXDSy3V1iAyKqnqMTeWIhEx8KAog80L " target="_blank ">Click Here</a></p>
+
+                <hr> Republic Day Celebration – 2018<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;26-Jan-2018</p1><br><br>
+
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1aU-a71cfKRxyBEfQ7QiWF23U7jvApY_C" style="width:100%; height:285px"> </div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1Lrr_kWPsZfh8Ay0RoRYmvHCV4fKuKlMS" style="width:100%"></div>
+                </div><br>
+
+                <p class="noticet ">For more Photos and Videos, please&nbsp;<a href="https://drive.google.com/open?id=1660ZZ54w2qT2bcW2Ys78aeprCcIzcRbs " target="_blank ">Click
+                        Here</a></p>
+
+                <hr> Christmas and Annual Day Celebration – 2017<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;25-Dec-2017</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1FNeLMgI9suc38Zn4Aq0Smcka0OcL22Ba" style="width:100%"> </div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1y00eTLrGwYk0Zdc6n8qDhcJCanqavIY5" style="width:100%"></div>
+                </div><br>
+
+                <p class="noticet ">For more Photos and Videos, please&nbsp;<a href="https://drive.google.com/open?id=1ZjQPhiLE7Bjy_okSa6cyGEf8l75h_lDw " target="_blank ">Click
+                        Here</a></p>
+
+
+                <hr> Introducing our new Morning batch.<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;17-Dec-2017</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1wa2dET3xOJ5YZRf7gEXIJNg69lQMubTm" style="width:100%"></div>
+                </div>
+                <hr> Annual Sports and Team Dinner – 2017<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;10-Dec-2017</p1><br><br>
+
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1QvG0zCG7L7NS8bThMGP4amZg5YTNluGT" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1QWsYsmpUnJfWnX3bbn9J85w9TbFyqYds" style="width:100%"></div>
+                </div><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1IzD2QtR9oLNJ9pm27jzgGnOb0mp4hX5P" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=17KlwjRd1F7FMBJTHHCBtPfH_PLtzfATP" style="width:100%"></div>
+                </div><br>
+
+                <p class="noticet ">For more Photos and Videos, please&nbsp;<a href="https://drive.google.com/open?id=1ePjgxKr9cptj0QiMgTsLZgU172tWnDI5 " target="_blank ">Click
+                        Here</a></p>
+
+                <hr> Safety awareness program (especially for girls, age group of 10-20 years old). An initiative of RSSI, Lucknow centre. Chaired by Sapnil Sharma.<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;19-Nov-2017</p1><br><br>
+
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1P0Lx5eFYQOwnuCSGXkqWIFvSj0t48--e" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1ivBl8lT17ubHsv-jRpHcsYSxoxYW5Twv" style="width:100%"></div>
+                </div><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1zqUSRIynVRsDhj_HYvJ-fgDRxrrlgH2R" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1WSclZ-mQmceZzrFC_3cZ7CrXpts5fy2e" style="width:100%"></div>
+                </div><br>
+                <hr> Commencement of the Educational year 2018 after prayer. Let's start a new journey.<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;05-Nov-2017</p1><br><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1rf_aRHSKZqFM9j-G6Q3dXGexsaHxTswQ" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1DUAgm983ySvXlqZep7TNGyg4E8OQ2khN" style="width:100%"></div>
+                </div><br>
+                <hr> Commencement of Classes and academic activities for foundation Regular/Irregular course (Lucknow Center).
+                <br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;28-Aug-2017</p1><br><br>
+
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1wXciqP2V4f33L8Rr3xrwrDrp-6wzhSMQ" style="width:100%"></div>
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1nBCmsJcbFdVm56ilyBKsfb36xVGQAnW6" style="width:100%"></div>
+                </div><br>
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1n5AkbYwMiUHpWasLNBOREOOIl91Cx9Cb" style="width:100%"></div>
+                    <div class="colm">
+                        <img class="lazy" data-src="https://drive.google.com/uc?id=1lE3UgxX1KS9vI8o3x-aCBlZ9K6ZvnsAE" style="width:100%">
+                    </div>
+                </div><br>
+                <hr> RSSI celebrates 70th Independence day of India.<br>
+                <p1><i class="far fa-calendar-check "></i>&nbsp;&nbsp;15-Aug-2017</p1><br><br>
+
+                <div class="rowm">
+                    <div class="colm"><iframe class="embed-responsive-item" style="width:100%; height: 265px; border: 0vw;" src="https://drive.google.com/file/d/0B8nPkixtUaGKV0NIT0dtbnRyeUU/preview" allowfullscreen></iframe></div>
+                </div>
+
+                <hr> Distribution of stationary for educational purpose.<br>
+                <p1><i class="far fa-calendar-check"></i>&nbsp;&nbsp;28-May-2017</p1><br><br>
+
+                <div class="rowm">
+                    <div class="colm"><img class="lazy" data-src="https://drive.google.com/uc?id=1U42qCRTH1DNhY_H8VK6-iz5tRYSSGSYK" style="width:100%;"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================
+     SCRIPTS   
+============================== -->
+
+    <script src="/js/pace.js"></script>
+    <script src="/js/fontawsome.js"></script>
+    <script src="/js/smoothscroll.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/custom.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            var lazyloadImages = document.querySelectorAll("img.lazy");
+            var lazyloadThrottleTimeout;
+
+            function lazyload() {
+                if (lazyloadThrottleTimeout) {
+                    clearTimeout(lazyloadThrottleTimeout);
+                }
+
+                lazyloadThrottleTimeout = setTimeout(function() {
+                    var scrollTop = window.pageYOffset;
+                    lazyloadImages.forEach(function(img) {
+                        if (img.offsetTop < (window.innerHeight + scrollTop)) {
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                        }
+                    });
+                    if (lazyloadImages.length == 0) {
+                        document.removeEventListener("scroll", lazyload);
+                        window.removeEventListener("resize", lazyload);
+                        window.removeEventListener("orientationChange", lazyload);
+                    }
+                }, 20);
+            }
+
+            document.addEventListener("scroll", lazyload);
+            window.addEventListener("resize", lazyload);
+            window.addEventListener("orientationChange", lazyload);
+        });
+    </script>
+    <script src="/js/jquery.parallax.js"></script>
+    <script src="/js/responsive-header.js"></script>
+
+    <!-- =========================
+     FOOTER   
+============================== -->
+    <!-- Back top -->
+    <a id="bttbutton" href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+    <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
+    <!-- Glow Cookies v3.0.1 -->
+    <script>
+        glowCookies.start('en', {
+            analytics: 'G-S25QWTFJ2S',
+            //facebookPixel: '',
+            policyLink: '/website-disclaimer'
+        });
+    </script>
+    <div id="footer"></div>
+    <!--<div id="tpopupX" style="position: fixed; bottom: 0;right: 15px">
+
+        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Frssi.in&tabs=timeline%2Cevents%2Cmessages&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340"
+            height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+
+        <div id="tcloseX" class="tclose notranslate">X</div>
+        <script>
+            $("#tcloseX").click(function() {
+                $("#tpopupX").toggleClass('hidden');
+                $("#thoverX").toggleClass('hidden');
+            });
+        </script>-->
+    </div>
+</body>
+
+</html>

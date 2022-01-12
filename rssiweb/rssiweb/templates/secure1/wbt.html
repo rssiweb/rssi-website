@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--
+RSSI
+http://www.rssi.in
+-->
+    <title>WBT Training</title>
+</head>
+
+<meta name="description" content="">
+<meta name="author" content="">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width,
+        initial-scale=1,maximum-scale=1">
+<link rel="shortcut icon" href="/images/logo/favicon.ico" type="image/x-icon" />
+<script src="/js/jquery.js"></script>
+<script>
+    $(function() {
+        $("#header").load("/header.html");
+        $("#footer").load("/footer.html");
+    });
+</script>
+<link rel="stylesheet" href="/css/HeaderFooter.css">
+<link rel="stylesheet" href="/css/bootstrap_sheet.min.css">
+
+<!-- Main css -->
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/addstyle.css">
+<!-- Material Design Bootstrap -->
+<!--<link href="/css/mdb.min_sheet.css" rel="stylesheet">-->
+
+<style>
+    body {
+        line-height: unset;
+    }
+    
+    .navbar {
+        padding: unset;
+        font-weight: unset;
+        display: inline-block;
+    }
+    
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: unset;
+    }
+    
+    .text-center {
+        text-align: left !important;
+    }
+    
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #fff;
+    }
+    
+    .table-striped tbody tr {
+        background-color: #FAFAFB
+    }
+    
+    input,
+    select {
+        width: 150px;
+    }
+    
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: none;
+    }
+    
+    .exam_btn:hover {
+        background: #90BAA4;
+        border: 1px solid #90BAA4;
+    }
+    
+    .columnExam2 {
+        float: left;
+        width: unset !important;
+        padding-top: 1%;
+    }
+</style>
+<!-- =========================
+     NAVIGATION LINKS     
+============================== -->
+
+<body>
+
+    <div id="header"></div>
+
+    <!-- NAVIGATION PATH -->
+
+    <!--<img src="" alt="" width="100%"/><br>-->
+    <div style="margin: 0.3%;">
+        <ps class="marginleft notice" style="margin-left: 3%;">
+            <a href="/index">Home</a> &#62; Get involved &#62; WBT Training</ps>
+    </div>
+    <br><br>
+
+    <div class="container">
+        <p style="display: inline;">You have to enter at least one value to get the WBT details.</p>
+        <div class="row" style="background-color: rgb(255, 245,
+                194);min-height: 70px;">
+
+
+            <div class="col1">
+                <label for="name">Course ID<span style="color: #F2545F"></span>&nbsp;</label>
+                <input type="text" id="name" name="name" minlength="5" maxlength="5" size="12">
+            </div>
+
+            <div class="col2">
+                <label for="ename">Language<span style="color: #F2545F"></span>&nbsp;</label>
+                <select name="ename" id="ename" class="notranslate">
+                    <option selected>--</option>
+                    <option>English</option>
+                    <option>Hindi</option>
+                    <option>Bengali</option>
+                </select>
+                </select>
+            </div>
+
+            <div class="col3">
+                <button type="button1" class="exam_btn" onclick="loaddata()"><i class="fas fa-search"></i>
+                    search</button>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <body>
+                    <h2 style="margin-top:2%; font-size:20px;" align="center">Get Web-Based Training (WBT) Details</h2>
+                    <div class="container text-center my-4" style="overflow-x:
+                        auto;">
+                        <!-- Table  -->
+                        <table class="table bordered table-striped" id="testTable">
+                            <!-- Table head -->
+                            <thead style="background-color: whitesmoke;
+                                font-style: oblique;">
+                                <tr>
+                                    <th width="10%"><b>Course ID</b></th>
+                                    <th width="25%"><b>Course Name</b></th>
+                                    <th width="8%"><b>Language</b></th>
+                                    <th width="14%"><b>Passing marks</b></th>
+                                    <th width="10%"><b>Validity</b></th>
+                                    <th><b>URL</b></th>
+                                </tr>
+                            </thead>
+                            <!-- Table head -->
+
+                            <!-- Table body -->
+                            <tbody id="demo">
+
+
+                            </tbody>
+                            <!-- Table body -->
+                        </table>
+                        <!-- Table  -->
+
+                    </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- =========================
+     SCRIPTS   
+============================== -->
+    <script src="/js/pace.js"></script>
+    <script src="/js/fontawsome.js"></script>
+    <script src="/js/smoothscroll.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.parallax.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/custom.js"></script>
+    <script type="text/javascript">
+        var loaddata = function() {
+            var courseid = document.getElementById('name').value
+            var language = document.getElementById('ename').value
+
+            $.getJSON("https://sheets.googleapis.com/v4/spreadsheets/1I5WANuMzHDcb2m9-PoXIOV3aZIrABUGSfwPOPNh0HBY/values/wbt?alt=json&key=AIzaSyAO7Z3VLtKImi3UGFE6n6QKhDqfDBBCT3o",
+                function(data) {
+                    document.getElementById('demo').innerHTML = ""
+                    var sheetData = data.values;
+                    var i;
+                    var records = []
+                    for (i = 0; i < sheetData.length; i++) {
+                        var Courseid = sheetData[i][0];
+                        var Coursename = sheetData[i][1];
+                        var Language = sheetData[i][2];
+                        var Passingmarks = sheetData[i][3];
+                        var Validity = sheetData[i][4];
+                        var Url = sheetData[i][5];
+
+
+
+                        if ((Courseid === courseid && Language === language) || (language === '--' && Courseid === courseid) || (courseid === "" && Language === language)) {
+                            // sort records
+                            records.push({
+                                Courseid: Courseid,
+                                Coursename: Coursename,
+                                Language: Language,
+                                Passingmarks: Passingmarks,
+                                Validity: Validity,
+                                Url: Url
+                            })
+                        }
+
+                        // else {document.getElementById('demo').innerHTML= "no record2";}
+                    }
+                    if (records.length == 0) {
+                        document.getElementById('demo').innerHTML += ('<tr>' + '<td colspan="3">' + '<p style="color:#F2545F">No record found.</p>' + '</td></tr>');
+                    } else {
+                        records.forEach(item => {
+                            {
+                                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + item.Courseid + '</td>' + '<td>' + item.Coursename + '</td>' + '<td>' + item.Language + '</td>' + '<td>' + item.Passingmarks + '</td>' + '<td>' + item.Validity + '</td>' + '<td>' + '<a href="' + item.Url + '"target="_self"><div class="columnExam2 exam_btn">Start</div></a>' + '</td>' + '</tr>');
+                            }
+                        })
+                    }
+                });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var lazyloadImages = document.querySelectorAll("img.lazy");
+            var lazyloadThrottleTimeout;
+
+            function lazyload() {
+                if (lazyloadThrottleTimeout) {
+                    clearTimeout(lazyloadThrottleTimeout);
+                }
+
+                lazyloadThrottleTimeout = setTimeout(function() {
+                    var scrollTop = window.pageYOffset;
+                    lazyloadImages.forEach(function(img) {
+                        if (img.offsetTop < (window.innerHeight + scrollTop)) {
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                        }
+                    });
+                    if (lazyloadImages.length == 0) {
+                        document.removeEventListener("scroll", lazyload);
+                        window.removeEventListener("resize", lazyload);
+                        window.removeEventListener("orientationChange", lazyload);
+                    }
+                }, 20);
+            }
+
+            document.addEventListener("scroll", lazyload);
+            window.addEventListener("resize", lazyload);
+            window.addEventListener("orientationChange", lazyload);
+        });
+    </script>
+    <script>
+        // Add remove loading class on body element depending on Ajax request status
+        $(document).on({
+            ajaxStart: function() {
+                $("body").addClass("loading");
+            },
+            ajaxStop: function() {
+                $("body").removeClass("loading");
+            }
+        });
+    </script>
+    <div class="overlay"></div>
+    <!-- =========================
+     FOOTER   
+============================== -->
+    <!-- Back top -->
+    <script>
+        $(document).ready(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('#back-to-top').fadeIn();
+                } else {
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            // scroll body to 0px on click
+            $('#back-to-top').click(function() {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 400);
+                return false;
+            });
+        });
+    </script>
+    <a id="back-to-top" href="#" class="go-top" role="button"><i class="fa fa-angle-up"></i></a>
+    <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
+    <!-- Glow Cookies v3.0.1 -->
+    <script>
+        glowCookies.start('en', {
+            analytics: 'G-S25QWTFJ2S',
+            //facebookPixel: '',
+            policyLink: '/website-disclaimer'
+        });
+    </script>
+    <div id="footer"></div>
+    </body>
+
+</html>

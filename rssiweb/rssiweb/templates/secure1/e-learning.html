@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <title>e-Learning</title>
+
+    <meta name=description content>
+    <meta name=author content>
+    <meta charset=UTF-8>
+    <meta http-equiv=X-UA-Compatible content="IE=Edge">
+    <meta name=viewport content="width=device-width, initial-scale=1,
+        maximum-scale=1">
+    <link rel="shortcut icon" href=/images/logo/favicon.ico type=image/x-icon />
+    <script src=/js/jquery.js></script>
+    <link href=//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css rel=stylesheet id=bootstrap-css>
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+    <link rel=stylesheet href=/css/HeaderFooter.css>
+    <link rel=stylesheet href=/css/style.css>
+    <link rel=stylesheet href=/css/addstyle.css>
+    <link rel=stylesheet href=/css/animate.css>
+    <link rel=stylesheet href=/css/hellobar.css>
+    <link rel=stylesheet href=/css/login.css>
+    <style>
+        body {
+            line-height: unset
+        }
+        
+        body.loading {
+            overflow: auto;
+        }
+        
+        .navbar {
+            padding: unset;
+            font-weight: unset;
+            display: inline-block
+        }
+        
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: unset
+        }
+        
+        .text-center {
+            text-align: left !important
+        }
+        
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #fff
+        }
+        
+        .table-striped tbody tr {
+            background-color: #fafafb
+        }
+        
+        input,
+        select {
+            width: 150px
+        }
+        
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: 0
+        }
+        
+        .exam_btn:hover {
+            background: #90baa4;
+            border: 1px solid #90baa4
+        }
+    </style>
+    <style>
+        /* CSS for the main interaction */
+        
+        .tabset>input[type="radio"] {
+            position: absolute;
+            left: -200vw;
+        }
+        
+        .tabset .tab-panel {
+            display: none;
+        }
+        
+        .tabset>input:first-child:checked~.tab-panels>.tab-panel:first-child,
+        .tabset>input:nth-child(3):checked~.tab-panels>.tab-panel:nth-child(2),
+        .tabset>input:nth-child(5):checked~.tab-panels>.tab-panel:nth-child(3),
+        .tabset>input:nth-child(7):checked~.tab-panels>.tab-panel:nth-child(4),
+        .tabset>input:nth-child(9):checked~.tab-panels>.tab-panel:nth-child(5),
+        .tabset>input:nth-child(11):checked~.tab-panels>.tab-panel:nth-child(6) {
+            display: block;
+        }
+        /* Styling */
+        
+        .tabset>label {
+            position: relative;
+            display: inline-block;
+            padding: 15px 15px 25px;
+            border: 1px solid transparent;
+            border-bottom: 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .tabset>label::after {
+            content: "";
+            position: absolute;
+            left: 15px;
+            bottom: 10px;
+            width: 22px;
+            height: 4px;
+            background: #8d8d8d;
+        }
+        
+        .tabset>label:hover,
+        .tabset>input:focus+label {
+            color: #06c;
+        }
+        
+        .tabset>label:hover::after,
+        .tabset>input:focus+label::after,
+        .tabset>input:checked+label::after {
+            background: #06c;
+        }
+        
+        .tabset>input:checked+label {
+            border-color: #ccc;
+            border-bottom: 1px solid #fff;
+            margin-bottom: -1px;
+        }
+        
+        .tab-panel {
+            padding: 30px 0;
+            border-top: 1px solid #ccc;
+        }
+    </style>
+    <style>
+        /* Popup container - can be anything you want */
+        
+        .popup {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        /* The actual popup */
+        
+        .popup .popuptext {
+            visibility: hidden;
+            width: 160px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -80px;
+        }
+        /* Popup arrow */
+        
+        .popup .popuptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+        /* Toggle this class - hide and show the popup */
+        
+        .popup .show {
+            visibility: visible;
+            -webkit-animation: fadeIn 1s;
+            animation: fadeIn 1s;
+        }
+        /* Add animation (fade in the popup) */
+        
+        @-webkit-keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .prebanner {
+            display: none;
+        }
+    </style>
+    <style>
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+        /* Modal Content */
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 100vh;
+        }
+        
+        @media (max-width:767px) {
+            .modal-content {
+                width: 50vh;
+            }
+        }
+        /* The Close Button */
+        
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            text-align: right;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body oncontextmenu="return false">
+    <div class="containerHo">
+
+        <div class="logoHo" style="display: inline-block; width: 50%;">
+            <img src="/images/logo/WebsiteHeaderLogo.png" alt="RSSI Logo" width="140px" />
+            <!--<h3 style="color: whitesmoke; line-height:55px; font-size: 16px; margin-bottom: 0;">&nbsp;&nbsp;&nbsp;Members Login</h3>-->
+        </div>
+        <navh>
+            <div class="navbarHo navbar" id="mynavbarHo" style="display: inline-block; color: #fff">
+                <table id=testTable style="width: 100%; ">
+                    <tbody id=demo></tbody>
+                </table>
+            </div>
+        </navh>
+    </div>
+    <div style="margin: 0.3%;">
+        <ps class="marginleft notice" style="margin-left: 3%;">
+            <a href="#">Home</a> &#62; e-Learning
+        </ps>
+    </div>
+    <br>
+    <div id=thover11 class="hidden thover"></div>
+    <div id=tpopup11 class="hidden tpopup" style=padding:20px;position:fixed>
+        <div class=login-card>
+            <h1>Log-in</h1><br>
+            <form action=/secure1/wbt method=post>
+                <input type=text name=user placeholder=Username>
+                <input type=password name=code placeholder=Password>
+                <input type=submit name=login class="login login-submit" value=login>
+            </form>
+            <div class=login-help>
+                <br><a>Forgot Password? Connect with RSSI admin team</a>
+            </div>
+        </div>
+        <div id=tclose11 class=tclose>X</div>
+    </div>
+    <form name="submit-to-google-sheet">
+        <div class="container noprint">
+            <div class=row style=background-color:#fff5c2;min-height:70px;width:100%>
+
+                <div class=col1>
+                    <label for=name>Username<span style=color:#F2545F>*</span>&nbsp;</label>
+                    <input type="email" id="name" name="name" size=12 style="text-transform:lowercase">
+                </div>
+                <div class=col2>
+                    <label for=ename>Password (4 Digits)<span style=color:#F2545F>*</span>&nbsp;</label>
+                    <input type="password" name="ename" id="ename" minlength=4 maxlength=4 size=12 style="width:fit-content;height:25px;padding:2px">
+                </div>
+                <div class=col3>
+                    <button type="submit" class=exam_btn onclick=loaddata()><i class="fas fa-sign-in-alt"></i>
+                        login</button>
+                    <!--<button type=button class=exam_btn1 onclick="window.print();return false;" title="Print"><i
+                            class="fas fas fa-print"></i></button>-->
+                    <button type="button" class=exam_btn1 onclick=loaddata() title="Reload"><i class="fas fa-sync-alt"></i></button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzEjTLrMkCEC3hFF0_wBHQxNfReOYMDmWtSqnYqvwuUDSuEEXn4/exec'
+        const form = document.forms['submit-to-google-sheet']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, {
+                    method: 'POST',
+                    body: new FormData(form)
+                })
+                .then(response => console.log('Success!', response))
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script><br>
+    <div class=container>
+        <div class=row>
+            <div class=col>
+
+                <body>
+                    <div class="row noprint" style="text-align: right; margin-left: 0px; margin-right: 15px;">
+                        <span class="notice" style=" width:100%; ">
+                            <a id="myBtn" href="##" style="font-size:14px;">Daily planner</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://drive.google.com/file/d/1b3AcN68TJa7gIai_RTyJ5989Te-TXCbq/view" target="_blank" style="font-size:14px;">Weekly schedule</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+                                href=# id=secure_link_mt style="font-size:14px;">WBT</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+                                href=https://docs.google.com/spreadsheets/d/1d1dfSWWh_aM7Eq2rZc3ZxXJ2uMpqKfchy0ciNSF4KxU/edit target="_blank" style="font-size:14px;">Homework</a>
+                        </span>
+                    </div>
+
+                    <div class="tabset">
+                        <!-- Tab 1 -->
+                        <input type="radio" name="tabset" id="tab1" aria-controls="project" checked>
+                        <label for="tab1">Project Details</label>
+                        <!-- Tab 2 -->
+                        <input type="radio" name="tabset" id="tab2" aria-controls="attendance">
+                        <label for="tab2">Attendance</label>
+                        <!-- Tab 3 -->
+                        <input type="radio" name="tabset" id="tab3" aria-controls="performance">
+                        <label for="tab3">Performance management</label>
+                        <input type="radio" name="tabset" id="tab4" aria-controls="personal">
+                        <label for="tab4">Personal Details</label>
+                        <div class="tab-panels" style="overflow-x:auto">
+                            <section id="project" class="tab-panel">
+                                <table class="table bordered table-striped" id=testTable>
+                                    <thead style=background-color:whitesmoke;font-style:oblique>
+                                        <tr>
+
+                                            <th><b>Course Details and Allocation Date</b></th>
+                                            <th><b>Class Alloted</b></th>
+                                            <th><b>Hands-On topics</b></th>
+                                            <th><b>Faculty</b></th>
+                                            <th><b>Assignment</b></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id=demo1>
+                                    </tbody>
+                                </table>
+                                <table class="table bordered table-striped" id=testTable>
+                                    <thead style=background-color:whitesmoke;font-style:oblique>
+                                        <tr>
+
+                                            <th><b>Learning Phase</b></th>
+                                            <th><b>Hands-on Date Sheet</b></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id=demo2>
+                                    </tbody>
+                                </table>
+                            </section>
+                            <section id="attendance" class="tab-panel">
+                                <table class="table bordered table-striped" id=testTable>
+                                    <thead style=background-color:whitesmoke;font-style:oblique>
+                                        <tr>
+
+                                            <th><b>Attendance QR</b></th>
+                                            <th><b>Current Date</b></th>
+                                            <th><b>In Time</b></th>
+                                            <th><b>Out Time</b></th>
+                                            <th><b>Attendance Status</b></th>
+                                            <th><b>Attendance % (As of today)</b></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id=demo3>
+                                    </tbody>
+                                </table>
+                            </section>
+                            <section id="performance" class="tab-panel">
+                                <table class="table bordered table-striped" id=testTable>
+                                    <thead style=background-color:whitesmoke;font-style:oblique>
+                                        <tr>
+                                            <th><b>Supervisor</b></th>
+                                            <th><b>Reviewer</b></th>
+                                            <th><b>HR</b></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id=demo4>
+                                    </tbody>
+                                </table>
+                                <table class="table bordered table-striped" id=testTable>
+                                    <thead style=background-color:whitesmoke;font-style:oblique>
+                                        <tr>
+                                            <th><b>Interview Results</b></th>
+                                            <th><b>Remarks</b></th>
+                                            <th><b>Certificate</b></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id=demo5>
+                                    </tbody>
+                                </table>
+                            </section>
+                            <section id="personal" class="tab-panel">
+                                <table class="table bordered table-striped" id=testTable>
+                                    <thead style=background-color:whitesmoke;font-style:oblique>
+                                        <tr>
+                                            <th><b>Reg. no</b></th>
+                                            <th><b>Name</b></th>
+                                            <th><b>Email ID</b></th>
+                                            <th><b>Contact</b></th>
+                                            <th><b>College Name</b></th>
+                                            <th><b>Major Subject</b></th>
+                                        </tr>
+                                        <tbody id=demo6></tbody>
+                                </table>
+                        </div>
+
+                    </div>
+            </div>
+        </div>
+
+        <script src=/js/pace.js></script>
+        <script src=/js/fontawsome.js></script>
+        <script src=/js/bootstrap.min.js></script>
+        <script src=/js/jquery.parallax.js></script>
+        <script src=/js/wow.min.js></script>
+        <script src=/js/custom.js></script>
+        <script type=text/javascript>
+            var loaddata = function() {
+                var emailid = document.getElementById('name').value
+                var colors = document.getElementById('ename').value
+                $.getJSON("https://sheets.googleapis.com/v4/spreadsheets/1J28bo_bSIvFSnvlNfTzwMuRA0RWClSWrJyQYz5aJBMA/values/TTP_Database?alt=json&key=AIzaSyAO7Z3VLtKImi3UGFE6n6QKhDqfDBBCT3o", function(data) {
+                    document.getElementById('demo').innerHTML = ""
+                    document.getElementById('demo1').innerHTML = ""
+                    document.getElementById('demo2').innerHTML = ""
+                    document.getElementById('demo3').innerHTML = ""
+                    document.getElementById('demo4').innerHTML = ""
+                    document.getElementById('demo5').innerHTML = ""
+                    document.getElementById('demo6').innerHTML = ""
+                    var sheetData = data.values;
+                    var i;
+                    var records = []
+                    for (i = 0; i < sheetData.length; i++) {
+                        var RegistrationNo = sheetData[i][2];
+                        var Name = sheetData[i][3];
+                        var Emailid = sheetData[i][4];
+                        var Allocationdate = sheetData[i][12];
+                        var Supervisor = sheetData[i][13];
+                        var Reviewer = sheetData[i][17];
+                        var Hr = sheetData[i][20];
+                        var Learningphase = sheetData[i][23];
+                        var Attendanceqr = sheetData[i][24];
+                        var Googlefolder = sheetData[i][26];
+                        var Grade = sheetData[i][35];
+                        var Remarks = sheetData[i][36];
+                        var Certificate = sheetData[i][37];
+                        var Colors = sheetData[i][38];
+                        var Classurl = sheetData[i][16];
+                        var Coursename = sheetData[i][0];
+                        var Mode = sheetData[i][1];
+                        var Assgclass = sheetData[i][15];
+                        var Trs = sheetData[i][28];
+                        var Trm = sheetData[i][29];
+                        var Mrs = sheetData[i][31];
+                        var Mrm = sheetData[i][32];
+                        var Hrs = sheetData[i][34];
+                        var English = sheetData[i][5];
+                        var Hindi = sheetData[i][6];
+                        var Bengali = sheetData[i][7];
+                        var Tform = sheetData[i][27];
+                        var Mform = sheetData[i][30];
+                        var Hrform = sheetData[i][33];
+                        var Questiona = sheetData[i][8];
+                        var Questionb = sheetData[i][9];
+                        var Questionc = sheetData[i][10];
+                        var Questiond = sheetData[i][11];
+                        var Rlink = sheetData[i][18];
+                        var Hlink = sheetData[i][21];
+                        var firstin = sheetData[i][59];
+                        var lastout = sheetData[i][60];
+                        var attstatus = sheetData[i][61];
+                        var Attendancep = sheetData[i][44];
+                        var lastlogin = sheetData[i][62];
+                        var clgname = sheetData[i][63];
+                        var majorsub = sheetData[i][64];
+                        var contact = sheetData[i][65];
+                        var Supervisor2 = sheetData[i][66];
+                        var Classurl2 = sheetData[i][67];
+                        var Handson_RSSI = sheetData[i][68];
+                        var Handson_RPMC = sheetData[i][69];
+
+                        if ((Emailid === emailid && Colors === colors)) {
+                            records.push({
+                                Handson_RPMC: Handson_RPMC,
+                                Handson_RSSI: Handson_RSSI,
+                                Classurl2: Classurl2,
+                                Supervisor2: Supervisor2,
+                                RegistrationNo : RegistrationNo ,
+                                Name : Name ,
+                                Emailid : Emailid ,
+                                Allocationdate : Allocationdate ,
+                                Supervisor : Supervisor ,
+                                Hr : Hr ,
+                                Learningphase : Learningphase ,
+                                Attendanceqr : Attendanceqr ,
+                                Googlefolder : Googlefolder ,
+                                Grade : Grade ,
+                                Remarks : Remarks ,
+                                Certificate : Certificate ,
+                                Colors : Colors ,
+                                Classurl : Classurl ,
+                                Coursename : Coursename ,
+                                Mode : Mode ,
+                                Assgclass : Assgclass ,
+                                Trs : Trs ,
+                                Trm : Trm ,
+                                Mrs : Mrs ,
+                                Hrs : Hrs ,
+                                Mrm : Mrm ,
+                                English : English ,
+                                Hindi : Hindi ,
+                                Bengali : Bengali ,
+                                Tform : Tform ,
+                                Mform : Mform ,
+                                Hrform : Hrform ,
+                                Questiona : Questiona ,
+                                Questionb : Questionb ,
+                                Questionc : Questionc ,
+                                Questiond : Questiond,
+                                Reviewer: Reviewer,
+                                Rlink: Rlink,
+                                Hlink: Hlink,
+                                firstin: firstin,
+                                lastout: lastout,
+                                attstatus: attstatus,
+                                Attendancep: Attendancep,
+                                lastlogin: lastlogin,
+                                clgname: clgname,
+                                majorsub: majorsub,
+                                contact: contact
+
+                            })
+                        }
+                    }
+                    if (records.length == 0) {
+                        document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + '<p style="color:#F2545F">Error: Login failed. Please enter valid credentials.</p>' + '</td></tr>');
+                    } else {
+                        records.forEach(item => {
+                            {
+                                document.getElementById('demo1').innerHTML += ('<tr>' + '<td>' + item.Coursename + ' - ' + item.Mode + '<br><br>' + item.Allocationdate + '</td><td>' + item.Assgclass + '</td>' + '<td>Topic1&nbsp;-&nbsp;' + item.Handson_RSSI + '<br><br>Topic2&nbsp;-&nbsp;' + item.Handson_RPMC + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Classurl + '"target="_blank">' + item.Supervisor + '</a></span><br><br>' + '<span class="noticet"><a href="' + item.Classurl2 + '"target="_blank">' + item.Supervisor2 + '</a></span>' + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Googlefolder + '"target="_blank">Google Drive Folder</a></span>' + '</td></tr>');
+                            }
+
+                            {
+                                document.getElementById('demo2').innerHTML += ('<tr>' + '<td>' + item.Learningphase + '</td>' + '<td>' + '<span class="noticet"><a href="https://drive.google.com/file/d/1OCh47biJZQLCz6S03JA-7KRYSlEUTclh/view"target="_blank">RSSI hands-on schedule</a></span><br><br><span class="noticet"><a href="https://drive.google.com/file/d/1RkhM637Ik0-7OjQyfGCzI-tW22YOsJBN/view"target="_blank">RPMC hands-on schedule</a></span>&nbsp;&nbsp;<span class="badge badge-warning">new</span></td>' + '</tr>');
+                            } {
+                                document.getElementById('demo3').innerHTML += ('<tr>' + '<td>' + '<img src="' + item.Attendanceqr + '" alt="" width="100%" />' + '</td>' + '<td>' + today + '</td>' + '<td>' + item.firstin + '</td>' + '<td>' + item.lastout + '</td>' + '<td>' + item.attstatus + '</td>' + '<td>' + item.Attendancep + '</td>' + '</tr>');
+                            } {
+                                document.getElementById('demo4').innerHTML += ('<tr>' + '<td>' + '<span class="noticet"><a href="' + item.Classurl + '"target="_blank">' + item.Supervisor + '</a></span>' + '</td>' + '<td>' + '<span class="noticet"><a href="' + item.Rlink + '"target="_blank">' + item.Reviewer + '</a></span></td>' + '<td>' + '<span class="noticet"><a href="' + item.Hlink + '"target="_blank">' + item.Hr + '</a></span></td>' + '</tr>');
+                            } {
+                                document.getElementById('demo5').innerHTML += ('<tr>' + '<td>' + item.Grade + '</td>' + '<td>' + item.Remarks + '</td>' + '<td>' + '<span class="noticet"><a href="https://www.rssi.in/certificate-student" target="_blank">' + item.Certificate + '</a></span></td>' + '</tr>');
+                            } {
+                                document.getElementById('demo6').innerHTML += ('<tr>' + '<td>' + item.RegistrationNo + '</td>' + '<td>' + item.Name + '</td>' + '<td>' + item.Emailid + '</td>' + '<td>' + item.contact + '</td>' + '<td>' + item.clgname + '</td>' + '<td>' + item.majorsub + '</td>' + '</tr>');
+                            } {
+                                document.getElementById('demo').innerHTML += ('<tr>' + '<td><span style="line-height:1.5">' + greet + '!&nbsp;<b>' + item.Name + '&nbsp;(' + item.RegistrationNo + ')</b><br>Last Login:&nbsp;' + item.lastlogin + '</span></td>' + '</tr>');
+                            }
+                        })
+                    }
+                });
+            }
+            $(document).ready(function() {
+                console.log("loading now...");
+                $("#secure_link_mt").click(function(event) {
+                    event.preventDefault();
+                    $("#tpopup11").toggleClass('hidden');
+                    $("#thover11").toggleClass('hidden');
+                });
+                $("#tclose11").click(function() {
+                    $("#tpopup11").toggleClass('hidden');
+                    $("#thover11").toggleClass('hidden');
+                });
+            });
+            document.addEventListener("DOMContentLoaded", function() {
+                var lazyloadImages = document.querySelectorAll("img.lazy");
+                var lazyloadThrottleTimeout;
+
+                function lazyload() {
+                    if (lazyloadThrottleTimeout) {
+                        clearTimeout(lazyloadThrottleTimeout);
+                    }
+                    lazyloadThrottleTimeout = setTimeout(function() {
+                        var scrollTop = window.pageYOffset;
+                        lazyloadImages.forEach(function(img) {
+                            if (img.offsetTop < (window.innerHeight + scrollTop)) {
+                                img.src = img.dataset.src;
+                                img.classList.remove('lazy');
+                            }
+                        });
+                        if (lazyloadImages.length == 0) {
+                            document.removeEventListener("scroll", lazyload);
+                            window.removeEventListener("resize", lazyload);
+                            window.removeEventListener("orientationChange", lazyload);
+                        }
+                    }, 20);
+                }
+                document.addEventListener("scroll", lazyload);
+                window.addEventListener("resize", lazyload);
+                window.addEventListener("orientationChange", lazyload);
+            });
+        </script>
+        <script>
+            document.onkeypress = function(event) {
+                event = (event || window.event);
+                if (event.keyCode == 123) {
+                    return false;
+                }
+            }
+            document.onmousedown = function(event) {
+                event = (event || window.event);
+                if (event.keyCode == 123) {
+                    return false;
+                }
+            }
+            document.onkeydown = function(event) {
+                event = (event || window.event);
+                if (event.keyCode == 123) {
+                    return false;
+                }
+            }
+        </script>
+        <script>
+            // Add remove loading class on body element depending on Ajax request status
+            $(document).on({
+                ajaxStart: function() {
+                    $("body").addClass("loading");
+                },
+                ajaxStop: function() {
+                    $("body").removeClass("loading");
+                }
+            });
+        </script>
+        <div class="overlay"></div>
+        <!-- =========================
+     FOOTER   
+============================== -->
+        <!-- Back top -->
+        <script>
+            $(document).ready(function() {
+                $(window).scroll(function() {
+                    if ($(this).scrollTop() > 50) {
+                        $('#back-to-top').fadeIn();
+                    } else {
+                        $('#back-to-top').fadeOut();
+                    }
+                });
+                // scroll body to 0px on click
+                $('#back-to-top').click(function() {
+                    $('body,html').animate({
+                        scrollTop: 0
+                    }, 400);
+                    return false;
+                });
+            });
+        </script>
+        <a id="back-to-top" href="#" class="go-top" role="button"><i class="fa fa-angle-up"></i></a>
+        <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
+        <!-- Glow Cookies v3.0.1 -->
+        <script>
+            glowCookies.start('en', {
+                analytics: 'G-S25QWTFJ2S',
+                //facebookPixel: '',
+                policyLink: '/website-disclaimer'
+            });
+        </script>
+        <!-- Trigger/Open The Modal -->
+        <!--<button id="myBtn">Open Modal</button>-->
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <iframe src="https://calendar.google.com/calendar/embed?height=300&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FKolkata&amp;src=aW5mb0Byc3NpLmlu&amp;color=%23039BE5&amp;showNav=1&amp;showTabs=0&amp;showDate=1&amp;showPrint=0&amp;showCalendars=0&amp;title=RSSI%20Class%20Schedule&amp;mode=AGENDA"
+                    style="border-width:0" width="100%" height="300" frameborder="0" scrolling="no"></iframe>
+            </div>
+
+        </div>
+
+        <script>
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal 
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
+        <script>
+            var myDate = new Date();
+            var hrs = myDate.getHours();
+
+            var greet;
+
+            if (hrs < 12)
+                greet = 'Good Morning';
+            else if (hrs >= 12 && hrs <= 17)
+                greet = 'Good Afternoon';
+            else if (hrs >= 17 && hrs <= 24)
+                greet = 'Good Evening';
+        </script>
+        <script>
+            var inactivityTime = function() {
+                var time;
+                document.onload = resetTimer;
+                document.onmousemove = resetTimer;
+                document.onmousedown = resetTimer; // touchscreen presses
+                document.ontouchstart = resetTimer;
+                document.onclick = resetTimer; // touchpad clicks
+                document.onkeydown = resetTimer; // onkeypress is deprectaed
+                document.addEventListener('scroll', resetTimer, true); // improved; see comments
+
+                function logout() {
+                    alert("Your session has expired, please login again.")
+                    location.href = '/index.html'
+                    window.close()
+                }
+
+                function resetTimer() {
+                    clearTimeout(time);
+                    time = setTimeout(logout, 600000)
+                        // 1000 milliseconds = 1 second
+                }
+            };
+            window.onload = function() {
+                inactivityTime();
+            }
+        </script>
+        <script>
+            var today = new Date();
+            var dd = today.getDate();
+
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+            today = dd + '/' + mm + '/' + yyyy;
+            console.log(today);
+        </script>
+        <script>
+            // When the user clicks on div, open the popup
+            function myFunctionn() {
+                var popup = document.getElementById("myPopup");
+                popup.classList.toggle("show");
+            }
+        </script>
+        </body>
+
+</html>
