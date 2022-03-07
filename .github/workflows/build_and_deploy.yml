@@ -49,3 +49,11 @@ jobs:
         registry: ghcr.io
         tag_names: true
         tag_semver: true
+    - name: Trigger Deploy Services
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.REPO_ACCESS_TOKEN }}
+        repository: rssiweb/services
+        event-type: deploy
+        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+
