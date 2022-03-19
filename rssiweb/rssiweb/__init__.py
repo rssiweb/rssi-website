@@ -34,4 +34,5 @@ def create_app(test_config=None):
     from . import views
 
     app.register_blueprint(views.app)
+    app.jinja_env.auto_reload = app.config.get("TEMPLATES_AUTO_RELOAD", False)
     return app
