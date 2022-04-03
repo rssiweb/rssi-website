@@ -13,9 +13,13 @@
     <link rel="stylesheet" href="/css/login.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
-    <!-- <link rel="stylesheet" href="/css/animate.css"> -->
     <link rel="stylesheet" href="/css/addstyle.css">
     <script type="text/javascript" src="/js/jquery.js"></script>
+    <style>
+        .grecaptcha-badge {
+            visibility: hidden;
+        }
+    </style>
 </head>
 
 <!-- =========================
@@ -258,12 +262,12 @@
         </div>
     </div>
 </section>
-<section id="intro">
+<section id="intro" class="parallax-section">
     <div class="container">
         <div class="row">
             <div class="col" style="text-align: -webkit-left;">
-                <div class="wow fadeIn body1" style="text-align: -webkit-left;" data-wow-delay="0.5s">Help a journey - from childhood to livelihood</div>
-                <div><a href="#project" class="btn btn-lg btn-default smoothScroll wow fadeInUp hidden-xs" data-wow-delay="1.3s">Learn More</a> <a href="/donation-portal" class="btn btn-lg btn-danger smoothScroll wow fadeInUp" data-wow-delay="1.3s">DONATE NOW</a>
+                <div class="body1" style="text-align: -webkit-left;">Help a journey - from childhood to livelihood</div>
+                <div><a href="#project" class="btn btn-lg btn-default smoothScroll hidden-xs">Learn More</a> <a href="/donation-portal" class="btn btn-lg btn-danger smoothScroll">DONATE NOW</a>
                 </div>
             </div>
         </div>
@@ -349,16 +353,16 @@
 
 <section id="detail" style="padding: 5% 5.5%; background-color: #222">
     <div class="row">
-        <div class="numbers wow fadeInLeft col-md-4 col-sm-4" data-wow-delay="0.3s"> <i class="fa fa-users"></i>
+        <div class="numbers col-md-4 col-sm-4"><i class="fa fa-users"></i>
             <h3><span class="value">1000</span>+ Beneficiaries</h3>
             <p>In past 7 years we have covered almost 1000+ beneficiaries under our educational and health care program. Health care program covers Feminine hygiene, basic personal hygiene for all.</p>
         </div>
-        <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="0.6s"> <i class="fa fa-hands-helping"></i>
+        <div class="col-md-4 col-sm-4"><i class="fa fa-hands-helping"></i>
             <h3><span class="value">30</span>+ Associates</h3>
             <p>Our journey started with 2 volunteers and gradually connected with more than 30 volunteers/interns/employees across the world.
             </p>
         </div>
-        <div class="wow fadeInRight col-md-4 col-sm-4" data-wow-delay="0.9s"> <i class="fa fa-map-marker-alt"></i>
+        <div class="col-md-4 col-sm-4"> <i class="fa fa-map-marker-alt"></i>
             <h3><span class="value">2</span> Centres</h3>
             <p>Our NGO division (Offline) is active in Lucknow. Lucknow centre of RSSI is a registered, non-governmental organization, a non-profit and voluntary citizens' group which is organized on a local level.</p>
         </div>
@@ -646,8 +650,6 @@
     }(window, document);
 </script>
 <!-- End of Async ProveSource Code -->
-
-<script src="/js/pace.js"></script>
 <script>
     $(function() {
         // $("#header").load("/header.html");
@@ -657,10 +659,8 @@
 <script src="/js/fontawsome.js"></script>
 <script src="/js/smoothscroll.js"></script>
 <script src="/js/bootstrap.min.js"></script>
-<script src="/js/jquery.parallax.js"></script>
-<script src="/js/smoothscroll.js"></script>
-<script src="/js/owl.carousel.min.js" type="text/javascript"></script>
 <script src="/js/custom.js"></script>
+<script src="/js/pace.js"></script>
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function() {
         var lazyloadImages = document.querySelectorAll("img.lazy");
@@ -724,9 +724,6 @@
     }
 </script>
 
-
-
-<script src="/js/wow.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
 <!-- Glow Cookies v3.0.1 -->
 <script>
@@ -782,12 +779,6 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-
-<style>
-    .grecaptcha-badge {
-        visibility: hidden;
-    }
-</style>
 </body>
 
 </html>
