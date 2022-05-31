@@ -550,6 +550,24 @@
         }
         
         .goog-te-gadget-simple .goog-te-menu-value {
-            color: whitesmoke!important;
+            color: whitesmoke !important;
         }
         /*GOOGLE TRANSLATE END*/
+        /* ---------------
+        TO ADD ANY EVENT BASED ICON WITH LOGO 
+        --------------------------*/
+        
+        #PRIDE {
+            margin-left: -3%;
+            background-color: transparent;
+            margin-top: 0%
+        }
+        
+        @media (max-width:767px) {
+            #PRIDE {
+                margin-left: -10%;
+                margin-right: 10%;
+                background-color: transparent;
+                margin-top: 0%
+            }
+        }
