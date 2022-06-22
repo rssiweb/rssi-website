@@ -39,8 +39,11 @@
             }
         }
         
-        table {
-            page-break-inside: avoid;
+        @media print {
+            pre,
+            blockquote {
+                page-break-inside: avoid;
+            }
         }
     </style>
 
