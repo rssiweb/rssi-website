@@ -38,6 +38,10 @@
                 display: none;
             }
         }
+        
+        table {
+            page-break-inside: avoid;
+        }
     </style>
 
 </head>
@@ -123,9 +127,25 @@
                         </td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td>
+                            <div class="footerpdf no-display" style="width:90%;text-align: right;">Generated on:&nbsp;
+                                <span id="current_date"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </section>
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        month = date.getMonth() + 1;
+        day = date.getDate();
+        document.getElementById("current_date").innerHTML = day + "/" + month + "/" + year;
+    </script>
     <!-- =========================
      SCRIPTS   
 ============================== -->

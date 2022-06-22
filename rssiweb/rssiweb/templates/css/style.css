@@ -535,3 +535,10 @@ body.loading {
 body.loading .overlay {
     display: block;
 }
+
+@media print {
+    .footerpdf {
+        position: fixed;
+        bottom: 0;
+    }
+}

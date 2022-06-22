@@ -38,6 +38,10 @@
                 display: none;
             }
         }
+        
+        table {
+            page-break-inside: avoid;
+        }
     </style>
 
 </head>
@@ -111,15 +115,28 @@
                             <p>Depending on where you live, the time it may take for your exchanged product to reach you, may vary. If you are shipping an item over INR1000, you should consider using a trackable shipping service or purchasing shipping insurance.
                                 We don’t guarantee that we will receive your returned item.
                             </p>
-                            <br>
-
-
                         </td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td>
+                            <div class="footerpdf no-display" style="width:90%;text-align: right;">Generated on:&nbsp;
+                                <span id="current_date"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </section>
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        month = date.getMonth() + 1;
+        day = date.getDate();
+        document.getElementById("current_date").innerHTML = day + "/" + month + "/" + year;
+    </script>
     <!-- =========================
      SCRIPTS   
 ============================== -->
