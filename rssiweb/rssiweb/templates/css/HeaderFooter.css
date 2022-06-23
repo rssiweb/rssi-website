@@ -55,6 +55,11 @@
             color: whitesmoke !important;
         }
         
+        a.dotted {
+            border-bottom: 1px dotted whitesmoke;
+            background-color: transparent !important;
+        }
+        
         .navbarH .icon {
             display: none;
         }
