@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/addstyle.css">
-    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <style>
         .grecaptcha-badge {
             visibility: hidden;
@@ -37,7 +37,7 @@
     <navh>
         <div class="navbarHo navbar" id="mynavbarHo">
             <div id="google_translate_element" class="hidden-xs" style="display: inline-flex;"></div>
-            <a href="/index" class="smoothScroll notranslate">Home</a>
+            <!-- <a href="/index" class="smoothScroll notranslate">Home</a> -->
             <a href="/media-center" class="smoothScroll notranslate">Media center</a>
             <div class="dropdownHo">
                 <button class="dropbtnHo">NGO&nbsp;<i class="fa fa-caret-down"></i></button>
@@ -48,15 +48,17 @@
                 </div>
             </div>
 
-            <div class="dropdownHo">
-                <button class="dropbtnHo">Join us as&nbsp;<i class="fa fa-caret-down"></i></button>
+            <!-- <div class="dropdownHo">
+                <button class="dropbtnHo">Careers&nbsp;<i class="fa fa-caret-down"></i></button>
                 <div class="dropdown-contentHo">
                     <a href="/registration" class="smoothScroll">Volunteer/Intern/Employee</a>
                     <a href="/ttp" class="smoothScroll">Trainee</a>
                     <a href="https://drive.google.com/file/d/1UV1Y9d0w1dFh4YYV2Cj4pPpLTEUoCT7_/view" class="smoothScroll" target="blank">Responsibilities of Intern</a>
                     <a href="https://drive.google.com/file/d/1IBuhQ0PnwBaZBE8gyJsvAiIqFF09WgXg/view" class="smoothScroll" target="blank">General Terms and Conditions</a>
                 </div>
-            </div>
+            </div> -->
+
+            <a href="/registration" class="smoothScroll notranslate">Careers</a>
 
             <div class="dropdownHo">
                 <button class="dropbtnHo">Students' corner&nbsp;<i class="fa fa-caret-down"></i></button>
@@ -208,16 +210,6 @@
             $("#thover1111").toggleClass('hidden');
         });
     });
-</script>
-
-<!------------------------------------
-        For pop-up secure window
-    -------------------------------------->
-<script type="text/javascript">
-    function createTarget(t) {
-        window.open("", t, "width=1000,height=550");
-        return true;
-    }
 </script>
 
 <script src="/js/active-nav-bar.js"></script>
@@ -687,7 +679,7 @@
 <script src="/js/smoothscroll.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 <script src="/js/custom.js"></script>
-<script src="/js/pace.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function() {
         var lazyloadImages = document.querySelectorAll("img.lazy");
