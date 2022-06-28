@@ -9,45 +9,26 @@
 
 <body data-spy="scroll" data-offset="50" data-target=".navbar-collapse">
 
-    <!-- =========================
-     NAVIGATION LINKS     
-============================== -->
     <div class="containerHo">
 
         <div class="logoHo">
             <a href="/index">
                 <img src="/images/logo/WebsiteHeaderLogo.png" alt="RSSI Logo" width="140px" />
-                <!-- <img id="PRIDE" src="https://res.cloudinary.com/hs4stt5kg/image/upload/v1654034999/PRIDE_RSSI_bxdnlu.gif" width="50" /> -->
             </a>
         </div>
         <div id="google_translate_element1" style="display: inline-flex;"></div>
         <navh>
             <div class="navbarHo navbar" id="mynavbarHo">
                 <div id="google_translate_element" class="hidden-xs" style="display: inline-flex;"></div>
-                <!--<a href="#google_translate_element" class="smoothScroll hidden-ys"><i class="fas fa-language" style="font-size:20px;"></i></a>-->
                 <a href="/index" class="smoothScroll notranslate">Home</a>
                 <a href="/media-center" class="smoothScroll notranslate">Media center</a>
                 <div class="dropdownHo">
                     <button class="dropbtnHo">NGO <i class="fa fa-caret-down"></i></button>
                     <div class="dropdown-contentHo">
                         <a href="/about-us" class="smoothScroll">About us</a>
-                        <!--<a href="/our-team" class="smoothScroll">Our team</a>
-                        <a href="https://drive.google.com/file/d/1S2aUfIhiU-wmEF6qw9MSYPao4dm2BPly/view" class="smoothScroll" target="blank">NGO Calendar</a>-->
                         <a href="https://drive.google.com/file/d/1Z28N7bOJf2Pog9-WzY4Lw4oLr96LZ-ZG/view" class="smoothScroll" target="blank">Holiday list</a>
                     </div>
                 </div>
-
-                <!--<a href="/media-center" class="smoothScroll">Media center</a>-->
-
-                <!-- <div class="dropdownHo">
-                    <button class="dropbtnHo">Join us as <i class="fa fa-caret-down"></i></button>
-                    <div class="dropdown-contentHo">
-                        <a href="/registration" class="smoothScroll">Volunteer/Intern/Employee</a>
-                        <a href="/ttp" class="smoothScroll">Trainee</a>
-                        <a href="https://drive.google.com/file/d/1UV1Y9d0w1dFh4YYV2Cj4pPpLTEUoCT7_/view" class="smoothScroll" target="blank">Responsibilities of Intern</a>
-                        <a href="https://drive.google.com/file/d/1IBuhQ0PnwBaZBE8gyJsvAiIqFF09WgXg/view" class="smoothScroll" target="blank">General Terms and Conditions</a>
-                    </div>
-                </div> -->
 
                 <a href="/registration" class="smoothScroll notranslate">Careers</a>
 
@@ -58,17 +39,11 @@
                         <a href="/admission" class="smoothScroll">Admission</a>
                         <a href="https://login.rssi.in/rssi-student/index.php" target="_blank" class="smoothScroll">My
                             Profile</a>
-                        <!--id="secure_link_classroom" [FOR FLUX]-->
-                        <!--<a href="/online-exam" class="smoothScroll">Online Exam</a>
-                        <a href="/result-portal" class="smoothScroll">Result portal</a>
-                        <a href="/scholarship-programs" class="smoothScroll">Scholarship programs</a>
-                        <a href="https://drive.google.com/file/d/1--hLyh7RsIjLZ8V-krK3y6Jc7M2R-6fh/view" class="smoothScroll">Code of Conduct</a>-->
                         <a href="/miscellaneous" class="smoothScroll">Miscellaneous</a>
 
                     </div>
                 </div>
 
-                <!--<a href="/swanirbhar" class="smoothScroll">Swanirbhar</a>-->
                 <div class="dropdownHo">
                     <button class="dropbtnHo">e-Certificate <i class="fa fa-caret-down"></i></button>
                     <div class="dropdown-contentHo">
@@ -80,13 +55,11 @@
                 <div class="dropdownHo">
                     <button class="dropbtnHo notranslate">Phoenix <i class="fa fa-caret-down"></i></button>
                     <div class="dropdown-contentHo">
-                        <!--<a href="https://docs.google.com/spreadsheets/d/1mjVN9VET3_ToFGDWRSSl7dAZO1sH1kNXgI66qPWfco8/edit?usp=sharing" target="_blank" class="smoothScroll">Grade Summary Sheet</a>-->
                         <a href="#" class="smoothScroll" id="secure_link_el">e-Learning</a>
                         <a href="#" id="secure_link_sh" class="smoothScroll">Interview</a>
                         <a href="#" class="smoothScroll" id="secure_link_mt">Mandatory training</a>
                     </div>
                 </div>
-                <!-- <a href="/donation-portal" class="smoothScroll">Donate</a> -->
                 <a href="https://login.rssi.in/rssi-member/index.php" target="_blank" class="smoothScroll"><i
                         class="fas fa-user" style="font-size:15px;"></i></a>
                 <!--id="myacc"-->
@@ -124,7 +97,7 @@
     <!--secure link-->
     <script>
         $(document).ready(function() {
-            console.log("loading now...");
+
             $("#secure_link_mt").click(function(event) {
                 event.preventDefault();
                 $("#tpopup11").toggleClass('hidden');
@@ -163,7 +136,7 @@
     <!--secure link-->
     <script>
         $(document).ready(function() {
-            console.log("loading now...");
+
             $("#secure_link_el").click(function(event) {
                 event.preventDefault();
                 $("#tpopup111").toggleClass('hidden');
@@ -201,7 +174,7 @@
     <!--secure link-->
     <script>
         $(document).ready(function() {
-            console.log("loading now...");
+
             $("#secure_link_sh").click(function(event) {
                 event.preventDefault();
                 $("#tpopup1111").toggleClass('hidden');
@@ -212,16 +185,6 @@
                 $("#thover1111").toggleClass('hidden');
             });
         });
-    </script>
-
-    <!------------------------------------
-        For pop-up secure window
-    -------------------------------------->
-    <script type="text/javascript">
-        function createTarget(t) {
-            window.open("", t, "width=1000,height=550");
-            return true;
-        }
     </script>
 
     <script src="/js/active-nav-bar.js"></script>

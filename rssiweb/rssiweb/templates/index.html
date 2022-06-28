@@ -14,12 +14,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/addstyle.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <style>
+    <!-- <style>
         .grecaptcha-badge {
             visibility: hidden;
         }
-    </style>
+    </style> -->
 </head>
 
 <!-- =========================
@@ -95,7 +94,7 @@
             <form action="/secure1/wbt" method="post">
                 <!--Here we have to mention the secured URL path-->
                 <input type="text" name="user" placeholder="Username">
-                <input type="password" name="code" placeholder="Password">
+                <input type="password" name="code" placeholder="Password" autocomplete>
                 <!--password name id always "code"-->
                 <input type="submit" name="login" class="login login-submit" value="login">
             </form>
@@ -106,23 +105,6 @@
         </div>
         <div id="tclose11" class="tclose notranslate">X</div>
     </div>
-
-
-    <!--secure link-->
-    <script>
-        $(document).ready(function() {
-            console.log("loading now...");
-            $("#secure_link_mt").click(function(event) {
-                event.preventDefault();
-                $("#tpopup11").toggleClass('hidden');
-                $("#thover11").toggleClass('hidden');
-            });
-            $("#tclose11").click(function() {
-                $("#tpopup11").toggleClass('hidden');
-                $("#thover11").toggleClass('hidden');
-            });
-        });
-    </script>
 
     <!--------------- 
 		NEED TO COPY THIS SET FOR EVERY CECURED LINK -- e-Learning
@@ -135,7 +117,7 @@
             <form action="/secure1/e-learning" method="post">
                 <!--Here we have to mention the secured URL path-->
                 <input type="text" name="user" placeholder="Username">
-                <input type="password" name="code" placeholder="Password">
+                <input type="password" name="code" placeholder="Password" autocomplete>
                 <!--password name id always "code"-->
                 <input type="submit" name="login" class="login login-submit" value="login">
             </form>
@@ -146,21 +128,7 @@
         </div>
         <div id="tclose111" class="tclose notranslate">X</div>
     </div>
-    <!--secure link-->
-    <script>
-        $(document).ready(function() {
-            console.log("loading now...");
-            $("#secure_link_el").click(function(event) {
-                event.preventDefault();
-                $("#tpopup111").toggleClass('hidden');
-                $("#thover111").toggleClass('hidden');
-            });
-            $("#tclose111").click(function() {
-                $("#tpopup111").toggleClass('hidden');
-                $("#thover111").toggleClass('hidden');
-            });
-        });
-    </script>
+
     <!--------------- 
 		NEED TO COPY THIS SET FOR EVERY CECURED LINK -- interview
 	------------------------------------------------------>
@@ -172,7 +140,7 @@
             <form action="/secure2/interview" method="post">
                 <!--Here we have to mention the secured URL path-->
                 <input type="text" name="user" placeholder="Username">
-                <input type="password" name="code" placeholder="Password">
+                <input type="password" name="code" placeholder="Password" autocomplete>
                 <!--password name id always "code"-->
                 <input type="submit" name="login" class="login login-submit" value="login">
             </form>
@@ -183,46 +151,7 @@
         </div>
         <div id="tclose1111" class="tclose notranslate">X</div>
     </div>
-    <!--secure link-->
-    <script>
-        $(document).ready(function() {
-            console.log("loading now...");
-            $("#secure_link_sh").click(function(event) {
-                event.preventDefault();
-                $("#tpopup1111").toggleClass('hidden');
-                $("#thover1111").toggleClass('hidden');
-            });
-            $("#tclose1111").click(function() {
-                $("#tpopup1111").toggleClass('hidden');
-                $("#thover1111").toggleClass('hidden');
-            });
-        });
-    </script>
 
-    <script src="/js/active-nav-bar.js"></script>
-    <!------------------------------------
-        For Google translate
-    -------------------------------------->
-    <script>
-        function googleTranslateElementInit() {
-            if ($(window).width() < 760) {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'en',
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                    includedLanguages: "hi,en,bn"
-                }, 'google_translate_element1');
-
-            } else {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'en',
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                    includedLanguages: "hi,en,bn"
-                }, 'google_translate_element');
-            }
-
-        }
-    </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <!-- =========================
      HEADER END  
 ============================== -->
@@ -638,37 +567,67 @@
                 </p>
             </div>
     </section>
-
     <br><br>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+    <script src="https://kit.fontawesome.com/58c4cdb942.js" crossorigin="anonymous"></script>
+    <script src="/js/custom.js"></script>
+    <script src="/js/active-nav-bar.js"></script>
+    <a id="back-to-top" href="#" class="go-top" role="button"><i class="fa fa-angle-up"></i></a>
+
+
+    <!--secure link -- E-Learning-->
     <script>
-        ! function(o, i) {
-            window.provesrc && window.console && console.error && console.error("ProveSource is included twice in this page."), provesrc = window.provesrc = {
-                dq: [],
-                display: function() {
-                    this.dq.push(arguments)
-                }
-            }, o._provesrcAsyncInit = function() {
-                provesrc.init({
-                    apiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI2MjQ4Njc2ODMxY2YwODExZDU5OTVjNmIiLCJpYXQiOjE2NDg5MTIyMzJ9.6HuHEvBtmvfhXqTPrbGSTsd_L-6uLNIKai3lJfLpjd0",
-                    v: "0.0.4"
-                })
-            };
-            var r = i.createElement("script");
-            r.type = "text/javascript", r.async = !0, r["ch" + "ar" + "set"] = "UTF-8", r.src = "https://cdn.provesrc.com/provesrc.js";
-            var e = i.getElementsByTagName("script")[0];
-            e.parentNode.insertBefore(r, e)
-        }(window, document);
-    </script>
-    <!-- End of Async ProveSource Code -->
-    <script>
-        $(function() {
-            $("#footer").load("/footer.html");
+        $(document).ready(function() {
+
+            $("#secure_link_el").click(function(event) {
+                event.preventDefault();
+                $("#tpopup111").toggleClass('hidden');
+                $("#thover111").toggleClass('hidden');
+            });
+            $("#tclose111").click(function() {
+                $("#tpopup111").toggleClass('hidden');
+                $("#thover111").toggleClass('hidden');
+            });
         });
     </script>
-    <script src="https://kit.fontawesome.com/58c4cdb942.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-    <script src="/js/custom.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+
+    <!--secure link -- interview-->
+    <script>
+        $(document).ready(function() {
+
+            $("#secure_link_sh").click(function(event) {
+                event.preventDefault();
+                $("#tpopup1111").toggleClass('hidden');
+                $("#thover1111").toggleClass('hidden');
+            });
+            $("#tclose1111").click(function() {
+                $("#tpopup1111").toggleClass('hidden');
+                $("#thover1111").toggleClass('hidden');
+            });
+        });
+    </script>
+
+
+    <!--secure link -- WBT-->
+    <script>
+        $(document).ready(function() {
+
+            $("#secure_link_mt").click(function(event) {
+                event.preventDefault();
+                $("#tpopup11").toggleClass('hidden');
+                $("#thover11").toggleClass('hidden');
+            });
+            $("#tclose11").click(function() {
+                $("#tpopup11").toggleClass('hidden');
+                $("#thover11").toggleClass('hidden');
+            });
+        });
+    </script>
+
+
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function() {
             var lazyloadImages = document.querySelectorAll("img.lazy");
@@ -698,6 +657,30 @@
             window.addEventListener("orientationChange", lazyload);
         });
     </script>
+    <!------------------------------------
+        For Google translate
+    -------------------------------------->
+    <script>
+        function googleTranslateElementInit() {
+            if ($(window).width() < 760) {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                    includedLanguages: "hi,en,bn"
+                }, 'google_translate_element1');
+
+            } else {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                    includedLanguages: "hi,en,bn"
+                }, 'google_translate_element');
+            }
+
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     <!-----------------Start counting after scroll on specific element
 --------------------------------------------------------------------------->
     <script>
@@ -741,60 +724,57 @@
             policyLink: 'https://drive.google.com/file/d/1o-ULIIYDLv5ipSRfUa6ROzxJZyoEZhDF/view'
         });
     </script>
-    <div id="footer"></div>
-    <a id="bttbutton" href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
-
-    <!--<div id="thoverX" class="thover"></div>
-<div id="tpopupX" class="tpopup">
-    <img src="../images/pride3.jpg" class="img-fluid img-responsive hidden-xs" style="display: block;margin-left: auto;margin-right: auto;">
-    <p style="display: block; margin-left: 5%;margin-right: 5%; text-align: left;">This Pride Month, RSSI launches #AgarTumSaathHo, to bring together LGBTQ Community and their straight allies.<br><br> Families and friends really matter! We know that most young people from the LGBTQ community grow up having to hide their identity
-        because they fear being judged and rejected even by their loved ones. But this has a severe impact on their self-esteem and sense of self-worth. Supportive parents, families, friends, teachers, and peers can all play an important role in helping
-        build self-esteem and a positive sense of self among LGBTQ youth, including gender non-conforming teens. This Pride month, RSSI NGO aims to bring forward and celebrate these stories of support, courage, love, and of understanding.
-    </p>
-    <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="/images/imp.mp4" allowfullscreen></iframe>
-    </div>
-    <div id="tcloseX" class="tclose notranslate">X</div>
+    <!-- Start of Async ProveSource Code -->
     <script>
-        $("#tcloseX").click(function() {
-            $("#tpopupX").toggleClass('hidden');
-            $("#thoverX").toggleClass('hidden');
-        });
-        $("#thoverX").click(function() {
-            $("#tpopupX").toggleClass('hidden');
-            $("#thoverX").toggleClass('hidden');
-        });
+        ! function(o, i) {
+            window.provesrc && window.console && console.error && console.error("ProveSource is included twice in this page."), provesrc = window.provesrc = {
+                dq: [],
+                display: function() {
+                    this.dq.push(arguments)
+                }
+            }, o._provesrcAsyncInit = function() {
+                provesrc.init({
+                    apiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI2MjQ4Njc2ODMxY2YwODExZDU5OTVjNmIiLCJpYXQiOjE2NDg5MTIyMzJ9.6HuHEvBtmvfhXqTPrbGSTsd_L-6uLNIKai3lJfLpjd0",
+                    v: "0.0.4"
+                })
+            };
+            var r = i.createElement("script");
+            r.type = "text/javascript", r.async = !0, r["ch" + "ar" + "set"] = "UTF-8", r.src = "https://cdn.provesrc.com/provesrc.js";
+            var e = i.getElementsByTagName("script")[0];
+            e.parentNode.insertBefore(r, e)
+        }(window, document);
     </script>
-</div>-->
+    <!-- End of Async ProveSource Code -->
 
-    <!-- Messenger Chat Plugin Code -->
-    <div id="fb-root" class="hidden-xs"></div>
 
-    <!-- Your Chat Plugin code -->
-    <div id="fb-customer-chat" class="fb-customerchat">
-    </div>
-
-    <script>
-        var chatbox = document.getElementById('fb-customer-chat');
-        chatbox.setAttribute("page_id", "215632685291793");
-        chatbox.setAttribute("attribution", "biz_inbox");
-
-        window.fbAsyncInit = function() {
-            FB.init({
-                xfbml: true,
-                version: 'v12.0'
+    <div id="thoverX" class="thover"></div>
+    <div id="tpopupX" class="tpopup">
+        <!-- <img src="../images/pride3.jpg" class="img-fluid img-responsive hidden-xs" style="display: block;margin-left: auto;margin-right: auto;">
+        <p style="display: block; margin-left: 5%;margin-right: 5%; text-align: left;">This Pride Month, RSSI launches #AgarTumSaathHo, to bring together LGBTQ Community and their straight allies.<br><br> Families and friends really matter! We know that most young people from the LGBTQ community grow up having to hide their identity
+            because they fear being judged and rejected even by their loved ones. But this has a severe impact on their self-esteem and sense of self-worth. Supportive parents, families, friends, teachers, and peers can all play an important role in helping
+            build self-esteem and a positive sense of self among LGBTQ youth, including gender non-conforming teens. This Pride month, RSSI NGO aims to bring forward and celebrate these stories of support, courage, love, and of understanding.
+        </p> -->
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="/images/imp.mp4" allowfullscreen></iframe>
+        </div>
+        <div id="tcloseX" class="tclose notranslate">X</div>
+        <script>
+            $("#tcloseX").click(function() {
+                $("#tpopupX").toggleClass('hidden');
+                $("#thoverX").toggleClass('hidden');
             });
-        };
-
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
+            $("#thoverX").click(function() {
+                $("#tpopupX").toggleClass('hidden');
+                $("#thoverX").toggleClass('hidden');
+            });
+        </script>
+    </div>
+    <script>
+        $(function() {
+            $("#footer").load("/footer.html");
+        });
     </script>
+    <div id="footer"></div>
 </body>
 
 </html>

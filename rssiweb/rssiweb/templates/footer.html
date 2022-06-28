@@ -2,17 +2,15 @@
 <html lang="en">
 
 <head>
-    <!--
-RSSI
-http://www.rssi.in
--->
     <title>Footer</title>
+    <style>
+        .prebanner {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
-    <!-- =========================
-     FOOTER   
-============================== -->
 
     <section id="footer" class="footer-distributed">
 
@@ -89,25 +87,20 @@ http://www.rssi.in
             </div>
         </div>
     </section>
-</body>
-<style>
-    .prebanner {
-        display: none;
-    }
-</style>
-<!--protected by reCAPTCHA-->
-<script src="https://www.google.com/recaptcha/api.js?render=6LfJRc0aAAAAAEhNPCD7ju6si7J4qRUCBSN_8RsL"></script>
-<script>
-    function onClick(e) {
-        e.preventDefault();
-        grecaptcha.ready(function() {
-            grecaptcha.execute('6LfJRc0aAAAAAEhNPCD7ju6si7J4qRUCBSN_8RsL', {
-                action: 'homepage'
-            }).then(function(token) {
-                // Add your logic to submit to your backend server here.
+    <!--protected by reCAPTCHA-->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfJRc0aAAAAAEhNPCD7ju6si7J4qRUCBSN_8RsL"></script>
+    <script>
+        function onClick(e) {
+            e.preventDefault();
+            grecaptcha.ready(function() {
+                grecaptcha.execute('6LfJRc0aAAAAAEhNPCD7ju6si7J4qRUCBSN_8RsL', {
+                    action: 'homepage'
+                }).then(function(token) {
+                    // Add your logic to submit to your backend server here.
+                });
             });
-        });
-    }
-</script>
+        }
+    </script>
+</body>
 
 </html>
