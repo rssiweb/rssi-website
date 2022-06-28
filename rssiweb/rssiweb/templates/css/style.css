@@ -469,17 +469,17 @@ DETAIL SECTION SMALL TEXTDESIGN - [ID NAME - DETAIL]
 /* Back top */
 
 .go-top {
-    background-color: #222;
+    background-color: #777777;
     bottom: 2em;
-    right: 3em;
+    right: 4em;
     color: #ffffff !important;
-    font-size: 32px;
+    font-size: 30px;
     display: none;
     position: fixed;
     text-decoration: none;
-    width: 60px;
-    height: 60px;
-    line-height: 60px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
     transition: all 0.4s ease-in-out;
     z-index: 3;
