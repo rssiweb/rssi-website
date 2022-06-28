@@ -421,6 +421,11 @@
             color: inherit;
         }
         
+        .footer-distributed .footer-links a:hover {
+            border-bottom: 1px dotted whitesmoke;
+            background-color: transparent !important;
+        }
+        
         .footer-distributed .footer-company-name {
             color: #8f9296;
             font-size: 13px;
