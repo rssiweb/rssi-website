@@ -10,6 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="shortcut icon" href="/images/logo/favicon.ico" type="image/x-icon" />
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        $(function() {
+            $("#footer").load("/footer.html");
+        });
+    </script>
     <link rel="stylesheet" href="/css/HeaderFooter.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/login.css">
@@ -758,11 +763,6 @@
             });
         </script>
     </div>-->
-    <script>
-        $(function() {
-            $("#footer").load("/footer.html");
-        });
-    </script>
     <div id="footer"></div>
 </body>
 

@@ -38,6 +38,71 @@
             }
         }
     </style>
+    <style>
+        /*
+ CSS for the main interaction
+*/
+        
+        .tabset>input[type="radio"] {
+            position: absolute;
+            left: -200vw;
+        }
+        
+        .tabset .tab-panel {
+            display: none;
+        }
+        
+        .tabset>input:first-child:checked~.tab-panels>.tab-panel:first-child,
+        .tabset>input:nth-child(3):checked~.tab-panels>.tab-panel:nth-child(2),
+        .tabset>input:nth-child(5):checked~.tab-panels>.tab-panel:nth-child(3),
+        .tabset>input:nth-child(7):checked~.tab-panels>.tab-panel:nth-child(4),
+        .tabset>input:nth-child(9):checked~.tab-panels>.tab-panel:nth-child(5),
+        .tabset>input:nth-child(11):checked~.tab-panels>.tab-panel:nth-child(6) {
+            display: block;
+        }
+        
+        .tabset>label {
+            position: relative;
+            display: inline-block;
+            padding: 15px 15px 25px;
+            border: 1px solid transparent;
+            border-bottom: 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .tabset>label::after {
+            content: "";
+            position: absolute;
+            left: 15px;
+            bottom: 10px;
+            width: 22px;
+            height: 4px;
+            background: #8d8d8d;
+        }
+        
+        .tabset>label:hover,
+        .tabset>input:focus+label {
+            color: #06c;
+        }
+        
+        .tabset>label:hover::after,
+        .tabset>input:focus+label::after,
+        .tabset>input:checked+label::after {
+            background: #06c;
+        }
+        
+        .tabset>input:checked+label {
+            border-color: #ccc;
+            border-bottom: 1px solid #fff;
+            margin-bottom: -1px;
+        }
+        
+        .tab-panel {
+            padding: 30px 0;
+            border-top: 1px solid #ccc;
+        }
+    </style>
 </head>
 <!-- =========================
      NAVIGATION LINKS     
@@ -46,14 +111,15 @@
 <body>
 
     <div id="header"></div>
-    <div style="margin: 0.3%;">
+    <!-- <div style="margin: 0.3%;">
         <ps class="marginleft notice" style="margin-left: 3%;">
             <a href="/index">Home</a> &#62; Donate
         </ps>
-        <!-- <div class="container">
+    </div> -->
+    <!-- <div class="container">
             <div class="alert alert-success" role="alert">Donations to Rina Shiksha Sahayak Foundation shall be eligible for tax benefits under section 80G(5)(vi) of the Income Tax Act, 1961.</div>
         </div> -->
-    </div>
+
     <section id="update" style="padding: 0.5% 5.5%; background-color: #fff">
         <div class="row py-2">
             <div class="col-1 col-md-3 col-lg-2 py-1 pr-md-0 mb-md-1">
@@ -73,58 +139,63 @@
 ============================== -->
 
     <section id="donation" style="padding: 1% 5.5%; background:#fff">
-        <h3>Help a journey - from childhood to livelihood</h3>
-        <div class="row1">
-            <div class="column6">
-                <h3>Process 1</h3>
-            </div>
-            <div class="column6">
-                <h3>Process 2</h3>
-            </div>
-        </div>
+        <h3>Help a journey - from childhood to livelihood</h3><br>
 
+        <div class="tabset">
+            <!-- Tab 1 -->
+            <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
+            <label for="tab1">Paytm</label>
+            <!-- Tab 2 -->
+            <input type="radio" name="tabset" id="tab2" aria-controls="rauchbier">
+            <label for="tab2">Razorpay</label>
+            <!-- Tab 3 -->
+            <input type="radio" name="tabset" id="tab3" aria-controls="dunkles">
+            <label for="tab3">Bank transaction</label>
 
-        <div class="row1">
-            <div class="column6">
-                <p>Donation is now easier with Payment Gateway. You are just one click away to make someone's future.
-                </p>
-                <form style="display: inline; display: table-cell; vertical-align: middle;">
-                    <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_JkuxffSBCwLu2p" async>
-                    </script>
-                </form>
-                <br>
-                <a href="https://securegw.paytm.in/link/paymentForm/92390/LL_516135905" target='_blank' rel='im-checkout' data-behaviour='remote' data-style='light' data-text="Donate with Paytm" style="border-radius: 2px;display: inline-block;border: 1px solid #e6ebf3;padding: 0 23px;color: #182233;font-size: 12px;text-decoration: none;font-family: 'Nunito Sans', sans-serif;height: 32px;line-height: 28px;background: #00b9f5;color: #ffffff;border: 1px solid #00b9f5;">
-                    <span>Donate with</span>
-                    <img style="margin-left: 6px;vertical-align:sub;width: 50px;" src="https://staticgw.paytm.in/1.4/plogo/paytmlogo-white.png" /></a>
+            <div class="tab-panels">
+                <section id="marzen" class="tab-panel">
+                    <p>Donation is now easier with Payment Gateway. You are just one click away to make someone's future.
+                    </p>
 
-            </div>
+                    <a href="https://securegw.paytm.in/link/paymentForm/92390/LL_516135905" target='_blank' rel='im-checkout' data-behaviour='remote' data-style='light' data-text="Donate with Paytm" style="border-radius: 2px;display: inline-block;border: 1px solid #e6ebf3;padding: 0 23px;color: #182233;font-size: 12px;text-decoration: none;font-family: 'Nunito Sans', sans-serif;height: 32px;line-height: 28px;background: #00b9f5;color: #ffffff;border: 1px solid #00b9f5;">
+                        <span>Donate with</span>
+                        <img style="margin-left: 6px;vertical-align:sub;width: 50px;" src="https://staticgw.paytm.in/1.4/plogo/paytmlogo-white.png" /></a>
+                </section>
+                <section id="rauchbier" class="tab-panel">
+                    <p>Donation is now easier with Payment Gateway. You are just one click away to make someone's future.
+                    </p>
+                    <form style="display: inline; display: table-cell; vertical-align: middle;">
+                        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_JkuxffSBCwLu2p" async>
+                        </script>
+                    </form>
+                </section>
+                <section id="dunkles" class="tab-panel">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Account Number: <b>201008915512</b></p>
+                            <p>A/C Name: 52617897 - Rina Shiksha Sahayak Foundation</p>
+                            <p>Bank Name: Indusind Bank Ltd, 0865 - Chhinhat Lucknow</p>
+                            <p>IFSC Code: INDB0000865</p>
 
-            <div class="column6">
-
-
-                <div class="row1">
-                    <div class="column7">
-                        <p>Account Number: <b>201008915512</b></p>
-                        <p>A/C Name: 52617897 - Rina Shiksha Sahayak Foundation</p>
-                        <p>Bank Name: Indusind Bank Ltd, 0865 - Chhinhat Lucknow</p>
-                        <p>IFSC Code: INDB0000865</p>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="http://web.local/images/donation/payment.jpg" alt="Google pay QR" width="100px">
+                        </div>
                     </div>
+                    <br>
+                    <p>
+                        After making the payment you are requested to generate the receipt with the transaction ID generated by your bank after a successful transaction. On successful submission of the receipt form, you will receive an acknowledgment slip. The original receipt
+                        will be shared via post or email within 7 business days.</p>
+                    <br>
+                    <input type="checkbox" id="termsChkbx" name="termsChkbx" onclick="change_button(this,'sub1')" />
+                    <p style="display: inline;"><label for="termsChkbx" style="font-weight: 400;">I have completed the
+                            payment and I have the
+                            transaction ID.</label></p><br><br>
 
-                    <div class="column7a"> <img src="/images/donation/payment.jpg" alt="Google pay QR" width="100px">
-                    </div>
-                </div>
-
-
-                <br>
-                <p class="noticet">
-                    After making the payment through process 2 you are requested to generate the receipt with the transaction ID generated by your bank after a successful transaction. On successful submission of the receipt form, you will receive an acknowledgment slip.
-                    The original receipt will be shared via post or email within 7 business days.</p>
-                <br>
-                <p><input type="checkbox" id="termsChkbx " onclick="change_button(this,'sub1')" />&nbsp;I have completed the payment using process 1 and I have the transaction ID.
-
-                </p>
-                <button type="button" disabled id="sub1"><a title="Click here to generate the receipt"
-                        style="color:#444">Generate receipt</a></button>
+                    <form target="_blank" action="https://docs.google.com/forms/d/e/1FAIpQLSfZ_mynvy7rrd8qWgKlk4rrWheghbmZ_wlBvJ_WbM6h7SVXrw/viewform">
+                        <input type="submit" id="sub1" value="Generate receipt" disabled />
+                    </form>
+                </section>
             </div>
         </div>
     </section>
@@ -140,14 +211,13 @@
     <script src="/js/custom.js"></script>
 
     <script>
-        function change_button(checkbx, button_id) {
-            var btn = document.getElementById(button_id);
+        function change_button(checkbx, sub1) {
+            var btn = document.getElementById(sub1);
             if (checkbx.checked == true) {
                 btn.disabled = false;
-                btn.children[0].href = "https://docs.google.com/forms/d/e/1FAIpQLSfZ_mynvy7rrd8qWgKlk4rrWheghbmZ_wlBvJ_WbM6h7SVXrw/viewform";
             } else {
                 btn.disabled = true;
-                btn.children[0].href = "javascript: void(0)";
+                // btn.children[0].href = "javascript: void(0)";
             }
         }
     </script>
