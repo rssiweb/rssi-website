@@ -25,8 +25,68 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/addstyle.css">
     <style>
-        .dnd {
-            padding: 0px 30px 1px 15px !important;
+        /*
+ CSS for the main interaction
+*/
+        
+        .tabset>input[type="radio"] {
+            position: absolute;
+            left: -200vw;
+        }
+        
+        .tabset .tab-panel {
+            display: none;
+        }
+        
+        .tabset>input:first-child:checked~.tab-panels>.tab-panel:first-child,
+        .tabset>input:nth-child(3):checked~.tab-panels>.tab-panel:nth-child(2),
+        .tabset>input:nth-child(5):checked~.tab-panels>.tab-panel:nth-child(3),
+        .tabset>input:nth-child(7):checked~.tab-panels>.tab-panel:nth-child(4),
+        .tabset>input:nth-child(9):checked~.tab-panels>.tab-panel:nth-child(5),
+        .tabset>input:nth-child(11):checked~.tab-panels>.tab-panel:nth-child(6) {
+            display: block;
+        }
+        
+        .tabset>label {
+            position: relative;
+            display: inline-block;
+            padding: 15px 15px 25px;
+            border: 1px solid transparent;
+            border-bottom: 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .tabset>label::after {
+            content: "";
+            position: absolute;
+            left: 15px;
+            bottom: 10px;
+            width: 22px;
+            height: 4px;
+            background: #8d8d8d;
+        }
+        
+        .tabset>label:hover,
+        .tabset>input:focus+label {
+            color: #06c;
+        }
+        
+        .tabset>label:hover::after,
+        .tabset>input:focus+label::after,
+        .tabset>input:checked+label::after {
+            background: #06c;
+        }
+        
+        .tabset>input:checked+label {
+            border-color: #ccc;
+            border-bottom: 1px solid #fff;
+            margin-bottom: -1px;
+        }
+        
+        .tab-panel {
+            padding: 30px 0;
+            border-top: 1px solid #ccc;
         }
     </style>
 </head>
@@ -40,7 +100,7 @@
 
     <div style="margin: 0.3%;">
         <ps class="marginleft notice" style="margin-left: 3%;">
-            <a href="/index">Home</a> &#62; Join us as &#62; Volunteer/Intern/Employee
+            <a href="/index">Home</a> &#62; Careers &#62; Volunteer/Intern/Employee
         </ps>
     </div>
     <!-- =========================
@@ -59,55 +119,108 @@
                 </select>
             </div>
         </div>
+        <div class="tabset">
+            <!-- Tab 1 -->
+            <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
+            <label for="tab1">Application process</label>
+            <!-- Tab 2 -->
+            <input type="radio" name="tabset" id="tab2" aria-controls="rauchbier">
+            <label for="tab2">Application fee</label>
+            <!-- Tab 3 
+            <input type="radio" name="tabset" id="tab3" aria-controls="dunkles">
+            <label for="tab3">Bank transaction</label>-->
 
-        <div class="row1">
-            <div class="dnd marginleft">
-                <h3>How can I become a RSSI Volunteer/Intern/Employee for an assignment?</h3>
-            </div>
-            <br>
-            <p>You need to register your profile in the RSSI talent pool. The registration process consists of two parts.
-            </p>
+            <div class="tab-panels">
+                <section id="marzen" class="tab-panel">
+                    <div class="row1">
+                        <div>
+                            <!--class="dnd marginleft"-->
+                            <h3>How can I become a RSSI Volunteer/Intern/Employee for an assignment?</h3>
+                        </div>
+                        <br>
+                        <p>You need to register your profile in the RSSI talent pool. The registration process consists of two parts.
+                        </p>
 
-            <h5>Part I</h5>
-            <p>Familiarize yourself with essential information for potential volunteer/intern/employee and submit basic information using the below registration form to create your account. After the successful submission you will automatically receive an
-                email with your Application ID.</p>
+                        <h5>Part I</h5>
+                        <p>Familiarize yourself with essential information for potential volunteer/intern/employee and submit basic information using the below registration form to create your account. After the successful submission you will automatically
+                            receive an email with your Application ID.</p>
 
-            <div class="white" style="text-align: -webkit-center; ">
-                <a href="https://forms.gle/KJXJwbxUzczN2eQG7" target="_blank" class="primary_btn  exam_btn" style="padding: 10px 20px;" data-wow-delay="1.3s">Registration Form <i
-                        class="fas fa-chevron-right"></i></a>
-            </div>
+                        <div class="white" style="text-align: -webkit-center; ">
+                            <a href="https://forms.gle/KJXJwbxUzczN2eQG7" target="_blank" class="primary_btn  exam_btn" style="padding: 10px 20px;" data-wow-delay="1.3s">Registration Form <i
+                                    class="fas fa-chevron-right"></i></a>
+                        </div>
 
-            <h5>Part II</h5>
-            <p>After completing Part 1, in order for us to be able to process your application, either you have to contact your nearest RSSI branch with an original document from the items listed or you can avail our online verification facility. Acceptable
-                identification
-            </p>
+                        <h5>Part II</h5>
+                        <p>After completing Part 1, in order for us to be able to process your application, either you have to contact your nearest RSSI branch with an original document from the items listed or you can avail our online verification facility.
+                            Acceptable identification
+                        </p>
 
-            <ul>
-                <ol type="1">
-                    <li style="padding-left:0.5em">
-                        <p>Aadhaar</p>
-                    </li>
-                    <li style="padding-left:0.5em">
-                        <p>Current passport</p>
-                    </li>
-                    <li style="padding-left:0.5em">
-                        <p>Driving license</p>
-                    </li>
-                    <li style="padding-left:0.5em">
-                        <p>Electoral identity card</p>
-                    </li>
-                    <li style="padding-left:0.5em">
-                        <p>Ration card</p>
-                    </li>
-                </ol>
-            </ul>
+                        <ul>
+                            <ol type="1">
+                                <li style="padding-left:0.5em">
+                                    <p>Aadhaar</p>
+                                </li>
+                                <li style="padding-left:0.5em">
+                                    <p>Current passport</p>
+                                </li>
+                                <li style="padding-left:0.5em">
+                                    <p>Driving license</p>
+                                </li>
+                                <li style="padding-left:0.5em">
+                                    <p>Electoral identity card</p>
+                                </li>
+                                <li style="padding-left:0.5em">
+                                    <p>Ration card</p>
+                                </li>
+                            </ol>
+                        </ul>
 
-            <p>Now your application will be in the HR queue. After HR approval, as confirmation of your successful registration you will receive a second email with your Volunteer ID, other practical information for potential candidates and a URL to enter
-                all the required details regarding your skills, educational qualifications and experience.</p>
+                        <p>Now your application will be in the HR queue. After HR approval, as confirmation of your successful registration you will receive a second email with your Volunteer ID, other practical information for potential candidates and a
+                            URL to enter all the required details regarding your skills, educational qualifications and experience.
+                        </p>
 
-            <p>Your RSSI profile will only be considered for upcoming volunteer assignments after completion of this second part of the registration process.</p>
+                        <p>Your RSSI profile will only be considered for upcoming volunteer assignments after completion of this second part of the registration process.</p>
 
-        </div>
+                    </div>
+                </section>
+                <section id="rauchbier" class="tab-panel">
+                    <p>Please click on the Pay Now button to make the payment.</p>
+                    <input type="checkbox" id="termsChkbx" name="termsChkbx" onclick="change_button(this,'sub1')" />
+                    <p style="display: inline;"><label for="termsChkbx" style="font-weight: 400;">I have understood the process and completed the registration and identity verification. I have my application number.</label></p><br><br>
+
+                    <form target="_blank" action="https://paytm.me/Hnl-FWv">
+                        <input type="submit" id="sub1" value="Pay Now" disabled />
+                    </form>
+
+
+                    <hr>
+                    <p><u><b>Information</b></u></p>
+                    <p>For association type - <b>Volunteer</b></p>
+                    <ul>
+                        <ol type="1" style="padding-inline-start: 20px;">
+                            <li style="padding-left:0.5em">
+                                <p>Application fee Rs.100 is one-time, non-refundable, and has to be paid at the time of registration.
+                                </p>
+                            </li>
+                        </ol>
+                    </ul><br>
+                    <p>For association type - <b>Employee and Intern</b></p>
+                    <ul>
+                        <ol type="1" style="padding-inline-start: 20px;">
+                            <li style="padding-left:0.5em">
+                                <p>Application fee Rs.100 is one-time, non-refundable, and has to be paid at the time of registration.
+                                </p>
+                            </li>
+                            <li style="padding-left:0.5em">
+                                <p>The certification/miscellaneous fee Rs.200 is one-time, non-refundable, and has to be paid at the time of onboarding.</p>
+                            </li>
+                        </ol>
+                    </ul>
+                    <br>
+                    <p><b>Offline support</b></p>
+                    <p>If you are not tech-savvy and want to avail offline facility to complete the application process, please send us a WhatsApp message on this number 7980168159 along with one of your government photo ID proofs. Please note that offline
+                        facility is available with an additional service charge of Rs.150.</p>
+                </section>
     </section>
 
 
@@ -119,6 +232,17 @@
     <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
     <script src="https://kit.fontawesome.com/58c4cdb942.js" crossorigin="anonymous"></script>
     <script src="/js/custom.js"></script>
+    <script>
+        function change_button(checkbx, sub1) {
+            var btn = document.getElementById(sub1);
+            if (checkbx.checked == true) {
+                btn.disabled = false;
+            } else {
+                btn.disabled = true;
+                // btn.children[0].href = "javascript: void(0)";
+            }
+        }
+    </script>
 
 
     <!-- =========================
