@@ -126,9 +126,9 @@
             <!-- Tab 2 -->
             <input type="radio" name="tabset" id="tab2" aria-controls="rauchbier">
             <label for="tab2">Application fee</label>
-            <!-- Tab 3 
+            <!-- Tab 3  -->
             <input type="radio" name="tabset" id="tab3" aria-controls="dunkles">
-            <label for="tab3">Bank transaction</label>-->
+            <label for="tab3">Job description</label>
 
             <div class="tab-panels">
                 <section id="marzen" class="tab-panel">
@@ -216,9 +216,8 @@
                         <div class="column6a">
                             <p>Please click on the Pay Now button to make the payment.</p>
                             <input type="checkbox" id="termsChkbx" name="termsChkbx" onclick="change_button(this,'sub1')" />
-                            <p style="display: inline;"><label for="termsChkbx" style="font-weight: 400;">I have read
-                                    the information below and completed the registration and identity
-                                    verification.</label></p><br><br>
+                            <p style="display: inline;"><label for="termsChkbx" style="font-weight: 400;">I have
+                                    completed the registration and identity verification.</label></p><br><br>
 
                             <form target="_blank" action="https://paytm.me/Hnl-FWv">
                                 <input type="submit" id="sub1" value="Pay Now" disabled />
@@ -226,6 +225,57 @@
                         </div>
                     </div>
                 </section>
+                <section id="dunkles" class="tab-panel">
+
+                    <Select id="jd">
+                        <option value="Employee">Employee</option>
+                        <option value="Intern">Intern</option>
+                        <option value="Volunteer">Volunteer</option>
+                    </Select>
+
+                    <div id="Employee" class="job" style="width: 100%; text-align: right;"><span class="label label-default">Job ID:
+                            RS/P/22/01</span></div>
+                    <p>Employment type: Part-Time</p>
+                    <p>Association type: Employee</p>
+                    <p>Responsibility: Faculty</p>
+                    <p>Experience: 1 - 2 Years</p>
+                    <p>Duty hours: 6 days a week, 4pm to 6pm</p>
+                    <p>Salary: ₹ 2000-5000 a month (The salary offered will depend on your skills, experience and performance in the interview.)</p>
+                    <p>Location: 624B/195/01, Vijayipur, Vijaipur Village, Vishesh Khand 2, Gomti Nagar, Lucknow, Uttar Pradesh 226010</p>
+                    <br>
+                    <p>Languages : Hindi, English | Skills Needed : Computer | Nursery, Pre-Primary, Primary, Pre secondary
+                    </p>
+                    <p>Responsible for teaching students, conducting tests and meetings, solving problems, evaluating students, helping them improve their skills.</p>
+                    <hr>
+                    <div id="Intern" class="job" style="width: 100%; text-align: right;"><span class="label label-default">Job ID:
+                            RS/P/22/02</span></div>
+                    <p>Employment type: Part-Time</p>
+                    <p>Association type: Intern</p>
+                    <p>Responsibility: Faculty</p>
+                    <p>Experience: 0 - 1 Years</p>
+                    <p>Duty hours: 4 days a week, 4pm to 6pm</p>
+                    <p>Salary: ₹ 0</p>
+                    <p>Location: 624B/195/01, Vijayipur, Vijaipur Village, Vishesh Khand 2, Gomti Nagar, Lucknow, Uttar Pradesh 226010</p>
+                    <br>
+                    <p>Languages : Hindi, English | Skills Needed : Computer | Nursery, Pre-Primary, Primary, Pre secondary
+                    </p>
+                    <p>Responsible for teaching students, conducting tests and meetings, solving problems, evaluating students, helping them improve their skills.</p>
+                    <hr>
+                    <div id="Volunteer" class="job" style="width: 100%; text-align: right;"><span class="label label-default">Job ID:
+                            RS/P/22/03</span></div>
+                    <p>Employment type: Part-Time</p>
+                    <p>Association type: Volunteer</p>
+                    <p>Responsibility: Faculty</p>
+                    <p>Experience: 0 Years</p>
+                    <p>Duty hours: 3 days a week, 4pm to 6pm</p>
+                    <p>Salary: ₹ 0</p>
+                    <p>Location: 624B/195/01, Vijayipur, Vijaipur Village, Vishesh Khand 2, Gomti Nagar, Lucknow, Uttar Pradesh 226010</p>
+                    <br>
+                    <p>Languages : Hindi, English | Skills Needed : Enthusiastic, Adaptive, Passionate, Team Player | Nursery, Pre-Primary, Primary, Pre secondary
+                    </p>
+                    <p>Responsible for teaching students, conducting tests and meetings, solving problems, evaluating students, helping them improve their skills.</p>
+                </section>
+
     </section>
 
 
@@ -247,6 +297,14 @@
                 // btn.children[0].href = "javascript: void(0)";
             }
         }
+    </script>
+    <script>
+        $(function() {
+            $('#jd').change(function() {
+                $('.job').hide();
+                $('#' + $(this).val()).show();
+            });
+        });
     </script>
 
 
