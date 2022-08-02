@@ -120,35 +120,134 @@
             </div>
         </div>
         <div class="tabset">
+
+            <!-- Tab 3  -->
+            <input type="radio" name="tabset" id="tab3" aria-controls="dunkles" checked>
+            <label for="tab3">Job description</label>
             <!-- Tab 1 -->
-            <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
+            <input type="radio" name="tabset" id="tab1" aria-controls="marzen">
             <label for="tab1">Application process</label>
             <!-- Tab 2 -->
             <input type="radio" name="tabset" id="tab2" aria-controls="rauchbier">
             <label for="tab2">Application fee</label>
-            <!-- Tab 3  -->
-            <input type="radio" name="tabset" id="tab3" aria-controls="dunkles">
-            <label for="tab3">Job description</label>
+
 
             <div class="tab-panels">
+
+                <section id="dunkles" class="tab-panel">
+                    Select Association type:
+                    <Select id="jd">
+                        <option value="ALL" selected hidden>ALL</option>
+                        <option value="Employee">Employee</option>
+                        <option value="Intern1">Intern-Faculty</option>
+                        <option value="Intern2">Intern-Marketing/Business Development</option>
+                        <option value="Volunteer">Volunteer</option>
+                    </Select>
+
+                    <div id="Employee" class="job">
+                        <hr>
+                        <div style="width: 100%; text-align: right;"><span class="label label-default">Job ID:
+                                RS/P/22/01</span>&nbsp;
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Employee&entry.1246758331=RS/P/22/01" title="Click Here" target="_blank"><span class="label label-danger">Apply now</span></a>
+                        </div>
+                        <p>Employment type: Part-Time</p>
+                        <p>Association type: Employee</p>
+                        <p>Responsibility: Faculty</p>
+                        <p>Experience: 1 - 2 Years</p>
+                        <p>Duty hours: 6 days a week, 4pm to 6pm</p>
+                        <p>Salary: ₹ 2000-5000 a month (The salary offered will depend on your skills, experience and performance in the interview.)</p>
+                        <p>Location: 624B/195/01, Vijayipur, Vijaipur Village, Vishesh Khand 2, Gomti Nagar, Lucknow, Uttar Pradesh 226010</p>
+                        <br>
+                        <p>Languages : Hindi, English | Skills Needed : Computer | Nursery, Pre-Primary, Primary, Pre secondary
+                        </p>
+                        <p>Responsible for teaching students, conducting tests and meetings, solving problems, evaluating students, helping them improve their skills.</p>
+                    </div>
+
+                    <div id="Intern1" class="job">
+                        <hr>
+                        <div style="width: 100%; text-align: right;"><span class="label label-default">Job ID:
+                                RS/P/22/02</span>&nbsp;
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Intern&entry.1246758331=RS/P/22/02" title="Click Here" target="_blank"><span class="label label-danger">Apply now</span></a>
+                        </div>
+                        <p>Employment type: Part-Time</p>
+                        <p>Association type: Intern</p>
+                        <p>Responsibility: Faculty</p>
+                        <p>Experience: 0 - 1 Years</p>
+                        <p>Duty hours: 4 days a week, 4pm to 6pm</p>
+                        <p>Salary: ₹ 0</p>
+                        <p>Location: 624B/195/01, Vijayipur, Vijaipur Village, Vishesh Khand 2, Gomti Nagar, Lucknow, Uttar Pradesh 226010</p>
+                        <br>
+                        <p>Languages : Hindi, English | Skills Needed : Computer | Nursery, Pre-Primary, Primary, Pre secondary
+                        </p>
+                        <p>Responsible for teaching students, conducting tests and meetings, solving problems, evaluating students, helping them improve their skills.</p>
+                    </div>
+
+                    <div id="Volunteer" class="job">
+                        <hr>
+                        <div style="width: 100%; text-align: right;"><span class="label label-default">Job ID:
+                                RS/P/22/03</span>&nbsp;
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Volunteer&entry.1246758331=RS/P/22/03" title="Click Here" target="_blank"><span class="label label-danger">Apply now</span></a>
+                        </div>
+                        <p>Employment type: Part-Time</p>
+                        <p>Association type: Volunteer</p>
+                        <p>Responsibility: Faculty</p>
+                        <p>Experience: 0 Years</p>
+                        <p>Duty hours: 3 days a week, 4pm to 6pm</p>
+                        <p>Salary: ₹ 0</p>
+                        <p>Location: 624B/195/01, Vijayipur, Vijaipur Village, Vishesh Khand 2, Gomti Nagar, Lucknow, Uttar Pradesh 226010</p>
+                        <br>
+                        <p>Languages : Hindi, English | Skills Needed : Enthusiastic, Adaptive, Passionate, Team Player | Nursery, Pre-Primary, Primary, Pre secondary
+                        </p>
+                        <p>Responsible for teaching students, conducting tests and meetings, solving problems, evaluating students, helping them improve their skills.</p>
+                    </div>
+
+                    <div id="Intern2" class="job">
+                        <hr>
+                        <div style="width: 100%; text-align: right;"><span class="label label-default">Job ID:
+                                RS/P/22/04</span>&nbsp;
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Intern&entry.1246758331=RS/P/22/04" title="Click Here" target="_blank"><span class="label label-danger">Apply now</span></a>
+                        </div>
+                        <p>Employment type: Part-Time</p>
+                        <p>Association type: Intern</p>
+                        <p>Responsibility: Marketing/Business Development</p>
+                        <p>Experience: 0 - 1 Years</p>
+                        <p>Duty hours: 4 days a week, 2 hours per day</p>
+                        <p>Salary: ₹ 0</p>
+                        <p>Location: Hydride Module, Office address: 624B/195/01, Vijayipur, Vijaipur Village, Vishesh Khand 2, Gomti Nagar, Lucknow, Uttar Pradesh 226010</p>
+                        <br>
+                        <p>Languages : Hindi, English | Skills Needed : MS Office, Digital Marketing, Marketing, Mass Communication, Social Media
+                        </p>
+                        <p>Researching, planning, and implementing new target market initiatives</p>
+                    </div>
+
+                </section>
+
+
+
+
+
+
+
+
+
+
                 <section id="marzen" class="tab-panel">
                     <div class="row1">
-                        <div>
-                            <!--class="dnd marginleft"-->
+                        <!-- <div>
+                            class="dnd marginleft"
                             <h3>How can I become a RSSI Volunteer/Intern/Employee for an assignment?</h3>
                         </div>
-                        <br>
-                        <p>You need to register your profile in the RSSI talent pool. The registration process consists of two parts.
+                        <br> -->
+                        <p>You need to register your profile in the RSSI talent pool. The registration process consists of three parts.
                         </p>
 
                         <h5>Part I</h5>
-                        <p>Familiarize yourself with essential information for potential volunteer/intern/employee and submit basic information using the below registration form to create your account. After the successful submission you will automatically
-                            receive an email with your Application ID.</p>
+                        <p>Familiarize yourself with the required information for a potential volunteer / intern / employee and submit the basic information using the registration form available in the job description section to create your account.</p>
 
-                        <div class="white" style="text-align: -webkit-center; ">
+                        <!-- <div class="white" style="text-align: -webkit-center; ">
                             <a href="https://forms.gle/KJXJwbxUzczN2eQG7" target="_blank" class="primary_btn  exam_btn" style="padding: 10px 20px;" data-wow-delay="1.3s">Registration Form <i
                                     class="fas fa-chevron-right"></i></a>
-                        </div>
+                        </div> -->
 
                         <h5>Part II</h5>
                         <p>After completing Part 1, in order for us to be able to process your application, either you have to contact your nearest RSSI branch with an original document from the items listed or you can avail our online verification facility.
@@ -175,16 +274,31 @@
                             </ol>
                         </ul>
 
-                        <p>Now your application will be in the HR queue. After HR approval, as confirmation of your successful registration you will receive a second email with your Volunteer ID, other practical information for potential candidates and a
-                            URL to enter all the required details regarding your skills, educational qualifications and experience.
+                        <h5>Part III</h5>
+                        <p>Complete the payment by clicking on the Application fee section.</p><br>
+
+
+
+                        <p>Now your application will be in the HR queue. After HR approval, as confirmation of your successful registration you will receive email with your Associate Number, other practical information for potential candidates and a URL
+                            to enter all the required details regarding your skills, educational qualifications and experience.
                         </p>
 
-                        <p>Your RSSI profile will only be considered for upcoming volunteer assignments after completion of this second part of the registration process.</p>
+                        <p>Your RSSI profile will only be considered for upcoming volunteer assignments after completion of ALL parts of the registration process.</p>
 
                     </div>
                 </section>
                 <section id="rauchbier" class="tab-panel">
                     <div class="row1">
+                        <div class="column6">
+                            <p>Please click on the Pay Now button to make the payment.</p>
+                            <input type="checkbox" id="termsChkbx" name="termsChkbx" onclick="change_button(this,'sub1')" />
+                            <p style="display: inline;"><label for="termsChkbx" style="font-weight: 400;">I have
+                                    completed the registration and identity verification.</label></p><br><br>
+
+                            <form target="_blank" action="https://paytm.me/Hnl-FWv">
+                                <input type="submit" id="sub1" value="Pay Now" disabled />
+                            </form>
+                        </div>
                         <div class="column6">
                             <p><u><b>Information</b></u></p>
                             <p>For association type - <b>Volunteer</b></p>
@@ -213,78 +327,9 @@
                             <p>If you are not tech-savvy and want to avail offline facility to complete the application process, please send us a WhatsApp message on this number 7980168159 along with one of your government photo ID proofs. Please note that
                                 offline facility is available with an additional service charge of Rs.150.</p>
                         </div>
-                        <div class="column6a">
-                            <p>Please click on the Pay Now button to make the payment.</p>
-                            <input type="checkbox" id="termsChkbx" name="termsChkbx" onclick="change_button(this,'sub1')" />
-                            <p style="display: inline;"><label for="termsChkbx" style="font-weight: 400;">I have
-                                    completed the registration and identity verification.</label></p><br><br>
-
-                            <form target="_blank" action="https://paytm.me/Hnl-FWv">
-                                <input type="submit" id="sub1" value="Pay Now" disabled />
-                            </form>
-                        </div>
                     </div>
                 </section>
-                <section id="dunkles" class="tab-panel">
-                    Select Association type:
-                    <Select id="jd">
-                        <option value="ALL" selected hidden>ALL</option>
-                        <option value="Employee">Employee</option>
-                        <option value="Intern">Intern</option>
-                        <option value="Volunteer">Volunteer</option>
-                    </Select>
 
-                    <div id="Employee" class="job">
-                        <hr>
-                        <div style="width: 100%; text-align: right;"><span class="label label-default">Job ID:
-                            RS/P/22/01</span></div>
-                        <p>Employment type: Part-Time</p>
-                        <p>Association type: Employee</p>
-                        <p>Responsibility: Faculty</p>
-                        <p>Experience: 1 - 2 Years</p>
-                        <p>Duty hours: 6 days a week, 4pm to 6pm</p>
-                        <p>Salary: ₹ 2000-5000 a month (The salary offered will depend on your skills, experience and performance in the interview.)</p>
-                        <p>Location: 624B/195/01, Vijayipur, Vijaipur Village, Vishesh Khand 2, Gomti Nagar, Lucknow, Uttar Pradesh 226010</p>
-                        <br>
-                        <p>Languages : Hindi, English | Skills Needed : Computer | Nursery, Pre-Primary, Primary, Pre secondary
-                        </p>
-                        <p>Responsible for teaching students, conducting tests and meetings, solving problems, evaluating students, helping them improve their skills.</p>
-                    </div>
-
-                    <div id="Intern" class="job">
-                        <hr>
-                        <div style="width: 100%; text-align: right;"><span class="label label-default">Job ID:
-                            RS/P/22/02</span></div>
-                        <p>Employment type: Part-Time</p>
-                        <p>Association type: Intern</p>
-                        <p>Responsibility: Faculty</p>
-                        <p>Experience: 0 - 1 Years</p>
-                        <p>Duty hours: 4 days a week, 4pm to 6pm</p>
-                        <p>Salary: ₹ 0</p>
-                        <p>Location: 624B/195/01, Vijayipur, Vijaipur Village, Vishesh Khand 2, Gomti Nagar, Lucknow, Uttar Pradesh 226010</p>
-                        <br>
-                        <p>Languages : Hindi, English | Skills Needed : Computer | Nursery, Pre-Primary, Primary, Pre secondary
-                        </p>
-                        <p>Responsible for teaching students, conducting tests and meetings, solving problems, evaluating students, helping them improve their skills.</p>
-                    </div>
-
-                    <div id="Volunteer" class="job">
-                        <hr>
-                        <div style="width: 100%; text-align: right;"><span class="label label-default">Job ID:
-                            RS/P/22/03</span></div>
-                        <p>Employment type: Part-Time</p>
-                        <p>Association type: Volunteer</p>
-                        <p>Responsibility: Faculty</p>
-                        <p>Experience: 0 Years</p>
-                        <p>Duty hours: 3 days a week, 4pm to 6pm</p>
-                        <p>Salary: ₹ 0</p>
-                        <p>Location: 624B/195/01, Vijayipur, Vijaipur Village, Vishesh Khand 2, Gomti Nagar, Lucknow, Uttar Pradesh 226010</p>
-                        <br>
-                        <p>Languages : Hindi, English | Skills Needed : Enthusiastic, Adaptive, Passionate, Team Player | Nursery, Pre-Primary, Primary, Pre secondary
-                        </p>
-                        <p>Responsible for teaching students, conducting tests and meetings, solving problems, evaluating students, helping them improve their skills.</p>
-                    </div>
-                </section>
 
     </section>
 
