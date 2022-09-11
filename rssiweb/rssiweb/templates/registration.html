@@ -143,13 +143,13 @@
             </div>
         </div>
         <div class="tabset">
-            <input type="radio" name="tabset" id="tab1" aria-controls="jd" checked>
+            <input type="radio" name="tabset" id="tab1" aria-controls="jd">
             <label for="tab1">Job description</label>
 
             <input type="radio" name="tabset" id="tab2" aria-controls="ap">
             <label for="tab2">Application process</label>
 
-            <input type="radio" name="tabset" id="tab3" aria-controls="rf">
+            <input type="radio" name="tabset" id="tab3" aria-controls="rf" checked>
             <label for="tab3">Registration form</label>
 
             <input type="radio" name="tabset" id="tab4" aria-controls="af">
@@ -276,10 +276,31 @@
                         </ul>
 
                         <h5>Part III</h5>
-                        <p>Complete the payment by clicking on the Application fee section.</p><br>
-
-
-
+                        <p>Complete the payment by clicking on the Application fee section.</p>
+                        <div style="background: #F0F0F0; padding: 2%;">
+                            <p>For association type - <b>Volunteer</b></p>
+                            <ul>
+                                <ol type="1" style="padding-inline-start: 20px;">
+                                    <li style="padding-left:0.5em">
+                                        <p>Application fee Rs.100 is one-time, non-refundable, and has to be paid at the time of registration.
+                                        </p>
+                                    </li>
+                                </ol>
+                            </ul>
+                            <p>For association type - <b>Employee, Intern</b></p>
+                            <ul>
+                                <ol type="1" style="padding-inline-start: 20px;">
+                                    <li style="padding-left:0.5em">
+                                        <p>Application fee Rs.100 is one-time, non-refundable, and has to be paid at the time of registration.
+                                        </p>
+                                    </li>
+                                    <li style="padding-left:0.5em">
+                                        <p>The certification/miscellaneous fee Rs.200 is one-time, non-refundable, and has to be paid at the time of onboarding.</p>
+                                    </li>
+                                </ol>
+                            </ul>
+                        </div>
+                        <br>
                         <p>Now your application will be in the HR queue. After HR approval, as confirmation of your successful registration you will receive email with your Associate Number, other practical information for potential candidates and a URL
                             to enter all the required details regarding your skills, educational qualifications and experience.
                         </p>
@@ -302,44 +323,17 @@
                     </form>
                 </section>
                 <section id="ap" class="tab-panel">
-                    <div class="row1">
-                        <div class="column6">
-                            <p>Please click on the Pay Now button to make the payment.</p>
-                            <input type="checkbox" id="termsChkbx" name="termsChkbx" onclick="change_button(this,'sub1')" />
-                            <p style="display: inline;"><label for="termsChkbx" style="font-weight: 400;">I have
+                    <p>Please click on the Pay Now button to make the payment.</p>
+                    <input type="checkbox" id="termsChkbx" name="termsChkbx" onclick="change_button(this,'sub1')" />
+                    <p style="display: inline;"><label for="termsChkbx" style="font-weight: 400;">I have
                                     completed the registration and identity verification (Part I + Part II).</label></p>
-                            <br><br>
+                    <br><br>
 
-                            <form target="_blank" action="https://paytm.me/Hnl-FWv">
-                                <input type="submit" id="sub1" value="Pay Now" disabled />
-                            </form>
-                        </div>
-                        <div class="column6">
-                            <p><u><b>Information</b></u></p>
-                            <p>For association type - <b>Volunteer</b></p>
-                            <ul>
-                                <ol type="1" style="padding-inline-start: 20px;">
-                                    <li style="padding-left:0.5em">
-                                        <p>Application fee Rs.100 is one-time, non-refundable, and has to be paid at the time of registration.
-                                        </p>
-                                    </li>
-                                </ol>
-                            </ul><br>
-                            <p>For association type - <b>Employee, Intern</b></p>
-                            <ul>
-                                <ol type="1" style="padding-inline-start: 20px;">
-                                    <li style="padding-left:0.5em">
-                                        <p>Application fee Rs.100 is one-time, non-refundable, and has to be paid at the time of registration.
-                                        </p>
-                                    </li>
-                                    <li style="padding-left:0.5em">
-                                        <p>The certification/miscellaneous fee Rs.200 is one-time, non-refundable, and has to be paid at the time of onboarding.</p>
-                                    </li>
-                                </ol>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
+                    <form target="_blank" action="https://paytm.me/Hnl-FWv">
+                        <input type="submit" id="sub1" value="Pay Now" disabled />
+                    </form>
+            </div>
+            </section>
 
 
     </section>
