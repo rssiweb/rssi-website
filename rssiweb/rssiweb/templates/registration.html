@@ -100,8 +100,165 @@
         }
         
         td {
-            padding-left: 1%;
-            padding-right: 1%;
+            padding: 1%;
+        }
+        
+        html {
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+        
+        .background {
+            padding: 0 25px 25px;
+            position: relative;
+            width: 100%;
+        }
+        
+        .background::after {
+            content: '';
+            background: #60a9ff;
+            background: -moz-linear-gradient(top, #60a9ff 0%, #4394f4 100%);
+            background: -webkit-linear-gradient(top, #60a9ff 0%, #4394f4 100%);
+            background: linear-gradient(to bottom, #60a9ff 0%, #4394f4 100%);
+            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#60a9ff', endColorstr='#4394f4', GradientType=0);
+            height: 350px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 1;
+        }
+        
+        @media (min-width: 900px) {
+            .background {
+                padding: 0 0 25px;
+            }
+        }
+        
+        .container {
+            margin: 0 auto;
+            padding: 50px 0 0;
+            max-width: 960px;
+            width: 100%;
+        }
+        
+        .panel {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px 25px;
+            position: relative;
+            width: 100%;
+            z-index: 10;
+        }
+        
+        .pricing-table {
+            box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 0.08), 0px 20px 31px 3px rgba(0, 0, 0, 0.09), 0px 8px 20px 7px rgba(0, 0, 0, 0.02);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @media (min-width: 900px) {
+            .pricing-table {
+                flex-direction: row;
+            }
+        }
+        
+        .pricing-table * {
+            text-align: center;
+            text-transform: uppercase;
+        }
+        
+        .pricing-plan {
+            border-bottom: 1px solid #e1f1ff;
+            padding: 25px;
+        }
+        
+        .pricing-plan:last-child {
+            border-bottom: none;
+        }
+        
+        @media (min-width: 900px) {
+            .pricing-plan {
+                border-bottom: none;
+                border-right: 1px solid #e1f1ff;
+                flex-basis: 100%;
+                padding: 25px 50px;
+            }
+            .pricing-plan:last-child {
+                border-right: none;
+            }
+        }
+        
+        .pricing-img {
+            margin-bottom: 25px;
+            max-width: 100%;
+        }
+        
+        .pricing-header {
+            color: #888;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .pricing-features {
+            color: #016FF9;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin: 50px 0 25px;
+        }
+        
+        .pricing-features-item {
+            border-top: 1px solid #e1f1ff;
+            font-size: 12px;
+            line-height: 1.5;
+            padding: 15px 0;
+        }
+        
+        .pricing-features-item:last-child {
+            border-bottom: 1px solid #e1f1ff;
+        }
+        
+        .pricing-price {
+            color: #016FF9;
+            display: block;
+            font-size: 32px;
+            font-weight: 700;
+        }
+        
+        .pricing-button {
+            border: 1px solid #9dd1ff;
+            border-radius: 10px;
+            color: #348EFE;
+            display: inline-block;
+            margin: 25px 0;
+            padding: 15px 35px;
+            text-decoration: none;
+            transition: all 150ms ease-in-out;
+        }
+        
+        .pricing-button:hover,
+        .pricing-button:focus {
+            background-color: #e1f1ff;
+        }
+        
+        .pricing-button.is-featured {
+            background-color: #48aaff;
+            color: #fff;
+        }
+        
+        .pricing-button.is-featured:hover,
+        .pricing-button.is-featured:active {
+            background-color: #269aff;
+        }
+        
+        li {
+            list-style-type: none;
         }
     </style>
 
@@ -112,7 +269,7 @@
 
 <body>
 
-    <div id="header"></div>
+    <div id="header" class="noprint"></div>
 
     <!-- <section id="update" style="padding: 0.5% 5.5%; background-color: #fff">
         <div class="row py-2">
@@ -132,7 +289,7 @@
         </div>
     </section> -->
 
-    <div style="margin: 0.3%;">
+    <div style="margin: 0.3%;" class="noprint">
         <ps class="marginleft notice" style="margin-left: 3%;">
             <a href="/index">Home</a> &#62; Careers
         </ps>
@@ -142,7 +299,7 @@
 ============================== -->
 
     <section id="calender" style="padding: 2% 3%;">
-        <div style="text-align: right;">
+        <div style="text-align: right;" class="noprint">
             <div class="white hoverdecoration">
                 <select id="select1" onchange="var win = window.open(this.value, '_blank'); win.focus();">
                     <option value="" hidden>Select document</option>
@@ -154,13 +311,13 @@
             </div>
         </div>
         <div class="tabset">
-            <input type="radio" name="tabset" id="tab1" aria-controls="jd">
+            <input type="radio" name="tabset" id="tab1" aria-controls="jd" checked>
             <label for="tab1">Job description</label>
 
             <input type="radio" name="tabset" id="tab2" aria-controls="ap">
             <label for="tab2">Application process</label>
 
-            <input type="radio" name="tabset" id="tab3" aria-controls="rf" checked>
+            <input type="radio" name="tabset" id="tab3" aria-controls="rf">
             <label for="tab3">Registration form</label>
 
             <input type="radio" name="tabset" id="tab4" aria-controls="af">
@@ -168,218 +325,64 @@
             <div class="tab-panels">
 
                 <section id="jd" class="tab-panel">
-                    Select Association type:<select id="select" value="Test1" name="Test1" onchange="selectChanged()">
-                        <option value="1">ALL</option>
-                        <option value="2">Volunteer</option>
-                        <option value="3">Intern</option>
-                        <option value="4">Employee</option>
-                    </select>
+                    <div class="background">
+                        <div class="container">
+                            <div class="panel pricing-table">
 
+                                <div class="pricing-plan">
+                                    <img src="https://s22.postimg.cc/8mv5gn7w1/paper-plane.png" alt="" class="pricing-img">
+                                    <h2 class="pricing-header">Volunteer</h2>
+                                    <ul class="pricing-features">
+                                        <li class="pricing-features-item">Part-Time</li>
+                                        <li class="pricing-features-item">3 days a week, 4pm to 6pm</li>
+                                        <li class="pricing-features-item">Unpaid</li>
+                                        <li class="pricing-features-item">Hindi, English</li>
+                                        <li class="pricing-features-item">Enthusiastic, Adaptive, Passionate, Team Player</li>
+                                        <li class="pricing-features-item">Teaching students, conducting tests and meetings, solving problems</li>
+                                        <li class="pricing-features-item">Minimum duration 4 months</li>
+                                        <li class="pricing-features-item">Work-relevant experience letter and Community Service Certificate</li>
+                                    </ul>
+                                    <span class="pricing-price">₹100</span>
+                                    <a href="https://forms.gle/yUnLMQbhYKKw4uSn8?" target="_blank" class="pricing-button">Join now</a>
+                                </div>
 
+                                <div class="pricing-plan">
+                                    <img src="https://s28.postimg.cc/ju5bnc3x9/plane.png" alt="" class="pricing-img">
+                                    <h2 class="pricing-header">Internship</h2>
+                                    <ul class="pricing-features">
+                                        <li class="pricing-features-item">Part-Time</li>
+                                        <li class="pricing-features-item">4 days a week, 4pm to 6pm</li>
+                                        <li class="pricing-features-item">Unpaid</li>
+                                        <li class="pricing-features-item">Hindi, English</li>
+                                        <li class="pricing-features-item">Computer</li>
+                                        <li class="pricing-features-item">Teaching students, conducting tests and meetings, solving problems</li>
+                                        <li class="pricing-features-item">Minimum duration 1 month</li>
+                                        <li class="pricing-features-item">Work experience letter and Internship Certificate</li>
+                                    </ul>
+                                    <span class="pricing-price">₹ 300</span>
+                                    <a href="https://forms.gle/yUnLMQbhYKKw4uSn8?" target="_blank" class="pricing-button is-featured">Join now</a>
+                                </div>
 
-                    <div id="box2">
-                        <hr>
+                                <div class="pricing-plan">
+                                    <img src="https://s21.postimg.cc/tpm0cge4n/space-ship.png" alt="" class="pricing-img">
+                                    <h2 class="pricing-header">Employee</h2>
+                                    <ul class="pricing-features">
+                                        <li class="pricing-features-item">Part-Time</li>
+                                        <li class="pricing-features-item">6 days a week, 4pm to 6pm</li>
+                                        <li class="pricing-features-item">₹ 2000-5000/month</li>
+                                        <li class="pricing-features-item">Hindi, English</li>
+                                        <li class="pricing-features-item">Computer</li>
+                                        <li class="pricing-features-item">Teaching students, conducting tests and meetings, solving problems, administrative activity</li>
+                                        <li class="pricing-features-item">Minimum duration 4 months</li>
+                                        <li class="pricing-features-item">Work experience letter</li>
+                                    </ul>
+                                    <span class="pricing-price">₹ 300</span>
+                                    <a href="https://forms.gle/yUnLMQbhYKKw4uSn8?" class="pricing-button">Join now</a>
+                                </div>
 
-                        <table>
-                            <tr>
-                                <td style="width: 50%;">
-                                    <div style="width: 100%; text-align: right;"><span class="label label-default">Job
-                                            ID:
-                                            RS/P/22/02</span>
-                                    </div>
-                                    <p>Employment type: Part-Time</p>
-                                    <p>Association type: <b>Intern</b></p>
-                                    <p>Responsibility: Faculty</p>
-                                    <p>Experience: 0 - 1 Years</p>
-                                    <p>Duty hours: 4 days a week, 4pm to 6pm</p>
-                                    <p>Salary: ₹ 0</p>
-                                    <p>Location: 624B/195/01, Vijayipur, Vijaipur Village, Vishesh Khand 2, Gomti Nagar, Lucknow, Uttar Pradesh 226010</p>
-                                    <br>
-                                    <p>Languages : Hindi, English | Skills Needed : Computer | Nursery, Pre-Primary, Primary, Pre secondary
-                                    </p>
-                                    <p>Responsible for teaching students, conducting tests and meetings, solving problems, evaluating students, helping them improve their skills.</p>
-                                </td>
-                                <td>
-                                    <p><b>Additional Information</b></p>
-                                    <p>The associate will have to serve a minimum of <b>1 (One)</b> month after accepting the offer letter. Meanwhile, if an associate wants to resign, he/she will have to pay a fine of Rs 5000 for breach of contract.</p>
-
-                                    <p><b>Perks</b></p>
-                                    <ol>
-                                        <li>
-                                            <p>Corporate work experience in a real-time environment at the grassroots level with the beneficiaries and team members.</p>
-                                        </li>
-                                        <li>
-                                            <p>Get an opportunity to explore your skill set while working in a real-time working environment. Work for the community and its betterment. Get an opportunity to work with the underprivileged section of the society.
-                                                Look into their problems and work directly to make a positive impact on their lives.
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p>Opportunity to develop skills through various certification courses organized by the organization.</p>
-                                        </li>
-                                        <li>
-                                            <p>Eligible for project end appraisal.</p>
-                                        </li>
-
-
-                                        <li>
-                                            <p>On successful completion of the tenure, a work experience letter along with an internship certificate will be provided.</p>
-                                        </li>
-                                    </ol>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <div id="box4">
-                        <hr>
-
-                        <table>
-                            <tr>
-                                <td style="width: 50%;">
-                                    <div style="width: 100%; text-align: right;"><span class="label label-default">Job
-                                            ID:
-                                            RS/P/22/04</span>
-                                    </div>
-                                    <p>Employment type: Part-Time</p>
-                                    <p>Association type: <b>Intern</b></p>
-                                    <p>Responsibility: Marketing/Business Development</p>
-                                    <p>Experience: 0 - 1 Years</p>
-                                    <p>Duty hours: 4 days a week, 2 hours per day</p>
-                                    <p>Salary: ₹ 0</p>
-                                    <p>Location: Hydride Module, Office address: 624B/195/01, Vijayipur, Vijaipur Village, Vishesh Khand 2, Gomti Nagar, Lucknow, Uttar Pradesh 226010</p>
-                                    <br>
-                                    <p>Languages : Hindi, English | Skills Needed : MS Office, Digital Marketing, Marketing, Mass Communication, Social Media
-                                    </p>
-                                    <p>Researching, planning, and implementing new target market initiatives</p>
-                                </td>
-                                <td>
-                                    <p><b>Additional Information</b></p>
-                                    <p>The associate will have to serve a minimum of <b>1 (One)</b> month after accepting the offer letter. Meanwhile, if an associate wants to resign, he/she will have to pay a fine of Rs 5000 for breach of contract.</p>
-
-                                    <p><b>Perks</b></p>
-                                    <ol>
-                                        <li>
-                                            <p>Corporate work experience in a real-time environment at the grassroots level with the beneficiaries and team members.</p>
-                                        </li>
-                                        <li>
-                                            <p>Get an opportunity to explore your skill set while working in a real-time working environment. Explore digital media platforms as a career opportunity. Practical experience in Digital Marketing, Mass Communication
-                                                and One-to-One Communication.
-                                            </p>
-                                        </li>
-
-                                        <li>
-                                            <p>Opportunity to develop skills through various certification courses organized by the organization.</p>
-                                        </li>
-                                        <li>
-                                            <p>Eligible for project end appraisal.</p>
-                                        </li>
-
-                                        <li>
-                                            <p>On successful completion of the tenure, a work experience letter along with an internship certificate will be provided.</p>
-                                        </li>
-                                    </ol>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <div id="box3">
-                        <hr>
-                        <table>
-                            <tr>
-                                <td style="width: 50%;">
-                                    <div style="width: 100%; text-align: right;"><span class="label label-default">Job
-                                            ID:
-                                            RS/P/22/03</div>
-                                    </span>
-                                        <p>Employment type: Part-Time</p>
-                                        <p>Association type: <b>Volunteer</b></p>
-                                        <p>Responsibility: Faculty</p>
-                                        <p>Experience: 0 Years</p>
-                                        <p>Duty hours: 3 days a week, 4pm to 6pm</p>
-                                        <p>Salary: ₹ 0</p>
-                                        <p>Location: 624B/195/01, Vijayipur, Vijaipur Village, Vishesh Khand 2, Gomti Nagar, Lucknow, Uttar Pradesh 226010</p>
-                                        <br>
-                                        <p>Languages : Hindi, English | Skills Needed : Enthusiastic, Adaptive, Passionate, Team Player | Nursery, Pre-Primary, Primary, Pre secondary
-                                        </p>
-                                        <p>Responsible for teaching students, conducting tests and meetings, solving problems, evaluating students, helping them improve their skills.</p>
-                                </td>
-                                <td>
-                                    <p><b>Additional Information</b></p>
-                                    <p>The associate will have to serve a minimum of <b>4 (Four)</b> months after accepting the offer letter. Meanwhile, if an associate wants to resign, he/she has to inform 1 month before release (notice period of 1 month)
-                                        and will have to pay a fine of Rs 5000 for breach of contract.</p>
-
-                                    <p><b>Perks</b></p>
-                                    <ol>
-                                        <li>
-                                            <p>Get an opportunity to explore your skill set while working in a real-time working environment. Work for the community and its betterment. Get an opportunity to work with the underprivileged section of the society.
-                                                Look into their problems and work directly to make a positive impact on their lives.
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p>Flexibility in terms of working hours and responsibility at a certain level. Voluntary participation in administrative activities.
-                                            </p>
-                                        </li>
-
-                                        <li>
-                                            <p>Opportunity to develop skills through various certification courses organized by the organization.</p>
-                                        </li>
-
-                                        <li>
-                                            <p>On successful completion of the tenure, a work-relevant experience letter and Community Service Certificate will be provided.</p>
-                                        </li>
-                                    </ol>
-                                </td>
-                            </tr>
-                        </table>
+                            </div>
                         </div>
-
-                        <div id="box1">
-                            <hr>
-                            <table>
-                                <tr>
-                                    <td style="width: 50%;">
-                                        <div style="width: 100%; text-align: right;"><span class="label label-default">Job
-                                            ID:
-                                            RS/P/22/01</span>
-                                        </div>
-                                        <p>Employment type: Part-Time</p>
-                                        <p>Association type: <b>Employee</b></p>
-                                        <p>Responsibility: Faculty</p>
-                                        <p>Experience: 1 - 2 Years</p>
-                                        <p>Duty hours: 6 days a week, 4pm to 6pm</p>
-                                        <p>Salary: ₹ 2000-5000 a month (The salary offered will depend on your skills, experience and performance in the interview.)</p>
-                                        <p>Location: 624B/195/01, Vijayipur, Vijaipur Village, Vishesh Khand 2, Gomti Nagar, Lucknow, Uttar Pradesh 226010</p>
-                                        <br>
-                                        <p>Languages : Hindi, English | Skills Needed : Computer | Nursery, Pre-Primary, Primary, Pre secondary
-                                        </p>
-                                        <p>Responsible for teaching students, conducting tests and meetings, solving problems, evaluating students, helping them improve their skills.</p>
-                                    </td>
-                                    <td>
-                                        <p><b>Additional Information</b></p>
-                                        <p>The associate will have to serve a minimum of <b>4 (Four)</b> months after accepting the offer letter. Meanwhile, if an associate wants to resign, he/she has to inform 1 month before release (notice period of 1
-                                            month) and will have to pay a fine of Rs 5000 for breach of contract.</p>
-
-                                        <p><b>Perks</b></p>
-                                        <ol>
-                                            <li>
-                                                <p>Eligible for Appraisal with an annual increment (if applicable).
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p>Opportunity to develop skills through various certification courses organized by the organization.</p>
-                                            </li>
-
-                                            <li>
-                                                <p>On successful completion of the tenure, a work experience letter will be provided.</p>
-                                            </li>
-                                        </ol>
-
-
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
+                    </div>
                 </section>
 
                 <section id="ap" class="tab-panel">
@@ -477,8 +480,8 @@
                     <form target="_blank" action="https://paytm.me/C-d4mKz">
                         <input type="submit" id="sub1" value="Pay Now" disabled />
                     </form>
-                    </div>
-                </section>
+            </div>
+            </section>
 
 
     </section>
@@ -538,7 +541,7 @@
             policyLink: '/website-disclaimer'
         });
     </script>
-    <div id="footer"></div>
+    <div id="footer" class="noprint"></div>
     <!-- Messenger Chat Plugin Code -->
     <div id="fb-root"></div>
 
