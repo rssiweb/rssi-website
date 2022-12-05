@@ -32,7 +32,7 @@ jobs:
           pipenv run pytest .
   
       - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@master
+        uses: anothrNick/github-tag-action@v1
         env:
           RELEASE_BRANCHES: master
   deploy:
