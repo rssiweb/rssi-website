@@ -3,6 +3,24 @@
 
 <head>
     <title>Footer</title>
+    <style>
+        .prebanner {
+            display: none;
+        }
+        /*GOOGLE TRANSLATE*/
+        
+        #google_translate_element img {
+            width: fit-content;
+        }
+        
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+        }
+        
+        body {
+            top: 0px !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -49,10 +67,37 @@
                     <div class="social-links d-flex">
                         <a href="https://www.instagram.com/rssi.in/" class="twitter"><i class="bi bi-twitter"></i></a>
                         <a href="https://www.facebook.com/rssi.in" class="facebook"><i class="bi bi-facebook"></i></a>
-                        <a href="https://www.instagram.com/rssi.in/" class="instagram"><i class="bi bi-instagram"></i></a>
-                        <a href="https://www.linkedin.com/company/rssingo/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://www.instagram.com/rssi.in/" class="instagram"><i
+                                class="bi bi-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/rssingo/" class="linkedin"><i
+                                class="bi bi-linkedin"></i></a>
                         <a href="https://www.youtube.com/c/RSSINGO" class="linkedin"><i class="bi bi-youtube"></i></a>
+                    </div><br>
+                    <div style="display: inline-block;">
+                        <p style="color: #92999f; font-size: small !important;">Visitor count: </p>
                     </div>
+
+                    <!-- Default Statcounter code for RSSI http://www.rssi.in
+-->
+                    <script type="text/javascript">
+                        var sc_project = 11357816;
+                        var sc_invisible = 0;
+                        var sc_security = "b3dd2d5c";
+                        var scJsHost = "https://";
+                        document.write("<sc" + "ript type='text/javascript' src='" +
+                            scJsHost +
+                            "statcounter.com/counter/counter.js'></" + "script>");
+                    </script>
+                    <noscript>
+                        <div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/"
+                                target="_blank"><img class="statcounter"
+                                    src="https://c.statcounter.com/11357816/0/b3dd2d5c/0/" alt="Web Analytics"
+                                    referrerPolicy="no-referrer-when-downgrade"></a></div>
+                    </noscript>
+                    <!-- End of Statcounter Code -->
+
+                    <div id="google_translate_element" style="position: relative;z-index: 1;"></div>
+
                 </div>
 
             </div>
@@ -69,6 +114,23 @@
 
     </footer>
     <!-- End Footer -->
+
+    <script type="text/javascript">
+        var g_gTranslateIsAdded = false;
+
+        function googleTranslateElementInit() {
+            if (!g_gTranslateIsAdded) {
+                g_gTranslateIsAdded = true;
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'hi,en,bn',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                }, 'google_translate_element');
+            }
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 
 </html>
