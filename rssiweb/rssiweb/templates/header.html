@@ -3,195 +3,65 @@
 
 <head>
     <title>Header</title>
-
-    <link rel="stylesheet" href="/css/login.css">
 </head>
 
-<body data-spy="scroll" data-offset="50" data-target=".navbar-collapse">
+<body>
 
-    <div class="containerHo">
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center justify-content-between">
 
-        <div class="logoHo">
-            <a href="/index">
-                <img src="/images/logo/WebsiteHeaderLogo.png" alt="RSSI Logo" width="140px" />
-                <!-- <img id="indian-flag" src="https://res.cloudinary.com/hs4stt5kg/image/upload/v1659756398/indian-flag-20_v5idmk.gif" width="50" /> -->
+            <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <!-- <img src="/img/logo.png" alt=""> -->
+                <h1>RSSI NGO<span>.</span></h1>
             </a>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown"><a href="#"><span>About</span> <i
+                                class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <ul>
+                            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfGLdHHjI8J5b238SMAmf7LMkVVRJPAKnk1SjHcBUZSXATFQA/viewform" target="_blank">Visit us</a></li>
+                            <li><a href="https://drive.google.com/file/d/1Z28N7bOJf2Pog9-WzY4Lw4oLr96LZ-ZG/view" target="_blank">Holiday list</a></li>
+                            <li><a href="https://login.rssi.in/announcement.php" target="_blank">Announcement</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="admission.html">Admission</a></li>
+                    <li><a href="media-center.html">Gallery</a></li>
+                    <li class="dropdown"><a href="#"><span>Phoenix</span> <i
+                                class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <ul>
+                            <!-- <li><a href="#">Drop Down 1</a></li> -->
+                            <li class="dropdown"><a href="#"><span>My Account</span> <i
+                                        class="bi bi-chevron-down dropdown-indicator"></i></a>
+                                <ul>
+                                    <li><a href="https://login.rssi.in/rssi-student/index.php" target="_blank">Students</a></li>
+                                    <li><a href="https://login.rssi.in/rssi-member/index.php" target="_blank">Associates</a></li>
+                                    <!-- <li><a href="#">Deep Drop Down 3</a></li>
+                                  <li><a href="#">Deep Drop Down 4</a></li>
+                                  <li><a href="#">Deep Drop Down 5</a></li> -->
+                                </ul>
+                            </li>
+                            <!-- <li><a href="#">Drop Down 2</a></li>
+                          <li><a href="#">Drop Down 3</a></li>
+                          <li><a href="#">Drop Down 4</a></li> -->
+                        </ul>
+                    </li>
+                    <li><a href="registration.html">Careers</a></li>
+                    <li><a href="contact-us.html">Contact</a></li>
+                </ul>
+            </nav>
+            <!-- .navbar -->
+
+            <a class="btn-book-a-table" href="donation-portal.html">Donate Now</a>
+            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
         </div>
-        <div id="google_translate_element1" style="display: inline-flex;"></div>
-        <navh>
-            <div class="navbarHo navbar" id="mynavbarHo">
-                <div id="google_translate_element" class="hidden-xs" style="display: inline-flex;"></div>
-                <a href="/index" class=" notranslate">Home</a>
-                <a href="/media-center">Media center</a>
-                <div class="dropdownHo">
-                    <button class="dropbtnHo">NGO&nbsp;<i class="fa fa-caret-down"></i></button>
-                    <div class="dropdown-contentHo">
-                        <a href="/about-us">About us</a>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfGLdHHjI8J5b238SMAmf7LMkVVRJPAKnk1SjHcBUZSXATFQA/viewform" target="_blank">Visit us&nbsp;&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        <a href="https://login.rssi.in/announcement.php" target="blank">Announcement&nbsp;&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        <a href="https://drive.google.com/file/d/1Z28N7bOJf2Pog9-WzY4Lw4oLr96LZ-ZG/view" target="blank">Holiday list&nbsp;&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-
-                <!--class=" notranslate"-->
-
-
-                <div class="dropdownHo">
-                    <button class="dropbtnHo">Students' corner&nbsp;<i class="fa fa-caret-down"></i></button>
-                    <div class="dropdown-contentHo">
-                        <a href="/admission">Admission</a>
-                        <a href="https://login.rssi.in/rssi-student/index.php" target="_blank">My
-                            Profile&nbsp;&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        <a href="/miscellaneous">Miscellaneous</a>
-
-                    </div>
-                </div>
-
-                <div class="dropdownHo">
-                    <button class="dropbtnHo">e-Certificate&nbsp;<i class="fa fa-caret-down"></i></button>
-                    <div class="dropdown-contentHo">
-                        <a href="/certificate-student">Student</a>
-                        <a href="/certificate-assoc">Associate</a>
-                        <a href="https://drive.google.com/file/d/1tHMtne1_2a9dakskzhfFRxtS5qt5JNnL/view" target="_blank">Reward Criteria&nbsp;&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-                <div class="dropdownHo">
-                    <button class="dropbtnHo notranslate">Phoenix <i class="fa fa-caret-down"></i></button>
-                    <div class="dropdown-contentHo">
-                        <a href="#" id="secure_link_el">e-Learning</a>
-                        <a href="#" id="secure_link_sh">Interview</a>
-                        <a href="#" id="secure_link_mt">Mandatory training</a>
-                    </div>
-                </div>
-                <a href="/donation-portal">Donation</a>
-                <a href="/registration">Careers</a>
-                <a href="https://login.rssi.in/rssi-member/index.php" target="_blank"><i
-                        class="fas fa-user" style="font-size:15px;"></i></a>
-                <!--id="myacc"-->
-                <a href="javascript:void(0);" class="icon" onclick="myFunction()"><i class="fas fa-bars"
-                        style="font-size:17px; color: whitesmoke;"></i></a>
-            </div>
-        </navh>
-    </div>
-
-    <!--------------- 
-		NEED TO COPY THIS SET FOR EVERY SECURED LINK -- WBT
-	------------------------------------------------------>
-
-    <div id="thover11" class="hidden thover"></div>
-    <div id="tpopup11" class="hidden tpopup" style="padding:20px; position: fixed;">
-        <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
-        <div class="login-card">
-            <h1>Log-in</h1><br>
-            <form action="/secure1/wbt" method="post">
-                <!--Here we have to mention the secured URL path-->
-                <input type="text" name="user" placeholder="Username">
-                <input type="password" name="code" placeholder="Password">
-                <!--password name id always "code"-->
-                <input type="submit" name="login" class="login login-submit" value="login">
-            </form>
-
-            <div class="login-help">
-                <br><a>Forgot Password? Connect with RSSI admin team</a>
-            </div>
-        </div>
-        <div id="tclose11" class="tclose notranslate">X</div>
-    </div>
-
-
-    <!--secure link-->
-    <script>
-        $(document).ready(function() {
-
-            $("#secure_link_mt").click(function(event) {
-                event.preventDefault();
-                $("#tpopup11").toggleClass('hidden');
-                $("#thover11").toggleClass('hidden');
-            });
-            $("#tclose11").click(function() {
-                $("#tpopup11").toggleClass('hidden');
-                $("#thover11").toggleClass('hidden');
-            });
-        });
-    </script>
-
-    <!--------------- 
-		NEED TO COPY THIS SET FOR EVERY CECURED LINK -- e-Learning
-	------------------------------------------------------>
-
-    <div id="thover111" class="hidden thover"></div>
-    <div id="tpopup111" class="hidden tpopup" style="padding:20px; position: fixed;">
-        <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
-        <div class="login-card">
-            <h1>Log-in</h1><br>
-            <form action="/secure1/e-learning" method="post">
-                <!--Here we have to mention the secured URL path-->
-                <input type="text" name="user" placeholder="Username">
-                <input type="password" name="code" placeholder="Password">
-                <!--password name id always "code"-->
-                <input type="submit" name="login" class="login login-submit" value="login">
-            </form>
-
-            <div class="login-help">
-                <br><a>Forgot Password? Connect with RSSI admin team</a>
-            </div>
-        </div>
-        <div id="tclose111" class="tclose notranslate">X</div>
-    </div>
-    <!--secure link-->
-    <script>
-        $(document).ready(function() {
-
-            $("#secure_link_el").click(function(event) {
-                event.preventDefault();
-                $("#tpopup111").toggleClass('hidden');
-                $("#thover111").toggleClass('hidden');
-            });
-            $("#tclose111").click(function() {
-                $("#tpopup111").toggleClass('hidden');
-                $("#thover111").toggleClass('hidden');
-            });
-        });
-    </script>
-    <!--------------- 
-		NEED TO COPY THIS SET FOR EVERY CECURED LINK -- interview
-	------------------------------------------------------>
-
-    <div id="thover1111" class="hidden thover"></div>
-    <div id="tpopup1111" class="hidden tpopup" style="padding:20px; position: fixed;">
-        <!--<img src="/images/eve-day.jpg" class="img-fluid img-responsive">-->
-        <div class="login-card">
-            <h1>Log-in</h1><br>
-            <form action="/secure2/interview" method="post">
-                <!--Here we have to mention the secured URL path-->
-                <input type="text" name="user" placeholder="Username">
-                <input type="password" name="code" placeholder="Password">
-                <!--password name id always "code"-->
-                <input type="submit" name="login" class="login login-submit" value="login">
-            </form>
-
-            <div class="login-help">
-                <br><a>Forgot Password? Connect with RSSI admin team</a>
-            </div>
-        </div>
-        <div id="tclose1111" class="tclose notranslate">X</div>
-    </div>
-    <!--secure link-->
-    <script>
-        $(document).ready(function() {
-
-            $("#secure_link_sh").click(function(event) {
-                event.preventDefault();
-                $("#tpopup1111").toggleClass('hidden');
-                $("#thover1111").toggleClass('hidden');
-            });
-            $("#tclose1111").click(function() {
-                $("#tpopup1111").toggleClass('hidden');
-                $("#thover1111").toggleClass('hidden');
-            });
-        });
-    </script>
+    </header>
+    <!-- End Header -->
 
 
     <!------------------------------------

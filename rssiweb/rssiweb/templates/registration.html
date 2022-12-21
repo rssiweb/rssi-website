@@ -2,16 +2,32 @@
 <html lang="en">
 
 <head>
-    <title>Registration</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>RSSI-Careers</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
+    <!-- Favicons -->
+    <link href="/img/favicon.ico" rel="icon">
+    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <link rel="shortcut icon" href="/images/logo/favicon.ico" type="image/x-icon" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/css/main.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
         $(function() {
@@ -19,503 +35,449 @@
             $("#footer").load("/footer.html");
         });
     </script>
-    <link rel="stylesheet" href="/css/HeaderFooter.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <!-- Main css -->
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/addstyle.css">
-    <style>
-        /*
- CSS for the main interaction
-*/
-        
-        .tabset>input[type="radio"] {
-            position: absolute;
-            left: -200vw;
-        }
-        
-        .tabset .tab-panel {
-            display: none;
-        }
-        
-        .tabset>input:first-child:checked~.tab-panels>.tab-panel:first-child,
-        .tabset>input:nth-child(3):checked~.tab-panels>.tab-panel:nth-child(2),
-        .tabset>input:nth-child(5):checked~.tab-panels>.tab-panel:nth-child(3),
-        .tabset>input:nth-child(7):checked~.tab-panels>.tab-panel:nth-child(4),
-        .tabset>input:nth-child(9):checked~.tab-panels>.tab-panel:nth-child(5),
-        .tabset>input:nth-child(11):checked~.tab-panels>.tab-panel:nth-child(6) {
-            display: block;
-        }
-        
-        .tabset>label {
-            position: relative;
-            display: inline-block;
-            padding: 15px 15px 25px;
-            border: 1px solid transparent;
-            border-bottom: 0;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        
-        .tabset>label::after {
-            content: "";
-            position: absolute;
-            left: 15px;
-            bottom: 10px;
-            width: 22px;
-            height: 4px;
-            background: #8d8d8d;
-        }
-        
-        .tabset>label:hover,
-        .tabset>input:focus+label {
-            color: #06c;
-        }
-        
-        .tabset>label:hover::after,
-        .tabset>input:focus+label::after,
-        .tabset>input:checked+label::after {
-            background: #06c;
-        }
-        
-        .tabset>input:checked+label {
-            border-color: #ccc;
-            border-bottom: 1px solid #fff;
-            margin-bottom: -1px;
-        }
-        
-        .tab-panel {
-            padding: 30px 0;
-            border-top: 1px solid #ccc;
-        }
-        
-        .hidden {
-            display: none
-        }
-        
-        table,
-        th,
-        td {
-            border: 1px solid #000;
-        }
-        
-        td {
-            padding: 1%;
-        }
-        
-        html {
-            box-sizing: border-box;
-            font-family: 'Open Sans', sans-serif;
-        }
-        
-        *,
-        *:before,
-        *:after {
-            box-sizing: inherit;
-        }
-        
-        .background {
-            padding: 0 25px 25px;
-            position: relative;
-            width: 100%;
-        }
-        
-        .background::after {
-            content: '';
-            background: #60a9ff;
-            background: -moz-linear-gradient(top, #60a9ff 0%, #4394f4 100%);
-            background: -webkit-linear-gradient(top, #60a9ff 0%, #4394f4 100%);
-            background: linear-gradient(to bottom, #60a9ff 0%, #4394f4 100%);
-            filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#60a9ff', endColorstr='#4394f4', GradientType=0);
-            height: 350px;
-            left: 0;
-            position: absolute;
-            top: 0;
-            width: 100%;
-            z-index: 1;
-        }
-        
-        @media (min-width: 900px) {
-            .background {
-                padding: 0 0 25px;
-            }
-        }
-        
-        .container {
-            margin: 0 auto;
-            padding: 50px 0 0;
-            max-width: 1280px;
-            width: 100%;
-        }
-        
-        .panel {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 15px 25px;
-            position: relative;
-            width: 100%;
-            z-index: 10;
-        }
-        
-        .pricing-table {
-            box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 0.08), 0px 20px 31px 3px rgba(0, 0, 0, 0.09), 0px 8px 20px 7px rgba(0, 0, 0, 0.02);
-            display: flex;
-            flex-direction: column;
-        }
-        
-        @media (min-width: 900px) {
-            .pricing-table {
-                flex-direction: row;
-            }
-        }
-        
-        .pricing-table * {
-            text-align: center;
-            text-transform: uppercase;
-        }
-        
-        .pricing-plan {
-            border-bottom: 1px solid #e1f1ff;
-            padding: 25px;
-        }
-        
-        .pricing-plan:last-child {
-            border-bottom: none;
-        }
-        
-        @media (min-width: 900px) {
-            .pricing-plan {
-                border-bottom: none;
-                border-right: 1px solid #e1f1ff;
-                flex-basis: 100%;
-                padding: 25px 50px;
-            }
-            .pricing-plan:last-child {
-                border-right: none;
-            }
-        }
-        
-        .pricing-img {
-            margin-bottom: 25px;
-            max-width: 100%;
-        }
-        
-        .pricing-header {
-            color: #888;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-        
-        .pricing-features {
-            color: #016FF9;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin: 50px 0 25px;
-        }
-        
-        .pricing-features-item {
-            border-top: 1px solid #e1f1ff;
-            font-size: 12px;
-            line-height: 1.5;
-            padding: 15px 0;
-        }
-        
-        .pricing-features-item:last-child {
-            border-bottom: 1px solid #e1f1ff;
-        }
-        
-        .pricing-price {
-            color: #016FF9;
-            display: block;
-            font-size: 32px;
-            font-weight: 700;
-        }
-        
-        .pricing-button {
-            border: 1px solid #9dd1ff;
-            border-radius: 10px;
-            color: #348EFE;
-            display: inline-block;
-            margin: 25px 0;
-            padding: 15px 35px;
-            text-decoration: none;
-            transition: all 150ms ease-in-out;
-        }
-        
-        .pricing-button:hover,
-        .pricing-button:focus {
-            background-color: #e1f1ff;
-        }
-        
-        .pricing-button.is-featured {
-            background-color: #48aaff;
-            color: #fff;
-        }
-        
-        .pricing-button.is-featured:hover,
-        .pricing-button.is-featured:active {
-            background-color: #269aff;
-        }
-        
-        li {
-            list-style-type: none;
-        }
-    </style>
-
 </head>
-<!-- =========================
-     NAVIGATION LINKS     
-============================== -->
+<style>
+    /*
+CSS for the main interaction
+*/
+    
+    .tabset>input[type="radio"] {
+        position: absolute;
+        left: -200vw;
+    }
+    
+    .tabset .tab-panel {
+        display: none;
+    }
+    
+    .tabset>input:first-child:checked~.tab-panels>.tab-panel:first-child,
+    .tabset>input:nth-child(3):checked~.tab-panels>.tab-panel:nth-child(2),
+    .tabset>input:nth-child(5):checked~.tab-panels>.tab-panel:nth-child(3),
+    .tabset>input:nth-child(7):checked~.tab-panels>.tab-panel:nth-child(4),
+    .tabset>input:nth-child(9):checked~.tab-panels>.tab-panel:nth-child(5),
+    .tabset>input:nth-child(11):checked~.tab-panels>.tab-panel:nth-child(6) {
+        display: block;
+    }
+    
+    .tabset>label {
+        position: relative;
+        display: inline-block;
+        padding: 15px 15px 25px;
+        border: 1px solid transparent;
+        border-bottom: 0;
+        cursor: pointer;
+        font-weight: 600;
+    }
+    
+    .tabset>label::after {
+        content: "";
+        position: absolute;
+        left: 15px;
+        bottom: 10px;
+        width: 22px;
+        height: 4px;
+        background: #8d8d8d;
+    }
+    
+    .tabset>label:hover,
+    .tabset>input:focus+label {
+        color: #06c;
+    }
+    
+    .tabset>label:hover::after,
+    .tabset>input:focus+label::after,
+    .tabset>input:checked+label::after {
+        background: #06c;
+    }
+    
+    .tabset>input:checked+label {
+        border-color: #ccc;
+        border-bottom: 1px solid #fff;
+        margin-bottom: -1px;
+    }
+    
+    .tab-panel {
+        padding: 30px 0;
+        border-top: 1px solid #ccc;
+    }
+    
+    .hidden {
+        display: none
+    }
+    
+    .panel {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 15px 25px;
+        position: relative;
+        width: 100%;
+        z-index: 10;
+    }
+    
+    .pricing-table {
+        box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 0.08), 0px 20px 31px 3px rgba(0, 0, 0, 0.09), 0px 8px 20px 7px rgba(0, 0, 0, 0.02);
+        display: flex;
+        flex-direction: column;
+    }
+    
+    @media (min-width: 900px) {
+        .pricing-table {
+            flex-direction: row;
+        }
+    }
+    
+    .pricing-table * {
+        text-align: center;
+        text-transform: uppercase;
+    }
+    
+    .pricing-plan {
+        border-bottom: 1px solid #e1f1ff;
+        padding: 25px;
+    }
+    
+    .pricing-plan:last-child {
+        border-bottom: none;
+    }
+    
+    @media (min-width: 900px) {
+        .pricing-plan {
+            border-bottom: none;
+            border-right: 1px solid #e1f1ff;
+            flex-basis: 100%;
+            padding: 25px 50px;
+        }
+        .pricing-plan:last-child {
+            border-right: none;
+        }
+    }
+    
+    .pricing-img {
+        margin-bottom: 25px;
+        max-width: 100%;
+    }
+    
+    .pricing-header {
+        color: #888;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+    
+    .pricing-features {
+        color: #777777;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin: 50px 0 25px;
+    }
+    
+    .pricing-features-item {
+        border-top: 1px solid #e1f1ff;
+        font-size: 12px;
+        line-height: 1.5;
+        padding: 15px 0;
+    }
+    
+    .pricing-features-item:last-child {
+        border-bottom: 1px solid #e1f1ff;
+    }
+    
+    .pricing-price {
+        color: #777777;
+        display: block;
+        font-size: 32px;
+        font-weight: 700;
+    }
+    
+    .pricing-button {
+        border: 1px solid #9dd1ff;
+        border-radius: 10px;
+        color: #348EFE;
+        display: inline-block;
+        margin: 25px 0;
+        padding: 15px 35px;
+        text-decoration: none;
+        transition: all 150ms ease-in-out;
+    }
+    
+    .pricing-button:hover,
+    .pricing-button:focus {
+        background-color: #e1f1ff;
+        color: #348EFE;
+    }
+    
+    .pricing-button.is-featured {
+        background-color: #48aaff;
+        color: #fff;
+    }
+    
+    .pricing-button.is-featured:hover,
+    .pricing-button.is-featured:active {
+        background-color: #269aff;
+    }
+    
+    li {
+        list-style-type: none;
+    }
+</style>
 
 <body>
 
-    <div id="header" class="noprint"></div>
+    <!-- ======= Header ======= -->
+    <div id="header"></div>
+    <!-- End Header -->
 
-    <!-- <section id="update" style="padding: 0.5% 5.5%; background-color: #fff">
-        <div class="row py-2">
-            <div class="col-1 col-md-3 col-lg-2 py-1 pr-md-0 mb-md-1">
-                <div class="d-inline-block d-md-block bg-primary text-white text-center breaking-caret py-1 px-2"> <span class="fas fa-flag" title="Updates"></span></div>
-            </div>
-            <div class="col-11 col-md-9 col-lg-10 pl-1 pl-md-2">
-                <div class="breaking-box pt-2 pb-1">
-                    <marquee behavior="scroll" scrollamount="5" direction="left" onmouseover="this.stop();" onmouseleave="this.start();">
-                        <ps class="h6 notice"><span class="position-relative mx-2 badge badge-primary rounded-0">Offline
-                                support</span>&nbsp;If you are not tech-savvy and want to avail offline facility to complete the application process, please send us a WhatsApp message on this number 7980168159 along with one of your government photo ID
-                            proofs. Please note that offline facility is available with an additional service charge of Rs.150.
-                        </ps>
-                    </marquee>
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs">
+            <div class="container">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Careers</h2>
+                    <ol>
+                        <li><a href="index.html">Home</a></li>
+                        <li>Careers</li>
+                    </ol>
                 </div>
+
             </div>
         </div>
-    </section> -->
+        <!-- End Breadcrumbs -->
 
-    <div style="margin: 0.3%;" class="noprint">
-        <ps class="marginleft notice" style="margin-left: 3%;">
-            <a href="/index">Home</a> &#62; Careers
-        </ps>
-    </div>
-    <!-- =========================
-    REGISTRATION   
-============================== -->
+        <section class="sample-page">
+            <div class="container" data-aos="fade-up">
 
-    <section id="calender" style="padding: 2% 3%;">
-        <div style="text-align: right;" class="noprint">
-            <div class="white hoverdecoration">
-                <select id="select1" onchange="var win = window.open(this.value, '_blank'); win.focus();">
-                    <option value="" hidden>Select document</option>
-                    <option value="https://drive.google.com/file/d/1UV1Y9d0w1dFh4YYV2Cj4pPpLTEUoCT7_/view">
-                        Responsibilities of Intern</option>
-                    <option value="https://drive.google.com/file/d/1IBuhQ0PnwBaZBE8gyJsvAiIqFF09WgXg/view">General Terms
-                        and Conditions</option>
-                </select>
-            </div>
-        </div>
-        <div class="tabset">
-            <input type="radio" name="tabset" id="tab1" aria-controls="jd" checked>
-            <label for="tab1">Job description</label>
+                <!-- <div style="text-align: right;" class="noprint">
+                    <div class="white hoverdecoration">
+                    <select id="select1" onchange="var win = window.open(this.value, '_blank'); win.focus();">
+                            <option value="" hidden>Select document</option>
+                            <option value="https://drive.google.com/file/d/1UV1Y9d0w1dFh4YYV2Cj4pPpLTEUoCT7_/view">
+                                Responsibilities of Intern</option>
+                            <option value="https://drive.google.com/file/d/1IBuhQ0PnwBaZBE8gyJsvAiIqFF09WgXg/view">General Terms
+                                and Conditions</option>
+                        </select>
+                    </div>
+                </div> -->
+                <div class="tabset">
+                    <input type="radio" name="tabset" id="tab1" aria-controls="jd" checked>
+                    <label for="tab1">Job description</label>
 
-            <input type="radio" name="tabset" id="tab2" aria-controls="ap">
-            <label for="tab2">Application process</label>
+                    <input type="radio" name="tabset" id="tab2" aria-controls="ap">
+                    <label for="tab2">Application process</label>
 
-            <!-- <input type="radio" name="tabset" id="tab3" aria-controls="rf">
-            <label for="tab3">Registration form</label> -->
+                    <!-- <input type="radio" name="tabset" id="tab3" aria-controls="rf">
+                    <label for="tab3">Registration form</label> -->
 
-            <input type="radio" name="tabset" id="tab4" aria-controls="af">
-            <label for="tab4">Application fee</label>
-            <div class="tab-panels">
+                    <input type="radio" name="tabset" id="tab4" aria-controls="af">
+                    <label for="tab4">Application fee</label>
+                    <div class="tab-panels">
 
-                <section id="jd" class="tab-panel">
-                    <div class="background">
-                        <div class="container">
-                            <div class="panel pricing-table">
+                        <section id="jd" class="tab-panel">
+                            <div class="background">
+                                <!-- <div class="container1"> -->
+                                <div>
+                                    <div class="panel pricing-table">
 
-                                <div class="pricing-plan">
-                                    <!-- <img src="images/paper-plane.png" alt="" class="pricing-img"> -->
-                                    <h2 class="pricing-header">Volunteer</h2>
-                                    <ul class="pricing-features">
-                                        <li class="pricing-features-item">Part-Time</li>
-                                        <li class="pricing-features-item">3 days a week, 4pm to 6pm</li>
-                                        <li class="pricing-features-item">Unpaid</li>
-                                        <!-- <li class="pricing-features-item">Hindi, English</li>
-                                        <li class="pricing-features-item">Enthusiastic, Adaptive, Passionate, Team Player
-                                        </li> -->
-                                        <li class="pricing-features-item">Teaching students, conducting tests and meetings, solving problems</li>
-                                        <li class="pricing-features-item">Minimum duration 4 months</li>
-                                        <li class="pricing-features-item">Work-relevant experience letter and Community Service Certificate</li>
-                                        <li class="pricing-features-item">Application fee ₹ 100</li>
-                                    </ul>
-                                    <!-- <span class="pricing-price">₹100</span> -->
-                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Volunteer" target="_blank" class="pricing-button">Join now</a>
+                                        <div class="pricing-plan">
+                                            <!-- <img src="images/paper-plane.png" alt="" class="pricing-img"> -->
+                                            <h2 class="pricing-header">Volunteer</h2>
+                                            <ul class="pricing-features">
+                                                <li class="pricing-features-item">Part-Time</li>
+                                                <li class="pricing-features-item">3 days a week, 4pm to 6pm</li>
+                                                <li class="pricing-features-item">Unpaid</li>
+                                                <!-- <li class="pricing-features-item">Hindi, English</li>
+                                                <li class="pricing-features-item">Enthusiastic, Adaptive, Passionate, Team Player
+                                                </li> -->
+                                                <li class="pricing-features-item">Teaching students, conducting tests and meetings, solving problems</li>
+                                                <li class="pricing-features-item">Minimum duration 4 months</li>
+                                                <li class="pricing-features-item">Work-relevant experience letter and Community Service Certificate</li>
+                                                <li class="pricing-features-item">Application fee ₹ 100</li>
+                                            </ul>
+                                            <!-- <span class="pricing-price">₹100</span> -->
+                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Volunteer" target="_blank" class="pricing-button">Join now</a>
+                                        </div>
+
+                                        <div class="pricing-plan">
+                                            <!-- <img src="images/plane.png" alt="" class="pricing-img"> -->
+                                            <h2 class="pricing-header">Internship</h2>
+                                            <ul class="pricing-features">
+                                                <li class="pricing-features-item">Part-Time</li>
+                                                <li class="pricing-features-item">4 days a week, 4pm to 6pm</li>
+                                                <li class="pricing-features-item">Unpaid</li>
+                                                <!-- <li class="pricing-features-item">Hindi, English</li>
+                                                <li class="pricing-features-item">Computer</li> -->
+                                                <li class="pricing-features-item">Teaching students, conducting tests and meetings, solving problems</li>
+                                                <li class="pricing-features-item">Minimum duration 1 month</li>
+                                                <li class="pricing-features-item">Work experience letter and Internship Certificate
+                                                </li>
+                                                <li class="pricing-features-item">Application fee ₹ 300</li>
+                                            </ul>
+                                            <!-- <span class="pricing-price">₹ 300</span> -->
+                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Intern" target="_blank" class="pricing-button is-featured">Join now</a>
+                                        </div>
+
+                                        <div class="pricing-plan">
+                                            <!-- <img src="images/space-ship.png" alt="" class="pricing-img"> -->
+                                            <h2 class="pricing-header">Employee</h2>
+                                            <ul class="pricing-features">
+                                                <li class="pricing-features-item">Part-Time</li>
+                                                <li class="pricing-features-item">6 days a week, 4pm to 6pm</li>
+                                                <li class="pricing-features-item">₹ 2000-5000/month</li>
+                                                <!-- <li class="pricing-features-item">Hindi, English</li>
+                                                <li class="pricing-features-item">Computer</li> -->
+                                                <li class="pricing-features-item">Teaching students, conducting tests and meetings, solving problems, administrative activity</li>
+                                                <li class="pricing-features-item">Minimum duration 4 months</li>
+                                                <li class="pricing-features-item">Work experience letter</li>
+                                                <li class="pricing-features-item">Application fee ₹ 300</li>
+                                            </ul>
+                                            <!-- <span class="pricing-price">₹ 300</span> -->
+                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Employee" target="_blank" class="pricing-button">Join now</a>
+                                        </div>
+
+                                        <div class="pricing-plan">
+                                            <!-- <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/v1665050907/Picture1_dsdbhe.jpg" alt="" class="pricing-img"> -->
+                                            <h2 class="pricing-header">Membership</h2>
+                                            <ul class="pricing-features">
+                                                <li class="pricing-features-item">No time or work commitment required
+                                                </li>
+                                                <li class="pricing-features-item">Access to the centre premises with pre-approved visit request</li>
+                                                <!-- <li class="pricing-features-item">1 month or 3 years</li> -->
+                                                <li class="pricing-features-item">Relevant experience letter and Community Service Certificate</li>
+                                                <li class="pricing-features-item">₹ 499/month<br>₹ 4999/3 years</li>
+                                            </ul>
+                                            <!-- <span class="pricing-price">₹ 300</span> -->
+                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Membership&entry.1246758331=Other" target="_blank" class="pricing-button">Join now</a>
+                                        </div>
+
+                                    </div>
                                 </div>
-
-                                <div class="pricing-plan">
-                                    <!-- <img src="images/plane.png" alt="" class="pricing-img"> -->
-                                    <h2 class="pricing-header">Internship</h2>
-                                    <ul class="pricing-features">
-                                        <li class="pricing-features-item">Part-Time</li>
-                                        <li class="pricing-features-item">4 days a week, 4pm to 6pm</li>
-                                        <li class="pricing-features-item">Unpaid</li>
-                                        <!-- <li class="pricing-features-item">Hindi, English</li>
-                                        <li class="pricing-features-item">Computer</li> -->
-                                        <li class="pricing-features-item">Teaching students, conducting tests and meetings, solving problems</li>
-                                        <li class="pricing-features-item">Minimum duration 1 month</li>
-                                        <li class="pricing-features-item">Work experience letter and Internship Certificate
-                                        </li>
-                                        <li class="pricing-features-item">Application fee ₹ 300</li>
-                                    </ul>
-                                    <!-- <span class="pricing-price">₹ 300</span> -->
-                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Intern" target="_blank" class="pricing-button is-featured">Join now</a>
-                                </div>
-
-                                <div class="pricing-plan">
-                                    <!-- <img src="images/space-ship.png" alt="" class="pricing-img"> -->
-                                    <h2 class="pricing-header">Employee</h2>
-                                    <ul class="pricing-features">
-                                        <li class="pricing-features-item">Part-Time</li>
-                                        <li class="pricing-features-item">6 days a week, 4pm to 6pm</li>
-                                        <li class="pricing-features-item">₹ 2000-5000/month</li>
-                                        <!-- <li class="pricing-features-item">Hindi, English</li>
-                                        <li class="pricing-features-item">Computer</li> -->
-                                        <li class="pricing-features-item">Teaching students, conducting tests and meetings, solving problems, administrative activity</li>
-                                        <li class="pricing-features-item">Minimum duration 4 months</li>
-                                        <li class="pricing-features-item">Work experience letter</li>
-                                        <li class="pricing-features-item">Application fee ₹ 300</li>
-                                    </ul>
-                                    <!-- <span class="pricing-price">₹ 300</span> -->
-                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Employee" target="_blank" class="pricing-button">Join now</a>
-                                </div>
-
-                                <div class="pricing-plan">
-                                    <!-- <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/v1665050907/Picture1_dsdbhe.jpg" alt="" class="pricing-img"> -->
-                                    <h2 class="pricing-header">Membership</h2>
-                                    <ul class="pricing-features">
-                                        <li class="pricing-features-item">No time or work commitment required</li>
-                                        <li class="pricing-features-item">Access to the centre premises with pre-approved visit request</li>
-                                        <!-- <li class="pricing-features-item">1 month or 3 years</li> -->
-                                        <li class="pricing-features-item">Relevant experience letter and Community Service Certificate</li>
-                                        <li class="pricing-features-item">₹ 499/month<br>₹ 4999/3 years</li>
-                                    </ul>
-                                    <!-- <span class="pricing-price">₹ 300</span> -->
-                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Membership&entry.1246758331=Other" target="_blank" class="pricing-button">Join now</a>
-                                </div>
-
                             </div>
-                        </div>
-                    </div>
-                </section>
+                        </section>
 
-                <section id="ap" class="tab-panel">
-                    <div class="row1">
-                        <!-- <div>
-                            class="dnd marginleft"
-                            <h3>How can I become a RSSI Volunteer/Intern/Employee for an assignment?</h3>
-                        </div>
-                        <br> -->
-                        <p>You need to register your profile in the RSSI talent pool. The registration process consists of three parts.
-                        </p>
+                        <section id="ap" class="tab-panel">
+                            <div class="row1">
+                                <!-- <div>
+                                    class="dnd marginleft"
+                                    <h3>How can I become a RSSI Volunteer/Intern/Employee for an assignment?</h3>
+                                </div>
+                                <br> -->
+                                <p>You need to register your profile in the RSSI talent pool. The registration process consists of three parts.
+                                </p>
 
-                        <h5>Part I</h5>
-                        <p>Familiarize yourself with the required information for a potential volunteer / intern / employee and submit the basic information by clicking on the Registration form section to create your account.</p>
+                                <u><b>Part I - Registration</b></u><br><br>
+                                <p>Familiarize yourself with the information required of a potential volunteer/intern/employee and submit basic information by clicking on the Join Now button from the job description section to create your account.</p>
 
-                        <h5>Part II</h5>
-                        <p>After completing Part 1, in order for us to be able to process your application, either you have to contact your nearest RSSI branch with an original document from the items listed or you can avail our online verification facility.
-                            Acceptable identification
-                        </p>
-
-                        <ul>
-                            <ol type="1">
-                                <li style="padding-left:0.5em">
-                                    <p>Aadhaar</p>
-                                </li>
-                                <li style="padding-left:0.5em">
-                                    <p>Current passport</p>
-                                </li>
-                                <li style="padding-left:0.5em">
-                                    <p>Driving license</p>
-                                </li>
-                                <li style="padding-left:0.5em">
-                                    <p>Electoral identity card</p>
-                                </li>
-                                <li style="padding-left:0.5em">
-                                    <p>Ration card</p>
-                                </li>
-                            </ol>
-                        </ul>
-
-                        <h5>Part III</h5>
-                        <p>Complete the payment by clicking on the Application fee section.</p>
-                        <div style="background: #F0F0F0; padding: 2%;">
-                            <p>For association type - <b>Volunteer</b></p>
-                            <ul>
-                                <ol type="1" style="padding-inline-start: 20px;">
+                                <u><b>Part II - Identity verification</b></u><br><br>
+                                <p>After completing Part 1, in order for us to be able to process your application, either you have to contact your nearest RSSI branch with an original document from the items listed or you can avail our online verification
+                                    facility. Acceptable identification
+                                </p>
+                                <ol>
                                     <li style="padding-left:0.5em">
-                                        <p>Application fee Rs.100 is one-time, non-refundable, and has to be paid at the time of registration.
-                                        </p>
+                                        Aadhaar
+                                    </li>
+                                    <li style="padding-left:0.5em">
+                                        Current passport
+                                    </li>
+                                    <li style="padding-left:0.5em">
+                                        Driving license
+                                    </li>
+                                    <li style="padding-left:0.5em">
+                                        Electoral identity card
+                                    </li>
+                                    <li style="padding-left:0.5em">
+                                        Ration card
                                     </li>
                                 </ol>
-                            </ul>
-                            <p>For association type - <b>Employee, Intern</b></p>
-                            <ul>
-                                <ol type="1" style="padding-inline-start: 20px;">
-                                    <li style="padding-left:0.5em">
-                                        <p>Application fee Rs.100 is one-time, non-refundable, and has to be paid at the time of registration.
-                                        </p>
-                                    </li>
-                                    <li style="padding-left:0.5em">
-                                        <p>The certification/miscellaneous fee Rs.200 is one-time, non-refundable, and has to be paid at the time of onboarding.</p>
-                                    </li>
-                                </ol>
-                            </ul>
-                            <br>
-                            <p># For Employee, after the completion of the tenure of four months, Rs 200 will be refunded with the salary of the fifth month.</p>
-                        </div>
-                        <br>
-                        <p>Now your application will be in the HR queue. After HR approval, as confirmation of your successful registration you will receive email with your Associate Number, other practical information for potential candidates and a URL
-                            to enter all the required details regarding your skills, educational qualifications and experience.
-                        </p>
 
-                        <p>Your RSSI profile will only be considered for upcoming volunteer assignments after completion of ALL parts of the registration process.</p>
+                                <u><b>Part III - Payment</b></u><br><br>
+                                <p>Complete the payment by clicking on the Application fee section.</p>
+                                <div style="background: #F0F0F0; padding: 2%;">
+                                    <p>For association type - <b>Volunteer</b></p>
+                                    <ul>
+                                        <ol>
+                                            <li style="padding-left:0.5em">
+                                                <p>Application fee Rs.100 is one-time, non-refundable, and has to be paid at the time of registration.
+                                                </p>
+                                            </li>
+                                        </ol>
+                                    </ul>
+                                    <p>For association type - <b>Employee, Intern</b></p>
+                                    <ul>
+                                        <ol>
+                                            <li style="padding-left:0.5em">
+                                                Application fee Rs.100 is one-time, non-refundable, and has to be paid at the time of registration.
+
+                                            </li>
+                                            <li style="padding-left:0.5em">
+                                                The certification/miscellaneous fee Rs.200 is one-time, non-refundable, and has to be paid at the time of onboarding.
+                                            </li>
+                                        </ol>
+                                    </ul>
+                                    # For Employee, after the completion of the tenure of four months, Rs 200 will be refunded with the salary of the fifth month.
+                                </div>
+                                <br>
+                                <p>Now your application will be in the HR queue. After HR approval, as confirmation of your successful registration you will receive email with your Associate Number, other practical information for potential candidates and
+                                    a URL to enter all the required details regarding your skills, educational qualifications and experience.
+                                </p>
+
+                                <p>Your RSSI profile will only be considered for upcoming volunteer assignments after completion of ALL parts of the registration process.</p>
+                            </div>
+                            <hr>
+                            <span class="badge bg-danger">Offline
+                                support</span><br><br>
+                            <p>If you are not tech-savvy and want to avail offline facility to complete the application process, please send us a WhatsApp message on this number 7980168159 along with one of your government photo ID proofs. Please note that
+                                offline facility is available with an additional service charge of Rs.150.</p>
+                        </section>
+                        <!-- <section id="af" class="tab-panel">
+                            <input type="checkbox" id="termsChkbx1" name="termsChkbx1" onclick="change_button(this,'sub2')" />
+                            <p style="display: inline;"><label for="termsChkbx1" style="font-weight: 400;">I have read the
+                                    application process and I understand it.</label></p><br><br>
+        
+                            <form target="_blank" action="https://forms.gle/yUnLMQbhYKKw4uSn8">
+                                <input type="submit" id="sub2" value="Registration Form" disabled />
+                            </form>
+                        </section> -->
+                        <section id="ap" class="tab-panel">
+                            <p>Please click on the Pay Now button to make the payment.</p>
+                            <input type="checkbox" id="termsChkbx" name="termsChkbx" onclick="change_button(this,'sub1')" />
+                            <p style="display: inline;"><label for="termsChkbx" style="font-weight: 400;">I have
+                                    completed the registration and identity verification (Part I + Part II).</label></p>
+                            <br><br>
+
+                            <form target="_blank" action="https://paytm.me/C-d4mKz">
+                                <input type="submit" id="sub1" value="Pay Now" disabled />
+                            </form>
                     </div>
-                    <hr>
-                    <span class="label label-danger">Offline
-                        support</span><br><br>
-                    <p>If you are not tech-savvy and want to avail offline facility to complete the application process, please send us a WhatsApp message on this number 7980168159 along with one of your government photo ID proofs. Please note that offline
-                        facility is available with an additional service charge of Rs.150.</p>
-                </section>
-                <!-- <section id="af" class="tab-panel">
-                    <input type="checkbox" id="termsChkbx1" name="termsChkbx1" onclick="change_button(this,'sub2')" />
-                    <p style="display: inline;"><label for="termsChkbx1" style="font-weight: 400;">I have read the
-                            application process and I understand it.</label></p><br><br>
-
-                    <form target="_blank" action="https://forms.gle/yUnLMQbhYKKw4uSn8">
-                        <input type="submit" id="sub2" value="Registration Form" disabled />
-                    </form>
-                </section> -->
-                <section id="ap" class="tab-panel">
-                    <p>Please click on the Pay Now button to make the payment.</p>
-                    <input type="checkbox" id="termsChkbx" name="termsChkbx" onclick="change_button(this,'sub1')" />
-                    <p style="display: inline;"><label for="termsChkbx" style="font-weight: 400;">I have
-                            completed the registration and identity verification (Part I + Part II).</label></p>
-                    <br><br>
-
-                    <form target="_blank" action="https://paytm.me/C-d4mKz">
-                        <input type="submit" id="sub1" value="Pay Now" disabled />
-                    </form>
-            </div>
-            </section>
+                    </section>
 
 
-    </section>
+        </section>
+        </div>
 
+        </div>
+        </section>
 
-    <!-- =========================
-     SCRIPTS   
-============================== -->
+    </main>
+    <!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <div id="footer"></div>
+    <!-- End Footer -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
-    <script src="https://kit.fontawesome.com/58c4cdb942.js" crossorigin="anonymous"></script>
-    <script src="/js/custom.js"></script>
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/aos/aos.js"></script>
+    <script src="/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/js/main.js"></script>
     <script>
         function change_button(checkbx, sub1) {
             var btn = document.getElementById(sub1);
@@ -528,75 +490,6 @@
         }
     </script>
 
-    <script>
-        var display = {
-            1: [1, 2, 3, 4],
-            2: [3],
-            3: [2, 4],
-            4: [1]
-        }
-
-        function selectChanged() {
-            var sel = document.getElementById("select");
-            for (var i = 1; i < 5; i++) {
-                document.getElementById("box" + i).classList.add("hidden");
-            }
-            display[sel.value].forEach(function(i) {
-                document.getElementById("box" + i).classList.remove("hidden");
-            });
-        }
-    </script>
-
-
-    <!-- =========================
-     FOOTER   
-============================== -->
-    <!-- Back top -->
-    <a id="back-to-top" href="#" class="go-top" role="button"><i class="fa fa-angle-up"></i></a>
-    <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
-    <!-- Glow Cookies v3.0.1 -->
-    <script>
-        glowCookies.start('en', {
-            analytics: 'G-S25QWTFJ2S',
-            //facebookPixel: '',
-            policyLink: '/website-disclaimer'
-        });
-    </script>
-    <div id="footer" class="noprint"></div>
-    <!-- Messenger Chat Plugin Code -->
-    <div id="fb-root"></div>
-
-    <!-- Your Chat Plugin code -->
-    <div id="fb-customer-chat" class="fb-customerchat">
-    </div>
-
-    <script>
-        var chatbox = document.getElementById('fb-customer-chat');
-        chatbox.setAttribute("page_id", "215632685291793");
-        chatbox.setAttribute("attribution", "biz_inbox");
-
-        window.fbAsyncInit = function() {
-            FB.init({
-                xfbml: true,
-                version: 'v12.0'
-            });
-        };
-
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
-
-    <style>
-        .grecaptcha-badge {
-            visibility: hidden;
-        }
-    </style>
 </body>
 
 </html>

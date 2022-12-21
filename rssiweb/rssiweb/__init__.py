@@ -25,11 +25,18 @@ def create_app(test_config=None):
 
     autorefresh = app.config.get("AUTO_REFRESH", False)
     app.wsgi_app = WhiteNoise(app.wsgi_app, autorefresh=autorefresh)
+    # my_static_folders = (
+    #     (f"{TEMPLATE_PATH}/css", "css"),
+    #     (f"{TEMPLATE_PATH}/js", "js"),
+    #     (f"{TEMPLATE_PATH}/images", "images"),
+    #     (f"{TEMPLATE_PATH}/images/logo", ""),
+    # )
     my_static_folders = (
-        (f"{TEMPLATE_PATH}/css", "css"),
-        (f"{TEMPLATE_PATH}/js", "js"),
-        (f"{TEMPLATE_PATH}/images", "images"),
-        (f"{TEMPLATE_PATH}/images/logo", ""),
+        (f"{TEMPLATE_PATH}/assets/css", "css"),
+        (f"{TEMPLATE_PATH}/assets/js", "js"),
+        (f"{TEMPLATE_PATH}/assets/vendor", "vendor"),
+        (f"{TEMPLATE_PATH}/assets/scss", "scss"),
+        (f"{TEMPLATE_PATH}/assets/img", "img"),
     )
     for folder, prefix in my_static_folders:
         app.wsgi_app.add_files(folder, prefix)
