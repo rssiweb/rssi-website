@@ -34,7 +34,7 @@
                     <div>
                         <h4>Address</h4>
                         <p>
-                            624B/195/01<br> Vijayipur, Vijaipur Village, Vishesh Khand 2, Gomti Nagar, Lucknow, Uttar Pradesh 226010
+                            624B/195/01, Vijayipur, Vijaipur Village, Vishesh Khand 2, Gomti Nagar, Lucknow, Uttar Pradesh 226010
                             <br>
                         </p>
                     </div>
@@ -62,7 +62,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6 footer-links">
+                <div class="col-lg-3 col-md-6">
                     <h4>Follow Us</h4>
                     <div class="social-links d-flex">
                         <a href="https://www.instagram.com/rssi.in/" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -72,10 +72,16 @@
                         <a href="https://www.linkedin.com/company/rssingo/" class="linkedin"><i
                                 class="bi bi-linkedin"></i></a>
                         <a href="https://www.youtube.com/c/RSSINGO" class="linkedin"><i class="bi bi-youtube"></i></a>
-                    </div><br>
-
-                    <div id="google_translate_element" style="position: relative;z-index: 1;"></div>
-
+                    </div>
+                    <br>
+                    <p class="footer-links" style="font-size: small !important; margin-bottom: 0;">
+                        <a href="/contact-us">Contact us</a> |
+                        <a href="/disclaimer">Disclaimer</a> |
+                        <a href="/terms-of-service">Terms & Conditions</a> |
+                        <a href="/refund-policy">Cancellation/Refund Policy</a> |
+                        <a href="/privacy-policy">Privacy Policy</a>
+                    </p>
+                    <!-- <div id="google_translate_element" style="position: relative;z-index: 1;"></div> -->
                 </div>
 
             </div>
@@ -93,7 +99,7 @@
     </footer>
     <!-- End Footer -->
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         var g_gTranslateIsAdded = false;
 
         function googleTranslateElementInit() {
@@ -107,7 +113,14 @@
             }
         }
     </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+    <script>
+        $("a").each(function() {
+            if ((window.location.pathname.indexOf($(this).attr('href'))) > -1) {
+                $(this).addClass('active');
+            }
+        });
+    </script>
 
 </body>
 
