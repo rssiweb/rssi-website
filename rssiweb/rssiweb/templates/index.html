@@ -35,6 +35,46 @@
             $("#footer").load("/footer.html");
         });
     </script>
+    <style>
+        .typing-animation {
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 1px solid;
+        }
+        
+        .typing-animation span {
+            display: inline-block;
+        }
+        
+        .typing-animation .cursor {
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            right: -5px;
+            width: 10px;
+            height: 100%;
+            background-color: black;
+            animation: cursor 0.5s infinite;
+        }
+        
+        @keyframes cursor {
+            0% {
+                opacity: 0
+            }
+            50% {
+                opacity: 1
+            }
+            100% {
+                opacity: 0
+            }
+        }
+        
+        .typing-animation {
+            vertical-align: top;
+        }
+    </style>
 </head>
 
 <body>
@@ -48,7 +88,8 @@
         <div class="container">
             <div class="row justify-content-between gy-5">
                 <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
-                    <h2 data-aos="fade-up">Help a journey - from childhood to livelihood</h2>
+                    <h2 data-aos="fade-up">Help a journey - from childhood to <span class="typing-animation">livelihood<span class="cursor"></span></span>
+                    </h2>
                     <p data-aos="fade-up" data-aos-delay="100">Empowering youth through education is the main focus of our organization.
                     </p>
                     <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
@@ -476,6 +517,55 @@
 
     <!-- Template Main JS File -->
     <script src="/js/main.js"></script>
+
+    <script>
+        const words = ["livelihood", "empowerment", "prosperity"];
+        let currentWordIndex = 0;
+        let currentWord = words[currentWordIndex];
+        let currentWordLength = currentWord.length;
+        let index = 0;
+        let character = "";
+        let typeSpeed = 100;
+        const type = setInterval(() => {
+            character = currentWord.slice(0, ++index);
+            document.querySelector(".typing-animation").textContent = character;
+            if (character.length === currentWordLength) {
+                clearInterval(type);
+                setTimeout(() => {
+                    typeOut();
+                }, 2000); // Wait for 2 seconds before starting to type out
+            }
+        }, typeSpeed);
+
+        function typeOut() {
+            const typeOut = setInterval(() => {
+                character = currentWord.slice(0, --index);
+                document.querySelector(".typing-animation").textContent = character;
+                if (character.length === 0) {
+                    clearInterval(typeOut);
+                    currentWordIndex = (currentWordIndex + 1) % words.length;
+                    currentWord = words[currentWordIndex];
+                    currentWordLength = currentWord.length;
+                    setTimeout(() => {
+                        typeIn();
+                    }, 1000); // Wait for 1 second before starting to type in
+                }
+            }, typeSpeed);
+        }
+
+        function typeIn() {
+            const typeIn = setInterval(() => {
+                character = currentWord.slice(0, ++index);
+                document.querySelector(".typing-animation").textContent = character;
+                if (character.length === currentWordLength) {
+                    clearInterval(typeIn);
+                    setTimeout(() => {
+                        typeOut();
+                    }, 2000); // Wait for 2 seconds before starting to type out
+                }
+            }, typeSpeed);
+        }
+    </script>
 
     <!-- Start of Async ProveSource Code -->
     <script>
