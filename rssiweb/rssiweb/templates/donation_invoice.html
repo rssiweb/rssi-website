@@ -67,7 +67,7 @@
         <section class="sample-page">
             <div class="container">
                 <!-- Part 1: Donation Information -->
-                <form action="donation_form.php" method="POST" id="donationInfoForm">
+                <form action="donation_form.php" method="POST" name="donationInfoForm" id="donationInfoForm">
                     <input type="hidden" name="form-type" value="donation_form">
                     <div class="mb-3">
                         <label for="donationType" class="form-label">Have you donated earlier?</label>
@@ -344,6 +344,52 @@
                     // Add event listener to the "donationType" element
                     document.getElementById("donationType").addEventListener("change", handleDonationTypeChange);
                 </script>
+                <script>
+                    const donationForm = document.getElementById("donationInfoForm");
+
+                    document.getElementById("donateButton").addEventListener("click", async function(event) {
+                        event.preventDefault(); // Prevent default form submission
+
+                        if (!donationForm.checkValidity()) {
+                            donationForm.reportValidity(); // Show the default validation messages
+                            return;
+                        }
+
+                        // Disable the donate button immediately upon form submission
+                        this.disabled = true;
+
+                        try {
+                            const response = await fetch(scriptURL, {
+                                method: 'POST',
+                                body: new FormData(donationForm)
+                            });
+                            const result = await response.json();
+
+                            console.log("API Response:", result); // For testing purposes, log the entire response
+
+                            if (!result.error) {
+                                alert(`Submitted successfully! Donation reference ID: ${result.donationId}`);
+                                donationForm.reset(); // Reset the form after successful submission
+                                location.reload(); // Reload the page after successful submission
+                            } else {
+                                if (result.errorMessage === "") {
+                                    alert("Error occurred during form submission. Please try again later.");
+                                } else if (result.errorMessage === "already_registered") {
+                                    alert("Oops! You are already registered in our database. Please donate as an existing donor.");
+                                } else {
+                                    alert("Unknown error occurred during form submission.");
+                                }
+                            }
+                        } catch (error) {
+                            console.error(error);
+                            alert("Error occurred during form submission. Please try again later.");
+                        } finally {
+                            // Re-enable the donate button after the form submission process is finished
+                            this.disabled = false;
+                        }
+                    });
+                </script>
+
             </div>
         </section>
     </main>
