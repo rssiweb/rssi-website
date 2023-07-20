@@ -77,17 +77,32 @@
                             <option value="existing">Yes, I have donated earlier</option>
                         </select>
                     </div>
-
                     <div id="existingDonorInfo" style="display: none;">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="contactnumber_verify" name="contactnumber_verify" placeholder="Enter your contact number">
+                            <input type="text" class="form-control" id="contactnumber_verify" name="contactnumber_verify" pattern="[0-9]{10}" placeholder="Enter your contact number" oninput="validateContactNumber(this)">
                             <button type="submit" class="btn btn-primary" id="verifybutton">Find your details</button>
                         </div>
+                        <span id="contactnumber_error" style="color: red;"></span>
                     </div>
+
+                    <script>
+                        function validateContactNumber(input) {
+                            var errorMessage = document.getElementById("contactnumber_error");
+                            var verifyButton = document.getElementById("verifybutton");
+
+                            if (!input.checkValidity()) {
+                                errorMessage.textContent = "Please enter a valid 10-digit contact number.";
+                                verifyButton.disabled = true;
+                            } else {
+                                errorMessage.textContent = "";
+                                verifyButton.disabled = false;
+                            }
+                        }
+                    </script>
 
                     <!-- Get user data -->
                     <div id="verificationResult" style="display: none;">
-                        <input type="hidden" id="donorId" name="donorId" class="form-control" readonly>
+                        <input type="hidden" id="tel" name="tel" class="form-control" readonly>
                         <div class="mb-3">
                             <label for="donorName" class="form-label">Donor Name</label>
                             <input type="text" id="donorName" class="form-control" readonly>
@@ -108,10 +123,22 @@
                             <label for="email" class="form-label">Email Address</label>
                             <input type="email" class="form-control" id="email" name="email" required>
                         </div>
+
                         <div class="mb-3">
                             <label for="contactNumberNew" class="form-label">Contact Number</label>
-                            <input type="tel" class="form-control" id="contactNumberNew" name="contactNumberNew" required>
+                            <input type="tel" class="form-control" id="contactNumberNew" name="contactNumberNew" pattern="[0-9]{10}" required>
+                            <small id="contactNumberError" class="form-text text-danger"></small>
                         </div>
+
+                        <script>
+                            function validateInput() {
+                                document.getElementById('contactNumberError').textContent = this.validity.patternMismatch ? 'Please enter a valid 10-digit number.' : '';
+                            }
+
+                            const inputElement = document.getElementById('contactNumberNew');
+                            inputElement.addEventListener('input', validateInput);
+                        </script>
+
                         <div class="mb-3">
                             <label for="documentType" class="form-label">National Identifier Type</label>
                             <select class="form-select" id="documentType" name="documentType" required>
@@ -175,7 +202,7 @@
                     var contactNumberVerifyInput = document.getElementsByName("contactnumber_verify_input")[0];
                     var donorNameInput = document.getElementById("donorName");
                     var donorEmailInput = document.getElementById("donorEmail");
-                    var donorIdInput = document.getElementById("donorId");
+                    var telInput = document.getElementById("tel");
                     var verificationResultDiv = document.getElementById("verificationResult");
                     var donateButton = document.getElementById('donateButton');
                     var newDonorInfo = document.getElementById('newDonorInfo');
@@ -184,7 +211,7 @@
                         contactNumberVerifyInput.value = this.value;
                     });
 
-                    const scriptURL = 'https://login.rssi.in/rssi-member/payment-api.php';
+                    const scriptURL = '../rssi-member/payment-api.php';
 
                     // Function to update the 'required' attribute of fields based on visibility
                     function updateRequiredFields() {
@@ -224,7 +251,7 @@
                                 if (data.status === 'success') {
                                     donorNameInput.value = data.data.fullname;
                                     donorEmailInput.value = data.data.email;
-                                    donorIdInput.value = data.data.donorid;
+                                    telInput.value = data.data.tel;
                                     verificationResultDiv.style.display = "block"; // Show the result div
                                     donationamount.style.display = 'block';
                                     donateButton.disabled = false;
@@ -235,7 +262,7 @@
                                     donateButton.disabled = true;
                                     donorNameInput.value = "";
                                     donorEmailInput.value = "";
-                                    donorIdInput.value = "";
+                                    telInput.value = "";
                                     alert("No records found in the database. Donate as a new user.");
                                 } else {
                                     console.log('Error:', data.message);
