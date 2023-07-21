@@ -16,7 +16,8 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
@@ -28,9 +29,10 @@
 
     <!-- Template Main CSS File -->
     <link href="/css/main.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
-        $(function() {
+        $(function () {
             $("#header").load("/header.html");
             $("#footer").load("/footer.html");
         });
@@ -39,16 +41,16 @@
         /*
      CSS for the main interaction
     */
-        
+
         .tabset>input[type="radio"] {
             position: absolute;
             left: -200vw;
         }
-        
+
         .tabset .tab-panel {
             display: none;
         }
-        
+
         .tabset>input:first-child:checked~.tab-panels>.tab-panel:first-child,
         .tabset>input:nth-child(3):checked~.tab-panels>.tab-panel:nth-child(2),
         .tabset>input:nth-child(5):checked~.tab-panels>.tab-panel:nth-child(3),
@@ -57,7 +59,7 @@
         .tabset>input:nth-child(11):checked~.tab-panels>.tab-panel:nth-child(6) {
             display: block;
         }
-        
+
         .tabset>label {
             position: relative;
             display: inline-block;
@@ -67,7 +69,7 @@
             cursor: pointer;
             font-weight: 600;
         }
-        
+
         .tabset>label::after {
             content: "";
             position: absolute;
@@ -77,24 +79,24 @@
             height: 4px;
             background: #8d8d8d;
         }
-        
+
         .tabset>label:hover,
         .tabset>input:focus+label {
             color: #06c;
         }
-        
+
         .tabset>label:hover::after,
         .tabset>input:focus+label::after,
         .tabset>input:checked+label::after {
             background: #06c;
         }
-        
+
         .tabset>input:checked+label {
             border-color: #ccc;
             border-bottom: 1px solid #fff;
             margin-bottom: -1px;
         }
-        
+
         .tab-panel {
             padding: 30px 0;
             border-top: 1px solid #ccc;
@@ -136,50 +138,63 @@
                     <input type="radio" name="tabset" id="tab1" aria-controls="marzen">
                     <label for="tab1">Paytm</label>
                     <!-- Tab 2 -->
-                    <input type="radio" name="tabset" id="tab2" aria-controls="rauchbier" checked>
+                    <input type="radio" name="tabset" id="tab2" aria-controls="rauchbier">
                     <label for="tab2">Razorpay</label>
                     <!-- Tab 3 -->
-                    <input type="radio" name="tabset" id="tab3" aria-controls="dunkles">
+                    <input type="radio" name="tabset" id="tab3" aria-controls="dunkles" checked>
                     <label for="tab3">Bank transaction</label>
 
                     <div class="tab-panels">
                         <section id="marzen" class="tab-panel">
-                            <p>Donation is now easier with Payment Gateway. You are just one click away to make someone's future.
+                            <p>Donation is now easier with Payment Gateway. You are just one click away to make
+                                someone's future.
                             </p>
 
-                            <a href="https://securegw.paytm.in/link/paymentForm/92390/LL_516135905" target='_blank' rel='im-checkout' data-behaviour='remote' data-style='light' data-text="Donate with Paytm" style="border-radius: 2px;display: inline-block;border: 1px solid #e6ebf3;padding: 0 23px;color: #182233;font-size: 12px;text-decoration: none;font-family: 'Nunito Sans', sans-serif;height: 32px;line-height: 28px;background: #00b9f5;color: #ffffff;border: 1px solid #00b9f5;">
+                            <a href="https://securegw.paytm.in/link/paymentForm/92390/LL_516135905" target='_blank'
+                                rel='im-checkout' data-behaviour='remote' data-style='light'
+                                data-text="Donate with Paytm"
+                                style="border-radius: 2px;display: inline-block;border: 1px solid #e6ebf3;padding: 0 23px;color: #182233;font-size: 12px;text-decoration: none;font-family: 'Nunito Sans', sans-serif;height: 32px;line-height: 28px;background: #00b9f5;color: #ffffff;border: 1px solid #00b9f5;">
                                 <span>Donate with</span>
-                                <img style="margin-left: 6px;vertical-align:sub;width: 50px;" src="https://staticgw.paytm.in/1.4/plogo/paytmlogo-white.png" /></a>
+                                <img style="margin-left: 6px;vertical-align:sub;width: 50px;"
+                                    src="https://staticgw.paytm.in/1.4/plogo/paytmlogo-white.png" /></a>
                         </section>
                         <section id="rauchbier" class="tab-panel">
-                            <p>Donation is now easier with Payment Gateway. You are just one click away to make someone's future.
+                            <p>Donation is now easier with Payment Gateway. You are just one click away to make
+                                someone's future.
                             </p>
                             <form style="display: inline; display: table-cell; vertical-align: middle;">
-                                <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_JkuxffSBCwLu2p" async>
-                                </script>
+                                <script src="https://checkout.razorpay.com/v1/payment-button.js"
+                                    data-payment_button_id="pl_JkuxffSBCwLu2p" async>
+                                    </script>
                             </form>
                         </section>
                         <section id="dunkles" class="tab-panel">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <p style="line-height: 2;">Account Number: <b>201008915512</b><br> A/C Name: 52617897 - Rina Shiksha Sahayak Foundation<br> Bank Name: Indusind Bank Ltd, 0865 - Chhinhat Lucknow<br> IFSC Code: INDB0000865</p>
+                                    <p style="line-height: 2;">Account Number: <b>004201033772</b><br> A/C Name: RINA
+                                        SHIKSHA SAHAYAK FOUNDATION<br> Bank Name: ICICI Bank - KOLKATA - SALT LAKE
+                                        (Branch Code: 0042)<br> IFSC Code: ICIC0000042</p>
 
                                 </div>
-                                <!-- <div class="col-md-6">
+                                <div class="col-md-6">
                                     <img src="/img/payment.jpg" alt="Google pay QR" width="100px">
-                                </div> -->
+                                </div>
                             </div>
                             <br>
                             <p>
-                                After making the payment you are requested to generate the receipt with the transaction ID generated by your bank after a successful transaction. On successful submission of the receipt form, you will receive an acknowledgment slip. The original receipt
+                                After making the payment you are requested to generate the receipt with the transaction
+                                ID generated by your bank after a successful transaction. On successful submission of
+                                the receipt form, you will receive an acknowledgment slip. The original receipt
                                 will be shared via post or email within 7 business days.</p>
 
-                            <input type="checkbox" id="termsChkbx" name="termsChkbx" onclick="change_button(this,'sub1')" />
-                            <p style="display: inline;"><label for="termsChkbx" style="font-weight: 400;">I have completed the
-                            payment and I have the
-                            transaction ID.</label></p><br><br>
+                            <input type="checkbox" id="termsChkbx" name="termsChkbx"
+                                onclick="change_button(this,'sub1')" />
+                            <p style="display: inline;"><label for="termsChkbx" style="font-weight: 400;">I have
+                                    completed the
+                                    payment and I have the
+                                    transaction ID.</label></p><br><br>
 
-                            <form target="_blank" action="https://docs.google.com/forms/d/e/1FAIpQLSfZ_mynvy7rrd8qWgKlk4rrWheghbmZ_wlBvJ_WbM6h7SVXrw/viewform">
+                            <form target="_blank" action="donation_invoice">
                                 <input type="submit" id="sub1" value="Generate receipt" disabled />
                             </form>
                         </section>
@@ -197,7 +212,7 @@
     <!-- End Footer -->
 
     <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
+            class="bi bi-arrow-up-short"></i></a>
 
     <!--<div id="preloader"></div>-->
 
