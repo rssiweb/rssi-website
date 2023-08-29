@@ -16,7 +16,8 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
@@ -28,9 +29,10 @@
 
     <!-- Template Main CSS File -->
     <link href="/css/main.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
-        $(function() {
+        $(function () {
             $("#header").load("/header.html");
             $("#footer").load("/footer.html");
         });
@@ -40,16 +42,16 @@
     /*
 CSS for the main interaction
 */
-    
+
     .tabset>input[type="radio"] {
         position: absolute;
         left: -200vw;
     }
-    
+
     .tabset .tab-panel {
         display: none;
     }
-    
+
     .tabset>input:first-child:checked~.tab-panels>.tab-panel:first-child,
     .tabset>input:nth-child(3):checked~.tab-panels>.tab-panel:nth-child(2),
     .tabset>input:nth-child(5):checked~.tab-panels>.tab-panel:nth-child(3),
@@ -58,7 +60,7 @@ CSS for the main interaction
     .tabset>input:nth-child(11):checked~.tab-panels>.tab-panel:nth-child(6) {
         display: block;
     }
-    
+
     .tabset>label {
         position: relative;
         display: inline-block;
@@ -68,7 +70,7 @@ CSS for the main interaction
         cursor: pointer;
         font-weight: 600;
     }
-    
+
     .tabset>label::after {
         content: "";
         position: absolute;
@@ -78,33 +80,33 @@ CSS for the main interaction
         height: 4px;
         background: #8d8d8d;
     }
-    
+
     .tabset>label:hover,
     .tabset>input:focus+label {
         color: #06c;
     }
-    
+
     .tabset>label:hover::after,
     .tabset>input:focus+label::after,
     .tabset>input:checked+label::after {
         background: #06c;
     }
-    
+
     .tabset>input:checked+label {
         border-color: #ccc;
         border-bottom: 1px solid #fff;
         margin-bottom: -1px;
     }
-    
+
     .tab-panel {
         padding: 30px 0;
         border-top: 1px solid #ccc;
     }
-    
+
     .hidden {
         display: none
     }
-    
+
     .panel {
         background-color: #fff;
         border-radius: 10px;
@@ -113,33 +115,33 @@ CSS for the main interaction
         width: 100%;
         z-index: 10;
     }
-    
+
     .pricing-table {
         box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 0.08), 0px 20px 31px 3px rgba(0, 0, 0, 0.09), 0px 8px 20px 7px rgba(0, 0, 0, 0.02);
         display: flex;
         flex-direction: column;
     }
-    
+
     @media (min-width: 900px) {
         .pricing-table {
             flex-direction: row;
         }
     }
-    
+
     .pricing-table * {
         text-align: center;
         text-transform: uppercase;
     }
-    
+
     .pricing-plan {
         border-bottom: 1px solid #e1f1ff;
         padding: 25px;
     }
-    
+
     .pricing-plan:last-child {
         border-bottom: none;
     }
-    
+
     @media (min-width: 900px) {
         .pricing-plan {
             border-bottom: none;
@@ -147,47 +149,48 @@ CSS for the main interaction
             flex-basis: 100%;
             padding: 25px 50px;
         }
+
         .pricing-plan:last-child {
             border-right: none;
         }
     }
-    
+
     .pricing-img {
         margin-bottom: 25px;
         max-width: 100%;
     }
-    
+
     .pricing-header {
         color: #888;
         font-weight: 600;
         letter-spacing: 1px;
     }
-    
+
     .pricing-features {
         color: #777777;
         font-weight: 600;
         letter-spacing: 1px;
         margin: 50px 0 25px;
     }
-    
+
     .pricing-features-item {
         border-top: 1px solid #e1f1ff;
         font-size: 12px;
         line-height: 1.5;
         padding: 15px 0;
     }
-    
+
     .pricing-features-item:last-child {
         border-bottom: 1px solid #e1f1ff;
     }
-    
+
     .pricing-price {
         color: #777777;
         display: block;
         font-size: 32px;
         font-weight: 700;
     }
-    
+
     .pricing-button {
         border: 1px solid #9dd1ff;
         border-radius: 10px;
@@ -198,24 +201,24 @@ CSS for the main interaction
         text-decoration: none;
         transition: all 150ms ease-in-out;
     }
-    
+
     .pricing-button:hover,
     .pricing-button:focus {
         background-color: #e1f1ff;
         color: #348EFE;
     }
-    
+
     .pricing-button.is-featured {
         background-color: #48aaff;
         color: #fff;
     }
-    
+
     .pricing-button.is-featured:hover,
     .pricing-button.is-featured:active {
         background-color: #269aff;
     }
-    
-    li {
+
+    #jd li {
         list-style-type: none;
     }
 </style>
@@ -279,74 +282,81 @@ CSS for the main interaction
                                     <div class="panel pricing-table">
 
                                         <div class="pricing-plan">
-                                            <!-- <img src="images/paper-plane.png" alt="" class="pricing-img"> -->
                                             <h2 class="pricing-header">Volunteer</h2>
                                             <ul class="pricing-features">
                                                 <li class="pricing-features-item">Part-Time</li>
                                                 <li class="pricing-features-item">3 days a week, 3:30PM TO 6:30PM</li>
                                                 <li class="pricing-features-item">Unpaid</li>
-                                                <!-- <li class="pricing-features-item">Hindi, English</li>
-                                                <li class="pricing-features-item">Enthusiastic, Adaptive, Passionate, Team Player
-                                                </li> -->
-                                                <li class="pricing-features-item">Teaching students, conducting tests and meetings, solving problems</li>
+                                                <li class="pricing-features-item">Teaching students, conducting tests
+                                                    and meetings, solving problems</li>
                                                 <li class="pricing-features-item">Minimum duration 4 months</li>
-                                                <li class="pricing-features-item">Work-relevant experience letter and Community Service Certificate</li>
-                                                <!-- <li class="pricing-features-item">Application fee ₹ 100</li> -->
+                                                <li class="pricing-features-item">Work-relevant experience letter and
+                                                    Community Service Certificate</li>
                                             </ul>
-                                            <!-- <span class="pricing-price">₹100</span> -->
-                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Volunteer" target="_blank" class="pricing-button">Join now</a>
+                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Volunteer"
+                                                target="_blank" class="pricing-button">Join now</a>
                                         </div>
 
                                         <div class="pricing-plan">
                                             <!-- <img src="images/plane.png" alt="" class="pricing-img"> -->
-                                            <h2 class="pricing-header">Internship</h2>
+                                            <h3 class="pricing-header">Community service (Project/Internship)</h3>
                                             <ul class="pricing-features">
                                                 <li class="pricing-features-item">Part-Time</li>
                                                 <li class="pricing-features-item">4 days a week, 3:30PM TO 6:30PM</li>
                                                 <li class="pricing-features-item">Unpaid</li>
                                                 <!-- <li class="pricing-features-item">Hindi, English</li>
                                                 <li class="pricing-features-item">Computer</li> -->
-                                                <li class="pricing-features-item">Teaching students, conducting tests and meetings, solving problems</li>
+                                                <li class="pricing-features-item">Teaching students, conducting tests
+                                                    and meetings, solving problems</li>
                                                 <li class="pricing-features-item">Minimum duration 1 month</li>
-                                                <li class="pricing-features-item">Work experience letter and Internship Certificate
+                                                <li class="pricing-features-item">Work experience letter and Internship
+                                                    Certificate
                                                 </li>
                                                 <!-- <li class="pricing-features-item">Application fee ₹ 300</li> -->
                                             </ul>
                                             <!-- <span class="pricing-price">₹ 300</span> -->
-                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Intern" target="_blank" class="pricing-button is-featured">Join now</a>
+                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Intern"
+                                                target="_blank" class="pricing-button is-featured">Join now</a>
                                         </div>
 
                                         <div class="pricing-plan">
                                             <!-- <img src="images/space-ship.png" alt="" class="pricing-img"> -->
-                                            <h2 class="pricing-header">Employee</h2>
+                                            <h3 class="pricing-header">Employee</h3>
                                             <ul class="pricing-features">
                                                 <li class="pricing-features-item">Part-Time</li>
                                                 <li class="pricing-features-item">6 days a week, 3:30PM TO 6:30PM</li>
-                                                <li class="pricing-features-item">₹ 3000/month (For outstanding performance, a pre-appraisal is conducted within the initial 6 months of the first year.)</li>
+                                                <li class="pricing-features-item">₹ 3500/month
+                                                    <!-- (For outstanding performance, a pre-appraisal is conducted within the initial 6 months of the first year.) -->
+                                                </li>
                                                 <!-- <li class="pricing-features-item">Hindi, English</li>
                                                 <li class="pricing-features-item">Computer</li> -->
-                                                <li class="pricing-features-item">Teaching students, conducting tests and meetings, solving problems, administrative activity</li>
+                                                <li class="pricing-features-item">Teaching students, conducting tests
+                                                    and meetings, solving problems, administrative activity</li>
                                                 <li class="pricing-features-item">Minimum duration 4 months</li>
                                                 <li class="pricing-features-item">Work experience letter</li>
                                                 <!-- <li class="pricing-features-item">Application fee ₹ 300</li> -->
                                             </ul>
                                             <!-- <span class="pricing-price">₹ 300</span> -->
-                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Employee" target="_blank" class="pricing-button">Join now</a>
+                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Employee"
+                                                target="_blank" class="pricing-button">Join now</a>
                                         </div>
 
                                         <div class="pricing-plan">
                                             <!-- <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/v1665050907/Picture1_dsdbhe.jpg" alt="" class="pricing-img"> -->
-                                            <h2 class="pricing-header">Membership</h2>
+                                            <h3 class="pricing-header">Membership</h3>
                                             <ul class="pricing-features">
                                                 <li class="pricing-features-item">No time or work commitment required
                                                 </li>
-                                                <li class="pricing-features-item">Access to the centre premises with pre-approved visit request</li>
+                                                <li class="pricing-features-item">Access to the centre premises with
+                                                    pre-approved visit request</li>
                                                 <!-- <li class="pricing-features-item">1 month or 3 years</li> -->
-                                                <li class="pricing-features-item">Relevant experience letter and Community Service Certificate</li>
+                                                <li class="pricing-features-item">Relevant experience letter and
+                                                    Community Service Certificate</li>
                                                 <li class="pricing-features-item">₹ 1999/month<br>₹ 4999/3 years</li>
                                             </ul>
                                             <!-- <span class="pricing-price">₹ 300</span> -->
-                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Membership&entry.1246758331=Other" target="_blank" class="pricing-button">join now</a>
+                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKwfN2ppagCaDwZ0dhXVsYznQ_OW1vkzXKBmc6lrMf6pciWg/viewform?usp=pp_url&entry.269386459=Membership&entry.1246758331=Other"
+                                                target="_blank" class="pricing-button">join now</a>
                                         </div>
 
                                     </div>
@@ -361,15 +371,40 @@ CSS for the main interaction
                                     <h3>How can I become a RSSI Volunteer/Intern/Employee for an assignment?</h3>
                                 </div>
                                 <br> -->
-                                <p>You need to register your profile in the RSSI talent pool. The registration process consists of three parts.
+                                <p>You need to register your profile in the RSSI talent pool. The registration process
+                                    consists of three parts.
                                 </p>
 
-                                <u><b>Part I - Registration</b></u><br><br>
-                                <p>Familiarize yourself with the information required of a potential volunteer/intern/employee and submit basic information by clicking on the Join Now button from the job description section to create your account.</p>
-
+                                <u><b>Part I - Registration and Payment</b></u><br><br>
+                                <p>Familiarize yourself with the information required of a potential
+                                    volunteer/intern/employee and submit basic information by clicking on the Join Now
+                                    button from the job description section to create your account.</p>
+                                <p>Complete the payment by clicking on the Application fee section.</p>
+                                <div style="background: #F0F0F0; padding: 2%;">
+                                    <b>
+                                        <p>Exclusively applicable to job applicants and NOT applicable for
+                                            Project/Internship programs.</p>
+                                    </b>
+                                    <p>Application fee Rs.500 is one-time, and has to be paid at the time of
+                                        registration.</p>
+                                    <p>Notes</p>
+                                    <ol>
+                                        <li>If a candidate is not selected by RSSI NGO during the selection process,
+                                            they will receive a
+                                            full refund of their application fee.
+                                        <li>If a candidate is selected and joins the organization, they will receive a
+                                            refund of
+                                            Rs.400/- after completion of 1 month.</li>
+                                        <li>However, if a candidate is selected but does not join the organization, no
+                                            refund will be
+                                            processed.</li>
+                                    </ol>
+                                </div>
+                                <br>
                                 <u><b>Part II - Identity verification</b></u><br><br>
-                                <p>After completing Part 1, in order for us to be able to process your application, either you have to contact your nearest RSSI branch with an original document from the items listed or you can avail our online verification
-                                    facility. Acceptable identification
+                                <p>After completing Part 1, in order for us to be able to process your application,
+                                    please click on the link provided in the confirmation email to proceed with the
+                                    identity verification process. Acceptable identification
                                 </p>
                                 <ol>
                                     <li style="padding-left:0.5em">
@@ -389,43 +424,39 @@ CSS for the main interaction
                                     </li>
                                 </ol>
 
-                                <!-- <u><b>Part III - Payment</b></u><br><br>
-                                <p>Complete the payment by clicking on the Application fee section.</p>
-                                <div style="background: #F0F0F0; padding: 2%;">
-                                    <p>For association type - <b>Volunteer</b></p>
-                                    <ul>
-                                        <ol>
-                                            <li style="padding-left:0.5em">
-                                                <p>Application fee Rs.100 is one-time, non-refundable, and has to be paid at the time of registration.
-                                                </p>
-                                            </li>
-                                        </ol>
-                                    </ul>
-                                    <p>For association type - <b>Employee, Intern</b></p>
-                                    <ul>
-                                        <ol>
-                                            <li style="padding-left:0.5em">
-                                                Application fee Rs.100 is one-time, non-refundable, and has to be paid at the time of registration.
-
-                                            </li>
-                                            <li style="padding-left:0.5em">
-                                                The certification/miscellaneous fee Rs.200 is one-time, non-refundable, and has to be paid at the time of onboarding.
-                                            </li>
-                                        </ol>
-                                    </ul>
-                                    # For Employee, after the completion of the tenure of four months, Rs 200 will be refunded with the salary of the fifth month.
-                                </div> -->
-                                <br>
-                                <p>Now your application will be in the HR queue. After HR approval, as confirmation of your successful registration you will receive email with your Associate Number, other practical information for potential candidates and
-                                    a URL to enter all the required details regarding your skills, educational qualifications and experience.
-                                </p>
-
-                                <p>Your RSSI profile will only be considered for upcoming volunteer assignments after completion of ALL parts of the registration process.</p>
+                                <u><b>Part III - Selection process</b></u><br><br>
+                                <ol>
+                                    <li>Wait for the NGO to share interview slots with you.</li>
+                                    <li>Prepare for the interview by researching about RSSI NGO, their mission, and the
+                                        specific program you're applying for.</li>
+                                    <li>Attend the scheduled interview and perform your best.</li>
+                                    <li>Wait for the interview results. If selected, follow instructions provided in the
+                                        email to update your profile.
+                                    <li>If a candidate is not selected by RSSI NGO during the selection process, they
+                                        will receive a full refund of their application fee. Refunds will be issued
+                                        within 30 days of the candidate's non-selection.
+                                </ol>
+                                <u><b>Part IV - Onboarding process</b></u><br><br>
+                                <ol>
+                                    <li>Upon updating your profile, an offer letter will be generated. Kindly confirm
+                                        your acceptance of the offer by responding to the letter.</li>
+                                    <li>Once you have accepted the offer, you will be sent a formal joining letter
+                                        containing all the necessary instructions for the onboarding process.</li>
+                                    <li>Ensure the completion of all prerequisites required for the onboarding process.
+                                    </li>
+                                    <li>On the designated date and time, please visit the specified center to initiate
+                                        your onboarding process and integrate into the system.</li>
+                                    <li>Upon successfully completing the first month, the candidate (job applicants)
+                                        will be eligible for
+                                        a Rs. 400/- refund.</li>
+                                </ol>
                             </div>
                             <hr>
                             <span class="badge bg-danger">Offline
                                 support</span><br><br>
-                            <p>If you are not tech-savvy and want to avail offline facility to complete the application process, please send us a WhatsApp message on this number 7980168159 along with one of your government photo ID proofs. Please note that
+                            <p>If you are not tech-savvy and want to avail offline facility to complete the application
+                                process, please send us a WhatsApp message on this number 7980168159 along with one of
+                                your government photo ID proofs. Please note that
                                 offline facility is available with an additional service charge of Rs.150.</p>
                         </section>
                         <!-- <section id="af" class="tab-panel">
@@ -436,27 +467,42 @@ CSS for the main interaction
                             <form target="_blank" action="https://forms.gle/yUnLMQbhYKKw4uSn8">
                                 <input type="submit" id="sub2" value="Registration Form" disabled />
                             </form>
-                        </section> -->
-                        <section id="ap" class="tab-panel">
+                            </section> -->
+
+                        <!--<section id="af" class="tab-panel">
+                            <div style="background: #F0F0F0; padding: 2%;">
+                                <b><p>Exclusively applicable to job applicants and not applicable for Project/Internship programs.</p></b>
+                                <p>Application fee Rs.500 is one-time, and has to be paid at the time of
+                                    registration.</p>
+                                <p>Notes</p>
+                                <ol>
+                                    <li>If a candidate is not selected by RSSI NGO during the selection process,
+                                        they will receive a
+                                        full refund of their application fee.
+                                    <li>If a candidate is selected and joins the organization, they will receive a
+                                        refund of
+                                        Rs.400/- after completion of 1 month.</li>
+                                    <li>However, if a candidate is selected but does not join the organization, no
+                                        refund will be
+                                        processed.</li>
+                                </ol>
+                            </div>
+                            <br>
                             <p>Please click on the Pay Now button to make the payment.</p>
-                            <input type="checkbox" id="termsChkbx" name="termsChkbx" onclick="change_button(this,'sub1')" />
-                            <p style="display: inline;"><label for="termsChkbx" style="font-weight: 400;">I have
-                                    completed the registration and identity verification (Part I + Part II).</label></p>
+                            <input type="checkbox" id="termsChkbx" name="termsChkbx"
+                                onclick="change_button(this,'sub1')" />
+                            <p style="display: inline;"><label for="termsChkbx" style="font-weight: 400;">I confirm my understanding of the terms and conditions prior to making this payment.</label>
+                            </p>
                             <br><br>
 
                             <form target="_blank" action="https://paytm.me/C-d4mKz">
                                 <input type="submit" id="sub1" value="Pay Now" disabled />
                             </form>
+                        </section>-->
                     </div>
-                    </section>
-
-
+                </div>
+            </div>
         </section>
-        </div>
-
-        </div>
-        </section>
-
     </main>
     <!-- End #main -->
     <!-- ======= Footer ======= -->
@@ -502,7 +548,7 @@ CSS for the main interaction
     <!-- Messenger Chat Plugin Code -->
     <div id="fb-root"></div>
 
-    <!-- Your Chat Plugin code -->
+    <!--Your Chat Plugin code -->
     <div id="fb-customer-chat" class="fb-customerchat">
     </div>
 
@@ -511,14 +557,14 @@ CSS for the main interaction
         chatbox.setAttribute("page_id", "215632685291793");
         chatbox.setAttribute("attribution", "biz_inbox");
 
-        window.fbAsyncInit = function() {
+        window.fbAsyncInit = function () {
             FB.init({
                 xfbml: true,
                 version: 'v12.0'
             });
         };
 
-        (function(d, s, id) {
+        (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s);
@@ -527,6 +573,45 @@ CSS for the main interaction
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
+    <script>
+        // Get the value of the 'tab' query parameter from the URL
+        const queryParams = new URLSearchParams(window.location.search);
+        const tabToOpen = queryParams.get('tab');
+
+        // Function to open a specific tab
+        function openTab(tabId) {
+            const tabElement = document.getElementById(tabId);
+            if (tabElement) {
+                tabElement.checked = true;
+            }
+        }
+
+        // If a specific tab is provided in the query parameter, open that tab
+        if (tabToOpen) {
+            switch (tabToOpen) {
+                case 'tab2':
+                    openTab('tab2');
+                    break;
+                case 'tab1':
+                    openTab('tab1');
+                    break;
+                // Add more cases for other tabs if needed
+            }
+        }
+    </script>
+    <!-- Script to update the URL when a tab is clicked -->
+    <script>
+        const tabInputs = document.querySelectorAll('input[name="tabset"]');
+
+        tabInputs.forEach(tabInput => {
+            tabInput.addEventListener('click', () => {
+                const selectedTabId = tabInput.id;
+                const newUrl = window.location.pathname + `?tab=${selectedTabId}`;
+                window.history.replaceState(null, null, newUrl);
+            });
+        });
+    </script>
+
 
 </body>
 
