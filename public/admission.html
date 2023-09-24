@@ -2,35 +2,44 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <title>RSSI-Admission</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-
-    <!-- Favicons -->
-    <link href="/img/favicon.ico" rel="icon">
-    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>RSSI NGO - Admission form</title>
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
 
-    <!-- Vendor CSS Files -->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!------ Include the above in your HEAD tag ---------->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <style>
+        .prebanner {
+            display: none;
+        }
 
+        .required-asterisk {
+            color: red;
+        }
+    </style>
     <!-- Template Main CSS File -->
     <link href="/css/main.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
-        $(function() {
+        $(function () {
             $("#header").load("/header.html");
             $("#footer").load("/footer.html");
         });
@@ -38,87 +47,611 @@
 </head>
 
 <body>
-
     <!-- ======= Header ======= -->
     <div id="header"></div>
     <!-- End Header -->
-
     <main id="main">
-
         <!-- ======= Breadcrumbs ======= -->
         <div class="breadcrumbs">
             <div class="container">
 
                 <div class="d-flex justify-content-between align-items-center">
-                    <h2>Admission</h2>
+                    <h2>Admission form</h2>
                     <ol>
                         <li><a href="index">Home</a></li>
-                        <li>Admission</li>
+                        <li>Admission form</li>
                     </ol>
                 </div>
 
             </div>
         </div>
         <!-- End Breadcrumbs -->
-
         <section class="sample-page">
-            <div class="container" data-aos="fade-up">
+            <div class="container">
+                <p>The admission fee is ₹100. The admission fee is one-time, non-refundable, and has to be paid at the
+                    time of admission.</p>
+                <hr>
+                <form name="admission" id="admission" action="admission.php" method="post"
+                    enctype="multipart/form-data">
+                    <input type="hidden" name="form-type" value="admission">
+                    <div class="form-group">
+                        <label for="type-of-admission">Type of Admission:</label>
+                        <select class="form-select" id="type-of-admission" name="type-of-admission" required>
+                            <option value="">--Select Type of Admission--</option>
+                            <option value="New Admission">New Admission</option>
+                            <!-- <option value="Transfer Admission">Transfer Admission</option> -->
+                        </select>
+                        <small id="type-of-admission-help" class="form-text text-muted">Please select the type of
+                            admission you are applying for.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="student-name">Student Name:</label>
+                        <input type="text" class="form-control" id="student-name" name="student-name"
+                            placeholder="Enter student name" required>
+                        <small id="student-name-help" class="form-text text-muted">Please enter the name of the
+                            student.</small>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="date-of-birth">Date of Birth:</label>
+                                <input type="date" class="form-control" id="date-of-birth" name="date-of-birth"
+                                    required>
+                                <small id="date-of-birth-help" class="form-text text-muted">Please enter the date of
+                                    birth of the student.</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="gender">Gender:</label>
+                                <select class="form-select" id="gender" name="gender" required>
+                                    <option value="">--Select Gender--</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Binary">Binary</option>
+                                </select>
+                                <small id="gender-help" class="form-text text-muted">Please select the gender of the
+                                    student.</small>
+                            </div>
+                        </div>
+                    </div>
 
-                <h3>How do I join the Shiksha Project as a student?</h3>
-                <br>
+                    <!-- <input type="file" id="photo-upload" name="photo" accept="image/*" capture> -->
+                    <div class="form-group">
+                        <label for="student-photo">Upload Student Photo:</label>
+                        <input type="file" class="form-control-file" id="student-photo" name="student-photo" required
+                            accept="image/*;capture=camera">
+                        <small id="student-photo-help" class="form-text text-muted">Please upload a recent passport size
+                            photograph of the student.</small>
+                    </div>
 
-                <p>You are just one step away to start a better future with RSSI. Please fill the form carefully and you are done. Soon after filling the form, someone from our team will contact you and will tell you about the next steps.
-                </p>
+                    <div class="form-group">
+                        <label for="aadhar-card">Aadhar Card Available?:</label>
+                        <select class="form-select" id="aadhar-card" name="aadhar-card" required>
+                            <option value="">--Select--</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <small id="aadhar-card-help" class="form-text text-muted">Please select whether you have an
+                            Aadhar card or not.</small>
+                    </div>
 
-                <p>Please keep the below mentioned document with you before you start filling the form. If you are not tech-savvy and want to avail offline facility, please visit the center with the documents mentioned here.
-                </p>
-                <ul>
-                    <ol type="1">
-                        <li style="padding-left:0.5em">
-                            <p>1 photocopy / soft copy of your Aadhaar card</p>
-                        </li>
-                        <li style="padding-left:0.5em">
-                            <p>1 soft copy of your current formal photo</p>
-                        </li>
-                    </ol>
-                </ul>
-                <div class="white" style="text-align: -webkit-center; ">
-                    <a href="https://forms.gle/Vpyigg79N8hraPW97" target="_blank" class="btn btn-danger" style="padding: 10px 20px;" data-wow-delay="1.3s">Admission Form <i class="fas fa-chevron-right"></i></a>
+
+                    <div id="hidden-panel" style="display: none;">
+                        <div class="form-group">
+                            <label for="aadhar-number">Aadhar of the Student:</label>
+                            <input type="text" class="form-control" id="aadhar-number" name="aadhar-number"
+                                placeholder="Enter Aadhar number" required>
+                            <small id="aadhar-number-help" class="form-text text-muted">Please enter the Aadhar number
+                                of the student.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="aadhar-card-upload">Upload Aadhar Card:</label>
+                            <input type="file" class="form-control-file" id="aadhar-card-upload"
+                                name="aadhar-card-upload" required>
+                            <small id="aadhar-card-upload-help" class="form-text text-muted">Please upload a scanned
+                                copy of the Aadhar card (if available).</small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="guardian-name">Guardian's Name:</label>
+                                <input type="text" class="form-control" id="guardian-name" name="guardian-name"
+                                    placeholder="Enter guardian name" required>
+                                <small id="guardian-name-help" class="form-text text-muted">Please enter the name of the
+                                    student's guardian.</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="relation">Relation with Student:</label>
+                                <select class="form-select" id="relation" name="relation" required>
+                                    <option value="">--Select Type of Relation--</option>
+                                    <option value="Mother">Mother</option>
+                                    <option value="Father">Father</option>
+                                    <option value="Spouse">Spouse</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <small id="relation-help" class="form-text text-muted">Please enter the relation of the
+                                    guardian
+                                    with the student.</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="hidden-panel-guardian-aadhar" style="display: none;">
+                        <div class="form-group">
+                            <label for="guardian-aadhar-number">Aadhar of Guardian:</label>
+                            <input type="text" class="form-control" id="guardian-aadhar-number"
+                                name="guardian-aadhar-number" placeholder="Enter Aadhar number" required>
+                            <small id="guardian-aadhar-number-help" class="form-text text-muted">Please enter the Aadhar
+                                number of the guardian.</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State of Domicile:</label>
+                        <select class="form-select" id="state" name="state" required>
+                            <option value="">--Select State--</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <option value="Assam">Assam</option>
+                            <option value="Bihar">Bihar</option>
+                            <option value="Chhattisgarh">Chhattisgarh</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                            <option value="Jammu Kashmir">Jammu and Kashmir</option>
+                            <option value="Jharkhand">Jharkhand</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Manipur">Manipur</option>
+                            <option value="Meghalaya">Meghalaya</option>
+                            <option value="Mizoram">Mizoram</option>
+                            <option value="Nagaland">Nagaland</option>
+                            <option value="Odisha">Odisha</option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Sikkim">Sikkim</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Tripura">Tripura</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="Uttarakhand">Uttarakhand</option>
+                            <option value="West Bengal">West Bengal</option>
+                        </select>
+                        <small id="state-help" class="form-text text-muted">Please select the state where the student
+                            resides.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="postal-address">Postal Address:</label>
+                        <textarea class="form-control" id="postal-address" name="postal-address" rows="3"
+                            placeholder="Enter postal address" required></textarea>
+                        <small id="postal-address-help" class="form-text text-muted">Please enter the complete postal
+                            address of the student.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="telephone">Telephone Number:</label>
+                        <input type="tel" class="form-control" id="telephone" name="telephone"
+                            placeholder="Enter telephone number" pattern="[0-9]{10}"
+                            oninput="validateContactNumber(this)" required>
+                        <small id="telephone-help" class="form-text text-muted">Please enter a valid telephone
+                            number.</small>
+                        <span id="contactnumber_error" style="color: red;"></span>
+                    </div>
+                    <script>
+                        function validateContactNumber(input) {
+                            var errorMessage = document.getElementById("contactnumber_error");
+                            var verifyButton = document.getElementById("verifybutton");
+
+                            if (!input.checkValidity()) {
+                                errorMessage.textContent = "Please enter a valid 10-digit contact number.";
+                                verifyButton.disabled = true;
+                            } else {
+                                errorMessage.textContent = "";
+                                verifyButton.disabled = false;
+                            }
+                        }
+                    </script>
+                    <div class="form-group">
+                        <label for="email">Email Address:</label>
+                        <input type="email" class="form-control" id="email" name="email"
+                            placeholder="Enter email address" required>
+                        <small id="email-help" class="form-text text-muted">Please enter a valid email address.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="branch">Preferred Branch:</label>
+                        <select class="form-select" id="branch" name="branch" required>
+                            <option value="">--Select Branch--</option>
+                            <option value="Lucknow">Lucknow</option>
+                            <option value="West Bengal">West Bengal</option>
+                        </select>
+                        <small id="branch-help" class="form-text text-muted">Please select the preferred branch of
+                            study.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="class">Class:</label>
+                        <select class="form-select" id="class" name="class" required>
+                            <option value="">--Select Class--</option>
+                            <option value="Pre-school">Pre-school</option>
+                            <option value="1">Class 1</option>
+                            <option value="2">Class 2</option>
+                            <option value="3">Class 3</option>
+                            <option value="4">Class 4</option>
+                            <option value="5">Class 5</option>
+                            <option value="6">Class 6</option>
+                            <option value="7">Class 7</option>
+                            <option value="8">Class 8</option>
+                            <option value="9">Class 9</option>
+                            <option value="10">Class 10</option>
+                            <option value="11">Class 11</option>
+                            <option value="12">Class 12</option>
+                            <option value="Vocational training">Vocational training</option>
+                        </select>
+                        <small id="class-help" class="form-text text-muted">Please select the class the student wants to
+                            join.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject-select">Select subject(s): </label>
+                        <select class="form-select" id="subject-select" name="subject-select" required>
+                            <option value="">--Select Subject--</option>
+                            <option value="ALL Subjects">ALL Subjects</option>
+                            <option value="English">English</option>
+                            <option value="Embroidery">Embroidery</option>
+                        </select>
+                        <small class="form-text text-muted">Please select the subject(s) that you want to study from the
+                            drop-down list.</small>
+                    </div>
+
+                    <div class="form-group" id="school-required-group">
+                        <label for="school-required">School Admission Required:</label>
+                        <select class="form-select" id="school-required" name="school-required" required>
+                            <option value="">--Select--</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <small id="school-required-help" class="form-text text-muted">Do you require admission in a new
+                            school?</small>
+                    </div>
+
+                    <div id="school-details">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="school-name">Name Of The School:</label>
+                                    <input type="text" class="form-control" id="school-name" name="school-name"
+                                        placeholder="Enter name of the school" required>
+                                    <small id="school-name-help" class="form-text text-muted">Please enter the name of
+                                        the current school or the new school you want to join.</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="board-name">Name Of The Board:</label>
+                                    <select class="form-select" id="board-name" name="board-name" required>
+                                        <option value="">--Select--</option>
+                                        <option value="CBSE">CBSE</option>
+                                        <option value="ICSE">ICSE</option>
+                                        <option value="ISC">ISC</option>
+                                        <option value="State Board">State Board</option>
+                                    </select>
+                                    <small id="board-name-help" class="form-text text-muted">Please enter the name of
+                                        the board of education.</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="medium">Medium:</label>
+                                    <select class="form-select" id="medium" name="medium" required>
+                                        <option value="">--Select Medium--</option>
+                                        <option value="English">English</option>
+                                        <option value="Hindi">Hindi</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <small id="medium-help" class="form-text text-muted">Please select the medium of
+                                        instruction.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="income">Family Monthly Income</label>
+                                <input type="number" class="form-control" id="income" name="income"
+                                    placeholder="Enter Family Monthly Income">
+                                <small id="income-help" class="form-text text-muted">Family monthly income from all sources in Indian currency.</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="family-members">Total Number of Family Members</label>
+                                <input type="number" class="form-control" id="family-members" name="family-members"
+                                    placeholder="Enter Total Number of Family Members">
+                                <small id="family-members-help" class="form-text text-muted">Please consider Mother, Father, Siblings, Grand mother and Grand father only.</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="payment-mode">Payment Mode:</label>
+                        <select class="form-select" id="payment-mode" name="payment-mode" required>
+                            <option value="">--Select--</option>
+                            <option value="cash">Cash</option>
+                            <option value="online">Online</option>
+                        </select>
+                        <small id="payment-mode-help" class="form-text text-muted">Please select the payment mode for
+                            the admission fee.</small>
+                    </div>
+
+                    <div class="form-group" id="cash-authentication-code" style="display:none;">
+                        <label for="c-authentication-code">C-Authentication Code:</label>
+                        <input type="text" class="form-control" id="c-authentication-code" name="c-authentication-code"
+                            placeholder="Enter C-Authentication code" required>
+                        <small id="c-authentication-code-help" class="form-text text-muted">Please enter the
+                            C-Authentication code if you are paying by cash.</small>
+                    </div>
+
+                    <div class="form-group" id="online-declaration" style="display:none;">
+
+                        <p>Click <a href="#" data-bs-toggle="modal" data-bs-target="#popup">here</a> to
+                            complete the payment. Please note that if you submit the form without completing the payment
+                            or with an incorrect transaction ID, your application will be placed on hold for the next
+                            two business days. After this period, if the admission fee has not been received, your
+                            submission will be cancelled.</p>
+
+                        <div class="form-group">
+                            <label for="transaction-id">Transaction ID:</label>
+                            <input type="text" class="form-control" id="transaction-id" name="transaction-id" required>
+                            <small id="online-declaration-help" class="form-text text-muted">Please enter the
+                                transaction ID if you have paid the admission fee online.</small>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="btnSubmit">Submit</button>
+                </form>
+                <!-- </div> -->
+                <!-- Popup -->
+                <div class="modal fade" id="popup" tabindex="-1" aria-labelledby="popupLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <!-- Header -->
+                            <div class="modal-header">
+                                <p class="modal-title" id="popupLabel">The admission fee is ₹100. The admission fee is
+                                    one-time, non-refundable, and has to be paid at the time of admission.</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <!-- Body -->
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <!-- <h5 class="card-title">Payment Details</h5> -->
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">Account Number: <b>004201033772</b></li>
+                                                    <li class="list-group-item">A/C Name: RINA SHIKSHA SAHAYAK
+                                                        FOUNDATION</li>
+                                                    <li class="list-group-item">Bank Name: ICICI Bank - KOLKATA - SALT
+                                                        LAKE (Branch Code: 0042)</li>
+                                                    <li class="list-group-item">IFSC Code: ICIC0000042</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <img src="/img/payment.jpg" alt="Google pay QR" class="card-img-top"
+                                                width="100%">
+                                            <div class="card-body text-center">
+                                                <p class="card-text">Scan QR Code to Make Payment</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- Footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
             </div>
         </section>
-
     </main>
     <!-- End #main -->
     <!-- ======= Footer ======= -->
     <div id="footer"></div>
     <!-- End Footer -->
-
-    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
-
-    <!--<div id="preloader"></div>-->
-
-    <!-- Vendor JS Files -->
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/vendor/aos/aos.js"></script>
-    <script src="/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="/vendor/php-email-form/validate.js"></script>
-
-    <!-- Template Main JS File -->
-    <script src="/js/main.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
-    <!-- Glow Cookies v3.0.1 -->
     <script>
-        glowCookies.start('en', {
-            analytics: 'G-S25QWTFJ2S',
-            //facebookPixel: '',
-            policyLink: 'disclaimer'
+        const aadharDropdown = document.getElementById('aadhar-card');
+        const hiddenPanel = document.getElementById('hidden-panel');
+        const hiddenpanelguardianaadhar = document.getElementById('hidden-panel-guardian-aadhar');
+        const aadharNumber = document.getElementById('aadhar-number');
+        const aadharCardUpload = document.getElementById('aadhar-card-upload');
+        const guardianaadharNumber = document.getElementById('guardian-aadhar-number');
+
+        function handleAadharChange() {
+            if (aadharDropdown.value === 'Yes') {
+                hiddenPanel.style.display = 'block';
+                hiddenpanelguardianaadhar.style.display = 'none';
+                aadharNumber.required = true;
+                aadharCardUpload.required = true;
+                guardianaadharNumber.required = false;
+            } else {
+                hiddenPanel.style.display = 'none';
+                hiddenpanelguardianaadhar.style.display = 'block';
+                aadharNumber.required = false;
+                aadharCardUpload.required = false;
+                guardianaadharNumber.required = true;
+                aadharNumber.value = "";
+                aadharCardUpload.value = "";
+            }
+        }
+
+        aadharDropdown.addEventListener('change', handleAadharChange);
+    </script>
+
+    <script>
+        const transactionIdInput = document.getElementById("transaction-id");
+        const cashAuthCodeDiv = document.getElementById("c-authentication-code");
+        // show/hide payment fields based on payment mode selection
+        var paymentModeSelect = document.getElementById("payment-mode");
+        paymentModeSelect.addEventListener("change", function () {
+            var selectedOption = paymentModeSelect.options[paymentModeSelect.selectedIndex].value;
+            if (selectedOption === "cash") {
+                document.getElementById("cash-authentication-code").style.display = "block";
+                document.getElementById("c-authentication-code").required = true;
+                document.getElementById("online-declaration").style.display = "none";
+                document.getElementById("transaction-id").required = false;
+                transactionIdInput.value = "";
+            } else if (selectedOption === "online") {
+                document.getElementById("cash-authentication-code").style.display = "none";
+                document.getElementById("c-authentication-code").required = false;
+                document.getElementById("online-declaration").style.display = "block";
+                document.getElementById("transaction-id").required = true;
+                cashAuthCodeDiv.value = "";
+            } else {
+                document.getElementById("cash-authentication-code").style.display = "none";
+                document.getElementById("c-authentication-code").required = false;
+                document.getElementById("online-declaration").style.display = "none";
+                document.getElementById("transaction-id").required = false;
+                cashAuthCodeDiv.value = "";
+                transactionIdInput.value = "";
+            }
+        });
+    </script>
+    <script>
+        // Select the necessary HTML elements
+        const subjectSelect = document.querySelector('#subject-select');
+        const schoolRequiredGroup = document.querySelector('#school-required-group');
+        const schoolDetailsGroup = document.querySelector('#school-details');
+        const schoolRequiredSelect = document.querySelector('#school-required');
+        const schoolNameInput = document.querySelector('#school-name');
+        const boardNameSelect = document.querySelector('#board-name');
+        const mediumSelect = document.querySelector('#medium');
+
+        // Hide school-required-group and school-details-group initially
+        schoolRequiredGroup.style.display = 'none';
+        schoolDetailsGroup.style.display = 'none';
+
+        // Set required attributes for school-required-group and its options
+        const schoolRequiredOptions = schoolRequiredSelect.querySelectorAll('option');
+        for (let i = 0; i < schoolRequiredOptions.length; i++) {
+            schoolRequiredOptions[i].setAttribute('required', '');
+        }
+
+        // Function to reset values and attributes of fields
+        function resetFields() {
+            schoolRequiredSelect.value = '';
+            schoolNameInput.value = '';
+            boardNameSelect.value = '';
+            mediumSelect.value = '';
+            schoolRequiredGroup.removeAttribute('required');
+            schoolDetailsGroup.removeAttribute('required');
+            schoolDetailsGroup.style.display = 'none';
+            schoolNameInput.removeAttribute('required');
+            boardNameSelect.removeAttribute('required');
+            mediumSelect.removeAttribute('required');
+        }
+
+        // Add change event listener to subjectSelect
+        subjectSelect.addEventListener('change', function () {
+            const selectedSubject = subjectSelect.value;
+
+            // Check if subject is blank or Embroidery
+            if (selectedSubject === '' || selectedSubject === 'Embroidery') {
+                schoolRequiredGroup.style.display = 'none';
+                schoolDetailsGroup.style.display = 'none';
+                $('#school-required-group :input').prop('required', false);
+                resetFields();
+            } else {
+                schoolRequiredGroup.style.display = 'block';
+                schoolDetailsGroup.style.display = 'none';
+                resetFields();
+
+                // Add change event listener to schoolRequiredSelect
+                schoolRequiredSelect.addEventListener('change', function () {
+                    const selectedSchoolRequired = schoolRequiredSelect.value;
+
+                    if (selectedSchoolRequired === 'No') {
+                        schoolDetailsGroup.style.display = 'block';
+                        schoolRequiredGroup.setAttribute('required', '');
+                        schoolDetailsGroup.setAttribute('required', '');
+                        schoolNameInput.setAttribute('required', '');
+                        boardNameSelect.setAttribute('required', '');
+                        mediumSelect.setAttribute('required', '');
+                    } else {
+                        schoolRequiredGroup.setAttribute('required', '');
+                        schoolRequiredGroup.removeAttribute('required');
+                        schoolDetailsGroup.removeAttribute('required');
+                        schoolDetailsGroup.style.display = 'none';
+                        schoolNameInput.removeAttribute('required');
+                        boardNameSelect.removeAttribute('required');
+                        mediumSelect.removeAttribute('required');
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
+        const submitButton = document.getElementById('submit-button');
+        submitButton.addEventListener('click', handleSubmit);
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('input[required], select[required], textarea[required]').each(function () {
+                $(this).closest('.form-group').find('label').append(' <span style="color: red">*</span>');
+            });
+        });
+    </script>
+    <script>
+        // const scriptURL = 'https://login.rssi.in/rssi-member/payment-api.php';
+        const scriptURL = 'http://localhost:8082/rssi-member/payment-api.php';
+        const admissionForm = document.getElementById("admission");
+
+        document.getElementById("btnSubmit").addEventListener("click", async function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            if (!admissionForm.checkValidity()) {
+                admissionForm.reportValidity(); // Show the default validation messages
+                return;
+            }
+
+            // Disable the submit button immediately upon form submission
+            this.disabled = true;
+
+            try {
+                const response = await fetch(scriptURL, {
+                    method: 'POST',
+                    body: new FormData(admissionForm)
+                });
+                const result = await response.json();
+
+                console.log("API Response:", result);
+
+                if (result.success) {
+                    alert(`Submitted successfully! Message: ${result.message}`);
+                    admissionForm.reset(); // Reset the form after successful submission
+                    // You can optionally reload the page here
+                } else {
+                    alert(`Error: ${result.message}`);
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Error occurred during form submission. Please try again later.");
+            } finally {
+                // Re-enable the submit button after the form submission process is finished
+                this.disabled = false;
+            }
         });
     </script>
 
