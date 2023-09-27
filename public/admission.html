@@ -365,7 +365,8 @@
                                 <label for="income">Family Monthly Income</label>
                                 <input type="number" class="form-control" id="income" name="income"
                                     placeholder="Enter Family Monthly Income">
-                                <small id="income-help" class="form-text text-muted">Family monthly income from all sources in Indian currency.</small>
+                                <small id="income-help" class="form-text text-muted">Family monthly income from all
+                                    sources in Indian currency.</small>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -373,7 +374,8 @@
                                 <label for="family-members">Total Number of Family Members</label>
                                 <input type="number" class="form-control" id="family-members" name="family-members"
                                     placeholder="Enter Total Number of Family Members">
-                                <small id="family-members-help" class="form-text text-muted">Please consider Mother, Father, Siblings, Grand mother and Grand father only.</small>
+                                <small id="family-members-help" class="form-text text-muted">Please consider Mother,
+                                    Father, Siblings, Grand mother and Grand father only.</small>
                             </div>
                         </div>
                     </div>
@@ -613,9 +615,24 @@
             });
         });
     </script>
+    <!-- Bootstrap Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="text-center">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p id="loadingMessage">Submission in progress. Please do not close or reload this page.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
-        // const scriptURL = 'https://login.rssi.in/rssi-member/payment-api.php';
-        const scriptURL = 'http://localhost:8082/rssi-member/payment-api.php';
+        const scriptURL = 'https://login.rssi.in/rssi-member/payment-api.php';
+        // const scriptURL = 'http://localhost:8082/rssi-member/payment-api.php';
         const admissionForm = document.getElementById("admission");
 
         document.getElementById("btnSubmit").addEventListener("click", async function (event) {
@@ -628,6 +645,12 @@
 
             // Disable the submit button immediately upon form submission
             this.disabled = true;
+            // Show the Bootstrap modal
+            const myModal = new bootstrap.Modal(document.getElementById("myModal"), {
+                backdrop: 'static',
+                keyboard: false
+            });
+            myModal.show();
 
             try {
                 const response = await fetch(scriptURL, {
@@ -651,6 +674,7 @@
             } finally {
                 // Re-enable the submit button after the form submission process is finished
                 this.disabled = false;
+                myModal.hide();
             }
         });
     </script>
