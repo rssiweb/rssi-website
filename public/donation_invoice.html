@@ -2,15 +2,15 @@
 <html lang="en">
 
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11316670180"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11316670180"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-  gtag('config', 'AW-11316670180');
-</script>
+        gtag('config', 'AW-11316670180');
+    </script>
     <meta name="description" content="">
     <meta name="author" content="">
     <meta charset="UTF-8">
@@ -376,6 +376,12 @@
 
                         // Disable the donate button immediately upon form submission
                         this.disabled = true;
+                        // Show the Bootstrap modal
+                        const myModal = new bootstrap.Modal(document.getElementById("myModal"), {
+                            backdrop: 'static',
+                            keyboard: false
+                        });
+                        myModal.show();
 
                         try {
                             const response = await fetch(scriptURL, {
@@ -405,12 +411,28 @@
                         } finally {
                             // Re-enable the donate button after the form submission process is finished
                             this.disabled = false;
+                            myModal.hide();
                         }
                     });
                 </script>
 
             </div>
         </section>
+        <!-- Bootstrap Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p id="loadingMessage">Submission in progress. Please do not close or reload this page.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <!-- ======= Footer ======= -->
     <div id="footer"></div>
