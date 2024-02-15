@@ -79,7 +79,8 @@
         <section class="sample-page">
             <div class="container">
                 <!-- Part 1: visitor Information -->
-                <form action="visitor_form.php" method="POST" name="visitorInfoForm" id="visitorInfoForm">
+                <form action="visitor_form.php" method="POST" name="visitorInfoForm" id="visitorInfoForm"
+                    enctype="multipart/form-data">
                     <input type="hidden" name="form-type" value="visitor_form">
                     <div class="mb-3">
                         <label for="visitorType" class="form-label">Have you
@@ -168,7 +169,8 @@
                         <div class="mb-3">
                             <label for="photo" class="form-label">Upload
                                 Photo</label>
-                            <input type="file" class="form-control" id="photo" name="photo" required>
+                            <input type="file" class="form-control" id="photo" name="photo" required
+                                accept="image/*;capture=camera">
                         </div>
                     </div>
 
@@ -199,8 +201,8 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="visitenddate" class="form-label">Visit end date</label>
-                                    <input type="date" class="form-control" id="visitenddate"
-                                        name="visitenddate" required>
+                                    <input type="date" class="form-control" id="visitenddate" name="visitenddate"
+                                        required>
                                 </div>
                             </div>
                         </div>
@@ -262,9 +264,9 @@
                                 conditions</label>
                         </div>
                         <div class="mb-3">
-                            <label for="visitpurpose" class="form-label">Message
+                            <label for="message" class="form-label">Message
                                 (Optional)</label>
-                            <textarea class="form-control" id="visitpurpose" name="visitpurpose" rows="4"></textarea>
+                            <textarea class="form-control" id="message" name="message" rows="4"></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary" id="visitButton" disabled>Submit</button>
@@ -272,7 +274,7 @@
                 </form>
 
                 <form name="get_details_form" id="get_details_form" action="#" method="POST">
-                    <input type="hidden" name="form-type" value="get_details">
+                    <input type="hidden" name="form-type" value="get_details_visit">
                     <input type="hidden" name="contactnumber_verify_input">
                 </form>
 
@@ -343,7 +345,7 @@
                                     visitorNameInput.value = "";
                                     visitorEmailInput.value = "";
                                     telInput.value = "";
-                                    alert("No records found in the database. Donate as a new user.");
+                                    alert("No records found in the database. Register as a new user.");
                                 } else {
                                     console.log('Error:', data.message);
                                     alert("Error retrieving user data. Please try again later or contact support.");
@@ -493,7 +495,7 @@
                                 if (result.errorMessage === "") {
                                     alert("Error occurred during form submission. Please try again later.");
                                 } else if (result.errorMessage === "already_registered") {
-                                    alert("Oops! You are already registered in our database. Please donate as an existing visitor.");
+                                    alert("Oops! You are already registered in our database. Please proceed as an existing visitor.");
                                 } else {
                                     alert("Unknown error occurred during form submission.");
                                 }
