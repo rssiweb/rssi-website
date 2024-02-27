@@ -2,15 +2,15 @@
 <html lang="en">
 
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11316670180"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11316670180"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-  gtag('config', 'AW-11316670180');
-</script>
+        gtag('config', 'AW-11316670180');
+    </script>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -25,7 +25,8 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
@@ -37,9 +38,10 @@
 
     <!-- Template Main CSS File -->
     <link href="/css/main.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
-        $(function() {
+        $(function () {
             $("#header").load("/header.html");
             $("#footer").load("/footer.html");
         });
@@ -49,21 +51,56 @@
             float: left;
             width: 55%;
         }
-        
+
         .column4 {
             float: left;
             width: 45%;
             padding-left: 2%;
             overflow: hidden;
         }
-        
+
         @media screen and (max-width: 800px) {
+
             .column3,
             .column4 {
                 width: 100%;
                 padding-top: 5%;
                 padding-left: 0px;
             }
+        }
+
+        /* Custom CSS for the office address cards */
+        .card {
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-transparent {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            text-align: left;
+            width: 100%;
+        }
+
+        .btn-transparent:hover {
+            text-decoration: none;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            /* font-weight: bold; */
+            color: #333;
+        }
+
+        .office-location {
+            font-size: 0.875rem;
+            color: #666;
         }
     </style>
 </head>
@@ -81,43 +118,140 @@
             <div class="container">
 
                 <div class="d-flex justify-content-between align-items-center">
-                    <h2>Contact</h2>
+                    <h2>Contact us</h2>
                     <ol>
                         <li><a href="index">Home</a></li>
-                        <li>Contact</li>
+                        <li>Contact us</li>
                     </ol>
                 </div>
 
             </div>
         </div>
         <!-- End Breadcrumbs -->
-
         <section class="sample-page">
-            <div class="container" data-aos="fade-up">
-
-                <div class="row1">
-                    <div class="column3">
-
-                        <!-- <h3>We’re here for you. No matter what your troubles are, we will help you.</h3>
-
-                        Provide the details to RSSI team and they will come to help you. We are here to help and make sure that you have a better tomorrow.
-                        <br> -->
-                        <h4><b>Operational Office</b></h4><br>Rina Shiksha Sahayak Foundation<br>624V/195/01, Vijayipur, Vijaipur Village, Vishesh Khand 2, Gomti Nagar, Lucknow, Uttar Pradesh 226010&nbsp;
-                        <span class="noticet"><a href="https://maps.app.goo.gl/BNq37UdBq4bUcM7a8" target="_blank">Google map</a></span><br><br>+91 7980168159, +91 9717445551<br>info@rssi.in
-                        <br><br>
-                        <h4><b>Registered Office</b></h4><br>Rina Shiksha Sahayak Foundation<br> 1074/801, Jhapetapur, Backside of Municipality, West Midnapore, West Bengal 721301<br><br>+91 7980168159, +91 9717445551<br>info@rssi.in
-
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <button class="btn btn-transparent" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#operationalOfficeModal">
+                                    <h4 class="card-title m-0">Operational Office</h4>
+                                    <span class="office-location">Lucknow, Uttar Pradesh</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <button class="btn btn-transparent" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#registeredOfficeModal">
+                                    <h4 class="card-title m-0">Registered Office</h4>
+                                    <span class="office-location">West Midnapore, West Bengal</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="column4">
-                        <embed src="https://docs.google.com/forms/d/e/1FAIpQLSeL5L8h9rJl7Di9RB0IlVVqPl_2DRgqAE7O_TRVb_Fwsm6ycw/viewform" width="100%" height="1100">
+                    <div class="col-md-6">
+                        <div class="container mt-md-0 mt-5"> <!-- Adjusted margin top for medium and small devices -->
+                            <h2>Contact Us</h2>
+                            <form action="#" method="POST" name="contactForm" id="contactForm">
+                                <input type="hidden" class="form-control" name="form-type" value="contact_Form">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" name="name" id="name"
+                                        placeholder="Enter your name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" name="email" id="email"
+                                        placeholder="Enter your email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contact" class="form-label">Phone number</label>
+                                    <input type="contact" class="form-control" name="contact" id="contact"
+                                        placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+                                    <small id="contactNumberError" class="form-text text-danger"></small>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" name="message" id="message" rows="5"
+                                        placeholder="Enter your message" required></textarea>
+                                </div>
+                                <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
                     </div>
-
                 </div>
             </div>
-
-            </div>
         </section>
+        <!-- Operational Office Modal -->
+        <div class="modal fade" id="operationalOfficeModal" tabindex="-1" aria-labelledby="operationalOfficeModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="operationalOfficeModalLabel">Operational Office</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Rina Shiksha Sahayak Foundation<br>
+                            624V/195/01, Vijayipur, Vijaipur Village, Vishesh Khand 2, Gomti Nagar<br>
+                            Lucknow, Uttar Pradesh 226010<br><br>
+                            Phone: +91 7980168159, +91 9717445551<br>
+                            Email: info@rssi.in
+                        </p>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.184131876945!2d81.01328277613472!3d26.865890376675107!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399be3fc575228e3%3A0xbbc4182b61aa1609!2sRSSI%20NGO!5e0!3m2!1sen!2sin!4v1709035918037!5m2!1sen!2sin"
+                            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Registered Office Modal -->
+        <div class="modal fade" id="registeredOfficeModal" tabindex="-1" aria-labelledby="registeredOfficeModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="registeredOfficeModalLabel">Registered Office</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Rina Shiksha Sahayak Foundation<br>
+                            1074/801, Jhapetapur, Backside of Municipality, West Midnapore, West Bengal 721301<br><br>
+                            Phone: +91 7980168159, +91 9717445551<br>
+                            Email: info@rssi.in
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p id="loadingMessage">Submission in progress.
+                                Please do not close or reload this page.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </main>
     <!-- End #main -->
@@ -126,7 +260,7 @@
     <!-- End Footer -->
 
     <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
+            class="bi bi-arrow-up-short"></i></a>
 
     <!--<div id="preloader"></div>-->
 
@@ -150,7 +284,78 @@
             policyLink: 'disclaimer'
         });
     </script>
+    <script>
+        const scriptURL = 'https://login.rssi.in/rssi-member/payment-api.php';
+        // const scriptURL = 'http://localhost:8082/rssi-member/payment-api.php';
+        const contactForm = document.getElementById("contactForm");
 
+        document.getElementById("submit").addEventListener("click", async function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            if (!contactForm.checkValidity()) {
+                contactForm.reportValidity(); // Show the default validation messages
+                return;
+            }
+
+            // Disable the donate button immediately upon form submission
+            this.disabled = true;
+            // Show the Bootstrap modal
+            const myModal = new bootstrap.Modal(document.getElementById("myModal"), {
+                backdrop: 'static',
+                keyboard: false
+            });
+            myModal.show();
+
+            try {
+                const response = await fetch(scriptURL, {
+                    method: 'POST',
+                    body: new FormData(contactForm)
+                });
+                const result = await response.json();
+
+                console.log("API Response:", result); // For testing purposes, log the entire response
+
+                if (!result.error) {
+                    alert(`Submitted successfully! reference ID: ${result.queryid}`);
+                    contactForm.reset(); // Reset the form after successful submission
+                    location.reload(); // Reload the page after successful submission
+                } else {
+                    if (result.errorMessage === "") {
+                        alert("Error occurred during form submission. Please try again later2.");
+                    } else {
+                        alert("Unknown error occurred during form submission.");
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Error occurred during form submission. Please try again later1.");
+            } finally {
+                // Re-enable the donate button after the form submission process is finished
+                this.disabled = false;
+                myModal.hide();
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const requiredFields = document.querySelectorAll('[required]');
+
+            requiredFields.forEach(field => {
+                const label = document.querySelector(`label[for="${field.id}"]`);
+                if (label) {
+                    label.innerHTML += ' <span style="color: red">*</span>';
+                }
+            });
+        });
+    </script>
+    <script>
+        function validateInput() {
+            document.getElementById('contactNumberError').textContent = this.validity.patternMismatch ? 'Please enter a valid 10-digit number.' : '';
+        }
+
+        const inputElement = document.getElementById('contact');
+        inputElement.addEventListener('input', validateInput);
+    </script>
 </body>
 
 </html>
