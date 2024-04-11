@@ -11,8 +11,8 @@
 
         gtag('config', 'AW-11316670180');
     </script>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content>
+    <meta name="author" content>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -77,274 +77,398 @@
         <!-- End Breadcrumbs -->
         <section class="sample-page">
             <div class="container">
-                <p>The admission fee is ₹100. The admission fee is one-time, non-refundable, and has to be paid at the
+                <p>The admission fee is ₹150. The admission fee is one-time,
+                    non-refundable, and has to be paid at the
                     time of admission.</p>
                 <hr>
                 <form name="admission" id="admission" action="admission.php" method="post"
                     enctype="multipart/form-data">
                     <input type="hidden" name="form-type" value="admission">
-                    <div class="form-group">
-                        <label for="type-of-admission">Type of Admission:</label>
-                        <select class="form-select" id="type-of-admission" name="type-of-admission" required>
-                            <option value="">--Select Type of Admission--</option>
-                            <option value="New Admission">New Admission</option>
-                            <!-- <option value="Transfer Admission">Transfer Admission</option> -->
-                        </select>
-                        <small id="type-of-admission-help" class="form-text text-muted">Please select the type of
-                            admission you are applying for.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="student-name">Student Name:</label>
-                        <input type="text" class="form-control" id="student-name" name="student-name"
-                            placeholder="Enter student name" required>
-                        <small id="student-name-help" class="form-text text-muted">Please enter the name of the
-                            student.</small>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="date-of-birth">Date of Birth:</label>
-                                <input type="date" class="form-control" id="date-of-birth" name="date-of-birth"
-                                    required>
-                                <small id="date-of-birth-help" class="form-text text-muted">Please enter the date of
-                                    birth of the student.</small>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="gender">Gender:</label>
-                                <select class="form-select" id="gender" name="gender" required>
-                                    <option value="">--Select Gender--</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Binary">Binary</option>
-                                </select>
-                                <small id="gender-help" class="form-text text-muted">Please select the gender of the
-                                    student.</small>
-                            </div>
-                        </div>
-                    </div>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>
 
-                    <!-- <input type="file" id="photo-upload" name="photo" accept="image/*" capture> -->
-                    <div class="form-group">
-                        <label for="student-photo">Upload Student Photo:</label>
-                        <input type="file" class="form-control" id="student-photo" name="student-photo" required
-                            accept="image/*;capture=camera">
-                        <small id="student-photo-help" class="form-text text-muted">Please upload a recent passport size
-                            photograph of the student.</small>
-                    </div>
+                                    <label for="type-of-admission">Type of
+                                        Admission:</label>
+                                </td>
+                                <td><select class="form-select" id="type-of-admission" name="type-of-admission"
+                                        required>
+                                        <option value>--Select Type of
+                                            Admission--</option>
+                                        <option value="New Admission">New
+                                            Admission</option>
+                                        <!-- <option value="Transfer Admission">Transfer Admission</option> -->
+                                    </select>
+                                    <small id="type-of-admission-help" class="form-text text-muted">Please
+                                        select
+                                        the type of
+                                        admission you are applying
+                                        for.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
 
-                    <div class="form-group">
-                        <label for="aadhar-card">Aadhar Card Available?:</label>
-                        <select class="form-select" id="aadhar-card" name="aadhar-card" required>
-                            <option value="">--Select--</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                        <small id="aadhar-card-help" class="form-text text-muted">Please select whether you have an
-                            Aadhar card or not.</small>
-                    </div>
+                                    <label for="student-name">Student
+                                        Name:</label>
+                                </td>
+                                <td><input type="text" class="form-control" id="student-name" name="student-name"
+                                        placeholder="Enter student name" required>
+                                    <small id="student-name-help" class="form-text text-muted">Please
+                                        enter the
+                                        name
+                                        of the
+                                        student.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="date-of-birth">Date of
+                                        Birth:</label>
+                                </td>
+                                <td><input type="date" class="form-control" id="date-of-birth" name="date-of-birth"
+                                        required>
+                                    <small id="date-of-birth-help" class="form-text text-muted">Please
+                                        enter
+                                        the date of
+                                        birth of the student.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="gender">Gender:</label>
+                                </td>
+                                <td><select class="form-select" id="gender" name="gender" required>
+                                        <option value>--Select
+                                            Gender--</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Binary">Binary</option>
+                                    </select>
+                                    <small id="gender-help" class="form-text text-muted">Please
+                                        select the
+                                        gender of the
+                                        student.</small>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label for="student-photo">Upload Student
+                                        Photo:</label>
+                                </td>
+                                <td><input type="file" class="form-control" id="student-photo" name="student-photo"
+                                        required accept="image/*;capture=camera" onchange="previewPhoto(event)">
+                                    <small id="student-photo-help" class="form-text text-muted">Please upload a
+                                        recent passport size
+                                        photograph of the student.</small>
 
 
-                    <div id="hidden-panel" style="display: none;">
-                        <div class="form-group">
-                            <label for="aadhar-number">Aadhar of the Student:</label>
-                            <input type="text" class="form-control" id="aadhar-number" name="aadhar-number"
-                                placeholder="Enter Aadhar number" required>
-                            <small id="aadhar-number-help" class="form-text text-muted">Please enter the Aadhar number
-                                of the student.</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="aadhar-card-upload">Upload Aadhar Card:</label>
-                            <input type="file" class="form-control" id="aadhar-card-upload" name="aadhar-card-upload"
-                                required>
-                            <small id="aadhar-card-upload-help" class="form-text text-muted">Please upload a scanned
-                                copy of the Aadhar card (if available).</small>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="guardian-name">Guardian's Name:</label>
-                                <input type="text" class="form-control" id="guardian-name" name="guardian-name"
-                                    placeholder="Enter guardian name" required>
-                                <small id="guardian-name-help" class="form-text text-muted">Please enter the name of the
-                                    student's guardian.</small>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="relation">Relation with Student:</label>
-                                <select class="form-select" id="relation" name="relation" required>
-                                    <option value="">--Select Type of Relation--</option>
-                                    <option value="Mother">Mother</option>
-                                    <option value="Father">Father</option>
-                                    <option value="Spouse">Spouse</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                                <small id="relation-help" class="form-text text-muted">Please enter the relation of the
-                                    guardian
-                                    with the student.</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="hidden-panel-guardian-aadhar" style="display: none;">
-                        <div class="form-group">
-                            <label for="guardian-aadhar-number">Aadhar of Guardian:</label>
-                            <input type="text" class="form-control" id="guardian-aadhar-number"
-                                name="guardian-aadhar-number" placeholder="Enter Aadhar number" required>
-                            <small id="guardian-aadhar-number-help" class="form-text text-muted">Please enter the Aadhar
-                                number of the guardian.</small>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="state">State of Domicile:</label>
-                        <select class="form-select" id="state" name="state" required>
-                            <option value="">--Select State--</option>
-                            <option value="Andhra Pradesh">Andhra Pradesh</option>
-                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                            <option value="Assam">Assam</option>
-                            <option value="Bihar">Bihar</option>
-                            <option value="Chhattisgarh">Chhattisgarh</option>
-                            <option value="Goa">Goa</option>
-                            <option value="Gujarat">Gujarat</option>
-                            <option value="Haryana">Haryana</option>
-                            <option value="Himachal Pradesh">Himachal Pradesh</option>
-                            <option value="Jammu Kashmir">Jammu and Kashmir</option>
-                            <option value="Jharkhand">Jharkhand</option>
-                            <option value="Karnataka">Karnataka</option>
-                            <option value="Kerala">Kerala</option>
-                            <option value="Madhya Pradesh">Madhya Pradesh</option>
-                            <option value="Maharashtra">Maharashtra</option>
-                            <option value="Manipur">Manipur</option>
-                            <option value="Meghalaya">Meghalaya</option>
-                            <option value="Mizoram">Mizoram</option>
-                            <option value="Nagaland">Nagaland</option>
-                            <option value="Odisha">Odisha</option>
-                            <option value="Punjab">Punjab</option>
-                            <option value="Rajasthan">Rajasthan</option>
-                            <option value="Sikkim">Sikkim</option>
-                            <option value="Tamil Nadu">Tamil Nadu</option>
-                            <option value="Telangana">Telangana</option>
-                            <option value="Tripura">Tripura</option>
-                            <option value="Uttar Pradesh">Uttar Pradesh</option>
-                            <option value="Uttarakhand">Uttarakhand</option>
-                            <option value="West Bengal">West Bengal</option>
-                        </select>
-                        <small id="state-help" class="form-text text-muted">Please select the state where the student
-                            resides.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="postal-address">Postal Address:</label>
-                        <textarea class="form-control" id="postal-address" name="postal-address" rows="3"
-                            placeholder="Enter postal address" required></textarea>
-                        <small id="postal-address-help" class="form-text text-muted">Please enter the complete postal
-                            address of the student.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="telephone">Telephone Number:</label>
-                        <input type="tel" class="form-control" id="telephone" name="telephone"
-                            placeholder="Enter telephone number" pattern="[0-9]{10}"
-                            oninput="validateContactNumber(this)" required>
-                        <small id="telephone-help" class="form-text text-muted">Please enter a valid telephone
-                            number.</small>
-                        <span id="contactnumber_error" style="color: red;"></span>
-                    </div>
-                    <script>
-                        function validateContactNumber(input) {
-                            var errorMessage = document.getElementById("contactnumber_error");
-                            var verifyButton = document.getElementById("verifybutton");
+                                    <div id="photo-preview-container" style="display: none;">
+                                        <!-- Initially hide the preview container -->
+                                        <!-- <label>Preview:</label><br> -->
+                                        <img id="photo-preview" src="#" alt="Uploaded Photo"
+                                            style="max-width: 200px; max-height: 200px;">
+                                    </div>
+                                </td>
 
-                            if (!input.checkValidity()) {
-                                errorMessage.textContent = "Please enter a valid 10-digit contact number.";
-                                verifyButton.disabled = true;
-                            } else {
-                                errorMessage.textContent = "";
-                                verifyButton.disabled = false;
-                            }
-                        }
-                    </script>
-                    <div class="form-group">
-                        <label for="email">Email Address:</label>
-                        <input type="email" class="form-control" id="email" name="email"
-                            placeholder="Enter email address" required>
-                        <small id="email-help" class="form-text text-muted">Please enter a valid email address.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="branch">Preferred Branch:</label>
-                        <select class="form-select" id="branch" name="branch" required>
-                            <option value="">--Select Branch--</option>
-                            <option value="Lucknow">Lucknow</option>
-                            <option value="West Bengal">West Bengal</option>
-                        </select>
-                        <small id="branch-help" class="form-text text-muted">Please select the preferred branch of
-                            study.</small>
-                    </div>
+                            <tr>
+                                <td>
+                                    <label for="aadhar-card">Aadhar Card
+                                        Available?:</label>
+                                </td>
+                                <td><select class="form-select" id="aadhar-card" name="aadhar-card" required>
+                                        <option value>--Select--</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                    <small id="aadhar-card-help" class="form-text text-muted">Please select
+                                        whether
+                                        you have an
+                                        Aadhar card or not.</small>
 
-                    <div class="form-group">
-                        <label for="class">Class:</label>
-                        <select class="form-select" id="class" name="class" required>
-                            <option value="">--Select Class--</option>
-                            <option value="Nursery">Nursery</option>
-                            <option value="LKG">LKG</option>
-                            <option value="UKG">UKG</option>
-                            <option value="1">Class 1</option>
-                            <option value="2">Class 2</option>
-                            <option value="3">Class 3</option>
-                            <option value="4">Class 4</option>
-                            <option value="5">Class 5</option>
-                            <option value="6">Class 6</option>
-                            <option value="7">Class 7</option>
-                            <option value="8">Class 8</option>
-                            <option value="9">Class 9</option>
-                            <option value="10">Class 10</option>
-                            <option value="11">Class 11</option>
-                            <option value="12">Class 12</option>
-                            <option value="Vocational training">Vocational training</option>
-                        </select>
-                        <small id="class-help" class="form-text text-muted">Please select the class the student wants to
-                            join.</small>
-                    </div>
+                                </td>
+                            </tr>
 
-                    <div class="form-group">
-                        <label for="subject-select">Select subject(s): </label>
-                        <select class="form-select" id="subject-select" name="subject-select" required>
-                            <option value="">--Select Subject--</option>
-                            <option value="ALL Subjects">ALL Subjects</option>
-                            <option value="English">English</option>
-                            <option value="Embroidery">Embroidery</option>
-                        </select>
-                        <small class="form-text text-muted">Please select the subject(s) that you want to study from the
-                            drop-down list.</small>
-                    </div>
 
-                    <div class="form-group" id="school-required-group">
-                        <label for="school-required">School Admission Required:</label>
-                        <select class="form-select" id="school-required" name="school-required" required>
-                            <option value="">--Select--</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                        <small id="school-required-help" class="form-text text-muted">Do you require admission in a new
-                            school?</small>
-                    </div>
+                            <tr id="hidden-panel" style="display: none;">
+                                <td>
+                                    <label for="aadhar-number">Aadhar of the
+                                        Student:</label>
+                                </td>
+                                <td><input type="text" class="form-control" id="aadhar-number" name="aadhar-number"
+                                        placeholder="Enter Aadhar number" required>
+                                    <small id="aadhar-number-help" class="form-text text-muted">Please
+                                        enter
+                                        the
+                                        Aadhar number
+                                        of the student.</small>
+                                </td>
+                            </tr>
+                            <tr id="hidden-aadhar-card-upload" style="display: none;">
+                                <td>
+                                    <label for="aadhar-card-upload">Upload
+                                        Aadhar
+                                        Card:</label>
+                                </td>
+                                <td><input type="file" class="form-control" id="aadhar-card-upload"
+                                        name="aadhar-card-upload" required onchange="previewAadharCard(event)">
+                                    <small id="aadhar-card-upload-help" class="form-text text-muted">Please
+                                        upload a scanned
+                                        copy of the Aadhar card (if
+                                        available).</small>
+                                    <div id="aadhar-card-preview-container" style="display: none;">
+                                        <!-- Initially hide the preview container -->
+                                        <!-- <label>Preview:</label> -->
+                                        <embed id="aadhar-card-preview" src="#" type="application/pdf"
+                                            style="max-width: 200px; max-height: 200px;">
+                                        <!-- Use 'embed' for PDF preview -->
+                                        <img id="aadhar-card-image-preview" src="#" alt="Uploaded Aadhar Card"
+                                            style="max-width: 200px; max-height: 200px;">
+                                        <!-- Use 'img' for image preview -->
+                                    </div>
+                                </td>
+                            </tr>
 
-                    <div id="school-details">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
+                            <tr>
+                                <td>
+                                    <label for="guardian-name">Guardian's
+                                        Name:</label>
+                                </td>
+                                <td><input type="text" class="form-control" id="guardian-name" name="guardian-name"
+                                        placeholder="Enter guardian name" required>
+                                    <small id="guardian-name-help" class="form-text text-muted">Please
+                                        enter
+                                        the name of the
+                                        student's guardian.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <label for="relation">Relation with
+                                        Student:</label>
+                                </td>
+                                <td> <select class="form-select" id="relation" name="relation" required>
+                                        <option value>--Select Type of
+                                            Relation--</option>
+                                        <option value="Mother">Mother</option>
+                                        <option value="Father">Father</option>
+                                        <option value="Spouse">Spouse</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <small id="relation-help" class="form-text text-muted">Please
+                                        enter the
+                                        relation of the
+                                        guardian
+                                        with the student.</small>
+                                </td>
+                            </tr>
+                            <tr id="hidden-panel-guardian-aadhar" style="display: none;">
+                                <td>
+                                    <label for="guardian-aadhar-number">Aadhar
+                                        of
+                                        Guardian:</label>
+                                </td>
+                                <td><input type="text" class="form-control" id="guardian-aadhar-number"
+                                        name="guardian-aadhar-number" placeholder="Enter Aadhar number" required>
+                                    <small id="guardian-aadhar-number-help" class="form-text text-muted">Please
+                                        enter the Aadhar
+                                        number of the guardian.</small>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label for="state">State of Domicile:</label>
+                                </td>
+                                <td><select class="form-select" id="state" name="state" required>
+                                        <option value>--Select State--</option>
+                                        <option value="Andhra Pradesh">Andhra
+                                            Pradesh</option>
+                                        <option value="Arunachal Pradesh">Arunachal
+                                            Pradesh</option>
+                                        <option value="Assam">Assam</option>
+                                        <option value="Bihar">Bihar</option>
+                                        <option value="Chhattisgarh">Chhattisgarh</option>
+                                        <option value="Goa">Goa</option>
+                                        <option value="Gujarat">Gujarat</option>
+                                        <option value="Haryana">Haryana</option>
+                                        <option value="Himachal Pradesh">Himachal
+                                            Pradesh</option>
+                                        <option value="Jammu Kashmir">Jammu and
+                                            Kashmir</option>
+                                        <option value="Jharkhand">Jharkhand</option>
+                                        <option value="Karnataka">Karnataka</option>
+                                        <option value="Kerala">Kerala</option>
+                                        <option value="Madhya Pradesh">Madhya
+                                            Pradesh</option>
+                                        <option value="Maharashtra">Maharashtra</option>
+                                        <option value="Manipur">Manipur</option>
+                                        <option value="Meghalaya">Meghalaya</option>
+                                        <option value="Mizoram">Mizoram</option>
+                                        <option value="Nagaland">Nagaland</option>
+                                        <option value="Odisha">Odisha</option>
+                                        <option value="Punjab">Punjab</option>
+                                        <option value="Rajasthan">Rajasthan</option>
+                                        <option value="Sikkim">Sikkim</option>
+                                        <option value="Tamil Nadu">Tamil
+                                            Nadu</option>
+                                        <option value="Telangana">Telangana</option>
+                                        <option value="Tripura">Tripura</option>
+                                        <option value="Uttar Pradesh">Uttar
+                                            Pradesh</option>
+                                        <option value="Uttarakhand">Uttarakhand</option>
+                                        <option value="West Bengal">West
+                                            Bengal</option>
+                                    </select>
+                                    <small id="state-help" class="form-text text-muted">Please select
+                                        the
+                                        state
+                                        where the student
+                                        resides.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="postal-address">Postal
+                                        Address:</label>
+                                </td>
+                                <td><textarea class="form-control" id="postal-address" name="postal-address" rows="3"
+                                        placeholder="Enter postal address" required></textarea>
+                                    <small id="postal-address-help" class="form-text text-muted">Please enter
+                                        the
+                                        complete postal
+                                        address of the student.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="telephone">Telephone Number:</label>
+                                </td>
+                                <td><input type="tel" class="form-control" id="telephone" name="telephone"
+                                        placeholder="Enter telephone number" pattern="[0-9]{10}"
+                                        oninput="validateContactNumber(this)" required>
+                                    <small id="telephone-help" class="form-text text-muted">Please enter a
+                                        valid
+                                        telephone
+                                        number.</small>
+                                    <span id="contactnumber_error" style="color: red;"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label for="email">Email Address:</label>
+                                </td>
+                                <td><input type="email" class="form-control" id="email" name="email"
+                                        placeholder="Enter email address" required>
+                                    <small id="email-help" class="form-text text-muted">Please enter a
+                                        valid email
+                                        address.</small>
+                                </td>
+                            <tr>
+                                <td>
+                                    <label for="branch">Preferred Branch:</label>
+                                </td>
+                                <td><select class="form-select" id="branch" name="branch" required>
+                                        <option value>--Select Branch--</option>
+                                        <option value="Lucknow">Lucknow</option>
+                                        <option value="West Bengal">West
+                                            Bengal</option>
+                                    </select>
+                                    <small id="branch-help" class="form-text text-muted">Please select
+                                        the
+                                        preferred
+                                        branch of
+                                        study.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="class">Class:</label>
+                                </td>
+                                <td><select class="form-select" id="class" name="class" required>
+                                        <option value>--Select Class--</option>
+                                        <option value="Nursery">Nursery</option>
+                                        <option value="LKG">LKG</option>
+                                        <option value="UKG">UKG</option>
+                                        <option value="1">Class 1</option>
+                                        <option value="2">Class 2</option>
+                                        <option value="3">Class 3</option>
+                                        <option value="4">Class 4</option>
+                                        <option value="5">Class 5</option>
+                                        <option value="6">Class 6</option>
+                                        <option value="7">Class 7</option>
+                                        <option value="8">Class 8</option>
+                                        <option value="9">Class 9</option>
+                                        <option value="10">Class 10</option>
+                                        <option value="11">Class 11</option>
+                                        <option value="12">Class 12</option>
+                                        <option value="Vocational training">Vocational
+                                            training</option>
+                                    </select>
+                                    <small id="class-help" class="form-text text-muted">Please select
+                                        the
+                                        class the
+                                        student wants to
+                                        join.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="subject-select">Select subject(s):
+                                    </label>
+                                </td>
+                                <td><select class="form-select" id="subject-select" name="subject-select" required>
+                                        <option value>--Select Subject--</option>
+                                        <option value="ALL Subjects">ALL
+                                            Subjects</option>
+                                        <option value="English">English</option>
+                                        <option value="Embroidery">Embroidery</option>
+                                    </select>
+                                    <small class="form-text text-muted">Please
+                                        select
+                                        the subject(s) that you want
+                                        to study from the
+                                        drop-down list.</small>
+                                </td>
+                            </tr>
+                            <tr id="school-required-group">
+                                <td>
+                                    <label for="school-required">School Admission
+                                        Required:</label>
+                                </td>
+                                <td>
+                                    <select class="form-select" id="school-required" name="school-required" required>
+                                        <option value>--Select--</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                    <small id="school-required-help" class="form-text text-muted">Do you require
+                                        admission in a new
+                                        school?</small>
+                                </td>
+                            </tr>
+                            <tr id="school-details" style="display: none;">
+                                <td>
                                     <label for="school-name">Name Of The School:</label>
+                                </td>
+                                <td>
                                     <input type="text" class="form-control" id="school-name" name="school-name"
                                         placeholder="Enter name of the school" required>
                                     <small id="school-name-help" class="form-text text-muted">Please enter the name of
                                         the current school or the new school you want to join.</small>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
+                                </td>
+                            </tr>
+                            <tr id="board-name-group" style="display: none;">
+                                <td>
                                     <label for="board-name">Name Of The Board:</label>
+                                </td>
+                                <td>
                                     <select class="form-select" id="board-name" name="board-name" required>
-                                        <option value="">--Select--</option>
+                                        <option value>--Select--</option>
                                         <option value="CBSE">CBSE</option>
                                         <option value="ICSE">ICSE</option>
                                         <option value="ISC">ISC</option>
@@ -352,80 +476,110 @@
                                     </select>
                                     <small id="board-name-help" class="form-text text-muted">Please enter the name of
                                         the board of education.</small>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
+                                </td>
+                            </tr>
+                            <tr id="medium-group" style="display: none;">
+                                <td>
                                     <label for="medium">Medium:</label>
+                                </td>
+                                <td>
                                     <select class="form-select" id="medium" name="medium" required>
-                                        <option value="">--Select Medium--</option>
+                                        <option value>--Select Medium--</option>
                                         <option value="English">English</option>
                                         <option value="Hindi">Hindi</option>
                                         <option value="Other">Other</option>
                                     </select>
                                     <small id="medium-help" class="form-text text-muted">Please select the medium of
                                         instruction.</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="income">Family Monthly
+                                        Income</label>
+                                </td>
+                                <td><input type="number" class="form-control" id="income" name="income"
+                                        placeholder="Enter Family Monthly Income">
+                                    <small id="income-help" class="form-text text-muted">Family
+                                        monthly
+                                        income from all
+                                        sources in Indian currency.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="family-members">Total Number
+                                        of
+                                        Family Members</label>
+                                </td>
+                                <td><input type="number" class="form-control" id="family-members" name="family-members"
+                                        placeholder="Enter Total Number of Family Members">
+                                    <small id="family-members-help" class="form-text text-muted">Please
+                                        consider Mother,
+                                        Father, Siblings, Grand mother and
+                                        Grand
+                                        father only.</small>
+                                </td>
+                            </tr>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="income">Family Monthly Income</label>
-                                <input type="number" class="form-control" id="income" name="income"
-                                    placeholder="Enter Family Monthly Income">
-                                <small id="income-help" class="form-text text-muted">Family monthly income from all
-                                    sources in Indian currency.</small>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="family-members">Total Number of Family Members</label>
-                                <input type="number" class="form-control" id="family-members" name="family-members"
-                                    placeholder="Enter Total Number of Family Members">
-                                <small id="family-members-help" class="form-text text-muted">Please consider Mother,
-                                    Father, Siblings, Grand mother and Grand father only.</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="payment-mode">Payment Mode:</label>
-                        <select class="form-select" id="payment-mode" name="payment-mode" required>
-                            <option value="">--Select--</option>
-                            <option value="cash">Cash</option>
-                            <option value="online">Online</option>
-                        </select>
-                        <small id="payment-mode-help" class="form-text text-muted">Please select the payment mode for
-                            the admission fee.</small>
-                    </div>
+                            <tr>
+                                <td>
+                                    <label for="payment-mode">Payment Mode:</label>
+                                </td>
+                                <td><select class="form-select" id="payment-mode" name="payment-mode" required>
+                                        <option value>--Select--</option>
+                                        <option value="cash">Cash</option>
+                                        <option value="online">Online</option>
+                                    </select>
+                                    <small id="payment-mode-help" class="form-text text-muted">Please select
+                                        the
+                                        payment mode for
+                                        the admission fee.</small>
+                                </td>
+                            </tr>
 
-                    <div class="form-group" id="cash-authentication-code" style="display:none;">
-                        <label for="c-authentication-code">C-Authentication Code:</label>
-                        <input type="text" class="form-control" id="c-authentication-code" name="c-authentication-code"
-                            placeholder="Enter C-Authentication code" required>
-                        <small id="c-authentication-code-help" class="form-text text-muted">Please enter the
-                            C-Authentication code if you are paying by cash.</small>
-                    </div>
+                            <tr id="cash-authentication-code" style="display:none;">
+                                <td> <label for="c-authentication-code">C-Authentication
+                                        Code:</label></td>
+                                <td><input type="text" class="form-control" id="c-authentication-code"
+                                        name="c-authentication-code" placeholder="Enter C-Authentication code" required>
+                                    <small id="c-authentication-code-help" class="form-text text-muted">Please enter
+                                        the
+                                        C-Authentication code if you are paying by
+                                        cash.</small>
+                                </td>
+                            </tr>
+                            <tr id="online-declaration" style="display:none;">
 
-                    <div class="form-group" id="online-declaration" style="display:none;">
-
-                        <p>Click <a href="#" data-bs-toggle="modal" data-bs-target="#popup">here</a> to
-                            complete the payment. Please note that if you submit the form without completing the payment
-                            or with an incorrect transaction ID, your application will be placed on hold for the next
-                            two business days. After this period, if the admission fee has not been received, your
-                            submission will be cancelled.</p>
-
-                        <div class="form-group">
-                            <label for="transaction-id">Transaction ID:</label>
-                            <input type="text" class="form-control" id="transaction-id" name="transaction-id" required>
-                            <small id="online-declaration-help" class="form-text text-muted">Please enter the
-                                transaction ID if you have paid the admission fee online.</small>
-                        </div>
-                    </div>
+                                <td>
+                                    <label for="transaction-id">Transaction
+                                        ID:</label>
+                                </td>
+                                <td><input type="text" class="form-control" id="transaction-id" name="transaction-id"
+                                        required>
+                                    <small id="online-declaration-help" class="form-text text-muted">Please
+                                        enter the
+                                        transaction ID if you have paid the
+                                        admission fee online.</small>
+                                    <!-- <p>Click <a href="#" data-bs-toggle="modal" data-bs-target="#popup">here</a> to
+                                        complete the payment. Please note that if
+                                        you
+                                        submit the form without
+                                        completing the payment
+                                        or with an incorrect transaction ID, your
+                                        application will be placed on hold
+                                        for the next
+                                        two business days. After this period, if the
+                                        admission fee has not been
+                                        received, your
+                                        submission will be cancelled.</p> -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <button type="submit" class="btn btn-primary" id="btnSubmit">Submit</button>
                 </form>
+
                 <!-- </div> -->
                 <!-- Popup -->
                 <div class="modal fade" id="popup" tabindex="-1" aria-labelledby="popupLabel" aria-hidden="true">
@@ -433,8 +587,13 @@
                         <div class="modal-content">
                             <!-- Header -->
                             <div class="modal-header">
-                                <p class="modal-title" id="popupLabel">The admission fee is ₹100. The admission fee is
-                                    one-time, non-refundable, and has to be paid at the time of admission.</p>
+                                <p class="modal-title" id="popupLabel">The
+                                    admission fee is ₹150. The admission
+                                    fee
+                                    is
+                                    one-time, non-refundable, and has to
+                                    be
+                                    paid at the time of admission.</p>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -446,12 +605,25 @@
                                             <div class="card-body">
                                                 <!-- <h5 class="card-title">Payment Details</h5> -->
                                                 <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">Account Number: <b>004201033772</b></li>
-                                                    <li class="list-group-item">A/C Name: RINA SHIKSHA SAHAYAK
+                                                    <li class="list-group-item">Account
+                                                        Number:
+                                                        <b>004201033772</b>
+                                                    </li>
+                                                    <li class="list-group-item">A/C
+                                                        Name: RINA
+                                                        SHIKSHA
+                                                        SAHAYAK
                                                         FOUNDATION</li>
-                                                    <li class="list-group-item">Bank Name: ICICI Bank - KOLKATA - SALT
-                                                        LAKE (Branch Code: 0042)</li>
-                                                    <li class="list-group-item">IFSC Code: ICIC0000042</li>
+                                                    <li class="list-group-item">Bank
+                                                        Name: ICICI Bank
+                                                        -
+                                                        KOLKATA - SALT
+                                                        LAKE (Branch
+                                                        Code:
+                                                        0042)</li>
+                                                    <li class="list-group-item">IFSC
+                                                        Code:
+                                                        ICIC0000042</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -461,7 +633,10 @@
                                             <img src="/img/payment.jpg" alt="Google pay QR" class="card-img-top"
                                                 width="100%">
                                             <div class="card-body text-center">
-                                                <p class="card-text">Scan QR Code to Make Payment</p>
+                                                <p class="card-text">Scan
+                                                    QR
+                                                    Code to Make
+                                                    Payment</p>
                                             </div>
                                         </div>
                                     </div>
@@ -486,26 +661,36 @@
     <script>
         const aadharDropdown = document.getElementById('aadhar-card');
         const hiddenPanel = document.getElementById('hidden-panel');
+        const hiddenuploadaadhar = document.getElementById('hidden-aadhar-card-upload');
         const hiddenpanelguardianaadhar = document.getElementById('hidden-panel-guardian-aadhar');
         const aadharNumber = document.getElementById('aadhar-number');
         const aadharCardUpload = document.getElementById('aadhar-card-upload');
         const guardianaadharNumber = document.getElementById('guardian-aadhar-number');
+        const preview = document.getElementById('aadhar-card-preview');
+        const imagePreview = document.getElementById('aadhar-card-image-preview');
+        const container = document.getElementById('aadhar-card-preview-container');
 
         function handleAadharChange() {
             if (aadharDropdown.value === 'Yes') {
-                hiddenPanel.style.display = 'block';
+                hiddenPanel.style.display = 'table-row';
+                hiddenuploadaadhar.style.display = 'table-row';
                 hiddenpanelguardianaadhar.style.display = 'none';
                 aadharNumber.required = true;
                 aadharCardUpload.required = true;
                 guardianaadharNumber.required = false;
+                guardianaadharNumber.value = "";
             } else {
                 hiddenPanel.style.display = 'none';
-                hiddenpanelguardianaadhar.style.display = 'block';
+                hiddenuploadaadhar.style.display = 'none';
+                hiddenpanelguardianaadhar.style.display = 'table-row';
                 aadharNumber.required = false;
                 aadharCardUpload.required = false;
                 guardianaadharNumber.required = true;
                 aadharNumber.value = "";
                 aadharCardUpload.value = "";
+                preview.src = '';
+                imagePreview.src = '';
+                container.style.display = 'none';
             }
         }
 
@@ -520,7 +705,7 @@
         paymentModeSelect.addEventListener("change", function () {
             var selectedOption = paymentModeSelect.options[paymentModeSelect.selectedIndex].value;
             if (selectedOption === "cash") {
-                document.getElementById("cash-authentication-code").style.display = "block";
+                document.getElementById("cash-authentication-code").style.display = "table-row";
                 document.getElementById("c-authentication-code").required = true;
                 document.getElementById("online-declaration").style.display = "none";
                 document.getElementById("transaction-id").required = false;
@@ -528,7 +713,7 @@
             } else if (selectedOption === "online") {
                 document.getElementById("cash-authentication-code").style.display = "none";
                 document.getElementById("c-authentication-code").required = false;
-                document.getElementById("online-declaration").style.display = "block";
+                document.getElementById("online-declaration").style.display = "table-row";
                 document.getElementById("transaction-id").required = true;
                 cashAuthCodeDiv.value = "";
             } else {
@@ -541,25 +726,25 @@
             }
         });
     </script>
+
+
     <script>
         // Select the necessary HTML elements
         const subjectSelect = document.querySelector('#subject-select');
         const schoolRequiredGroup = document.querySelector('#school-required-group');
         const schoolDetailsGroup = document.querySelector('#school-details');
+        const boardNameGroup = document.querySelector('#board-name-group');
+        const mediumGroup = document.querySelector('#medium-group');
         const schoolRequiredSelect = document.querySelector('#school-required');
         const schoolNameInput = document.querySelector('#school-name');
         const boardNameSelect = document.querySelector('#board-name');
         const mediumSelect = document.querySelector('#medium');
 
-        // Hide school-required-group and school-details-group initially
+        // Hide school-required-group, school-details-group, board-name-group, and medium-group initially
         schoolRequiredGroup.style.display = 'none';
         schoolDetailsGroup.style.display = 'none';
-
-        // Set required attributes for school-required-group and its options
-        const schoolRequiredOptions = schoolRequiredSelect.querySelectorAll('option');
-        for (let i = 0; i < schoolRequiredOptions.length; i++) {
-            schoolRequiredOptions[i].setAttribute('required', '');
-        }
+        boardNameGroup.style.display = 'none';
+        mediumGroup.style.display = 'none';
 
         // Function to reset values and attributes of fields
         function resetFields() {
@@ -567,9 +752,9 @@
             schoolNameInput.value = '';
             boardNameSelect.value = '';
             mediumSelect.value = '';
-            schoolRequiredGroup.removeAttribute('required');
-            schoolDetailsGroup.removeAttribute('required');
             schoolDetailsGroup.style.display = 'none';
+            boardNameGroup.style.display = 'none';
+            mediumGroup.style.display = 'none';
             schoolNameInput.removeAttribute('required');
             boardNameSelect.removeAttribute('required');
             mediumSelect.removeAttribute('required');
@@ -582,39 +767,44 @@
             // Check if subject is blank or Embroidery
             if (selectedSubject === '' || selectedSubject === 'Embroidery') {
                 schoolRequiredGroup.style.display = 'none';
-                schoolDetailsGroup.style.display = 'none';
-                $('#school-required-group :input').prop('required', false);
                 resetFields();
             } else {
-                schoolRequiredGroup.style.display = 'block';
-                schoolDetailsGroup.style.display = 'none';
+                schoolRequiredGroup.style.display = 'table-row';
                 resetFields();
-
-                // Add change event listener to schoolRequiredSelect
-                schoolRequiredSelect.addEventListener('change', function () {
-                    const selectedSchoolRequired = schoolRequiredSelect.value;
-
-                    if (selectedSchoolRequired === 'No') {
-                        schoolDetailsGroup.style.display = 'block';
-                        schoolRequiredGroup.setAttribute('required', '');
-                        schoolDetailsGroup.setAttribute('required', '');
-                        schoolNameInput.setAttribute('required', '');
-                        boardNameSelect.setAttribute('required', '');
-                        mediumSelect.setAttribute('required', '');
-                    } else {
-                        schoolRequiredGroup.setAttribute('required', '');
-                        schoolRequiredGroup.removeAttribute('required');
-                        schoolDetailsGroup.removeAttribute('required');
-                        schoolDetailsGroup.style.display = 'none';
-                        schoolNameInput.removeAttribute('required');
-                        boardNameSelect.removeAttribute('required');
-                        mediumSelect.removeAttribute('required');
-                    }
-                });
             }
         });
-    </script>
 
+        // Add change event listener to schoolRequiredSelect
+        schoolRequiredSelect.addEventListener('change', function () {
+            const selectedSchoolRequired = schoolRequiredSelect.value;
+
+            if (selectedSchoolRequired === 'No') {
+                showSchoolDetails();
+            } else {
+                hideSchoolDetails();
+            }
+        });
+
+        // Function to show school details
+        function showSchoolDetails() {
+            schoolDetailsGroup.style.display = 'table-row';
+            boardNameGroup.style.display = 'table-row';
+            mediumGroup.style.display = 'table-row';
+            schoolNameInput.setAttribute('required', '');
+            boardNameSelect.setAttribute('required', '');
+            mediumSelect.setAttribute('required', '');
+        }
+
+        // Function to hide school details
+        function hideSchoolDetails() {
+            schoolDetailsGroup.style.display = 'none';
+            boardNameGroup.style.display = 'none';
+            mediumGroup.style.display = 'none';
+            schoolNameInput.removeAttribute('required');
+            boardNameSelect.removeAttribute('required');
+            mediumSelect.removeAttribute('required');
+        }
+    </script>
     <script>
         const submitButton = document.getElementById('submit-button');
         submitButton.addEventListener('click', handleSubmit);
@@ -622,7 +812,7 @@
     <script>
         $(document).ready(function () {
             $('input[required], select[required], textarea[required]').each(function () {
-                $(this).closest('.form-group').find('label').append(' <span style="color: red">*</span>');
+                $(this).closest('tr').find('label').append(' <span style="color: red">*</span>');
             });
         });
     </script>
@@ -635,7 +825,8 @@
                         <div class="spinner-border" role="status">
                             <span class="visually-hidden">Loading...</span>
                         </div>
-                        <p id="loadingMessage">Submission in progress. Please do not close or reload this page.</p>
+                        <p id="loadingMessage">Submission in progress.
+                            Please do not close or reload this page.</p>
                     </div>
                 </div>
             </div>
@@ -675,6 +866,25 @@
                 if (result.success) {
                     alert(`Submitted successfully! Message: ${result.message}`);
                     admissionForm.reset(); // Reset the form after successful submission
+                    // Function to reset photo preview
+                    function resetPhotoPreview() {
+                        const preview = document.getElementById('photo-preview');
+                        const container = document.getElementById('photo-preview-container');
+                        preview.src = '';
+                        container.style.display = 'none';
+                    }
+
+                    // Function to reset Aadhar card preview
+                    function resetAadharCardPreview() {
+                        const preview = document.getElementById('aadhar-card-preview');
+                        const imagePreview = document.getElementById('aadhar-card-image-preview');
+                        const container = document.getElementById('aadhar-card-preview-container');
+                        preview.src = '';
+                        imagePreview.src = '';
+                        container.style.display = 'none';
+                    }
+                    resetPhotoPreview();
+                    resetAadharCardPreview();
                     // You can optionally reload the page here
                 } else {
                     alert(`Error: ${result.message}`);
@@ -688,6 +898,78 @@
                 myModal.hide();
             }
         });
+    </script>
+
+    <script>
+        // Function to preview photo
+        function previewPhoto(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('photo-preview');
+            const container = document.getElementById('photo-preview-container');
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function () {
+                    preview.src = reader.result;
+                    container.style.display = 'block'; // Display the preview container
+                };
+                reader.readAsDataURL(file);
+            } else {
+                resetPhotoPreview(); // Reset preview if no file is selected
+            }
+        }
+
+        // Function to preview Aadhar card
+        function previewAadharCard(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('aadhar-card-preview');
+            const imagePreview = document.getElementById('aadhar-card-image-preview');
+            const container = document.getElementById('aadhar-card-preview-container');
+
+            if (file) {
+                if (file.type.startsWith('image/')) {
+                    // If the file is an image
+                    const reader = new FileReader();
+                    reader.onload = function () {
+                        imagePreview.src = reader.result;
+                        imagePreview.style.display = 'block';
+                        preview.style.display = 'none'; // Hide PDF preview
+                        container.style.display = 'block'; // Display the preview container
+                    };
+                    reader.readAsDataURL(file);
+                } else if (file.type === 'application/pdf') {
+                    // If the file is a PDF
+                    const reader = new FileReader();
+                    reader.onload = function () {
+                        preview.src = reader.result;
+                        preview.style.display = 'block';
+                        imagePreview.style.display = 'none'; // Hide image preview
+                        container.style.display = 'block'; // Display the preview container
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    // Unsupported file type
+                    alert('Unsupported file type! Please upload an image or a PDF.');
+                }
+            } else {
+                resetAadharCardPreview(); // Reset preview if no file is selected
+            }
+        }
+    </script>
+
+    <script>
+        function validateContactNumber(input) {
+            var errorMessage = document.getElementById("contactnumber_error");
+            var verifyButton = document.getElementById("verifybutton");
+
+            if (!input.checkValidity()) {
+                errorMessage.textContent = "Please enter a valid 10-digit contact number.";
+                verifyButton.disabled = true;
+            } else {
+                errorMessage.textContent = "";
+                verifyButton.disabled = false;
+            }
+        }
     </script>
 
 </body>
