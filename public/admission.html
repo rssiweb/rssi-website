@@ -767,9 +767,11 @@
             // Check if subject is blank or Embroidery
             if (selectedSubject === '' || selectedSubject === 'Embroidery') {
                 schoolRequiredGroup.style.display = 'none';
+                schoolRequiredSelect.removeAttribute('required');
                 resetFields();
             } else {
                 schoolRequiredGroup.style.display = 'table-row';
+                schoolRequiredSelect.setAttribute('required', '');
                 resetFields();
             }
         });
