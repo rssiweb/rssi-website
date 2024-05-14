@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11316670180"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'AW-11316670180');
+    </script>
+    <meta name="description" content>
+    <meta name="author" content>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>RSSI NGO - Application form</title>
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <!------ Include the above in your HEAD tag ---------->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <style>
+        .prebanner {
+            display: none;
+        }
+
+        .required-asterisk {
+            color: red;
+        }
+    </style>
+    <!-- Template Main CSS File -->
+    <link href="/css/main.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            $("#header").load("/header.html");
+            $("#footer").load("/footer.html");
+        });
+    </script>
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <div id="header"></div>
+    <!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs">
+            <div class="container">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Application form</h2>
+                    <ol>
+                        <li><a href="index">Home</a></li>
+                        <li>Application form</li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+        <!-- End Breadcrumbs -->
+        <section class="sample-page">
+            <div class="container">
+                <p>Unique Id: WB/2021/0282726 (NGO Darpan, NITI Aayog,
+                    Government of India)</p>
+                <hr>
+                <form name="signup" id="signup" action="#" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="form-type" value="signup">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>
+
+                                    <label for="applicant-name">Applicant
+                                        Name:</label>
+                                </td>
+                                <td><input type="text" class="form-control" id="applicant-name" name="applicant-name"
+                                        placeholder="Enter applicant name" required>
+                                    <small id="applicant-name-help" class="form-text text-muted">Please
+                                        enter the
+                                        name
+                                        of the
+                                        applicant.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="date-of-birth">Date of
+                                        Birth:</label>
+                                </td>
+                                <td><input type="date" class="form-control" id="date-of-birth" name="date-of-birth"
+                                        required>
+                                    <small id="date-of-birth-help" class="form-text text-muted">Please
+                                        enter
+                                        the date of
+                                        birth of the applicant.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="gender">Gender:</label>
+                                </td>
+                                <td><select class="form-select" id="gender" name="gender" required>
+                                        <option value>--Select
+                                            Gender--</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Binary">Binary</option>
+                                    </select>
+                                    <small id="gender-help" class="form-text text-muted">Please
+                                        select the
+                                        gender of the
+                                        applicant.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="telephone">Telephone
+                                        Number:</label>
+                                </td>
+                                <td><input type="tel" class="form-control" id="telephone" name="telephone"
+                                        placeholder="Enter telephone number" pattern="[0-9]{10}"
+                                        oninput="validateContactNumber(this)" required>
+                                    <small id="telephone-help" class="form-text text-muted">Please
+                                        enter a
+                                        valid
+                                        telephone
+                                        number.</small>
+                                    <span id="contactnumber_error" style="color: red;"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label for="email">Email
+                                        Address:</label>
+                                </td>
+                                <td><input type="email" class="form-control" id="email" name="email"
+                                        placeholder="Enter email address" required>
+                                    <small id="email-help" class="form-text text-muted">Please
+                                        enter a
+                                        valid email
+                                        address.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="branch">Preferred
+                                        Branch:</label>
+                                </td>
+                                <td><select class="form-select" id="branch" name="branch" required>
+                                        <option value>--Select
+                                            Branch--</option>
+                                        <option value="Lucknow">Lucknow</option>
+                                        <option value="West Bengal">West
+                                            Bengal</option>
+                                    </select>
+                                    <small id="branch-help" class="form-text text-muted">Please
+                                        select
+                                        the
+                                        preferred
+                                        branch.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="class">Type of association:</label>
+                                </td>
+                                <td><select class="form-select" id="association" name="association" required>
+                                        <option value>--Select
+                                            Type of association--</option>
+                                        <option value="Employee">Employee</option>
+                                        <option value="Intern">Intern</option>
+                                        <option value="Membership">Membership</option>
+                                        <option value="Volunteer">Volunteer</option>
+                                    </select>
+                                    <small id="class-help" class="form-text text-muted">If you intend to join the NGO
+                                        for college projects or community service, please select 'Intern'.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="30%">
+                                    <label for="job-select">Job code:
+                                    </label>
+                                </td>
+                                <td><select class="form-select" id="job-select" name="job-select" required>
+                                        <option value>--Select Job code--</option>
+                                        <option value="PT-REG">PT-REG</option>
+                                        <option value="FT-PAT">FT-PAT</option>
+                                    </select>
+                                    <small class="form-text text-muted">For applicants seeking part-time positions,
+                                        please select "PT-REG" as the job type. For other positions, please refer to the
+                                        specific job advertisement for the corresponding job code.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="purpose">Purpose of Volunteering:</label>
+                                </td>
+                                <td>
+                                    <textarea class="form-control" id="purpose" name="purpose" rows="4"
+                                        required></textarea>
+                                    <small class="form-text text-muted"></small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="availability">Availability:</label>
+                                </td>
+                                <td>
+                                    <select multiple class="form-control" id="availability" name="availability[]"
+                                        required>
+                                        <option value="Monday">Monday</option>
+                                        <option value="Tuesday">Tuesday</option>
+                                        <option value="Wednesday">Wednesday</option>
+                                        <option value="Thursday">Thursday</option>
+                                        <option value="Friday">Friday</option>
+                                        <option value="Saturday">Saturday</option>
+                                        <option value="Sunday">Sunday</option>
+                                    </select>
+                                    <small class="form-text text-muted">Select the weekdays you are available.</small>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label for="interests">What types of work opportunities are you most interested in
+                                        pursuing?</label>
+                                </td>
+                                <td>
+                                    <select class="form-select" id="interests" name="interests" required>
+                                        <option value="">Select an option</option>
+                                        <option value="Academics">Academics</option>
+                                        <option value="Non-academics">Non-academics</option>
+                                    </select>
+                                    <small class="form-text text-muted"></small>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>
+                                    <label for="post-select">Post applied for:
+                                    </label>
+                                </td>
+                                <td><select class="form-select" id="post-select" name="post-select" required>
+                                        <option value>--Select
+                                            Post--</option>
+                                        <option value="Faculty">Faculty</option>
+                                    </select>
+                                    <small class="form-text text-muted"></small>
+                                </td>
+                            </tr>
+                            <tr id="subjectPreferences">
+                                <td>
+                                    <label for="subjectPreferences">Subject
+                                        Preferences (Select up to
+                                        3)</label>
+                                </td>
+                                <td>
+                                    <div id="subjectPreferencesContainer">
+                                        <small class="form-text text-muted"></small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="medium">Medium of instruction:
+                                    </label>
+                                </td>
+                                <td><select class="form-select" id="medium" name="medium" required>
+                                        <option value>--Select
+                                            Medium of instruction--</option>
+                                        <option value="English">English</option>
+                                        <option value="Hindi">Hindi</option>
+                                    </select>
+                                    <small class="form-text text-muted">Please choose the language(s) you can
+                                        teach.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="membershipPurpose">Purpose of Membership:</label>
+                                </td>
+                                <td>
+                                    <textarea class="form-control" id="membershipPurpose" name="membershipPurpose"
+                                        rows="4" required></textarea>
+                                    <small class="form-text text-muted"></small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="duration">Duration:</label>
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control" id="duration" name="duration" min="1"
+                                        max="36" required>
+                                    <small class="form-text text-muted">Please enter the period in months. Minimum
+                                        period is 1 month. The maximum period is 36 months.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="payment-photo">Upload Payment Screenshot</label>
+                                </td>
+                                <td><input type="file" class="form-control" id="payment-photo" name="payment-photo"
+                                        required accept="image/*;capture=camera">
+                                    <small id="payment-photo-help" class="form-text text-muted">Upload a recent photo
+                                        (max 1MB): Face clearly visible, neutral expression, and ensure a clean
+                                        background. Sample below for reference.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="applicant-photo">Upload
+                                        applicant
+                                        Photo:</label>
+                                </td>
+                                <td><input type="file" class="form-control" id="applicant-photo" name="applicant-photo"
+                                        required accept="image/*;capture=camera" onchange="previewPhoto(event)">
+                                    <small id="applicant-photo-help" class="form-text text-muted">Upload a recent photo
+                                        (max 1MB): Face clearly visible, neutral expression, and ensure a clean
+                                        background. Sample below for reference.</small>
+
+                                    <div id="applicant-photo-preview-container" style="display: none;">
+                                        <img id="applicant-photo-preview" src="#" alt="Uploaded Photo"
+                                            style="max-width: 200px; max-height: 200px;">
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label for="resume-upload">Upload
+                                        Resume:</label>
+                                </td>
+                                <td><input type="file" class="form-control" id="resume-upload" name="resume-upload"
+                                        required onchange="previewResume(event)">
+                                    <small id="resume-upload-help" class="form-text text-muted">Please upload your
+                                        resume in PDF or Doc/Docx format. The file size should not exceed 1 MB.</small>
+                                    <div id="resume-upload-preview-container" style="display: none;">
+                                        <!-- Initially hide the preview container -->
+                                        <!-- <label>Preview:</label> -->
+                                        <embed id="resume-upload-preview" src="#" type="application/pdf"
+                                            style="max-width: 200px; max-height: 200px;">
+                                        <!-- Use 'embed' for PDF preview -->
+                                        <img id="resume-upload-image-preview" src="#" alt="Uploaded Resume"
+                                            style="max-width: 200px; max-height: 200px;">
+                                        <!-- Use 'img' for image preview -->
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="heardAbout" class="form-label">Where did you hear about RSSI
+                                        NGO?</label>
+                                </td>
+                                <td><select class="form-select" id="heard_about" name="heard_about" required>
+                                        <option value>--Select an option--</option>
+                                        <option value="Instagram">Instagram</option>
+                                        <option value="Google Search">Google Search</option>
+                                        <option value="LinkedIn">LinkedIn</option>
+                                        <option value="Career fair or recruitment event">Career fair or recruitment
+                                            event</option>
+                                        <option value="Indeed">Indeed</option>
+                                        <option value="Jobs in education">Jobs in education</option>
+                                        <option value="Referral from a friend or colleague">Referral from a friend or
+                                            colleague</option>
+                                        <option value="Job Hai">Job Hai</option>
+                                        <option value="RSS NGO website">RSS NGO website</option>
+                                        <option value="Workindia">Workindia</option>
+                                        <option value="Facebook">Facebook</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <small class="form-text text-muted"></small>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="mb-3 form-check">
+                        <input class="form-check-input" type="checkbox" id="consent" name="consent" required>
+                        <label class="form-check-label" for="consent">
+                            I give my consent to the processing of my personal data by the RSSI. My consent is
+                            applicable to the following information: my surname, name, telephone, email, any other
+                            information relating to my personality.
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="btnSubmit">Submit</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <div id="footer"></div>
+    <!-- End Footer -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const subjects = [
+                'Hindi', 'English', 'Mathematics', 'Science', 'Computer', 'Social Science', 'Arts and Crafts'
+            ];
+
+            const container = document.getElementById('subjectPreferencesContainer');
+
+            for (let i = 1; i <= 3; i++) {
+                const select = document.createElement('select');
+                select.className = 'form-select';
+                select.name = `subject${i}`;
+                select.id = `subject${i}`;
+                select.required = true; // Add required attribute
+
+                const label = document.createElement('label');
+                label.htmlFor = `subject${i}`;
+                label.className = 'form-label';
+                label.textContent = `Preference ${i}:`;
+                container.appendChild(label); // Append label before select
+                container.appendChild(select);
+
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = 'Select Subject';
+                select.appendChild(defaultOption);
+
+                subjects.forEach(subject => {
+                    const option = document.createElement('option');
+                    option.value = subject;
+                    option.textContent = subject;
+                    select.appendChild(option);
+                });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var associationSelect = document.getElementById("association");
+            var jobSelect = document.getElementById("job-select");
+
+            // Hide job code on load
+            jobSelect.parentNode.parentNode.style.display = "none";
+            // Function to reset jobSelect value
+            function resetJobSelect() {
+                jobSelect.value = ''; // Reset the value to empty
+            }
+
+            associationSelect.addEventListener("change", function () {
+                if (associationSelect.value === "Employee") {
+                    jobSelect.parentNode.parentNode.style.display = "table-row";
+                    jobSelect.setAttribute("required", "");
+                } else {
+                    jobSelect.parentNode.parentNode.style.display = "none";
+                    jobSelect.removeAttribute("required");
+                    resetJobSelect(); // Reset the value when association changes
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var associationSelect = document.getElementById("association");
+            var purposeTextarea = document.getElementById("purpose");
+            var availabilityInput = document.getElementById("availability");
+            var interestsSelect = document.getElementById("interests");
+
+            // Hide additional fields on load
+            purposeTextarea.parentNode.parentNode.style.display = "none";
+            availabilityInput.parentNode.parentNode.style.display = "none";
+            interestsSelect.parentNode.parentNode.style.display = "none";
+
+            // Function to reset additional fields
+            function resetAdditionalFields() {
+                purposeTextarea.value = ''; // Reset purposeTextarea value
+                availabilityInput.value = ''; // Reset availabilityInput value
+                interestsSelect.value = ''; // Reset interestsSelect value
+            }
+
+            associationSelect.addEventListener("change", function () {
+                if (associationSelect.value === "Volunteer") {
+                    purposeTextarea.parentNode.parentNode.style.display = "table-row";
+                    availabilityInput.parentNode.parentNode.style.display = "table-row";
+                    interestsSelect.parentNode.parentNode.style.display = "table-row";
+
+                    // Add required attribute to newly visible fields
+                    purposeTextarea.setAttribute("required", "");
+                    availabilityInput.setAttribute("required", "");
+                    interestsSelect.setAttribute("required", "");
+                } else {
+                    purposeTextarea.parentNode.parentNode.style.display = "none";
+                    availabilityInput.parentNode.parentNode.style.display = "none";
+                    interestsSelect.parentNode.parentNode.style.display = "none";
+
+                    // Remove required attribute from hidden fields
+                    purposeTextarea.removeAttribute("required");
+                    availabilityInput.removeAttribute("required");
+                    interestsSelect.removeAttribute("required");
+                    resetAdditionalFields(); // Reset the values when association changes
+                }
+            });
+        });
+
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var associationSelect = document.getElementById("association");
+            var membershipPurpose = document.getElementById("membershipPurpose");
+            var duration = document.getElementById("duration");
+            var paymentPhoto = document.getElementById("payment-photo");
+
+            // Hide additional fields on load
+            membershipPurpose.parentNode.parentNode.style.display = "none";
+            duration.parentNode.parentNode.style.display = "none";
+            paymentPhoto.parentNode.parentNode.style.display = "none";
+
+            associationSelect.addEventListener("change", function () {
+                if (associationSelect.value === "Membership") {
+                    membershipPurpose.parentNode.parentNode.style.display = "table-row";
+                    duration.parentNode.parentNode.style.display = "table-row";
+                    paymentPhoto.parentNode.parentNode.style.display = "table-row";
+
+                    // Add required attribute to newly visible fields
+                    membershipPurpose.setAttribute("required", "");
+                    duration.setAttribute("required", "");
+                    paymentPhoto.setAttribute("required", "");
+                } else {
+                    membershipPurpose.parentNode.parentNode.style.display = "none";
+                    duration.parentNode.parentNode.style.display = "none";
+                    paymentPhoto.parentNode.parentNode.style.display = "none";
+
+                    // Remove required attribute from hidden fields
+                    membershipPurpose.removeAttribute("required");
+                    duration.removeAttribute("required");
+                    paymentPhoto.removeAttribute("required");
+                }
+            });
+        });
+
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var associationSelect = document.getElementById("association");
+            var postSelect = document.getElementById("post-select");
+            var medium = document.getElementById("medium");
+
+            // Hide additional fields on load
+            postSelect.parentNode.parentNode.style.display = "none";
+            medium.parentNode.parentNode.style.display = "none";
+
+            // Function to reset postSelect and medium values
+            function resetPostFields() {
+                postSelect.value = ''; // Reset postSelect value
+                medium.value = ''; // Reset medium value
+            }
+
+            associationSelect.addEventListener("change", function () {
+                if (associationSelect.value === "Employee" || associationSelect.value === "Intern") {
+                    postSelect.parentNode.parentNode.style.display = "table-row";
+                    medium.parentNode.parentNode.style.display = "table-row";
+
+                    // Add required attribute to newly visible fields
+                    postSelect.setAttribute("required", "");
+                    medium.setAttribute("required", "");
+                } else {
+                    postSelect.parentNode.parentNode.style.display = "none";
+                    medium.parentNode.parentNode.style.display = "none";
+
+                    // Remove required attribute from hidden fields
+                    postSelect.removeAttribute("required");
+                    medium.removeAttribute("required");
+                    resetPostFields(); // Reset the values when association changes
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const associationSelect = document.getElementById('association');
+            const subjectPreferencesRow = document.getElementById('subjectPreferences');
+            const subject1 = document.getElementById('subject1');
+            const subject2 = document.getElementById('subject2');
+            const subject3 = document.getElementById('subject3');
+
+            // Hide the Subject Preferences row on page load
+            subjectPreferencesRow.style.display = 'none';
+            // Function to reset subject preferences fields
+            function resetSubjectPreferencesFields() {
+                subject1.value = ''; // Reset subject1 value
+                subject2.value = ''; // Reset subject2 value
+                subject3.value = ''; // Reset subject3 value
+            }
+
+            // Function to add the required attribute to dropdown fields
+            function addRequired() {
+                [subject1, subject2, subject3].forEach(field => {
+                    field.setAttribute('required', '');
+                });
+            }
+
+            // Function to remove the required attribute from dropdown fields
+            function removeRequired() {
+                [subject1, subject2, subject3].forEach(field => {
+                    field.removeAttribute('required');
+                });
+            }
+
+            associationSelect.addEventListener('change', function () {
+                // Show the Subject Preferences row if association is Employee or Intern
+                if (associationSelect.value === 'Employee' || associationSelect.value === 'Intern') {
+                    subjectPreferencesRow.style.display = 'table-row';
+                    addRequired(); // Add required attribute to dropdown fields
+                } else {
+                    // Hide the Subject Preferences row and remove required attribute from dropdown fields
+                    subjectPreferencesRow.style.display = 'none';
+                    removeRequired();
+                    resetSubjectPreferencesFields(); // Reset the values when association changes
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('input[required], select[required], textarea[required]').each(function () {
+                var label = $(this).closest('tr').find('label');
+                if (!label.find('span').length) { // Check if red asterisk already exists
+                    label.append(' <span style="color: red">*</span>');
+                }
+            });
+        });
+    </script>
+    <script>
+        // Function to preview applicant's photo
+        function previewPhoto(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('applicant-photo-preview');
+            const container = document.getElementById('applicant-photo-preview-container');
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function () {
+                    preview.src = reader.result;
+                    container.style.display = 'block'; // Display the preview container
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Function to preview resume upload
+        function previewResume(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('resume-upload-preview');
+            const imagePreview = document.getElementById('resume-upload-image-preview');
+            const container = document.getElementById('resume-upload-preview-container');
+
+            if (file) {
+                if (file.type.startsWith('image/')) {
+                    // If the file is an image
+                    const reader = new FileReader();
+                    reader.onload = function () {
+                        imagePreview.src = reader.result;
+                        imagePreview.style.display = 'block';
+                        preview.style.display = 'none'; // Hide PDF preview
+                        container.style.display = 'block'; // Display the preview container
+                    };
+                    reader.readAsDataURL(file);
+                } else if (file.type === 'application/pdf') {
+                    // If the file is a PDF
+                    const reader = new FileReader();
+                    reader.onload = function () {
+                        preview.src = reader.result;
+                        preview.style.display = 'block';
+                        imagePreview.style.display = 'none'; // Hide image preview
+                        container.style.display = 'block'; // Display the preview container
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    // Unsupported file type
+                    alert('Unsupported file type! Please upload an image or a PDF.');
+                }
+            }
+        }
+    </script>
+
+    <script>
+        function validateContactNumber(input) {
+            var errorMessage = document.getElementById("contactnumber_error");
+
+            if (!input.checkValidity()) {
+                errorMessage.textContent = "Please enter a valid 10-digit contact number.";
+            } else {
+                errorMessage.textContent = "";
+            }
+        }
+    </script>
+    <!-- Bootstrap Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="text-center">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p id="loadingMessage">Submission in progress.
+                            Please do not close or reload this page.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // const scriptURL = 'https://login.rssi.in/rssi-member/payment-api.php';
+        const scriptURL = 'http://localhost:8082/rssi-member/payment-api.php';
+        const signup = document.getElementById("signup");
+
+        document.getElementById("btnSubmit").addEventListener("click", async function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            if (!signup.checkValidity()) {
+                signup.reportValidity(); // Show the default validation messages
+                return;
+            }
+
+            // Disable the submit button immediately upon form submission
+            this.disabled = true;
+            // Show the Bootstrap modal
+            const myModal = new bootstrap.Modal(document.getElementById("myModal"), {
+                backdrop: 'static',
+                keyboard: false
+            });
+            myModal.show();
+
+            try {
+                const response = await fetch(scriptURL, {
+                    method: 'POST',
+                    body: new FormData(signup)
+                });
+                const result = await response.json();
+
+                console.log("API Response:", result);
+
+                if (!result.error) {
+                    // Show success message if form submission was successful
+                    alert(`Submitted successfully! Application Number: ${result.application_number}\nStep two: Identity Verification.  A verification email with further instructions has been sent to your registered address. Please check your inbox and spam folder.\nSometimes spam filters block automated emails. If you do not find the email in your inbox, please check your spam filter or bulk email folder. If you have any queries regarding your application, please feel free to reach out at +91 7980168159 or email us at info@rssi.in.`);
+                    signup.reset(); // Reset the form after successful submission
+                    location.reload(); // Reload the page after successful submission
+                } else {
+                    // Show error message if an error occurred during form submission
+                    throw new Error("Error occurred during form submission. Please try again later.");
+                }
+            } catch (error) {
+                // Show error message if an error occurred during form submission
+                console.error(error);
+                alert(error.message);
+            } finally {
+                // Re-enable the submit button and hide the modal after the form submission process is finished
+                this.disabled = false;
+                myModal.hide();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
