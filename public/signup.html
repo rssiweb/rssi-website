@@ -318,39 +318,44 @@
                                 <td>
                                     <label for="payment-photo">Upload Payment Screenshot</label>
                                 </td>
-                                <td><input type="file" class="form-control" id="payment-photo" name="payment-photo"
-                                        required accept="image/*;capture=camera">
-                                    <small id="payment-photo-help" class="form-text text-muted">Upload a recent photo
-                                        (max 1MB): Face clearly visible, neutral expression, and ensure a clean
-                                        background. Sample below for reference.</small>
-                                </td>
-                            </tr>
-                            <tr>
                                 <td>
-                                    <label for="applicant-photo">Upload
-                                        applicant
-                                        Photo:</label>
-                                </td>
-                                <td><input type="file" class="form-control" id="applicant-photo" name="applicant-photo"
-                                        required accept="image/*;capture=camera" onchange="previewPhoto(event)">
-                                    <small id="applicant-photo-help" class="form-text text-muted">Upload a recent photo
-                                        (max 1MB): Face clearly visible, neutral expression, and ensure a clean
-                                        background. Sample below for reference.</small>
-
-                                    <div id="applicant-photo-preview-container" style="display: none;">
-                                        <img id="applicant-photo-preview" src="#" alt="Uploaded Photo"
-                                            style="max-width: 200px; max-height: 200px;">
+                                    <input type="file" class="form-control" id="payment-photo" name="payment-photo"
+                                        required accept="image/*, application/pdf" capture="camera"
+                                        onchange="previewPaymentPhoto(event)">
+                                    <small id="payment-photo-help" class="form-text text-muted">For payment screenshots,
+                                        ensure relevant transaction details are visible.</small>
+                                    <div id="payment-photo-preview-container" style="display: none;">
+                                        <img id="payment-photo-preview-image" src="#" alt="Uploaded Photo"
+                                            style="max-width: 200px; max-height: 200px; display: none;">
+                                        <embed id="payment-photo-preview-pdf" src="#" type="application/pdf"
+                                            style="max-width: 200px; max-height: 200px; display: none;">
                                     </div>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>
+                                    <label for="applicant-photo">Upload Applicant Photo:</label>
+                                </td>
+                                <td>
+                                    <input type="file" class="form-control" id="applicant-photo" name="applicant-photo"
+                                        required accept="image/*,capture=camera" onchange="previewPhoto(event)">
+                                    <small id="applicant-photo-help" class="form-text text-muted">Upload a recent photo
+                                        (max 1MB): Face clearly visible, neutral expression, and ensure a clean
+                                        background. Sample below for reference.</small>
+                                    <div id="applicant-photo-preview-container" style="display: none;">
+                                        <img id="applicant-photo-preview" src="#" alt="Uploaded Photo"
+                                            style="max-width: 200px; max-height: 200px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <label for="resume-upload">Upload
                                         Resume:</label>
                                 </td>
                                 <td><input type="file" class="form-control" id="resume-upload" name="resume-upload"
-                                        required onchange="previewResume(event)">
+                                        required required accept=".pdf, .doc, .docx" onchange="previewResume(event)">
                                     <small id="resume-upload-help" class="form-text text-muted">Please upload your
                                         resume in PDF or Doc/Docx format. The file size should not exceed 1 MB.</small>
                                     <div id="resume-upload-preview-container" style="display: none;">
@@ -528,6 +533,12 @@
             duration.parentNode.parentNode.style.display = "none";
             paymentPhoto.parentNode.parentNode.style.display = "none";
 
+            function resetMembersFields() {
+                membershipPurpose.value = ''; // Reset subject1 value
+                duration.value = ''; // Reset subject2 value
+                paymentPhoto.value = ''; // Reset subject3 value
+            }
+
             associationSelect.addEventListener("change", function () {
                 if (associationSelect.value === "Membership") {
                     membershipPurpose.parentNode.parentNode.style.display = "table-row";
@@ -547,6 +558,7 @@
                     membershipPurpose.removeAttribute("required");
                     duration.removeAttribute("required");
                     paymentPhoto.removeAttribute("required");
+                    resetMembersFields();
                 }
             });
         });
@@ -688,10 +700,52 @@
                         container.style.display = 'block'; // Display the preview container
                     };
                     reader.readAsDataURL(file);
+                } else if (file.type === 'application/msword' || file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+                    // If the file is a DOC/DOCX
+                    // As previewing DOC files directly in the browser is not supported, you can handle it differently
+                    // For example, you can display a message indicating that DOC files cannot be previewed and provide a download link instead
+                    alert('DOC/DOCX files cannot be previewed. You can download the file instead.');
                 } else {
                     // Unsupported file type
-                    alert('Unsupported file type! Please upload an image or a PDF.');
+                    alert('Unsupported file type! Please upload a PDF, or document (DOC/DOCX)');
                 }
+            }
+        }
+
+        function previewPaymentPhoto(event) {
+            const file = event.target.files[0];
+            const imagePreview = document.getElementById('payment-photo-preview-image');
+            const pdfPreview = document.getElementById('payment-photo-preview-pdf');
+            const container = document.getElementById('payment-photo-preview-container');
+
+            if (file) {
+                container.style.display = 'block'; // Show the preview container
+                if (file.type.startsWith('image/')) {
+                    // If the file is an image
+                    const reader = new FileReader();
+                    reader.onload = function () {
+                        imagePreview.src = reader.result;
+                        imagePreview.style.display = 'block';
+                        pdfPreview.style.display = 'none'; // Hide PDF preview
+                    };
+                    reader.readAsDataURL(file);
+                } else if (file.type === 'application/pdf') {
+                    // If the file is a PDF
+                    const reader = new FileReader();
+                    reader.onload = function () {
+                        pdfPreview.src = reader.result;
+                        pdfPreview.style.display = 'block';
+                        imagePreview.style.display = 'none'; // Hide image preview
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    // Unsupported file type
+                    alert('Unsupported file type! Please upload a PDF or image.');
+                    container.style.display = 'none'; // Hide the preview container
+                }
+            } else {
+                // No file selected
+                container.style.display = 'none'; // Hide the preview container
             }
         }
     </script>
