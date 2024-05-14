@@ -283,9 +283,7 @@
                                     <label for="medium">Medium of instruction:
                                     </label>
                                 </td>
-                                <td><select class="form-select" id="medium" name="medium" required>
-                                        <option value>--Select
-                                            Medium of instruction--</option>
+                                <td><select multiple class="form-select" id="medium" name="medium[]" required>
                                         <option value="English">English</option>
                                         <option value="Hindi">Hindi</option>
                                     </select>
@@ -424,6 +422,8 @@
 
             const container = document.getElementById('subjectPreferencesContainer');
 
+            const selects = [];
+
             for (let i = 1; i <= 3; i++) {
                 const select = document.createElement('select');
                 select.className = 'form-select';
@@ -449,7 +449,29 @@
                     option.textContent = subject;
                     select.appendChild(option);
                 });
+
+                selects.push(select); // Add select element to array for easy access
             }
+
+            // Add event listener to each preference select element
+            selects.forEach((select, index) => {
+                select.addEventListener('change', function () {
+                    // Collect all selected subjects
+                    const selectedSubjects = selects.map(sel => sel.value);
+                    // Disable selected subject in all other select elements
+                    selects.forEach((otherSelect, otherIndex) => {
+                        if (index !== otherIndex) {
+                            otherSelect.querySelectorAll('option').forEach(option => {
+                                if (option.value === select.value && option.value !== '') {
+                                    option.disabled = true;
+                                } else if (!selectedSubjects.includes(option.value)) {
+                                    option.disabled = false;
+                                }
+                            });
+                        }
+                    });
+                });
+            });
         });
     </script>
     <script>
@@ -784,8 +806,8 @@
         </div>
     </div>
     <script>
-        const scriptURL = 'https://login.rssi.in/rssi-member/payment-api.php';
-        // const scriptURL = 'http://localhost:8082/rssi-member/payment-api.php';
+        // const scriptURL = 'https://login.rssi.in/rssi-member/payment-api.php';
+        const scriptURL = 'http://localhost:8082/rssi-member/payment-api.php';
         const signup = document.getElementById("signup");
 
         document.getElementById("btnSubmit").addEventListener("click", async function (event) {
