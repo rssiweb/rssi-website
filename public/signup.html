@@ -527,6 +527,9 @@
             var membershipPurpose = document.getElementById("membershipPurpose");
             var duration = document.getElementById("duration");
             var paymentPhoto = document.getElementById("payment-photo");
+            const imagePreview_p = document.getElementById('payment-photo-preview-image');
+            const pdfPreview_p = document.getElementById('payment-photo-preview-pdf');
+            const container_p = document.getElementById('payment-photo-preview-container');
 
             // Hide additional fields on load
             membershipPurpose.parentNode.parentNode.style.display = "none";
@@ -537,6 +540,9 @@
                 membershipPurpose.value = ''; // Reset subject1 value
                 duration.value = ''; // Reset subject2 value
                 paymentPhoto.value = ''; // Reset subject3 value
+                imagePreview_p.src = '';
+                pdfPreview_p.src = '';
+                container_p.style.display = 'none'; // Hide the preview container
             }
 
             associationSelect.addEventListener("change", function () {
@@ -713,39 +719,39 @@
         }
 
         function previewPaymentPhoto(event) {
-            const file = event.target.files[0];
-            const imagePreview = document.getElementById('payment-photo-preview-image');
-            const pdfPreview = document.getElementById('payment-photo-preview-pdf');
-            const container = document.getElementById('payment-photo-preview-container');
+            const file_p = event.target.files[0];
+            const imagePreview_p = document.getElementById('payment-photo-preview-image');
+            const pdfPreview_p = document.getElementById('payment-photo-preview-pdf');
+            const container_p = document.getElementById('payment-photo-preview-container');
 
-            if (file) {
-                container.style.display = 'block'; // Show the preview container
-                if (file.type.startsWith('image/')) {
+            if (file_p) {
+                container_p.style.display = 'block'; // Show the preview container
+                if (file_p.type.startsWith('image/')) {
                     // If the file is an image
                     const reader = new FileReader();
                     reader.onload = function () {
-                        imagePreview.src = reader.result;
-                        imagePreview.style.display = 'block';
-                        pdfPreview.style.display = 'none'; // Hide PDF preview
+                        imagePreview_p.src = reader.result;
+                        imagePreview_p.style.display = 'block';
+                        pdfPreview_p.style.display = 'none'; // Hide PDF preview
                     };
-                    reader.readAsDataURL(file);
-                } else if (file.type === 'application/pdf') {
+                    reader.readAsDataURL(file_p);
+                } else if (file_p.type === 'application/pdf') {
                     // If the file is a PDF
                     const reader = new FileReader();
                     reader.onload = function () {
-                        pdfPreview.src = reader.result;
-                        pdfPreview.style.display = 'block';
-                        imagePreview.style.display = 'none'; // Hide image preview
+                        pdfPreview_p.src = reader.result;
+                        pdfPreview_p.style.display = 'block';
+                        imagePreview_p.style.display = 'none'; // Hide image preview
                     };
-                    reader.readAsDataURL(file);
+                    reader.readAsDataURL(file_p);
                 } else {
                     // Unsupported file type
                     alert('Unsupported file type! Please upload a PDF or image.');
-                    container.style.display = 'none'; // Hide the preview container
+                    container_p.style.display = 'none'; // Hide the preview container
                 }
             } else {
                 // No file selected
-                container.style.display = 'none'; // Hide the preview container
+                container_p.style.display = 'none'; // Hide the preview container
             }
         }
     </script>
@@ -778,8 +784,8 @@
         </div>
     </div>
     <script>
-        // const scriptURL = 'https://login.rssi.in/rssi-member/payment-api.php';
-        const scriptURL = 'http://localhost:8082/rssi-member/payment-api.php';
+        const scriptURL = 'https://login.rssi.in/rssi-member/payment-api.php';
+        // const scriptURL = 'http://localhost:8082/rssi-member/payment-api.php';
         const signup = document.getElementById("signup");
 
         document.getElementById("btnSubmit").addEventListener("click", async function (event) {
