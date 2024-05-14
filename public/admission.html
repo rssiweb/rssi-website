@@ -81,8 +81,7 @@
                     non-refundable, and has to be paid at the
                     time of admission.</p>
                 <hr>
-                <form name="admission" id="admission" action="#" method="post"
-                    enctype="multipart/form-data">
+                <form name="admission" id="admission" action="#" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="form-type" value="admission">
                     <table class="table">
                         <tbody>
@@ -843,6 +842,13 @@
             const myModal = new bootstrap.Modal(document.getElementById("myModal"), {
                 backdrop: 'static',
                 keyboard: false
+            });
+            // Add event listener to intercept Escape key press
+            document.body.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape') {
+                    // Prevent default behavior of Escape key
+                    event.preventDefault();
+                }
             });
             myModal.show();
 

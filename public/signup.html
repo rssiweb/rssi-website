@@ -803,6 +803,13 @@
                 backdrop: 'static',
                 keyboard: false
             });
+            // Add event listener to intercept Escape key press
+            document.body.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape') {
+                    // Prevent default behavior of Escape key
+                    event.preventDefault();
+                }
+            });
             myModal.show();
 
             try {
@@ -834,6 +841,7 @@
             }
         });
     </script>
+
 
 </body>
 
