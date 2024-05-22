@@ -76,10 +76,30 @@
         </div>
         <!-- End Breadcrumbs -->
         <section class="sample-page">
+
             <div class="container">
-                <p>Unique Id: WB/2021/0282726 (NGO Darpan, NITI Aayog,
+                <!-- <p>Unique Id: WB/2021/0282726 (NGO Darpan, NITI Aayog,
                     Government of India)</p>
-                <hr>
+                <hr> -->
+                <table class="table">
+                    <tr>
+                        <td>
+                            <div id="existingvisitorInfo">
+                                <form id="emailForm">
+                                      <div class="mb-3">
+                                        <label for="email_verify" class="form-label">Please verify your email address to proceed:</label>
+                                         <div class="input-group mb-3">
+                                        <input type="email" class="form-control" id="email_verify" name="email_verify"
+                                            placeholder="Enter your email" required>
+                                        <button type="submit" class="btn btn-primary" id="verifybutton">Verify email</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
                 <form name="signup" id="signup" action="#" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="form-type" value="signup">
                     <table class="table">
