@@ -2,34 +2,26 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11316670180"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'AW-11316670180');
-    </script>
+    <!-- Meta Tags First for Quick Loading -->
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+    <!-- Title and Meta Information -->
     <title>Welcome to RSSI</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
     <link href="/img/favicon.ico" rel="icon">
-    <!-- <link href="/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts (Preconnect) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
 
-    <!-- Vendor CSS Files -->
+    <!-- Vendor CSS Files (Include Important CSS Files First) -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="/vendor/aos/aos.css" rel="stylesheet">
@@ -38,14 +30,27 @@
 
     <!-- Template Main CSS File -->
     <link href="/css/main.css" rel="stylesheet">
+
+    <!-- Google Tag (gtag.js) - Place After CSS to Ensure Fast Rendering -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11316670180"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'AW-11316670180');
+    </script>
+
+    <!-- Load jQuery Early for Header and Footer Loading -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
-        $(function () {
+        $(document).ready(function () {
             $("#header").load("/header.html");
             $("#footer").load("/footer.html");
         });
     </script>
+
+    <!-- Inline Styles for Quick Loading -->
     <style>
         .typing-animation {
             display: inline-block;
