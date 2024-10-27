@@ -76,7 +76,8 @@
         <!-- End Breadcrumbs -->
         <section class="sample-page">
             <div class="container">
-                <p>The Admission Fee of ₹150 is a non-refundable, one-time payment. Both the admission fee and the first month's fee, which must be paid in advance, are non-refundable.</p>
+                <p>The Admission Fee of ₹150 is a non-refundable, one-time payment. Both the admission fee and the first
+                    month's fee, which must be paid in advance, are non-refundable.</p>
                 <hr>
                 <form name="admission" id="admission" action="#" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="form-type" value="admission">
@@ -328,17 +329,46 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="postal-address">Postal
-                                        Address:</label>
+                                    <label for="postal-address">Current Address:</label>
                                 </td>
-                                <td><textarea class="form-control" id="postal-address" name="postal-address" rows="3"
-                                        placeholder="Enter postal address" required></textarea>
-                                    <small id="postal-address-help" class="form-text text-muted">Please enter
-                                        the
-                                        complete postal
-                                        address of the student.</small>
+                                <td>
+                                    <textarea class="form-control" id="postal-address" name="postal-address" rows="3"
+                                        placeholder="Enter current address" required></textarea>
+                                    <small id="postal-address-help" class="form-text text-muted">Please enter the
+                                        complete current address of the student.</small>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <label for="permanent-address">Permanent Address:</label>
+                                </td>
+                                <td>
+                                    <textarea class="form-control" id="permanent-address" name="permanent-address"
+                                        rows="3" placeholder="Enter permanent address" required></textarea>
+                                    <small id="permanent-address-help" class="form-text text-muted">Please enter the
+                                        complete permanent address of the student.</small>
+                                    <div>
+                                        <input type="checkbox" id="same-address" onclick="copyAddress()">
+                                        <label for="same-address">Same as current address</label>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <script>
+                                function copyAddress() {
+                                    const currentAddress = document.getElementById('postal-address').value;
+                                    const permanentAddressField = document.getElementById('permanent-address');
+                                    const sameAddressCheckbox = document.getElementById('same-address');
+
+                                    if (sameAddressCheckbox.checked) {
+                                        permanentAddressField.value = currentAddress; // Copy current address to permanent address
+                                        permanentAddressField.readOnly = true; // Make it read-only when checkbox is checked
+                                    } else {
+                                        permanentAddressField.value = ''; // Clear permanent address when checkbox is unchecked
+                                        permanentAddressField.readOnly = false; // Make it editable again
+                                    }
+                                }
+                            </script>
                             <tr>
                                 <td>
                                     <label for="telephone">Telephone Number:</label>
@@ -364,6 +394,41 @@
                                         valid email
                                         address.</small>
                                 </td>
+                            </tr>
+                            <!-- Caste Dropdown Field -->
+                            <tr>
+                                <td>
+                                    <label for="caste">Caste:</label>
+                                </td>
+                                <td>
+                                    <select class="form-select" id="caste" name="caste" required>
+                                        <option value="" disabled selected>Select your caste</option>
+                                        <option value="General">General</option>
+                                        <option value="SC">Scheduled Caste (SC)</option>
+                                        <option value="ST">Scheduled Tribe (ST)</option>
+                                        <option value="OBC">Other Backward Class (OBC)</option>
+                                        <option value="EWS">Economically Weaker Section (EWS)</option>
+                                        <option value="Prefer not to disclose">Prefer not to disclose</option>
+                                        <!-- Add additional options as necessary -->
+                                    </select>
+                                    <small id="caste-help" class="form-text text-muted">Please select your caste
+                                        category as per government records.</small>
+                                </td>
+                            </tr>
+
+                            <!-- Supporting Document Upload Field -->
+                            <tr>
+                                <td>
+                                    <label for="caste-document">Caste Certificate:</label>
+                                </td>
+                                <td>
+                                    <input type="file" class="form-control" id="caste-document" name="caste-document"
+                                        accept=".pdf,.jpg,.jpeg,.png">
+                                    <small id="caste-document-help" class="form-text text-muted">Upload your caste
+                                        certificate (PDF, JPG, JPEG, or PNG).</small>
+                                </td>
+                            </tr>
+
                             <tr>
                                 <td>
                                     <label for="branch">Preferred Branch:</label>
@@ -799,8 +864,10 @@
     </script>
     <script>
         $(document).ready(function () {
-            $('input[required], select[required], textarea[required]').each(function () {
-                $(this).closest('tr').find('label').append(' <span style="color: red">*</span>');
+            $('input, select, textarea').each(function () {
+                if ($(this).prop('required')) { // Check if the element has the required attribute
+                    $(this).closest('td').prev('td').find('label').append(' <span style="color: red">*</span>');
+                }
             });
         });
     </script>
