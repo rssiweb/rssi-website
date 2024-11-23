@@ -84,13 +84,16 @@
                     <tr>
                         <td>
                             <div id="existingvisitorInfo">
-                                <form id="emailForm">
-                                      <div class="mb-3">
-                                        <label for="email_verify" class="form-label">Please verify your email address to proceed:</label>
-                                         <div class="input-group mb-3">
-                                        <input type="email" class="form-control" id="email_verify" name="email_verify"
-                                            placeholder="Enter your email" required>
-                                        <button type="submit" class="btn btn-primary" id="verifybutton">Verify email</button>
+                                <form name="emailForm" id="emailForm">
+                                    <input type="hidden" name="form-type" value="email_verify_signup">
+                                    <div class="mb-3">
+                                        <label for="email_verify" class="form-label">Please verify your email address to
+                                            proceed:</label>
+                                        <div class="input-group mb-3">
+                                            <input type="email" class="form-control" id="email_verify"
+                                                name="email_verify" placeholder="Enter your email" required>
+                                            <button type="submit" class="btn btn-primary" id="verifybutton">Verify
+                                                email</button>
                                         </div>
                                     </div>
                                 </form>
@@ -99,7 +102,8 @@
                     </tr>
                 </table>
 
-                <form name="signup" id="signup" action="#" method="post" enctype="multipart/form-data">
+                <form name="signup" id="signup" action="#" method="post" enctype="multipart/form-data"
+                    style="display: none;" disabled>
                     <input type="hidden" name="form-type" value="signup">
                     <table class="table">
                         <tbody>
@@ -171,11 +175,97 @@
                                         Address:</label>
                                 </td>
                                 <td><input type="email" class="form-control" id="email" name="email"
-                                        placeholder="Enter email address" required>
+                                        placeholder="Enter email address" required readonly>
                                     <small id="email-help" class="form-text text-muted">Please
                                         enter a
                                         valid email
                                         address.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="postal-address">Current Address:</label>
+                                </td>
+                                <td>
+                                    <textarea class="form-control" id="postal-address" name="postal-address" rows="3"
+                                        placeholder="Enter current address" required></textarea>
+                                    <small id="postal-address-help" class="form-text text-muted">Please enter the
+                                        complete current address of the student.</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="permanent-address">Permanent Address:</label>
+                                </td>
+                                <td>
+                                    <textarea class="form-control" id="permanent-address" name="permanent-address"
+                                        rows="3" placeholder="Enter permanent address" required></textarea>
+                                    <small id="permanent-address-help" class="form-text text-muted">Please enter the
+                                        complete permanent address of the student.</small>
+                                    <div>
+                                        <input type="checkbox" id="same-address" onclick="copyAddress()">
+                                        <label for="same-address">Same as current address</label>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <script>
+                                function copyAddress() {
+                                    const currentAddress = document.getElementById('postal-address').value;
+                                    const permanentAddressField = document.getElementById('permanent-address');
+                                    const sameAddressCheckbox = document.getElementById('same-address');
+
+                                    if (sameAddressCheckbox.checked) {
+                                        permanentAddressField.value = currentAddress; // Copy current address to permanent address
+                                        permanentAddressField.readOnly = true; // Make it read-only when checkbox is checked
+                                    } else {
+                                        permanentAddressField.value = ''; // Clear permanent address when checkbox is unchecked
+                                        permanentAddressField.readOnly = false; // Make it editable again
+                                    }
+                                }
+                            </script>
+                            <tr>
+                                <td>
+                                    <label for="education-qualification" class="form-label">Educational
+                                        Qualification:</label>
+                                </td>
+                                <td>
+                                    <select class="form-select" id="education-qualification" name="education-qualification" required>
+                                        <option value="" disabled selected>Select your qualification</option>
+                                        <option value="Bachelor Degree Regular">Bachelor Degree Regular</option>
+                                        <option value="Bachelor Degree Correspondence">Bachelor Degree Correspondence</option>
+                                        <option value="Master Degree">Master Degree</option>
+                                        <option value="PhD (Doctorate Degree)">PhD (Doctorate Degree)</option>
+                                        <option value="Post Doctorate or 5 years experience">Post Doctorate or 5 years experience</option>
+                                        <option value="Culture, Art & Sports etc.">Culture, Art & Sports etc.</option>
+                                        <option value="Class 12th Pass">Class 12th Pass</option>
+                                    </select>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="specialization" class="form-label">Area of Specialization:</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="specialization" name="specialization"
+                                        placeholder="e.g., Computer Science, Physics, Fine Arts" required>
+                                    <small id="specialization-help" class="form-text text-muted">
+                                        Please write the name of the subject, stream, or area of specialization in which
+                                        you have done graduation or masters.
+                                    </small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="work-experience" class="form-label">Work Experience:</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="work-experience" name="work-experience"
+                                        placeholder="e.g., 3 years in Teaching, 2 years in Marketing">
+                                    <small id="work-experience-help" class="form-text text-muted">
+                                        Specify your work experience, including job title and duration, if applicable.
+                                    </small>
                                 </td>
                             </tr>
                             <tr>
@@ -692,16 +782,30 @@
             });
         });
     </script>
+
     <script>
         $(document).ready(function () {
-            $('input[required], select[required], textarea[required]').each(function () {
-                var label = $(this).closest('tr').find('label');
-                if (!label.find('span').length) { // Check if red asterisk already exists
-                    label.append(' <span style="color: red">*</span>');
+            $('input, select, textarea').each(function () {
+                if ($(this).prop('required')) { // Check if the element has the required attribute
+                    // Check if the label has already had an asterisk appended
+                    var label = $(this).closest('td').prev('td').find('label');
+
+                    // Only append asterisk if it hasn't been added yet
+                    if (!label.find('span').length) {
+                        label.append(' <span style="color: red">*</span>');
+                    }
                 }
             });
+
+            // Special case for subject preferences to avoid adding multiple asterisks
+            const subjectPreferencesLabel = $('label[for="subjectPreferences"]');
+            if (subjectPreferencesLabel.length && !subjectPreferencesLabel.find('span').length) {
+                subjectPreferencesLabel.append(' <span style="color: red">*</span>');
+            }
         });
     </script>
+
+
     <script>
         // Function to preview applicant's photo
         function previewPhoto(event) {
@@ -880,6 +984,46 @@
                 this.disabled = false;
                 myModal.hide();
             }
+        });
+    </script>
+
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            const formData = new FormData(this); // Get the form data
+            const emailInput = document.getElementById('email_verify');
+            const signupForm = document.getElementById('signup'); // Reference to the signup form
+            const signupEmailInput = signupForm.querySelector('#email'); // Reference to the email input in the signup form
+            const verifyForm = document.getElementById('emailForm'); // Reference to the email form
+
+            // Send AJAX request
+            fetch('http://localhost:8082/rssi-member/payment-api.php', {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.exists) {
+                        alert('This email is already registered. Please use another email.');
+                        emailInput.value = ''; // Clear the input field
+                    } else {
+                        alert('Email not found. You can proceed with registration.');
+
+                        // Make the signup form visible and enabled
+                        signupForm.style.display = 'block'; // Show the signup form
+                        signupForm.removeAttribute('disabled'); // Enable the signup form
+
+                        // Populate the email field in the signup form
+                        signupEmailInput.value = emailInput.value;
+
+                        // Disable all elements in the verify form
+                        Array.from(verifyForm.elements).forEach(element => {
+                            element.setAttribute('disabled', 'true');
+                        });
+                    }
+                })
+                .catch(error => console.error('Error:', error));
         });
     </script>
 
