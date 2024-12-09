@@ -7,13 +7,13 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <!-- Load jQuery Early with defer -->
-    <script src="https://code.jquery.com/jquery-3.7.1.js" defer></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js" defer></script>
     <script defer>
         document.addEventListener('DOMContentLoaded', function () {
             $("#header").load("/header.html");
             $("#footer").load("/footer.html");
         });
-    </script>
+    </script> -->
 
     <!-- Title and Meta Information -->
     <title>Welcome to RSSI</title>
@@ -472,8 +472,20 @@
                         <div class="swiper-slide"><img src="img/clients/client-20.png" class="img-fluid" alt=""
                                 title="Symbiosis Law School, Pune">
                         </div>
+                        <div class="swiper-slide"><img src="img/clients/client-24.png" class="img-fluid" alt=""
+                                title="Symbiosis Law School, Hyderabad">
+                        </div>
                         <div class="swiper-slide"><img src="img/clients/client-21.png" class="img-fluid" alt=""
                                 title="Shri Guru Nanak Girls Degree College">
+                        </div>
+                        <div class="swiper-slide"><img src="img/clients/client-22.png" class="img-fluid" alt=""
+                                title="Shri Ramswaroop Memorial University">
+                        </div>
+                        <div class="swiper-slide"><img src="img/clients/client-23.png" class="img-fluid" alt=""
+                                title="NIMS University Rajasthan, Jaipur">
+                        </div>
+                        <div class="swiper-slide"><img src="img/clients/client-25.png" class="img-fluid" alt=""
+                                title="SBI Green Marathon Lucknow">
                         </div>
                         <div class="swiper-slide"><img src="img/clients/client-6.png" class="img-fluid" alt=""
                                 title="Taj Mahal Lucknow">
@@ -704,6 +716,14 @@
             policyLink: 'disclaimer'
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const header = await fetch('/header.html').then(res => res.text());
+            const footer = await fetch('/footer.html').then(res => res.text());
+            document.getElementById('header').innerHTML = header;
+            document.getElementById('footer').innerHTML = footer;
+        });
+    </script>    
 
     <!-- <div class="modal fade show" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-modal="true"
         role="dialog">
