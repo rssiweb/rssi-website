@@ -6,15 +6,6 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <!-- Load jQuery Early with defer -->
-    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script defer>
-        document.addEventListener('DOMContentLoaded', function () {
-            $("#header").load("/header.html");
-            $("#footer").load("/footer.html");
-        });
-    </script> -->
-
     <!-- Title and Meta Information -->
     <title>Welcome to RSSI</title>
     <meta content="" name="description">
@@ -91,6 +82,42 @@
                 /* Cursor is visible */
             }
         }
+
+        /*---------------------------------------
+     PACE - PRELOADER
+  -----------------------------------------*/
+
+        .pace {
+            -webkit-pointer-events: none;
+            pointer-events: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        .pace-inactive {
+            display: none;
+        }
+
+        .pace .pace-progress {
+            background: #f25560;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            right: 100%;
+            width: 100%;
+            height: 2px;
+        }
+
+        .prebanner {
+            display: none;
+        }
+
+        /*GOOGLE TRANSLATE*/
+
+        #google_translate_element img {
+            width: fit-content;
+        }
     </style>
 
 </head>
@@ -98,7 +125,70 @@
 <body>
 
     <!-- ======= Header ======= -->
-    <div id="header"></div>
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <a href="index" class="logo d-flex align-items-center me-auto me-lg-0">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <!-- <img src="/img/logo.png" alt=""> -->
+                <h1>RSSI NGO<span>.</span></h1>
+            </a>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a href="index">Home</a></li>
+                    <li class="dropdown"><a href="#"><span>About</span> <i
+                                class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <ul>
+                            <li><a href="about-us">History</a></li>
+                            <li><a href="holiday">Holiday list</a></li>
+                            <li><a href="https://login.rssi.in/announcement.php" target="_blank">Announcement</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="admission">Admission</a></li>
+                    <li><a href="media-center">Gallery</a></li>
+                    <li><a href="registration">Careers</a></li>
+                    <li><a href="visit-us">Visit us</a></li>
+                    <li class="dropdown"><a href="#"><span>Login</span> <i
+                                class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <ul>
+                            <li><a href="https://login.rssi.in/rssi-student/index.php" target="_blank">Students</a></li>
+                            <li><a href="https://login.rssi.in/rssi-member/index.php" target="_blank">Associates</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#"><span>Misc.</span> <i
+                                class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <ul>
+                            <li><a href="payment">Payment</a></li>
+                            <!-- <li class="dropdown"><a href="#"><span>Phoenix</span>
+                                    <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                                <ul>
+                                    <li><a href="https://login.rssi.in/rssi-student/index.php"
+                                            target="_blank">Students</a></li>
+                                    <li><a href="https://login.rssi.in/rssi-member/index.php"
+                                            target="_blank">Associates</a></li>
+                                    <li><a href="#">Deep Drop Down 3</a></li>
+                                    <li><a href="#">Deep Drop Down 4</a></li>
+                                    <li><a href="#">Deep Drop Down 5</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Drop Down 2</a></li>
+                            <li><a href="#">Drop Down 3</a></li>
+                            <li><a href="#">Drop Down 4</a></li> -->
+                        </ul>
+                    </li>
+                    <!-- <li><a href="contact-us">Contact</a></li> -->
+                </ul>
+            </nav>
+            <!-- .navbar -->
+
+            <a class="btn-book-a-table" href="donation-portal">Donate Now</a>
+            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+        </div>
+    </header>
     <!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
@@ -628,8 +718,80 @@
     </main>
     <!-- End #main -->
     <!-- ======= Footer ======= -->
-    <div id="footer"></div>
+    <footer id="footer" class="footer">
 
+        <div class="container">
+            <div class="row gy-3">
+                <div class="col-lg-3 col-md-6 d-flex">
+                    <i class="bi bi-geo-alt icon"></i>
+                    <div>
+                        <h4>Address</h4>
+                        <p>
+                            D/1/122, Vinamra Khand, Gomti Nagar, Lucknow, Uttar Pradesh 226010
+                            <br>
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links d-flex">
+                    <i class="bi bi-telephone icon"></i>
+                    <div>
+                        <h4>Contact</h4>
+                        <p>
+                            <strong>Phone:</strong> 7980168159 / 9717445551<br>
+                            <strong>Email:</strong> info@rssi.in<br>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links d-flex">
+                    <i class="bi bi-clock icon"></i>
+                    <div>
+                        <h4>Opening Hours</h4>
+                        <p>
+                            <strong>Mon-Sat: 11 am</strong> - 6:30 pm<br> Sunday: Closed
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h4>Follow Us</h4>
+                    <div class="social-links d-flex">
+                        <a href="https://www.instagram.com/rssi.in/" class="twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="https://www.facebook.com/rssi.in" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.instagram.com/rssi.in/" class="instagram"><i
+                                class="bi bi-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/rssingo/" class="linkedin"><i
+                                class="bi bi-linkedin"></i></a>
+                        <a href="https://www.youtube.com/c/RSSINGO" class="linkedin"><i class="bi bi-youtube"></i></a>
+                    </div>
+                    <br>
+                    <p class="footer-links" style="font-size: small !important; margin-bottom: 0;">
+                        <a href="/contact-us">Contact us</a> |
+                        <a href="/disclaimer">Disclaimer</a> |
+                        <a href="/terms-of-service">Terms & Conditions</a> |
+                        <a href="/refund-policy">Cancellation/Refund Policy</a> |
+                        <a href="/privacy-policy">Privacy Policy</a>
+                    </p><br>
+                    <div id="google_translate_element" style="position: relative;z-index: 1;"></div>
+                    <img src="https://c.statcounter.com/11357816/0/b3dd2d5c/0/" alt="hit counter">
+                    <!-- End of Statcounter Code -->
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong><span>RSSI</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                Site Contents owned, designed, developed, maintained and updated by the IT Department, RSSI.
+            </div>
+        </div>
+
+    </footer>
     <!-- End Footer -->
 
     <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
@@ -717,77 +879,119 @@
         });
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Load Header
-            fetch('/header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header').innerHTML = data;
+        /**
+         * Mobile nav toggle
+         */
+        const mobileNavShow = document.querySelector('.mobile-nav-show');
+        const mobileNavHide = document.querySelector('.mobile-nav-hide');
 
-                    // Reinitialize Mobile Nav Toggle
-                    initializeMobileNav();
-                });
-
-            // Load Footer
-            fetch('/footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('footer').innerHTML = data;
-                });
+        document.querySelectorAll('.mobile-nav-toggle').forEach(el => {
+            el.addEventListener('click', function (event) {
+                event.preventDefault();
+                mobileNavToogle();
+            })
         });
 
-        // Function to initialize mobile nav toggle functionality
-        function initializeMobileNav() {
-            const mobileNavShow = document.querySelector('.mobile-nav-show');
-            const mobileNavHide = document.querySelector('.mobile-nav-hide');
+        function mobileNavToogle() {
+            document.querySelector('body').classList.toggle('mobile-nav-active');
+            mobileNavShow.classList.toggle('d-none');
+            mobileNavHide.classList.toggle('d-none');
+        }
 
-            // Toggle mobile nav
-            document.querySelectorAll('.mobile-nav-toggle').forEach(el => {
-                el.addEventListener('click', function (event) {
-                    event.preventDefault();
+        /**
+         * Hide mobile nav on same-page/hash links
+         */
+        document.querySelectorAll('#navbar a').forEach(navbarlink => {
+
+            if (!navbarlink.hash) return;
+
+            let section = document.querySelector(navbarlink.hash);
+            if (!section) return;
+
+            navbarlink.addEventListener('click', () => {
+                if (document.querySelector('.mobile-nav-active')) {
                     mobileNavToogle();
-                });
+                }
             });
 
-            function mobileNavToogle() {
-                document.querySelector('body').classList.toggle('mobile-nav-active');
-                mobileNavShow.classList.toggle('d-none');
-                mobileNavHide.classList.toggle('d-none');
-            }
+        });
 
-            // Hide mobile nav on same-page/hash links
-            document.querySelectorAll('#navbar a').forEach(navbarlink => {
+        /**
+         * Toggle mobile nav dropdowns
+         */
+        const navDropdowns = document.querySelectorAll('.navbar .dropdown > a');
+
+        navDropdowns.forEach(el => {
+            el.addEventListener('click', function (event) {
+                if (document.querySelector('.mobile-nav-active')) {
+                    event.preventDefault();
+                    this.classList.toggle('active');
+                    this.nextElementSibling.classList.toggle('dropdown-active');
+
+                    let dropDownIndicator = this.querySelector('.dropdown-indicator');
+                    dropDownIndicator.classList.toggle('bi-chevron-up');
+                    dropDownIndicator.classList.toggle('bi-chevron-down');
+                }
+            })
+        });
+
+        /**
+         * Navbar links active state on scroll
+         */
+        let navbarlinks = document.querySelectorAll('#navbar a');
+
+        function navbarlinksActive() {
+            navbarlinks.forEach(navbarlink => {
+
                 if (!navbarlink.hash) return;
 
                 let section = document.querySelector(navbarlink.hash);
                 if (!section) return;
 
-                navbarlink.addEventListener('click', () => {
-                    if (document.querySelector('.mobile-nav-active')) {
-                        mobileNavToogle();
-                    }
-                });
-            });
+                let position = window.scrollY + 200;
 
-            // Toggle mobile nav dropdowns
-            const navDropdowns = document.querySelectorAll('.navbar .dropdown > a');
+                if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+                    navbarlink.classList.add('active');
+                } else {
+                    navbarlink.classList.remove('active');
+                }
+            })
+        }
+        window.addEventListener('load', navbarlinksActive);
+        document.addEventListener('scroll', navbarlinksActive);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+    <!------------------------------------
+            For Google translate
+        -------------------------------------->
+    <script>
+        function googleTranslateElementInit() {
+            if ($(window).width() < 760) {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                    includedLanguages: "hi,en,bn"
+                }, 'google_translate_element1');
 
-            navDropdowns.forEach(el => {
-                el.addEventListener('click', function (event) {
-                    if (document.querySelector('.mobile-nav-active')) {
-                        event.preventDefault();
-                        this.classList.toggle('active');
-                        this.nextElementSibling.classList.toggle('dropdown-active');
+            } else {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                    includedLanguages: "hi,en,bn"
+                }, 'google_translate_element');
+            }
 
-                        let dropDownIndicator = this.querySelector('.dropdown-indicator');
-                        dropDownIndicator.classList.toggle('bi-chevron-up');
-                        dropDownIndicator.classList.toggle('bi-chevron-down');
-                    }
-                });
-            });
         }
     </script>
-
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+        $("a").each(function () {
+            if ((window.location.pathname.indexOf($(this).attr('href'))) > -1) {
+                $(this).addClass('active');
+            }
+        });
+    </script>
 
     <!-- <div class="modal fade show" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-modal="true"
         role="dialog">
