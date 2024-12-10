@@ -2,19 +2,26 @@
 <html lang="en">
 
 <head>
-    <!-- Meta Tags -->
+    <!-- Meta Tags First for Quick Loading -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <!-- Title -->
+    <!-- Load jQuery Early with defer -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" defer></script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function () {
+            $("#header").load("/header.html");
+            $("#footer").load("/footer.html");
+        });
+    </script>
+
+    <!-- Title and Meta Information -->
     <title>Welcome to RSSI</title>
-
-    <!-- Meta Information -->
-    <meta name="description" content="Empowering youth through education.">
-    <meta name="keywords" content="RSSI, education, donation, youth empowerment">
+    <meta content="Empowering youth through education." name="description">
+    <meta content="RSSI, education, donation, youth empowerment" name="keywords">
 
     <!-- Favicons -->
-    <link rel="icon" href="/img/favicon.ico">
+    <link href="/img/favicon.ico" rel="icon">
 
     <!-- Preconnects for Faster DNS Resolution -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,59 +40,26 @@
             rel="stylesheet">
     </noscript>
 
-    <!-- Vendor CSS Files -->
+    <!-- Vendor CSS Files (Include Important CSS Files First) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
-        media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="/vendor/glightbox/css/glightbox.min.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="/vendor/swiper/swiper-bundle.min.css" media="print" onload="this.media='all'">
-    <noscript>
-        <link rel="stylesheet" href="/vendor/glightbox/css/glightbox.min.css">
-        <link rel="stylesheet" href="/vendor/swiper/swiper-bundle.min.css">
-    </noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-    <!-- Template Main CSS -->
-    <link rel="stylesheet" href="/css/main.css">
+    <!-- Template Main CSS File -->
+    <link href="/css/main.css" rel="stylesheet">
 
-    <!-- Pace Preloader -->
-    <style>
-        .pace {
-            -webkit-pointer-events: none;
-            pointer-events: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
+    <!-- Google Tag (gtag.js) - Place After CSS to Ensure Fast Rendering -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11316670180"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'AW-11316670180');
+    </script>
 
-        .pace-inactive {
-            display: none;
-        }
-
-        .pace .pace-progress {
-            background: #f25560;
-            position: fixed;
-            z-index: 2000;
-            top: 0;
-            right: 100%;
-            width: 100%;
-            height: 2px;
-        }
-    </style>
-
-    <!-- Google Translator -->
-    <style>
-        #google_translate_element img {
-            width: fit-content;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
-
-    <!-- Critical CSS Inline -->
+    <!-- Inline Critical CSS for Quick Rendering -->
     <style>
         body {
             font-family: 'Open Sans', sans-serif;
@@ -128,25 +102,7 @@
         }
     </style>
 
-    <!-- Load jQuery Early -->
-    <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script defer>
-        document.addEventListener('DOMContentLoaded', function () {
-            $("#header").load("/header.html");
-            $("#footer").load("/footer.html");
-        });
-    </script>
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11316670180"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'AW-11316670180');
-    </script>
 </head>
-
 
 <body>
 
@@ -196,6 +152,10 @@
                 <div class="row gy-4">
                     <div class="col-lg-7 position-relative about-img" style="background-image: url(/img/about.jpg) ;"
                         data-aos="fade-up" data-aos-delay="150">
+                        <!-- <div class="call-us position-absolute">
+                            <h4>Book a Table</h4>
+                            <p>+1 5589 55488 55</p>
+                        </div> -->
                     </div>
                     <div class="col-lg-5 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
                         <div class="content ps-0 ps-lg-5">
@@ -234,9 +194,7 @@
         <!-- ======= Why Us Section ======= -->
         <section id="why-us" class="why-us section-bg">
             <div class="container" data-aos="fade-up">
-
                 <div class="row gy-4">
-
                     <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="why-box">
                             <h3>Why Choose RSSI?</h3>
@@ -287,12 +245,9 @@
                                 </div>
                             </div>
                             <!-- End Icon Box -->
-
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </section>
         <!-- End Why Us Section -->
@@ -343,14 +298,10 @@
                         </div>
                     </div>
                     <!-- End Stats Item -->
-
                 </div>
-
             </div>
         </section>
         <!-- End Stats Counter Section -->
-
-
 
         <!-- ======= Events Section ======= -->
         <section id="events" class="events">
@@ -412,7 +363,6 @@
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
-
             </div>
         </section>
         <!-- End Events Section -->
@@ -577,7 +527,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
         <!-- End Clients Section -->
@@ -660,21 +609,10 @@
                         </div>
                     </div>
                     <!-- End Chefs Member -->
-
                 </div>
-
             </div>
         </section>
         <!-- End Chefs Section -->
-
-        </div>
-
-        </div>
-        </section>
-        <!-- End Book A Table Section -->
-
-
-
     </main>
     <!-- End #main -->
     <!-- ======= Footer ======= -->
@@ -682,67 +620,85 @@
 
     <!-- End Footer -->
 
-    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
-    <!-- Vendor JS Files -->
+    <a href="javascript:void(0)" class="scroll-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
+
+    <script>
+        // Scroll-to-Top Functionality
+        document.querySelector('.scroll-top').addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Enables smooth scrolling
+            });
+        });
+
+        // Show/Hide Button Based on Scroll Position
+        const scrollTopButton = document.querySelector('.scroll-top');
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 200) { // Show button after scrolling 200px
+                scrollTopButton.style.display = 'flex';
+            } else {
+                scrollTopButton.style.display = 'none';
+            }
+        });
+
+        // Initially hide the button
+        scrollTopButton.style.display = 'none';
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"
+        defer></script>
     <script src="/vendor/glightbox/js/glightbox.min.js" defer></script>
     <script src="/vendor/purecounter/purecounter_vanilla.js" defer></script>
     <script src="/vendor/swiper/swiper-bundle.min.js" defer></script>
-
-    <!-- Template Main JS File -->
     <script src="/js/main.js" defer></script>
 
-    <!-- Typing Animation Script -->
     <script>
         const words = ["livelihood", "empowerment", "prosperity"];
         let currentWordIndex = 0;
-        let index = 0;
+        let charIndex = 0;
         let isDeleting = false;
-        let typeSpeed = 100;
         const typingElement = document.querySelector(".typing-animation");
 
         function type() {
             const currentWord = words[currentWordIndex];
+            typingElement.textContent = currentWord.substring(0, charIndex);
 
             if (isDeleting) {
-                typingElement.textContent = currentWord.slice(0, --index);
+                charIndex--;
             } else {
-                typingElement.textContent = currentWord.slice(0, ++index);
+                charIndex++;
             }
 
-            if (!isDeleting && index === currentWord.length) {
-                setTimeout(() => (isDeleting = true, type()), 2000);
-            } else if (isDeleting && index === 0) {
+            if (!isDeleting && charIndex === currentWord.length) {
+                setTimeout(() => (isDeleting = true), 2000); // Pause before deleting
+            } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 currentWordIndex = (currentWordIndex + 1) % words.length;
-                setTimeout(type, 500);
-            } else {
-                setTimeout(type, typeSpeed);
             }
-        }
 
+            setTimeout(type, isDeleting ? 50 : 100);
+        }
         type();
     </script>
 
-    <!-- Async ProveSource Code -->
     <script>
         !function (o, i) {
-            window.provesrc && window.console && console.error && console.error("ProveSource is included twice in this page."), provesrc = window.provesrc = {
-                dq: [], display: function () { this.dq.push(arguments) }
-            }, o._provesrcAsyncInit = function () {
-                provesrc.init({ apiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI2MjQ4Njc2ODMxY2YwODExZDU5OTVjNmIiLCJpYXQiOjE2NDg5MTIyMzJ9.6HuHEvBtmvfhXqTPrbGSTsd_L-6uLNIKai3lJfLpjd0", v: "0.0.4" })
+            window.provesrc && console.error && console.error("ProveSource is included twice in this page.");
+            provesrc = window.provesrc = { dq: [], display: function () { this.dq.push(arguments); } };
+            o._provesrcAsyncInit = function () {
+                provesrc.init({ apiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI2MjQ4Njc2ODMxY2YwODExZDU5OTVjNmIiLCJpYXQiOjE2NDg5MTIyMzJ9.6HuHEvBtmvfhXqTPrbGSTsd_L-6uLNIKai3lJfLpjd0", v: "0.0.4" });
             };
             var r = i.createElement("script");
-            r.type = "text/javascript", r.async = !0, r["ch" + "ar" + "set"] = "UTF-8", r.src = "https://cdn.provesrc.com/provesrc.js";
+            r.type = "text/javascript", r.async = !0, r.charset = "UTF-8", r.src = "https://cdn.provesrc.com/provesrc.js";
             var e = i.getElementsByTagName("script")[0];
-            e.parentNode.insertBefore(r, e)
+            e.parentNode.insertBefore(r, e);
         }(window, document);
     </script>
 
-    <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js" defer></script>
     <script>
         glowCookies.start('en', {
             analytics: 'G-S25QWTFJ2S',
