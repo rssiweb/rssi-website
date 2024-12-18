@@ -889,8 +889,11 @@
         </div>
     </div>
     <script>
-        const scriptURL = 'https://login.rssi.in/rssi-member/payment-api.php';
-        // const scriptURL = 'http://localhost:8082/rssi-member/payment-api.php';
+        // Determine the correct script URL based on the environment
+        const scriptURL = window.location.hostname === 'localhost'
+            ? 'http://localhost:8082/rssi-member/payment-api.php'
+            : 'https://login.rssi.in/rssi-member/payment-api.php';
+
         const admissionForm = document.getElementById("admission");
 
         document.getElementById("btnSubmit").addEventListener("click", async function (event) {

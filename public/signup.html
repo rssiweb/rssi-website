@@ -230,17 +230,20 @@
                                         Qualification:</label>
                                 </td>
                                 <td>
-                                    <select class="form-select" id="education-qualification" name="education-qualification" required>
+                                    <select class="form-select" id="education-qualification"
+                                        name="education-qualification" required>
                                         <option value="" disabled selected>Select your qualification</option>
                                         <option value="Bachelor Degree Regular">Bachelor Degree Regular</option>
-                                        <option value="Bachelor Degree Correspondence">Bachelor Degree Correspondence</option>
+                                        <option value="Bachelor Degree Correspondence">Bachelor Degree Correspondence
+                                        </option>
                                         <option value="Master Degree">Master Degree</option>
                                         <option value="PhD (Doctorate Degree)">PhD (Doctorate Degree)</option>
-                                        <option value="Post Doctorate or 5 years experience">Post Doctorate or 5 years experience</option>
+                                        <option value="Post Doctorate or 5 years experience">Post Doctorate or 5 years
+                                            experience</option>
                                         <option value="Culture, Art & Sports etc.">Culture, Art & Sports etc.</option>
                                         <option value="Class 12th Pass">Class 12th Pass</option>
                                     </select>
-                                    
+
                                 </td>
                             </tr>
                             <tr>
@@ -929,8 +932,12 @@
         </div>
     </div>
     <script>
-        // const scriptURL = 'https://login.rssi.in/rssi-member/payment-api.php';
-        const scriptURL = 'http://localhost:8082/rssi-member/payment-api.php';
+        // Determine the correct script URL based on the environment
+        const scriptURL = window.location.hostname === 'localhost'
+            ? 'http://localhost:8082/rssi-member/payment-api.php'
+            : 'https://login.rssi.in/rssi-member/payment-api.php';
+
+        console.log(`Using scriptURL: ${scriptURL}`);
         const signup = document.getElementById("signup");
 
         document.getElementById("btnSubmit").addEventListener("click", async function (event) {
@@ -998,7 +1005,7 @@
             const verifyForm = document.getElementById('emailForm'); // Reference to the email form
 
             // Send AJAX request
-            fetch('http://localhost:8082/rssi-member/payment-api.php', {
+            fetch(scriptURL, {
                 method: 'POST',
                 body: formData,
             })
