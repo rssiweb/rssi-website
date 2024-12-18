@@ -937,7 +937,6 @@
             ? 'http://localhost:8082/rssi-member/payment-api.php'
             : 'https://login.rssi.in/rssi-member/payment-api.php';
 
-        console.log(`Using scriptURL: ${scriptURL}`);
         const signup = document.getElementById("signup");
 
         document.getElementById("btnSubmit").addEventListener("click", async function (event) {
@@ -1015,7 +1014,7 @@
                         alert('This email is already registered. Please use another email.');
                         emailInput.value = ''; // Clear the input field
                     } else {
-                        alert('Email not found. You can proceed with registration.');
+                        alert('No account is linked to this email address. Please proceed with registration.');
 
                         // Make the signup form visible and enabled
                         signupForm.style.display = 'block'; // Show the signup form
