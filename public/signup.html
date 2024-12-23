@@ -168,20 +168,6 @@
                                     <span id="contactnumber_error" style="color: red;"></span>
                                 </td>
                             </tr>
-
-                            <tr>
-                                <td>
-                                    <label for="email">Email
-                                        Address:</label>
-                                </td>
-                                <td><input type="email" class="form-control" id="email" name="email"
-                                        placeholder="Enter email address" required readonly>
-                                    <small id="email-help" class="form-text text-muted">Please
-                                        enter a
-                                        valid email
-                                        address.</small>
-                                </td>
-                            </tr>
                             <tr>
                                 <td>
                                     <label for="postal-address">Current Address:</label>
@@ -937,6 +923,7 @@
             ? 'http://localhost:8082/rssi-member/payment-api.php'
             : 'https://login.rssi.in/rssi-member/payment-api.php';
 
+        const emailForm = document.getElementById('emailForm');
         const signup = document.getElementById("signup");
 
         document.getElementById("btnSubmit").addEventListener("click", async function (event) {
@@ -962,11 +949,17 @@
                 }
             });
             myModal.show();
+            const email = document.getElementById('email_verify').value; // Get the email value
 
+            // Create a new FormData object, starting from the signup form
+            const formData = new FormData(signup);
+
+            // Add the email value to the FormData object
+            formData.append('email', email.toLowerCase()); // Ensure email is in lowercase
             try {
                 const response = await fetch(scriptURL, {
                     method: 'POST',
-                    body: new FormData(signup)
+                    body: formData
                 });
                 const result = await response.json();
 
@@ -1000,7 +993,6 @@
             const formData = new FormData(this); // Get the form data
             const emailInput = document.getElementById('email_verify');
             const signupForm = document.getElementById('signup'); // Reference to the signup form
-            const signupEmailInput = signupForm.querySelector('#email'); // Reference to the email input in the signup form
             const verifyForm = document.getElementById('emailForm'); // Reference to the email form
 
             // Send AJAX request
@@ -1019,9 +1011,6 @@
                         // Make the signup form visible and enabled
                         signupForm.style.display = 'block'; // Show the signup form
                         signupForm.removeAttribute('disabled'); // Enable the signup form
-
-                        // Populate the email field in the signup form
-                        signupEmailInput.value = emailInput.value.toLowerCase();
 
                         // Disable all elements in the verify form
                         Array.from(verifyForm.elements).forEach(element => {
