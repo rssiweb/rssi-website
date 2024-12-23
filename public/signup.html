@@ -1021,7 +1021,7 @@
                         signupForm.removeAttribute('disabled'); // Enable the signup form
 
                         // Populate the email field in the signup form
-                        signupEmailInput.value = emailInput.value;
+                        signupEmailInput.value = emailInput.value.toLowerCase();
 
                         // Disable all elements in the verify form
                         Array.from(verifyForm.elements).forEach(element => {
