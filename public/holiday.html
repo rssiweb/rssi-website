@@ -30,7 +30,8 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="/vendor/aos/aos.css" rel="stylesheet">
     <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
@@ -75,7 +76,21 @@
 
         <section class="sample-page">
             <div class="container">
-                <h2 class="text-center mb-4">Holiday List 2024</h2>
+                <!-- <h2 class="text-center mb-4">Holiday List</h2> -->
+
+                <!-- Year Filter with Automatic Data Fetch -->
+                <div class="d-flex justify-content-end align-items-center mb-4">
+                    <div class="me-3">
+                        <label for="holiday-year" class="form-label">Select Year</label>
+                    </div>
+                    <div>
+                        <select id="holiday-year" class="form-select">
+                            <!-- Options will be added dynamically -->
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Table for holidays -->
                 <table class="table table-bordered table-striped">
                     <thead class="thead-dark">
                         <tr>
@@ -84,114 +99,12 @@
                             <th>Holiday</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>January 1</td>
-                            <td>Monday</td>
-                            <td>New Year’s Day</td>
-                        </tr>
-                        <tr>
-                            <td>January 26 #</td>
-                            <td>Friday</td>
-                            <td>Republic Day</td>
-                        </tr>
-                        <tr>
-                            <td>March 8</td>
-                            <td>Friday</td>
-                            <td>Maha Shivaratri</td>
-                        </tr>
-                        <tr>
-                            <td>March 25</td>
-                            <td>Monday</td>
-                            <td>Holi</td>
-                        </tr>
-                        <tr>
-                            <td>March 29</td>
-                            <td>Friday</td>
-                            <td>Good Friday</td>
-                        </tr>
-                        <tr>
-                            <td>April 10</td>
-                            <td>Wednesday</td>
-                            <td>Idul Fitr</td>
-                        </tr>
-                        <tr>
-                            <td>April 14</td>
-                            <td>Sunday</td>
-                            <td>Dr Ambedkar Jayanti</td>
-                        </tr>
-                        <tr>
-                            <td>April 17</td>
-                            <td>Wednesday</td>
-                            <td>Ram Navami</td>
-                        </tr>
-                        <tr>
-                            <td>June 17</td>
-                            <td>Monday</td>
-                            <td>Bakrid / Eid al Adha</td>
-                        </tr>
-                        <tr>
-                            <td>August 15 #</td>
-                            <td>Thursday</td>
-                            <td>Independence Day</td>
-                        </tr>
-                        <tr>
-                            <td>August 19</td>
-                            <td>Monday</td>
-                            <td>Raksha Bandhan</td>
-                        </tr>
-                        <tr>
-                            <td>August 26</td>
-                            <td>Monday</td>
-                            <td>Janmashtami</td>
-                        </tr>
-                        <tr>
-                            <td>October 2</td>
-                            <td>Wednesday</td>
-                            <td>Gandhi Jayanti</td>
-                        </tr>
-                        <tr>
-                            <td>October 12</td>
-                            <td>Saturday</td>
-                            <td>Maha Navami</td>
-                        </tr>
-                        <tr>
-                            <td>October 13</td>
-                            <td>Sunday</td>
-                            <td>Vijaya Dashami</td>
-                        </tr>
-                        <tr>
-                            <td>November 1</td>
-                            <td>Friday</td>
-                            <td>Diwali</td>
-                        </tr>
-                        <tr>
-                            <td>November 2</td>
-                            <td>Saturday</td>
-                            <td>Deepavali Holiday</td>
-                        </tr>
-                        <tr>
-                            <td>November 3</td>
-                            <td>Sunday</td>
-                            <td>Bhai Dooj</td>
-                        </tr>
-                        <tr>
-                            <td>November 7 ##</td>
-                            <td>Thursday</td>
-                            <td>Chhath Puja</td>
-                        </tr>
-                        <tr>
-                            <td>November 15</td>
-                            <td>Friday</td>
-                            <td>Guru Nanak Jayanti</td>
-                        </tr>
-                        <tr>
-                            <td>December 25</td>
-                            <td>Wednesday</td>
-                            <td>Christmas Day</td>
-                        </tr>
+                    <tbody id="holiday-table-body">
+                        <!-- Data will be loaded via AJAX -->
                     </tbody>
                 </table>
+
+                <!-- Notes section -->
                 <div class="mt-4">
                     <h5>Notes:</h5>
                     <ul>
@@ -204,6 +117,93 @@
                 </div>
             </div>
         </section>
+
+        <!-- Include jQuery (if not included already) -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                // Dynamic script URL based on the environment (local or production)
+                const scriptURL = window.location.hostname === 'localhost'
+                    ? 'http://localhost:8082/rssi-member/payment-api.php'
+                    : 'https://login.rssi.in/rssi-member/payment-api.php';
+
+                // Get the year from the URL, fallback to the current year if not present
+                const urlParams = new URLSearchParams(window.location.search);
+                let selectedYear = urlParams.has('year') ? parseInt(urlParams.get('year')) : new Date().getFullYear();
+
+                // Populate year dropdown with current year, next year, and past 3 years
+                const currentYear = new Date().getFullYear();
+                const nextYear = currentYear + 1;
+                const pastYears = [currentYear - 1, currentYear - 2, currentYear - 3];
+
+                // Populate the dropdown
+                $('#holiday-year').append(`<option value="${nextYear}">${nextYear}</option>`);
+                $('#holiday-year').append(`<option value="${currentYear}">${currentYear}</option>`);
+                pastYears.forEach(year => {
+                    $('#holiday-year').append(`<option value="${year}">${year}</option>`);
+                });
+                // Set the selected year based on the URL or default to current year
+                $('#holiday-year').val(selectedYear);
+
+                // On page load, fetch holidays for the selected year
+                fetchHolidays(selectedYear);
+
+                // Fetch holidays when the user selects a year
+                $('#holiday-year').on('change', function () {
+                    const selectedYear = $(this).val();
+                    fetchHolidays(selectedYear);
+
+                    // Update the URL with the selected year without reloading the page
+                    const newUrl = window.location.pathname + `?year=${selectedYear}`;
+                    history.pushState(null, '', newUrl);
+                });
+
+                // Function to fetch holidays using AJAX
+                function fetchHolidays(year) {
+                    $.ajax({
+                        url: scriptURL,
+                        type: 'POST',  // Make it a POST request as per your requirement
+                        data: { year: year, 'form-type': 'holiday' },
+                        success: function (response) {
+                            const data = JSON.parse(response);
+                            $('#holiday-table-body').empty();
+                            if (data.length > 0) {
+                                data.forEach(function (holiday) {
+                                    const formattedDate = formatDate(holiday.holiday_date);
+                                    $('#holiday-table-body').append(`
+                            <tr>
+                                <td>${formattedDate}</td>
+                                <td>${holiday.day}</td>
+                                <td>${holiday.holiday_name}</td>
+                            </tr>
+                        `);
+                                });
+                            } else {
+                                $('#holiday-table-body').append(`
+                        <tr>
+                            <td colspan="3">No holidays found for this year.</td>
+                        </tr>
+                    `);
+                            }
+                        },
+                        error: function () {
+                            alert('Error fetching holiday data. Please try again.');
+                        }
+                    });
+                }
+
+                // Function to format date in dd/mm/yyyy format
+                function formatDate(dateStr) {
+                    const date = new Date(dateStr);
+                    const day = String(date.getDate()).padStart(2, '0');
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const year = date.getFullYear();
+                    return `${day}/${month}/${year}`;
+                }
+            });
+
+        </script>
         <!-- End Gallery Section -->
     </main>
     <!-- End #main -->
@@ -217,7 +217,9 @@
     <!--<div id="preloader"></div>-->
 
     <!-- Vendor JS Files -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
     <script src="/vendor/aos/aos.js"></script>
     <script src="/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="/vendor/purecounter/purecounter_vanilla.js"></script>
