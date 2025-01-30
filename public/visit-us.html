@@ -261,8 +261,17 @@
                                 <small id="type-of-admission-help" class="form-text text-muted">The one-time application
                                     fee is Rs. 200 and must be paid during registration.</small>
                             </div>
-                            <p>
+                            <!-- <p>
                                 Click <a href="#" data-bs-toggle="modal" data-bs-target="#popup">here</a> to
+                                complete the payment. In case of any issues with payment completion or providing a valid
+                                payment document, your application will be temporarily held for two days to ensure
+                                everything is in order. If payment isn't received within this time, unfortunately, the
+                                held request will be cancelled.
+                            </p> -->
+                            <p>
+                                Click <a
+                                    href="https://secure.paytmpayments.com/link/paymentForm/80195/LL_746191061" target="_blank">here</a>
+                                to
                                 complete the payment. In case of any issues with payment completion or providing a valid
                                 payment document, your application will be temporarily held for two days to ensure
                                 everything is in order. If payment isn't received within this time, unfortunately, the
@@ -291,23 +300,23 @@
                     <input type="hidden" name="contactnumber_verify_input">
                 </form>
                 <!-- Popup -->
-                <div class="modal fade" id="popup" tabindex="-1" aria-labelledby="popupLabel" aria-hidden="true">
+                <!-- <div class="modal fade" id="popup" tabindex="-1" aria-labelledby="popupLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
-                            <!-- Header -->
+
                             <div class="modal-header">
                                 <p class="modal-title" id="popupLabel">The one-time application fee is Rs. 200 and must
                                     be paid during registration.</p>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <!-- Body -->
+
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="card">
                                             <div class="card-body">
-                                                <!-- <h5 class="card-title">Payment Details</h5> -->
+
                                                 <ul class="list-group list-group-flush">
                                                     <li class="list-group-item">Account Number: <b>004201033772</b></li>
                                                     <li class="list-group-item">A/C Name: RINA SHIKSHA SAHAYAK
@@ -331,242 +340,245 @@
                                 </div>
 
                             </div>
-                            <script>
-                                var contactNumberInput = document.getElementById("contactnumber_verify");
-                                var contactNumberVerifyInput = document.getElementsByName("contactnumber_verify_input")[0];
-                                var visitorNameInput = document.getElementById("visitorName");
-                                var visitorEmailInput = document.getElementById("visitorEmail");
-                                var telInput = document.getElementById("tel");
-                                var verificationResultDiv = document.getElementById("verificationResult");
-                                var visitButton = document.getElementById('visitButton');
-                                var newvisitorInfo = document.getElementById('newvisitorInfo');
-
-                                contactNumberInput.addEventListener("input", function (event) {
-                                    contactNumberVerifyInput.value = this.value;
-                                });
-
-                                // Dynamically set the base script URL based on the environment
-                                const scriptURL = window.location.hostname === 'localhost'
-                                    ? 'http://localhost:8082/rssi-member/payment-api.php'
-                                    : 'https://login.rssi.in/rssi-member/payment-api.php';
-
-                                // Function to update the 'required' attribute of fields based on visibility
-                                function updateRequiredFields() {
-                                    const requiredFields = document.querySelectorAll('[required]');
-
-                                    requiredFields.forEach(field => {
-                                        const label = document.querySelector(`label[for="${field.id}"]`);
-                                        if (label) {
-                                            const hasAsterisk = label.querySelector('.required-asterisk');
-
-                                            if (field.required && !hasAsterisk) {
-                                                const asterisk = document.createElement('span');
-                                                asterisk.className = 'required-asterisk';
-                                                asterisk.textContent = ' *';
-                                                label.appendChild(asterisk);
-                                            } else if ((!field.offsetParent || !field.required) && hasAsterisk) {
-                                                label.removeChild(hasAsterisk);
-                                                field.required = false;
-                                            }
-                                        }
-                                    });
-                                }
-
-                                // Call the function initially to set up the required fields
-                                updateRequiredFields();
-
-                                // Function to handle the "verifybutton" click event
-                                function handleVerifyButtonClick(event) {
-                                    event.preventDefault(); // prevent default form submission
-
-                                    fetch(scriptURL, {
-                                        method: 'POST',
-                                        body: new FormData(document.forms['get_details_form'])
-                                    })
-                                        .then(response => response.json())
-                                        .then(data => {
-                                            if (data.status === 'success') {
-                                                visitorNameInput.value = data.data.fullname;
-                                                visitorEmailInput.value = data.data.email;
-                                                telInput.value = data.data.tel;
-                                                verificationResultDiv.style.display = "block"; // Show the result div
-                                                visitinfo.style.display = 'block';
-                                                visitButton.disabled = false;
-                                                alert("User data fetched successfully!");
-                                            } else if (data.status === 'no_records') {
-                                                verificationResultDiv.style.display = "none"; // Hide the result div
-                                                visitinfo.style.display = 'none';
-                                                visitButton.disabled = true;
-                                                visitorNameInput.value = "";
-                                                visitorEmailInput.value = "";
-                                                telInput.value = "";
-                                                alert("No records found in the database. Register as a new user.");
-                                            } else {
-                                                console.log('Error:', data.message);
-                                                alert("Error retrieving user data. Please try again later or contact support.");
-                                            }
-
-                                            // Call the updateRequiredFields() function after handling the verify button click
-                                            updateRequiredFields();
-                                        })
-                                        .catch(error => {
-                                            console.log('Error:', error);
-                                            alert("Error fetching user data. Please try again later or contact support.");
-
-                                            // Call the updateRequiredFields() function after handling the verify button click
-                                            updateRequiredFields();
-                                        });
-                                }
-
-                                // Add event listener to the "verifybutton" element
-                                document.getElementById("verifybutton").addEventListener("click", handleVerifyButtonClick);
-
-
-                                // JavaScript function to toggle visitor sections based on visitor type
-                                function togglevisitorSections() {
-                                    const visitorType = document.getElementById('visitorType').value;
-                                    const existingvisitorInfo = document.getElementById('existingvisitorInfo');
-                                    const newvisitorInfo = document.getElementById('newvisitorInfo');
-                                    const verificationResult = document.getElementById('verificationResult');
-                                    const visitinfoSection = document.getElementById('visitinfo');
-
-                                    if (visitorType === 'existing') {
-                                        existingvisitorInfo.style.display = 'block';
-                                        newvisitorInfo.style.display = 'none';
-                                        verificationResult.style.display = 'none';
-                                        visitinfoSection.style.display = 'none';
-                                        visitButton.disabled = true;
-                                    } else if (visitorType === 'new') {
-                                        existingvisitorInfo.style.display = 'none';
-                                        newvisitorInfo.style.display = 'block';
-                                        verificationResult.style.display = 'none';
-                                        visitinfoSection.style.display = 'block';
-                                        visitButton.disabled = false;
-                                    } else {
-                                        existingvisitorInfo.style.display = 'none';
-                                        newvisitorInfo.style.display = 'none';
-                                        verificationResult.style.display = 'none';
-                                        visitinfoSection.style.display = 'none';
-                                        visitButton.disabled = true;
-                                    }
-                                }
-                                // Function to handle the visitor type change event
-                                function handlevisitorTypeChange() {
-                                    const visitorType = document.getElementById("visitorType").value;
-                                    const fullNameInput = document.getElementById("fullName");
-                                    const emailInput = document.getElementById("email");
-                                    const contactNumberNewInput = document.getElementById("contactNumberNew");
-                                    const nationalIdInput = document.getElementById("nationalId");
-                                    const photoInput = document.getElementById("photo");
-
-                                    // Set required attribute based on the visitor type
-                                    if (visitorType === "existing") {
-                                        fullNameInput.removeAttribute("required");
-                                        emailInput.removeAttribute("required");
-                                        contactNumberNewInput.removeAttribute("required");
-                                        nationalIdInput.removeAttribute("required");
-                                        photoInput.removeAttribute("required");
-                                    } else if (visitorType === "new") {
-                                        fullNameInput.setAttribute("required", true);
-                                        emailInput.setAttribute("required", true);
-                                        contactNumberNewInput.setAttribute("required", true);
-                                        nationalIdInput.setAttribute("required", true);
-                                        photoInput.setAttribute("required", true);
-                                    }
-                                }
-
-                                // Add event listener to the "visitorType" element
-                                document.getElementById("visitorType").addEventListener("change", handlevisitorTypeChange);
-                            </script>
-                            <script>
-                                // Function to show/hide and mark/unmark fields as required based on the selected value of the radio button
-                                function toggleFields() {
-                                    var visitPurpose = document.querySelector('input[name="visitpurpose"]:checked').value;
-                                    var additionalFields = document.getElementById('additionalFields');
-
-                                    if (visitPurpose === 'College/University project as a part of community service') {
-                                        additionalFields.style.display = 'block';
-
-                                        // Mark fields as required
-                                        document.getElementById('institutename').setAttribute('required', '');
-                                        document.getElementById('enrollmentnumber').setAttribute('required', '');
-                                        document.getElementById('instituteid').setAttribute('required', '');
-                                        document.getElementById('mentoremail').setAttribute('required', '');
-                                        document.getElementById('paymentdoc').setAttribute('required', '');
-                                    } else {
-                                        additionalFields.style.display = 'none';
-
-                                        // Remove required attribute
-                                        document.getElementById('institutename').removeAttribute('required');
-                                        document.getElementById('enrollmentnumber').removeAttribute('required');
-                                        document.getElementById('instituteid').removeAttribute('required');
-                                        document.getElementById('mentoremail').removeAttribute('required');
-                                        document.getElementById('paymentdoc').removeAttribute('required');
-                                    }
-                                    // Call the updateRequiredFields() function after handling the verify button click
-                                    updateRequiredFields();
-                                }
-
-                                // Add event listener to radio buttons
-                                var radioButtons = document.querySelectorAll('input[name="visitpurpose"]');
-                                radioButtons.forEach(function (radioButton) {
-                                    radioButton.addEventListener('change', toggleFields);
-                                });
-                            </script>
-                            <script>
-                                const visitorForm = document.getElementById("visitorInfoForm");
-
-                                document.getElementById("visitButton").addEventListener("click", async function (event) {
-                                    event.preventDefault(); // Prevent default form submission
-
-                                    if (!visitorForm.checkValidity()) {
-                                        visitorForm.reportValidity(); // Show the default validation messages
-                                        return;
-                                    }
-
-                                    // Disable the donate button immediately upon form submission
-                                    this.disabled = true;
-                                    // Show the Bootstrap modal
-                                    const myModal = new bootstrap.Modal(document.getElementById("myModal"), {
-                                        backdrop: 'static',
-                                        keyboard: false
-                                    });
-                                    myModal.show();
-
-                                    try {
-                                        const response = await fetch(scriptURL, {
-                                            method: 'POST',
-                                            body: new FormData(visitorForm)
-                                        });
-                                        const result = await response.json();
-
-                                        console.log("API Response:", result); // For testing purposes, log the entire response
-
-                                        if (!result.error) {
-                                            alert(`Submitted successfully! visitor reference ID: ${result.visitorId}`);
-                                            visitorForm.reset(); // Reset the form after successful submission
-                                            location.reload(); // Reload the page after successful submission
-                                        } else {
-                                            if (result.errorMessage === "") {
-                                                alert("Error occurred during form submission. Please try again later.");
-                                            } else if (result.errorMessage === "already_registered") {
-                                                alert("Oops! You are already registered in our database. Please proceed as an existing visitor.");
-                                            } else {
-                                                alert("Unknown error occurred during form submission.");
-                                            }
-                                        }
-                                    } catch (error) {
-                                        console.error(error);
-                                        alert("Error occurred during form submission. Please try again later.");
-                                    } finally {
-                                        // Re-enable the donate button after the form submission process is finished
-                                        this.disabled = false;
-                                        myModal.hide();
-                                    }
-                                });
-                            </script>
-
                         </div>
+                    </div>
+                </div> -->
+                <script>
+                    var contactNumberInput = document.getElementById("contactnumber_verify");
+                    var contactNumberVerifyInput = document.getElementsByName("contactnumber_verify_input")[0];
+                    var visitorNameInput = document.getElementById("visitorName");
+                    var visitorEmailInput = document.getElementById("visitorEmail");
+                    var telInput = document.getElementById("tel");
+                    var verificationResultDiv = document.getElementById("verificationResult");
+                    var visitButton = document.getElementById('visitButton');
+                    var newvisitorInfo = document.getElementById('newvisitorInfo');
+
+                    contactNumberInput.addEventListener("input", function (event) {
+                        contactNumberVerifyInput.value = this.value;
+                    });
+
+                    // Dynamically set the base script URL based on the environment
+                    const scriptURL = window.location.hostname === 'localhost'
+                        ? 'http://localhost:8082/rssi-member/payment-api.php'
+                        : 'https://login.rssi.in/rssi-member/payment-api.php';
+
+                    // Function to update the 'required' attribute of fields based on visibility
+                    function updateRequiredFields() {
+                        const requiredFields = document.querySelectorAll('[required]');
+
+                        requiredFields.forEach(field => {
+                            const label = document.querySelector(`label[for="${field.id}"]`);
+                            if (label) {
+                                const hasAsterisk = label.querySelector('.required-asterisk');
+
+                                if (field.required && !hasAsterisk) {
+                                    const asterisk = document.createElement('span');
+                                    asterisk.className = 'required-asterisk';
+                                    asterisk.textContent = ' *';
+                                    label.appendChild(asterisk);
+                                } else if ((!field.offsetParent || !field.required) && hasAsterisk) {
+                                    label.removeChild(hasAsterisk);
+                                    field.required = false;
+                                }
+                            }
+                        });
+                    }
+
+                    // Call the function initially to set up the required fields
+                    updateRequiredFields();
+
+                    // Function to handle the "verifybutton" click event
+                    function handleVerifyButtonClick(event) {
+                        event.preventDefault(); // prevent default form submission
+
+                        fetch(scriptURL, {
+                            method: 'POST',
+                            body: new FormData(document.forms['get_details_form'])
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.status === 'success') {
+                                    visitorNameInput.value = data.data.fullname;
+                                    visitorEmailInput.value = data.data.email;
+                                    telInput.value = data.data.tel;
+                                    verificationResultDiv.style.display = "block"; // Show the result div
+                                    visitinfo.style.display = 'block';
+                                    visitButton.disabled = false;
+                                    alert("User data fetched successfully!");
+                                } else if (data.status === 'no_records') {
+                                    verificationResultDiv.style.display = "none"; // Hide the result div
+                                    visitinfo.style.display = 'none';
+                                    visitButton.disabled = true;
+                                    visitorNameInput.value = "";
+                                    visitorEmailInput.value = "";
+                                    telInput.value = "";
+                                    alert("No records found in the database. Register as a new user.");
+                                } else {
+                                    console.log('Error:', data.message);
+                                    alert("Error retrieving user data. Please try again later or contact support.");
+                                }
+
+                                // Call the updateRequiredFields() function after handling the verify button click
+                                updateRequiredFields();
+                            })
+                            .catch(error => {
+                                console.log('Error:', error);
+                                alert("Error fetching user data. Please try again later or contact support.");
+
+                                // Call the updateRequiredFields() function after handling the verify button click
+                                updateRequiredFields();
+                            });
+                    }
+
+                    // Add event listener to the "verifybutton" element
+                    document.getElementById("verifybutton").addEventListener("click", handleVerifyButtonClick);
+
+
+                    // JavaScript function to toggle visitor sections based on visitor type
+                    function togglevisitorSections() {
+                        const visitorType = document.getElementById('visitorType').value;
+                        const existingvisitorInfo = document.getElementById('existingvisitorInfo');
+                        const newvisitorInfo = document.getElementById('newvisitorInfo');
+                        const verificationResult = document.getElementById('verificationResult');
+                        const visitinfoSection = document.getElementById('visitinfo');
+
+                        if (visitorType === 'existing') {
+                            existingvisitorInfo.style.display = 'block';
+                            newvisitorInfo.style.display = 'none';
+                            verificationResult.style.display = 'none';
+                            visitinfoSection.style.display = 'none';
+                            visitButton.disabled = true;
+                        } else if (visitorType === 'new') {
+                            existingvisitorInfo.style.display = 'none';
+                            newvisitorInfo.style.display = 'block';
+                            verificationResult.style.display = 'none';
+                            visitinfoSection.style.display = 'block';
+                            visitButton.disabled = false;
+                        } else {
+                            existingvisitorInfo.style.display = 'none';
+                            newvisitorInfo.style.display = 'none';
+                            verificationResult.style.display = 'none';
+                            visitinfoSection.style.display = 'none';
+                            visitButton.disabled = true;
+                        }
+                    }
+                    // Function to handle the visitor type change event
+                    function handlevisitorTypeChange() {
+                        const visitorType = document.getElementById("visitorType").value;
+                        const fullNameInput = document.getElementById("fullName");
+                        const emailInput = document.getElementById("email");
+                        const contactNumberNewInput = document.getElementById("contactNumberNew");
+                        const nationalIdInput = document.getElementById("nationalId");
+                        const photoInput = document.getElementById("photo");
+
+                        // Set required attribute based on the visitor type
+                        if (visitorType === "existing") {
+                            fullNameInput.removeAttribute("required");
+                            emailInput.removeAttribute("required");
+                            contactNumberNewInput.removeAttribute("required");
+                            nationalIdInput.removeAttribute("required");
+                            photoInput.removeAttribute("required");
+                        } else if (visitorType === "new") {
+                            fullNameInput.setAttribute("required", true);
+                            emailInput.setAttribute("required", true);
+                            contactNumberNewInput.setAttribute("required", true);
+                            nationalIdInput.setAttribute("required", true);
+                            photoInput.setAttribute("required", true);
+                        }
+                    }
+
+                    // Add event listener to the "visitorType" element
+                    document.getElementById("visitorType").addEventListener("change", handlevisitorTypeChange);
+                </script>
+                <script>
+                    // Function to show/hide and mark/unmark fields as required based on the selected value of the radio button
+                    function toggleFields() {
+                        var visitPurpose = document.querySelector('input[name="visitpurpose"]:checked').value;
+                        var additionalFields = document.getElementById('additionalFields');
+
+                        if (visitPurpose === 'College/University project as a part of community service') {
+                            additionalFields.style.display = 'block';
+
+                            // Mark fields as required
+                            document.getElementById('institutename').setAttribute('required', '');
+                            document.getElementById('enrollmentnumber').setAttribute('required', '');
+                            document.getElementById('instituteid').setAttribute('required', '');
+                            document.getElementById('mentoremail').setAttribute('required', '');
+                            document.getElementById('paymentdoc').setAttribute('required', '');
+                        } else {
+                            additionalFields.style.display = 'none';
+
+                            // Remove required attribute
+                            document.getElementById('institutename').removeAttribute('required');
+                            document.getElementById('enrollmentnumber').removeAttribute('required');
+                            document.getElementById('instituteid').removeAttribute('required');
+                            document.getElementById('mentoremail').removeAttribute('required');
+                            document.getElementById('paymentdoc').removeAttribute('required');
+                        }
+                        // Call the updateRequiredFields() function after handling the verify button click
+                        updateRequiredFields();
+                    }
+
+                    // Add event listener to radio buttons
+                    var radioButtons = document.querySelectorAll('input[name="visitpurpose"]');
+                    radioButtons.forEach(function (radioButton) {
+                        radioButton.addEventListener('change', toggleFields);
+                    });
+                </script>
+                <script>
+                    const visitorForm = document.getElementById("visitorInfoForm");
+
+                    document.getElementById("visitButton").addEventListener("click", async function (event) {
+                        event.preventDefault(); // Prevent default form submission
+
+                        if (!visitorForm.checkValidity()) {
+                            visitorForm.reportValidity(); // Show the default validation messages
+                            return;
+                        }
+
+                        // Disable the donate button immediately upon form submission
+                        this.disabled = true;
+                        // Show the Bootstrap modal
+                        const myModal = new bootstrap.Modal(document.getElementById("myModal"), {
+                            backdrop: 'static',
+                            keyboard: false
+                        });
+                        myModal.show();
+
+                        try {
+                            const response = await fetch(scriptURL, {
+                                method: 'POST',
+                                body: new FormData(visitorForm)
+                            });
+                            const result = await response.json();
+
+                            console.log("API Response:", result); // For testing purposes, log the entire response
+
+                            if (!result.error) {
+                                alert(`Submitted successfully! visitor reference ID: ${result.visitorId}`);
+                                visitorForm.reset(); // Reset the form after successful submission
+                                location.reload(); // Reload the page after successful submission
+                            } else {
+                                if (result.errorMessage === "") {
+                                    alert("Error occurred during form submission. Please try again later.");
+                                } else if (result.errorMessage === "already_registered") {
+                                    alert("Oops! You are already registered in our database. Please proceed as an existing visitor.");
+                                } else {
+                                    alert("Unknown error occurred during form submission.");
+                                }
+                            }
+                        } catch (error) {
+                            console.error(error);
+                            alert("Error occurred during form submission. Please try again later.");
+                        } finally {
+                            // Re-enable the donate button after the form submission process is finished
+                            this.disabled = false;
+                            myModal.hide();
+                        }
+                    });
+                </script>
+
+            </div>
         </section>
         <!-- Bootstrap Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
