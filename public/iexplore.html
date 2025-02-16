@@ -258,6 +258,7 @@
         <div class="container">
             <h2 class="text-center mb-5">Pricing Plans</h2>
             <div class="row">
+                <!-- Basic Plan -->
                 <div class="col-md-4">
                     <div class="card text-center shadow-sm">
                         <div class="card-header bg-primary text-white">
@@ -271,10 +272,16 @@
                                 <li>Basic analytics</li>
                                 <li>Email support</li>
                             </ul>
-                            <a href="#" class="btn btn-primary">Get Started</a>
+                            <!-- Button to trigger modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#basicPlanModal">
+                                Get Started
+                            </button>
                         </div>
                     </div>
                 </div>
+
+                <!-- Pro Plan -->
                 <div class="col-md-4">
                     <div class="card text-center shadow-sm">
                         <div class="card-header bg-success text-white">
@@ -288,10 +295,16 @@
                                 <li>Advanced analytics</li>
                                 <li>Priority support</li>
                             </ul>
-                            <a href="#" class="btn btn-success">Get Started</a>
+                            <!-- Button to trigger modal -->
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                data-bs-target="#proPlanModal">
+                                Get Started
+                            </button>
                         </div>
                     </div>
                 </div>
+
+                <!-- Enterprise Plan -->
                 <div class="col-md-4">
                     <div class="card text-center shadow-sm">
                         <div class="card-header bg-dark text-white">
@@ -305,7 +318,81 @@
                                 <li>Custom analytics</li>
                                 <li>Dedicated support</li>
                             </ul>
-                            <a href="#" class="btn btn-dark">Contact Us</a>
+                            <!-- Button to trigger modal -->
+                            <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                                data-bs-target="#enterprisePlanModal">
+                                Contact Us
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modals for Each Plan -->
+            <!-- Basic Plan Modal -->
+            <div class="modal fade" id="basicPlanModal" tabindex="-1" aria-labelledby="basicPlanModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="basicPlanModalLabel">Basic Plan</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>You are interested in the <strong>Basic Plan</strong>.</p>
+                            <p>For further assistance, please feel free to reach out to us:</p>
+                            <ul>
+                                <li>Phone: <a href="tel:7980168159">7980168159</a></li>
+                                <li>Email: <a href="mailto:info@rssi.in">info@rssi.in</a></li>
+                            </ul>
+                            <p>Alternatively, you can fill out the contact form below, and our team will get in touch
+                                with you shortly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pro Plan Modal -->
+            <div class="modal fade" id="proPlanModal" tabindex="-1" aria-labelledby="proPlanModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="proPlanModalLabel">Pro Plan</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>You are interested in the <strong>Pro Plan</strong>.</p>
+                            <p>For further assistance, please feel free to reach out to us:</p>
+                            <ul>
+                                <li>Phone: <a href="tel:7980168159">7980168159</a></li>
+                                <li>Email: <a href="mailto:info@rssi.in">info@rssi.in</a></li>
+                            </ul>
+                            <p>Alternatively, you can fill out the contact form below, and our team will get in touch
+                                with you shortly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enterprise Plan Modal -->
+            <div class="modal fade" id="enterprisePlanModal" tabindex="-1" aria-labelledby="enterprisePlanModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="enterprisePlanModalLabel">Enterprise Plan</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>You are interested in the <strong>Enterprise Plan</strong>.</p>
+                            <p>For further assistance, please feel free to reach out to us:</p>
+                            <ul>
+                                <li>Phone: <a href="tel:7980168159">7980168159</a></li>
+                                <li>Email: <a href="mailto:info@rssi.in">info@rssi.in</a></li>
+                            </ul>
+                            <p>Alternatively, you can fill out the contact form below, and our team will get in touch
+                                with you shortly.</p>
                         </div>
                     </div>
                 </div>
@@ -318,7 +405,8 @@
         <div class="container text-center">
             <h2 class="mb-4">Try iExplore Demo</h2>
             <p class="lead mb-4">Experience the power of iExplore with our interactive demo.</p>
-            <a href="https://demo.iexplore.com" class="btn btn-primary btn-lg" target="_blank">Launch Demo</a>
+            <a href="https://login.rssi.in/iexplore/home.php" class="btn btn-primary btn-lg" target="_blank">Launch
+                Demo</a>
         </div>
     </section>
 
@@ -326,34 +414,134 @@
     <section id="contact" class="py-5">
         <div class="container">
             <h2 class="text-center mb-5">Contact Us</h2>
-            <form id="contactForm" class="row g-3">
-                <div class="col-md-6">
-                    <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+            <form action="#" method="POST" name="contactForm" id="contactForm">
+                <input type="hidden" class="form-control" name="form-type" value="contact_Form">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name"
+                        required>
                 </div>
-                <div class="col-md-6">
-                    <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email">
                 </div>
-                <div class="col-12">
-                    <textarea class="form-control" id="message" placeholder="Your Message" rows="5" required></textarea>
+                <div class="mb-3">
+                    <label for="contact" class="form-label">Phone number</label>
+                    <input type="contact" class="form-control" name="contact" id="contact"
+                        placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+                    <small id="contactNumberError" class="form-text text-danger"></small>
                 </div>
-                <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" name="message" id="message" rows="5" placeholder="Enter your message"
+                        required></textarea>
                 </div>
+                <button type="submit" id="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </section>
-
+    <!-- Bootstrap Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="text-center">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p id="loadingMessage">Submission in progress.
+                            Please do not close or reload this page.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Footer -->
     <footer class="bg-dark text-white py-4">
         <div class="container text-center">
-            <p>&copy; 2023 iExplore. All rights reserved.</p>
+            <p>&copy; 2025 Rina Shiksha Sahayak Foundation. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
-    <script src="script.js"></script>
+    <!-- <script src="script.js"></script> -->
+    <script>
+        // Determine the correct script URL based on the environment
+        const scriptURL = window.location.hostname === 'localhost'
+            ? 'http://localhost:8082/rssi-member/payment-api.php'
+            : 'https://login.rssi.in/rssi-member/payment-api.php';
+
+        const contactForm = document.getElementById("contactForm");
+
+        document.getElementById("submit").addEventListener("click", async function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            if (!contactForm.checkValidity()) {
+                contactForm.reportValidity(); // Show the default validation messages
+                return;
+            }
+
+            // Disable the donate button immediately upon form submission
+            this.disabled = true;
+            // Show the Bootstrap modal
+            const myModal = new bootstrap.Modal(document.getElementById("myModal"), {
+                backdrop: 'static',
+                keyboard: false
+            });
+            myModal.show();
+
+            try {
+                const response = await fetch(scriptURL, {
+                    method: 'POST',
+                    body: new FormData(contactForm)
+                });
+                const result = await response.json();
+
+                console.log("API Response:", result); // For testing purposes, log the entire response
+
+                if (!result.error) {
+                    alert(`Submitted successfully! reference ID: ${result.queryid}`);
+                    contactForm.reset(); // Reset the form after successful submission
+                    location.reload(); // Reload the page after successful submission
+                } else {
+                    if (result.errorMessage === "") {
+                        alert("Error occurred during form submission. Please try again later.");
+                    } else {
+                        alert("Unknown error occurred during form submission.");
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Error occurred during form submission. Please try again later.");
+            } finally {
+                // Re-enable the donate button after the form submission process is finished
+                this.disabled = false;
+                myModal.hide();
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const requiredFields = document.querySelectorAll('[required]');
+
+            requiredFields.forEach(field => {
+                const label = document.querySelector(`label[for="${field.id}"]`);
+                if (label) {
+                    label.innerHTML += ' <span style="color: red">*</span>';
+                }
+            });
+        });
+    </script>
+    <script>
+        function validateInput() {
+            document.getElementById('contactNumberError').textContent = this.validity.patternMismatch ? 'Please enter a valid 10-digit number.' : '';
+        }
+
+        const inputElement = document.getElementById('contact');
+        inputElement.addEventListener('input', validateInput);
+    </script>
 </body>
 
 </html>
