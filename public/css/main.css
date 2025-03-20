@@ -14,10 +14,19 @@
 
 /* Fonts */
 
-:root {
+/* :root {
     --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --font-primary: "Amatic SC", sans-serif;
-    /* --font-secondary: "Inter", sans-serif; */
+    --font-primary: sans-serif;
+    --font-secondary: sans-serif;
+} */
+
+:root {
+    --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+    --font-default: var(--bs-font-sans-serif);
+    /* Uses Bootstrap's default font */
+    --font-primary: var(--bs-font-sans-serif);
+    --font-secondary: var(--bs-font-sans-serif);
 }
 
 
@@ -153,12 +162,15 @@ section {
     .breadcrumbs .d-flex {
         display: block !important;
     }
+
     .breadcrumbs h2 {
         margin-bottom: 10px;
     }
+
     .breadcrumbs ol {
         display: block;
     }
+
     .breadcrumbs ol li {
         display: inline-block;
     }
@@ -238,6 +250,7 @@ section {
         left: calc(50% - 5px);
         opacity: 1;
     }
+
     100% {
         width: 72px;
         height: 72px;
@@ -255,6 +268,7 @@ section {
         left: calc(50% - 5px);
         opacity: 1;
     }
+
     100% {
         width: 72px;
         height: 72px;
@@ -346,6 +360,7 @@ section {
     .navbar {
         padding: 0;
     }
+
     .navbar ul {
         margin: 0;
         padding: 0;
@@ -353,13 +368,16 @@ section {
         list-style: none;
         align-items: center;
     }
+
     .navbar li {
         position: relative;
     }
+
     .navbar>ul>li {
         white-space: nowrap;
         padding: 10px 0 10px 28px;
     }
+
     .navbar a,
     .navbar a:focus {
         display: flex;
@@ -374,12 +392,14 @@ section {
         transition: 0.3s;
         position: relative;
     }
+
     .navbar a i,
     .navbar a:focus i {
         font-size: 12px;
         line-height: 0;
         margin-left: 5px;
     }
+
     .navbar>ul>li>a:before {
         content: "";
         position: absolute;
@@ -392,18 +412,21 @@ section {
         width: 0px;
         transition: all 0.3s ease-in-out 0s;
     }
+
     .navbar a:hover:before,
     .navbar li:hover>a:before,
     .navbar .active:before {
         visibility: visible;
         width: 100%;
     }
+
     .navbar a:hover,
     .navbar .active,
     .navbar .active:focus,
     .navbar li:hover>a {
         color: #000;
     }
+
     .navbar .dropdown ul {
         display: block;
         position: absolute;
@@ -419,33 +442,40 @@ section {
         transition: 0.3s;
         border-radius: 4px;
     }
+
     .navbar .dropdown ul li {
         min-width: 200px;
     }
+
     .navbar .dropdown ul a {
         padding: 10px 20px;
         font-size: 15px;
         text-transform: none;
         font-weight: 600;
     }
+
     .navbar .dropdown ul a i {
         font-size: 12px;
     }
+
     .navbar .dropdown ul a:hover,
     .navbar .dropdown ul .active:hover,
     .navbar .dropdown ul li:hover>a {
         color: var(--color-primary);
     }
+
     .navbar .dropdown:hover>ul {
         opacity: 1;
         top: 100%;
         visibility: visible;
     }
+
     .navbar .dropdown .dropdown ul {
         top: 0;
         left: calc(100% - 30px);
         visibility: hidden;
     }
+
     .navbar .dropdown .dropdown:hover>ul {
         opacity: 1;
         top: 0;
@@ -458,12 +488,14 @@ section {
     .navbar .dropdown .dropdown ul {
         left: -90%;
     }
+
     .navbar .dropdown .dropdown:hover>ul {
         left: -100%;
     }
 }
 
 @media (min-width: 1280px) {
+
     .mobile-nav-show,
     .mobile-nav-hide {
         display: none;
@@ -487,6 +519,7 @@ section {
         transition: 0.3s;
         z-index: 9997;
     }
+
     .navbar ul {
         position: absolute;
         inset: 0;
@@ -497,6 +530,7 @@ section {
         transition: 0.3s;
         z-index: 9998;
     }
+
     .navbar a,
     .navbar a:focus {
         display: flex;
@@ -511,21 +545,25 @@ section {
         white-space: nowrap;
         transition: 0.3s;
     }
+
     .navbar a i,
     .navbar a:focus i {
         font-size: 12px;
         line-height: 0;
         margin-left: 5px;
     }
+
     .navbar a:hover,
     .navbar li:hover>a {
         color: #000;
     }
+
     .navbar .active,
     .navbar .active:focus {
         color: #000;
         border-color: var(--color-primary);
     }
+
     .navbar .dropdown ul,
     .navbar .dropdown .dropdown ul {
         position: static;
@@ -535,10 +573,12 @@ section {
         transition: all 0.5s ease-in-out;
         border: 1px solid #eee;
     }
+
     .navbar .dropdown>.dropdown-active,
     .navbar .dropdown .dropdown>.dropdown-active {
         display: block;
     }
+
     .mobile-nav-show {
         color: var(--color-secondary);
         font-size: 28px;
@@ -548,6 +588,7 @@ section {
         z-index: 9999;
         margin: 0 10px 0 20px;
     }
+
     .mobile-nav-hide {
         color: var(--color-secondary);
         font-size: 32px;
@@ -559,12 +600,15 @@ section {
         top: 20px;
         z-index: 9999;
     }
+
     .mobile-nav-active {
         overflow: hidden;
     }
+
     .mobile-nav-active .navbar {
         right: 0;
     }
+
     .mobile-nav-active .navbar:before {
         content: "";
         position: fixed;
@@ -713,6 +757,7 @@ section {
         transform: scale(0.6, 0.6);
         opacity: 1;
     }
+
     100% {
         transform: scale(1, 1);
         opacity: 0;
@@ -724,6 +769,7 @@ section {
         transform: scale(0.6, 0.6);
         opacity: 1;
     }
+
     100% {
         transform: scale(1, 1);
         opacity: 0;
@@ -1333,6 +1379,7 @@ section {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -1342,6 +1389,7 @@ section {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -1380,6 +1428,7 @@ section {
     .gallery .swiper-wrapper {
         padding: 40px 0;
     }
+
     .gallery .swiper-slide-active {
         border: 6px solid var(--color-primary);
         padding: 4px;
@@ -1531,6 +1580,7 @@ section {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -1613,6 +1663,7 @@ section {
     .hero h2 {
         font-size: 36px;
     }
+
     .hero .btn-get-started,
     .hero .btn-watch-video {
         font-size: 14px;
