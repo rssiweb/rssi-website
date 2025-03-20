@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <!-- Load jQuery Early with defer -->
-    <script src="https://code.jquery.com/jquery-3.7.1.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
     <script defer>
         document.addEventListener('DOMContentLoaded', function () {
             $("#header").load("/header.html");
@@ -175,14 +175,6 @@
             /* Stack content vertically */
             align-items: flex-start;
             /* Align items to the start */
-        }
-
-        #custom-section .list-group-item::before {
-            content: ">>";
-            margin-right: 0.5rem;
-            color: #c0392b;
-            display: inline-block;
-            /* Ensure >> stays inline with the notice text */
         }
 
         #custom-section .list-group-item .notice-content {
