@@ -282,6 +282,111 @@
             }
         }
     </style>
+    <style>
+        /* Hero Section */
+        .hero {
+            width: 100%;
+            background-image: url('/path/to/your/image.jpg');
+            /* Add background image */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            min-height: 60vh;
+            /* 60% of the viewport height */
+            padding: 10% 5% 5%;
+            /* Top, right, bottom, left padding in percentages */
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 8% 3% 3%;
+                /* Adjust padding for smaller screens */
+                min-height: 50vh;
+                /* Adjust height for smaller screens */
+            }
+        }
+
+        /* Carousel */
+        #heroCarousel .carousel-inner {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .carousel-item {
+            transition: transform 0.5s ease-in-out;
+            /* Smooth transition */
+        }
+
+        .carousel-item.active {
+            display: block;
+            /* Ensure the active slide is visible */
+        }
+
+        .carousel-item .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-item .row {
+            justify-content: center;
+        }
+
+        .carousel-item .col-lg-5,
+        .carousel-item .col-lg-6 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Hide the default Bootstrap carousel icons */
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            display: none;
+            /* Hide the default icons */
+        }
+
+        /* Custom light gray carousel navigation buttons */
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 5%;
+            background-color: transparent;
+            /* Remove default background */
+            border: none;
+            /* Remove default border */
+        }
+
+        .carousel-control-prev::before,
+        .carousel-control-next::before {
+            content: '';
+            display: inline-block;
+            width: 40px;
+            /* Adjust size */
+            height: 40px;
+            background-color: rgba(128, 128, 128, 0.5);
+            /* Light gray with transparency */
+            border-radius: 50%;
+            /* Circular buttons */
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000000'%3E%3Cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E") no-repeat center / contain;
+            /* Left arrow icon */
+        }
+
+        .carousel-control-next::before {
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000000'%3E%3Cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E") no-repeat center / contain;
+            /* Right arrow icon */
+        }
+
+        .carousel-control-prev:hover::before,
+        .carousel-control-next:hover::before {
+            background-color: rgba(128, 128, 128, 0.8);
+            /* Darker gray on hover */
+        }
+    </style>
 </head>
 
 <body>
@@ -291,32 +396,100 @@
     <!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
+
     <section id="hero" class="hero d-flex align-items-center">
-        <div class="container">
-            <div class="row justify-content-between gy-5">
-                <div
-                    class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
-                    <h1>Help a journey - from childhood to <span class="typing-animation">livelihood<span
-                                class="cursor"></span></span>
-                    </h1>
-                    <p>Empowering youth through education is the main focus of
-                        our organization.
-                    </p>
-                    <div class="d-flex">
-                        <a href="donation-portal.html" class="btn-book-a-table">Donate Now</a>
-                        <a href="https://www.youtube.com/watch?v=mYFdNLnHiXI"
-                            class="glightbox btn-watch-video d-flex align-items-center"><i
-                                class="bi bi-play-circle"></i><span>Watch
-                                Video</span></a>
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-pause="hover">
+            <div class="carousel-inner">
+                <!-- First Slide -->
+                <div class="carousel-item active">
+                    <div class="container">
+                        <div class="row justify-content-center gy-5">
+                            <div
+                                class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+                                <h1>Help a journey - from childhood to <span
+                                        class="typing-animation typing-slide-1">livelihood<span
+                                            class="cursor"></span></span>
+                                </h1>
+                                <p>Empowering youth through education is the main focus of
+                                    our organization.
+                                </p>
+                                <div class="d-flex">
+                                    <a href="donation-portal.html" class="btn-book-a-table">Donate Now</a>
+                                    <a href="https://www.youtube.com/watch?v=mYFdNLnHiXI"
+                                        class="glightbox btn-watch-video d-flex align-items-center"><i
+                                            class="bi bi-play-circle"></i><span>Watch
+                                            Video</span></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-start">
+                                <img src="/img/hero2.png" class="img-fluid" alt="">
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-start">
-                    <img src="/img/hero.png" class="img-fluid" alt="">
+                <!-- Second Slide -->
+                <div class="carousel-item">
+                    <div class="container">
+                        <div class="row justify-content-center gy-5">
+                            <div
+                                class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+                                <h1>Support Education - from dreams to <span
+                                        class="typing-animation typing-slide-2">reality<span
+                                            class="cursor"></span></span>
+                                </h1>
+                                <p>Providing resources and opportunities for underprivileged children to succeed.
+                                </p>
+                                <div class="d-flex">
+                                    <a href="donation-portal.html" class="btn-book-a-table">Donate Now</a>
+                                    <a href="https://www.youtube.com/watch?v=mYFdNLnHiXI"
+                                        class="glightbox btn-watch-video d-flex align-items-center"><i
+                                            class="bi bi-play-circle"></i><span>Watch
+                                            Video</span></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-start">
+                                <img src="/img/hero1.png" class="img-fluid" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Third Slide -->
+                <div class="carousel-item">
+                    <div class="container">
+                        <div class="row justify-content-center gy-5">
+                            <div
+                                class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+                                <h1>Transform Lives - from poverty to <span
+                                        class="typing-animation typing-slide-3">prosperity<span
+                                            class="cursor"></span></span>
+                                </h1>
+                                <p>Helping communities rise above poverty through sustainable development.
+                                </p>
+                                <div class="d-flex">
+                                    <a href="donation-portal.html" class="btn-book-a-table">Donate Now</a>
+                                    <a href="https://www.youtube.com/watch?v=mYFdNLnHiXI"
+                                        class="glightbox btn-watch-video d-flex align-items-center"><i
+                                            class="bi bi-play-circle"></i><span>Watch
+                                            Video</span></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-start">
+                                <img src="/img/hero3.png" class="img-fluid" alt="">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </section>
-    <!-- End Hero Section -->
 
     <main id="main">
         <div id="custom-section">
@@ -899,41 +1072,59 @@
         scrollTopButton.style.display = 'none';
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/vendor/glightbox/js/glightbox.min.js" defer></script>
     <script src="/vendor/purecounter/purecounter_vanilla.js" defer></script>
     <script src="/vendor/swiper/swiper-bundle.min.js" defer></script>
     <script src="/js/main.js" defer></script>
 
     <script>
-        const words = ["livelihood", "empowerment", "prosperity"];
-        let currentWordIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingElement = document.querySelector(".typing-animation");
+        document.addEventListener('DOMContentLoaded', function () {
+            // Define words for each slide
+            const wordsBySlide = {
+                "typing-slide-1": ["livelihood", "empowerment", "prosperity"],
+                "typing-slide-2": ["reality", "opportunity", "success"],
+                "typing-slide-3": ["prosperity", "growth", "hope"]
+            };
 
-        function type() {
-            const currentWord = words[currentWordIndex];
-            typingElement.textContent = currentWord.substring(0, charIndex);
-
-            if (isDeleting) {
-                charIndex--;
-            } else {
-                charIndex++;
+            // Initialize typing animation for each slide
+            for (const [slideClass, words] of Object.entries(wordsBySlide)) {
+                const typingElement = document.querySelector(`.${slideClass}`);
+                if (typingElement) {
+                    startTypingAnimation(typingElement, words);
+                }
             }
 
-            if (!isDeleting && charIndex === currentWord.length) {
-                setTimeout(() => (isDeleting = true), 2000); // Pause before deleting
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                currentWordIndex = (currentWordIndex + 1) % words.length;
-            }
+            // Typing animation function
+            function startTypingAnimation(element, words) {
+                let currentWordIndex = 0;
+                let charIndex = 0;
+                let isDeleting = false;
 
-            setTimeout(type, isDeleting ? 50 : 100);
-        }
-        type();
+                function type() {
+                    const currentWord = words[currentWordIndex];
+                    element.textContent = currentWord.substring(0, charIndex);
+
+                    if (isDeleting) {
+                        charIndex--;
+                    } else {
+                        charIndex++;
+                    }
+
+                    if (!isDeleting && charIndex === currentWord.length) {
+                        setTimeout(() => (isDeleting = true), 2000); // Pause before deleting
+                    } else if (isDeleting && charIndex === 0) {
+                        isDeleting = false;
+                        currentWordIndex = (currentWordIndex + 1) % words.length;
+                    }
+
+                    setTimeout(type, isDeleting ? 50 : 100);
+                }
+
+                type();
+            }
+        });
     </script>
 
     <script>
