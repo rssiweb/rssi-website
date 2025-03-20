@@ -101,7 +101,166 @@
             }
         }
     </style>
+    <style>
+        .post {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
 
+        .post img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .profile-photo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #loading-spinner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            /* Space between spinner and text */
+            margin: 20px 0;
+            /* Add some margin for spacing */
+        }
+
+        /* Ensure the spinner is hidden when display: none is applied */
+        #loading-spinner[style*="display: none"] {
+            display: none !important;
+        }
+    </style>
+    <style>
+        #custom-section {
+            background-color: #eee;
+            color: #333;
+            padding: 2rem;
+        }
+
+        #custom-section .container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 0.25rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+
+        #custom-section .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            background-color: #c0392b;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+        }
+
+        #custom-section .news-item,
+        #custom-section .info-item,
+        #custom-section .activity-item {
+            margin-bottom: 1.5rem;
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+
+        #custom-section .news-item h3,
+        #custom-section .info-item h3,
+        #custom-section .activity-item h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #c0392b;
+        }
+
+        #custom-section .list-group-item {
+            border: none;
+            padding: 0;
+            color: #555;
+            display: flex;
+            flex-direction: column;
+            /* Stack content vertically */
+            align-items: flex-start;
+            /* Align items to the start */
+        }
+
+        #custom-section .list-group-item::before {
+            content: ">>";
+            margin-right: 0.5rem;
+            color: #c0392b;
+            display: inline-block;
+            /* Ensure >> stays inline with the notice text */
+        }
+
+        #custom-section .list-group-item .notice-content {
+            display: flex;
+            align-items: center;
+            /* Align notice text and badge horizontally */
+        }
+
+        #custom-section .list-group-item .badge {
+            margin-left: 0.5rem;
+            /* Space between notice text and badge */
+        }
+
+        #custom-section .list-group-item .date {
+            display: block;
+            /* Ensure date is on a new line */
+            margin-top: 0.25rem;
+            /* Add some space between notice text and date */
+        }
+
+        #custom-section .text-primary {
+            color: #c0392b !important;
+        }
+
+        .section-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .scrollable-content {
+            overflow-y: auto;
+            flex-grow: 1;
+            max-height: 500px;
+            /* Adjust as needed */
+            padding-top: 1rem;
+        }
+
+        .fixed-header {
+            position: sticky;
+            top: 0;
+            background: #c0392b;
+            z-index: 10;
+            padding: 10px 0;
+            margin-bottom: 1rem;
+        }
+
+        /* Ensure links look like regular text but are clickable */
+        .list-group-item a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .list-group-item a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
@@ -111,7 +270,7 @@
     <!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
-    <section id="hero" class="hero d-flex align-items-center section-bg">
+    <section id="hero" class="hero d-flex align-items-center">
         <div class="container">
             <div class="row justify-content-between gy-5">
                 <div
@@ -139,7 +298,67 @@
     <!-- End Hero Section -->
 
     <main id="main">
+        <div id="custom-section">
+            <div class="container">
+                <div class="row">
+                    <!-- News Highlights Section -->
+                    <div class="col-md-4">
+                        <section class="mb-5 section-content">
+                            <h2 class="section-title">News Highlights</h2>
+                            <div class="news-item">
+                                <h3>News & Press Releases</h3>
+                                <ul class="list-group" id="news-list">
+                                    <!-- News items will be dynamically inserted here -->
+                                </ul>
+                                <a href="#" class="text-primary">[more news...]</a>
+                            </div>
+                        </section>
+                    </div>
 
+                    <!-- Notice Section -->
+                    <div class="col-md-4">
+                        <section class="mb-5 section-content">
+                            <h2 class="section-title">Notice</h2>
+                            <div class="info-item">
+                                <h3>Public Notices</h3>
+                                <ul class="list-group" id="notice-list">
+                                    <!-- Notice items will be dynamically inserted here -->
+                                </ul>
+                                <a href="#" class="text-primary">[more notices...]</a>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Activities & Initiatives Section -->
+                    <div class="col-md-4">
+                        <section class="mb-5 section-content">
+                            <h2 class="section-title fixed-header">Activities & Initiatives</h2>
+                            <!-- Scrollable Content -->
+                            <div class="scrollable-content">
+                                <!-- Blog Posts Container -->
+                                <div id="blog-posts"></div>
+
+                                <!-- Loading Spinner and Text -->
+                                <div class="d-flex justify-content-center align-items-center" id="loading-spinner">
+                                    <div class="spinner-border" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <span class="ms-2">Loading...</span>
+                                </div>
+
+                                <!-- Load More Button and No More Posts Message -->
+                                <div class="d-flex justify-content-center mt-4">
+                                    <button id="load-more-btn" class="btn btn-danger" style="display: none;">Load
+                                        More</button>
+                                    <p id="no-more-posts" class="text-muted text-center mt-4" style="display: none;">
+                                        That's all we have for you now.</p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- ======= About Section ======= -->
         <section id="about" class="about">
             <div class="container" data-aos="fade-up">
@@ -712,6 +931,195 @@
             analytics: 'G-S25QWTFJ2S',
             policyLink: 'disclaimer'
         });
+    </script>
+    <script>
+        const baseURL = window.location.hostname === "localhost"
+            ? "http://localhost:8082"
+            : "https://login.rssi.in";
+
+        let offset = 0;
+        const limit = 3;
+
+        // Fetch blog data from the PHP backend
+        async function fetchBlogData() {
+            try {
+                console.log("Fetching blog data..."); // Debugging
+
+                // Show spinner and "Loading..." text
+                document.getElementById('loading-spinner').style.display = 'flex';
+                console.log("Spinner shown"); // Debugging
+
+                // Hide the "Load More" button while loading
+                document.getElementById('load-more-btn').style.display = 'none';
+                console.log("Load More button hidden during loading"); // Debugging
+
+                const response = await fetch(`${baseURL}/get_blog_data.php?offset=${offset}&limit=${limit}`);
+                const data = await response.json();
+
+                console.log("Data fetched:", data); // Debugging
+
+                if (data.success) {
+                    console.log("Data fetched successfully"); // Debugging
+                    renderBlogPosts(data.events, data.likes);
+
+                    // Hide spinner and "Loading..." text
+                    document.getElementById('loading-spinner').style.display = 'none';
+                    console.log("Spinner hidden"); // Debugging
+
+                    // Show "Load More" button if there are more posts
+                    if (data.has_more) {
+                        document.getElementById('load-more-btn').style.display = 'block';
+                        console.log("Load More button shown"); // Debugging
+                    } else {
+                        // Hide "Load More" button and show "No more posts" message
+                        document.getElementById('load-more-btn').style.display = 'none';
+                        document.getElementById('no-more-posts').style.display = 'block';
+                        console.log("No more posts message shown"); // Debugging
+                    }
+                } else {
+                    console.error('Failed to fetch blog data');
+                }
+            } catch (error) {
+                console.error('Error fetching blog data:', error);
+            } finally {
+                // Ensure the spinner is hidden even if an error occurs
+                document.getElementById('loading-spinner').style.display = 'none';
+                console.log("Spinner hidden (finally)"); // Debugging
+            }
+        }
+
+        // Function to convert URLs to clickable links
+        function makeClickableLinks(text) {
+            const urlPattern = /(https?:\/\/[^\s]+)/g;
+            return text.replace(urlPattern, '<a href="$1" target="_blank">$1</a>');
+        }
+
+        // Function to convert newlines to <br> tags
+        function nl2br(text) {
+            return text.replace(/\n/g, '<br>');
+        }
+
+        // Render blog posts on the page
+        function renderBlogPosts(events, likes) {
+            const blogPostsContainer = document.getElementById('blog-posts');
+
+            events.forEach(event => {
+                const eventHtml = `
+                <div class="post">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="profile-photo">
+                            ${event.photo ? `<img src="${event.photo}" alt="${event.fullname}">` :
+                        `<div class="d-flex align-items-center justify-content-center bg-secondary text-white" style="width: 50px; height: 50px; border-radius: 50%;">
+                                ${event.fullname.charAt(0).toUpperCase()}
+                            </div>`}
+                        </div>
+                        <div>
+                            <h5 class="mb-0">${event.fullname}</h5>
+                            <small class="text-muted">${new Date(event.created_at).toLocaleString()}</small>
+                        </div>
+                    </div>
+                    <!--<h3>${event.event_name}</h3>-->
+                    <p>${nl2br(makeClickableLinks(event.event_description))}</p>
+                    ${event.event_image_url ? `<iframe src="${event.event_image_url}" class="responsive-iframe img-fluid rounded mb-3" frameborder="0" allow="autoplay" sandbox="allow-scripts allow-same-origin"></iframe>` : ''}
+                    <div class="d-flex align-items-center mt-3 text-muted">
+                        <div class="pointer" onclick="toggleLike(${event.event_id})">
+                            <i class="bi bi-hand-thumbs-up me-1"></i>
+                            <span>Like</span>
+                            <span class="ms-2">${likes[event.event_id].like_count}</span>
+                        </div>
+                        <div class="ms-2">
+                            ${likes[event.event_id].liked_users.slice(0, 2).join(', ')} 
+                            ${likes[event.event_id].liked_users.length > 2 ? `and ${likes[event.event_id].liked_users.length - 2} others` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+                blogPostsContainer.insertAdjacentHTML('beforeend', eventHtml);
+            });
+        }
+
+        // Load more posts when the button is clicked
+        document.getElementById('load-more-btn').addEventListener('click', () => {
+            offset += limit;
+            fetchBlogData();
+        });
+
+        // Fetch and render blog data when the page loads
+        document.addEventListener('DOMContentLoaded', fetchBlogData);
+    </script>
+    <script>
+        // Function to check if a date is within the last 7 days
+        function isRecent(date) {
+            const currentDate = new Date();
+            const itemDate = new Date(date);
+            const timeDifference = currentDate - itemDate;
+            const daysDifference = timeDifference / (1000 * 3600 * 24);
+            return daysDifference <= 7;
+        }
+
+        // Function to format the date
+        function formatDate(date) {
+            return new Date(date).toLocaleDateString('en-GB', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
+            });
+        }
+
+        // Fetch data from the PHP endpoint
+        async function fetchData() {
+            try {
+                const response = await fetch(`${baseURL}/fetch_data_news.php`);
+                const data = await response.json();
+
+                if (data.success) {
+                    // Render notices
+                    const noticeList = document.getElementById('notice-list');
+                    data.notices.forEach(notice => {
+                        const listItem = document.createElement('li');
+                        listItem.className = 'list-group-item';
+                        const dateText = `Issued: ${formatDate(notice.date)}`;
+                        const newBadge = isRecent(notice.date) ? `<span class="badge bg-danger">New</span>` : '';
+                        listItem.innerHTML = `
+                        <div class="notice-content">
+                            <a href="${notice.url}" target="_blank" class="text-decoration-none text-dark">
+                                ${notice.subject}
+                            </a>
+                            ${newBadge}
+                        </div>
+                        <small class="date text-muted">${dateText}</small>
+                    `;
+                        noticeList.appendChild(listItem);
+                    });
+
+                    // Render news
+                    const newsList = document.getElementById('news-list');
+                    data.news.forEach(news => {
+                        const listItem = document.createElement('li');
+                        listItem.className = 'list-group-item';
+                        const dateText = `Released: ${formatDate(news.date)}`;
+                        const newBadge = isRecent(news.date) ? `<span class="badge bg-danger">New</span>` : '';
+                        listItem.innerHTML = `
+                        <div class="notice-content">
+                            <a href="${news.url}" target="_blank" class="text-decoration-none text-dark">
+                                ${news.subject}
+                            </a>
+                            ${newBadge}
+                        </div>
+                        <small class="date text-muted">${dateText}</small>
+                    `;
+                        newsList.appendChild(listItem);
+                    });
+                } else {
+                    console.error('Failed to fetch data');
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Fetch and render data when the page loads
+        document.addEventListener('DOMContentLoaded', fetchData);
     </script>
 </body>
 
