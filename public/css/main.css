@@ -106,7 +106,7 @@ section {
 
 .section-header p {
     margin: 0;
-    font-size: 48px;
+    font-size: 35px;
     font-weight: 400;
     font-family: var(--font-primary);
 }
@@ -1599,15 +1599,15 @@ section {
     padding: 160px 0 60px 0;
 }
 
-.hero h2 {
-    font-size: 64px;
-    font-weight: 700;
+.hero h1 {
+    /* font-size: 64px; */
+    /* font-weight: 700; */
     margin-bottom: 20px;
     color: var(--color-secondary);
     font-family: var(--font-primary);
 }
 
-.hero h2 span {
+.hero h1 span {
     color: var(--color-primary);
 }
 
