@@ -504,9 +504,6 @@
                                 <ul class="list-group list-group-flush" id="news-list">
                                     <!-- News items will be dynamically inserted here -->
                                 </ul>
-                                <div class="text-end">
-                                    <a href="#" class="text-muted">[View More]</a>
-                                </div>
                             </div>
                         </section>
                     </div>
@@ -1293,6 +1290,15 @@
                     `;
                         newsList.appendChild(listItem);
                     });
+                    // Add the "more news.." link after data is loaded
+                    const newsItemDiv = document.querySelector('.news-item');
+                    const moreNewsLink = document.createElement('div');
+                    moreNewsLink.className = 'text-end';
+                    moreNewsLink.innerHTML = `
+                <a href="#" class="text-muted" data-bs-toggle="modal"
+                   data-bs-target="#viewMoreModal" onclick="loadAllNews()">more news..</a>
+            `;
+                    newsItemDiv.appendChild(moreNewsLink);
                 } else {
                     console.error('Failed to fetch data');
                 }
@@ -1303,6 +1309,122 @@
 
         // Fetch and render data when the page loads
         document.addEventListener('DOMContentLoaded', fetchData);
+    </script>
+    <!-- View More Modal -->
+    <div class="modal fade" id="viewMoreModal" tabindex="-1" aria-labelledby="viewMoreModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewMoreModalLabel">All News</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Spinner for loading -->
+                    <div id="loadingSpinner" class="text-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p>Loading...</p>
+                    </div>
+
+                    <!-- Container for news items -->
+                    <div id="newsContainer" class="d-none">
+                        <ul id="newsListModal" class="list-group"></ul>
+
+                        <!-- Pagination -->
+                        <nav aria-label="News Pagination">
+                            <ul id="pagination" class="pagination justify-content-center mt-3"></ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let currentPage = 1;
+        const itemsPerPage = 5; // Number of items per page
+
+        // Function to load all news items
+        async function loadAllNews() {
+            try {
+                // Show spinner and hide news container
+                document.getElementById('loadingSpinner').classList.remove('d-none');
+                document.getElementById('newsContainer').classList.add('d-none');
+
+                // Fetch all news items
+                const response = await fetch(`${baseURL}/fetch_data_news.php?fetch_all_news=true`);
+                const data = await response.json();
+
+                if (data.success) {
+                    // Render news items
+                    renderNews(data.news);
+                    renderPagination(data.news.length);
+                } else {
+                    console.error('Failed to fetch data');
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                // Hide spinner and show news container
+                document.getElementById('loadingSpinner').classList.add('d-none');
+                document.getElementById('newsContainer').classList.remove('d-none');
+            }
+        }
+
+        // Function to render news items
+        function renderNews(news) {
+            const newsListModal = document.getElementById('newsListModal');
+            newsListModal.innerHTML = ''; // Clear previous items
+
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const paginatedNews = news.slice(start, end);
+
+            paginatedNews.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.className = 'list-group-item';
+                const dateText = `Released: ${formatDate(item.date)}`;
+                listItem.innerHTML = `
+            <div class="notice-content">
+                <a href="${item.url}" target="_blank" class="text-decoration-none text-dark">
+                    ${item.subject}
+                </a>
+            </div>
+            <small class="date text-muted">${dateText}</small>
+        `;
+                newsListModal.appendChild(listItem);
+            });
+        }
+
+        // Function to render pagination
+        function renderPagination(totalItems) {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = ''; // Clear previous pagination
+
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageItem = document.createElement('li');
+                pageItem.className = `page-item ${i === currentPage ? 'active' : ''}`;
+                pageItem.innerHTML = `<a class="page-link" href="#" onclick="changePage(${i})">${i}</a>`;
+                pagination.appendChild(pageItem);
+            }
+        }
+
+        // Function to change page
+        function changePage(page) {
+            currentPage = page;
+            loadAllNews(); // Reload news for the new page
+        }
+
+        // Function to format the date (reuse from existing script)
+        function formatDate(date) {
+            return new Date(date).toLocaleDateString('en-GB', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
+            });
+        }
     </script>
 </body>
 
