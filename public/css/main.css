@@ -1742,3 +1742,18 @@ section {
 .clients .swiper-pagination .swiper-pagination-bullet-active {
     background-color: var(--color-primary);
 }
+
+#loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    /* Space between spinner and text */
+    margin: 20px 0;
+    /* Add some margin for spacing */
+}
+
+/* Ensure the spinner is hidden when display: none is applied */
+#loading-spinner[style*="display: none"] {
+    display: none !important;
+}

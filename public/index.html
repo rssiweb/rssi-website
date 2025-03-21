@@ -107,21 +107,6 @@
             height: 100%;
             object-fit: cover;
         }
-
-        #loading-spinner {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            /* Space between spinner and text */
-            margin: 20px 0;
-            /* Add some margin for spacing */
-        }
-
-        /* Ensure the spinner is hidden when display: none is applied */
-        #loading-spinner[style*="display: none"] {
-            display: none !important;
-        }
     </style>
     <style>
         #custom-section {
@@ -496,7 +481,7 @@
             <div class="container">
                 <div class="row">
                     <!-- News Highlights Section -->
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <section class="section-content">
                             <h3 class="section-title">News Highlights</h3>
                             <div class="news-item">
@@ -509,7 +494,7 @@
                     </div>
 
                     <!-- Activities & Initiatives Section -->
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <section class="section-content">
                             <h2 class="section-title">Activities & Initiatives</h2>
                             <!-- Scrollable Content -->
