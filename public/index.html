@@ -299,7 +299,7 @@
 
         @media (max-width: 768px) {
             .hero {
-                padding: 8% 3% 3%;
+                padding: 20% 3% 3%;
                 /* Adjust padding for smaller screens */
                 min-height: 50vh;
                 /* Adjust height for smaller screens */
@@ -505,30 +505,14 @@
                                     <!-- News items will be dynamically inserted here -->
                                 </ul>
                                 <div class="text-end">
-                                    <a href="#" class="text-primary">[more news...]</a>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-
-                    <!-- Notice Section -->
-                    <div class="col-md-4">
-                        <section class="section-content">
-                            <h2 class="section-title">Announcements</h2>
-                            <div class="info-item">
-                                <!-- <h3>Public Notices</h3> -->
-                                <ul class="list-group list-group-flush" id="notice-list">
-                                    <!-- Notice items will be dynamically inserted here -->
-                                </ul>
-                                <div class="text-end">
-                                    <a href="#" class="text-primary">[more notices...]</a>
+                                    <a href="#" class="text-muted">[View More]</a>
                                 </div>
                             </div>
                         </section>
                     </div>
 
                     <!-- Activities & Initiatives Section -->
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                         <section class="section-content">
                             <h2 class="section-title">Activities & Initiatives</h2>
                             <!-- Scrollable Content -->
@@ -1290,23 +1274,6 @@
 
                 if (data.success) {
                     // Render notices
-                    const noticeList = document.getElementById('notice-list');
-                    data.notices.forEach(notice => {
-                        const listItem = document.createElement('li');
-                        listItem.className = 'list-group-item';
-                        const dateText = `Issued: ${formatDate(notice.date)}`;
-                        const newBadge = isRecent(notice.date) ? `<span class="badge bg-danger blinking-badge">New</span>` : '';
-                        listItem.innerHTML = `
-                        <div class="notice-content">
-                            <a href="${notice.url}" target="_blank" class="text-decoration-none text-dark">
-                                ${notice.subject}
-                            </a>
-                            ${newBadge}
-                        </div>
-                        <small class="date text-muted">${dateText}</small>
-                    `;
-                        noticeList.appendChild(listItem);
-                    });
 
                     // Render news
                     const newsList = document.getElementById('news-list');
