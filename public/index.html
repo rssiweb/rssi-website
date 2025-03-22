@@ -28,7 +28,8 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
     <!-- Template Main CSS File -->
     <link href="/css/main.css" rel="stylesheet">
@@ -450,6 +451,234 @@
 
     <main id="main">
 
+        <div id="announcements-carousel" class="swiper container">
+            <div class="section-header">
+                <h2>Our Projects</h2>
+                <p>Driving Change Through <span>S3</span></p>
+            </div>
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                    <div class="card">
+                        <img src="/img/events-1.jpg" alt="Shiksha" class="card-img-top">
+                        <div class="card-body">
+                            <div class="date">Launched in 2015</div>
+                            <h3 class="card-title">Shiksha</h3>
+                            <p class="card-text">
+                                Shiksha is a self-funded initiative by RSSI NGO that delivers quality education at a
+                                fraction of the market cost. At Kalpana Buds School, students contribute only around 13%
+                                of the actual educational expenses...
+                            </p>
+                            <button class="btn btn-read-more" data-bs-toggle="modal" data-bs-target="#modalShiksha">
+                                Read More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Slide 1 -->
+
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                    <div class="card">
+                        <img src="/img/events-2.jpg" alt="Suraksha" class="card-img-top">
+                        <div class="card-body">
+                            <div class="date">Launched in 2018</div>
+                            <h3 class="card-title">Suraksha</h3>
+                            <p class="card-text">
+                                For the promotion of menstrual hygiene among adolescent girls aged 10-19 in rural areas,
+                                we focus on improving access to hygienic sanitary products and educating girls about the
+                                menstrual cycle...
+                            </p>
+                            <button class="btn btn-read-more" data-bs-toggle="modal" data-bs-target="#modalSuraksha">
+                                Read More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Slide 2 -->
+
+                <!-- Slide 3 -->
+                <div class="swiper-slide">
+                    <div class="card">
+                        <img src="/img/events-3.jpg" alt="Swabhiman" class="card-img-top">
+                        <div class="card-body">
+                            <div class="date">Launched in 2017</div>
+                            <h3 class="card-title">Swabhiman</h3>
+                            <p class="card-text">
+                                Launched in 2017 to address the challenges through a simple yet effective approach. The
+                                programme is specifically aimed at realization of both individual and collective
+                                self-esteem and inner strength...
+                            </p>
+                            <button class="btn btn-read-more" data-bs-toggle="modal" data-bs-target="#modalSwabhiman">
+                                Read More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="swiper-slide">
+                    <div class="card">
+                        <img src="/img/events-4.jpg" alt="Swabhiman" class="card-img-top">
+                        <div class="card-body">
+                            <div class="date">Launched in 2024</div>
+                            <h3 class="card-title">Eco Club</h3>
+                            <p class="card-text">
+                                Eco Club fosters environmental awareness and sustainability through workshops, tree
+                                plantation drives, and recycling programs, aiming to cultivate both individual and
+                                collective responsibility toward a greener...
+                            </p>
+                            <button class="btn btn-read-more" data-bs-toggle="modal" data-bs-target="#ecoClub">
+                                Read More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Slide 4 -->
+
+                <!-- Slide 5: Robotics and AI -->
+                <div class="swiper-slide">
+                    <div class="card">
+                        <img src="/img/events-5.jpg" alt="Robotics and AI" class="card-img-top">
+                        <div class="card-body">
+                            <div class="date">Launched in 2024</div>
+                            <h3 class="card-title">Robotics and AI</h3>
+                            <p class="card-text">
+                                Our Robotics and AI program is designed to equip students with cutting-edge technological skills, fostering innovation and creativity in emerging fields. Launched in 2024, this initiative provides hands-on....
+                            </p>
+                            <button class="btn btn-read-more" data-bs-toggle="modal" data-bs-target="#modalRoboticsAI">
+                                Read More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Slide 5 -->
+
+            </div>
+            <!-- Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Navigation Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+        <!-- Modals for Read More -->
+        <!-- Modal for Shiksha -->
+        <div class="modal fade" id="modalShiksha" tabindex="-1" aria-labelledby="modalShikshaLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalShikshaLabel">Shiksha</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Shiksha is a self-funded initiative by RSSI NGO that delivers quality education at a
+                            fraction of the market cost. At Kalpana Buds School, students contribute only around 13%
+                            of the actual educational expenses. In our NGO division, students pay less than 4% of
+                            the market cost. The majority of the expenses are covered by our directorial fund,
+                            making education both affordable and empowering for the students. By bridging this
+                            financial gap, we ensure that every child has the opportunity to thrive. Learn more
+                            about how you can support our work.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Suraksha -->
+        <div class="modal fade" id="modalSuraksha" tabindex="-1" aria-labelledby="modalSurakshaLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalSurakshaLabel">Suraksha</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            For the promotion of menstrual hygiene among adolescent girls aged 10-19 in rural areas,
+                            we focus on improving access to hygienic sanitary products and educating girls about the
+                            menstrual cycle. Our comprehensive approach includes regular health screenings, monthly
+                            awareness sessions, and the free distribution of sanitary pads as needed. This holistic
+                            strategy ensures that girls are well-informed, prepared, and supported throughout their
+                            menstrual health journey.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Swabhiman -->
+        <div class="modal fade" id="modalSwabhiman" tabindex="-1" aria-labelledby="modalSwabhimanLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalSwabhimanLabel">Swabhiman</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Launched in 2017 to address the challenges through a simple yet effective approach. The
+                            programme is specifically aimed at realization of both individual and collective
+                            self-esteem and inner strength for marginalized and socially excluded women and
+                            adolescent girls through innovative community practices.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Eco club -->
+        <div class="modal fade" id="ecoClub" tabindex="-1" aria-labelledby="ecoClubLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ecoClubLabel">Eco Club</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Eco Club fosters environmental awareness and sustainability through workshops, tree
+                            plantation drives, and recycling programs. It aims to cultivate a sense of responsibility,
+                            empower individuals with eco-friendly practices, and inspire collective action for a greener
+                            future. The club encourages students to develop innovative solutions for environmental
+                            challenges, promotes waste management initiatives, and actively engages communities in
+                            conservation efforts. Through hands-on activities and awareness campaigns, it strives to
+                            instill long-term ecological values, ensuring a more sustainable and responsible society.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal for Robotics and AI -->
+        <div class="modal fade" id="modalRoboticsAI" tabindex="-1" aria-labelledby="modalRoboticsAILabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalRoboticsAILabel">Robotics and AI</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Our Robotics and AI program is designed to equip students with cutting-edge technological
+                            skills, fostering innovation and creativity in emerging fields. Launched in 2020, this
+                            initiative provides hands-on learning experiences through robotics, coding, and artificial
+                            intelligence applications.</p>
+
+                        <p>The program focuses on developing problem-solving abilities, critical thinking, and
+                            technical expertise through structured workshops, AI-driven projects, and interactive coding
+                            sessions. Students engage in real-world applications, innovation challenges, and
+                            collaborative projects to prepare for the rapidly evolving tech landscape. By bridging the
+                            gap between theory and practice, we aim to inspire young minds to become future leaders in
+                            robotics and AI.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Projects-->
 
         <div id="custom-section">
             <div class="container">
@@ -495,7 +724,6 @@
                 </div>
             </div>
         </div>
-
 
         <!-- ======= About Section ======= -->
         <section id="about" class="about">
@@ -659,70 +887,6 @@
             </div>
         </section>
         <!-- End Stats Counter Section -->
-
-        <!-- ======= Events Section ======= -->
-        <section id="events" class="events">
-            <div class="container-fluid" data-aos="fade-up">
-
-                <div class="section-header">
-                    <h2>Our Initiatives</h2>
-                    <p>Driving Change Through <span>3S</span></p>
-                </div>
-
-                <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
-                    <div class="swiper-wrapper">
-
-                        <div class="swiper-slide event-item d-flex flex-column justify-content-end"
-                            style="background-image: url(/img/events-1.jpg)">
-                            <!-- <h3>Monthly expenses: ₹900/Child</h3> -->
-                            <div class="price align-self-start">Shiksha</div>
-                            <p class="description">
-                                Shiksha is a self-funded initiative by RSSI NGO that delivers quality education at a
-                                fraction of the market cost. At Kalpana Buds School, students contribute only around 13%
-                                of the actual educational expenses. In our NGO division, students pay less than 4% of
-                                the market cost. The majority of the expenses are covered by our directorial fund,
-                                making education both affordable and empowering for the students. By bridging this
-                                financial gap, we ensure that every child has the opportunity to thrive. Learn more
-                                about how you can support our work.
-                            </p>
-                        </div>
-                        <!-- End Event item -->
-
-                        <div class="swiper-slide event-item d-flex flex-column justify-content-end"
-                            style="background-image: url(/img/events-2.jpg)">
-                            <!-- <h3>Monthly expenses: ₹200/Child</h3> -->
-                            <div class="price align-self-start">Suraksha</div>
-                            <p class="description">
-                                For the promotion of menstrual hygiene among adolescent girls aged 10-19 in rural areas,
-                                we focus on improving access to hygienic sanitary products and educating girls about the
-                                menstrual cycle. Our comprehensive approach includes regular health screenings, monthly
-                                awareness sessions, and the free distribution of sanitary pads as needed. This holistic
-                                strategy ensures that girls are well-informed, prepared, and supported throughout their
-                                menstrual health journey.
-                            </p>
-                        </div>
-                        <!-- End Event item -->
-
-                        <div class="swiper-slide event-item d-flex flex-column justify-content-end"
-                            style="background-image: url(/img/events-3.jpg)">
-                            <!-- <h3>Monthly expenses: ₹500/Child</h3> -->
-                            <div class="price align-self-start">Swabhiman</div>
-                            <p class="description">
-                                Launched in 2017 to address the challenges through a simple yet effective approach. The
-                                programme is specifically aimed at realization of both individual and collective
-                                self-esteem and inner strength for marginalized and socially excluded women and
-                                adolescent
-                                girls through innovative community practices.
-                            </p>
-                        </div>
-                        <!-- End Event item -->
-
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-            </div>
-        </section>
-        <!-- End Events Section -->
 
         <!-- ======= Gallery Section ======= -->
         <section id="gallery" class="gallery section-bg">
@@ -1016,9 +1180,39 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/vendor/glightbox/js/glightbox.min.js" defer></script>
     <script src="/vendor/purecounter/purecounter_vanilla.js" defer></script>
-    <script src="/vendor/swiper/swiper-bundle.min.js" defer></script>
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="/js/main.js" defer></script>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const swiper = new Swiper('#announcements-carousel', {
+                loop: true, // Enable infinite loop
+                slidesPerView: 1, // Default: 1 slide on mobile
+                spaceBetween: 20, // Space between slides
+                autoplay: {
+                    delay: 3000, // Auto-swip every 3 seconds
+                    disableOnInteraction: false, // Continue autoplay even after user interaction
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    // Responsive breakpoints
+                    768: {
+                        slidesPerView: 2, // 2 slides on tablets
+                    },
+                    1024: {
+                        slidesPerView: 3, // 3 slides on desktops
+                    },
+                },
+            });
+        });
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Define words for each slide
