@@ -148,6 +148,16 @@
             }
         }
 
+        /* Cards */
+        .card {
+            background-color: #fff;
+            border: none;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
         /* Carousel */
         #heroCarousel .carousel-inner {
             width: 100%;
@@ -230,119 +240,257 @@
         }
     </style>
     <style>
+        /* Base Styles for #custom-section */
         #custom-section {
-            background-color: #f8f9fa;
-            padding: 2rem 0;
+            background-color: #ffffff;
+            /* Pure white background */
+            padding: 3rem 0;
         }
 
         #custom-section .container {
-            background-color: #fff;
+            background-color: #ffffff;
+            /* Pure white container */
             padding: 2rem;
             border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            /* Subtle shadow */
         }
 
         /* Section Titles */
-        .section-title {
+        #custom-section .section-title {
             font-size: 1.75rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
             color: #2c3e50;
+            /* Dark gray for contrast */
             position: relative;
             display: inline-block;
         }
 
-        .section-title::after {
+        #custom-section .section-title::after {
             content: '';
             position: absolute;
             left: 0;
             bottom: -5px;
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, #3498db, #9b59b6);
+            background: #e9ecef;
+            /* Light gray underline */
             border-radius: 2px;
         }
 
         /* Cards */
-        .card {
-            background-color: #fff;
-            border: none;
+        #custom-section .card {
+            background-color: #ffffff;
+            /* Pure white card */
+            border: 1px solid #e9ecef;
+            /* Light border */
             border-radius: 0.5rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            /* Subtle shadow */
             padding: 1.5rem;
             margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
         }
 
-        /* List Group Items */
-        .list-group-item {
+        #custom-section .card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            /* Slightly stronger shadow on hover */
+        }
+
+        /* List Group Items (News Highlights) */
+        #custom-section .list-group-item {
             border: none;
             padding: 1rem 0;
             color: #555;
+            /* Dark gray for text */
             display: flex;
             flex-direction: column;
             align-items: flex-start;
         }
 
-        .list-group-item:last-child {
+        #custom-section .list-group-item:last-child {
             border-bottom: none;
         }
 
-        .list-group-item .notice-content {
+        #custom-section .list-group-item .notice-content {
             display: flex;
             align-items: center;
         }
 
-        .list-group-item .badge {
+        #custom-section .list-group-item .badge {
             margin-left: 0.5rem;
-            background-color: #3498db;
-            color: #fff;
         }
 
-        .list-group-item .date {
+        #custom-section .list-group-item .date {
             display: block;
             margin-top: 0.25rem;
             font-size: 0.875rem;
             color: #777;
+            /* Light gray for date */
         }
 
-        /* Buttons */
-        .btn-gradient {
-            background: linear-gradient(90deg, #3498db, #9b59b6);
-            border: none;
-            color: #fff;
+        /* Scrollable Content (Activities & Initiatives) */
+        #custom-section .scrollable-content {
+            overflow-y: auto;
+            flex-grow: 1;
+            max-height: 500px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            /* White space below */
+        }
+
+        #custom-section .scrollable-content::-webkit-scrollbar {
+            width: 8px;
+            /* Scrollbar width */
+        }
+
+        #custom-section .scrollable-content::-webkit-scrollbar-track {
+            background: #f8f9fa;
+            /* Track color */
+            border-radius: 4px;
+        }
+
+        #custom-section .scrollable-content::-webkit-scrollbar-thumb {
+            background: #e9ecef;
+            /* Thumb color */
+            border-radius: 4px;
+        }
+
+        /* Blog Posts Container */
+        #custom-section #blog-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            /* Spacing between posts */
+        }
+
+        /* Post Card */
+        #custom-section .post {
+            background-color: #ffffff;
+            /* Pure white background */
+            border: 1px solid #e9ecef;
+            /* Light border */
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        #custom-section .post:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow on hover */
+        }
+
+        /* Profile Photo */
+        #custom-section .profile-photo img,
+        #custom-section .profile-photo div {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        #custom-section .profile-photo div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e9ecef;
+            /* Light gray background */
+            color: #555;
+            /* Dark gray text */
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        /* Post Content */
+        #custom-section .post h5 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #2c3e50;
+            /* Dark gray for heading */
+            margin-bottom: 0.25rem;
+        }
+
+        #custom-section .post small {
+            font-size: 0.875rem;
+            color: #777;
+            /* Light gray for date */
+        }
+
+        #custom-section .post p {
+            font-size: 1rem;
+            color: #555;
+            /* Dark gray for text */
+            margin: 1rem 0;
+            line-height: 1.5;
+        }
+
+        /* Like Section */
+        #custom-section .post .pointer {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            color: #555;
+            /* Dark gray for text */
+            transition: color 0.3s ease;
+        }
+
+        #custom-section .post .pointer:hover {
+            color: #2c3e50;
+            /* Darker gray on hover */
+        }
+
+        #custom-section .post .pointer i {
+            margin-right: 0.5rem;
+        }
+
+        /* Load More Button */
+        #custom-section #load-more-btn {
+            background-color: #f8f9fa;
+            /* Off-white background */
+            border: 1px solid #e9ecef;
+            /* Light border */
+            color: #555;
+            /* Dark gray text */
             padding: 0.5rem 1.5rem;
             border-radius: 0.25rem;
             transition: all 0.3s ease;
         }
 
-        .btn-gradient:hover {
+        #custom-section #load-more-btn:hover {
+            background-color: #e9ecef;
+            /* Light gray on hover */
             transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Shadow on hover */
         }
 
-        /* Scrollable Content */
-        .scrollable-content {
-            overflow-y: auto;
-            flex-grow: 1;
-            max-height: 500px;
-            padding-top: 1rem;
+        /* No More Posts Message */
+        #custom-section #no-more-posts {
+            color: #777;
+            /* Light gray text */
+            font-style: italic;
         }
 
         /* Loading Spinner */
-        #loading-spinner {
+        #custom-section #loading-spinner {
             display: none;
             padding: 1rem 0;
+            text-align: center;
         }
 
-        /* Links */
-        .list-group-item a {
-            color: inherit;
-            text-decoration: none;
+        #custom-section #loading-spinner .spinner-border {
+            width: 2rem;
+            height: 2rem;
+            border-width: 0.2em;
+            color: #e9ecef;
+            /* Light gray spinner */
         }
 
-        .list-group-item a:hover {
-            text-decoration: underline;
-            color: #3498db;
+        #custom-section #loading-spinner span {
+            margin-left: 0.5rem;
+            color: #555;
+            /* Dark gray text */
         }
     </style>
 </head>
@@ -1450,8 +1598,8 @@
                     const moreNewsLink = document.createElement('div');
                     moreNewsLink.className = 'text-end';
                     moreNewsLink.innerHTML = `
-                <a href="#" class="text-muted" data-bs-toggle="modal"
-                   data-bs-target="#viewMoreModal" onclick="loadAllNews()">more news..</a>
+                <button class="btn btn-read-more" data-bs-toggle="modal"
+                   data-bs-target="#viewMoreModal" onclick="loadAllNews()">more news..</button>
             `;
                     newsItemDiv.appendChild(moreNewsLink);
                 } else {
