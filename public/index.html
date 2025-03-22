@@ -492,6 +492,29 @@
             /* Dark gray text */
         }
     </style>
+    <style>
+        /* Initial state: Low opacity */
+        .btn-read-more {
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+            /* Smooth transition */
+        }
+
+        /* Hover state: Increase opacity */
+        .btn-read-more:hover {
+            opacity: 0.8;
+        }
+
+        /* Focus state: Increase opacity (only for keyboard focus) */
+        .btn-read-more:focus-visible {
+            opacity: 1;
+        }
+
+        /* Active state (when clicked): Increase opacity */
+        .btn-read-more:active {
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <body>
@@ -1597,9 +1620,10 @@
                     const moreNewsLink = document.createElement('div');
                     moreNewsLink.className = 'text-end';
                     moreNewsLink.innerHTML = `
-                <button class="btn btn-read-more" data-bs-toggle="modal"
-                   data-bs-target="#viewMoreModal" onclick="loadAllNews()">Load More</button>
-            `;
+  <button class="btn btn-read-more" data-bs-toggle="modal" data-bs-target="#viewMoreModal" onclick="loadAllNews()">
+    Load More
+  </button>
+`;
                     newsItemDiv.appendChild(moreNewsLink);
                 } else {
                     console.error('Failed to fetch data');
