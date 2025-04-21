@@ -76,25 +76,33 @@
                         <tbody>
                             <tr>
                                 <td>
-
-                                    <label for="type-of-admission">Type of
-                                        Admission:</label>
+                                    <label for="division-select">Division:</label>
                                 </td>
-                                <td><select class="form-select" id="type-of-admission" name="type-of-admission"
-                                        required>
-                                        <option value>--Select Type of
-                                            Admission--</option>
-                                        <option value="New Admission">New
-                                            Admission</option>
-                                        <!-- <option value="Transfer Admission">Transfer Admission</option> -->
+                                <td>
+                                    <select class="form-select" id="division-select" name="division-select" required>
+                                        <option value="">--Select Division--</option>
+                                        <option value="kalpana">Kalpana Buds School</option>
+                                        <option value="rssi">RSSI NGO</option>
                                     </select>
-                                    <small id="type-of-admission-help" class="form-text text-muted">Please
-                                        select
-                                        the type of
-                                        admission you are applying
-                                        for.</small>
+                                    <small class="form-text text-muted">Please select the division you're applying for.</small>
                                 </td>
                             </tr>
+                            
+                            <tr>
+                                <td>
+                                    <label for="type-of-admission">Access Category:</label>
+                                </td>
+                                <td>
+                                    <select class="form-select" id="type-of-admission" name="type-of-admission" required>
+                                        <option value="">--Select Access Category--</option>
+                                        <!-- Options will be inserted dynamically -->
+                                    </select>
+                                    <small id="type-of-admission-help" class="form-text text-muted">
+                                        Please select the type of access you are applying for.
+                                    </small>
+                                </td>
+                            </tr>
+                            
                             <tr>
                                 <td>
 
@@ -1039,6 +1047,33 @@
         policyLink: 'disclaimer'
     });
 </script>
+<script>
+    const divisionSelect = document.getElementById('division-select');
+    const admissionType = document.getElementById('type-of-admission');
+
+    divisionSelect.addEventListener('change', function () {
+        const selectedDivision = this.value;
+
+        // Clear existing options
+        admissionType.innerHTML = '';
+
+        if (selectedDivision === 'kalpana') {
+            admissionType.innerHTML = `
+                <option value="">--Select Access Category--</option>
+                <option value="Basic">Basic</option>
+                <option value="Regular">Regular</option>
+                <option value="Premium">Premium</option>
+            `;
+        } else if (selectedDivision === 'rssi') {
+            admissionType.innerHTML = `
+                <option value="General" selected>General</option>
+            `;
+        } else {
+            admissionType.innerHTML = `<option value="">--Select Access Category--</option>`;
+        }
+    });
+</script>
+
 </body>
 
 </html>
