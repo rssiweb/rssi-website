@@ -94,10 +94,9 @@
                                     <label for="type-of-admission">Access Category:</label>
                                 </td>
                                 <td>
-                                    <select class="form-select" id="type-of-admission" name="type-of-admission"
-                                        required>
+                                    <select class="form-select" id="type-of-admission" name="type-of-admission" required
+                                        disabled>
                                         <option value="">--Select Access Category--</option>
-                                        <!-- Options will be inserted dynamically -->
                                     </select>
                                     <small id="type-of-admission-help" class="form-text text-muted">
                                         Please select the type of access you are applying for.
@@ -1050,40 +1049,80 @@
         });
     </script>
     <script>
-        const divisionSelect = document.getElementById('division-select');
-        const admissionType = document.getElementById('type-of-admission');
+        document.getElementById('division-select').addEventListener('change', function () {
+            const division = this.value;
+            const admissionSelect = document.getElementById('type-of-admission');
+            const helpText = document.getElementById('type-of-admission-help');
 
-        divisionSelect.addEventListener('change', function () {
-            const selectedDivision = this.value;
+            // Reset and disable the select initially
+            admissionSelect.innerHTML = '<option value="">--Select Access Category--</option>';
+            admissionSelect.disabled = !division;
 
-            const options = {
-                kalpana: [
-                    { value: 'Basic', text: 'Basic' },
-                    { value: 'Regular', text: 'Regular' },
-                    { value: 'Premium', text: 'Premium' }
-                ],
-                rssi: [
-                    { value: 'Classic', text: 'Classic' },
-                    { value: 'Excellence', text: 'Excellence' }
-                ]
-            };
+            if (!division) {
+                helpText.textContent = 'Please select the type of access you are applying for.';
+                return;
+            }
 
-            // Clear existing options
-            admissionType.innerHTML = '';
+            // Create and show loading spinner
+            const spinner = document.createElement('span');
+            spinner.className = 'spinner-border spinner-border-sm ms-2';
+            spinner.setAttribute('role', 'status');
+            spinner.setAttribute('aria-hidden', 'true');
+            helpText.innerHTML = 'Loading plans... ';
+            helpText.appendChild(spinner);
 
-            // Add default option
-            const defaultOption = document.createElement('option');
-            defaultOption.value = '';
-            defaultOption.textContent = '--Select Access Category--';
-            admissionType.appendChild(defaultOption);
+            // Determine API URL based on host
+            const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            const apiUrl = isLocalhost
+                ? 'http://localhost:8082/get_plans.php'
+                : 'https://login.rssi.in/get_plans.php';
 
-            // Add new options if division matches
-            (options[selectedDivision] || []).forEach(opt => {
-                const option = document.createElement('option');
-                option.value = opt.value;
-                option.textContent = opt.text;
-                admissionType.appendChild(option);
-            });
+            // Fetch plans via AJAX
+            fetch(`${apiUrl}?division=${division}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(plans => {
+                    admissionSelect.innerHTML = '<option value="">--Select Access Category--</option>';
+
+                    if (plans.length === 0) {
+                        const noOption = document.createElement('option');
+                        noOption.textContent = 'No plans available';
+                        noOption.disabled = true;
+                        admissionSelect.appendChild(noOption);
+                        helpText.textContent = 'No plans available for this division.';
+                        return;
+                    }
+
+                    plans.forEach(plan => {
+                        const option = document.createElement('option');
+                        option.value = plan.name;
+                        option.textContent = plan.name;
+                        admissionSelect.appendChild(option);
+                    });
+
+                    admissionSelect.disabled = false;
+                    helpText.textContent = 'Please select the type of access you are applying for.';
+                })
+                .catch(error => {
+                    console.error('Error fetching plans:', error);
+                    admissionSelect.innerHTML = '<option value="">--Select Access Category--</option>';
+                    const errorOption = document.createElement('option');
+                    errorOption.textContent = 'Error loading plans';
+                    errorOption.disabled = true;
+                    admissionSelect.appendChild(errorOption);
+                    helpText.textContent = 'Failed to load plans. Please try again.';
+                })
+                .finally(() => {
+                    admissionSelect.disabled = false;
+                    // Remove spinner if it still exists
+                    if (spinner.parentNode === helpText) {
+                        helpText.removeChild(spinner);
+                    }
+                });
         });
     </script>
 
