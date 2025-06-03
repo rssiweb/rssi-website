@@ -598,7 +598,9 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button type="button" class="btn btn-primary" onclick="nextPage()">Next</button>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-primary" onclick="nextPage()">Next</button>
+                        </div>
                     </div>
                     <div class="form-page" id="page2" style="display:none;">
                         <!-- Second part of the form -->
@@ -693,8 +695,10 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <!-- <button type="button" onclick="prevPage()">Previous</button> -->
-                        <button type="submit" class="btn btn-primary" id="btnSubmit">Submit</button>
+                        <div class="text-end">
+                            <!-- <button type="button" onclick="prevPage()">Previous</button> -->
+                            <button type="submit" class="btn btn-primary" id="btnSubmit">Submit</button>
+                        </div>
                     </div>
                 </form>
 
@@ -954,84 +958,6 @@
             </div>
         </div>
     </div>
-    <script>
-        // Determine the correct script URL based on the environment
-        const scriptURL = window.location.hostname === 'localhost'
-            ? 'http://localhost:8082/rssi-member/payment-api.php'
-            : 'https://login.rssi.in/rssi-member/payment-api.php';
-
-        const admissionForm = document.getElementById("admission");
-
-        document.getElementById("btnSubmit").addEventListener("click", async function (event) {
-            event.preventDefault(); // Prevent default form submission
-
-            if (!admissionForm.checkValidity()) {
-                admissionForm.reportValidity(); // Show the default validation messages
-                return;
-            }
-
-            // Disable the submit button immediately upon form submission
-            this.disabled = true;
-            // Show the Bootstrap modal
-            const myModal = new bootstrap.Modal(document.getElementById("myModal"), {
-                backdrop: 'static',
-                keyboard: false
-            });
-            // Add event listener to intercept Escape key press
-            document.body.addEventListener('keydown', function (event) {
-                if (event.key === 'Escape') {
-                    // Prevent default behavior of Escape key
-                    event.preventDefault();
-                }
-            });
-            myModal.show();
-
-            try {
-                const response = await fetch(scriptURL, {
-                    method: 'POST',
-                    body: new FormData(admissionForm)
-                });
-                const result = await response.json();
-
-                console.log("API Response:", result);
-
-                if (result.success) {
-                    alert(`Submitted successfully! Message: ${result.message}`);
-                    location.reload(); // Reload the page after clicking OK
-                    admissionForm.reset(); // Reset the form after successful submission
-                    // Function to reset photo preview
-                    function resetPhotoPreview() {
-                        const preview = document.getElementById('photo-preview');
-                        const container = document.getElementById('photo-preview-container');
-                        preview.src = '';
-                        container.style.display = 'none';
-                    }
-
-                    // Function to reset Aadhar card preview
-                    function resetAadharCardPreview() {
-                        const preview = document.getElementById('aadhar-card-preview');
-                        const imagePreview = document.getElementById('aadhar-card-image-preview');
-                        const container = document.getElementById('aadhar-card-preview-container');
-                        preview.src = '';
-                        imagePreview.src = '';
-                        container.style.display = 'none';
-                    }
-                    resetPhotoPreview();
-                    resetAadharCardPreview();
-                    // You can optionally reload the page here
-                } else {
-                    alert(`Error: ${result.message}`);
-                }
-            } catch (error) {
-                console.error(error);
-                alert("Error occurred during form submission. Please try again later.");
-            } finally {
-                // Re-enable the submit button after the form submission process is finished
-                this.disabled = false;
-                myModal.hide();
-            }
-        });
-    </script>
 
     <script>
         // Function to preview photo
@@ -1220,6 +1146,22 @@
         });
     </script>
 
+    <!-- <script>
+        function nextPage() {
+            document.getElementById('page1').style.display = 'none';
+            document.getElementById('page2').style.display = 'block';
+        }
+        // function prevPage() {
+        //     document.getElementById('page2').style.display = 'none';
+        //     document.getElementById('page1').style.display = 'block';
+        // }
+    </script> -->
+
+    <script>
+        // Global sessionId accessible by both scripts
+        let sessionId = null;
+    </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
@@ -1310,11 +1252,13 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
+                            sessionId = data.session_id;
                             codeInput.value = '';
                             codeInput.readOnly = false;
                             codeVerifiedField.value = '0';
                             updateSubmitButtonState();
                             verificationStatus.textContent = 'C-Authentication Code generated. Contact admission in-charge to proceed.';
+                            // verificationStatus.textContent = `C-Authentication Code generated. Session ID: ${sessionId}. Contact admission in-charge to proceed.`;
                             verificationStatus.className = 'text-success';
                             verificationStatus.style.display = 'inline';
 
@@ -1369,7 +1313,7 @@
                 fetch(verifyCodeUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ code: codeInput.value })
+                    body: JSON.stringify({ code: codeInput.value, session_id: sessionId })
                 })
                     .then(response => response.json())
                     .then(data => {
@@ -1408,6 +1352,90 @@
                             codeActionText.textContent = 'Verify Code';
                         }
                     });
+            }
+        });
+    </script>
+
+    <script>
+        // Determine the correct script URL based on the environment
+        const scriptURL = window.location.hostname === 'localhost'
+            ? 'http://localhost:8082/rssi-member/payment-api.php'
+            : 'https://login.rssi.in/rssi-member/payment-api.php';
+
+        const admissionForm = document.getElementById("admission");
+
+        document.getElementById("btnSubmit").addEventListener("click", async function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            if (!admissionForm.checkValidity()) {
+                admissionForm.reportValidity(); // Show the default validation messages
+                return;
+            }
+
+            // Disable the submit button immediately upon form submission
+            this.disabled = true;
+            // Show the Bootstrap modal
+            const myModal = new bootstrap.Modal(document.getElementById("myModal"), {
+                backdrop: 'static',
+                keyboard: false
+            });
+            // Add event listener to intercept Escape key press
+            document.body.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape') {
+                    // Prevent default behavior of Escape key
+                    event.preventDefault();
+                }
+            });
+            myModal.show();
+
+            const formData = new FormData(admissionForm);
+            if (sessionId) {
+                formData.append('c_auth_session_id', sessionId);
+            }
+
+            try {
+                const response = await fetch(scriptURL, {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+
+                console.log("API Response:", result);
+
+                if (result.success) {
+                    alert(`Submitted successfully! Message: ${result.message}`);
+                    location.reload(); // Reload the page after clicking OK
+                    admissionForm.reset(); // Reset the form after successful submission
+                    // Function to reset photo preview
+                    function resetPhotoPreview() {
+                        const preview = document.getElementById('photo-preview');
+                        const container = document.getElementById('photo-preview-container');
+                        preview.src = '';
+                        container.style.display = 'none';
+                    }
+
+                    // Function to reset Aadhar card preview
+                    function resetAadharCardPreview() {
+                        const preview = document.getElementById('aadhar-card-preview');
+                        const imagePreview = document.getElementById('aadhar-card-image-preview');
+                        const container = document.getElementById('aadhar-card-preview-container');
+                        preview.src = '';
+                        imagePreview.src = '';
+                        container.style.display = 'none';
+                    }
+                    resetPhotoPreview();
+                    resetAadharCardPreview();
+                    // You can optionally reload the page here
+                } else {
+                    alert(`Error: ${result.message}`);
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Error occurred during form submission. Please try again later.");
+            } finally {
+                // Re-enable the submit button after the form submission process is finished
+                this.disabled = false;
+                myModal.hide();
             }
         });
     </script>
