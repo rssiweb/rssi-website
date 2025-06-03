@@ -462,14 +462,15 @@
                                         <option value="4">Class 4</option>
                                         <option value="5">Class 5</option>
                                         <option value="6">Class 6</option>
-                                        <option value="7">Class 7</option>
+                                        <!-- <option value="7">Class 7</option>
                                         <option value="8">Class 8</option>
                                         <option value="9">Class 9</option>
                                         <option value="10">Class 10</option>
                                         <option value="11">Class 11</option>
-                                        <option value="12">Class 12</option>
+                                        <option value="12">Class 12</option> -->
                                         <option value="Vocational training">Vocational
                                             training</option>
+                                        <option value="Summer camp">Summer camp</option>
                                     </select>
                                     <small id="class-help" class="form-text text-muted">Please select
                                         the
@@ -489,6 +490,7 @@
                                             Subjects</option>
                                         <option value="English">English</option>
                                         <option value="Embroidery">Embroidery</option>
+                                        <option value="Co-Curricular Workshops">Co-Curricular Workshops</option>
                                     </select>
                                     <small class="form-text text-muted">Please
                                         select
@@ -821,7 +823,7 @@
             const selectedSubject = subjectSelect.value;
 
             // Check if subject is blank or Embroidery
-            if (selectedSubject === '' || selectedSubject === 'Embroidery') {
+            if (selectedSubject === '' || selectedSubject !== 'ALL Subjects') {
                 schoolRequiredGroup.style.display = 'none';
                 schoolRequiredSelect.removeAttribute('required');
                 resetFields();
