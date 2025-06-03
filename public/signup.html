@@ -352,6 +352,10 @@
                                         <option value>--Select
                                             Post--</option>
                                         <option value="Faculty">Faculty</option>
+                                        <option value="Digital Content & Engagement Associate">Digital Content &
+                                            Engagement Associate</option>
+                                        <option value="Business Development Executive">Business Development Executive
+                                        </option>
                                     </select>
                                     <small class="form-text text-muted"></small>
                                 </td>
@@ -404,7 +408,9 @@
                             <tr>
                                 <td>
                                     <label for="payment-photo">Upload Payment Screenshot</label>
-                                    <p>To make payment, click <a href="https://securegw.paytm.in/link/paymentForm/27554/LL_713692781" target="_blank">here</a>.</p>
+                                    <p>To make payment, click <a
+                                            href="https://securegw.paytm.in/link/paymentForm/27554/LL_713692781"
+                                            target="_blank">here</a>.</p>
                                 </td>
                                 <td>
                                     <input type="file" class="form-control" id="payment-photo" name="payment-photo"
@@ -722,6 +728,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const associationSelect = document.getElementById('association');
+            const postSelect = document.getElementById('post-select');
             const subjectPreferencesRow = document.getElementById('subjectPreferences');
             const subject1 = document.getElementById('subject1');
             const subject2 = document.getElementById('subject2');
@@ -729,39 +736,45 @@
 
             // Hide the Subject Preferences row on page load
             subjectPreferencesRow.style.display = 'none';
+
             // Function to reset subject preferences fields
             function resetSubjectPreferencesFields() {
-                subject1.value = ''; // Reset subject1 value
-                subject2.value = ''; // Reset subject2 value
-                subject3.value = ''; // Reset subject3 value
+                if (subject1) subject1.value = '';
+                if (subject2) subject2.value = '';
+                if (subject3) subject3.value = '';
             }
 
-            // Function to add the required attribute to dropdown fields
-            function addRequired() {
-                [subject1, subject2, subject3].forEach(field => {
-                    field.setAttribute('required', '');
-                });
-            }
-
-            // Function to remove the required attribute from dropdown fields
-            function removeRequired() {
-                [subject1, subject2, subject3].forEach(field => {
-                    field.removeAttribute('required');
-                });
-            }
-
-            associationSelect.addEventListener('change', function () {
-                // Show the Subject Preferences row if association is Employee or Intern
-                if (associationSelect.value === 'Employee' || associationSelect.value === 'Intern') {
+            // Function to handle subject preferences visibility
+            function updateSubjectPreferences() {
+                if (postSelect.value === 'Faculty') {
                     subjectPreferencesRow.style.display = 'table-row';
-                    addRequired(); // Add required attribute to dropdown fields
+                    [subject1, subject2, subject3].forEach(field => {
+                        if (field) field.setAttribute('required', '');
+                    });
                 } else {
-                    // Hide the Subject Preferences row and remove required attribute from dropdown fields
                     subjectPreferencesRow.style.display = 'none';
-                    removeRequired();
-                    resetSubjectPreferencesFields(); // Reset the values when association changes
+                    [subject1, subject2, subject3].forEach(field => {
+                        if (field) field.removeAttribute('required');
+                    });
+                    resetSubjectPreferencesFields();
                 }
-            });
+            }
+
+            // Initial setup for post-select change
+            if (postSelect) {
+                postSelect.addEventListener('change', updateSubjectPreferences);
+            }
+
+            // Handle association change (if needed for other logic)
+            if (associationSelect) {
+                associationSelect.addEventListener('change', function () {
+                    // Reset subject preferences when association changes
+                    updateSubjectPreferences();
+                });
+            }
+
+            // Initialize
+            updateSubjectPreferences();
         });
     </script>
 
