@@ -43,6 +43,11 @@
             $("#footer").load("/footer.html");
         });
     </script>
+    <style>
+        #regenerate-code-link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
@@ -71,583 +76,626 @@
                     enrollment fee and the first month’s fee must be paid in advance and are non-refundable.</p>
                 <hr>
                 <form name="admission" id="admission" action="#" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="form-type" value="admission">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <label for="division-select">Division:</label>
-                                </td>
-                                <td>
-                                    <select class="form-select" id="division-select" name="division-select" required>
-                                        <option value="">--Select Division--</option>
-                                        <option value="kalpana">Kalpana Buds School</option>
-                                        <option value="rssi">RSSI NGO</option>
-                                    </select>
-                                    <small class="form-text text-muted">Please select the division you're applying
-                                        for.</small>
-                                </td>
-                            </tr>
+                    <div class="form-page" id="page1">
+                        <!-- First part of the form -->
+                        <input type="hidden" name="form-type" value="admission">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label for="division-select">Division:</label>
+                                    </td>
+                                    <td>
+                                        <select class="form-select" id="division-select" name="division-select"
+                                            required>
+                                            <option value="">--Select Division--</option>
+                                            <option value="kalpana">Kalpana Buds School</option>
+                                            <option value="rssi">RSSI NGO</option>
+                                        </select>
+                                        <small class="form-text text-muted">Please select the division you're applying
+                                            for.</small>
+                                    </td>
+                                </tr>
 
-                            <tr>
-                                <td>
-                                    <label for="type-of-admission">Access Category:</label>
-                                </td>
-                                <td>
-                                    <select class="form-select" id="type-of-admission" name="type-of-admission" required
-                                        disabled>
-                                        <option value="">--Select Access Category--</option>
-                                    </select>
-                                    <small id="type-of-admission-help" class="form-text text-muted">
-                                        Please select the type of access you are applying for.
-                                    </small>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <label for="type-of-admission">Access Category:</label>
+                                    </td>
+                                    <td>
+                                        <select class="form-select" id="type-of-admission" name="type-of-admission"
+                                            required disabled>
+                                            <option value="">--Select Access Category--</option>
+                                        </select>
+                                        <small id="type-of-admission-help" class="form-text text-muted">
+                                            Please select the type of access you are applying for.
+                                        </small>
+                                    </td>
+                                </tr>
 
-                            <tr>
-                                <td>
+                                <tr>
+                                    <td>
 
-                                    <label for="student-name">Student
-                                        Name:</label>
-                                </td>
-                                <td><input type="text" class="form-control" id="student-name" name="student-name"
-                                        placeholder="Enter student name" required>
-                                    <small id="student-name-help" class="form-text text-muted">Please
-                                        enter the
-                                        name
-                                        of the
-                                        student.</small>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="date-of-birth">Date of
-                                        Birth:</label>
-                                </td>
-                                <td><input type="date" class="form-control" id="date-of-birth" name="date-of-birth"
-                                        required>
-                                    <small id="date-of-birth-help" class="form-text text-muted">Please
-                                        enter
-                                        the date of
-                                        birth of the student.</small>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="gender">Gender:</label>
-                                </td>
-                                <td><select class="form-select" id="gender" name="gender" required>
-                                        <option value>--Select
-                                            Gender--</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                        <option value="Binary">Binary</option>
-                                    </select>
-                                    <small id="gender-help" class="form-text text-muted">Please
-                                        select the
-                                        gender of the
-                                        student.</small>
-                                </td>
-                            </tr>
+                                        <label for="student-name">Student
+                                            Name:</label>
+                                    </td>
+                                    <td><input type="text" class="form-control" id="student-name" name="student-name"
+                                            placeholder="Enter student name" required>
+                                        <small id="student-name-help" class="form-text text-muted">Please
+                                            enter the
+                                            name
+                                            of the
+                                            student.</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="date-of-birth">Date of
+                                            Birth:</label>
+                                    </td>
+                                    <td><input type="date" class="form-control" id="date-of-birth" name="date-of-birth"
+                                            required>
+                                        <small id="date-of-birth-help" class="form-text text-muted">Please
+                                            enter
+                                            the date of
+                                            birth of the student.</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="gender">Gender:</label>
+                                    </td>
+                                    <td><select class="form-select" id="gender" name="gender" required>
+                                            <option value>--Select
+                                                Gender--</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Binary">Binary</option>
+                                        </select>
+                                        <small id="gender-help" class="form-text text-muted">Please
+                                            select the
+                                            gender of the
+                                            student.</small>
+                                    </td>
+                                </tr>
 
-                            <tr>
-                                <td>
-                                    <label for="student-photo">Upload Student
-                                        Photo:</label>
-                                </td>
-                                <td><input type="file" class="form-control" id="student-photo" name="student-photo"
-                                        required accept="image/*;capture=camera" onchange="previewPhoto(event)">
-                                    <small id="student-photo-help" class="form-text text-muted">Please upload a
-                                        recent passport size
-                                        photograph of the student.</small>
-
-
-                                    <div id="photo-preview-container" style="display: none;">
-                                        <!-- Initially hide the preview container -->
-                                        <!-- <label>Preview:</label><br> -->
-                                        <img id="photo-preview" src="#" alt="Uploaded Photo"
-                                            style="max-width: 200px; max-height: 200px;">
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="aadhar-card">Aadhar Card
-                                        Available?:</label>
-                                </td>
-                                <td><select class="form-select" id="aadhar-card" name="aadhar-card" required>
-                                        <option value>--Select--</option>
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
-                                    </select>
-                                    <small id="aadhar-card-help" class="form-text text-muted">Please select
-                                        whether
-                                        you have an
-                                        Aadhar card or not.</small>
-
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <label for="student-photo">Upload Student
+                                            Photo:</label>
+                                    </td>
+                                    <td><input type="file" class="form-control" id="student-photo" name="student-photo"
+                                            required accept="image/*;capture=camera" onchange="previewPhoto(event)">
+                                        <small id="student-photo-help" class="form-text text-muted">Please upload a
+                                            recent passport size
+                                            photograph of the student.</small>
 
 
-                            <tr id="hidden-panel" style="display: none;">
-                                <td>
-                                    <label for="aadhar-number">Aadhar of the
-                                        Student:</label>
-                                </td>
-                                <td><input type="text" class="form-control" id="aadhar-number" name="aadhar-number"
-                                        placeholder="Enter Aadhar number" required>
-                                    <small id="aadhar-number-help" class="form-text text-muted">Please
-                                        enter
-                                        the
-                                        Aadhar number
-                                        of the student.</small>
-                                </td>
-                            </tr>
-                            <tr id="hidden-aadhar-card-upload" style="display: none;">
-                                <td>
-                                    <label for="aadhar-card-upload">Upload
-                                        Aadhar
-                                        Card:</label>
-                                </td>
-                                <td><input type="file" class="form-control" id="aadhar-card-upload"
-                                        name="aadhar-card-upload" required onchange="previewAadharCard(event)">
-                                    <small id="aadhar-card-upload-help" class="form-text text-muted">Please
-                                        upload a scanned
-                                        copy of the Aadhar card (if
-                                        available).</small>
-                                    <div id="aadhar-card-preview-container" style="display: none;">
-                                        <!-- Initially hide the preview container -->
-                                        <!-- <label>Preview:</label> -->
-                                        <embed id="aadhar-card-preview" src="#" type="application/pdf"
-                                            style="max-width: 200px; max-height: 200px;">
-                                        <!-- Use 'embed' for PDF preview -->
-                                        <img id="aadhar-card-image-preview" src="#" alt="Uploaded Aadhar Card"
-                                            style="max-width: 200px; max-height: 200px;">
-                                        <!-- Use 'img' for image preview -->
-                                    </div>
-                                </td>
-                            </tr>
+                                        <div id="photo-preview-container" style="display: none;">
+                                            <!-- Initially hide the preview container -->
+                                            <!-- <label>Preview:</label><br> -->
+                                            <img id="photo-preview" src="#" alt="Uploaded Photo"
+                                                style="max-width: 200px; max-height: 200px;">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="aadhar-card">Aadhar Card
+                                            Available?:</label>
+                                    </td>
+                                    <td><select class="form-select" id="aadhar-card" name="aadhar-card" required>
+                                            <option value>--Select--</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                        <small id="aadhar-card-help" class="form-text text-muted">Please select
+                                            whether
+                                            you have an
+                                            Aadhar card or not.</small>
 
-                            <tr>
-                                <td>
-                                    <label for="guardian-name">Guardian's
-                                        Name:</label>
-                                </td>
-                                <td><input type="text" class="form-control" id="guardian-name" name="guardian-name"
-                                        placeholder="Enter guardian name" required>
-                                    <small id="guardian-name-help" class="form-text text-muted">Please
-                                        enter
-                                        the name of the
-                                        student's guardian.</small>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
+                                    </td>
+                                </tr>
 
-                                    <label for="relation">Relation with
-                                        Student:</label>
-                                </td>
-                                <td> <select class="form-select" id="relation" name="relation" required>
-                                        <option value>--Select Type of
-                                            Relation--</option>
-                                        <option value="Mother">Mother</option>
-                                        <option value="Father">Father</option>
-                                        <option value="Spouse">Spouse</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                    <small id="relation-help" class="form-text text-muted">Please
-                                        enter the
-                                        relation of the
-                                        guardian
-                                        with the student.</small>
-                                </td>
-                            </tr>
-                            <tr id="hidden-panel-guardian-aadhar" style="display: none;">
-                                <td>
-                                    <label for="guardian-aadhar-number">Aadhar
-                                        of
-                                        Guardian:</label>
-                                </td>
-                                <td><input type="text" class="form-control" id="guardian-aadhar-number"
-                                        name="guardian-aadhar-number" placeholder="Enter Aadhar number" required>
-                                    <small id="guardian-aadhar-number-help" class="form-text text-muted">Please
-                                        enter the Aadhar
-                                        number of the guardian.</small>
-                                </td>
-                            </tr>
 
-                            <tr>
-                                <td>
-                                    <label for="state">State of Domicile:</label>
-                                </td>
-                                <td><select class="form-select" id="state" name="state" required>
-                                        <option value>--Select State--</option>
-                                        <option value="Andhra Pradesh">Andhra
-                                            Pradesh</option>
-                                        <option value="Arunachal Pradesh">Arunachal
-                                            Pradesh</option>
-                                        <option value="Assam">Assam</option>
-                                        <option value="Bihar">Bihar</option>
-                                        <option value="Chhattisgarh">Chhattisgarh</option>
-                                        <option value="Goa">Goa</option>
-                                        <option value="Gujarat">Gujarat</option>
-                                        <option value="Haryana">Haryana</option>
-                                        <option value="Himachal Pradesh">Himachal
-                                            Pradesh</option>
-                                        <option value="Jammu Kashmir">Jammu and
-                                            Kashmir</option>
-                                        <option value="Jharkhand">Jharkhand</option>
-                                        <option value="Karnataka">Karnataka</option>
-                                        <option value="Kerala">Kerala</option>
-                                        <option value="Madhya Pradesh">Madhya
-                                            Pradesh</option>
-                                        <option value="Maharashtra">Maharashtra</option>
-                                        <option value="Manipur">Manipur</option>
-                                        <option value="Meghalaya">Meghalaya</option>
-                                        <option value="Mizoram">Mizoram</option>
-                                        <option value="Nagaland">Nagaland</option>
-                                        <option value="Odisha">Odisha</option>
-                                        <option value="Punjab">Punjab</option>
-                                        <option value="Rajasthan">Rajasthan</option>
-                                        <option value="Sikkim">Sikkim</option>
-                                        <option value="Tamil Nadu">Tamil
-                                            Nadu</option>
-                                        <option value="Telangana">Telangana</option>
-                                        <option value="Tripura">Tripura</option>
-                                        <option value="Uttar Pradesh">Uttar
-                                            Pradesh</option>
-                                        <option value="Uttarakhand">Uttarakhand</option>
-                                        <option value="West Bengal">West
-                                            Bengal</option>
-                                    </select>
-                                    <small id="state-help" class="form-text text-muted">Please select
-                                        the
-                                        state
-                                        where the student
-                                        resides.</small>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="postal-address">Current Address:</label>
-                                </td>
-                                <td>
-                                    <textarea class="form-control" id="postal-address" name="postal-address" rows="3"
-                                        placeholder="Enter current address" required></textarea>
-                                    <small id="postal-address-help" class="form-text text-muted">Please enter the
-                                        complete current address of the student.</small>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="permanent-address">Permanent Address:</label>
-                                </td>
-                                <td>
-                                    <textarea class="form-control" id="permanent-address" name="permanent-address"
-                                        rows="3" placeholder="Enter permanent address" required></textarea>
-                                    <small id="permanent-address-help" class="form-text text-muted">Please enter the
-                                        complete permanent address of the student.</small>
-                                    <div>
-                                        <input type="checkbox" id="same-address" onclick="copyAddress()">
-                                        <label for="same-address">Same as current address</label>
-                                    </div>
-                                </td>
-                            </tr>
+                                <tr id="hidden-panel" style="display: none;">
+                                    <td>
+                                        <label for="aadhar-number">Aadhar of the
+                                            Student:</label>
+                                    </td>
+                                    <td><input type="text" class="form-control" id="aadhar-number" name="aadhar-number"
+                                            placeholder="Enter Aadhar number" required>
+                                        <small id="aadhar-number-help" class="form-text text-muted">Please
+                                            enter
+                                            the
+                                            Aadhar number
+                                            of the student.</small>
+                                    </td>
+                                </tr>
+                                <tr id="hidden-aadhar-card-upload" style="display: none;">
+                                    <td>
+                                        <label for="aadhar-card-upload">Upload
+                                            Aadhar
+                                            Card:</label>
+                                    </td>
+                                    <td><input type="file" class="form-control" id="aadhar-card-upload"
+                                            name="aadhar-card-upload" required onchange="previewAadharCard(event)">
+                                        <small id="aadhar-card-upload-help" class="form-text text-muted">Please
+                                            upload a scanned
+                                            copy of the Aadhar card (if
+                                            available).</small>
+                                        <div id="aadhar-card-preview-container" style="display: none;">
+                                            <!-- Initially hide the preview container -->
+                                            <!-- <label>Preview:</label> -->
+                                            <embed id="aadhar-card-preview" src="#" type="application/pdf"
+                                                style="max-width: 200px; max-height: 200px;">
+                                            <!-- Use 'embed' for PDF preview -->
+                                            <img id="aadhar-card-image-preview" src="#" alt="Uploaded Aadhar Card"
+                                                style="max-width: 200px; max-height: 200px;">
+                                            <!-- Use 'img' for image preview -->
+                                        </div>
+                                    </td>
+                                </tr>
 
-                            <script>
-                                function copyAddress() {
-                                    const currentAddress = document.getElementById('postal-address').value;
-                                    const permanentAddressField = document.getElementById('permanent-address');
-                                    const sameAddressCheckbox = document.getElementById('same-address');
+                                <tr>
+                                    <td>
+                                        <label for="guardian-name">Guardian's
+                                            Name:</label>
+                                    </td>
+                                    <td><input type="text" class="form-control" id="guardian-name" name="guardian-name"
+                                            placeholder="Enter guardian name" required>
+                                        <small id="guardian-name-help" class="form-text text-muted">Please
+                                            enter
+                                            the name of the
+                                            student's guardian.</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
 
-                                    if (sameAddressCheckbox.checked) {
-                                        permanentAddressField.value = currentAddress; // Copy current address to permanent address
-                                        permanentAddressField.readOnly = true; // Make it read-only when checkbox is checked
-                                    } else {
-                                        permanentAddressField.value = ''; // Clear permanent address when checkbox is unchecked
-                                        permanentAddressField.readOnly = false; // Make it editable again
+                                        <label for="relation">Relation with
+                                            Student:</label>
+                                    </td>
+                                    <td> <select class="form-select" id="relation" name="relation" required>
+                                            <option value>--Select Type of
+                                                Relation--</option>
+                                            <option value="Mother">Mother</option>
+                                            <option value="Father">Father</option>
+                                            <option value="Spouse">Spouse</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                        <small id="relation-help" class="form-text text-muted">Please
+                                            enter the
+                                            relation of the
+                                            guardian
+                                            with the student.</small>
+                                    </td>
+                                </tr>
+                                <tr id="hidden-panel-guardian-aadhar" style="display: none;">
+                                    <td>
+                                        <label for="guardian-aadhar-number">Aadhar
+                                            of
+                                            Guardian:</label>
+                                    </td>
+                                    <td><input type="text" class="form-control" id="guardian-aadhar-number"
+                                            name="guardian-aadhar-number" placeholder="Enter Aadhar number" required>
+                                        <small id="guardian-aadhar-number-help" class="form-text text-muted">Please
+                                            enter the Aadhar
+                                            number of the guardian.</small>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="state">State of Domicile:</label>
+                                    </td>
+                                    <td><select class="form-select" id="state" name="state" required>
+                                            <option value>--Select State--</option>
+                                            <option value="Andhra Pradesh">Andhra
+                                                Pradesh</option>
+                                            <option value="Arunachal Pradesh">Arunachal
+                                                Pradesh</option>
+                                            <option value="Assam">Assam</option>
+                                            <option value="Bihar">Bihar</option>
+                                            <option value="Chhattisgarh">Chhattisgarh</option>
+                                            <option value="Goa">Goa</option>
+                                            <option value="Gujarat">Gujarat</option>
+                                            <option value="Haryana">Haryana</option>
+                                            <option value="Himachal Pradesh">Himachal
+                                                Pradesh</option>
+                                            <option value="Jammu Kashmir">Jammu and
+                                                Kashmir</option>
+                                            <option value="Jharkhand">Jharkhand</option>
+                                            <option value="Karnataka">Karnataka</option>
+                                            <option value="Kerala">Kerala</option>
+                                            <option value="Madhya Pradesh">Madhya
+                                                Pradesh</option>
+                                            <option value="Maharashtra">Maharashtra</option>
+                                            <option value="Manipur">Manipur</option>
+                                            <option value="Meghalaya">Meghalaya</option>
+                                            <option value="Mizoram">Mizoram</option>
+                                            <option value="Nagaland">Nagaland</option>
+                                            <option value="Odisha">Odisha</option>
+                                            <option value="Punjab">Punjab</option>
+                                            <option value="Rajasthan">Rajasthan</option>
+                                            <option value="Sikkim">Sikkim</option>
+                                            <option value="Tamil Nadu">Tamil
+                                                Nadu</option>
+                                            <option value="Telangana">Telangana</option>
+                                            <option value="Tripura">Tripura</option>
+                                            <option value="Uttar Pradesh">Uttar
+                                                Pradesh</option>
+                                            <option value="Uttarakhand">Uttarakhand</option>
+                                            <option value="West Bengal">West
+                                                Bengal</option>
+                                        </select>
+                                        <small id="state-help" class="form-text text-muted">Please select
+                                            the
+                                            state
+                                            where the student
+                                            resides.</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="postal-address">Current Address:</label>
+                                    </td>
+                                    <td>
+                                        <textarea class="form-control" id="postal-address" name="postal-address"
+                                            rows="3" placeholder="Enter current address" required></textarea>
+                                        <small id="postal-address-help" class="form-text text-muted">Please enter the
+                                            complete current address of the student.</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="permanent-address">Permanent Address:</label>
+                                    </td>
+                                    <td>
+                                        <textarea class="form-control" id="permanent-address" name="permanent-address"
+                                            rows="3" placeholder="Enter permanent address" required></textarea>
+                                        <small id="permanent-address-help" class="form-text text-muted">Please enter the
+                                            complete permanent address of the student.</small>
+                                        <div>
+                                            <input type="checkbox" id="same-address" onclick="copyAddress()">
+                                            <label for="same-address">Same as current address</label>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <script>
+                                    function copyAddress() {
+                                        const currentAddress = document.getElementById('postal-address').value;
+                                        const permanentAddressField = document.getElementById('permanent-address');
+                                        const sameAddressCheckbox = document.getElementById('same-address');
+
+                                        if (sameAddressCheckbox.checked) {
+                                            permanentAddressField.value = currentAddress; // Copy current address to permanent address
+                                            permanentAddressField.readOnly = true; // Make it read-only when checkbox is checked
+                                        } else {
+                                            permanentAddressField.value = ''; // Clear permanent address when checkbox is unchecked
+                                            permanentAddressField.readOnly = false; // Make it editable again
+                                        }
                                     }
-                                }
-                            </script>
-                            <tr>
-                                <td>
-                                    <label for="telephone">Telephone Number:</label>
-                                </td>
-                                <td><input type="tel" class="form-control" id="telephone" name="telephone"
-                                        placeholder="Enter telephone number" pattern="[0-9]{10}"
-                                        oninput="validateContactNumber(this)" required>
-                                    <small id="telephone-help" class="form-text text-muted">Please enter a
-                                        valid
-                                        telephone
-                                        number.</small>
-                                    <span id="contactnumber_error" style="color: red;"></span>
-                                </td>
-                            </tr>
+                                </script>
+                                <tr>
+                                    <td>
+                                        <label for="telephone">Telephone Number:</label>
+                                    </td>
+                                    <td><input type="tel" class="form-control" id="telephone" name="telephone"
+                                            placeholder="Enter telephone number" pattern="[0-9]{10}"
+                                            oninput="validateContactNumber(this)" required>
+                                        <small id="telephone-help" class="form-text text-muted">Please enter a
+                                            valid
+                                            telephone
+                                            number.</small>
+                                        <span id="contactnumber_error" style="color: red;"></span>
+                                    </td>
+                                </tr>
 
-                            <tr>
-                                <td>
-                                    <label for="email">Email Address:</label>
-                                </td>
-                                <td><input type="email" class="form-control" id="email" name="email"
-                                        placeholder="Enter email address" required>
-                                    <small id="email-help" class="form-text text-muted">Please enter a
-                                        valid email
-                                        address.</small>
-                                </td>
-                            </tr>
-                            <!-- Caste Dropdown Field -->
-                            <tr>
-                                <td>
-                                    <label for="caste">Caste:</label>
-                                </td>
-                                <td>
-                                    <select class="form-select" id="caste" name="caste" required>
-                                        <option disabled selected>Select your caste</option>
-                                        <option value="General">General</option>
-                                        <option value="SC">Scheduled Caste (SC)</option>
-                                        <option value="ST">Scheduled Tribe (ST)</option>
-                                        <option value="OBC">Other Backward Class (OBC)</option>
-                                        <option value="EWS">Economically Weaker Section (EWS)</option>
-                                        <option value="Prefer not to disclose">Prefer not to disclose</option>
-                                        <option value="Do not know">Do not know</option>
-                                        <!-- Add additional options as necessary -->
-                                    </select>
-                                    <small id="caste-help" class="form-text text-muted">Please select your caste
-                                        category as per government records.</small>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <label for="email">Email Address:</label>
+                                    </td>
+                                    <td><input type="email" class="form-control" id="email" name="email"
+                                            placeholder="Enter email address" required>
+                                        <small id="email-help" class="form-text text-muted">Please enter a
+                                            valid email
+                                            address.</small>
+                                    </td>
+                                </tr>
+                                <!-- Caste Dropdown Field -->
+                                <tr>
+                                    <td>
+                                        <label for="caste">Caste:</label>
+                                    </td>
+                                    <td>
+                                        <select class="form-select" id="caste" name="caste" required>
+                                            <option disabled selected>Select your caste</option>
+                                            <option value="General">General</option>
+                                            <option value="SC">Scheduled Caste (SC)</option>
+                                            <option value="ST">Scheduled Tribe (ST)</option>
+                                            <option value="OBC">Other Backward Class (OBC)</option>
+                                            <option value="EWS">Economically Weaker Section (EWS)</option>
+                                            <option value="Prefer not to disclose">Prefer not to disclose</option>
+                                            <option value="Do not know">Do not know</option>
+                                            <!-- Add additional options as necessary -->
+                                        </select>
+                                        <small id="caste-help" class="form-text text-muted">Please select your caste
+                                            category as per government records.</small>
+                                    </td>
+                                </tr>
 
-                            <!-- Supporting Document Upload Field -->
-                            <tr>
-                                <td>
-                                    <label for="caste-document">Caste Certificate:</label>
-                                </td>
-                                <td>
-                                    <input type="file" class="form-control" id="caste-document" name="caste-document"
-                                        accept=".pdf,.jpg,.jpeg,.png">
-                                    <small id="caste-document-help" class="form-text text-muted">Upload your caste
-                                        certificate (PDF, JPG, JPEG, or PNG).</small>
-                                </td>
-                            </tr>
+                                <!-- Supporting Document Upload Field -->
+                                <tr>
+                                    <td>
+                                        <label for="caste-document">Caste Certificate:</label>
+                                    </td>
+                                    <td>
+                                        <input type="file" class="form-control" id="caste-document"
+                                            name="caste-document" accept=".pdf,.jpg,.jpeg,.png">
+                                        <small id="caste-document-help" class="form-text text-muted">Upload your caste
+                                            certificate (PDF, JPG, JPEG, or PNG).</small>
+                                    </td>
+                                </tr>
 
-                            <tr>
-                                <td>
-                                    <label for="branch">Preferred Branch:</label>
-                                </td>
-                                <td><select class="form-select" id="branch" name="branch" required>
-                                        <option value>--Select Branch--</option>
-                                        <option value="Lucknow">Lucknow</option>
-                                        <option value="West Bengal">West
-                                            Bengal</option>
-                                    </select>
-                                    <small id="branch-help" class="form-text text-muted">Please select
-                                        the
-                                        preferred
-                                        branch of
-                                        study.</small>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="class">Class:</label>
-                                </td>
-                                <td><select class="form-select" id="class" name="class" required>
-                                        <option value>--Select Class--</option>
-                                        <option value="Nursery">Nursery</option>
-                                        <option value="LKG">LKG</option>
-                                        <option value="UKG">UKG</option>
-                                        <option value="1">Class 1</option>
-                                        <option value="2">Class 2</option>
-                                        <option value="3">Class 3</option>
-                                        <option value="4">Class 4</option>
-                                        <option value="5">Class 5</option>
-                                        <option value="6">Class 6</option>
-                                        <!-- <option value="7">Class 7</option>
+                                <tr>
+                                    <td>
+                                        <label for="branch">Preferred Branch:</label>
+                                    </td>
+                                    <td><select class="form-select" id="branch" name="branch" required>
+                                            <option value>--Select Branch--</option>
+                                            <option value="Lucknow">Lucknow</option>
+                                            <option value="West Bengal">West
+                                                Bengal</option>
+                                        </select>
+                                        <small id="branch-help" class="form-text text-muted">Please select
+                                            the
+                                            preferred
+                                            branch of
+                                            study.</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="class">Class:</label>
+                                    </td>
+                                    <td><select class="form-select" id="class" name="class" required>
+                                            <option value>--Select Class--</option>
+                                            <option value="Nursery">Nursery</option>
+                                            <option value="LKG">LKG</option>
+                                            <option value="UKG">UKG</option>
+                                            <option value="1">Class 1</option>
+                                            <option value="2">Class 2</option>
+                                            <option value="3">Class 3</option>
+                                            <option value="4">Class 4</option>
+                                            <option value="5">Class 5</option>
+                                            <option value="6">Class 6</option>
+                                            <!-- <option value="7">Class 7</option>
                                         <option value="8">Class 8</option>
                                         <option value="9">Class 9</option>
                                         <option value="10">Class 10</option>
                                         <option value="11">Class 11</option>
                                         <option value="12">Class 12</option> -->
-                                        <option value="Vocational training">Vocational
-                                            training</option>
-                                        <option value="Summer camp">Summer camp</option>
-                                    </select>
-                                    <small id="class-help" class="form-text text-muted">Please select
-                                        the
-                                        class the
-                                        student wants to
-                                        join.</small>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="subject-select">Select subject(s):
-                                    </label>
-                                </td>
-                                <td><select class="form-select" id="subject-select" name="subject-select" required>
-                                        <option value>--Select Subject--</option>
-                                        <option value="ALL Subjects">ALL
-                                            Subjects</option>
-                                        <option value="English">English</option>
-                                        <option value="Embroidery">Embroidery</option>
-                                        <option value="Co-Curricular Workshops">Co-Curricular Workshops</option>
-                                    </select>
-                                    <small class="form-text text-muted">Please
-                                        select
-                                        the subject(s) that you want
-                                        to study from the
-                                        drop-down list.</small>
-                                </td>
-                            </tr>
-                            <tr id="school-required-group">
-                                <td>
-                                    <label for="school-required">School Admission
-                                        Required:</label>
-                                </td>
-                                <td>
-                                    <select class="form-select" id="school-required" name="school-required" required>
-                                        <option value>--Select--</option>
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
-                                    </select>
-                                    <small id="school-required-help" class="form-text text-muted">Do you require
-                                        admission in a new
-                                        school?</small>
-                                </td>
-                            </tr>
-                            <tr id="school-details" style="display: none;">
-                                <td>
-                                    <label for="school-name">Name Of The School:</label>
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" id="school-name" name="school-name"
-                                        placeholder="Enter name of the school" required>
-                                    <small id="school-name-help" class="form-text text-muted">Please enter the name of
-                                        the current school or the new school you want to join.</small>
-                                </td>
-                            </tr>
-                            <tr id="board-name-group" style="display: none;">
-                                <td>
-                                    <label for="board-name">Name Of The Board:</label>
-                                </td>
-                                <td>
-                                    <select class="form-select" id="board-name" name="board-name" required>
-                                        <option value>--Select--</option>
-                                        <option value="CBSE">CBSE</option>
-                                        <option value="ICSE">ICSE</option>
-                                        <option value="ISC">ISC</option>
-                                        <option value="State Board">State Board</option>
-                                    </select>
-                                    <small id="board-name-help" class="form-text text-muted">Please enter the name of
-                                        the board of education.</small>
-                                </td>
-                            </tr>
-                            <tr id="medium-group" style="display: none;">
-                                <td>
-                                    <label for="medium">Medium:</label>
-                                </td>
-                                <td>
-                                    <select class="form-select" id="medium" name="medium" required>
-                                        <option value>--Select Medium--</option>
-                                        <option value="English">English</option>
-                                        <option value="Hindi">Hindi</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                    <small id="medium-help" class="form-text text-muted">Please select the medium of
-                                        instruction.</small>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="income">Family Monthly
-                                        Income</label>
-                                </td>
-                                <td><input type="number" class="form-control" id="income" name="income"
-                                        placeholder="Enter Family Monthly Income">
-                                    <small id="income-help" class="form-text text-muted">Family
-                                        monthly
-                                        income from all
-                                        sources in Indian currency.</small>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="family-members">Total Number
-                                        of
-                                        Family Members</label>
-                                </td>
-                                <td><input type="number" class="form-control" id="family-members" name="family-members"
-                                        placeholder="Enter Total Number of Family Members">
-                                    <small id="family-members-help" class="form-text text-muted">Please
-                                        consider Mother,
-                                        Father, Siblings, Grand mother and
-                                        Grand
-                                        father only.</small>
-                                </td>
-                            </tr>
+                                            <option value="Vocational training">Vocational
+                                                training</option>
+                                            <option value="Summer camp">Summer camp</option>
+                                        </select>
+                                        <small id="class-help" class="form-text text-muted">Please select
+                                            the
+                                            class the
+                                            student wants to
+                                            join.</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="subject-select">Select subject(s):
+                                        </label>
+                                    </td>
+                                    <td><select class="form-select" id="subject-select" name="subject-select" required>
+                                            <option value>--Select Subject--</option>
+                                            <option value="ALL Subjects">ALL
+                                                Subjects</option>
+                                            <option value="English">English</option>
+                                            <option value="Embroidery">Embroidery</option>
+                                            <option value="Co-Curricular Workshops">Co-Curricular Workshops</option>
+                                        </select>
+                                        <small class="form-text text-muted">Please
+                                            select
+                                            the subject(s) that you want
+                                            to study from the
+                                            drop-down list.</small>
+                                    </td>
+                                </tr>
+                                <tr id="school-required-group">
+                                    <td>
+                                        <label for="school-required">School Admission
+                                            Required:</label>
+                                    </td>
+                                    <td>
+                                        <select class="form-select" id="school-required" name="school-required"
+                                            required>
+                                            <option value>--Select--</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                        <small id="school-required-help" class="form-text text-muted">Do you require
+                                            admission in a new
+                                            school?</small>
+                                    </td>
+                                </tr>
+                                <tr id="school-details" style="display: none;">
+                                    <td>
+                                        <label for="school-name">Name Of The School:</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="school-name" name="school-name"
+                                            placeholder="Enter name of the school" required>
+                                        <small id="school-name-help" class="form-text text-muted">Please enter the name
+                                            of
+                                            the current school or the new school you want to join.</small>
+                                    </td>
+                                </tr>
+                                <tr id="board-name-group" style="display: none;">
+                                    <td>
+                                        <label for="board-name">Name Of The Board:</label>
+                                    </td>
+                                    <td>
+                                        <select class="form-select" id="board-name" name="board-name" required>
+                                            <option value>--Select--</option>
+                                            <option value="CBSE">CBSE</option>
+                                            <option value="ICSE">ICSE</option>
+                                            <option value="ISC">ISC</option>
+                                            <option value="State Board">State Board</option>
+                                        </select>
+                                        <small id="board-name-help" class="form-text text-muted">Please enter the name
+                                            of
+                                            the board of education.</small>
+                                    </td>
+                                </tr>
+                                <tr id="medium-group" style="display: none;">
+                                    <td>
+                                        <label for="medium">Medium:</label>
+                                    </td>
+                                    <td>
+                                        <select class="form-select" id="medium" name="medium" required>
+                                            <option value>--Select Medium--</option>
+                                            <option value="English">English</option>
+                                            <option value="Hindi">Hindi</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                        <small id="medium-help" class="form-text text-muted">Please select the medium of
+                                            instruction.</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="income">Family Monthly
+                                            Income</label>
+                                    </td>
+                                    <td><input type="number" class="form-control" id="income" name="income"
+                                            placeholder="Enter Family Monthly Income">
+                                        <small id="income-help" class="form-text text-muted">Family
+                                            monthly
+                                            income from all
+                                            sources in Indian currency.</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="family-members">Total Number
+                                            of
+                                            Family Members</label>
+                                    </td>
+                                    <td><input type="number" class="form-control" id="family-members"
+                                            name="family-members" placeholder="Enter Total Number of Family Members">
+                                        <small id="family-members-help" class="form-text text-muted">Please
+                                            consider Mother,
+                                            Father, Siblings, Grand mother and
+                                            Grand
+                                            father only.</small>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button type="button" class="btn btn-primary" onclick="nextPage()">Next</button>
+                    </div>
+                    <div class="form-page" id="page2" style="display:none;">
+                        <!-- Second part of the form -->
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label for="payment-mode">Payment Mode:</label>
+                                    </td>
+                                    <td><select class="form-select" id="payment-mode" name="payment-mode" required>
+                                            <option value>--Select--</option>
+                                            <option value="cash">Cash</option>
+                                            <option value="online">Online</option>
+                                        </select>
+                                        <small id="payment-mode-help" class="form-text text-muted">Please select
+                                            the
+                                            payment mode for
+                                            the admission fee.</small>
+                                    </td>
+                                </tr>
 
-                            <tr>
-                                <td>
-                                    <label for="payment-mode">Payment Mode:</label>
-                                </td>
-                                <td><select class="form-select" id="payment-mode" name="payment-mode" required>
-                                        <option value>--Select--</option>
-                                        <option value="cash">Cash</option>
-                                        <option value="online">Online</option>
-                                    </select>
-                                    <small id="payment-mode-help" class="form-text text-muted">Please select
-                                        the
-                                        payment mode for
-                                        the admission fee.</small>
-                                </td>
-                            </tr>
+                                <tr id="cash-authentication-code" style="display:none;">
+                                    <td>
+                                        <label for="c-authentication-code">C-Authentication Code:</label>
+                                    </td>
+                                    <td>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" id="c-authentication-code"
+                                                name="c-authentication-code" placeholder="Enter code received via email"
+                                                required>
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                id="code-action-btn">
+                                                <span id="code-action-text">Generate Code</span>
+                                                <span id="code-action-spinner" class="spinner-border spinner-border-sm"
+                                                    style="display:none;"></span>
+                                            </button>
 
-                            <tr id="cash-authentication-code" style="display:none;">
-                                <td> <label for="c-authentication-code">C-Authentication
-                                        Code:</label></td>
-                                <td><input type="text" class="form-control" id="c-authentication-code"
-                                        name="c-authentication-code" placeholder="Enter C-Authentication code" required>
-                                    <small id="c-authentication-code-help" class="form-text text-muted">Please enter
-                                        the
-                                        C-Authentication code if you are paying by
-                                        cash.</small>
-                                </td>
-                            </tr>
-                            <tr id="online-declaration" style="display:none;">
 
-                                <td>
-                                    <!-- <label for="transaction-id">Transaction ID:</label><br><br>Proceed to payment by
+                                        </div>
+                                        <small id="c-authentication-code-help" class="form-text text-muted">
+                                            Please generate code and enter the one you received via email.
+                                        </small>
+                                        <p><span id="verification-status" class="ms-2" style="display:none;"
+                                                aria-live="polite"></span></p>
+                                        <div id="regenerate-section" class="form-text text-muted"
+                                            style="display: none; margin-top: 5px;">
+                                            <span>Not received code? </span>
+                                            <span id="regenerate-code-link" style="cursor: pointer; ">
+                                                Generate new code
+                                            </span>
+                                            <span id="regenerate-spinner" class="spinner-border spinner-border-sm"
+                                                style="display:none;"></span>
+                                        </div>
+
+                                        <input type="hidden" id="code-verified" name="code-verified" value="0">
+
+                                    </td>
+                                </tr>
+                                <tr id="online-declaration" style="display:none;">
+
+                                    <td>
+                                        <!-- <label for="transaction-id">Transaction ID:</label><br><br>Proceed to payment by
                                     clicking <a href="#" data-bs-toggle="modal" data-bs-target="#popup">here</a> -->
-                                    <label for="transaction-id">Transaction ID:</label>
-                                    <p>Proceed to payment by
-                                        clicking <a href="https://securegw.paytm.in/link/paymentForm/27554/LL_713692781"
-                                            target="_blank">here</a>
-                                    </p>
-                                </td>
-                                <td><input type="text" class="form-control" id="transaction-id" name="transaction-id"
-                                        placeholder="Enter Transaction ID" required>
-                                    <small id="online-declaration-help" class="form-text text-muted">Please
-                                        enter the
-                                        transaction ID if you have paid the
-                                        admission fee online.
-                                    </small>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="admission-date">Date of Admission</label>
-                                </td>
-                                <td>
-                                    <input type="date" class="form-control" id="admission-date" name="admission-date"
-                                        required>
-                                    <small id="admission-date-help" class="form-text text-muted">
-                                        Admission date must match the first payment month.
-                                    </small>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button type="submit" class="btn btn-primary" id="btnSubmit">Submit</button>
+                                        <label for="transaction-id">Transaction ID:</label>
+                                        <p>Proceed to payment by clicking
+                                            <a href="https://securegw.paytm.in/link/paymentForm/27554/LL_713692781"
+                                                target="_blank" title="Click to proceed with secure Paytm payment">
+                                                here
+                                            </a>.
+                                        </p>
+                                    </td>
+                                    <td><input type="text" class="form-control" id="transaction-id"
+                                            name="transaction-id" placeholder="Enter Transaction ID" required>
+                                        <small id="online-declaration-help" class="form-text text-muted">Please
+                                            enter the
+                                            transaction ID if you have paid the
+                                            admission fee online.
+                                        </small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="admission-date">Date of Admission</label>
+                                    </td>
+                                    <td>
+                                        <input type="date" class="form-control" id="admission-date"
+                                            name="admission-date" required>
+                                        <small id="admission-date-help" class="form-text text-muted">
+                                            Admission date must match the first payment month.
+                                        </small>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- <button type="button" onclick="prevPage()">Previous</button> -->
+                        <button type="submit" class="btn btn-primary" id="btnSubmit">Submit</button>
+                    </div>
                 </form>
 
                 <!-- </div> -->
@@ -949,6 +997,7 @@
 
                 if (result.success) {
                     alert(`Submitted successfully! Message: ${result.message}`);
+                    location.reload(); // Reload the page after clicking OK
                     admissionForm.reset(); // Reset the form after successful submission
                     // Function to reset photo preview
                     function resetPhotoPreview() {
@@ -1139,7 +1188,229 @@
                 });
         });
     </script>
+    <script>
+        function nextPage() {
+            const requiredFields = document.querySelectorAll('#page1 [required]');
+            let allFilled = true;
 
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('is-invalid');
+                    allFilled = false;
+                } else {
+                    field.classList.remove('is-invalid');
+                }
+            });
+
+            if (allFilled) {
+                document.getElementById('page1').style.display = 'none';
+                document.getElementById('page2').style.display = 'block';
+            } else {
+                alert('Please fill all required fields before proceeding.');
+            }
+        }
+
+        // Optional: remove validation style on user input
+        document.addEventListener('input', function (e) {
+            if (e.target.hasAttribute('required')) {
+                if (e.target.value.trim()) {
+                    e.target.classList.remove('is-invalid');
+                }
+            }
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            const sendCodeUrl = isLocalhost
+                ? 'http://localhost:8082/send-code-api.php'
+                : 'https://login.rssi.in/send-code-api.php';
+            const verifyCodeUrl = isLocalhost
+                ? 'http://localhost:8082/verify-code-api.php'
+                : 'https://login.rssi.in/verify-code-api.php';
+
+            const codeInput = document.getElementById('c-authentication-code');
+            const codeActionBtn = document.getElementById('code-action-btn');
+            const codeActionText = document.getElementById('code-action-text');
+            const codeActionSpinner = document.getElementById('code-action-spinner');
+            const verificationStatus = document.getElementById('verification-status');
+            const codeVerifiedField = document.getElementById('code-verified');
+            const regenerateSection = document.getElementById('regenerate-section');
+            const regenerateLink = document.getElementById('regenerate-code-link');
+            const regenerateSpinner = document.getElementById('regenerate-spinner');
+
+            const paymentModeSelect = document.querySelector('[name="payment-mode"]'); // update this selector as needed
+            const submitBtn = document.getElementById('btnSubmit');
+
+            // Initial state
+            // States: 'generate', 'verify', 'verified'
+            let currentState = 'generate';
+
+            // Function to update submit button state based on conditions
+            function updateSubmitButtonState() {
+                const paymentMode = paymentModeSelect ? paymentModeSelect.value.toLowerCase() : '';
+                const isVerified = codeVerifiedField.value === '1';
+
+                if (paymentMode === 'cash' && !isVerified) {
+                    submitBtn.disabled = true;
+                } else {
+                    submitBtn.disabled = false;
+                }
+            }
+
+            // Run on page load
+            updateSubmitButtonState();
+
+            if (paymentModeSelect) {
+                // On payment mode change, update submit button
+                paymentModeSelect.addEventListener('change', () => {
+                    updateSubmitButtonState();
+                });
+            }
+
+            codeActionBtn.addEventListener('click', function () {
+                if (currentState === 'generate') {
+                    generateCode();
+                } else if (currentState === 'verify') {
+                    verifyCode();
+                }
+            });
+
+            regenerateLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                regenerateSpinner.style.display = 'inline-block';
+                regenerateLink.style.display = 'none';
+                generateCode(true);
+            });
+
+            function generateCode(isRegenerate = false) {
+                // Show spinner
+                if (!isRegenerate) {
+                    codeActionSpinner.style.display = 'inline-block';
+                    codeActionText.textContent = 'Sending...';
+                    codeActionBtn.disabled = true;
+                }
+
+                // Generate 6-digit code
+                const generatedCode = Math.floor(100000 + Math.random() * 900000).toString();
+                const formData = {
+                    code: generatedCode,
+                    student_name: document.querySelector('[name="student-name"]')?.value || 'Not provided',
+                    preferred_branch: document.querySelector('[name="branch"]')?.value || 'Not provided',
+                    class: document.querySelector('[name="class"]')?.value || 'Not provided',
+                    type_of_admission: document.querySelector('[name="type-of-admission"]')?.value || 'Not provided'
+                };
+
+                fetch(sendCodeUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            codeInput.value = '';
+                            codeInput.readOnly = false;
+                            codeVerifiedField.value = '0';
+                            updateSubmitButtonState();
+                            verificationStatus.textContent = 'C-Authentication Code generated. Contact admission in-charge to proceed.';
+                            verificationStatus.className = 'text-success';
+                            verificationStatus.style.display = 'inline';
+
+                            // Update UI for verification step
+                            currentState = 'verify';
+                            codeActionText.textContent = 'Verify Code';
+                            codeActionBtn.classList.remove('btn-outline-secondary');
+                            codeActionBtn.classList.add('btn-outline-primary');
+                            codeActionBtn.disabled = false;
+
+                            // Show regenerate section
+                            regenerateSection.style.display = 'block';
+
+                            // Hide Generate button if this was initial generate (not regeneration)
+                            if (!isRegenerate) {
+                                codeActionBtn.style.display = 'inline-block';
+                            }
+                        } else {
+                            throw new Error(data.message || 'Failed to send code');
+                        }
+                    })
+                    .catch(error => {
+                        verificationStatus.textContent = 'Error: ' + error.message;
+                        verificationStatus.className = 'text-danger';
+                        verificationStatus.style.display = 'inline';
+                        console.error('API Error:', error);
+                    })
+                    .finally(() => {
+                        if (!isRegenerate) {
+                            codeActionSpinner.style.display = 'none';
+                            codeActionText.textContent = currentState === 'generate' ? 'Generate Code' : 'Verify Code';
+                            codeActionBtn.disabled = false;
+                        } else {
+                            regenerateSpinner.style.display = 'none';
+                            regenerateLink.style.display = 'inline';
+                        }
+                    });
+            }
+
+            function verifyCode() {
+                if (!codeInput.value) {
+                    verificationStatus.textContent = 'Please enter the code you received';
+                    verificationStatus.className = 'text-danger';
+                    verificationStatus.style.display = 'inline';
+                    return;
+                }
+
+                codeActionSpinner.style.display = 'inline-block';
+                codeActionText.textContent = 'Verifying...';
+                codeActionBtn.disabled = true;
+
+                fetch(verifyCodeUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code: codeInput.value })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            verificationStatus.textContent = '✓ Verified successfully';
+                            verificationStatus.className = 'text-success';
+                            verificationStatus.style.display = 'inline';
+
+                            codeVerifiedField.value = '1';
+                            codeInput.readOnly = true;
+
+                            // Show verified state on button: green with ticket icon and text
+                            currentState = 'verified';
+                            codeActionBtn.disabled = true;
+                            codeActionBtn.classList.remove('btn-outline-secondary', 'btn-outline-primary');
+                            codeActionBtn.classList.add('btn-success');
+                            codeActionText.innerHTML = '✓ Verified'; // icon or replace as needed
+
+                            // Hide regenerate section
+                            regenerateSection.style.display = 'none';
+                            // Enable submit button if payment mode is cash
+                            updateSubmitButtonState();
+                        } else {
+                            throw new Error(data.message || 'Verification failed');
+                        }
+                    })
+                    .catch(error => {
+                        verificationStatus.textContent = 'Error: ' + error.message;
+                        verificationStatus.className = 'text-danger';
+                        verificationStatus.style.display = 'inline';
+                        codeActionBtn.disabled = false;
+                    })
+                    .finally(() => {
+                        codeActionSpinner.style.display = 'none';
+                        if (currentState !== 'verified') {
+                            codeActionText.textContent = 'Verify Code';
+                        }
+                    });
+            }
+        });
+    </script>
 </body>
 
 </html>

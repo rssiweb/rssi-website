@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empowering Futures - RSSI Foundation</title>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --secondary-orange: #f97316;
+            --accent-green: #16a34a;
+            --dark-text: #1e293b;
+            --light-text: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark-text);
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%);
+            color: white;
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .impact-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 12px;
+            border: none;
+            height: 100%;
+        }
+        
+        .impact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+        }
+        
+        .testimonial-card {
+            background-color: #f8fafc;
+            border-left: 4px solid var(--primary-blue);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: var(--secondary-orange);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="rssi-logo.png" alt="RSSI Logo" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#impact">Impact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#programs">Programs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#partnership">Partnership</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Empowering Futures through Education & Dignity</h1>
+                    <p class="lead mb-4">Transforming lives through quality education, healthcare, and empowerment initiatives for underserved communities.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#partnership" class="btn btn-light btn-lg px-4">Partner With Us</a>
+                        <a href="#programs" class="btn btn-outline-light btn-lg px-4">Our Programs</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="hero-image.png" alt="Happy children learning" class="img-fluid rounded-3 shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">About RSSI Foundation</h2>
+                <div class="divider mx-auto bg-primary" style="width: 80px; height: 4px;"></div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <h3 class="h4 mb-3">Our Story</h3>
+                            <p>Founded in 2010, Rina Shiksha Sahayak Foundation (RSSI) is a registered nonprofit working to provide quality education, healthcare, and empowerment programs to underserved communities across India.</p>
+                            
+                            <div class="row mt-4">
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon-box bg-primary bg-opacity-10 text-primary me-3">
+                                            <i class="bi bi-geo-alt"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="h6 mb-0">Locations</h4>
+                                            <small>Lucknow & West Midnapore</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon-box bg-primary bg-opacity-10 text-primary me-3">
+                                            <i class="bi bi-award"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="h6 mb-0">Certifications</h4>
+                                            <small>12A & 80G Registered</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon-box bg-primary bg-opacity-10 text-primary me-3">
+                                            <i class="bi bi-people"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="h6 mb-0">Beneficiaries</h4>
+                                            <small>Thousands served</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon-box bg-primary bg-opacity-10 text-primary me-3">
+                                            <i class="bi bi-heart"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="h6 mb-0">Focus Areas</h4>
+                                            <small>Education, Health, Empowerment</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <h3 class="h4 mb-3">Our Core Values</h3>
+                            
+                            <div class="timeline-item">
+                                <h4>Commitment</h4>
+                                <p>Dedicated to education and children's well-being with unwavering focus.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h4>Empowerment</h4>
+                                <p>Creating agents of change through education and skills.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h4>Inclusivity</h4>
+                                <p>Learning environments that cater to diverse needs.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h4>Transparency</h4>
+                                <p>Accountability in all operations and fund utilization.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h4>Innovation</h4>
+                                <p>Creative solutions to education challenges.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">Our Impact</h2>
+                <p class="lead">Transforming lives through sustainable initiatives</p>
+                <div class="divider mx-auto bg-primary" style="width: 80px; height: 4px;"></div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="impact-card card text-center p-4">
+                        <div class="icon-box bg-primary bg-opacity-10 text-primary mb-3">
+                            <i class="bi bi-book"></i>
+                        </div>
+                        <h3 class="h4">Education</h3>
+                        <div class="stat-number">102+</div>
+                        <p>Students at Kalpana Buds School (50% girls)</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="impact-card card text-center p-4">
+                        <div class="icon-box bg-primary bg-opacity-10 text-primary mb-3">
+                            <i class="bi bi-gender-female"></i>
+                        </div>
+                        <h3 class="h4">Women Empowered</h3>
+                        <div class="stat-number">150+</div>
+                        <p>Through health camps and skill programs</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="impact-card card text-center p-4">
+                        <div class="icon-box bg-primary bg-opacity-10 text-primary mb-3">
+                            <i class="bi bi-droplet"></i>
+                        </div>
+                        <h3 class="h4">Menstrual Health</h3>
+                        <div class="stat-number">250+</div>
+                        <p>Girls reached with hygiene awareness</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <h3 class="h4 mb-3">Financial Transparency</h3>
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="bg-primary rounded p-3 text-white me-3">
+                                    <i class="bi bi-pie-chart fs-1"></i>
+                                </div>
+                                <div>
+                                    <div class="h4 mb-0">87%</div>
+                                    <small>Funded by RSSI's directorial fund</small>
+                                </div>
+                            </div>
+                            <p>Students contribute only 13% of costs, ensuring accessibility while maintaining sustainability through:</p>
+                            <ul>
+                                <li>Audited accounts and regular reporting</li>
+                                <li>Low operational costs with high efficiency</li>
+                                <li>Community ownership models</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <h3 class="h4 mb-3">Why Not Completely Free?</h3>
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <div class="bg-light rounded p-3 h-100">
+                                        <div class="icon-box bg-warning bg-opacity-10 text-warning mb-2">
+                                            <i class="bi bi-arrow-repeat"></i>
+                                        </div>
+                                        <h4 class="h6">Sustainability</h4>
+                                        <p class="small mb-0">Ensures long-term viability of programs</p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="bg-light rounded p-3 h-100">
+                                        <div class="icon-box bg-warning bg-opacity-10 text-warning mb-2">
+                                            <i class="bi bi-person-check"></i>
+                                        </div>
+                                        <h4 class="h6">Ownership</h4>
+                                        <p class="small mb-0">Encourages parental involvement</p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="bg-light rounded p-3 h-100">
+                                        <div class="icon-box bg-warning bg-opacity-10 text-warning mb-2">
+                                            <i class="bi bi-star"></i>
+                                        </div>
+                                        <h4 class="h6">Value</h4>
+                                        <p class="small mb-0">Emphasizes importance of education</p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="bg-light rounded p-3 h-100">
+                                        <div class="icon-box bg-warning bg-opacity-10 text-warning mb-2">
+                                            <i class="bi bi-graph-up"></i>
+                                        </div>
+                                        <h4 class="h6">Transparency</h4>
+                                        <p class="small mb-0">Efficient fund utilization</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">Our Core Initiatives</h2>
+                <p class="lead">Holistic programs addressing multiple dimensions of development</p>
+                <div class="divider mx-auto bg-primary" style="width: 80px; height: 4px;"></div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <img src="education-program.jpg" class="card-img-top" alt="Children learning">
+                        <div class="card-body">
+                            <h3 class="h4">Shiksha Initiative</h3>
+                            <p>Comprehensive education programs focusing on:</p>
+                            <ul>
+                                <li>Quality primary education</li>
+                                <li>Vocational skill development</li>
+                                <li>Holistic child development</li>
+                                <li>Digital literacy programs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <img src="health-program.jpg" class="card-img-top" alt="Health camp">
+                        <div class="card-body">
+                            <h3 class="h4">Suraksha Initiative</h3>
+                            <p>Health and hygiene programs including:</p>
+                            <ul>
+                                <li>Menstrual hygiene awareness</li>
+                                <li>Sanitary pad distribution (300+ in 2024)</li>
+                                <li>Health camps (150+ beneficiaries)</li>
+                                <li>Breaking taboos around menstruation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <img src="empowerment-program.jpg" class="card-img-top" alt="Women empowerment">
+                        <div class="card-body">
+                            <h3 class="h4">Swabhiman Initiative</h3>
+                            <p>Women empowerment programs focusing on:</p>
+                            <ul>
+                                <li>Self-reliance training</li>
+                                <li>Healthcare access</li>
+                                <li>Skill development</li>
+                                <li>Mitigating domestic violence impacts</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-5">
+                <div class="card border-0 bg-primary text-white overflow-hidden">
+                    <div class="row g-0">
+                        <div class="col-lg-6 p-4 d-flex align-items-center">
+                            <div>
+                                <h3 class="h2 fw-bold">Kalpana Buds School</h3>
+                                <p class="lead">Nurturing early potential through affordable, quality education</p>
+                                <ul class="mb-4">
+                                    <li>Play-based learning approach</li>
+                                    <li>Holistic development focus</li>
+                                    <li>102 current students (50% girls)</li>
+                                    <li>Nominal fees (~13% of actual cost)</li>
+                                </ul>
+                                <a href="#" class="btn btn-light">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-none d-lg-block">
+                            <img src="school-image.jpg" alt="Kalpana Buds School" class="img-fluid h-100" style="object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5 g-4">
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <h3 class="h4 mb-3">Technology & Exposure</h3>
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <div class="bg-light rounded p-3 text-center h-100">
+                                        <div class="icon-box bg-info bg-opacity-10 text-info mb-2 mx-auto">
+                                            <i class="bi bi-laptop"></i>
+                                        </div>
+                                        <h4 class="h6">Digital Literacy</h4>
+                                        <p class="small mb-0">Introducing students to computers and basic skills</p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="bg-light rounded p-3 text-center h-100">
+                                        <div class="icon-box bg-info bg-opacity-10 text-info mb-2 mx-auto">
+                                            <i class="bi bi-robot"></i>
+                                        </div>
+                                        <h4 class="h6">AI Awareness</h4>
+                                        <p class="small mb-0">Familiarizing students with AI concepts</p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="bg-light rounded p-3 text-center h-100">
+                                        <div class="icon-box bg-info bg-opacity-10 text-info mb-2 mx-auto">
+                                            <i class="bi bi-bus-front"></i>
+                                        </div>
+                                        <h4 class="h6">Educational Tours</h4>
+                                        <p class="small mb-0">Visits to industries and science centers</p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="bg-light rounded p-3 text-center h-100">
+                                        <div class="icon-box bg-info bg-opacity-10 text-info mb-2 mx-auto">
+                                            <i class="bi bi-tools"></i>
+                                        </div>
+                                        <h4 class="h6">Skill Development</h4>
+                                        <p class="small mb-0">Practical skills for life and career</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <h3 class="h4 mb-3">Achievements</h3>
+                            <div class="testimonial-card p-3 mb-3">
+                                <p>"Top three winners in Inter-School Drawing Competition organized by Sanjivini Super Specialty Hospital were from our organization."</p>
+                            </div>
+                            <ul class="timeline">
+                                <li class="timeline-item">TCS Inquisitive program participation</li>
+                                <li class="timeline-item">"Train the Trainer" collaboration with Arpan NGO</li>
+                                <li class="timeline-item">Cyber Crime Awareness sessions conducted</li>
+                                <li class="timeline-item">CRPF visit organized</li>
+                                <li class="timeline-item">Free Dental and Health Camps (150+ beneficiaries)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Vision -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">Our Future Vision</h2>
+                <p class="lead">Scaling our impact through strategic focus areas</p>
+                <div class="divider mx-auto bg-primary" style="width: 80px; height: 4px;"></div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-3 col-6">
+                    <div class="text-center">
+                        <div class="icon-box bg-primary bg-opacity-10 text-primary mb-3 mx-auto">
+                            <i class="bi bi-globe"></i>
+                        </div>
+                        <h4 class="h5">Geographical Expansion</h4>
+                        <p class="small">Reach more rural communities</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="text-center">
+                        <div class="icon-box bg-primary bg-opacity-10 text-primary mb-3 mx-auto">
+                            <i class="bi bi-laptop"></i>
+                        </div>
+                        <h4 class="h5">Technology Learning</h4>
+                        <p class="small">Digital tools in classrooms</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="text-center">
+                        <div class="icon-box bg-primary bg-opacity-10 text-primary mb-3 mx-auto">
+                            <i class="bi bi-gender-female"></i>
+                        </div>
+                        <h4 class="h5">Girls' Empowerment</h4>
+                        <p class="small">Scale menstrual health programs</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="text-center">
+                        <div class="icon-box bg-primary bg-opacity-10 text-primary mb-3 mx-auto">
+                            <i class="bi bi-heart-pulse"></i>
+                        </div>
+                        <h4 class="h5">Holistic Health</h4>
+                        <p class="small">More camps & nutrition drives</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="text-center">
+                        <div class="icon-box bg-primary bg-opacity-10 text-primary mb-3 mx-auto">
+                            <i class="bi bi-briefcase"></i>
+                        </div>
+                        <h4 class="h5">Livelihood Skills</h4>
+                        <p class="small">Vocational training expansion</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="text-center">
+                        <div class="icon-box bg-primary bg-opacity-10 text-primary mb-3 mx-auto">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <h4 class="h5">Community Models</h4>
+                        <p class="small">Build self-sustaining programs</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="text-center">
+                        <div class="icon-box bg-primary bg-opacity-10 text-primary mb-3 mx-auto">
+                            <i class="bi bi-book"></i>
+                        </div>
+                        <h4 class="h5">Inclusive Education</h4>
+                        <p class="small">Ensure access for all children</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="text-center">
+                        <div class="icon-box bg-primary bg-opacity-10 text-primary mb-3 mx-auto">
+                            <i class="bi bi-handshake"></i>
+                        </div>
+                        <h4 class="h5">Partnerships</h4>
+                        <p class="small">Corporate & expert collaborations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Section -->
+    <section id="partnership" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">Why Partner With RSSI?</h2>
+                <p class="lead">High-impact CSR opportunities aligned with Schedule VII of Companies Act</p>
+                <div class="divider mx-auto bg-primary" style="width: 80px; height: 4px;"></div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <h3 class="h4 mb-3">Alignment with CSR Objectives</h3>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-start mb-3">
+                                        <div class="icon-box bg-success bg-opacity-10 text-success me-3 flex-shrink-0">
+                                            <i class="bi bi-check-lg"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="h6 mb-0">Education</h4>
+                                            <p class="small mb-0">Quality learning initiatives</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-start mb-3">
+                                        <div class="icon-box bg-success bg-opacity-10 text-success me-3 flex-shrink-0">
+                                            <i class="bi bi-check-lg"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="h6 mb-0">Health</h4>
+                                            <p class="small mb-0">Camps & hygiene programs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-start mb-3">
+                                        <div class="icon-box bg-success bg-opacity-10 text-success me-3 flex-shrink-0">
+                                            <i class="bi bi-check-lg"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="h6 mb-0">Women Empowerment</h4>
+                                            <p class="small mb-0">Skill & health initiatives</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-start mb-3">
+                                        <div class="icon-box bg-success bg-opacity-10 text-success me-3 flex-shrink-0">
+                                            <i class="bi bi-check-lg"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="h6 mb-0">Vocational Training</h4>
+                                            <p class="small mb-0">Youth & women skill development</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-start mb-3">
+                                        <div class="icon-box bg-success bg-opacity-10 text-success me-3 flex-shrink-0">
+                                            <i class="bi bi-check-lg"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="h6 mb-0">Life Skills</h4>
+                                            <p class="small mb-0">Value education programs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-start mb-3">
+                                        <div class="icon-box bg-success bg-opacity-10 text-success me-3 flex-shrink-0">
+                                            <i class="bi bi-check-lg"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="h6 mb-0">Teacher Training</h4>
+                                            <p class="small mb-0">Capacity building</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <h3 class="h4 mb-3">Our Value Proposition</h3>
+                            <div class="accordion" id="valueAccordion">
+                                <div class="accordion-item border-0 mb-2">
+                                    <h4 class="accordion-header">
+                                        <button class="accordion-button bg-light shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#valueOne">
+                                            High Social ROI
+                                        </button>
+                                    </h4>
+                                    <div id="valueOne" class="accordion-collapse collapse show" data-bs-parent="#valueAccordion">
+                                        <div class="accordion-body small">
+                                            Direct, measurable outcomes ensuring visible impact on ground.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item border-0 mb-2">
+                                    <h4 class="accordion-header">
+                                        <button class="accordion-button collapsed bg-light shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#valueTwo">
+                                            Grassroots Credibility
+                                        </button>
+                                    </h4>
+                                    <div id="valueTwo" class="accordion-collapse collapse" data-bs-parent="#valueAccordion">
+                                        <div class="accordion-body small">
+                                            Strong trust and deep engagement in target communities since 2010.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item border-0 mb-2">
+                                    <h4 class="accordion-header">
+                                        <button class="accordion-button collapsed bg-light shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#valueThree">
+                                            Scalable Models
+                                        </button>
+                                    </h4>
+                                    <div id="valueThree" class="accordion-collapse collapse" data-bs-parent="#valueAccordion">
+                                        <div class="accordion-body small">
+                                            Proven initiatives that can be expanded and adapted easily to new regions.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item border-0 mb-2">
+                                    <h4 class="accordion-header">
+                                        <button class="accordion-button collapsed bg-light shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#valueFour">
+                                            Focus on Underserved
+                                        </button>
+                                    </h4>
+                                    <div id="valueFour" class="accordion-collapse collapse" data-bs-parent="#valueAccordion">
+                                        <div class="accordion-body small">
+                                            Special emphasis on marginalized children and girls' education.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item border-0 mb-2">
+                                    <h4 class="accordion-header">
+                                        <button class="accordion-button collapsed bg-light shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#valueFive">
+                                            Strong M&E
+                                        </button>
+                                    </h4>
+                                    <div id="valueFive" class="accordion-collapse collapse" data-bs-parent="#valueAccordion">
+                                        <div class="accordion-body small">
+                                            Transparent reporting, clear metrics, and regular impact assessment.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item border-0">
+                                    <h4 class="accordion-header">
+                                        <button class="accordion-button collapsed bg-light shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#valueSix">
+                                            Aligned with SDGs
+                                        </button>
+                                    </h4>
+                                    <div id="valueSix" class="accordion-collapse collapse" data-bs-parent="#valueAccordion">
+                                        <div class="accordion-body small">
+                                            Programs aligned with national priorities and UN Sustainable Development Goals.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-5 text-center">
+                <h3 class="h2 fw-bold mb-4">Let's Empower Futures Together</h3>
+                <p class="lead mb-4">Customizable CSR partnership opportunities</p>
+                
+                <div class="row g-4 justify-content-center">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body p-4 text-center">
+                                <div class="icon-box bg-primary bg-opacity-10 text-primary mb-3 mx-auto">
+                                    <i class="bi bi-cash-coin"></i>
+                                </div>
+                                <h4 class="h5">Funding</h4>
+                                <p class="small">Financial support for specific programs or general operations</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body p-4 text-center">
+                                <div class="icon-box bg-primary bg-opacity-10 text-primary mb-3 mx-auto">
+                                    <i class="bi bi-people"></i>
+                                </div>
+                                <h4 class="h5">Volunteering</h4>
+                                <p class="small">Employee engagement through skills-based volunteering</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body p-4 text-center">
+                                <div class="icon-box bg-primary bg-opacity-10 text-primary mb-3 mx-auto">
+                                    <i class="bi bi-tools"></i>
+                                </div>
+                                <h4 class="h5">Skill-building</h4>
+                                <p class="small">Corporate expertise sharing for capacity building</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body p-4 text-center">
+                                <div class="icon-box bg-primary bg-opacity-10 text-primary mb-3 mx-auto">
+                                    <i class="bi bi-lightbulb"></i>
+                                </div>
+                                <h4 class="h5">Joint Programs</h4>
+                                <p class="small">Co-created initiatives aligned with your CSR focus</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="display-5 fw-bold mb-3">Get In Touch</h2>
+                    <p class="lead mb-4">Ready to discuss partnership opportunities or learn more about our work?</p>
+                    
+                    <div class="mb-4">
+                        <h4 class="h5">Contact Information</h4>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="bi bi-geo-alt me-2"></i> Lucknow, Uttar Pradesh & West Midnapore, West Bengal</li>
+                            <li class="mb-2"><i class="bi bi-envelope me-2"></i> contact@rssifoundation.org</li>
+                            <li class="mb-2"><i class="bi bi-phone me-2"></i> +91 XXXXX XXXXX</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="h5">Connect With Us</h4>
+                        <div class="d-flex gap-3">
+                            <a href="#" class="icon-box bg-primary bg-opacity-10 text-primary">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="#" class="icon-box bg-primary bg-opacity-10 text-primary">
+                                <i class="bi bi-twitter"></i>
+                            </a>
+                            <a href="#" class="icon-box bg-primary bg-opacity-10 text-primary">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                            <a href="#" class="icon-box bg-primary bg-opacity-10 text-primary">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <h3 class="h4 mb-3">Send Us a Message</h3>
+                            <form>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="company" class="form-label">Company (Optional)</label>
+                                    <input type="text" class="form-control" id="company">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" rows="3" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <img src="rssi-logo-white.png" alt="RSSI Logo" height="40" class="mb-3">
+                    <p>Rina Shiksha Sahayak Foundation (RSSI) is committed to providing quality education, healthcare, and empowerment programs to underserved communities.</p>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h4 class="h5">Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#about" class="text-white text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="#programs" class="text-white text-decoration-none">Programs</a></li>
+                        <li class="mb-2"><a href="#impact" class="text-white text-decoration-none">Impact</a></li>
+                        <li class="mb-2"><a href="#partnership" class="text-white text-decoration-none">Partnership</a></li>
+                        <li><a href="#contact" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+                    <h4 class="h5">Programs</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">Shiksha Initiative</li>
+                        <li class="mb-2">Suraksha Initiative</li>
+                        <li class="mb-2">Swabhiman Initiative</li>
+                        <li>Kalpana Buds School</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h4 class="h5">Contact</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-geo-alt me-2"></i> Lucknow, UP</li>
+                        <li class="mb-2"><i class="bi bi-envelope me-2"></i> contact@rssifoundation.org</li>
+                        <li><i class="bi bi-phone me-2"></i> +91 XXXXX XXXXX</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small mb-0">© 2023 RSSI Foundation. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom JS for animations -->
+    <script>
+        // Simple fade-in animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(element => {
+                fadeInObserver.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
