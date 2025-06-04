@@ -596,6 +596,18 @@
                                             father only.</small>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        <label for="admission-date">Date of Admission</label>
+                                    </td>
+                                    <td>
+                                        <input type="date" class="form-control" id="admission-date"
+                                            name="admission-date" required>
+                                        <small id="admission-date-help" class="form-text text-muted">
+                                            Admission date must match the first payment month.
+                                        </small>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="text-end">
@@ -678,18 +690,6 @@
                                             enter the
                                             transaction ID if you have paid the
                                             admission fee online.
-                                        </small>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label for="admission-date">Date of Admission</label>
-                                    </td>
-                                    <td>
-                                        <input type="date" class="form-control" id="admission-date"
-                                            name="admission-date" required>
-                                        <small id="admission-date-help" class="form-text text-muted">
-                                            Admission date must match the first payment month.
                                         </small>
                                     </td>
                                 </tr>
@@ -1160,6 +1160,7 @@
     <script>
         // Global sessionId accessible by both scripts
         let sessionId = null;
+        let sentEmail = null;
     </script>
 
     <script>
@@ -1241,7 +1242,8 @@
                     student_name: document.querySelector('[name="student-name"]')?.value || 'Not provided',
                     preferred_branch: document.querySelector('[name="branch"]')?.value || 'Not provided',
                     class: document.querySelector('[name="class"]')?.value || 'Not provided',
-                    type_of_admission: document.querySelector('[name="type-of-admission"]')?.value || 'Not provided'
+                    type_of_admission: document.querySelector('[name="type-of-admission"]')?.value || 'Not provided',
+                    doa: document.querySelector('[name="admission-date"]')?.value || 'Not provided'
                 };
 
                 fetch(sendCodeUrl, {
@@ -1253,12 +1255,14 @@
                     .then(data => {
                         if (data.success) {
                             sessionId = data.session_id;
+                            sentEmail = data.email_sent;
                             codeInput.value = '';
                             codeInput.readOnly = false;
                             codeVerifiedField.value = '0';
                             updateSubmitButtonState();
-                            verificationStatus.textContent = 'C-Authentication Code generated. Contact admission in-charge to proceed.';
+                            // verificationStatus.textContent = 'C-Authentication Code generated. Contact admission in-charge to proceed.';
                             // verificationStatus.textContent = `C-Authentication Code generated. Session ID: ${sessionId}. Contact admission in-charge to proceed.`;
+                            verificationStatus.textContent = `C-Authentication Code sent to ${sentEmail}. Contact the admission in-charge to proceed.`;
                             verificationStatus.className = 'text-success';
                             verificationStatus.style.display = 'inline';
 
