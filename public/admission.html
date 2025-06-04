@@ -696,7 +696,8 @@
                             </tbody>
                         </table>
                         <div class="text-end">
-                            <!-- <button type="button" onclick="prevPage()">Previous</button> -->
+                            <button type="button" class="btn btn-outline-secondary"
+                                onclick="prevPage()">Previous</button>
                             <button type="submit" class="btn btn-primary" id="btnSubmit">Submit</button>
                         </div>
                     </div>
@@ -1114,7 +1115,16 @@
                 });
         });
     </script>
+
     <script>
+        // Global variables accessible by all scripts
+        let currentState = 'generate';
+        let sessionId = null;
+        let sentEmail = null;
+    </script>
+
+    <script>
+        // Navigation and UI Reset Functions
         function nextPage() {
             const requiredFields = document.querySelectorAll('#page1 [required]');
             let allFilled = true;
@@ -1129,6 +1139,17 @@
             });
 
             if (allFilled) {
+                // Completely reset page2 UI before showing it
+                resetCodeVerificationUI();
+
+                // Reset payment mode selection
+                document.querySelector('[name="payment-mode"]').value = '';
+                document.getElementById('cash-authentication-code').style.display = 'none';
+                document.getElementById('online-declaration').style.display = 'none';
+
+                // Explicitly enable submit button when showing page2
+                document.getElementById('btnSubmit').disabled = false;
+
                 document.getElementById('page1').style.display = 'none';
                 document.getElementById('page2').style.display = 'block';
             } else {
@@ -1136,7 +1157,62 @@
             }
         }
 
-        // Optional: remove validation style on user input
+        function prevPage() {
+            // Reset page2 UI before hiding it
+            resetCodeVerificationUI();
+
+            document.getElementById('page2').style.display = 'none';
+            document.getElementById('page1').style.display = 'block';
+        }
+
+        function resetCodeVerificationUI() {
+            const codeInput = document.getElementById('c-authentication-code');
+            const codeActionBtn = document.getElementById('code-action-btn');
+            const codeActionText = document.getElementById('code-action-text');
+            const codeActionSpinner = document.getElementById('code-action-spinner');
+            const verificationStatus = document.getElementById('verification-status');
+            const codeVerifiedField = document.getElementById('code-verified');
+            const regenerateSection = document.getElementById('regenerate-section');
+
+            // Reset submit button state
+            const submitBtn = document.getElementById('btnSubmit');
+            if (submitBtn) {
+                submitBtn.disabled = false;
+            }
+
+            // Reset all UI elements
+            codeInput.value = '';
+            codeInput.readOnly = false;
+
+            verificationStatus.textContent = '';
+            verificationStatus.style.display = 'none';
+
+            // Reset button to initial state
+            codeActionBtn.disabled = false;
+            codeActionBtn.classList.remove('btn-success', 'btn-outline-primary');
+            codeActionBtn.classList.add('btn-outline-secondary');
+            codeActionText.textContent = 'Generate Code';
+            codeActionSpinner.style.display = 'none';
+
+            // Reset regenerate section
+            regenerateSection.style.display = 'none';
+            if (document.getElementById('regenerate-spinner')) {
+                document.getElementById('regenerate-spinner').style.display = 'none';
+            }
+            if (document.getElementById('regenerate-code-link')) {
+                document.getElementById('regenerate-code-link').style.display = 'inline';
+            }
+
+            // Reset hidden field
+            codeVerifiedField.value = '0';
+
+            // Reset global state
+            currentState = 'generate';
+            sessionId = null;
+            sentEmail = null;
+        }
+
+        // Input validation handler
         document.addEventListener('input', function (e) {
             if (e.target.hasAttribute('required')) {
                 if (e.target.value.trim()) {
@@ -1146,24 +1222,8 @@
         });
     </script>
 
-    <!-- <script>
-        function nextPage() {
-            document.getElementById('page1').style.display = 'none';
-            document.getElementById('page2').style.display = 'block';
-        }
-        // function prevPage() {
-        //     document.getElementById('page2').style.display = 'none';
-        //     document.getElementById('page1').style.display = 'block';
-        // }
-    </script> -->
-
     <script>
-        // Global sessionId accessible by both scripts
-        let sessionId = null;
-        let sentEmail = null;
-    </script>
-
-    <script>
+        // C-Authentication Code Functionality
         document.addEventListener('DOMContentLoaded', function () {
             const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
             const sendCodeUrl = isLocalhost
@@ -1183,14 +1243,13 @@
             const regenerateLink = document.getElementById('regenerate-code-link');
             const regenerateSpinner = document.getElementById('regenerate-spinner');
 
-            const paymentModeSelect = document.querySelector('[name="payment-mode"]'); // update this selector as needed
+            const paymentModeSelect = document.querySelector('[name="payment-mode"]');
             const submitBtn = document.getElementById('btnSubmit');
 
-            // Initial state
-            // States: 'generate', 'verify', 'verified'
-            let currentState = 'generate';
+            // Initialize UI state
+            resetCodeVerificationUI();
 
-            // Function to update submit button state based on conditions
+            // Update submit button state based on conditions
             function updateSubmitButtonState() {
                 const paymentMode = paymentModeSelect ? paymentModeSelect.value.toLowerCase() : '';
                 const isVerified = codeVerifiedField.value === '1';
@@ -1202,14 +1261,11 @@
                 }
             }
 
-            // Run on page load
+            // Initial setup
             updateSubmitButtonState();
 
             if (paymentModeSelect) {
-                // On payment mode change, update submit button
-                paymentModeSelect.addEventListener('change', () => {
-                    updateSubmitButtonState();
-                });
+                paymentModeSelect.addEventListener('change', updateSubmitButtonState);
             }
 
             codeActionBtn.addEventListener('click', function () {
@@ -1220,22 +1276,25 @@
                 }
             });
 
-            regenerateLink.addEventListener('click', function (e) {
-                e.preventDefault();
-                regenerateSpinner.style.display = 'inline-block';
-                regenerateLink.style.display = 'none';
-                generateCode(true);
-            });
+            if (regenerateLink) {
+                regenerateLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    regenerateSpinner.style.display = 'inline-block';
+                    regenerateLink.style.display = 'none';
+                    generateCode(true);
+                });
+            }
 
             function generateCode(isRegenerate = false) {
-                // Show spinner
+                // Set state and UI
+                currentState = 'generate';
                 if (!isRegenerate) {
                     codeActionSpinner.style.display = 'inline-block';
                     codeActionText.textContent = 'Sending...';
                     codeActionBtn.disabled = true;
                 }
 
-                // Generate 6-digit code
+                // Generate and send code
                 const generatedCode = Math.floor(100000 + Math.random() * 900000).toString();
                 const formData = {
                     code: generatedCode,
@@ -1259,27 +1318,20 @@
                             codeInput.value = '';
                             codeInput.readOnly = false;
                             codeVerifiedField.value = '0';
-                            updateSubmitButtonState();
-                            // verificationStatus.textContent = 'C-Authentication Code generated. Contact admission in-charge to proceed.';
-                            // verificationStatus.textContent = `C-Authentication Code generated. Session ID: ${sessionId}. Contact admission in-charge to proceed.`;
+
                             verificationStatus.textContent = `C-Authentication Code sent to ${sentEmail}. Contact the admission in-charge to proceed.`;
                             verificationStatus.className = 'text-success';
                             verificationStatus.style.display = 'inline';
 
-                            // Update UI for verification step
+                            // Transition to verify state
                             currentState = 'verify';
                             codeActionText.textContent = 'Verify Code';
                             codeActionBtn.classList.remove('btn-outline-secondary');
                             codeActionBtn.classList.add('btn-outline-primary');
                             codeActionBtn.disabled = false;
 
-                            // Show regenerate section
                             regenerateSection.style.display = 'block';
-
-                            // Hide Generate button if this was initial generate (not regeneration)
-                            if (!isRegenerate) {
-                                codeActionBtn.style.display = 'inline-block';
-                            }
+                            updateSubmitButtonState();
                         } else {
                             throw new Error(data.message || 'Failed to send code');
                         }
@@ -1288,7 +1340,6 @@
                         verificationStatus.textContent = 'Error: ' + error.message;
                         verificationStatus.className = 'text-danger';
                         verificationStatus.style.display = 'inline';
-                        console.error('API Error:', error);
                     })
                     .finally(() => {
                         if (!isRegenerate) {
@@ -1329,16 +1380,13 @@
                             codeVerifiedField.value = '1';
                             codeInput.readOnly = true;
 
-                            // Show verified state on button: green with ticket icon and text
                             currentState = 'verified';
                             codeActionBtn.disabled = true;
                             codeActionBtn.classList.remove('btn-outline-secondary', 'btn-outline-primary');
                             codeActionBtn.classList.add('btn-success');
-                            codeActionText.innerHTML = '✓ Verified'; // icon or replace as needed
+                            codeActionText.innerHTML = '✓ Verified';
 
-                            // Hide regenerate section
                             regenerateSection.style.display = 'none';
-                            // Enable submit button if payment mode is cash
                             updateSubmitButtonState();
                         } else {
                             throw new Error(data.message || 'Verification failed');
@@ -1348,12 +1396,12 @@
                         verificationStatus.textContent = 'Error: ' + error.message;
                         verificationStatus.className = 'text-danger';
                         verificationStatus.style.display = 'inline';
-                        codeActionBtn.disabled = false;
                     })
                     .finally(() => {
                         codeActionSpinner.style.display = 'none';
                         if (currentState !== 'verified') {
                             codeActionText.textContent = 'Verify Code';
+                            codeActionBtn.disabled = false;
                         }
                     });
             }
@@ -1361,88 +1409,64 @@
     </script>
 
     <script>
-        // Determine the correct script URL based on the environment
-        const scriptURL = window.location.hostname === 'localhost'
-            ? 'http://localhost:8082/rssi-member/payment-api.php'
-            : 'https://login.rssi.in/rssi-member/payment-api.php';
+        // Form Submission Handler
+        document.addEventListener('DOMContentLoaded', function () {
+            const scriptURL = window.location.hostname === 'localhost'
+                ? 'http://localhost:8082/rssi-member/payment-api.php'
+                : 'https://login.rssi.in/rssi-member/payment-api.php';
 
-        const admissionForm = document.getElementById("admission");
+            const admissionForm = document.getElementById("admission");
 
-        document.getElementById("btnSubmit").addEventListener("click", async function (event) {
-            event.preventDefault(); // Prevent default form submission
+            document.getElementById("btnSubmit").addEventListener("click", async function (event) {
+                event.preventDefault();
 
-            if (!admissionForm.checkValidity()) {
-                admissionForm.reportValidity(); // Show the default validation messages
-                return;
-            }
-
-            // Disable the submit button immediately upon form submission
-            this.disabled = true;
-            // Show the Bootstrap modal
-            const myModal = new bootstrap.Modal(document.getElementById("myModal"), {
-                backdrop: 'static',
-                keyboard: false
-            });
-            // Add event listener to intercept Escape key press
-            document.body.addEventListener('keydown', function (event) {
-                if (event.key === 'Escape') {
-                    // Prevent default behavior of Escape key
-                    event.preventDefault();
+                if (!admissionForm.checkValidity()) {
+                    admissionForm.reportValidity();
+                    return;
                 }
-            });
-            myModal.show();
 
-            const formData = new FormData(admissionForm);
-            if (sessionId) {
-                formData.append('c_auth_session_id', sessionId);
-            }
-
-            try {
-                const response = await fetch(scriptURL, {
-                    method: 'POST',
-                    body: formData
+                this.disabled = true;
+                const myModal = new bootstrap.Modal(document.getElementById("myModal"), {
+                    backdrop: 'static',
+                    keyboard: false
                 });
-                const result = await response.json();
+                myModal.show();
 
-                console.log("API Response:", result);
-
-                if (result.success) {
-                    alert(`Submitted successfully! Message: ${result.message}`);
-                    location.reload(); // Reload the page after clicking OK
-                    admissionForm.reset(); // Reset the form after successful submission
-                    // Function to reset photo preview
-                    function resetPhotoPreview() {
-                        const preview = document.getElementById('photo-preview');
-                        const container = document.getElementById('photo-preview-container');
-                        preview.src = '';
-                        container.style.display = 'none';
+                document.body.addEventListener('keydown', function (event) {
+                    if (event.key === 'Escape') {
+                        event.preventDefault();
                     }
+                });
 
-                    // Function to reset Aadhar card preview
-                    function resetAadharCardPreview() {
-                        const preview = document.getElementById('aadhar-card-preview');
-                        const imagePreview = document.getElementById('aadhar-card-image-preview');
-                        const container = document.getElementById('aadhar-card-preview-container');
-                        preview.src = '';
-                        imagePreview.src = '';
-                        container.style.display = 'none';
-                    }
-                    resetPhotoPreview();
-                    resetAadharCardPreview();
-                    // You can optionally reload the page here
-                } else {
-                    alert(`Error: ${result.message}`);
+                const formData = new FormData(admissionForm);
+                if (sessionId) {
+                    formData.append('c_auth_session_id', sessionId);
                 }
-            } catch (error) {
-                console.error(error);
-                alert("Error occurred during form submission. Please try again later.");
-            } finally {
-                // Re-enable the submit button after the form submission process is finished
-                this.disabled = false;
-                myModal.hide();
-            }
+
+                try {
+                    const response = await fetch(scriptURL, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const result = await response.json();
+
+                    if (result.success) {
+                        alert(`Submitted successfully! Message: ${result.message}`);
+                        location.reload();
+                    } else {
+                        alert(`Error: ${result.message}`);
+                    }
+                } catch (error) {
+                    console.error(error);
+                    alert("Error occurred during form submission. Please try again later.");
+                } finally {
+                    this.disabled = false;
+                    myModal.hide();
+                }
+            });
         });
     </script>
+
 </body>
 
 </html>
