@@ -1139,16 +1139,21 @@
             });
 
             if (allFilled) {
-                // Completely reset page2 UI before showing it
-                resetCodeVerificationUI();
+                const paymentMode = document.querySelector('[name="payment-mode"]').value;
 
-                // Reset payment mode selection
-                document.querySelector('[name="payment-mode"]').value = '';
-                document.getElementById('cash-authentication-code').style.display = 'none';
-                document.getElementById('online-declaration').style.display = 'none';
+                // Only reset if no payment mode selected yet
+                if (!paymentMode) {
+                    resetCodeVerificationUI();
+                    document.getElementById('cash-authentication-code').style.display = 'none';
+                    document.getElementById('online-declaration').style.display = 'none';
+                }
 
-                // Explicitly enable submit button when showing page2
-                document.getElementById('btnSubmit').disabled = false;
+                // Set submit button state based on current payment mode
+                if (paymentMode === 'cash' && document.getElementById('code-verified').value !== '1') {
+                    document.getElementById('btnSubmit').disabled = true;
+                } else {
+                    document.getElementById('btnSubmit').disabled = false;
+                }
 
                 document.getElementById('page1').style.display = 'none';
                 document.getElementById('page2').style.display = 'block';
@@ -1158,8 +1163,11 @@
         }
 
         function prevPage() {
-            // Reset page2 UI before hiding it
-            resetCodeVerificationUI();
+            // Only reset if payment mode was cash
+            const paymentMode = document.querySelector('[name="payment-mode"]').value;
+            if (paymentMode === 'cash') {
+                resetCodeVerificationUI();
+            }
 
             document.getElementById('page2').style.display = 'none';
             document.getElementById('page1').style.display = 'block';
@@ -1265,7 +1273,22 @@
             updateSubmitButtonState();
 
             if (paymentModeSelect) {
-                paymentModeSelect.addEventListener('change', updateSubmitButtonState);
+                paymentModeSelect.addEventListener('change', function () {
+                    const paymentMode = this.value;
+
+                    // Show/hide sections
+                    document.getElementById('cash-authentication-code').style.display =
+                        paymentMode === 'cash' ? 'table-row' : 'none';
+                    document.getElementById('online-declaration').style.display =
+                        paymentMode === 'online' ? 'table-row' : 'none';
+
+                    // Reset C-Auth UI when switching from cash to online
+                    if (paymentMode === 'online') {
+                        resetCodeVerificationUI();
+                    }
+
+                    updateSubmitButtonState();
+                });
             }
 
             codeActionBtn.addEventListener('click', function () {
