@@ -459,32 +459,12 @@
                                     <td>
                                         <label for="class">Class:</label>
                                     </td>
-                                    <td><select class="form-select" id="class" name="class" required>
-                                            <option value>--Select Class--</option>
-                                            <option value="Nursery">Nursery</option>
-                                            <option value="LKG">LKG</option>
-                                            <option value="UKG">UKG</option>
-                                            <option value="1">Class 1</option>
-                                            <option value="2">Class 2</option>
-                                            <option value="3">Class 3</option>
-                                            <option value="4">Class 4</option>
-                                            <option value="5">Class 5</option>
-                                            <option value="6">Class 6</option>
-                                            <!-- <option value="7">Class 7</option>
-                                        <option value="8">Class 8</option>
-                                        <option value="9">Class 9</option>
-                                        <option value="10">Class 10</option>
-                                        <option value="11">Class 11</option>
-                                        <option value="12">Class 12</option> -->
-                                            <option value="Vocational training">Vocational
-                                                training</option>
-                                            <option value="Summer camp">Summer camp</option>
+                                    <td>
+                                        <select class="form-select" id="class" name="class" required disabled>
+                                            <option value="">--Select Class--</option>
                                         </select>
-                                        <small id="class-help" class="form-text text-muted">Please select
-                                            the
-                                            class the
-                                            student wants to
-                                            join.</small>
+                                        <small id="class-help" class="form-text text-muted">Please select the division
+                                            first.</small>
                                     </td>
                                 </tr>
                                 <tr>
@@ -1109,6 +1089,87 @@
                 })
                 .finally(() => {
                     admissionSelect.disabled = false;
+                    // Remove spinner if it still exists
+                    if (spinner.parentNode === helpText) {
+                        helpText.removeChild(spinner);
+                    }
+                });
+        });
+    </script>
+    <script>
+        document.getElementById('division-select').addEventListener('change', function () {
+            const division = this.value;
+            const classSelect = document.getElementById('class');
+            const helpText = document.getElementById('class-help');
+
+            // Reset and disable the select initially
+            classSelect.innerHTML = '<option value="">--Select Class--</option>';
+            classSelect.disabled = !division;
+
+            if (!division) {
+                helpText.textContent = 'Please select the division first.';
+                return;
+            }
+
+            // Create and show loading spinner
+            const spinner = document.createElement('span');
+            spinner.className = 'spinner-border spinner-border-sm ms-2';
+            spinner.setAttribute('role', 'status');
+            spinner.setAttribute('aria-hidden', 'true');
+            helpText.innerHTML = 'Loading classes... ';
+            helpText.appendChild(spinner);
+
+            // Determine API URL based on host
+            const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            const apiUrl = isLocalhost
+                ? 'http://localhost:8082/get_classes.php'
+                : 'https://login.rssi.in/get_classes.php';
+
+            // Fetch classes via AJAX
+            fetch(`${apiUrl}?division=${encodeURIComponent(division)}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data.success) {
+                        throw new Error(data.error || 'Unknown error occurred');
+                    }
+
+                    classSelect.innerHTML = '<option value="">--Select Class--</option>';
+
+                    if (data.data.length === 0) {
+                        const noOption = document.createElement('option');
+                        noOption.textContent = 'No classes available';
+                        noOption.disabled = true;
+                        classSelect.appendChild(noOption);
+                        helpText.textContent = 'No classes available for this division.';
+                        return;
+                    }
+
+                    data.data.forEach(classItem => {
+                        const option = document.createElement('option');
+                        option.value = classItem.value;
+                        option.textContent = classItem.class_name;
+                        classSelect.appendChild(option);
+                    });
+
+                    classSelect.disabled = false;
+                    helpText.textContent = 'Please select the class the student wants to join.';
+                })
+                .catch(error => {
+                    console.error('Error fetching classes:', error);
+                    classSelect.innerHTML = '<option value="">--Select Class--</option>';
+                    const errorOption = document.createElement('option');
+                    errorOption.textContent = 'Error loading classes';
+                    errorOption.disabled = true;
+                    classSelect.appendChild(errorOption);
+                    helpText.textContent = 'Failed to load classes: ' + error.message;
+                })
+                .finally(() => {
+                    classSelect.disabled = false;
                     // Remove spinner if it still exists
                     if (spinner.parentNode === helpText) {
                         helpText.removeChild(spinner);
