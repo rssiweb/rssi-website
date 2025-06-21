@@ -180,7 +180,8 @@
                                     <small id="permanent-address-help" class="form-text text-muted">Please enter the
                                         complete permanent address of the student.</small>
                                     <div>
-                                        <input type="checkbox" id="same-address" onclick="copyAddress()">
+                                        <input type="checkbox" class="form-check-input" id="same-address"
+                                            onclick="copyAddress()">
                                         <label for="same-address">Same as current address</label>
                                     </div>
                                 </td>
@@ -238,13 +239,40 @@
                             </tr>
                             <tr>
                                 <td>
+                                    <label for="college_name" class="form-label">College/University Name:</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="college_name" name="college_name"
+                                        placeholder="e.g., Harvard University, University of Tokyo" required>
+                                    <small id="college-help" class="form-text text-muted">
+                                        Please write the full name of the college or university you are currently
+                                        attending or most recently attended.
+                                    </small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="enrollment_number" class="form-label">Enrolment Number:</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="enrollment_number"
+                                        name="enrollment_number" placeholder="e.g., 2024CS12345" required>
+                                    <small id="enrollment-help" class="form-text text-muted">
+                                        Please enter your official enrolment/registration number at the
+                                        college/university.
+                                    </small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <label for="work-experience" class="form-label">Work Experience:</label>
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="work-experience" name="work-experience"
-                                        placeholder="e.g., 3 years in Teaching, 2 years in Marketing">
+                                    <textarea class="form-control" id="work-experience" name="work-experience" rows="3"
+                                        placeholder="e.g., 3 years in Teaching, 2 years in Marketing"></textarea>
                                     <small id="work-experience-help" class="form-text text-muted">
-                                        Specify your work experience, including job title and duration, if applicable.
+                                        Specify your work experience, including job title, company, and duration (one
+                                        entry per line if needed).
                                     </small>
                                 </td>
                             </tr>
