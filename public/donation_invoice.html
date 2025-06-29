@@ -21,7 +21,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    
+
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
     <!-- Bootstrap JS -->
@@ -68,6 +68,23 @@
         <!-- End Breadcrumbs -->
         <section class="sample-page">
             <div class="container">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <p>
+                        <strong>Step 1:</strong> Before filling out this form, please complete your payment. You can
+                        view our bank details and
+                        payment QR code by clicking
+                        <a href="#" class="alert-link" data-bs-toggle="modal"
+                            data-bs-target="#paymentInfoModal">here</a>.
+                    </p>
+                    <p>
+                        <strong>Step 2:</strong> After payment, fill out this form using the transaction ID provided by
+                        your bank.
+                    </p>
+                    <p>
+                        <strong>Step 3:</strong> Once submitted, an acknowledgment slip will be generated.
+                    </p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 <!-- Part 1: Donation Information -->
                 <form action="donation_form.php" method="POST" name="donationInfoForm" id="donationInfoForm">
                     <input type="hidden" name="form-type" value="donation_form">
@@ -429,6 +446,79 @@
     <!-- ======= Footer ======= -->
     <div id="footer"></div>
     <!-- End Footer -->
+
+    <!-- Payment Information Modal -->
+    <div class="modal fade" id="paymentInfoModal" tabindex="-1" aria-labelledby="paymentInfoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-4 fw-bold" id="paymentInfoModalLabel">
+                        Bank Details & Payment Options
+                    </h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <!-- Bank Details Section -->
+                        <div class="col-md-7">
+                            <div class="card h-100">
+                                <div class="card-header bg-light">
+                                    <h3 class="h5 mb-0">
+                                        <i class="bi bi-credit-card me-2"></i>Bank Transfer Information
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-unstyled mb-0">
+                                        <li class="mb-3 d-flex">
+                                            <span class="me-2 fw-bold">Account Number:</span>
+                                            <span class="fw-bold">004201033772</span>
+                                        </li>
+                                        <li class="mb-3 d-flex">
+                                            <span class="me-2 fw-bold">Account Name:</span>
+                                            <span>RINA SHIKSHA SAHAYAK FOUNDATION</span>
+                                        </li>
+                                        <li class="mb-3 d-flex">
+                                            <span class="me-2 fw-bold">Bank Name:</span>
+                                            <span>ICICI Bank - KOLKATA - SALT LAKE</span>
+                                        </li>
+                                        <li class="mb-3 d-flex">
+                                            <span class="me-2 fw-bold">Branch Code:</span>
+                                            <span>0042</span>
+                                        </li>
+                                        <li class="d-flex">
+                                            <span class="me-2 fw-bold">IFSC Code:</span>
+                                            <span class="fw-bold">ICIC0000042</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- QR Code Section -->
+                        <div class="col-md-5">
+                            <div class="card h-100">
+                                <div class="card-header bg-light">
+                                    <h3 class="h5 mb-0">
+                                        <i class="bi bi-qr-code-scan me-2"></i>Scan to Pay
+                                    </h3>
+                                </div>
+                                <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                                    <img src="/img/payment.jpg" alt="Google Pay QR Code" class="img-fluid mb-3"
+                                        style="max-height: 200px;">
+                                    <p class="text-muted small mb-0 text-center">Scan this QR code using UPI apps like
+                                        Google Pay, PhonePe, or Paytm</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
