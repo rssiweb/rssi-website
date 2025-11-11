@@ -112,6 +112,19 @@
                                         </small>
                                     </td>
                                 </tr>
+                                <!-- Supporting Document Upload Field -->
+                                <tr>
+                                    <td>
+                                        <label for="supporting-document">Supporting Document:</label>
+                                    </td>
+                                    <td>
+                                        <input type="file" class="form-control" id="supporting-document"
+                                            name="supporting-document" accept=".pdf,.jpg,.jpeg,.png">
+                                        <small id="supporting-document-help" class="form-text text-muted">
+                                            Upload the supporting document (PDF, JPG, JPEG, or PNG).
+                                        </small>
+                                    </td>
+                                </tr>
 
                                 <tr>
                                     <td>
@@ -919,10 +932,30 @@
     </script>
     <script>
         $(document).ready(function () {
-            $('input, select, textarea').each(function () {
-                if ($(this).prop('required')) { // Check if the element has the required attribute
-                    $(this).closest('td').prev('td').find('label').append(' <span style="color: red">*</span>');
-                }
+            // Function to update asterisks
+            function updateAsterisks() {
+                // Remove all existing asterisks first
+                $('label span[style="color: red"]').remove();
+
+                // Add asterisks to required fields
+                $('input, select, textarea').each(function () {
+                    if ($(this).prop('required')) {
+                        $(this).closest('td').prev('td').find('label').append(' <span style="color: red">*</span>');
+                    }
+                });
+            }
+
+            // Initial run
+            updateAsterisks();
+
+            // Also call updateAsterisks when Access Category changes
+            $('#type-of-admission').change(function () {
+                updateAsterisks();
+            });
+
+            // And call when Division changes (since it resets Access Category)
+            $('#division-select').change(function () {
+                updateAsterisks();
             });
         });
     </script>
@@ -1550,6 +1583,47 @@
                     this.disabled = false;
                     myModal.hide();
                 }
+            });
+        });
+    </script>
+    <script>
+        // Add this script to handle Supporting Document visibility and requirement
+        document.addEventListener('DOMContentLoaded', function () {
+            const accessCategorySelect = document.getElementById('type-of-admission');
+            const supportingDocumentRow = document.querySelector('tr:has(#supporting-document)');
+            const supportingDocumentInput = document.getElementById('supporting-document');
+            const supportingDocumentHelp = document.getElementById('supporting-document-help');
+
+            // Initially hide the supporting document field
+            supportingDocumentRow.style.display = 'none';
+            supportingDocumentInput.required = false;
+
+            // Add event listener to access category dropdown
+            accessCategorySelect.addEventListener('change', function () {
+                const selectedValue = this.value;
+
+                // Check if selected value is "Udaan"
+                if (selectedValue === 'Udaan') {
+                    // Show and make required
+                    supportingDocumentRow.style.display = 'table-row';
+                    supportingDocumentInput.required = true;
+                    supportingDocumentHelp.textContent = 'Upload the supporting document (PDF, JPG, JPEG, or PNG). Required for Udaan category.';
+                } else {
+                    // Hide and make not required
+                    supportingDocumentRow.style.display = 'none';
+                    supportingDocumentInput.required = false;
+                    supportingDocumentInput.value = ''; // Clear the file input
+                    supportingDocumentHelp.textContent = 'Upload the supporting document (PDF, JPG, JPEG, or PNG).';
+                }
+            });
+
+            // Also handle when the division changes and access category gets reset
+            document.getElementById('division-select').addEventListener('change', function () {
+                // Reset supporting document field when division changes
+                supportingDocumentRow.style.display = 'none';
+                supportingDocumentInput.required = false;
+                supportingDocumentInput.value = ''; // Clear the file input
+                supportingDocumentHelp.textContent = 'Upload the supporting document (PDF, JPG, JPEG, or PNG).';
             });
         });
     </script>
