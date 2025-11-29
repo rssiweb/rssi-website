@@ -181,7 +181,7 @@
             }
         }
 
-        // Fetch result data
+        // Update the fetchResult function to handle the new response
         async function fetchResult(formData) {
             try {
                 // Show loading state
@@ -202,6 +202,15 @@
                 }
 
                 const html = await response.text();
+
+                // Check if it's a "result not published" message
+                if (html.includes('Result Not Published Yet')) {
+                    document.getElementById('resultCard').innerHTML = html;
+                    document.getElementById('resultCard').style.display = 'block';
+                    document.getElementById('noResult').style.display = 'none';
+                    document.getElementById('printBtn').disabled = true;
+                    return;
+                }
 
                 // Parse the HTML response
                 const parser = new DOMParser();
@@ -239,6 +248,7 @@
                 document.getElementById('resultCard').innerHTML = '<div class="alert alert-danger text-center">Error loading result. Please try again.</div>';
                 document.getElementById('resultCard').style.display = 'block';
                 document.getElementById('noResult').style.display = 'none';
+                document.getElementById('printBtn').disabled = true;
             }
         }
 
