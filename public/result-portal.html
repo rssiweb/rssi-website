@@ -212,6 +212,15 @@
                     return;
                 }
 
+                // NEW: Check for fee due message
+                if (html.includes('Fee Due Detected')) {
+                    document.getElementById('resultCard').innerHTML = html;
+                    document.getElementById('resultCard').style.display = 'block';
+                    document.getElementById('noResult').style.display = 'none';
+                    document.getElementById('printBtn').disabled = true;
+                    return;
+                }
+
                 // Parse the HTML response
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
