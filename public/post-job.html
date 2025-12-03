@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11316670180"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'AW-11316670180');
+    </script>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>RSSI-History</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="/img/favicon.ico" rel="icon">
+    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Vendor CSS Files -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Template Main CSS File -->
+    <link href="/css/main.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("/header.html");
+            $("#footer").load("/footer.html");
+        });
+    </script>
+    <!-- Add this CSS -->
+    <style>
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #dee2e6;
+            z-index: 1;
+        }
+
+        .step {
+            position: relative;
+            z-index: 2;
+            background: white;
+            padding: 0 15px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .step::before {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 30px;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            background: #dee2e6;
+            color: #6c757d;
+            line-height: 30px;
+            font-weight: bold;
+        }
+
+        .step.active::before {
+            background: #0d6efd;
+            color: white;
+        }
+
+        .step:nth-child(1)::before {
+            content: '1';
+        }
+
+        .step:nth-child(2)::before {
+            content: '2';
+        }
+
+        .step:nth-child(3)::before {
+            content: '3';
+        }
+
+        .step:nth-child(4)::before {
+            content: '4';
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <div id="header"></div>
+    <!-- End Header -->
+
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs">
+            <div class="container">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Baby Step</h2>
+                    <ol>
+                        <li><a href="index">Home</a></li>
+                        <li>About</li>
+                        <li>History</li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- End Breadcrumbs -->
+
+        <section class="sample-page">
+            <section class="sample-page">
+                <div class="container" data-aos="fade-up">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <div class="card shadow">
+                                <div class="card-body p-5">
+                                    <h2 class="mb-4 text-center">Recruiter Job Post Form</h2>
+
+                                    <!-- Step Indicator -->
+                                    <div class="mb-5">
+                                        <div class="steps">
+                                            <div class="step active" data-step="1">Email Verification</div>
+                                            <div class="step" data-step="2">Registration</div>
+                                            <div class="step" data-step="3">Job Details</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step Container - This will hold all dynamic content -->
+                                    <div id="stepContainer">
+                                        <!-- Step 1: Email Entry & OTP Verification -->
+                                        <div class="step-content" id="step1">
+                                            <div class="mb-4">
+                                                <h5>Email Verification</h5>
+                                                <p class="text-muted mb-3">Enter your email to verify your identity</p>
+                                                <div class="mb-3">
+                                                    <label for="userEmail" class="form-label">Email Address *</label>
+                                                    <input type="email" class="form-control" id="userEmail"
+                                                        placeholder="Enter your email">
+                                                </div>
+                                                <button type="button" class="btn btn-outline-primary" id="sendOTP">Send
+                                                    OTP</button>
+                                            </div>
+
+                                            <!-- OTP Verification Section (Initially Hidden) -->
+                                            <div id="otpSection" style="display: none;">
+                                                <div class="mb-3">
+                                                    <label for="otp" class="form-label">Enter OTP *</label>
+                                                    <div class="d-flex gap-2">
+                                                        <input type="text" class="form-control text-center" id="otp"
+                                                            maxlength="6" placeholder="6-digit OTP"
+                                                            style="width: 150px;">
+                                                        <button type="button" class="btn btn-outline-secondary"
+                                                            id="resendOTP">Resend</button>
+                                                    </div>
+                                                    <div class="form-text" id="otpTimer"></div>
+                                                </div>
+                                                <div class="d-flex justify-content-between">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        id="backToEmail">Back to Email</button>
+                                                    <button type="button" class="btn btn-primary" id="verifyOTP">Verify
+                                                        & Proceed</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Success Message -->
+                                    <div id="successMessage" style="display: none;">
+                                        <div class="alert alert-success text-center">
+                                            <h4>✅ Job Posted Successfully!</h4>
+                                            <p>Your job post has been submitted and is pending approval.</p>
+                                            <p>You will receive a confirmation email shortly.</p>
+                                            <button type="button" class="btn btn-primary" id="postAnother">Post Another
+                                                Job</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <!-- End Gallery Section -->
+    </main>
+    <!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <div id="footer"></div>
+    <!-- End Footer -->
+
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <!--<div id="preloader"></div>-->
+
+    <!-- Vendor JS Files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/js/main.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
+    <!-- Glow Cookies v3.0.1 -->
+    <script>
+        glowCookies.start('en', {
+            analytics: 'G-S25QWTFJ2S',
+            //facebookPixel: '',
+            policyLink: 'disclaimer'
+        });
+    </script>
+
+    <!-- JavaScript for Step Navigation -->
+    <script>
+        $(document).ready(function () {
+            let currentStep = 1;
+            let verifiedEmail = '';
+            let otpTimer = null;
+            let otpExpiryTime = null;
+            let recruiterId = null;
+
+            // API endpoint configuration
+            const API_BASE = window.location.hostname === 'localhost'
+                ? 'http://localhost:8082/'
+                : 'https://login.rssi.in/';
+
+            // Step Navigation Functions
+            function showStep(step) {
+                // Update step indicator
+                $('.step').removeClass('active');
+                $(`.step[data-step="${step}"]`).addClass('active');
+
+                currentStep = step;
+
+                // Load appropriate form
+                loadStepContent(step);
+            }
+
+            function loadStepContent(step) {
+                const container = $('#stepContainer');
+
+                if (step === 1) {
+                    // Email verification step
+                    container.html(`
+                    <div class="step-content" id="step1">
+                        <div class="mb-4">
+                            <h5>Email Verification</h5>
+                            <p class="text-muted mb-3">Enter your email to verify your identity</p>
+                            <div class="mb-3">
+                                <label for="userEmail" class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" id="userEmail" placeholder="Enter your email" value="${verifiedEmail || ''}">
+                            </div>
+                            <button type="button" class="btn btn-outline-primary" id="sendOTP">Send OTP</button>
+                        </div>
+
+                        <div id="otpSection" style="display: ${verifiedEmail ? 'block' : 'none'}">
+                            <div class="mb-3">
+                                <label for="otp" class="form-label">Enter OTP *</label>
+                                <div class="d-flex gap-2">
+                                    <input type="text" class="form-control text-center" id="otp" maxlength="6" placeholder="6-digit OTP" style="width: 150px;">
+                                    <button type="button" class="btn btn-outline-secondary" id="resendOTP">Resend</button>
+                                </div>
+                                <div class="form-text" id="otpTimer"></div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" id="backToEmail">Back to Email</button>
+                                <button type="button" class="btn btn-primary" id="verifyOTP">Verify & Proceed</button>
+                            </div>
+                        </div>
+                    </div>
+                `);
+
+                    // Re-bind events for step 1
+                    bindStep1Events();
+
+                } else if (step === 2) {
+                    // Registration form for new users
+                    container.html(`
+                    <div class="step-content" id="step2">
+                        <form id="registrationForm">
+                            <h4 class="mb-3 border-bottom pb-2">Recruiter Registration</h4>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="fullName" class="form-label">Full Name *</label>
+                                    <input type="text" class="form-control" id="fullName" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="companyName" class="form-label">Company Name *</label>
+                                    <input type="text" class="form-control" id="companyName" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <input type="email" class="form-control" id="regEmail" value="${verifiedEmail}" readonly required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label">Phone Number *</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="aadharNumber" class="form-label">Aadhar Number *</label>
+                                    <input type="text" class="form-control" id="aadharNumber" pattern="[0-9]{12}" maxlength="12" required>
+                                    <div class="form-text">12-digit Aadhar number</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="aadharFile" class="form-label">Aadhar Card Upload *</label>
+                                    <input type="file" class="form-control" id="aadharFile" accept=".pdf,.jpg,.jpeg,.png" required>
+                                    <div class="form-text">Max size: 2MB (PDF, JPG, PNG)</div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="companyAddress" class="form-label">Company Address *</label>
+                                <textarea class="form-control" id="companyAddress" rows="3" required></textarea>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" id="backToStep1">Back</button>
+                                <button type="button" class="btn btn-primary" id="saveRegistration">Save & Continue to Job Post</button>
+                            </div>
+                        </form>
+                    </div>
+                `);
+
+                    // Re-bind events for step 2
+                    bindStep2Events();
+
+                } else if (step === 3) {
+                    // Job post form
+                    container.html(`
+                    <div class="step-content" id="step3">
+                        <form id="jobPostForm">
+                            <h4 class="mb-3 border-bottom pb-2">Job Details</h4>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="jobTitle" class="form-label">Job Title *</label>
+                                    <input type="text" class="form-control" id="jobTitle" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="jobType" class="form-label">Job Type *</label>
+                                    <select class="form-select" id="jobType" required>
+                                        <option value="">Select Type</option>
+                                        <option value="full-time">Full Time</option>
+                                        <option value="part-time">Part Time</option>
+                                        <option value="contract">Contract</option>
+                                        <option value="internship">Internship</option>
+                                        <option value="remote">Remote</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="location" class="form-label">Location *</label>
+                                    <input type="text" class="form-control" id="location" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="salary" class="form-label">Salary (₹ per month)</label>
+                                    <input type="text" class="form-control" id="salary">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="jobDescription" class="form-label">Job Description *</label>
+                                <textarea class="form-control" id="jobDescription" rows="5" required></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="requirements" class="form-label">Requirements *</label>
+                                <textarea class="form-control" id="requirements" rows="3" required></textarea>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="experience" class="form-label">Experience Required</label>
+                                    <input type="text" class="form-control" id="experience" placeholder="e.g., 2-4 years">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="vacancies" class="form-label">Number of Vacancies *</label>
+                                    <input type="number" class="form-control" id="vacancies" min="1" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="applyBy" class="form-label">Apply By Date *</label>
+                                    <input type="date" class="form-control" id="applyBy" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="jobFile" class="form-label">Additional Document (Optional)</label>
+                                    <input type="file" class="form-control" id="jobFile" accept=".pdf,.doc,.docx">
+                                    <div class="form-text">Job description PDF or Word doc</div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" id="backToStep2">Back</button>
+                                <button type="submit" class="btn btn-success" id="submitJob">Submit Job Post</button>
+                            </div>
+                        </form>
+                    </div>
+                `);
+
+                    // Re-bind events for step 3
+                    bindStep3Events();
+                }
+            }
+
+            // Event binding functions
+            function bindStep1Events() {
+                // Send OTP
+                $(document).off('click', '#sendOTP').on('click', '#sendOTP', function () {
+                    const email = $('#userEmail').val().trim();
+
+                    if (!validateEmail(email)) {
+                        alert('Please enter a valid email address');
+                        return;
+                    }
+
+                    $(this).prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Sending...');
+
+                    $.ajax({
+                        url: API_BASE + 'send_otp.php',
+                        type: 'POST',
+                        data: { email: email, action: 'send_otp' },
+                        success: function (response) {
+                            console.log('OTP Response:', response);
+                            if (response.success) {
+                                verifiedEmail = email;
+                                $('#otpSection').show();
+                                startOTPTimer(300);
+                                alert('OTP sent to your email!');
+                            } else {
+                                alert(response.message || 'Failed to send OTP');
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('OTP Error:', error);
+                            alert('Error sending OTP. Please try again.');
+                        },
+                        complete: function () {
+                            $('#sendOTP').prop('disabled', false).text('Send OTP');
+                        }
+                    });
+                });
+
+                // Verify OTP
+                $(document).off('click', '#verifyOTP').on('click', '#verifyOTP', function () {
+                    const otp = $('#otp').val().trim();
+
+                    if (otp.length !== 6) {
+                        alert('Please enter a valid 6-digit OTP');
+                        return;
+                    }
+
+                    $(this).prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Verifying...');
+
+                    $.ajax({
+                        url: API_BASE + 'verify_otp.php',
+                        type: 'POST',
+                        data: { email: verifiedEmail, otp: otp, action: 'verify_otp' },
+                        success: function (response) {
+                            console.log('Verify OTP Response:', response);
+                            if (response.success) {
+                                clearInterval(otpTimer);
+                                $('#otpTimer').text('');
+
+                                if (response.user_exists) {
+                                    // Existing user - skip to job post
+                                    showStep(3);
+                                } else {
+                                    // New user - go to registration
+                                    showStep(2);
+                                }
+                            } else {
+                                alert(response.message || 'Invalid OTP');
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Verify OTP Error:', error);
+                            alert('Error verifying OTP. Please try again.');
+                        },
+                        complete: function () {
+                            $('#verifyOTP').prop('disabled', false).text('Verify & Proceed');
+                        }
+                    });
+                });
+
+                // Back to email
+                $(document).off('click', '#backToEmail').on('click', '#backToEmail', function () {
+                    $('#otpSection').hide();
+                    $('#otp').val('');
+                });
+
+                // Resend OTP
+                $(document).off('click', '#resendOTP').on('click', '#resendOTP', function () {
+                    $('#sendOTP').click();
+                });
+            }
+
+            function bindStep2Events() {
+                // Save Registration
+                $(document).off('click', '#saveRegistration').on('click', '#saveRegistration', function () {
+                    if (!validateRegistrationForm()) {
+                        return;
+                    }
+
+                    const formData = new FormData();
+                    formData.append('email', verifiedEmail);
+                    formData.append('full_name', $('#fullName').val());
+                    formData.append('company_name', $('#companyName').val());
+                    formData.append('phone', $('#phone').val());
+                    formData.append('aadhar_number', $('#aadharNumber').val());
+                    formData.append('company_address', $('#companyAddress').val());
+
+                    const aadharFile = $('#aadharFile')[0].files[0];
+                    if (aadharFile) {
+                        formData.append('aadhar_file', aadharFile);
+                    }
+
+                    formData.append('action', 'register');
+
+                    $(this).prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Saving...');
+
+                    $.ajax({
+                        url: API_BASE + 'register.php',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        dataType: 'json',
+                        success: function (response) {
+                            console.log('Registration Response:', response);
+                            if (response.success) {
+                                recruiterId = response.recruiter_id;
+                                showStep(3);
+                            } else {
+                                alert(response.message || 'Registration failed');
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Registration Error:', error);
+                            let errorMsg = 'Error saving registration. Please try again.';
+                            if (xhr.responseText) {
+                                try {
+                                    const errorResponse = JSON.parse(xhr.responseText);
+                                    if (errorResponse.message) errorMsg = errorResponse.message;
+                                } catch (e) { }
+                            }
+                            alert(errorMsg);
+                        },
+                        complete: function () {
+                            $('#saveRegistration').prop('disabled', false).text('Save & Continue to Job Post');
+                        }
+                    });
+                });
+
+                // Back to step 1
+                $(document).off('click', '#backToStep1').on('click', '#backToStep1', function () {
+                    showStep(1);
+                });
+            }
+
+            function bindStep3Events() {
+                // Submit Job
+                $(document).off('submit', '#jobPostForm').on('submit', '#jobPostForm', function (e) {
+                    e.preventDefault();
+
+                    if (!validateJobForm()) {
+                        return;
+                    }
+
+                    const formData = new FormData();
+                    formData.append('email', verifiedEmail);
+                    formData.append('job_title', $('#jobTitle').val());
+                    formData.append('job_type', $('#jobType').val());
+                    formData.append('location', $('#location').val());
+                    formData.append('salary', $('#salary').val());
+                    formData.append('job_description', $('#jobDescription').val());
+                    formData.append('requirements', $('#requirements').val());
+                    formData.append('experience', $('#experience').val());
+                    formData.append('vacancies', $('#vacancies').val());
+                    formData.append('apply_by', $('#applyBy').val());
+
+                    const jobFile = $('#jobFile')[0].files[0];
+                    if (jobFile) {
+                        formData.append('job_file', jobFile);
+                    }
+
+                    formData.append('action', 'post_job');
+
+                    $('#submitJob').prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Submitting...');
+
+                    $.ajax({
+                        url: API_BASE + 'post_job.php',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        dataType: 'json',
+                        success: function (response) {
+                            console.log('Job Post Response:', response);
+                            if (response.success) {
+                                $('#stepContainer').hide();
+                                $('#successMessage').show();
+                            } else {
+                                alert(response.message || 'Job posting failed');
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Job Post Error:', error);
+                            let errorMsg = 'Error submitting job. Please try again.';
+                            if (xhr.responseText) {
+                                try {
+                                    const errorResponse = JSON.parse(xhr.responseText);
+                                    if (errorResponse.message) errorMsg = errorResponse.message;
+                                } catch (e) { }
+                            }
+                            alert(errorMsg);
+                        },
+                        complete: function () {
+                            $('#submitJob').prop('disabled', false).text('Submit Job Post');
+                        }
+                    });
+                });
+
+                // Back to step 2 or 1
+                $(document).off('click', '#backToStep2').on('click', '#backToStep2', function () {
+                    // If recruiterId exists, we came from registration
+                    // Otherwise, we're an existing user and should go back to step 1
+                    if (recruiterId) {
+                        showStep(2);
+                    } else {
+                        showStep(1);
+                    }
+                });
+            }
+
+            // Post Another Job
+            $('#postAnother').click(function () {
+                location.reload();
+            });
+
+            // Start OTP Timer
+            function startOTPTimer(seconds) {
+                clearInterval(otpTimer);
+                otpExpiryTime = new Date().getTime() + (seconds * 1000);
+
+                otpTimer = setInterval(function () {
+                    const now = new Date().getTime();
+                    const distance = otpExpiryTime - now;
+
+                    if (distance <= 0) {
+                        clearInterval(otpTimer);
+                        $('#otpTimer').html('<span class="text-danger">OTP expired. Please request a new one.</span>');
+                        $('#otp').prop('disabled', true);
+                    } else {
+                        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                        $('#otpTimer').text(`OTP expires in: ${minutes}:${seconds.toString().padStart(2, '0')}`);
+                    }
+                }, 1000);
+            }
+
+            // Validation Functions
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+
+            function validateRegistrationForm() {
+                // Simplified validation - add more as needed
+                if (!$('#fullName').val().trim()) {
+                    alert('Full name is required');
+                    return false;
+                }
+                if (!$('#companyName').val().trim()) {
+                    alert('Company name is required');
+                    return false;
+                }
+                if (!$('#phone').val().trim()) {
+                    alert('Phone number is required');
+                    return false;
+                }
+                if (!$('#aadharNumber').val().trim() || !/^[0-9]{12}$/.test($('#aadharNumber').val())) {
+                    alert('Valid 12-digit Aadhar number is required');
+                    return false;
+                }
+                if (!$('#companyAddress').val().trim()) {
+                    alert('Company address is required');
+                    return false;
+                }
+                if (!$('#aadharFile')[0].files[0]) {
+                    alert('Aadhar file is required');
+                    return false;
+                }
+                return true;
+            }
+
+            function validateJobForm() {
+                // Simplified validation - add more as needed
+                if (!$('#jobTitle').val().trim()) {
+                    alert('Job title is required');
+                    return false;
+                }
+                if (!$('#jobType').val()) {
+                    alert('Job type is required');
+                    return false;
+                }
+                if (!$('#location').val().trim()) {
+                    alert('Location is required');
+                    return false;
+                }
+                if (!$('#jobDescription').val().trim()) {
+                    alert('Job description is required');
+                    return false;
+                }
+                if (!$('#requirements').val().trim()) {
+                    alert('Requirements are required');
+                    return false;
+                }
+                if (!$('#vacancies').val() || $('#vacancies').val() < 1) {
+                    alert('Valid number of vacancies is required');
+                    return false;
+                }
+                if (!$('#applyBy').val()) {
+                    alert('Apply by date is required');
+                    return false;
+                }
+                return true;
+            }
+
+            // Initialize
+            showStep(1);
+        });
+    </script>
+
+</body>
+
+</html>
