@@ -253,7 +253,7 @@
                                 <label for="otp" class="form-label">Enter OTP *</label>
                                 <div class="d-flex gap-2">
                                     <input type="text" class="form-control text-center" id="otp" maxlength="6" placeholder="6-digit OTP" style="width: 150px;">
-                                    <button type="button" class="btn btn-outline-secondary" id="resendOTP">Resend</button>
+                                    <button type="button" class="btn btn-outline-secondary" id="resendOTP">Resend OTP</button>
                                 </div>
                                 <div class="form-text" id="otpTimer"></div>
                             </div>
@@ -510,7 +510,35 @@
 
                 // Resend OTP
                 $(document).off('click', '#resendOTP').on('click', '#resendOTP', function () {
-                    $('#sendOTP').click();
+                    // Show spinner and disable button
+                    $(this).prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Sending...');
+
+                    $.ajax({
+                        url: API_BASE + 'send_otp.php',
+                        type: 'POST',
+                        data: {
+                            email: verifiedEmail,
+                            action: 'send_otp'
+                        },
+                        success: function (response) {
+                            console.log('Resend OTP Response:', response);
+                            if (response.success) {
+                                // Restart the timer
+                                startOTPTimer(300);
+                                alert('New OTP sent to your email!');
+                            } else {
+                                alert(response.message || 'Failed to resend OTP');
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Resend OTP Error:', error);
+                            alert('Error resending OTP. Please try again.');
+                        },
+                        complete: function () {
+                            // Re-enable the resend button
+                            $('#resendOTP').prop('disabled', false).text('Resend OTP');
+                        }
+                    });
                 });
             }
 
