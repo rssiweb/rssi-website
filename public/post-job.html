@@ -147,41 +147,7 @@
 
                                     <!-- Step Container - This will hold all dynamic content -->
                                     <div id="stepContainer">
-                                        <!-- Step 1: Email Entry & OTP Verification -->
-                                        <div class="step-content" id="step1">
-                                            <div class="mb-4">
-                                                <h5>Email Verification</h5>
-                                                <p class="text-muted mb-3">Enter your email to verify your identity</p>
-                                                <div class="mb-3">
-                                                    <label for="userEmail" class="form-label">Email Address *</label>
-                                                    <input type="email" class="form-control" id="userEmail"
-                                                        placeholder="Enter your email">
-                                                </div>
-                                                <button type="button" class="btn btn-outline-primary" id="sendOTP">Send
-                                                    OTP</button>
-                                            </div>
-
-                                            <!-- OTP Verification Section (Initially Hidden) -->
-                                            <div id="otpSection" style="display: none;">
-                                                <div class="mb-3">
-                                                    <label for="otp" class="form-label">Enter OTP *</label>
-                                                    <div class="d-flex gap-2">
-                                                        <input type="text" class="form-control text-center" id="otp"
-                                                            maxlength="6" placeholder="6-digit OTP"
-                                                            style="width: 150px;">
-                                                        <button type="button" class="btn btn-outline-secondary"
-                                                            id="resendOTP">Resend</button>
-                                                    </div>
-                                                    <div class="form-text" id="otpTimer"></div>
-                                                </div>
-                                                <div class="d-flex justify-content-between">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        id="backToEmail">Back to Email</button>
-                                                    <button type="button" class="btn btn-primary" id="verifyOTP">Verify
-                                                        & Proceed</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <!-- Content will be loaded here dynamically by JavaScript -->
                                     </div>
 
                                     <!-- Success Message -->
@@ -253,6 +219,14 @@
 
                 currentStep = step;
 
+                // If going back to step 1 from any other step, reset email verification
+                if (step === 1 && currentStep > 1) {
+                    verifiedEmail = '';
+                    clearInterval(otpTimer);
+                    otpTimer = null;
+                    recruiterId = null; // Also reset recruiter ID if going back
+                }
+
                 // Load appropriate form
                 loadStepContent(step);
             }
@@ -284,7 +258,7 @@
                                 <div class="form-text" id="otpTimer"></div>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <button type="button" class="btn btn-secondary" id="backToEmail">Back to Email</button>
+                                <button type="button" class="btn btn-secondary" id="useDifferentEmail">Use different email address</button>
                                 <button type="button" class="btn btn-primary" id="verifyOTP">Verify & Proceed</button>
                             </div>
                         </div>
@@ -455,6 +429,13 @@
                             console.log('OTP Response:', response);
                             if (response.success) {
                                 verifiedEmail = email;
+
+                                // 1. DISABLE THE EMAIL FIELD
+                                $('#userEmail').prop('disabled', true).addClass('bg-light');
+
+                                // 2. HIDE THE SEND OTP BUTTON
+                                $('#sendOTP').hide();
+
                                 $('#otpSection').show();
                                 startOTPTimer(300);
                                 alert('OTP sent to your email!');
@@ -514,10 +495,17 @@
                     });
                 });
 
-                // Back to email
-                $(document).off('click', '#backToEmail').on('click', '#backToEmail', function () {
-                    $('#otpSection').hide();
-                    $('#otp').val('');
+                // Use different email address
+                $(document).off('click', '#useDifferentEmail').on('click', '#useDifferentEmail', function () {
+                    if (confirm('Do you want to use a different email address? This will reset the OTP verification.')) {
+                        // Reset everything
+                        verifiedEmail = '';
+                        clearInterval(otpTimer);
+                        otpTimer = null;
+
+                        // Reload step 1 with completely fresh form
+                        showStep(1);
+                    }
                 });
 
                 // Resend OTP
@@ -585,6 +573,12 @@
 
                 // Back to step 1
                 $(document).off('click', '#backToStep1').on('click', '#backToStep1', function () {
+                    // Reset email verification state
+                    verifiedEmail = '';
+                    clearInterval(otpTimer);
+                    otpTimer = null;
+
+                    // Show step 1 with fresh form
                     showStep(1);
                 });
             }
@@ -654,6 +648,11 @@
 
                 // Back to step 2 or 1
                 $(document).off('click', '#backToStep2').on('click', '#backToStep2', function () {
+                    // Reset email verification state
+                    verifiedEmail = '';
+                    clearInterval(otpTimer);
+                    otpTimer = null;
+
                     // If recruiterId exists, we came from registration
                     // Otherwise, we're an existing user and should go back to step 1
                     if (recruiterId) {
