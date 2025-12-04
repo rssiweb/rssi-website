@@ -415,7 +415,7 @@
                     if (response.success) {
                         alert('Application submitted successfully!');
                         if (response.email) {
-                            sendApplicationEmail(response.email, response.applicant_name, response.job_title);
+                            sendApplicationEmail(response.email, response.applicant_name, response.job_title, jobId);
                         }
                     } else {
                         alert('Error: ' + (response.message || 'Failed to submit application.'));
@@ -427,14 +427,15 @@
             });
         }
 
-        function sendApplicationEmail(email, name, jobTitle) {
+        function sendApplicationEmail(email, name, jobTitle, jobId) {
             $.ajax({
                 url: API_BASE + 'send_application_email.php',
                 type: 'POST',
                 data: {
                     email: email,
                     name: name,
-                    job_title: jobTitle
+                    job_title: jobTitle,
+                    job_id: jobId  // Add this line
                 },
                 dataType: 'json',
                 success: function (response) {
@@ -586,7 +587,7 @@
                         $('#registrationModal').modal('hide');
 
                         if (response.email) {
-                            sendApplicationEmail(response.email, response.applicant_name, response.job_title);
+                            sendApplicationEmail(response.email, response.applicant_name, response.job_title, jobId);
                         }
                     } else {
                         alert('Error: ' + (response.message || 'Failed to submit application.'));
