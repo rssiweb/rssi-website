@@ -209,6 +209,28 @@
                 ? 'http://localhost:8082/'
                 : 'https://login.rssi.in/';
 
+            // Add this function before bindStep1Events
+            function loadEducationLevels() {
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        url: API_BASE + 'get_education_levels.php',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+                            if (response.success && response.data) {
+                                resolve(response.data);
+                            } else {
+                                // Reject to trigger the catch block
+                                reject(new Error('Failed to fetch education levels'));
+                            }
+                        },
+                        error: function () {
+                            reject(new Error('Network error fetching education levels'));
+                        }
+                    });
+                });
+            }
+
             // Step Navigation Functions
             function showStep(step) {
                 // Update step indicator
@@ -315,79 +337,118 @@
                 } else if (step === 3) {
                     // Job post form
                     container.html(`
-                <div class="step-content" id="step3">
-                    <form id="jobPostForm">
-                        <h4 class="mb-3 border-bottom pb-2">Job Details</h4>
-                        
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="jobTitle" class="form-label">Job Title *</label>
-                                <input type="text" class="form-control" id="jobTitle" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="jobType" class="form-label">Job Type *</label>
-                                <select class="form-select" id="jobType" required>
-                                    <option value="">Select Type</option>
-                                    <option value="full-time">Full Time</option>
-                                    <option value="part-time">Part Time</option>
-                                    <option value="contract">Contract</option>
-                                    <option value="internship">Internship</option>
-                                    <option value="remote">Remote</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="location" class="form-label">Location *</label>
-                                <input type="text" class="form-control" id="location" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="salary" class="form-label">Salary (₹ per month)</label>
-                                    <input type="text" class="form-control" id="salary">
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="jobDescription" class="form-label">Job Description *</label>
-                            <textarea class="form-control" id="jobDescription" rows="5" required></textarea>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="requirements" class="form-label">Requirements *</label>
-                            <textarea class="form-control" id="requirements" rows="3" required></textarea>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="experience" class="form-label">Experience Required</label>
-                                <input type="text" class="form-control" id="experience" placeholder="e.g., 2-4 years">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="vacancies" class="form-label">Number of Vacancies *</label>
-                                <input type="number" class="form-control" id="vacancies" min="1" required>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="applyBy" class="form-label">Apply By Date *</label>
-                                <input type="date" class="form-control" id="applyBy" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="jobFile" class="form-label">Additional Document (Optional)</label>
-                                <input type="file" class="form-control" id="jobFile" accept=".pdf,.doc,.docx">
-                                <div class="form-text">Job description PDF or Word doc</div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex justify-content-between">
-                            <button type="button" class="btn btn-secondary" id="backToStep2">Back</button>
-                            <button type="submit" class="btn btn-success" id="submitJob">Submit Job Post</button>
-                        </div>
-                    </form>
+        <div class="step-content" id="step3">
+            <form id="jobPostForm">
+                <h4 class="mb-3 border-bottom pb-2">Job Details</h4>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="jobTitle" class="form-label">Job Title *</label>
+                        <input type="text" class="form-control" id="jobTitle" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="jobType" class="form-label">Job Type *</label>
+                        <select class="form-select" id="jobType" required>
+                            <option value="">Select Type</option>
+                            <option value="full-time">Full Time</option>
+                            <option value="part-time">Part Time</option>
+                            <option value="contract">Contract</option>
+                            <option value="internship">Internship</option>
+                            <option value="remote">Remote</option>
+                        </select>
+                    </div>
                 </div>
-            `);
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="location" class="form-label">Location *</label>
+                        <input type="text" class="form-control" id="location" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="minSalary" class="form-label">Min Salary (₹ per month)</label>
+                        <input type="number" class="form-control" id="minSalary" min="0" placeholder="e.g., 25000">
+                        <div class="form-text">Minimum expected salary</div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="maxSalary" class="form-label">Max Salary (₹ per month)</label>
+                        <input type="number" class="form-control" id="maxSalary" min="0" placeholder="e.g., 50000">
+                        <div class="form-text">Maximum expected salary</div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="jobDescription" class="form-label">Job Description *</label>
+                    <textarea class="form-control" id="jobDescription" rows="5" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="requirements" class="form-label">Requirements *</label>
+                    <textarea class="form-control" id="requirements" rows="3" required></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="experience" class="form-label">Experience Required</label>
+                        <input type="text" class="form-control" id="experience" placeholder="e.g., 2-4 years">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="educationQualification" class="form-label">Educational Qualification</label>
+                        <select class="form-select" id="educationQualification">
+                            <option value="">Select Qualification</option>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                        <div class="form-text">Minimum education required</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="vacancies" class="form-label">Number of Vacancies *</label>
+                        <input type="number" class="form-control" id="vacancies" min="1" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="applyBy" class="form-label">Apply By Date *</label>
+                        <input type="date" class="form-control" id="applyBy" required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="jobFile" class="form-label">Additional Document (Optional)</label>
+                    <input type="file" class="form-control" id="jobFile" accept=".pdf,.doc,.docx">
+                    <div class="form-text">Job description PDF or Word doc</div>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary" id="backToStep2">Back</button>
+                    <button type="submit" class="btn btn-success" id="submitJob">Submit Job Post</button>
+                </div>
+            </form>
+        </div>
+    `);
+
+                    // Load education levels
+                    loadEducationLevels().then(educationLevels => {
+                        // Populate education qualification dropdown
+                        const select = $('#educationQualification');
+                        educationLevels.forEach(level => {
+                            select.append(`<option value="${level.id}">${level.name}</option>`);
+                        });
+                    }).catch(error => {
+                        console.error('Failed to load education levels:', error);
+                        // Add default options if API fails
+                        const defaultOptions = [
+                            { id: '1', name: '10th Pass' },
+                            { id: '2', name: '12th Pass' },
+                            { id: '3', name: 'Diploma' },
+                            { id: '4', name: 'Graduate' },
+                            { id: '5', name: 'Post Graduate' },
+                            { id: '6', name: 'Doctorate' }
+                        ];
+                        const select = $('#educationQualification');
+                        defaultOptions.forEach(level => {
+                            select.append(`<option value="${level.id}">${level.name}</option>`);
+                        });
+                    });
 
                     // Re-bind events for step 3
                     bindStep3Events();
@@ -776,10 +837,12 @@
                     formData.append('job_title', $('#jobTitle').val());
                     formData.append('job_type', $('#jobType').val());
                     formData.append('location', $('#location').val());
-                    formData.append('salary', $('#salary').val());
+                    formData.append('min_salary', $('#minSalary').val());
+                    formData.append('max_salary', $('#maxSalary').val());
                     formData.append('job_description', $('#jobDescription').val());
                     formData.append('requirements', $('#requirements').val());
                     formData.append('experience', $('#experience').val());
+                    formData.append('education_qualification', $('#educationQualification').val()); // Add this line
                     formData.append('vacancies', $('#vacancies').val());
                     formData.append('apply_by', $('#applyBy').val());
 
@@ -1128,6 +1191,37 @@
                     alert('Apply by date is required');
                     return false;
                 }
+                // Salary validation (optional fields, but if filled, must be valid)
+                const minSalary = $('#minSalary').val();
+                const maxSalary = $('#maxSalary').val();
+
+                if (minSalary || maxSalary) {
+                    // If either is filled, both must be numbers
+                    if (minSalary && isNaN(minSalary)) {
+                        alert('Minimum salary must be a number');
+                        return false;
+                    }
+                    if (maxSalary && isNaN(maxSalary)) {
+                        alert('Maximum salary must be a number');
+                        return false;
+                    }
+
+                    // If both are filled, max must be greater than or equal to min
+                    if (minSalary && maxSalary && parseInt(maxSalary) < parseInt(minSalary)) {
+                        alert('Maximum salary must be greater than or equal to minimum salary');
+                        return false;
+                    }
+
+                    // Ensure non-negative values
+                    if (minSalary && parseInt(minSalary) < 0) {
+                        alert('Minimum salary cannot be negative');
+                        return false;
+                    }
+                    if (maxSalary && parseInt(maxSalary) < 0) {
+                        alert('Maximum salary cannot be negative');
+                        return false;
+                    }
+                }
                 return true;
             }
 
@@ -1135,7 +1229,22 @@
             showStep(1);
         });
     </script>
+    <script>
+        // Add this in your bindStep3Events() or after the form is loaded
+        $(document).on('input', '#minSalary, #maxSalary', function () {
+            const minSalary = $('#minSalary').val();
+            const maxSalary = $('#maxSalary').val();
 
+            if (minSalary && maxSalary && parseInt(maxSalary) < parseInt(minSalary)) {
+                $(this).addClass('is-invalid');
+                $(this).next('.invalid-feedback').remove();
+                $(this).after('<div class="invalid-feedback">Max salary must be ≥ min salary</div>');
+            } else {
+                $(this).removeClass('is-invalid');
+                $(this).next('.invalid-feedback').remove();
+            }
+        });
+    </script>
 </body>
 
 </html>
