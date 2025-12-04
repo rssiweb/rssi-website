@@ -435,19 +435,8 @@
                         });
                     }).catch(error => {
                         console.error('Failed to load education levels:', error);
-                        // Add default options if API fails
-                        const defaultOptions = [
-                            { id: '1', name: '10th Pass' },
-                            { id: '2', name: '12th Pass' },
-                            { id: '3', name: 'Diploma' },
-                            { id: '4', name: 'Graduate' },
-                            { id: '5', name: 'Post Graduate' },
-                            { id: '6', name: 'Doctorate' }
-                        ];
-                        const select = $('#educationQualification');
-                        defaultOptions.forEach(level => {
-                            select.append(`<option value="${level.id}">${level.name}</option>`);
-                        });
+                        // Show error message to user
+                        alert('Failed to load education levels. Please refresh the page or try again later.');
                     });
 
                     // Re-bind events for step 3
