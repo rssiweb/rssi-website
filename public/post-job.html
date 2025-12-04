@@ -767,6 +767,9 @@
                         success: function (response) {
                             console.log('Job Post Response:', response);
                             if (response.success) {
+                                // Update step indicator to show step 4 as active
+                                $('.step').removeClass('active');
+                                $(`.step[data-step="4"]`).addClass('active');
                                 $('#stepContainer').hide();
                                 $('#successMessage').show();
                             } else {
