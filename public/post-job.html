@@ -445,73 +445,111 @@
 
             function showOTPVerification() {
                 $('#stepContainer').html(`
-            <div class="step-content" id="step1">
-                <div class="mb-4">
-                    <h5>Email Verification</h5>
-                    <p class="text-muted mb-3">We've sent an OTP to ${verifiedEmail}</p>
+        <div class="step-content" id="step1">
+            <div class="mb-4">
+                <h5>Email Verification</h5>
+                <p class="text-muted mb-3">We've sent an OTP to ${verifiedEmail}</p>
+                <div class="mb-3">
+                    <label for="userEmail" class="form-label">Email Address *</label>
+                    <input type="email" class="form-control" id="userEmail" value="${verifiedEmail}" readonly>
+                </div>
+                <div id="otpSection">
                     <div class="mb-3">
-                        <label for="userEmail" class="form-label">Email Address *</label>
-                        <input type="email" class="form-control" id="userEmail" value="${verifiedEmail}" readonly>
+                        <label for="otp" class="form-label">Enter OTP *</label>
+                        <div class="d-flex gap-2">
+                            <input type="text" class="form-control text-center" id="otp" maxlength="6" placeholder="6-digit OTP" style="width: 150px;">
+                            <button type="button" class="btn btn-outline-secondary" id="resendOTP">Resend OTP</button>
+                        </div>
+                        <div class="form-text" id="otpTimer"></div>
                     </div>
-                    <button type="button" class="btn btn-outline-primary mb-3" id="sendOTP">Send OTP</button>
-
-                    <div id="otpSection">
-                        <div class="mb-3">
-                            <label for="otp" class="form-label">Enter OTP *</label>
-                            <div class="d-flex gap-2">
-                                <input type="text" class="form-control text-center" id="otp" maxlength="6" placeholder="6-digit OTP" style="width: 150px;">
-                                <button type="button" class="btn btn-outline-secondary" id="resendOTP">Resend OTP</button>
-                            </div>
-                            <div class="form-text" id="otpTimer"></div>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <button type="button" class="btn btn-secondary" id="useDifferentEmail">Use different email address</button>
-                            <button type="button" class="btn btn-primary" id="verifyOTP">Verify & Proceed</button>
-                        </div>
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" id="useDifferentEmail">Use different email address</button>
+                        <button type="button" class="btn btn-primary" id="verifyOTP">Verify & Proceed</button>
                     </div>
                 </div>
             </div>
-        `);
+        </div>
+    `);
 
-                // Automatically send OTP when showing this screen
-                $('#sendOTP').trigger('click');
-
-                // Bind OTP events
+                // Bind events FIRST
                 bindOTPEvents();
+
+                // Send OTP automatically WITHOUT using a button click
+                sendOTPAutomatically();
+            }
+
+            // Add this new function
+            function sendOTPAutomatically() {
+                // Show loading message
+                $('#otpSection').prepend('<div class="alert alert-info">Sending OTP to your email...</div>');
+
+                $.ajax({
+                    url: API_BASE + 'send_otp.php',
+                    type: 'POST',
+                    data: { email: verifiedEmail, action: 'send_otp' },
+                    success: function (response) {
+                        console.log('OTP Response:', response);
+                        if (response.success) {
+                            // Remove loading message
+                            $('#otpSection .alert').remove();
+
+                            // Show success briefly
+                            $('#otpSection').prepend('<div class="alert alert-success alert-dismissible fade show">✓ OTP sent successfully! <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+
+                            // Start timer
+                            startOTPTimer(300);
+
+                            // Auto-dismiss success after 3 seconds
+                            setTimeout(() => {
+                                $('.alert-success').alert('close');
+                            }, 3000);
+                        } else {
+                            $('#otpSection .alert').remove();
+                            $('#otpSection').prepend('<div class="alert alert-danger">Failed to send OTP: ' + (response.message || 'Unknown error') + '</div>');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('OTP Error:', error);
+                        $('#otpSection .alert').remove();
+                        $('#otpSection').prepend('<div class="alert alert-danger">Error sending OTP. Please try the Resend button.</div>');
+                    }
+                });
             }
 
             function bindOTPEvents() {
-                // Send OTP
-                $(document).off('click', '#sendOTP').on('click', '#sendOTP', function () {
-                    $(this).prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Sending...');
+                // Clear existing handlers
+                $('#resendOTP, #verifyOTP, #useDifferentEmail').off('click');
+
+                // Resend OTP
+                $('#resendOTP').on('click', function () {
+                    const $btn = $(this);
+                    $btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Sending...');
 
                     $.ajax({
                         url: API_BASE + 'send_otp.php',
                         type: 'POST',
                         data: { email: verifiedEmail, action: 'send_otp' },
                         success: function (response) {
-                            console.log('OTP Response:', response);
                             if (response.success) {
-                                $('#sendOTP').hide();
-                                $('#otpSection').show();
+                                // Restart timer
                                 startOTPTimer(300);
-                                alert('OTP sent to your email!');
+                                alert('New OTP sent to your email!');
                             } else {
-                                alert(response.message || 'Failed to send OTP');
+                                alert(response.message || 'Failed to resend OTP');
                             }
                         },
-                        error: function (xhr, status, error) {
-                            console.error('OTP Error:', error);
-                            alert('Error sending OTP. Please try again.');
+                        error: function () {
+                            alert('Error resending OTP. Please try again.');
                         },
                         complete: function () {
-                            $('#sendOTP').prop('disabled', false).text('Send OTP');
+                            $btn.prop('disabled', false).text('Resend OTP');
                         }
                     });
                 });
 
                 // Verify OTP
-                $(document).off('click', '#verifyOTP').on('click', '#verifyOTP', function () {
+                $('#verifyOTP').on('click', function () {
+                    const $btn = $(this);
                     const otp = $('#otp').val().trim();
 
                     if (otp.length !== 6) {
@@ -519,35 +557,32 @@
                         return;
                     }
 
-                    $(this).prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Verifying...');
+                    $btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Verifying...');
 
                     $.ajax({
                         url: API_BASE + 'verify_otp.php',
                         type: 'POST',
                         data: { email: verifiedEmail, otp: otp, action: 'verify_otp' },
                         success: function (response) {
-                            console.log('Verify OTP Response:', response);
                             if (response.success) {
                                 clearInterval(otpTimer);
                                 $('#otpTimer').text('');
-                                // After OTP verification, go to registration
                                 showStep(2);
                             } else {
                                 alert(response.message || 'Invalid OTP');
                             }
                         },
-                        error: function (xhr, status, error) {
-                            console.error('Verify OTP Error:', error);
+                        error: function () {
                             alert('Error verifying OTP. Please try again.');
                         },
                         complete: function () {
-                            $('#verifyOTP').prop('disabled', false).text('Verify & Proceed');
+                            $btn.prop('disabled', false).text('Verify & Proceed');
                         }
                     });
                 });
 
-                // Use different email address
-                $(document).off('click', '#useDifferentEmail').on('click', '#useDifferentEmail', function () {
+                // Use different email
+                $('#useDifferentEmail').on('click', function () {
                     if (confirm('Do you want to use a different email address? This will reset the verification process.')) {
                         verifiedEmail = '';
                         clearInterval(otpTimer);
