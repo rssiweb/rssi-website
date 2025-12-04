@@ -83,6 +83,141 @@
             text-align: center;
             padding: 100px 20px;
         }
+
+        /* URL link styling */
+        .text-content a {
+            color: #0d6efd;
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .text-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Button states */
+        .btn-applied {
+            background-color: #28a745 !important;
+            color: white !important;
+        }
+
+        .btn-checking {
+            background-color: #6c757d !important;
+            color: white !important;
+        }
+
+        /* Button loading state */
+        .btn-loading {
+            position: relative;
+            color: transparent !important;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            margin-left: -10px;
+            margin-top: -10px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Global loading overlay - CENTERED */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            display: none;
+        }
+
+        .loading-overlay-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Toast notification - CENTERED */
+        .toast-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 99999;
+        }
+
+        /* Modal form styling */
+        .file-upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload-area:hover {
+            border-color: #0d6efd;
+            background: #e9f5ff;
+        }
+
+        .file-upload-area.dragover {
+            border-color: #0d6efd;
+            background: #e9f5ff;
+        }
+
+        .file-preview {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .file-preview.show {
+            display: block;
+        }
+
+        .file-size {
+            font-size: 0.85em;
+            color: #6c757d;
+        }
+
+        /* Application status badge */
+        .application-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.8em;
+            padding: 3px 8px;
+            border-radius: 10px;
+        }
     </style>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -95,6 +230,31 @@
 </head>
 
 <body>
+
+    <!-- Global loading overlay - CENTERED -->
+    <div class="loading-overlay" id="globalLoadingOverlay">
+        <div class="loading-overlay-content">
+            <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem;" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <h5 id="loadingOverlayText">Processing...</h5>
+            <p class="text-muted mt-2" id="loadingOverlaySubtext">Please wait</p>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container - CENTERED -->
+    <div class="toast-container">
+        <div class="toast align-items-center text-white bg-success border-0" id="successToast" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="bi bi-check-circle me-2"></i>
+                    <span id="toastMessage">Operation completed successfully!</span>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
 
     <!-- ======= Header ======= -->
     <div id="header"></div>
@@ -156,9 +316,10 @@
                                                 id="applyBy"></span></span>
                                     </div>
                                 </div>
-                                <div class="col-md-3 text-md-end">
-                                    <button class="btn btn-success btn-lg" onclick="applyFromDetails()">
-                                        <i class="bi bi-send-check"></i> Apply Now
+                                <div class="col-md-3 text-md-end position-relative">
+                                    <button class="btn btn-success btn-lg" id="applyNowBtn"
+                                        onclick="applyFromDetails()">
+                                        <i class="bi bi-send-check"></i> <span id="applyNowText">Apply Now</span>
                                     </button>
                                 </div>
                             </div>
@@ -172,19 +333,19 @@
                             <!-- Job Description -->
                             <div class="job-detail-card">
                                 <h5><i class="bi bi-file-text me-2"></i>Job Description</h5>
-                                <div id="jobDescription"></div>
+                                <div class="text-content" id="jobDescription"></div>
                             </div>
 
                             <!-- Requirements -->
                             <div class="job-detail-card">
                                 <h5><i class="bi bi-list-check me-2"></i>Requirements</h5>
-                                <div id="jobRequirements"></div>
+                                <div class="text-content" id="jobRequirements"></div>
                             </div>
 
                             <!-- Benefits -->
                             <div class="job-detail-card">
                                 <h5><i class="bi bi-gift me-2"></i>Benefits</h5>
-                                <div id="jobBenefits"></div>
+                                <div class="text-content" id="jobBenefits"></div>
                             </div>
                         </div>
 
@@ -240,8 +401,9 @@
                             <div class="job-detail-card">
                                 <h5><i class="bi bi-lightning me-2"></i>Quick Apply</h5>
                                 <p>Ready to apply for this position?</p>
-                                <button class="btn btn-success w-100 btn-lg" onclick="applyFromDetails()">
-                                    <i class="bi bi-send-check me-2"></i>Apply Now
+                                <button class="btn btn-success w-100 btn-lg" id="quickApplyBtn"
+                                    onclick="applyFromDetails()">
+                                    <i class="bi bi-send-check me-2"></i><span id="quickApplyText">Apply Now</span>
                                 </button>
                                 <div class="text-center mt-3">
                                     <small class="text-muted">
@@ -282,18 +444,47 @@
             : 'https://login.rssi.in/';
 
         let currentJob = null;
+        let currentJobId = null;
+        let applicationStatus = null;
 
         $(document).ready(function () {
             // Get job ID from URL
             const urlParams = new URLSearchParams(window.location.search);
             const jobId = urlParams.get('id');
+            currentJobId = jobId;
 
             if (jobId) {
+                // Check if user has already applied for this job
+                checkApplicationStatus(jobId);
                 loadJobDetails(jobId);
             } else {
                 showError('No job specified. Please go back to job listings.');
             }
         });
+
+        function checkApplicationStatus(jobId) {
+            const phone = localStorage.getItem('userPhone');
+            if (!phone) return;
+
+            $.ajax({
+                url: API_BASE + 'check_application_status.php',
+                type: 'POST',
+                data: {
+                    phone: phone,
+                    job_id: jobId
+                },
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success && response.applied) {
+                        applicationStatus = 'applied';
+                        updateButtonStates('applied', 'Applied Successfully!');
+                    }
+                },
+                error: function () {
+                    console.log('Could not check application status');
+                }
+            });
+        }
 
         function loadJobDetails(jobId) {
             $('#loadingContainer').show();
@@ -336,19 +527,16 @@
             $('#vacancies').text(job.vacancies);
             $('#applyBy').text(formatDate(job.apply_by));
 
-            // Content sections
-            let descriptionHtml = formatText(job.job_description);
+            // Content sections with URL detection
+            let descriptionHtml = makeUrlsClickable(formatText(job.job_description));
 
-            // Add job_file_path below description with margin
             if (job.job_file_path && job.job_file_path.trim() !== "") {
-                descriptionHtml += `<div class="mt-4">${formatText(job.job_file_path)}</div>`;
-            } else {
-                descriptionHtml += `<div class="mt-4">No file attached</div>`;
+                descriptionHtml += `<div class="mt-4">${makeUrlsClickable(formatText(job.job_file_path))}</div>`;
             }
 
             $('#jobDescription').html(descriptionHtml);
-            $('#jobRequirements').html(formatText(job.requirements || 'Not specified'));
-            $('#jobBenefits').html(formatText(job.benefits || 'Not specified'));
+            $('#jobRequirements').html(makeUrlsClickable(formatText(job.requirements || 'Not specified')));
+            $('#jobBenefits').html(makeUrlsClickable(formatText(job.benefits || 'Not specified')));
 
             // Information sidebar
             $('#infoJobType').text(formatJobType(job.job_type));
@@ -375,22 +563,104 @@
         function applyFromDetails() {
             if (!currentJob) return;
 
-            const phone = prompt(`Enter your phone number to apply for "${currentJob.job_title}":`);
+            // If already applied, show message
+            if (applicationStatus === 'applied') {
+                showToast('You have already applied for this position!', 'info');
+                return;
+            }
 
-            if (!phone || !phone.trim()) {
-                alert('Phone number is required to apply.');
+            // Store job info for later use
+            localStorage.setItem('currentJobId', currentJob.id);
+            localStorage.setItem('currentJobTitle', currentJob.job_title);
+
+            // Show phone input modal
+            showPhoneInputModal();
+        }
+
+        function showPhoneInputModal() {
+            const modalHtml = `
+                <div class="modal fade" id="phoneInputModal" tabindex="-1" data-bs-backdrop="static">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Apply for: ${escapeHtml(currentJob.job_title)}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="resetButtonStates()"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-muted mb-3">Enter your phone number to continue</p>
+                                <div class="mb-3">
+                                    <label for="phoneInput" class="form-label">Phone Number *</label>
+                                    <input type="tel" class="form-control" id="phoneInput" 
+                                           placeholder="Enter 10-digit phone number" 
+                                           pattern="[0-9]{10}" required>
+                                    <div class="form-text">We'll send application updates to this number</div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="resetButtonStates()">Cancel</button>
+                                <button type="button" class="btn btn-success" id="submitPhoneBtn" onclick="submitPhoneNumber()">
+                                    Continue
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Remove existing modal if any
+            $('#phoneInputModal').remove();
+
+            // Add modal to DOM
+            $('body').append(modalHtml);
+
+            // Show the modal
+            const modal = new bootstrap.Modal(document.getElementById('phoneInputModal'));
+            modal.show();
+
+            // Set button to checking state
+            updateButtonStates('checking', 'Checking...');
+
+            // Remove modal from DOM when hidden
+            $('#phoneInputModal').on('hidden.bs.modal', function () {
+                $(this).remove();
+                // Only reset if not in applied state
+                if (applicationStatus !== 'applied') {
+                    resetButtonStates();
+                }
+            });
+        }
+
+        function submitPhoneNumber() {
+            const phoneInput = $('#phoneInput');
+            const phone = phoneInput.val().trim();
+            const submitBtn = $('#submitPhoneBtn');
+
+            // Validate phone
+            if (!phone) {
+                phoneInput.addClass('is-invalid');
                 return;
             }
 
             if (!/^\d{10}$/.test(phone)) {
-                alert('Please enter a valid 10-digit phone number.');
+                phoneInput.addClass('is-invalid');
                 return;
             }
 
-            checkUserExists(phone, currentJob.id, currentJob.job_title);
+            // Disable button and show loading
+            submitBtn.prop('disabled', true);
+            submitBtn.addClass('btn-loading');
+
+            // Show global loading
+            showGlobalLoading('Verifying phone number...', 'Please wait');
+
+            // Store phone in localStorage for future use
+            localStorage.setItem('userPhone', phone);
+
+            // Check if user exists
+            checkUserExists(phone, currentJob.id);
         }
 
-        function checkUserExists(phone, jobId, jobTitle) {
+        function checkUserExists(phone, jobId) {
             $.ajax({
                 url: API_BASE + 'check_applicant.php',
                 type: 'POST',
@@ -400,26 +670,215 @@
                 },
                 dataType: 'json',
                 success: function (response) {
+                    hideGlobalLoading();
+                    // CHECK IF USER HAS ALREADY APPLIED FOR THIS JOB
+                    if (response.message && response.message.includes('already applied')) {
+                        // Reset phone modal continue button
+                        $('#submitPhoneBtn').prop('disabled', false).removeClass('btn-loading');
+                        // Reset main buttons
+                        resetButtonStates();
+                        // Close phone modal
+                        $('#phoneInputModal').modal('hide');
+                        // Show alert
+                        alert(response.message || 'You have already applied for this job.');
+                        return;
+                    }
+
                     if (response.success) {
                         if (response.exists) {
-                            if (confirm(`Welcome back ${response.name}! Do you want to apply for "${jobTitle}"?`)) {
-                                submitApplication(response.applicant_id, jobId);
+                            // Close phone modal
+                            $('#phoneInputModal').modal('hide');
+
+                            // Show confirmation for existing user
+                            if (confirm(`Welcome back ${response.name}! Apply for "${currentJob.job_title}"?`)) {
+                                submitApplication(response.applicant_id, jobId, phone);
+                            } else {
+                                resetButtonStates();
                             }
                         } else {
-                            // NEW USER - Show registration form directly instead of redirecting
-                            showRegistrationForm(phone, jobId, jobTitle);
+                            // NEW USER - Load registration form via API
+                            $('#phoneInputModal').modal('hide');
+                            loadRegistrationForm(phone, jobId);
                         }
                     } else {
                         alert('Error: ' + (response.message || 'Unable to check user status.'));
+                        resetButtonStates();
                     }
                 },
                 error: function () {
+                    hideGlobalLoading();
                     alert('Network error. Please try again.');
+                    resetButtonStates();
                 }
             });
         }
 
-        function submitApplication(applicantId, jobId) {
+        function loadRegistrationForm(phone, jobId) {
+            // Show global loading while fetching form
+            showGlobalLoading('Loading application form...', 'Please wait');
+
+            $.ajax({
+                url: API_BASE + 'get_registration_form.php',
+                type: 'GET',
+                data: {
+                    phone: phone,
+                    job_id: jobId,
+                    job_title: currentJob.job_title
+                },
+                success: function (html) {
+                    hideGlobalLoading();
+
+                    // Add the loaded form to DOM
+                    $('body').append(html);
+
+                    // Initialize the modal
+                    const modal = new bootstrap.Modal(document.getElementById('registrationModal'));
+                    modal.show();
+
+                    // Set up form submission
+                    $('#submitApplicationBtn').off('click').on('click', function () {
+                        submitNewApplicationFromModal(phone, jobId);
+                    });
+
+                    // Handle drag and drop for file upload
+                    setupFileUpload();
+                },
+                error: function () {
+                    hideGlobalLoading();
+                    alert('Unable to load registration form. Please try again.');
+                    resetButtonStates();
+                }
+            });
+        }
+
+        function setupFileUpload() {
+            const fileInput = $('#resumeFile');
+            const dropArea = $('.file-upload-area');
+            const filePreview = $('.file-preview');
+            const fileName = $('#fileName');
+            const fileSize = $('#fileSize');
+
+            // Click on drop area triggers file input
+            dropArea.on('click', function (e) {
+                if (!$(e.target).is('button')) {
+                    fileInput.click();
+                }
+            });
+
+            // Handle file selection
+            fileInput.on('change', function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    displayFilePreview(file);
+                }
+            });
+
+            // Drag and drop events
+            dropArea.on('dragover', function (e) {
+                e.preventDefault();
+                dropArea.addClass('dragover');
+            });
+
+            dropArea.on('dragleave', function () {
+                dropArea.removeClass('dragover');
+            });
+
+            dropArea.on('drop', function (e) {
+                e.preventDefault();
+                dropArea.removeClass('dragover');
+
+                const file = e.originalEvent.dataTransfer.files[0];
+                if (file && file.type === 'application/pdf') {
+                    fileInput[0].files = e.originalEvent.dataTransfer.files;
+                    displayFilePreview(file);
+                } else {
+                    alert('Please upload a PDF file only.');
+                }
+            });
+
+            function displayFilePreview(file) {
+                if (file.type !== 'application/pdf') {
+                    alert('Please upload a PDF file only.');
+                    return;
+                }
+
+                if (file.size > 5 * 1024 * 1024) { // 5MB limit
+                    alert('File size should be less than 5MB.');
+                    return;
+                }
+
+                fileName.text(file.name);
+                fileSize.text(formatFileSize(file.size));
+                filePreview.addClass('show');
+            }
+
+            // Remove file
+            $(document).on('click', '#removeFile', function () {
+                fileInput.val('');
+                filePreview.removeClass('show');
+            });
+        }
+
+        function submitNewApplicationFromModal(phone, jobId) {
+            const form = $('#registrationForm');
+            const submitBtn = $('#submitApplicationBtn');
+            const cancelBtn = $('#cancelBtn');
+
+            // Validate form
+            if (!form[0].checkValidity()) {
+                form[0].reportValidity();
+                return;
+            }
+
+            // Disable buttons and show loading
+            submitBtn.prop('disabled', true);
+            submitBtn.addClass('btn-loading');
+            cancelBtn.prop('disabled', true);
+
+            // Get form data
+            const formData = new FormData(form[0]);
+
+            // Show global loading
+            showGlobalLoading('Submitting application...', 'Please wait');
+
+            $.ajax({
+                url: API_BASE + 'submit_application.php',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                success: function (response) {
+                    hideGlobalLoading();
+
+                    if (response.success) {
+                        // Close modal
+                        $('#registrationModal').modal('hide');
+                        // Show simple alert
+                        alert('Application submitted successfully!');
+                        // Reload page
+                        window.location.reload();
+                    } else {
+                        submitBtn.prop('disabled', false);
+                        submitBtn.removeClass('btn-loading');
+                        cancelBtn.prop('disabled', false);
+                        alert('Error: ' + (response.message || 'Failed to submit application.'));
+                    }
+                },
+                error: function () {
+                    hideGlobalLoading();
+                    submitBtn.prop('disabled', false);
+                    submitBtn.removeClass('btn-loading');
+                    cancelBtn.prop('disabled', false);
+                    showToast('Network error. Please try again.', 'error');
+                }
+            });
+        }
+
+        function submitApplication(applicantId, jobId, phone) {
+            // Show global loading
+            showGlobalLoading('Submitting application...', 'Please wait');
+
             $.ajax({
                 url: API_BASE + 'submit_existing_application.php',
                 type: 'POST',
@@ -429,19 +888,65 @@
                 },
                 dataType: 'json',
                 success: function (response) {
+                    hideGlobalLoading();
+
                     if (response.success) {
                         alert('Application submitted successfully!');
-                        if (response.email) {
-                            sendApplicationEmail(response.email, response.applicant_name, response.job_title, jobId);
-                        }
+                        window.location.reload();
                     } else {
                         alert('Error: ' + (response.message || 'Failed to submit application.'));
+                        resetButtonStates();
                     }
                 },
                 error: function () {
-                    alert('Network error. Please try again.');
+                    hideGlobalLoading();
+                    showToast('Network error. Please try again.', 'error');
+                    resetButtonStates();
                 }
             });
+        }
+
+        function updateButtonStates(state, text = '') {
+            const applyBtn = $('#applyNowBtn');
+            const quickBtn = $('#quickApplyBtn');
+            const applyText = $('#applyNowText');
+            const quickText = $('#quickApplyText');
+
+            switch (state) {
+                case 'checking':
+                    applyBtn.removeClass('btn-success').addClass('btn-checking');
+                    quickBtn.removeClass('btn-success').addClass('btn-checking');
+                    applyBtn.prop('disabled', true);
+                    quickBtn.prop('disabled', true);
+                    applyText.text(text || 'Checking...');
+                    quickText.text(text || 'Checking...');
+                    break;
+
+                case 'applied':
+                    applyBtn.removeClass('btn-success btn-checking').addClass('btn-applied');
+                    quickBtn.removeClass('btn-success btn-checking').addClass('btn-applied');
+                    applyBtn.prop('disabled', true);
+                    quickBtn.prop('disabled', true);
+                    applyText.html('<i class="bi bi-check-circle"></i> Applied');
+                    quickText.html('<i class="bi bi-check-circle"></i> Applied');
+                    break;
+
+                case 'default':
+                default:
+                    applyBtn.removeClass('btn-checking btn-applied').addClass('btn-success');
+                    quickBtn.removeClass('btn-checking btn-applied').addClass('btn-success');
+                    applyBtn.prop('disabled', false);
+                    quickBtn.prop('disabled', false);
+                    applyText.text('Apply Now');
+                    quickText.text('Apply Now');
+                    break;
+            }
+        }
+
+        function resetButtonStates() {
+            if (applicationStatus !== 'applied') {
+                updateButtonStates('default');
+            }
         }
 
         function sendApplicationEmail(email, name, jobTitle, jobId) {
@@ -452,7 +957,7 @@
                     email: email,
                     name: name,
                     job_title: jobTitle,
-                    job_id: jobId  // Add this line
+                    job_id: jobId
                 },
                 dataType: 'json',
                 success: function (response) {
@@ -467,6 +972,27 @@
         function showError(message) {
             $('#errorMessage').text(message);
             $('#errorContainer').show();
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = $('#successToast');
+            const toastMessage = $('#toastMessage');
+
+            // Set message and type
+            toastMessage.text(message);
+
+            // Set color based on type
+            if (type === 'error') {
+                toast.removeClass('bg-success').addClass('bg-danger');
+            } else if (type === 'info') {
+                toast.removeClass('bg-success').addClass('bg-info');
+            } else {
+                toast.removeClass('bg-danger bg-info').addClass('bg-success');
+            }
+
+            // Show toast
+            const bsToast = new bootstrap.Toast(toast[0]);
+            bsToast.show();
         }
 
         // Utility functions
@@ -492,129 +1018,35 @@
             return text.replace(/\n/g, '<br>');
         }
 
-        function showRegistrationForm(phone, jobId, jobTitle) {
-            $.ajax({
-                url: API_BASE + 'get_education_levels.php',
-                type: 'GET',
-                dataType: 'json',
-                success: function (response) {
-                    if (response.success && response.data) {
-                        const educationOptions = response.data.map(edu =>
-                            `<option value="${edu.id}">${escapeHtml(edu.name)}</option>`
-                        ).join('');
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
 
-                        // Create a modal or form for registration
-                        const formHtml = `
-                    <div class="modal fade" id="registrationModal" tabindex="-1">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Apply for: ${escapeHtml(jobTitle)}</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="text-muted">Please provide your details to complete the application.</p>
-                                    
-                                    <form id="registrationForm">
-                                        <input type="hidden" name="phone" value="${phone}">
-                                        <input type="hidden" name="job_id" value="${jobId}">
-                                        
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="name" class="form-label">Full Name *</label>
-                                                <input type="text" class="form-control" id="name" name="name" required>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="email" class="form-label">Email Address</label>
-                                                <input type="email" class="form-control" id="email" name="email">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="age" class="form-label">Age *</label>
-                                                <input type="number" class="form-control" id="age" name="age" min="18" max="70" required>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="education" class="form-label">Education Level *</label>
-                                                <select class="form-select" id="education" name="education" required>
-                                                    <option value="">Select Education</option>
-                                                    ${educationOptions}
-                                                </select>
-                                            </div>
-                                            <div class="col-12 mb-3">
-                                                <label for="skills" class="form-label">Skills *</label>
-                                                <textarea class="form-control" id="skills" name="skills" rows="3" 
-                                                          placeholder="List your skills (e.g., Python, HTML, Communication)" required></textarea>
-                                            </div>
-                                            <div class="col-12 mb-3">
-                                                <label for="preferences" class="form-label">Job Preferences</label>
-                                                <textarea class="form-control" id="preferences" name="preferences" rows="2"
-                                                          placeholder="Any specific preferences or requirements"></textarea>
-                                            </div>
-                                            <div class="col-12 mb-3">
-                                                <label for="address" class="form-label">Address</label>
-                                                <textarea class="form-control" id="address" name="address" rows="2"
-                                                          placeholder="Your current address"></textarea>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-success" onclick="submitNewApplicationFromModal()">
-                                        <i class="bi bi-send-check"></i> Submit Application
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
+        function makeUrlsClickable(text) {
+            if (!text) return '<em>Not specified</em>';
 
-                        // Add modal to DOM
-                        $('body').append(formHtml);
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
 
-                        // Show the modal
-                        const modal = new bootstrap.Modal(document.getElementById('registrationModal'));
-                        modal.show();
-
-                        // Remove modal from DOM when hidden
-                        $('#registrationModal').on('hidden.bs.modal', function () {
-                            $(this).remove();
-                        });
-                    }
-                },
-                error: function () {
-                    alert('Unable to load education options. Please try again.');
-                }
+            return text.replace(urlRegex, function (url) {
+                let cleanUrl = url.replace(/[.,;:!?)]*$/, '');
+                return `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer">${url}</a>`;
             });
         }
 
-        function submitNewApplicationFromModal() {
-            const form = $('#registrationForm');
-            const formData = new FormData(form[0]);
-
-            $.ajax({
-                url: API_BASE + 'submit_application.php',
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                dataType: 'json',
-                success: function (response) {
-                    if (response.success) {
-                        alert('Application submitted successfully! You will receive a confirmation email.');
-                        $('#registrationModal').modal('hide');
-
-                        if (response.email) {
-                            sendApplicationEmail(response.email, response.applicant_name, response.job_title, jobId);
-                        }
-                    } else {
-                        alert('Error: ' + (response.message || 'Failed to submit application.'));
-                    }
-                },
-                error: function () {
-                    alert('Network error. Please try again.');
-                }
-            });
+        function showGlobalLoading(title = 'Processing...', subtitle = 'Please wait') {
+            $('#loadingOverlayText').text(title);
+            $('#loadingOverlaySubtext').text(subtitle);
+            $('#globalLoadingOverlay').fadeIn();
         }
+
+        function hideGlobalLoading() {
+            $('#globalLoadingOverlay').fadeOut();
+        }
+
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
