@@ -8,7 +8,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'AW-11316670180');
     </script>
     <meta charset="utf-8">
@@ -117,6 +116,62 @@
             text-align: center;
             padding: 30px;
         }
+
+        /* Button loading state */
+        .btn-loading {
+            position: relative;
+            color: transparent !important;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            margin-left: -10px;
+            margin-top: -10px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Global loading overlay - CENTERED */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            display: none;
+        }
+
+        .loading-overlay-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -129,6 +184,17 @@
 </head>
 
 <body>
+
+    <!-- Global loading overlay - CENTERED -->
+    <div class="loading-overlay" id="globalLoadingOverlay">
+        <div class="loading-overlay-content">
+            <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem;" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <h5 id="loadingOverlayText">Processing...</h5>
+            <p class="text-muted mt-2" id="loadingOverlaySubtext">Please wait</p>
+        </div>
+    </div>
 
     <!-- ======= Header ======= -->
     <div id="header"></div>
@@ -212,7 +278,7 @@
                 </div>
 
                 <!-- No Jobs Message -->
-                <div class="no-jones" id="noJobsMessage" style="display: none;">
+                <div class="no-jobs" id="noJobsMessage" style="display: none;">
                     <i class="bi bi-briefcase" style="font-size: 3rem; color: #ddd;"></i>
                     <h4 class="mt-3">No jobs available</h4>
                     <p>There are currently no job openings. Please check back later.</p>
@@ -220,23 +286,6 @@
 
             </div>
         </section>
-
-        <!-- Apply Modal -->
-        <div class="modal fade" id="applyModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Apply for Job</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="applyFormContainer">
-                            <!-- Apply form will be loaded here -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </main>
     <!-- End #main -->
@@ -273,6 +322,7 @@
             : 'https://login.rssi.in/';
 
         let currentJobId = null;
+        let currentJobTitle = null;
 
         // Load jobs on page load
         $(document).ready(function () {
@@ -354,7 +404,7 @@
                                 <button class="btn btn-outline-primary btn-sm" onclick="viewJobDetails(${job.id})">
                                     <i class="bi bi-eye"></i> View Details
                                 </button>
-                                <button class="btn btn-success btn-sm" onclick="applyForJob(${job.id}, '${escapeHtml(job.job_title)}')">
+                                <button class="btn btn-success btn-sm apply-job-btn" data-job-id="${job.id}" data-job-title="${escapeHtml(job.job_title)}">
                                     <i class="bi bi-send-check"></i> Apply Now
                                 </button>
                             </div>
@@ -362,6 +412,13 @@
                     </div>
                 `;
                 container.append(jobCard);
+            });
+
+            // Add click event to all Apply Now buttons
+            $('.apply-job-btn').on('click', function () {
+                const jobId = $(this).data('job-id');
+                const jobTitle = $(this).data('job-title');
+                applyForJob(jobId, jobTitle);
             });
         }
 
@@ -371,24 +428,93 @@
 
         function applyForJob(jobId, jobTitle) {
             currentJobId = jobId;
+            currentJobTitle = jobTitle;
 
-            // Check if user exists first
-            const phone = prompt(`Enter your phone number to apply for "${jobTitle}":`);
+            // Store job info
+            localStorage.setItem('currentJobId', jobId);
+            localStorage.setItem('currentJobTitle', jobTitle);
 
-            if (!phone || !phone.trim()) {
-                alert('Phone number is required to apply.');
+            // Show phone input modal
+            showPhoneInputModal(jobTitle);
+        }
+
+        function showPhoneInputModal(jobTitle) {
+            const modalHtml = `
+                <div class="modal fade" id="phoneInputModal" tabindex="-1" data-bs-backdrop="static">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Apply for: ${escapeHtml(jobTitle)}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="resetApplicationProcess()"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-muted mb-3">Enter your phone number to continue</p>
+                                <div class="mb-3">
+                                    <label for="phoneInput" class="form-label">Phone Number *</label>
+                                    <input type="tel" class="form-control" id="phoneInput" 
+                                           placeholder="Enter 10-digit phone number" 
+                                           pattern="[0-9]{10}" required>
+                                    <div class="form-text">We'll send application updates to this number</div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="resetApplicationProcess()">Cancel</button>
+                                <button type="button" class="btn btn-success" id="submitPhoneBtn" onclick="submitPhoneNumber()">
+                                    Continue
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Remove existing modal if any
+            $('#phoneInputModal').remove();
+
+            // Add modal to DOM
+            $('body').append(modalHtml);
+
+            // Show the modal
+            const modal = new bootstrap.Modal(document.getElementById('phoneInputModal'));
+            modal.show();
+
+            // Remove modal from DOM when hidden
+            $('#phoneInputModal').on('hidden.bs.modal', function () {
+                $(this).remove();
+            });
+        }
+
+        function submitPhoneNumber() {
+            const phoneInput = $('#phoneInput');
+            const phone = phoneInput.val().trim();
+            const submitBtn = $('#submitPhoneBtn');
+
+            // Validate phone
+            if (!phone) {
+                phoneInput.addClass('is-invalid');
                 return;
             }
 
             if (!/^\d{10}$/.test(phone)) {
-                alert('Please enter a valid 10-digit phone number.');
+                phoneInput.addClass('is-invalid');
                 return;
             }
 
-            checkUserExists(phone, jobId, jobTitle);
+            // Disable button and show loading
+            submitBtn.prop('disabled', true);
+            submitBtn.addClass('btn-loading');
+
+            // Show global loading
+            showGlobalLoading('Verifying phone number...', 'Please wait');
+
+            // Store phone in localStorage for future use
+            localStorage.setItem('userPhone', phone);
+
+            // Check if user exists
+            checkUserExists(phone, currentJobId);
         }
 
-        function checkUserExists(phone, jobId, jobTitle) {
+        function checkUserExists(phone, jobId) {
             $.ajax({
                 url: API_BASE + 'check_applicant.php',
                 type: 'POST',
@@ -398,113 +524,175 @@
                 },
                 dataType: 'json',
                 success: function (response) {
+                    hideGlobalLoading();
+
+                    // CHECK IF USER HAS ALREADY APPLIED FOR THIS JOB
+                    if (response.message && response.message.includes('already applied')) {
+                        // Reset phone modal button
+                        $('#submitPhoneBtn').prop('disabled', false).removeClass('btn-loading');
+                        // Close phone modal
+                        $('#phoneInputModal').modal('hide');
+                        // Show alert
+                        alert(response.message || 'You have already applied for this job.');
+                        return;
+                    }
+
                     if (response.success) {
                         if (response.exists) {
-                            // User exists, show confirm application
-                            if (confirm(`Welcome back ${response.name}! Do you want to apply for "${jobTitle}"?`)) {
-                                submitApplication(response.applicant_id, jobId);
+                            // Close phone modal
+                            $('#phoneInputModal').modal('hide');
+
+                            // Show confirmation for existing user
+                            if (confirm(`Welcome back ${response.name}! Apply for "${currentJobTitle}"?`)) {
+                                submitApplication(response.applicant_id, jobId, phone);
+                            } else {
+                                resetApplicationProcess();
                             }
                         } else {
-                            // New user, show registration form
-                            showRegistrationForm(phone, jobId, jobTitle);
+                            // NEW USER - Load registration form via API
+                            $('#phoneInputModal').modal('hide');
+                            loadRegistrationForm(phone, jobId);
                         }
                     } else {
                         alert('Error: ' + (response.message || 'Unable to check user status.'));
+                        resetApplicationProcess();
                     }
                 },
                 error: function () {
+                    hideGlobalLoading();
                     alert('Network error. Please try again.');
+                    resetApplicationProcess();
                 }
             });
         }
 
-        function showRegistrationForm(phone, jobId, jobTitle) {
+        function loadRegistrationForm(phone, jobId) {
+            // Show global loading while fetching form
+            showGlobalLoading('Loading application form...', 'Please wait');
+
             $.ajax({
-                url: API_BASE + 'get_education_levels.php',
+                url: API_BASE + 'get_registration_form.php',
                 type: 'GET',
-                dataType: 'json',
-                success: function (response) {
-                    if (response.success && response.data) {
-                        const educationOptions = response.data.map(edu =>
-                            `<option value="${edu.id}">${escapeHtml(edu.name)}</option>`
-                        ).join('');
+                data: {
+                    phone: phone,
+                    job_id: jobId,
+                    job_title: currentJobTitle
+                },
+                success: function (html) {
+                    hideGlobalLoading();
 
-                        const formHtml = `
-                            <h6>Apply for: ${escapeHtml(jobTitle)}</h6>
-                            <p class="text-muted">Please provide your details to complete the application.</p>
-                            
-                            <form id="registrationForm" onsubmit="submitNewApplication(event)">
-                                <input type="hidden" name="phone" value="${phone}">
-                                <input type="hidden" name="job_id" value="${jobId}">
-                                
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="name" class="form-label">Full Name *</label>
-                                        <input type="text" class="form-control" id="name" name="name" required>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="email" class="form-label">Email Address</label>
-                                        <input type="email" class="form-control" id="email" name="email">
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="age" class="form-label">Age *</label>
-                                        <input type="number" class="form-control" id="age" name="age" min="18" max="70" required>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="education" class="form-label">Education Level *</label>
-                                        <select class="form-select" id="education" name="education" required>
-                                            <option value="">Select Education</option>
-                                            ${educationOptions}
-                                        </select>
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="skills" class="form-label">Skills *</label>
-                                        <textarea class="form-control" id="skills" name="skills" rows="3" 
-                                                  placeholder="List your skills (e.g., Python, HTML, Communication)" required></textarea>
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="preferences" class="form-label">Job Preferences</label>
-                                        <textarea class="form-control" id="preferences" name="preferences" rows="2"
-                                                  placeholder="Any specific preferences or requirements"></textarea>
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="address" class="form-label">Address</label>
-                                        <textarea class="form-control" id="address" name="address" rows="2"
-                                                  placeholder="Your current address"></textarea>
-                                    </div>
-                                </div>
-                                
-                                <div class="alert alert-info">
-                                    <small>
-                                        <i class="bi bi-info-circle"></i>
-                                        Your information will be saved for future applications.
-                                    </small>
-                                </div>
-                                
-                                <div class="text-end">
-                                    <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancel</button>
-                                    <button type="submit" class="btn btn-success">
-                                        <i class="bi bi-send-check"></i> Submit Application
-                                    </button>
-                                </div>
-                            </form>
-                        `;
+                    // Add the loaded form to DOM
+                    $('body').append(html);
 
-                        $('#applyFormContainer').html(formHtml);
-                        const applyModal = new bootstrap.Modal(document.getElementById('applyModal'));
-                        applyModal.show();
-                    }
+                    // Initialize the modal
+                    const modal = new bootstrap.Modal(document.getElementById('registrationModal'));
+                    modal.show();
+
+                    // Set up form submission
+                    $('#submitApplicationBtn').off('click').on('click', function () {
+                        submitNewApplicationFromModal(phone, jobId);
+                    });
+
+                    // Handle drag and drop for file upload
+                    setupFileUpload();
                 },
                 error: function () {
-                    alert('Unable to load education options. Please try again.');
+                    hideGlobalLoading();
+                    alert('Unable to load registration form. Please try again.');
+                    resetApplicationProcess();
                 }
             });
         }
 
-        function submitNewApplication(event) {
-            event.preventDefault();
+        function setupFileUpload() {
+            const fileInput = $('#resumeFile');
+            const dropArea = $('.file-upload-area');
+            const filePreview = $('.file-preview');
+            const fileName = $('#fileName');
+            const fileSize = $('#fileSize');
 
-            const formData = new FormData(event.target);
+            // Click on drop area triggers file input
+            dropArea.on('click', function (e) {
+                if (!$(e.target).is('button')) {
+                    fileInput.click();
+                }
+            });
+
+            // Handle file selection
+            fileInput.on('change', function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    displayFilePreview(file);
+                }
+            });
+
+            // Drag and drop events
+            dropArea.on('dragover', function (e) {
+                e.preventDefault();
+                dropArea.addClass('dragover');
+            });
+
+            dropArea.on('dragleave', function () {
+                dropArea.removeClass('dragover');
+            });
+
+            dropArea.on('drop', function (e) {
+                e.preventDefault();
+                dropArea.removeClass('dragover');
+
+                const file = e.originalEvent.dataTransfer.files[0];
+                if (file && file.type === 'application/pdf') {
+                    fileInput[0].files = e.originalEvent.dataTransfer.files;
+                    displayFilePreview(file);
+                } else {
+                    alert('Please upload a PDF file only.');
+                }
+            });
+
+            function displayFilePreview(file) {
+                if (file.type !== 'application/pdf') {
+                    alert('Please upload a PDF file only.');
+                    return;
+                }
+
+                if (file.size > 5 * 1024 * 1024) { // 5MB limit
+                    alert('File size should be less than 5MB.');
+                    return;
+                }
+
+                fileName.text(file.name);
+                fileSize.text(formatFileSize(file.size));
+                filePreview.addClass('show');
+            }
+
+            // Remove file
+            $(document).on('click', '#removeFile', function () {
+                fileInput.val('');
+                filePreview.removeClass('show');
+            });
+        }
+
+        function submitNewApplicationFromModal(phone, jobId) {
+            const form = $('#registrationForm');
+            const submitBtn = $('#submitApplicationBtn');
+            const cancelBtn = $('#cancelBtn');
+
+            // Validate form
+            if (!form[0].checkValidity()) {
+                form[0].reportValidity();
+                return;
+            }
+
+            // Disable buttons and show loading
+            submitBtn.prop('disabled', true);
+            submitBtn.addClass('btn-loading');
+            cancelBtn.prop('disabled', true);
+
+            // Get form data
+            const formData = new FormData(form[0]);
+
+            // Show global loading
+            showGlobalLoading('Submitting application...', 'Please wait');
 
             $.ajax({
                 url: API_BASE + 'submit_application.php',
@@ -514,26 +702,36 @@
                 contentType: false,
                 dataType: 'json',
                 success: function (response) {
-                    if (response.success) {
-                        alert('Application submitted successfully! You will receive a confirmation email.');
-                        $('#applyModal').modal('hide');
-                        $('#applyFormContainer').empty();
+                    hideGlobalLoading();
 
-                        // Send email notification if email was provided
-                        if (response.email) {
-                            sendApplicationEmail(response.email, response.applicant_name, response.job_title, jobId);
-                        }
+                    if (response.success) {
+                        // Close modal
+                        $('#registrationModal').modal('hide');
+                        // Show simple alert
+                        alert('Application submitted successfully!');
+                        // Reload page
+                        window.location.reload();
                     } else {
+                        submitBtn.prop('disabled', false);
+                        submitBtn.removeClass('btn-loading');
+                        cancelBtn.prop('disabled', false);
                         alert('Error: ' + (response.message || 'Failed to submit application.'));
                     }
                 },
                 error: function () {
+                    hideGlobalLoading();
+                    submitBtn.prop('disabled', false);
+                    submitBtn.removeClass('btn-loading');
+                    cancelBtn.prop('disabled', false);
                     alert('Network error. Please try again.');
                 }
             });
         }
 
-        function submitApplication(applicantId, jobId) {
+        function submitApplication(applicantId, jobId, phone) {
+            // Show global loading
+            showGlobalLoading('Submitting application...', 'Please wait');
+
             $.ajax({
                 url: API_BASE + 'submit_existing_application.php',
                 type: 'POST',
@@ -543,19 +741,29 @@
                 },
                 dataType: 'json',
                 success: function (response) {
+                    hideGlobalLoading();
+
                     if (response.success) {
+                        // Show simple alert
                         alert('Application submitted successfully!');
-                        if (response.email) {
-                            sendApplicationEmail(response.email, response.applicant_name, response.job_title, jobId);
-                        }
+                        // Reload page
+                        window.location.reload();
                     } else {
                         alert('Error: ' + (response.message || 'Failed to submit application.'));
+                        resetApplicationProcess();
                     }
                 },
                 error: function () {
+                    hideGlobalLoading();
                     alert('Network error. Please try again.');
+                    resetApplicationProcess();
                 }
             });
+        }
+
+        function resetApplicationProcess() {
+            // Reset phone modal button
+            $('#submitPhoneBtn').prop('disabled', false).removeClass('btn-loading');
         }
 
         function sendApplicationEmail(email, name, jobTitle, jobId) {
@@ -579,6 +787,16 @@
         }
 
         // Utility functions
+        function showGlobalLoading(title = 'Processing...', subtitle = 'Please wait') {
+            $('#loadingOverlayText').text(title);
+            $('#loadingOverlaySubtext').text(subtitle);
+            $('#globalLoadingOverlay').fadeIn();
+        }
+
+        function hideGlobalLoading() {
+            $('#globalLoadingOverlay').fadeOut();
+        }
+
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
@@ -600,6 +818,14 @@
 
         function formatNumber(num) {
             return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
 
         function truncateText(text, maxLength) {
