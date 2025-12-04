@@ -29,7 +29,7 @@
 
     <!-- Template Main CSS File -->
     <link href="/css/main.css" rel="stylesheet">
-    
+
     <!-- Custom CSS for jobs -->
     <style>
         .job-card {
@@ -39,34 +39,42 @@
             margin-bottom: 20px;
             transition: all 0.3s ease;
         }
+
         .job-card:hover {
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transform: translateY(-2px);
         }
+
         .job-card h5 {
             color: #333;
             margin-bottom: 10px;
         }
+
         .company-name {
             color: #666;
             font-weight: 500;
             margin-bottom: 8px;
         }
-        .job-location, .job-type {
+
+        .job-location,
+        .job-type {
             color: #777;
             font-size: 0.9em;
             margin-bottom: 5px;
         }
+
         .job-salary {
             color: #28a745;
             font-weight: 600;
             margin-bottom: 15px;
         }
+
         .apply-by {
             color: #dc3545;
             font-size: 0.9em;
             margin-bottom: 15px;
         }
+
         .job-description {
             color: #555;
             font-size: 0.95em;
@@ -75,6 +83,7 @@
             overflow: hidden;
             position: relative;
         }
+
         .job-description:after {
             content: '';
             position: absolute;
@@ -84,28 +93,32 @@
             height: 30px;
             background: linear-gradient(transparent, white);
         }
+
         .action-buttons {
             display: flex;
             gap: 10px;
         }
+
         .filter-section {
             background-color: #f8f9fa;
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 30px;
         }
+
         .no-jobs {
             text-align: center;
             padding: 50px 20px;
             color: #666;
         }
+
         .loading-spinner {
             display: none;
             text-align: center;
             padding: 30px;
         }
     </style>
-    
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         $(function () {
@@ -140,14 +153,15 @@
 
         <section class="sample-page">
             <div class="container" data-aos="fade-up">
-                
+
                 <!-- Filter Section -->
                 <div class="filter-section">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="searchJob" class="form-label">Search Jobs</label>
-                                <input type="text" class="form-control" id="searchJob" placeholder="Job title, company, or keyword">
+                                <input type="text" class="form-control" id="searchJob"
+                                    placeholder="Job title, company, or keyword">
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -206,7 +220,7 @@
 
             </div>
         </section>
-        
+
         <!-- Apply Modal -->
         <div class="modal fade" id="applyModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -226,7 +240,7 @@
 
     </main>
     <!-- End #main -->
-    
+
     <!-- ======= Footer ======= -->
     <div id="footer"></div>
     <!-- End Footer -->
@@ -257,47 +271,47 @@
         const API_BASE = window.location.hostname === 'localhost'
             ? 'http://localhost:8082/'
             : 'https://login.rssi.in/';
-        
+
         let currentJobId = null;
-        
+
         // Load jobs on page load
-        $(document).ready(function() {
+        $(document).ready(function () {
             loadJobs();
-            
+
             // Add event listeners for filter changes
-            $('#searchJob, #jobType, #sortBy').on('keyup change', function(e) {
+            $('#searchJob, #jobType, #sortBy').on('keyup change', function (e) {
                 if (e.type === 'keyup' && e.key === 'Enter') {
                     loadJobs();
                 }
             });
         });
-        
+
         function loadJobs() {
             $('#loadingSpinner').show();
             $('#jobsContainer').empty();
             $('#noJobsMessage').hide();
-            
+
             const filters = {
                 search: $('#searchJob').val(),
                 job_type: $('#jobType').val(),
                 sort_by: $('#sortBy').val()
             };
-            
+
             $.ajax({
                 url: API_BASE + 'get_jobs.php',
                 type: 'GET',
                 data: filters,
                 dataType: 'json',
-                success: function(response) {
+                success: function (response) {
                     $('#loadingSpinner').hide();
-                    
+
                     if (response.success && response.data && response.data.length > 0) {
                         displayJobs(response.data);
                     } else {
                         $('#noJobsMessage').show();
                     }
                 },
-                error: function() {
+                error: function () {
                     $('#loadingSpinner').hide();
                     $('#noJobsMessage').show();
                     $('#noJobsMessage').html(`
@@ -308,11 +322,11 @@
                 }
             });
         }
-        
+
         function displayJobs(jobs) {
             const container = $('#jobsContainer');
             container.empty();
-            
+
             jobs.forEach(job => {
                 const jobCard = `
                     <div class="col-lg-6">
@@ -350,30 +364,30 @@
                 container.append(jobCard);
             });
         }
-        
+
         function viewJobDetails(jobId) {
             window.open(`job_details.html?id=${jobId}`, '_blank');
         }
-        
+
         function applyForJob(jobId, jobTitle) {
             currentJobId = jobId;
-            
+
             // Check if user exists first
             const phone = prompt(`Enter your phone number to apply for "${jobTitle}":`);
-            
+
             if (!phone || !phone.trim()) {
                 alert('Phone number is required to apply.');
                 return;
             }
-            
+
             if (!/^\d{10}$/.test(phone)) {
                 alert('Please enter a valid 10-digit phone number.');
                 return;
             }
-            
+
             checkUserExists(phone, jobId, jobTitle);
         }
-        
+
         function checkUserExists(phone, jobId, jobTitle) {
             $.ajax({
                 url: API_BASE + 'check_applicant.php',
@@ -383,7 +397,7 @@
                     job_id: jobId
                 },
                 dataType: 'json',
-                success: function(response) {
+                success: function (response) {
                     if (response.success) {
                         if (response.exists) {
                             // User exists, show confirm application
@@ -398,23 +412,23 @@
                         alert('Error: ' + (response.message || 'Unable to check user status.'));
                     }
                 },
-                error: function() {
+                error: function () {
                     alert('Network error. Please try again.');
                 }
             });
         }
-        
+
         function showRegistrationForm(phone, jobId, jobTitle) {
             $.ajax({
                 url: API_BASE + 'get_education_levels.php',
                 type: 'GET',
                 dataType: 'json',
-                success: function(response) {
+                success: function (response) {
                     if (response.success && response.data) {
-                        const educationOptions = response.data.map(edu => 
+                        const educationOptions = response.data.map(edu =>
                             `<option value="${edu.id}">${escapeHtml(edu.name)}</option>`
                         ).join('');
-                        
+
                         const formHtml = `
                             <h6>Apply for: ${escapeHtml(jobTitle)}</h6>
                             <p class="text-muted">Please provide your details to complete the application.</p>
@@ -475,23 +489,23 @@
                                 </div>
                             </form>
                         `;
-                        
+
                         $('#applyFormContainer').html(formHtml);
                         const applyModal = new bootstrap.Modal(document.getElementById('applyModal'));
                         applyModal.show();
                     }
                 },
-                error: function() {
+                error: function () {
                     alert('Unable to load education options. Please try again.');
                 }
             });
         }
-        
+
         function submitNewApplication(event) {
             event.preventDefault();
-            
+
             const formData = new FormData(event.target);
-            
+
             $.ajax({
                 url: API_BASE + 'submit_application.php',
                 type: 'POST',
@@ -499,26 +513,26 @@
                 processData: false,
                 contentType: false,
                 dataType: 'json',
-                success: function(response) {
+                success: function (response) {
                     if (response.success) {
                         alert('Application submitted successfully! You will receive a confirmation email.');
                         $('#applyModal').modal('hide');
                         $('#applyFormContainer').empty();
-                        
+
                         // Send email notification if email was provided
                         if (response.email) {
-                            sendApplicationEmail(response.email, response.applicant_name, response.job_title);
+                            sendApplicationEmail(response.email, response.applicant_name, response.job_title, jobId);
                         }
                     } else {
                         alert('Error: ' + (response.message || 'Failed to submit application.'));
                     }
                 },
-                error: function() {
+                error: function () {
                     alert('Network error. Please try again.');
                 }
             });
         }
-        
+
         function submitApplication(applicantId, jobId) {
             $.ajax({
                 url: API_BASE + 'submit_existing_application.php',
@@ -528,52 +542,53 @@
                     job_id: jobId
                 },
                 dataType: 'json',
-                success: function(response) {
+                success: function (response) {
                     if (response.success) {
                         alert('Application submitted successfully!');
                         if (response.email) {
-                            sendApplicationEmail(response.email, response.applicant_name, response.job_title);
+                            sendApplicationEmail(response.email, response.applicant_name, response.job_title, jobId);
                         }
                     } else {
                         alert('Error: ' + (response.message || 'Failed to submit application.'));
                     }
                 },
-                error: function() {
+                error: function () {
                     alert('Network error. Please try again.');
                 }
             });
         }
-        
-        function sendApplicationEmail(email, name, jobTitle) {
+
+        function sendApplicationEmail(email, name, jobTitle, jobId) {
             $.ajax({
                 url: API_BASE + 'send_application_email.php',
                 type: 'POST',
                 data: {
                     email: email,
                     name: name,
-                    job_title: jobTitle
+                    job_title: jobTitle,
+                    job_id: jobId
                 },
                 dataType: 'json',
-                success: function(response) {
+                success: function (response) {
                     console.log('Application email sent:', response);
                 },
-                error: function() {
+                error: function () {
                     console.log('Failed to send application email');
                 }
             });
         }
-        
+
         // Utility functions
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
         }
-        
+
         function formatJobType(jobType) {
             return jobType.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
         }
-        
+
         function formatDate(dateString) {
             const date = new Date(dateString);
             return date.toLocaleDateString('en-IN', {
@@ -582,11 +597,11 @@
                 year: 'numeric'
             });
         }
-        
+
         function formatNumber(num) {
             return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
-        
+
         function truncateText(text, maxLength) {
             if (text.length <= maxLength) return text;
             return text.substr(0, maxLength) + '...';
