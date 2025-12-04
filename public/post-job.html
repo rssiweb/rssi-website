@@ -14,7 +14,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>RSSI-History</title>
+    <title>Recruiters’ Portal</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -126,44 +126,45 @@
         </div>
 
         <!-- End Breadcrumbs -->
-            <section class="sample-page">
-                <div class="container" data-aos="fade-up">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-10">
-                            <div class="card shadow">
-                                <div class="card-body p-5">
-                                    <h2 class="mb-4 text-center">Recruiter Job Post Form</h2>
+        <section class="sample-page">
+            <div class="container" data-aos="fade-up">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="card shadow">
+                            <div class="card-body p-5">
+                                <h2 class="mb-4 text-center">Recruiter Job Post Form</h2>
 
-                                    <!-- Step Indicator -->
-                                    <div class="mb-5">
-                                        <div class="steps">
-                                            <div class="step active" data-step="1">Email Verification</div>
-                                            <div class="step" data-step="2">Registration</div>
-                                            <div class="step" data-step="3">Job Details</div>
-                                        </div>
+                                <!-- Step Indicator -->
+                                <div class="mb-5">
+                                    <div class="steps">
+                                        <div class="step active" data-step="1">Email Verification</div>
+                                        <div class="step" data-step="2">Registration/Login</div>
+                                        <div class="step" data-step="3">Job Details</div>
+                                        <div class="step" data-step="4">Confirmation</div>
                                     </div>
+                                </div>
 
-                                    <!-- Step Container - This will hold all dynamic content -->
-                                    <div id="stepContainer">
-                                        <!-- Content will be loaded here dynamically by JavaScript -->
-                                    </div>
+                                <!-- Step Container - This will hold all dynamic content -->
+                                <div id="stepContainer">
+                                    <!-- Content will be loaded here dynamically by JavaScript -->
+                                </div>
 
-                                    <!-- Success Message -->
-                                    <div id="successMessage" style="display: none;">
-                                        <div class="alert alert-success text-center">
-                                            <h4>✅ Job Posted Successfully!</h4>
-                                            <p>Your job post has been submitted and is pending approval.</p>
-                                            <p>You will receive a confirmation email shortly.</p>
-                                            <button type="button" class="btn btn-primary" id="postAnother">Post Another
-                                                Job</button>
-                                        </div>
+                                <!-- Success Message -->
+                                <div id="successMessage" style="display: none;">
+                                    <div class="alert alert-success text-center">
+                                        <h4>✅ Job Posted Successfully!</h4>
+                                        <p>Your job post has been submitted and is pending approval.</p>
+                                        <p>You will receive a confirmation email shortly.</p>
+                                        <button type="button" class="btn btn-primary" id="postAnother">Post Another
+                                            Job</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
         <!-- End Gallery Section -->
     </main>
     <!-- End #main -->
@@ -232,35 +233,23 @@
                 const container = $('#stepContainer');
 
                 if (step === 1) {
-                    // Email verification step
+                    // Email verification step - Show email input first
                     container.html(`
-                    <div class="step-content" id="step1">
-                        <div class="mb-4">
-                            <h5>Email Verification</h5>
-                            <p class="text-muted mb-3">Enter your email to verify your identity</p>
-                            <div class="mb-3">
-                                <label for="userEmail" class="form-label">Email Address *</label>
-                                <input type="email" class="form-control" id="userEmail" placeholder="Enter your email" value="${verifiedEmail || ''}">
-                            </div>
-                            <button type="button" class="btn btn-outline-primary" id="sendOTP">Send OTP</button>
+                <div class="step-content" id="step1">
+                    <div class="mb-4">
+                        <h5>Email Verification</h5>
+                        <p class="text-muted mb-3">Enter your email to continue</p>
+                        <div class="mb-3">
+                            <label for="userEmail" class="form-label">Email Address *</label>
+                            <input type="email" class="form-control" id="userEmail" placeholder="Enter your email" value="${verifiedEmail || ''}">
                         </div>
-
-                        <div id="otpSection" style="display: ${verifiedEmail ? 'block' : 'none'}">
-                            <div class="mb-3">
-                                <label for="otp" class="form-label">Enter OTP *</label>
-                                <div class="d-flex gap-2">
-                                    <input type="text" class="form-control text-center" id="otp" maxlength="6" placeholder="6-digit OTP" style="width: 150px;">
-                                    <button type="button" class="btn btn-outline-secondary" id="resendOTP">Resend OTP</button>
-                                </div>
-                                <div class="form-text" id="otpTimer"></div>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <button type="button" class="btn btn-secondary" id="useDifferentEmail">Use different email address</button>
-                                <button type="button" class="btn btn-primary" id="verifyOTP">Verify & Proceed</button>
-                            </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" id="backToStart" style="display: none;">Back</button>
+                            <button type="button" class="btn btn-primary" id="checkEmail">Next</button>
                         </div>
                     </div>
-                `);
+                </div>
+            `);
 
                     // Re-bind events for step 1
                     bindStep1Events();
@@ -268,57 +257,57 @@
                 } else if (step === 2) {
                     // Registration form for new users
                     container.html(`
-                    <div class="step-content" id="step2">
-                        <form id="registrationForm">
-                            <h4 class="mb-3 border-bottom pb-2">Recruiter Registration</h4>
-                            
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="fullName" class="form-label">Full Name *</label>
-                                    <input type="text" class="form-control" id="fullName" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="companyName" class="form-label">Company Name *</label>
-                                    <input type="text" class="form-control" id="companyName" required>
-                                </div>
+                <div class="step-content" id="step2">
+                    <form id="registrationForm">
+                        <h4 class="mb-3 border-bottom pb-2">Recruiter Registration</h4>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="fullName" class="form-label">Full Name *</label>
+                                <input type="text" class="form-control" id="fullName" required>
                             </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="companyName" class="form-label">Company Name *</label>
+                                <input type="text" class="form-control" id="companyName" required>
+                            </div>
+                        </div>
 
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="email" class="form-label">Email Address *</label>
-                                    <input type="email" class="form-control" id="regEmail" value="${verifiedEmail}" readonly required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="phone" class="form-label">Phone Number *</label>
-                                    <input type="tel" class="form-control" id="phone" required>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" id="regEmail" value="${verifiedEmail}" readonly required>
                             </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">Phone Number *</label>
+                                <input type="tel" class="form-control" id="phone" required>
+                            </div>
+                        </div>
 
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="aadharNumber" class="form-label">Aadhar Number *</label>
-                                    <input type="text" class="form-control" id="aadharNumber" pattern="[0-9]{12}" maxlength="12" required>
-                                    <div class="form-text">12-digit Aadhar number</div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="aadharFile" class="form-label">Aadhar Card Upload *</label>
-                                    <input type="file" class="form-control" id="aadharFile" accept=".pdf,.jpg,.jpeg,.png" required>
-                                    <div class="form-text">Max size: 2MB (PDF, JPG, PNG)</div>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="aadharNumber" class="form-label">Aadhar Number *</label>
+                                <input type="text" class="form-control" id="aadharNumber" pattern="[0-9]{12}" maxlength="12" required>
+                                <div class="form-text">12-digit Aadhar number</div>
                             </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="aadharFile" class="form-label">Aadhar Card Upload *</label>
+                                <input type="file" class="form-control" id="aadharFile" accept=".pdf,.jpg,.jpeg,.png" required>
+                                <div class="form-text">Max size: 2MB (PDF, JPG, PNG)</div>
+                            </div>
+                        </div>
 
-                            <div class="mb-3">
-                                <label for="companyAddress" class="form-label">Company Address *</label>
-                                <textarea class="form-control" id="companyAddress" rows="3" required></textarea>
-                            </div>
+                        <div class="mb-3">
+                            <label for="companyAddress" class="form-label">Company Address *</label>
+                            <textarea class="form-control" id="companyAddress" rows="3" required></textarea>
+                        </div>
 
-                            <div class="d-flex justify-content-between">
-                                <button type="button" class="btn btn-secondary" id="backToStep1">Back</button>
-                                <button type="button" class="btn btn-primary" id="saveRegistration">Save & Continue to Job Post</button>
-                            </div>
-                        </form>
-                    </div>
-                `);
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" id="backToStep1">Back</button>
+                            <button type="button" class="btn btn-primary" id="saveRegistration">Save & Continue to Job Post</button>
+                        </div>
+                    </form>
+                </div>
+            `);
 
                     // Re-bind events for step 2
                     bindStep2Events();
@@ -326,79 +315,79 @@
                 } else if (step === 3) {
                     // Job post form
                     container.html(`
-                    <div class="step-content" id="step3">
-                        <form id="jobPostForm">
-                            <h4 class="mb-3 border-bottom pb-2">Job Details</h4>
-                            
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="jobTitle" class="form-label">Job Title *</label>
-                                    <input type="text" class="form-control" id="jobTitle" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="jobType" class="form-label">Job Type *</label>
-                                    <select class="form-select" id="jobType" required>
-                                        <option value="">Select Type</option>
-                                        <option value="full-time">Full Time</option>
-                                        <option value="part-time">Part Time</option>
-                                        <option value="contract">Contract</option>
-                                        <option value="internship">Internship</option>
-                                        <option value="remote">Remote</option>
-                                    </select>
-                                </div>
+                <div class="step-content" id="step3">
+                    <form id="jobPostForm">
+                        <h4 class="mb-3 border-bottom pb-2">Job Details</h4>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="jobTitle" class="form-label">Job Title *</label>
+                                <input type="text" class="form-control" id="jobTitle" required>
                             </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="jobType" class="form-label">Job Type *</label>
+                                <select class="form-select" id="jobType" required>
+                                    <option value="">Select Type</option>
+                                    <option value="full-time">Full Time</option>
+                                    <option value="part-time">Part Time</option>
+                                    <option value="contract">Contract</option>
+                                    <option value="internship">Internship</option>
+                                    <option value="remote">Remote</option>
+                                </select>
+                            </div>
+                        </div>
 
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="location" class="form-label">Location *</label>
-                                    <input type="text" class="form-control" id="location" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="salary" class="form-label">Salary (₹ per month)</label>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="location" class="form-label">Location *</label>
+                                <input type="text" class="form-control" id="location" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="salary" class="form-label">Salary (₹ per month)</label>
                                     <input type="text" class="form-control" id="salary">
-                                </div>
                             </div>
+                        </div>
 
-                            <div class="mb-3">
-                                <label for="jobDescription" class="form-label">Job Description *</label>
-                                <textarea class="form-control" id="jobDescription" rows="5" required></textarea>
-                            </div>
+                        <div class="mb-3">
+                            <label for="jobDescription" class="form-label">Job Description *</label>
+                            <textarea class="form-control" id="jobDescription" rows="5" required></textarea>
+                        </div>
 
-                            <div class="mb-3">
-                                <label for="requirements" class="form-label">Requirements *</label>
-                                <textarea class="form-control" id="requirements" rows="3" required></textarea>
-                            </div>
+                        <div class="mb-3">
+                            <label for="requirements" class="form-label">Requirements *</label>
+                            <textarea class="form-control" id="requirements" rows="3" required></textarea>
+                        </div>
 
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="experience" class="form-label">Experience Required</label>
-                                    <input type="text" class="form-control" id="experience" placeholder="e.g., 2-4 years">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="vacancies" class="form-label">Number of Vacancies *</label>
-                                    <input type="number" class="form-control" id="vacancies" min="1" required>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="experience" class="form-label">Experience Required</label>
+                                <input type="text" class="form-control" id="experience" placeholder="e.g., 2-4 years">
                             </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="vacancies" class="form-label">Number of Vacancies *</label>
+                                <input type="number" class="form-control" id="vacancies" min="1" required>
+                            </div>
+                        </div>
 
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="applyBy" class="form-label">Apply By Date *</label>
-                                    <input type="date" class="form-control" id="applyBy" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="jobFile" class="form-label">Additional Document (Optional)</label>
-                                    <input type="file" class="form-control" id="jobFile" accept=".pdf,.doc,.docx">
-                                    <div class="form-text">Job description PDF or Word doc</div>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="applyBy" class="form-label">Apply By Date *</label>
+                                <input type="date" class="form-control" id="applyBy" required>
                             </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="jobFile" class="form-label">Additional Document (Optional)</label>
+                                <input type="file" class="form-control" id="jobFile" accept=".pdf,.doc,.docx">
+                                <div class="form-text">Job description PDF or Word doc</div>
+                            </div>
+                        </div>
 
-                            <div class="d-flex justify-content-between">
-                                <button type="button" class="btn btn-secondary" id="backToStep2">Back</button>
-                                <button type="submit" class="btn btn-success" id="submitJob">Submit Job Post</button>
-                            </div>
-                        </form>
-                    </div>
-                `);
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" id="backToStep2">Back</button>
+                            <button type="submit" class="btn btn-success" id="submitJob">Submit Job Post</button>
+                        </div>
+                    </form>
+                </div>
+            `);
 
                     // Re-bind events for step 3
                     bindStep3Events();
@@ -407,8 +396,8 @@
 
             // Event binding functions
             function bindStep1Events() {
-                // Send OTP
-                $(document).off('click', '#sendOTP').on('click', '#sendOTP', function () {
+                // Check Email
+                $(document).off('click', '#checkEmail').on('click', '#checkEmail', function () {
                     const email = $('#userEmail').val().trim();
 
                     if (!validateEmail(email)) {
@@ -416,23 +405,94 @@
                         return;
                     }
 
+                    verifiedEmail = email;
+                    $(this).prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Checking...');
+
+                    // Check if email exists in database
+                    $.ajax({
+                        url: API_BASE + 'check_user.php', // Need to create this endpoint
+                        type: 'POST',
+                        data: { email: email },
+                        success: function (response) {
+                            console.log('Check User Response:', response);
+                            if (response.success) {
+                                if (response.user_exists) {
+                                    if (response.has_password) {
+                                        // Existing user with password - show login
+                                        showPasswordLogin();
+                                    } else {
+                                        // Existing user without password (old record) - show registration
+                                        showStep(2);
+                                    }
+                                } else {
+                                    // New user - show OTP verification
+                                    showOTPVerification();
+                                }
+                            } else {
+                                alert(response.message || 'Error checking email');
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Check User Error:', error);
+                            alert('Error checking email. Please try again.');
+                        },
+                        complete: function () {
+                            $('#checkEmail').prop('disabled', false).text('Next');
+                        }
+                    });
+                });
+            }
+
+            function showOTPVerification() {
+                $('#stepContainer').html(`
+            <div class="step-content" id="step1">
+                <div class="mb-4">
+                    <h5>Email Verification</h5>
+                    <p class="text-muted mb-3">We've sent an OTP to ${verifiedEmail}</p>
+                    <div class="mb-3">
+                        <label for="userEmail" class="form-label">Email Address *</label>
+                        <input type="email" class="form-control" id="userEmail" value="${verifiedEmail}" readonly>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary mb-3" id="sendOTP">Send OTP</button>
+
+                    <div id="otpSection">
+                        <div class="mb-3">
+                            <label for="otp" class="form-label">Enter OTP *</label>
+                            <div class="d-flex gap-2">
+                                <input type="text" class="form-control text-center" id="otp" maxlength="6" placeholder="6-digit OTP" style="width: 150px;">
+                                <button type="button" class="btn btn-outline-secondary" id="resendOTP">Resend OTP</button>
+                            </div>
+                            <div class="form-text" id="otpTimer"></div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" id="useDifferentEmail">Use different email address</button>
+                            <button type="button" class="btn btn-primary" id="verifyOTP">Verify & Proceed</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `);
+
+                // Automatically send OTP when showing this screen
+                $('#sendOTP').trigger('click');
+
+                // Bind OTP events
+                bindOTPEvents();
+            }
+
+            function bindOTPEvents() {
+                // Send OTP
+                $(document).off('click', '#sendOTP').on('click', '#sendOTP', function () {
                     $(this).prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Sending...');
 
                     $.ajax({
                         url: API_BASE + 'send_otp.php',
                         type: 'POST',
-                        data: { email: email, action: 'send_otp' },
+                        data: { email: verifiedEmail, action: 'send_otp' },
                         success: function (response) {
                             console.log('OTP Response:', response);
                             if (response.success) {
-                                verifiedEmail = email;
-
-                                // 1. DISABLE THE EMAIL FIELD
-                                $('#userEmail').prop('disabled', true).addClass('bg-light');
-
-                                // 2. HIDE THE SEND OTP BUTTON
                                 $('#sendOTP').hide();
-
                                 $('#otpSection').show();
                                 startOTPTimer(300);
                                 alert('OTP sent to your email!');
@@ -470,14 +530,8 @@
                             if (response.success) {
                                 clearInterval(otpTimer);
                                 $('#otpTimer').text('');
-
-                                if (response.user_exists) {
-                                    // Existing user - skip to job post
-                                    showStep(3);
-                                } else {
-                                    // New user - go to registration
-                                    showStep(2);
-                                }
+                                // After OTP verification, go to registration
+                                showStep(2);
                             } else {
                                 alert(response.message || 'Invalid OTP');
                             }
@@ -494,33 +548,25 @@
 
                 // Use different email address
                 $(document).off('click', '#useDifferentEmail').on('click', '#useDifferentEmail', function () {
-                    if (confirm('Do you want to use a different email address? This will reset the OTP verification.')) {
-                        // Reset everything
+                    if (confirm('Do you want to use a different email address? This will reset the verification process.')) {
                         verifiedEmail = '';
                         clearInterval(otpTimer);
                         otpTimer = null;
-
-                        // Reload step 1 with completely fresh form
                         showStep(1);
                     }
                 });
 
                 // Resend OTP
                 $(document).off('click', '#resendOTP').on('click', '#resendOTP', function () {
-                    // Show spinner and disable button
                     $(this).prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Sending...');
 
                     $.ajax({
                         url: API_BASE + 'send_otp.php',
                         type: 'POST',
-                        data: {
-                            email: verifiedEmail,
-                            action: 'send_otp'
-                        },
+                        data: { email: verifiedEmail, action: 'send_otp' },
                         success: function (response) {
                             console.log('Resend OTP Response:', response);
                             if (response.success) {
-                                // Restart the timer
                                 startOTPTimer(300);
                                 alert('New OTP sent to your email!');
                             } else {
@@ -532,10 +578,86 @@
                             alert('Error resending OTP. Please try again.');
                         },
                         complete: function () {
-                            // Re-enable the resend button
                             $('#resendOTP').prop('disabled', false).text('Resend OTP');
                         }
                     });
+                });
+            }
+
+            function showPasswordLogin() {
+                $('#stepContainer').html(`
+            <div class="step-content" id="passwordLogin">
+                <div class="mb-4">
+                    <h5>Welcome Back!</h5>
+                    <p class="text-muted mb-3">Please enter your password to continue</p>
+                    <div class="mb-3">
+                        <label for="userEmail" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="userEmail" value="${verifiedEmail}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password *</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                    </div>
+                    <div class="mb-3 text-end">
+                        <a href="#" id="forgotPasswordLink" class="text-decoration-none">Forgot Password?</a>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" id="useDifferentEmailLogin">Use different email address</button>
+                        <button type="button" class="btn btn-primary" id="loginWithPassword">Login</button>
+                    </div>
+                </div>
+            </div>
+        `);
+
+                // Bind events
+                $('#loginWithPassword').click(function () {
+                    const password = $('#password').val().trim();
+
+                    if (!password) {
+                        alert('Please enter your password');
+                        return;
+                    }
+
+                    $(this).prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Logging in...');
+
+                    $.ajax({
+                        url: API_BASE + 'login.php',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            email: verifiedEmail,
+                            password: password
+                        }),
+                        success: function (response) {
+                            if (response.success) {
+                                if (response.requires_password_change) {
+                                    showChangePasswordForm();
+                                } else {
+                                    showStep(3); // Proceed to job post
+                                }
+                            } else {
+                                alert(response.message || 'Login failed');
+                            }
+                        },
+                        error: function () {
+                            alert('Error during login. Please try again.');
+                        },
+                        complete: function () {
+                            $('#loginWithPassword').prop('disabled', false).text('Login');
+                        }
+                    });
+                });
+
+                $('#forgotPasswordLink').click(function (e) {
+                    e.preventDefault();
+                    showForgotPasswordForm();
+                });
+
+                $('#useDifferentEmailLogin').click(function () {
+                    if (confirm('Do you want to use a different email address?')) {
+                        verifiedEmail = '';
+                        showStep(1);
+                    }
                 });
             }
 
@@ -598,12 +720,9 @@
 
                 // Back to step 1
                 $(document).off('click', '#backToStep1').on('click', '#backToStep1', function () {
-                    // Reset email verification state
                     verifiedEmail = '';
                     clearInterval(otpTimer);
                     otpTimer = null;
-
-                    // Show step 1 with fresh form
                     showStep(1);
                 });
             }
@@ -673,18 +792,212 @@
 
                 // Back to step 2 or 1
                 $(document).off('click', '#backToStep2').on('click', '#backToStep2', function () {
-                    // Reset email verification state
-                    verifiedEmail = '';
-                    clearInterval(otpTimer);
-                    otpTimer = null;
-
-                    // If recruiterId exists, we came from registration
-                    // Otherwise, we're an existing user and should go back to step 1
                     if (recruiterId) {
                         showStep(2);
                     } else {
+                        verifiedEmail = '';
+                        clearInterval(otpTimer);
+                        otpTimer = null;
                         showStep(1);
                     }
+                });
+            }
+
+            // Add function for change password form
+            function showChangePasswordForm() {
+                $('#stepContainer').html(`
+            <div class="step-content" id="changePassword">
+                <div class="mb-4">
+                    <h5>Change Default Password</h5>
+                    <p class="text-muted mb-3">Please change your default password for security</p>
+                    <div class="mb-3">
+                        <label for="currentPassword" class="form-label">Current Password *</label>
+                        <input type="password" class="form-control" id="currentPassword" placeholder="Enter current password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="newPassword" class="form-label">New Password *</label>
+                        <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
+                        <div class="form-text">Minimum 8 characters</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Confirm New Password *</label>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password">
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" id="backToLogin">Back to Login</button>
+                        <button type="button" class="btn btn-primary" id="changePasswordBtn">Change Password</button>
+                    </div>
+                </div>
+            </div>
+        `);
+
+                // Bind events
+                $('#changePasswordBtn').click(function () {
+                    const currentPassword = $('#currentPassword').val().trim();
+                    const newPassword = $('#newPassword').val().trim();
+                    const confirmPassword = $('#confirmPassword').val().trim();
+
+                    if (!currentPassword || !newPassword || !confirmPassword) {
+                        alert('All fields are required');
+                        return;
+                    }
+
+                    if (newPassword.length < 8) {
+                        alert('New password must be at least 8 characters long');
+                        return;
+                    }
+
+                    if (newPassword !== confirmPassword) {
+                        alert('New passwords do not match');
+                        return;
+                    }
+
+                    $(this).prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Changing...');
+
+                    $.ajax({
+                        url: API_BASE + 'change_password.php',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            email: verifiedEmail,
+                            current_password: currentPassword,
+                            new_password: newPassword
+                        }),
+                        success: function (response) {
+                            if (response.success) {
+                                alert('Password changed successfully!');
+                                showStep(3); // Proceed to job post
+                            } else {
+                                alert(response.message || 'Failed to change password');
+                            }
+                        },
+                        error: function () {
+                            alert('Error changing password. Please try again.');
+                        },
+                        complete: function () {
+                            $('#changePasswordBtn').prop('disabled', false).text('Change Password');
+                        }
+                    });
+                });
+
+                $('#backToLogin').click(function () {
+                    showPasswordLogin();
+                });
+            }
+
+            // Add function for forgot password
+            function showForgotPasswordForm() {
+                $('#stepContainer').html(`
+            <div class="step-content" id="forgotPassword">
+                <div class="mb-4">
+                    <h5>Reset Password</h5>
+                    <p class="text-muted mb-3">We'll send an OTP to your email to reset your password</p>
+                    <div class="mb-3">
+                        <label for="resetEmail" class="form-label">Email Address *</label>
+                        <input type="email" class="form-control" id="resetEmail" value="${verifiedEmail}" readonly>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="sendResetOTP">Send OTP</button>
+                    
+                    <div id="resetOtpSection" style="display: none;" class="mt-3">
+                        <div class="mb-3">
+                            <label for="resetOtp" class="form-label">Enter OTP *</label>
+                            <input type="text" class="form-control text-center" id="resetOtp" maxlength="6" placeholder="6-digit OTP">
+                        </div>
+                        <div class="mb-3">
+                            <label for="newResetPassword" class="form-label">New Password *</label>
+                            <input type="password" class="form-control" id="newResetPassword" placeholder="Enter new password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmResetPassword" class="form-label">Confirm New Password *</label>
+                            <input type="password" class="form-control" id="confirmResetPassword" placeholder="Confirm new password">
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" id="backToPasswordLogin">Back to Login</button>
+                            <button type="button" class="btn btn-success" id="resetPasswordBtn">Reset Password</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `);
+
+                // Bind events
+                $('#sendResetOTP').click(function () {
+                    $(this).prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Sending...');
+
+                    $.ajax({
+                        url: API_BASE + 'reset_password.php',
+                        type: 'POST',
+                        data: {
+                            email: verifiedEmail,
+                            action: 'request_reset'
+                        },
+                        success: function (response) {
+                            if (response.success) {
+                                $('#resetOtpSection').show();
+                                alert('OTP sent to your email');
+                            } else {
+                                alert(response.message || 'Failed to send OTP');
+                            }
+                        },
+                        error: function () {
+                            alert('Error sending OTP. Please try again.');
+                        },
+                        complete: function () {
+                            $('#sendResetOTP').prop('disabled', false).text('Send OTP');
+                        }
+                    });
+                });
+
+                $('#resetPasswordBtn').click(function () {
+                    const otp = $('#resetOtp').val().trim();
+                    const newPassword = $('#newResetPassword').val().trim();
+                    const confirmPassword = $('#confirmResetPassword').val().trim();
+
+                    if (!otp || !newPassword || !confirmPassword) {
+                        alert('All fields are required');
+                        return;
+                    }
+
+                    if (newPassword.length < 8) {
+                        alert('Password must be at least 8 characters long');
+                        return;
+                    }
+
+                    if (newPassword !== confirmPassword) {
+                        alert('Passwords do not match');
+                        return;
+                    }
+
+                    $(this).prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Resetting...');
+
+                    $.ajax({
+                        url: API_BASE + 'reset_password.php',
+                        type: 'POST',
+                        data: {
+                            email: verifiedEmail,
+                            otp: otp,
+                            new_password: newPassword,
+                            action: 'verify_and_reset'
+                        },
+                        success: function (response) {
+                            if (response.success) {
+                                alert('Password reset successfully! Please login with your new password.');
+                                showPasswordLogin();
+                            } else {
+                                alert(response.message || 'Failed to reset password');
+                            }
+                        },
+                        error: function () {
+                            alert('Error resetting password. Please try again.');
+                        },
+                        complete: function () {
+                            $('#resetPasswordBtn').prop('disabled', false).text('Reset Password');
+                        }
+                    });
+                });
+
+                $('#backToPasswordLogin').click(function () {
+                    showPasswordLogin();
                 });
             }
 
@@ -721,7 +1034,6 @@
             }
 
             function validateRegistrationForm() {
-                // Simplified validation - add more as needed
                 if (!$('#fullName').val().trim()) {
                     alert('Full name is required');
                     return false;
@@ -750,7 +1062,6 @@
             }
 
             function validateJobForm() {
-                // Simplified validation - add more as needed
                 if (!$('#jobTitle').val().trim()) {
                     alert('Job title is required');
                     return false;
