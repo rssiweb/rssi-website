@@ -337,15 +337,32 @@
             $('#applyBy').text(formatDate(job.apply_by));
 
             // Content sections
-            $('#jobDescription').html(formatText(job.job_description));
+            let descriptionHtml = formatText(job.job_description);
+
+            // Add job_file_path below description with margin
+            if (job.job_file_path && job.job_file_path.trim() !== "") {
+                descriptionHtml += `<div class="mt-4">${formatText(job.job_file_path)}</div>`;
+            } else {
+                descriptionHtml += `<div class="mt-4">No file attached</div>`;
+            }
+
+            $('#jobDescription').html(descriptionHtml);
             $('#jobRequirements').html(formatText(job.requirements || 'Not specified'));
             $('#jobBenefits').html(formatText(job.benefits || 'Not specified'));
 
             // Information sidebar
             $('#infoJobType').text(formatJobType(job.job_type));
             $('#experience').text(job.experience ? `${job.experience} years` : 'Not specified');
-            $('#salary').text(job.salary ? `₹${formatNumber(job.salary)}` : 'Not specified');
-            $('#education').text(job.education || 'Not specified');
+            $('#salary').text(
+                job.min_salary && job.max_salary
+                    ? `₹${formatNumber(job.min_salary)} - ₹${formatNumber(job.max_salary)} per month`
+                    : job.min_salary
+                        ? `₹${formatNumber(job.min_salary)} per month`
+                        : job.max_salary
+                            ? `Up to ₹${formatNumber(job.max_salary)} per month`
+                            : 'Not specified'
+            );
+            $('#education').text(job.education_level_name || 'Not specified');
             $('#infoVacancies').text(job.vacancies);
             $('#infoApplyBy').text(formatDate(job.apply_by));
             $('#postedDate').text(formatDate(job.created_at));
@@ -604,7 +621,6 @@
             return div.innerHTML;
         }
     </script>
-
 </body>
 
 </html>
