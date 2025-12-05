@@ -453,13 +453,16 @@
             const jobId = urlParams.get('id');
             currentJobId = jobId;
 
-            if (jobId) {
-                // Check if user has already applied for this job
-                checkApplicationStatus(jobId);
-                loadJobDetails(jobId);
-            } else {
+            // Hide loading spinner immediately if no job ID
+            if (!jobId) {
+                $('#loadingContainer').hide();
                 showError('No job specified. Please go back to job listings.');
+                return;
             }
+
+            // Check if user has already applied for this job
+            checkApplicationStatus(jobId);
+            loadJobDetails(jobId);
         });
 
         function checkApplicationStatus(jobId) {
@@ -487,6 +490,10 @@
         }
 
         function loadJobDetails(jobId) {
+            if (!jobId) {
+                showError('No job specified. Please go back to job listings.');
+                return;
+            }
             $('#loadingContainer').show();
             $('#errorContainer').hide();
             $('#jobDetailsContainer').hide();
@@ -970,8 +977,10 @@
         }
 
         function showError(message) {
+            $('#loadingContainer').hide(); // Hide spinner
+            $('#jobDetailsContainer').hide(); // Hide job container if visible
             $('#errorMessage').text(message);
-            $('#errorContainer').show();
+            $('#errorContainer').show(); // Show error message
         }
 
         function showToast(message, type = 'success') {
