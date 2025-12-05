@@ -365,13 +365,13 @@
                         <input type="text" class="form-control" id="location" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="minSalary" class="form-label">Min Salary (₹ per month)</label>
-                        <input type="number" class="form-control" id="minSalary" min="0" placeholder="e.g., 25000">
+                        <label for="minSalary" class="form-label">Min Salary (₹ per month) *</label>
+                        <input type="number" class="form-control" id="minSalary" min="0" placeholder="e.g., 25000" required>
                         <div class="form-text">Minimum expected salary</div>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="maxSalary" class="form-label">Max Salary (₹ per month)</label>
-                        <input type="number" class="form-control" id="maxSalary" min="0" placeholder="e.g., 50000">
+                        <label for="maxSalary" class="form-label">Max Salary (₹ per month) *</label>
+                        <input type="number" class="form-control" id="maxSalary" min="0" placeholder="e.g., 50000" required>
                         <div class="form-text">Maximum expected salary</div>
                     </div>
                 </div>
@@ -388,12 +388,12 @@
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="experience" class="form-label">Experience Required</label>
-                        <input type="text" class="form-control" id="experience" placeholder="e.g., 2-4 years">
+                        <label for="experience" class="form-label">Experience Required *</label>
+                        <input type="text" class="form-control" id="experience" placeholder="e.g., 2-4 years" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="educationQualification" class="form-label">Educational Qualification</label>
-                        <select class="form-select" id="educationQualification">
+                        <label for="educationQualification" class="form-label">Educational Qualification *</label>
+                        <select class="form-select" id="educationQualification" required>
                             <option value="">Select Qualification</option>
                             <!-- Options will be populated by JavaScript -->
                         </select>
@@ -416,6 +416,10 @@
                     <label for="jobFile" class="form-label">Additional Document (Optional)</label>
                     <input type="file" class="form-control" id="jobFile" accept=".pdf,.doc,.docx">
                     <div class="form-text">Job description PDF or Word doc</div>
+                </div>
+                <div class="mb-3">
+                    <label for="benefits" class="form-label">Benefits (Optional)</label>
+                    <textarea class="form-control" id="benefits" name="benefits" rows="2" placeholder="e.g., Health insurance, flexible hours, etc."></textarea>
                 </div>
 
                 <div class="d-flex justify-content-between">
@@ -834,6 +838,7 @@
                     formData.append('education_qualification', $('#educationQualification').val()); // Add this line
                     formData.append('vacancies', $('#vacancies').val());
                     formData.append('apply_by', $('#applyBy').val());
+                    formData.append('benefits', $('#benefits').val());
 
                     const jobFile = $('#jobFile')[0].files[0];
                     if (jobFile) {
