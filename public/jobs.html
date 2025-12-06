@@ -172,6 +172,44 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
+
+        /* Modal form styling */
+        .file-upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload-area:hover {
+            border-color: #0d6efd;
+            background: #e9f5ff;
+        }
+
+        .file-upload-area.dragover {
+            border-color: #0d6efd;
+            background: #e9f5ff;
+        }
+
+        .file-preview {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .file-preview.show {
+            display: block;
+        }
+
+        .file-size {
+            font-size: 0.85em;
+            color: #6c757d;
+        }
     </style>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -318,8 +356,8 @@
     <script>
         // API endpoint configuration
         const API_BASE = window.location.hostname === 'localhost'
-            ? 'http://localhost:8082/'
-            : 'https://login.rssi.in/';
+            ? 'http://localhost:8082/job-api/'
+            : 'https://login.rssi.in/job-api/';
 
         let currentJobId = null;
         let currentJobTitle = null;
