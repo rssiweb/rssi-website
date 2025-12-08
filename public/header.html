@@ -210,6 +210,46 @@
         document.addEventListener('scroll', navbarlinksActive);
     </script>
     <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+
+    <script>
+        document.addEventListener("click", function (e) {
+            const link = e.target.closest("a");
+
+            if (!link) return;
+
+            const currentDomain = window.location.hostname;
+
+            try {
+                const linkUrl = new URL(link.href, window.location.origin);
+
+                // ✅ Skip Google Translate & system links
+                if (
+                    link.href.includes("translate.google") ||
+                    link.href.startsWith("javascript:") ||
+                    link.classList.contains("goog-te-menu-value") ||
+                    link.closest(".goog-te-menu-frame") ||
+                    link.closest("#google_translate_element") ||
+                    link.hasAttribute("data-skip-external-check")
+                ) {
+                    return;
+                }
+
+                // ✅ Only external links
+                if (linkUrl.hostname && linkUrl.hostname !== currentDomain) {
+                    e.preventDefault();
+
+                    const confirmLeave = confirm(
+                        "You are being redirected to an external website. Do you want to continue?"
+                    );
+
+                    if (confirmLeave) {
+                        window.open(link.href, "_blank");
+                    }
+                }
+            } catch (err) { }
+        });
+    </script>
+
     <!------------------------------------
         For Google translate
     -------------------------------------->
