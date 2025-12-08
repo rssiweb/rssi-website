@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11316670180"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'AW-11316670180');
+    </script>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>RSSI - Talent Ecosystem</title>
+    <meta
+        content="Join RSSI Talent Ecosystem - Connect job seekers with employers, create opportunities, and build a community of change-makers."
+        name="description">
+    <meta content="talent ecosystem, job portal, recruitment, employment, career opportunities, hiring platform"
+        name="keywords">
+
+    <!-- Favicons -->
+    <link href="/img/favicon.ico" rel="icon">
+    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Vendor CSS Files -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/css/main.css" rel="stylesheet">
+
+    <!-- Custom CSS for Talent Ecosystem -->
+    <style>
+        :root {
+            /* DeepSeek Color Palette */
+            --deepseek-primary: #0d6efd;
+            --deepseek-secondary: #6c757d;
+            --deepseek-success: #198754;
+            --deepseek-info: #0dcaf0;
+            --deepseek-warning: #ffc107;
+            --deepseek-danger: #dc3545;
+            --deepseek-dark: #212529;
+            --deepseek-light: #f8f9fa;
+            --deepseek-bg-gradient: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            --deepseek-card-bg: rgba(255, 255, 255, 0.95);
+            --deepseek-border: rgba(13, 110, 253, 0.1);
+            --deepseek-shadow: 0 8px 30px rgba(13, 110, 253, 0.08);
+        }
+
+        .talent-hero {
+            background: linear-gradient(135deg, var(--deepseek-primary) 0%, #0b5ed7 100%);
+            color: white;
+            padding: 5rem 0;
+            margin-bottom: 3rem;
+            border-radius: 0 0 30px 30px;
+        }
+
+        .talent-hero h1 {
+            font-weight: 800;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .talent-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .feature-card {
+            background: var(--deepseek-card-bg);
+            border: 1px solid var(--deepseek-border);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--deepseek-shadow);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--deepseek-primary) 0%, #0b5ed7 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .ecosystem-stats {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 4rem 0;
+            border-radius: 20px;
+            margin: 4rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--deepseek-primary);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--deepseek-secondary);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--deepseek-card-bg);
+            border-radius: 15px;
+            border: 1px solid var(--deepseek-border);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--deepseek-primary) 0%, #0b5ed7 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--deepseek-primary) 0%, #0b5ed7 100%);
+            color: white;
+            padding: 4rem 0;
+            border-radius: 20px;
+            margin: 4rem 0;
+        }
+
+        .btn-ecosystem {
+            padding: 1rem 2.5rem;
+            font-weight: 600;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-ecosystem-primary {
+            background: white;
+            color: var(--deepseek-primary);
+            border: none;
+        }
+
+        .btn-ecosystem-primary:hover {
+            background: var(--deepseek-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-ecosystem-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-ecosystem-outline:hover {
+            background: white;
+            color: var(--deepseek-primary);
+            transform: translateY(-3px);
+        }
+
+        .testimonial-card {
+            background: var(--deepseek-card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--deepseek-border);
+        }
+
+        .testimonial-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .company-logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            align-items: center;
+            padding: 2rem;
+            background: var(--deepseek-card-bg);
+            border-radius: 15px;
+        }
+
+        .company-logo {
+            max-width: 150px;
+            max-height: 60px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .company-logo:hover {
+            filter: grayscale(0);
+            opacity: 1;
+        }
+
+        .how-it-works-diagram {
+            position: relative;
+            padding: 3rem 0;
+        }
+
+        .diagram-step {
+            position: relative;
+            padding: 2rem;
+            background: var(--deepseek-card-bg);
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--deepseek-border);
+        }
+
+        .diagram-connector {
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            width: 2px;
+            height: 40px;
+            background: var(--deepseek-primary);
+            opacity: 0.3;
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 768px) {
+            .talent-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .talent-hero {
+                padding: 3rem 0;
+            }
+
+            .process-step {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .company-logo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("/header.html");
+            $("#footer").load("/footer.html");
+        });
+    </script>
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <div id="header"></div>
+    <!-- End Header -->
+
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Talent Ecosystem</h2>
+                    <ol>
+                        <li><a href="index">Home</a></li>
+                        <li>Careers</li>
+                        <li>Talent Ecosystem</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumbs -->
+
+        <!-- Hero Section -->
+        <section class="talent-hero" data-aos="fade-up">
+            <div class="container">
+                <div class="row justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1>Build Your Talent Ecosystem</h1>
+                        <p class="lead">Connect, Collaborate, and Create Opportunities in Our Dynamic Talent Community.
+                            Join the movement that's transforming how businesses find talent and how talent finds
+                            purpose.</p>
+                        <div class="mt-4">
+                            <a href="#join-now" class="btn btn-ecosystem-primary btn-ecosystem me-3">Join Now</a>
+                            <a href="#how-it-works" class="btn btn-ecosystem-outline btn-ecosystem">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What is Talent Ecosystem -->
+        <section class="section" data-aos="fade-up">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h2 class="mb-4">What is Our Talent Ecosystem?</h2>
+                        <p class="mb-4">
+                            Our Talent Ecosystem is more than just a recruitment platform. It is a community-driven
+                            initiative designed to empower individuals with meaningful employment opportunities. As a
+                            project of RSSI, this platform connects job seekers, employers, and opportunity creators to
+                            build pathways to sustainable livelihoods.
+                        </p>
+                        <p class="mb-4">
+                            We focus on supporting individuals from economically weaker and underserved communities by
+                            providing access to job opportunities across all levels, from entry-level roles to skilled
+                            and professional careers. Our ecosystem reduces employment barriers and promotes dignity of
+                            work, while helping organizations access committed and capable talent.
+                        </p>
+                        <!-- <div class="d-flex">
+                            <div class="me-4">
+                                <h3 class="text-primary">15+</h3>
+                                <p>Companies Connected</p>
+                            </div>
+                            <div class="me-4">
+                                <h3 class="text-primary">100+</h3>
+                                <p>Talents Matched</p>
+                            </div>
+                            <div>
+                                <h3 class="text-primary">95%</h3>
+                                <p>Success Rate</p>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="img/te_photo_1.jpg" alt="Talent Ecosystem Illustration"
+                            class="img-fluid rounded-3 shadow">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="section bg-light" data-aos="fade-up">
+            <div class="container">
+                <div class="row mb-5 text-center">
+                    <div class="col-lg-8 mx-auto">
+                        <h2 class="mb-3">Why Join Our Ecosystem?</h2>
+                        <p class="text-muted">Discover the benefits of being part of our growing community</p>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-people-fill"></i>
+                            </div>
+                            <h4>Access to Quality Talent</h4>
+                            <p>Connect with pre-vetted, qualified candidates who are actively seeking opportunities
+                                aligned with their skills and aspirations.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                            <h4>Verified Profiles</h4>
+                            <p>All candidates undergo rigorous verification processes ensuring authenticity and quality
+                                in every connection.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-graph-up"></i>
+                            </div>
+                            <h4>Growth Opportunities</h4>
+                            <p>Scale your organization with the right talent at the right time, driving sustainable
+                                growth and success.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-hand-thumbs-up"></i>
+                            </div>
+                            <h4>Social Impact</h4>
+                            <p>Create meaningful employment opportunities and contribute to community development
+                                through responsible hiring.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-lightning-charge"></i>
+                            </div>
+                            <h4>Streamlined Process</h4>
+                            <p>Our intuitive platform simplifies recruitment, from posting jobs to scheduling interviews
+                                and making offers.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-award"></i>
+                            </div>
+                            <h4>Recognition & Rewards</h4>
+                            <p>Get recognized for your contributions to the ecosystem and access exclusive rewards and
+                                opportunities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section id="how-it-works" class="section" data-aos="fade-up">
+            <div class="container">
+                <div class="row mb-5 text-center">
+                    <div class="col-lg-8 mx-auto">
+                        <h2 class="mb-3">How Our Ecosystem Works</h2>
+                        <p class="text-muted">Simple steps to join and start making a difference</p>
+                    </div>
+                </div>
+
+                <div class="how-it-works-diagram">
+                    <div class="row">
+                        <div class="col-lg-10 mx-auto">
+                            <div class="diagram-step" data-aos="fade-right">
+                                <div class="step-number">1</div>
+                                <div>
+                                    <h4>Register Your Organization</h4>
+                                    <p>Create your company profile and tell us about your hiring needs. Our team will
+                                        verify your organization to maintain ecosystem quality.</p>
+                                </div>
+                                <div class="diagram-connector"></div>
+                            </div>
+
+                            <div class="diagram-step" data-aos="fade-left" data-aos-delay="100">
+                                <div class="step-number">2</div>
+                                <div>
+                                    <h4>Define Your Requirements</h4>
+                                    <p>Post job opportunities with detailed requirements. Our AI-powered system will
+                                        match you with suitable candidates from our talent pool.</p>
+                                </div>
+                                <div class="diagram-connector"></div>
+                            </div>
+
+                            <div class="diagram-step" data-aos="fade-right" data-aos-delay="200">
+                                <div class="step-number">3</div>
+                                <div>
+                                    <h4>Connect with Talent</h4>
+                                    <p>Review matched profiles, conduct interviews through our platform, and connect
+                                        with potential candidates directly.</p>
+                                </div>
+                                <div class="diagram-connector"></div>
+                            </div>
+
+                            <!-- <div class="diagram-step" data-aos="fade-left" data-aos-delay="300">
+                                <div class="step-number">4</div>
+                                <div>
+                                    <h4>Hire & Onboard</h4>
+                                    <p>Make offers, complete documentation, and onboard new hires seamlessly through our
+                                        integrated system.</p>
+                                </div>
+                                <div class="diagram-connector"></div>
+                            </div> -->
+
+                            <div class="diagram-step" data-aos="fade-up" data-aos-delay="400">
+                                <div class="step-number">4</div>
+                                <div>
+                                    <h4>Grow Together</h4>
+                                    <p>Access ongoing support, training resources, and community events to ensure
+                                        long-term success and growth within the ecosystem.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <!-- <section class="ecosystem-stats" data-aos="fade-up">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-3 col-6 mb-4">
+                        <div class="stat-item">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Companies</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-4">
+                        <div class="stat-item">
+                            <div class="stat-number">150+</div>
+                            <div class="stat-label">Active Talents</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-4">
+                        <div class="stat-item">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Jobs Posted</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-4">
+                        <div class="stat-item">
+                            <div class="stat-number">95%</div>
+                            <div class="stat-label">Satisfaction Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+        <!-- Testimonials -->
+        <!-- <section class="section" data-aos="fade-up">
+            <div class="container">
+                <div class="row mb-5 text-center">
+                    <div class="col-lg-8 mx-auto">
+                        <h2 class="mb-3">Success Stories</h2>
+                        <p class="text-muted">Hear from our ecosystem partners</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="testimonial-card">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                                alt="Sarah Johnson" class="testimonial-avatar">
+                            <h5>Sarah Johnson</h5>
+                            <p class="text-muted mb-3">HR Director, TechNova Solutions</p>
+                            <p>"The talent ecosystem transformed our hiring process. We found three perfect candidates
+                                within a week. The quality of talent is exceptional!"</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="testimonial-card">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                                alt="Michael Chen" class="testimonial-avatar">
+                            <h5>Michael Chen</h5>
+                            <p class="text-muted mb-3">CEO, GreenFuture Energy</p>
+                            <p>"As a startup, finding the right talent was challenging. The ecosystem connected us with
+                                passionate professionals who share our vision."</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="testimonial-card">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                                alt="Priya Sharma" class="testimonial-avatar">
+                            <h5>Priya Sharma</h5>
+                            <p class="text-muted mb-3">Senior Developer</p>
+                            <p>"Through the ecosystem, I found my dream job at a company that values work-life balance
+                                and professional growth. The process was smooth!"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+        <!-- Partner Companies -->
+        <section class="section bg-light" data-aos="fade-up">
+            <div class="container">
+                <div class="row mb-5 text-center">
+                    <div class="col-lg-8 mx-auto">
+                        <h2 class="mb-3">Trusted by Leading Companies</h2>
+                        <p class="text-muted">Join these companies in building a better workforce</p>
+                    </div>
+                </div>
+                <div class="company-logo-grid">
+                    <img src="/img/clients/client-19.png" alt=" McDonald’s" class="company-logo">
+                    <img src="https://img-cdn.publive.online/fit-in/640x430/filters:format(webp)/afaqs/media/post_attachments/89d99faef1bc81b35c624b37af2a21c1111014612c1c67e814e62bd19df18333.png"
+                        alt="PVR INOX" class="company-logo">
+                    <img src="https://www.sbisecurities.in/fileserver/assets/images/logo.png" alt="SBI Securities"
+                        class="company-logo">
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="join-now" class="cta-section" data-aos="fade-up">
+            <div class="container">
+                <div class="row justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h2 class="mb-4">Ready to Join Our Talent Ecosystem?</h2>
+                        <p class="mb-4">Start creating opportunities and building meaningful connections today. Whether
+                            you're looking to hire talent or find your next opportunity, our ecosystem is here to
+                            support you.</p>
+                        <div class="mt-4">
+                            <a href="https://login.rssi.in/recruiters/"
+                                class="btn btn-ecosystem-primary btn-ecosystem me-3">
+                                <i class="bi bi-building me-2"></i>I'm a Recruiter
+                            </a>
+                            <a href="jobs" class="btn btn-ecosystem-outline btn-ecosystem me-3">
+                                <i class="bi bi-person-plus me-2"></i>Register Now
+                            </a>
+                            <a href="contact-us" class="btn btn-ecosystem-outline btn-ecosystem">
+                                <i class="bi bi-chat-dots me-2"></i>Contact Us
+                            </a>
+                        </div>
+                        <p class="mt-4 small opacity-75">Already have an account? <a
+                                href="https://login.rssi.in/recruiters/" class="text-white fw-bold">Login
+                                here</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section" data-aos="fade-up">
+            <div class="container">
+                <div class="row mb-5 text-center">
+                    <div class="col-lg-8 mx-auto">
+                        <h2 class="mb-3">Frequently Asked Questions</h2>
+                        <p class="text-muted">Get answers to common questions about our ecosystem</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq1">
+                                        How is the Talent Ecosystem different from traditional job portals?
+                                    </button>
+                                </h2>
+                                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Our ecosystem focuses on community building, long-term relationships, and social
+                                        impact. We go beyond just matching resumes to jobs by creating meaningful
+                                        connections, providing ongoing support, and fostering a community of
+                                        change-makers.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq2">
+                                        Is there a cost to join the ecosystem?
+                                    </button>
+                                </h2>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Registration is free for both job seekers and employers. We offer premium
+                                        features for companies looking for advanced recruitment tools and analytics, but
+                                        the core ecosystem benefits are available to all members.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq3">
+                                        How are candidates verified?
+                                    </button>
+                                </h2>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        We use a multi-step verification process including identity verification, skill
+                                        assessment, background checks (for premium roles), and reference validation to
+                                        ensure the quality and authenticity of our talent pool.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq4">
+                                        Can I post multiple job openings?
+                                    </button>
+                                </h2>
+                                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Yes! Recruiters can post unlimited job openings. Our system helps you manage
+                                        multiple positions efficiently with tools for tracking applications, scheduling
+                                        interviews, and communicating with candidates.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <div id="footer"></div>
+    <!-- End Footer -->
+
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <!--<div id="preloader"></div>-->
+
+    <!-- Vendor JS Files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/js/main.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
+    <!-- Glow Cookies v3.0.1 -->
+    <script>
+        glowCookies.start('en', {
+            analytics: 'G-S25QWTFJ2S',
+            policyLink: 'disclaimer'
+        });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+    </script>
+
+</body>
+
+</html>
