@@ -1,28 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- ======= Header (Partial) ======= -->
 
-<head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11316670180"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'AW-11316670180');
-    </script>
-    <title>Header</title>
-</head>
 <style>
     /*---------------------------------------
-     PACE - PRELOADER
-  -----------------------------------------*/
-
+ PACE - PRELOADER
+-----------------------------------------*/
     .pace {
-        -webkit-pointer-events: none;
         pointer-events: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
         user-select: none;
     }
 
@@ -41,240 +24,135 @@
     }
 </style>
 
-<body>
+<header id="main-header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
 
-    <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top d-flex align-items-center">
-        <div class="container d-flex align-items-center justify-content-between">
+        <a href="index" class="logo d-flex align-items-center me-auto me-lg-0">
+            <h1>RSSI NGO<span>.</span></h1>
+        </a>
 
-            <a href="index" class="logo d-flex align-items-center me-auto me-lg-0">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="/img/logo.png" alt=""> -->
-                <h1>RSSI NGO<span>.</span></h1>
-            </a>
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a href="index">Home</a></li>
 
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a href="index">Home</a></li>
-                    <li class="dropdown"><a href="#"><span>About</span> <i
-                                class="bi bi-chevron-down dropdown-indicator"></i></a>
-                        <ul>
-                            <li><a href="about-us">History</a></li>
-                            <li><a href="holiday">Holiday list</a></li>
-                            <!-- <li><a href="announcement">Announcement</a></li> -->
-                        </ul>
-                    </li>
-                    <li><a href="admission">Admission</a></li>
-                    <li><a href="media-center">Gallery</a></li>
-                    <li class="dropdown"><a href="#"><span>Careers</span> <i
-                                class="bi bi-chevron-down dropdown-indicator"></i></a>
-                        <ul>
-                            <li><a href="registration">Jobs at RSSI NGO</a></li>
-                            <li><a href="jobs">Other Job Opportunities</a></li>
-                            <li><a href="talent-ecosystem">Talent Ecosystem</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="visit-us">Visit us</a></li>
-                    <li class="dropdown"><a href="#"><span>Login</span> <i
-                                class="bi bi-chevron-down dropdown-indicator"></i></a>
-                        <ul>
-                            <li><a href="https://login.rssi.in/rssi-student" target="_blank">Students</a></li>
-                            <li><a href="https://login.rssi.in/rssi-member" target="_blank">Associates</a>
-                            </li>
-                            <li><a href="https://login.rssi.in/recruiters" target="_blank">Recruiters</a></li>
-                            <li><a href="https://login.rssi.in/tap" target="_blank">Applicants</a></li>
-                            <li><a href="https://login.rssi.in/iexplore/home.php" target="_blank">iExplore</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#"><span>Misc.</span> <i
-                                class="bi bi-chevron-down dropdown-indicator"></i></a>
-                        <ul>
-                            <li><a href="payment">Payment</a></li>
-                            <li><a href="result-portal">Result Portal</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="kalpana-buds">Kalpana Buds School</a></li>
-                    <!-- <li class="dropdown"><a href="#"><span>Misc.</span> <i
-                                class="bi bi-chevron-down dropdown-indicator"></i></a>
-                        <ul>
-                            <li class="dropdown"><a href="#"><span>Phoenix</span>
-                                    <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                                <ul>
-                                    <li><a href="https://login.rssi.in/rssi-student/index.php"
-                                            target="_blank">Students</a>
-                                    </li>
-                                    <li><a href="https://login.rssi.in/rssi-member/index.php"
-                                            target="_blank">Associates</a>
-                                    </li>
-                                    <li><a href="#">Deep Drop Down 3</a></li>
-                                    <li><a href="#">Deep Drop Down 4</a></li>
-                                    <li><a href="#">Deep Drop Down 5</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Drop Down 2</a></li>
-                            <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
-                        </ul>
-                    </li> -->
-                </ul>
-            </nav>
-            <!-- .navbar -->
+                <li class="dropdown">
+                    <a href="#"><span>About</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <ul>
+                        <li><a href="about-us">History</a></li>
+                        <li><a href="holiday">Holiday list</a></li>
+                    </ul>
+                </li>
 
-            <a class="btn-book-a-table" href="donation-portal">Donate Now</a>
-            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+                <li><a href="admission">Admission</a></li>
+                <li><a href="media-center">Gallery</a></li>
 
-        </div>
-    </header>
-    <!-- End Header -->
+                <li class="dropdown">
+                    <a href="#"><span>Careers</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <ul>
+                        <li><a href="registration">Jobs at RSSI NGO</a></li>
+                        <li><a href="jobs">Other Job Opportunities</a></li>
+                        <li><a href="talent-ecosystem">Talent Ecosystem</a></li>
+                    </ul>
+                </li>
 
-    <script>
-        /**
-         * Mobile nav toggle
-         */
-        const mobileNavShow = document.querySelector('.mobile-nav-show');
-        const mobileNavHide = document.querySelector('.mobile-nav-hide');
+                <li><a href="visit-us">Visit us</a></li>
 
-        document.querySelectorAll('.mobile-nav-toggle').forEach(el => {
-            el.addEventListener('click', function (event) {
-                event.preventDefault();
-                mobileNavToogle();
-            })
+                <li class="dropdown">
+                    <a href="#"><span>Login</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <ul>
+                        <li><a href="https://login.rssi.in/rssi-student" target="_blank">Students</a></li>
+                        <li><a href="https://login.rssi.in/rssi-member" target="_blank">Associates</a></li>
+                        <li><a href="https://login.rssi.in/recruiters" target="_blank">Recruiters</a></li>
+                        <li><a href="https://login.rssi.in/tap" target="_blank">Applicants</a></li>
+                        <li><a href="https://login.rssi.in/iexplore/home.php" target="_blank">iExplore</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#"><span>Misc.</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <ul>
+                        <li><a href="payment">Payment</a></li>
+                        <li><a href="result-portal">Result Portal</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="kalpana-buds">Kalpana Buds School</a></li>
+            </ul>
+        </nav>
+
+        <a class="btn-book-a-table" href="donation-portal">Donate Now</a>
+
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+    </div>
+</header>
+
+<script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+
+<script>
+    /* Mobile nav logic */
+    const mobileNavShow = document.querySelector('.mobile-nav-show');
+    const mobileNavHide = document.querySelector('.mobile-nav-hide');
+
+    document.querySelectorAll('.mobile-nav-toggle').forEach(el => {
+        el.addEventListener('click', function (event) {
+            event.preventDefault();
+            mobileNavToggle();
         });
+    });
 
-        function mobileNavToogle() {
-            document.querySelector('body').classList.toggle('mobile-nav-active');
-            mobileNavShow.classList.toggle('d-none');
-            mobileNavHide.classList.toggle('d-none');
-        }
+    function mobileNavToggle() {
+        document.body.classList.toggle('mobile-nav-active');
+        mobileNavShow.classList.toggle('d-none');
+        mobileNavHide.classList.toggle('d-none');
+    }
 
-        /**
-         * Hide mobile nav on same-page/hash links
-         */
-        document.querySelectorAll('#navbar a').forEach(navbarlink => {
+    /* Dropdown toggle */
+    document.querySelectorAll('.navbar .dropdown > a').forEach(el => {
+        el.addEventListener('click', function (event) {
+            if (document.body.classList.contains('mobile-nav-active')) {
+                event.preventDefault();
+                this.classList.toggle('active');
+                this.nextElementSibling.classList.toggle('dropdown-active');
 
-            if (!navbarlink.hash) return;
+                let icon = this.querySelector('.dropdown-indicator');
+                icon.classList.toggle('bi-chevron-up');
+                icon.classList.toggle('bi-chevron-down');
+            }
+        });
+    });
 
-            let section = document.querySelector(navbarlink.hash);
+    /* Active nav highlighting */
+    function navbarlinksActive() {
+        document.querySelectorAll('#navbar a').forEach(link => {
+            if (!link.hash) return;
+
+            let section = document.querySelector(link.hash);
             if (!section) return;
 
-            navbarlink.addEventListener('click', () => {
-                if (document.querySelector('.mobile-nav-active')) {
-                    mobileNavToogle();
-                }
-            });
+            let position = window.scrollY + 200;
 
-        });
-
-        /**
-         * Toggle mobile nav dropdowns
-         */
-        const navDropdowns = document.querySelectorAll('.navbar .dropdown > a');
-
-        navDropdowns.forEach(el => {
-            el.addEventListener('click', function (event) {
-                if (document.querySelector('.mobile-nav-active')) {
-                    event.preventDefault();
-                    this.classList.toggle('active');
-                    this.nextElementSibling.classList.toggle('dropdown-active');
-
-                    let dropDownIndicator = this.querySelector('.dropdown-indicator');
-                    dropDownIndicator.classList.toggle('bi-chevron-up');
-                    dropDownIndicator.classList.toggle('bi-chevron-down');
-                }
-            })
-        });
-
-        /**
-         * Navbar links active state on scroll
-         */
-        let navbarlinks = document.querySelectorAll('#navbar a');
-
-        function navbarlinksActive() {
-            navbarlinks.forEach(navbarlink => {
-
-                if (!navbarlink.hash) return;
-
-                let section = document.querySelector(navbarlink.hash);
-                if (!section) return;
-
-                let position = window.scrollY + 200;
-
-                if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-                    navbarlink.classList.add('active');
-                } else {
-                    navbarlink.classList.remove('active');
-                }
-            })
-        }
-        window.addEventListener('load', navbarlinksActive);
-        document.addEventListener('scroll', navbarlinksActive);
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
-
-    <script>
-        document.addEventListener("click", function (e) {
-            const link = e.target.closest("a");
-
-            if (!link) return;
-
-            const currentDomain = window.location.hostname;
-
-            try {
-                const linkUrl = new URL(link.href, window.location.origin);
-
-                // ✅ Skip Google Translate & system links
-                if (
-                    link.href.includes("translate.google") ||
-                    link.href.startsWith("javascript:") ||
-                    link.classList.contains("goog-te-menu-value") ||
-                    link.closest(".goog-te-menu-frame") ||
-                    link.closest("#google_translate_element") ||
-                    link.hasAttribute("data-skip-external-check")
-                ) {
-                    return;
-                }
-
-                // ✅ Only external links
-                if (linkUrl.hostname && linkUrl.hostname !== currentDomain) {
-                    e.preventDefault();
-
-                    const confirmLeave = confirm(
-                        "You are being redirected to an external website. Do you want to continue?"
-                    );
-
-                    if (confirmLeave) {
-                        window.open(link.href, "_blank");
-                    }
-                }
-            } catch (err) { }
-        });
-    </script>
-
-    <!------------------------------------
-        For Google translate
-    -------------------------------------->
-    <script>
-        function googleTranslateElementInit() {
-            if ($(window).width() < 760) {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'en',
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                    includedLanguages: "hi,en,bn"
-                }, 'google_translate_element1');
-
+            if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+                link.classList.add('active');
             } else {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'en',
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                    includedLanguages: "hi,en,bn"
-                }, 'google_translate_element');
+                link.classList.remove('active');
             }
+        });
+    }
 
-        }
-    </script>
-    <script type="text/javascript"
-        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-</body>
+    window.addEventListener('load', navbarlinksActive);
+    document.addEventListener('scroll', navbarlinksActive);
 
-</html>
+    /* Google Translate */
+    function googleTranslateElementInit() {
+        const id = (window.innerWidth < 760) ? 'google_translate_element1' : 'google_translate_element';
+
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            includedLanguages: "hi,en,bn"
+        }, id);
+    }
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

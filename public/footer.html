@@ -1,114 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- ======= Footer (Partial) ======= -->
 
-<head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11316670180"></script>
+<style>
+    .prebanner {
+        display: none;
+    }
+
+    #google_translate_element img {
+        width: fit-content;
+    }
+</style>
+
+<footer id="footer" class="footer">
+    <div class="container">
+        <div class="row gy-3">
+
+            <div class="col-lg-3 col-md-6 d-flex">
+                <i class="bi bi-geo-alt icon"></i>
+                <div>
+                    <h4>Address</h4>
+                    <p>D/1/122, Vinamra Khand, Gomti Nagar, Lucknow, Uttar Pradesh 226010</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 footer-links d-flex">
+                <i class="bi bi-telephone icon"></i>
+                <div>
+                    <h4>Contact</h4>
+                    <p>
+                        <strong>Phone:</strong> 7980168159 / 9717445551<br>
+                        <strong>Email:</strong> info@rssi.in
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 footer-links d-flex">
+                <i class="bi bi-clock icon"></i>
+                <div>
+                    <h4>Opening Hours</h4>
+                    <p><strong>Mon-Sat: 11 am</strong> - 6:30 pm<br>Sunday: Closed</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <h4>Follow Us</h4>
+                <div class="social-links d-flex">
+                    <a href="https://x.com/RssiNgo" class="twitter"><i class="bi bi-twitter"></i></a>
+                    <a href="https://www.facebook.com/rssi.in" class="facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.instagram.com/rssi.in/" class="instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/rssingo/" class="linkedin"><i
+                            class="bi bi-linkedin"></i></a>
+                    <a href="https://www.youtube.com/c/RSSINGO" class="linkedin"><i class="bi bi-youtube"></i></a>
+                </div>
+
+                <p class="footer-links" style="font-size: small; margin:10px 0 0;">
+                    <a href="/contact-us">Contact us</a> |
+                    <a href="/disclaimer">Disclaimer</a> |
+                    <a href="/terms-of-service">Terms & Conditions</a> |
+                    <a href="/refund-policy">Cancellation/Refund Policy</a> |
+                    <a href="/privacy-policy">Privacy Policy</a>
+                </p>
+
+                <div id="google_translate_element" style="position: relative; z-index: 1;"></div>
+
+                <img src="https://c.statcounter.com/11357816/0/b3dd2d5c/0/" alt="hit counter">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong><span>RSSI</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+            Site Contents owned, designed, developed, maintained and updated by the IT Department, RSSI.
+        </div>
+    </div>
+</footer>
+
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-11316670180');
+    /* Active link marking */
+    document.querySelectorAll("a").forEach(function (link) {
+        if (window.location.pathname.includes(link.getAttribute("href"))) {
+            link.classList.add("active");
+        }
+    });
 </script>
-    <title>Footer</title>
-    <style>
-        .prebanner {
-            display: none;
-        }
-        /*GOOGLE TRANSLATE*/
-        
-        #google_translate_element img {
-            width: fit-content;
-        }
-    </style>
-</head>
-
-<body>
-    <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
-
-        <div class="container">
-            <div class="row gy-3">
-                <div class="col-lg-3 col-md-6 d-flex">
-                    <i class="bi bi-geo-alt icon"></i>
-                    <div>
-                        <h4>Address</h4>
-                        <p>
-                            D/1/122, Vinamra Khand, Gomti Nagar, Lucknow, Uttar Pradesh 226010
-                            <br>
-                        </p>
-                    </div>
-
-                </div>
-
-                <div class="col-lg-3 col-md-6 footer-links d-flex">
-                    <i class="bi bi-telephone icon"></i>
-                    <div>
-                        <h4>Contact</h4>
-                        <p>
-                            <strong>Phone:</strong> 7980168159 / 9717445551<br>
-                            <strong>Email:</strong> info@rssi.in<br>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 footer-links d-flex">
-                    <i class="bi bi-clock icon"></i>
-                    <div>
-                        <h4>Opening Hours</h4>
-                        <p>
-                            <strong>Mon-Sat: 11 am</strong> - 6:30 pm<br> Sunday: Closed
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <h4>Follow Us</h4>
-                    <div class="social-links d-flex">
-                        <a href="https://x.com/RssiNgo" class="twitter"><i class="bi bi-twitter"></i></a>
-                        <a href="https://www.facebook.com/rssi.in" class="facebook"><i class="bi bi-facebook"></i></a>
-                        <a href="https://www.instagram.com/rssi.in/" class="instagram"><i
-                                class="bi bi-instagram"></i></a>
-                        <a href="https://www.linkedin.com/company/rssingo/" class="linkedin"><i
-                                class="bi bi-linkedin"></i></a>
-                        <a href="https://www.youtube.com/c/RSSINGO" class="linkedin"><i class="bi bi-youtube"></i></a>
-                    </div>
-                    <br>
-                    <p class="footer-links" style="font-size: small !important; margin-bottom: 0;">
-                        <a href="/contact-us">Contact us</a> |
-                        <a href="/disclaimer">Disclaimer</a> |
-                        <a href="/terms-of-service">Terms & Conditions</a> |
-                        <a href="/refund-policy">Cancellation/Refund Policy</a> |
-                        <a href="/privacy-policy">Privacy Policy</a>
-                    </p><br>
-                    <div id="google_translate_element" style="position: relative;z-index: 1;"></div>
-                    <img src="https://c.statcounter.com/11357816/0/b3dd2d5c/0/" alt="hit counter">
-                    <!-- End of Statcounter Code -->
-                </div>
-
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="copyright">
-                &copy; Copyright <strong><span>RSSI</span></strong>. All Rights Reserved
-            </div>
-            <div class="credits">
-                Site Contents owned, designed, developed, maintained and updated by the IT Department, RSSI.
-            </div>
-        </div>
-
-    </footer>
-    <!-- End Footer -->
-    <script>
-        $("a").each(function() {
-            if ((window.location.pathname.indexOf($(this).attr('href'))) > -1) {
-                $(this).addClass('active');
-            }
-        });
-    </script>
-
-</body>
-
-</html>
