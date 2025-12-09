@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11316670180"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'AW-11316670180');
+    </script>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Kalpana Buds School | Early Childhood Education</title>
+    <meta
+        content="Kalpana Buds School offers nurturing early childhood education from Nursery to UKG, focusing on holistic development in a child-friendly environment."
+        name="description">
+    <meta
+        content="Kalpana Buds School, preschool, nursery, kindergarten, UKG, early childhood education, preprimary school, kids school"
+        name="keywords">
+
+    <!-- Favicons -->
+    <link href="/img/favicon.ico" rel="icon">
+    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        /* ===== CUSTOM CSS RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===== COLOR PALETTE BASED ON SCHOOL UNIFORM ===== */
+        :root {
+            /* Primary colors from uniform - amber and #B0312F */
+            --primary-color: #B0312F;
+            /* Deep red from uniform */
+            --secondary-color: #FF8C00;
+            /* Amber/Orange from uniform */
+            --accent-color: #FFD166;
+            /* Lighter amber for accents */
+            --success-color: #4CAF50;
+            /* Green for success elements */
+            --light-color: #FFF9F2;
+            /* Warm off-white */
+            --dark-color: #2C1810;
+            /* Dark brown for text */
+            --medium-color: #8B4513;
+            /* Brown for secondary text */
+            --shadow-color: rgba(176, 49, 47, 0.15);
+            --border-radius: 20px;
+            --transition: all 0.3s ease;
+        }
+
+        /* ===== GLOBAL STYLES ===== */
+        body {
+            /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+            color: var(--dark-color);
+            background-color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            /* font-family: 'Georgia', 'Times New Roman', serif; */
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1.3;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--medium-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        .section-title {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background: var(--secondary-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--medium-color);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===== BUTTON STYLES ===== */
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 50px;
+            padding: 12px 28px;
+            font-weight: 600;
+            transition: var(--transition);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #9a2a28;
+            border-color: #9a2a28;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px var(--shadow-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            border-radius: 50px;
+            padding: 12px 28px;
+            font-weight: 600;
+            transition: var(--transition);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e67e00;
+            border-color: #e67e00;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 140, 0, 0.2);
+            color: white;
+        }
+
+        /* ===== HEADER STYLES ===== */
+        #header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        #header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            /* font-family: 'Georgia', serif; */
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color) !important;
+        }
+
+        .navbar-brand span {
+            color: var(--secondary-color);
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 600;
+            color: var(--dark-color) !important;
+            margin: 0 8px;
+            padding: 8px 16px !important;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            background-color: rgba(176, 49, 47, 0.1);
+            color: var(--primary-color) !important;
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: 0;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        /* ===== HERO SECTION WITH CAROUSEL ===== */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, rgba(255, 140, 0, 0.05) 0%, rgba(176, 49, 47, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .hero-text h1 {
+            font-size: 3.2rem;
+            color: var(--primary-color);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text h1 span {
+            color: var(--secondary-color);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--medium-color);
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 2rem;
+        }
+
+        /* Hero Carousel */
+        .hero-carousel {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 20px 40px var(--shadow-color);
+            height: 400px;
+        }
+
+        .carousel-inner {
+            height: 100%;
+            border-radius: var(--border-radius);
+        }
+
+        .carousel-item {
+            height: 100%;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.8;
+        }
+
+        .carousel-control-prev {
+            left: 15px;
+        }
+
+        .carousel-control-next {
+            right: 15px;
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            background-color: white;
+            opacity: 1;
+        }
+
+        .carousel-indicators button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+        }
+
+        .carousel-indicators button.active {
+            background-color: var(--secondary-color);
+        }
+
+        /* ===== FEATURES SECTION ===== */
+        .features {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            height: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border-top: 5px solid var(--secondary-color);
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: rgba(255, 140, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: var(--secondary-color);
+        }
+
+        .feature-card h4 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            padding: 100px 0;
+            background-color: var(--light-color);
+        }
+
+        .about-image {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 20px 40px var(--shadow-color);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+
+        /* ===== PROGRAMS SECTION ===== */
+        .programs {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .program-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            height: 100%;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .program-header {
+            padding: 20px;
+            background-color: var(--primary-color);
+        }
+
+        .program-header h3 {
+            color: var(--light-color);
+        }
+
+        .program-body {
+            padding: 25px;
+        }
+
+        .program-age {
+            display: inline-block;
+            background-color: rgba(255, 140, 0, 0.1);
+            color: var(--secondary-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .program-body ul {
+            padding-left: 20px;
+        }
+
+        .program-body ul li {
+            margin-bottom: 8px;
+            color: var(--medium-color);
+        }
+
+        /* ===== FACILITIES SECTION ===== */
+        .facilities {
+            padding: 100px 0;
+            background-color: var(--light-color);
+        }
+
+        /* ===== GALLERY SECTION ===== */
+        .gallery {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            height: 250px;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ===== TESTIMONIALS SECTION ===== */
+        .testimonials {
+            padding: 100px 0;
+            background-color: var(--light-color);
+        }
+
+        .testimonial-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin: 15px;
+            border-left: 5px solid var(--secondary-color);
+            height: calc(100% - 30px);
+        }
+
+        .testimonial-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 3px solid var(--primary-color);
+        }
+
+        .testimonial-info h5 {
+            margin-bottom: 0;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: white;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-section .btn-light {
+            background-color: white;
+            color: var(--primary-color);
+            border-radius: 50px;
+            padding: 12px 28px;
+            font-weight: 600;
+        }
+
+        .cta-section .btn-outline-light {
+            border-radius: 50px;
+            padding: 12px 28px;
+            font-weight: 600;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .contact-info {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(176, 49, 47, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+
+        .form-control {
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(176, 49, 47, 0.25);
+        }
+
+        /* ===== FOOTER STYLES ===== */
+        #footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 70px 0 30px;
+        }
+
+        .footer-info h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-info p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ===== SCROLL TO TOP BUTTON ===== */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(176, 49, 47, 0.3);
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 992px) {
+            .hero {
+                padding: 140px 0 80px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.7rem;
+            }
+
+            .hero-carousel {
+                height: 350px;
+                margin-top: 40px;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 120px 0 60px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.3rem;
+            }
+
+            .hero-carousel {
+                height: 300px;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .feature-card,
+            .program-card,
+            .testimonial-card {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .hero-carousel {
+                height: 250px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        .prebanner {
+            display: none;
+        }
+
+        /*GOOGLE TRANSLATE*/
+
+        #google_translate_element img {
+            width: fit-content;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <a href="#home" class="navbar-brand">Kalpana <span>Buds</span></a>
+
+                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="bi bi-list" style="font-size: 1.8rem; color: var(--primary-color);"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#programs">Programs</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#facilities">Facilities</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                        <!-- <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li> -->
+                        <li class="nav-item"><a class="nav-link" href="index">RSSI NGO</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-primary" href="#contact">Admission</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-text" data-aos="fade-right">
+                        <h1>Where Little <span>Minds Blossom</span> with Joy & Creativity</h1>
+                        <p>Kalpana Buds School provides a nurturing environment for early childhood education (Nursery
+                            to UKG) where children explore, learn, and grow through play-based activities and innovative
+                            teaching methods.</p>
+                        <div class="hero-buttons">
+                            <a href="#programs" class="btn btn-primary">Explore Programs</a>
+                            <a href="#contact" class="btn btn-secondary">Schedule a Visit</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-carousel" data-aos="fade-left">
+                        <!-- Carousel -->
+                        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"
+                                    aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"
+                                    aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="/img/kbs/kbs_1.jpg" alt="Happy children learning together"
+                                        class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="/img/kbs/kbs_2.jpg" alt="Children playing with educational toys"
+                                        class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="/img/kbs/kbs_3.jpg" alt="Outdoor play area at Kalpana Buds School"
+                                        class="d-block w-100">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Hero -->
+
+    <!-- ======= Features Section ======= -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Why Choose Kalpana Buds?</h2>
+                <p>We provide a holistic learning environment that nurtures every child's potential</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-heart-fill"></i>
+                        </div>
+                        <h4>Nurturing Environment</h4>
+                        <p>Safe, caring, and child-friendly spaces that make learning a joyful experience.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-lightbulb-fill"></i>
+                        </div>
+                        <h4>Creative Curriculum</h4>
+                        <p>Innovative play-based learning that stimulates imagination and curiosity.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-people-fill"></i>
+                        </div>
+                        <h4>Expert Educators</h4>
+                        <p>Qualified and passionate teachers trained in early childhood development.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-tree-fill"></i>
+                        </div>
+                        <h4>Outdoor Learning</h4>
+                        <p>Ample green spaces and outdoor activities for physical and sensory development.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Features -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="row align-items-stretch">
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <div class="ratio ratio-16x9 h-100"> <!-- Maintains aspect ratio while filling height -->
+                        <iframe
+                            src="https://www.youtube.com/embed/IlK-LQSEPrM?autoplay=1&mute=1&loop=1&playlist=IlK-LQSEPrM"
+                            frameborder="0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen
+                            class="w-100 h-100"></iframe>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="section-title mb-4 text-start">
+                        <h2>About Kalpana Buds School</h2>
+                        <p class="mb-0">A Division of Rina Shiksha Sahayak Foundation</p>
+                    </div>
+                    <p>Kalpana Buds School is dedicated to providing exceptional early childhood education for children
+                        from Nursery to Upper Kindergarten (UKG). Our philosophy centers on nurturing the whole child -
+                        emotionally, socially, intellectually, and physically.</p>
+                    <p>We believe that the early years are critical for laying the foundation for lifelong learning. Our
+                        child-centric approach combines structured learning with ample playtime, ensuring that children
+                        develop essential skills while having fun.</p>
+                    <p>Our safe, vibrant, and stimulating environment encourages exploration, creativity, and the joy of
+                        discovery. We're proud to be part of the Rina Shiksha Sahayak Foundation, continuing a legacy of
+                        educational excellence.</p>
+                    <a href="#contact" class="btn btn-primary mt-3">Learn More About Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End About -->
+
+    <!-- ======= Programs Section ======= -->
+    <section id="programs" class="programs">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Our Programs</h2>
+                <p>Age-appropriate curriculum designed for holistic development</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="program-card">
+                        <div class="program-header">
+                            <h3>Nursery</h3>
+                        </div>
+                        <div class="program-body">
+                            <div class="program-age">Age: 2.5 - 3.5 Years</div>
+                            <p>Our Nursery program focuses on socialization, language development, and basic motor
+                                skills through engaging play activities.</p>
+                            <ul>
+                                <li>Sensory play & exploration</li>
+                                <li>Basic shapes & colors</li>
+                                <li>Storytelling & rhymes</li>
+                                <li>Fine motor skill development</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="program-card">
+                        <div class="program-header">
+                            <h3>LKG</h3>
+                        </div>
+                        <div class="program-body">
+                            <div class="program-age">Age: 3.5 - 4.5 Years</div>
+                            <p>LKG program introduces structured learning with a focus on language, numbers, and
+                                creative expression through various activities.</p>
+                            <ul>
+                                <li>Phonics & pre-writing skills</li>
+                                <li>Number concepts 1-20</li>
+                                <li>Creative arts & crafts</li>
+                                <li>Social skills development</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="program-card">
+                        <div class="program-header">
+                            <h3>UKG</h3>
+                        </div>
+                        <div class="program-body">
+                            <div class="program-age">Age: 4.5 - 5.5 Years</div>
+                            <p>UKG prepares children for formal schooling with enhanced focus on literacy, numeracy, and
+                                overall cognitive development.</p>
+                            <ul>
+                                <li>Reading readiness & writing</li>
+                                <li>Mathematical concepts</li>
+                                <li>Science exploration</li>
+                                <li>Problem-solving activities</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Programs -->
+
+    <!-- ======= Facilities Section ======= -->
+    <section id="facilities" class="facilities">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Our Facilities</h2>
+                <p>Designed with children's safety, learning, and enjoyment in mind</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-brightness-high"></i>
+                        </div>
+                        <h4>Bright & Airy Classrooms</h4>
+                        <p>Spacious, well-ventilated classrooms with natural light, child-sized furniture, and learning
+                            corners.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-tree"></i>
+                        </div>
+                        <h4>Safe Play Areas</h4>
+                        <p>Age-appropriate indoor and outdoor play zones with safe, soft flooring and engaging play
+                            equipment.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-book-half"></i>
+                        </div>
+                        <h4>Mini Library</h4>
+                        <p>Colorful reading corner with a wide collection of picture books, storybooks, and educational
+                            resources.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-palette"></i>
+                        </div>
+                        <h4>Art & Craft Studio</h4>
+                        <p>Creative space equipped with child-safe materials for painting, clay modeling, and craft
+                            activities.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h4>Safety & Security</h4>
+                        <p>24/7 CCTV surveillance, secure entry/exit points, and trained staff to ensure child safety.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-droplet"></i>
+                        </div>
+                        <h4>Hygiene & Sanitation</h4>
+                        <p>Child-friendly washrooms, regular sanitization, and clean drinking water facilities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Facilities -->
+
+    <!-- ======= Gallery Section ======= -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>School Gallery</h2>
+                <p>Glimpses of our vibrant school life</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="gallery-item">
+                        <img src="/img/kbs/kbs_g_1.jpg" alt="Classroom activity">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="gallery-item">
+                        <img src="/img/kbs/kbs_g_2.jpg" alt="Outdoor play">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="gallery-item">
+                        <img src="/img/kbs/kbs_g_3.jpg" alt="Art and craft">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="gallery-item">
+                        <img src="/img/kbs/kbs_g_4.jpg" alt="Storytelling session">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="gallery-item">
+                        <img src="/img/kbs/kbs_g_5.jpg" alt="Celebrations">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="gallery-item">
+                        <img src="/img/kbs/kbs_g_6.jpg" alt="Learning with toys">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="gallery-item">
+                        <img src="/img/kbs/kbs_g_7.jpg" alt="Music and movement">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="gallery-item">
+                        <img src="/img/kbs/kbs_g_8.jpg" alt="Field trip">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Gallery -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>What Parents Say</h2>
+                <p>Hear from our happy parents community</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <!-- <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Parent"
+                                class="testimonial-avatar"> -->
+                            <div class="testimonial-info">
+                                <h5 class="mb-0">Kavita</h5>
+                                <p class="text-muted mb-0">Mother of Rishab (LKG)</p>
+                            </div>
+                        </div>
+                        <p>"Kalpana Buds has been a wonderful experience for my son. He looks forward to school every
+                            day and has developed so much confidence. The teachers are caring and the curriculum is
+                            perfectly balanced."</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <!-- <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Parent"
+                                class="testimonial-avatar"> -->
+                            <div class="testimonial-info">
+                                <h5 class="mb-0">Gyanu Lal Kashyap</h5>
+                                <p class="text-muted mb-0">Father of Kritika (Nursery)</p>
+                            </div>
+                        </div>
+                        <p>"The school's focus on holistic development is impressive. My daughter has not only learned
+                            academics but also important life skills. The facilities are excellent and safety measures
+                            give us peace of mind."</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <!-- <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Parent"
+                                class="testimonial-avatar"> -->
+                            <div class="testimonial-info">
+                                <h5 class="mb-0">Maiki Devi</h5>
+                                <p class="text-muted mb-0">Mother of Sandhya (LKG)</p>
+                            </div>
+                        </div>
+                        <p>"As a first-time school parent, I was anxious, but the staff at Kalpana Buds made the
+                            transition so smooth. The regular updates and open communication make us feel involved in
+                            our child's learning journey."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Testimonials -->
+
+    <!-- ======= CTA Section ======= -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center" data-aos="fade-up">
+                    <h2 class="mb-4">Ready to Begin Your Child's Learning Journey?</h2>
+                    <p class="lead mb-5">Schedule a school tour or enroll for the upcoming academic session. Limited
+                        seats available for Nursery to UKG.</p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <a href="#contact" class="btn btn-light btn-lg">Book a School Tour</a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg">Download Brochure</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End CTA -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Contact Us</h2>
+                <p>Get in touch for admissions or any queries</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <div class="contact-info">
+                        <h4 class="mb-4">Kalpana Buds School</h4>
+                        <p class="mb-4">A division of Rina Shiksha Sahayak Foundation</p>
+
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="bi bi-geo-alt-fill"></i>
+                            </div>
+                            <div>
+                                <h5>Address</h5>
+                                <p>D/1/122, Vinamra Khand, Gomti Nagar<br>Lucknow, Uttar Pradesh 226010</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="bi bi-telephone-fill"></i>
+                            </div>
+                            <div>
+                                <h5>Phone</h5>
+                                <p>+91 79801 68159<br>+91 97174 45551</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="bi bi-envelope-fill"></i>
+                            </div>
+                            <div>
+                                <h5>Email</h5>
+                                <p>info@rssi.in</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="bi bi-clock-fill"></i>
+                            </div>
+                            <div>
+                                <h5>School Hours</h5>
+                                <p>Monday - Friday: 11 AM - 3 PM<br>Saturday: 11 AM - 1 PM
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="contact-form">
+                        <h4 class="mb-4">Admission Inquiry Form</h4>
+                        <form id="admissionForm">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Parent's Name *</label>
+                                        <input type="text" class="form-control" id="name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Phone Number *</label>
+                                        <input type="tel" class="form-control" id="phone" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="childName" class="form-label">Child's Name *</label>
+                                <input type="text" class="form-control" id="childName" required>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="age" class="form-label">Child's Age *</label>
+                                        <input type="number" class="form-control" id="age" min="2" max="6" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="program" class="form-label">Program Interested In *</label>
+                                        <select class="form-select" id="program" required>
+                                            <option value="">Select Program</option>
+                                            <option value="nursery">Nursery (2.5-3.5 years)</option>
+                                            <option value="lkg">LKG (3.5-4.5 years)</option>
+                                            <option value="ukg">UKG (4.5-5.5 years)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="message" class="form-label">Message/Query</label>
+                                <textarea class="form-control" id="message" rows="3"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">Submit Inquiry</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Contact -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="footer-info">
+                        <h3>Kalpana Buds School</h3>
+                        <p class="mb-4">
+                            D/1/122, Vinamra Khand, Gomti Nagar<br>Lucknow, Uttar Pradesh 226010<br><br>
+                            <strong>Phone:</strong> +91 79801 68159<br>
+                            <strong>Email:</strong> info@rssi.in<br>
+                        </p>
+                        <div class="footer-social">
+                            <a href="https://www.facebook.com/rssi.in"><i class="bi bi-facebook"></i></a>
+                            <a href="https://www.instagram.com/rssi.in/"><i class="bi bi-instagram"></i></a>
+                            <a href="https://x.com/RssiNgo"><i class="bi bi-twitter"></i></a>
+                            <a href="https://www.youtube.com/c/RSSINGO"><i class="bi bi-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#programs">Programs</a></li>
+                            <li><a href="#facilities">Facilities</a></li>
+                            <li><a href="#gallery">Gallery</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h4>Our Programs</h4>
+                        <ul>
+                            <li><a href="#programs">Nursery Program</a></li>
+                            <li><a href="#programs">LKG Program</a></li>
+                            <li><a href="#programs">UKG Program</a></li>
+                            <li><a href="#facilities">After School Activities</a></li>
+                            <li><a href="#contact">Summer Camp</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h4>Important Links</h4>
+                        <ul>
+                            <li><a href="#contact">Admission Process</a></li>
+                            <li><a href="#contact">Fee Structure</a></li>
+                            <li><a href="#contact">School Calendar</a></li>
+                            <li><a href="#contact">Parent Resources</a></li>
+                            <li><a href="#contact">Career Opportunities</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; <span id="currentYear"></span> <strong>Kalpana Buds School</strong>. All Rights Reserved.</p>
+                <p class="mb-0">A Division of Rina Shiksha Sahayak Foundation</p>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+    <!-- Scroll to Top Button -->
+    <a href="#" class="scroll-top">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Main JavaScript -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Scroll to top functionality
+        const scrollTopBtn = document.querySelector('.scroll-top');
+
+        // Make it clickable
+        scrollTopBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Show/hide button based on scroll position
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('active');
+            } else {
+                scrollTopBtn.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile navbar if open
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    if (navbarCollapse.classList.contains('show')) {
+                        navbarCollapse.classList.remove('show');
+                    }
+
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('admissionForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Thank you for your inquiry! We will contact you soon.');
+            this.reset();
+        });
+
+        // Update active nav link on scroll
+        window.addEventListener('scroll', function () {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollPosition = window.scrollY + 100;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+
+        // Initialize carousel autoplay
+        const heroCarousel = document.getElementById('heroCarousel');
+        if (heroCarousel) {
+            const carousel = new bootstrap.Carousel(heroCarousel, {
+                interval: 4000,
+                wrap: true
+            });
+        }
+    </script>
+
+    <!-- Glow Cookies v3.0.1 -->
+    <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
+    <script>
+        glowCookies.start('en', {
+            analytics: 'G-S25QWTFJ2S',
+            policyLink: 'disclaimer'
+        });
+    </script>
+    <script>
+        document.addEventListener("click", function (e) {
+            const link = e.target.closest("a");
+            if (!link) return;
+
+            const currentDomain = window.location.hostname;
+
+            try {
+                const linkUrl = new URL(link.href, window.location.origin);
+
+                // Ignore javascript links
+                if (link.href.startsWith("javascript:")) return;
+
+                // Only external links
+                if (linkUrl.hostname && linkUrl.hostname !== currentDomain) {
+                    e.preventDefault();
+
+                    const confirmLeave = confirm(
+                        "You are being redirected to an external website. Do you want to continue?"
+                    );
+
+                    if (confirmLeave) {
+                        window.open(link.href, "_blank");
+                    }
+                }
+            } catch (err) { }
+        });
+    </script>
+</body>
+
+</html>
