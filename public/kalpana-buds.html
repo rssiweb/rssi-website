@@ -893,6 +893,7 @@
             overflow-x: hidden !important;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -1414,38 +1415,39 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Parent's Name *</label>
-                                        <input type="text" class="form-control" id="name" required>
+                                        <input type="text" class="form-control" name="name" id="name" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="phone" class="form-label">Phone Number *</label>
-                                        <input type="tel" class="form-control" id="phone" required>
+                                        <input type="tel" class="form-control" name="phone" id="phone" required>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email Address *</label>
-                                <input type="email" class="form-control" id="email" required>
+                                <input type="email" class="form-control" name="email" id="email" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="childName" class="form-label">Child's Name *</label>
-                                <input type="text" class="form-control" id="childName" required>
+                                <input type="text" class="form-control" name="childName" id="childName" required>
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="age" class="form-label">Child's Age *</label>
-                                        <input type="number" class="form-control" id="age" min="2" max="6" required>
+                                        <input type="number" class="form-control" name="age" id="age" min="2" max="6"
+                                            required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="program" class="form-label">Program Interested In *</label>
-                                        <select class="form-select" id="program" required>
+                                        <select class="form-select" name="program" id="program" required>
                                             <option value="">Select Program</option>
                                             <option value="nursery">Nursery (2.5-3.5 years)</option>
                                             <option value="lkg">LKG (3.5-4.5 years)</option>
@@ -1457,7 +1459,7 @@
 
                             <div class="mb-4">
                                 <label for="message" class="form-label">Message/Query</label>
-                                <textarea class="form-control" id="message" rows="3"></textarea>
+                                <textarea class="form-control" name="message" id="message" rows="3"></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary w-100">Submit Inquiry</button>
@@ -1611,13 +1613,6 @@
             });
         });
 
-        // Form submission
-        document.getElementById('admissionForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            alert('Thank you for your inquiry! We will contact you soon.');
-            this.reset();
-        });
-
         // Update active nav link on scroll
         window.addEventListener('scroll', function () {
             const sections = document.querySelectorAll('section[id]');
@@ -1683,6 +1678,174 @@
                     }
                 }
             } catch (err) { }
+        });
+    </script>
+    <script>
+        document.getElementById('admissionForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            // API endpoint configuration
+            const API_BASE = window.location.hostname === 'localhost'
+                ? 'http://localhost:8082/'
+                : 'https://login.rssi.in/';
+
+            const API_ENDPOINT = API_BASE + 'submit_inquiry.php';
+
+            // Form validation
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const age = document.getElementById('age').value;
+
+            // Validate phone (Indian format)
+            const phoneRegex = /^[6-9]\d{9}$/;
+            const cleanPhone = phone.replace(/[^0-9]/g, '');
+
+            if (!phoneRegex.test(cleanPhone)) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Invalid Phone Number',
+                    text: 'Please enter a valid 10-digit Indian phone number.',
+                    confirmButtonColor: '#B0312F',
+                    confirmButtonText: 'OK'
+                });
+                document.getElementById('phone').focus();
+                return false;
+            }
+
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Invalid Email',
+                    text: 'Please enter a valid email address.',
+                    confirmButtonColor: '#B0312F',
+                    confirmButtonText: 'OK'
+                });
+                document.getElementById('email').focus();
+                return false;
+            }
+
+            // Validate age (2-6 years)
+            if (age < 2 || age > 6) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Invalid Age',
+                    text: 'Child age must be between 2-6 years for admission.',
+                    confirmButtonColor: '#B0312F',
+                    confirmButtonText: 'OK'
+                });
+                document.getElementById('age').focus();
+                return false;
+            }
+
+            // Disable submit button and show loading
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...';
+            submitBtn.disabled = true;
+
+            // Get form data
+            const formData = new FormData(this);
+
+            try {
+                // Send to API
+                console.log('Sending request to:', API_ENDPOINT);
+                const response = await fetch(API_ENDPOINT, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+                console.log('API Response:', result);
+
+                if (result.success) {
+                    // Show success message with SweetAlert
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Inquiry Submitted Successfully!',
+                        html: `
+                        <p>${result.message}</p>
+                        <p><strong>Reference ID:</strong> ${result.reference_id || 'Not Assigned'}</p>
+                        ${result.email_sent ? '<p class="text-muted">A confirmation email has been sent to you.</p>' : ''}
+                    `,
+                        confirmButtonColor: '#B0312F',
+                        confirmButtonText: 'OK'
+                    });
+
+                    // Reset form
+                    this.reset();
+
+                } else {
+                    // Show error message
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Submission Failed',
+                        text: result.message || 'Please check your information and try again.',
+                        confirmButtonColor: '#B0312F',
+                        confirmButtonText: 'OK'
+                    });
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Network Error',
+                    html: `
+                    <p>Unable to submit. Please check:</p>
+                    <ul style="text-align: left;">
+                        <li>Your internet connection</li>
+                        <li>API endpoint: ${API_ENDPOINT}</li>
+                        <li>Try again later</li>
+                    </ul>
+                `,
+                    confirmButtonColor: '#B0312F',
+                    confirmButtonText: 'OK'
+                });
+            } finally {
+                // Re-enable button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Real-time validation (optional enhancement)
+        document.getElementById('phone').addEventListener('input', function (e) {
+            const phoneRegex = /^[6-9]\d{0,9}$/;
+            const cleanValue = this.value.replace(/[^0-9]/g, '');
+
+            if (phoneRegex.test(cleanValue)) {
+                this.classList.remove('is-invalid');
+                this.classList.add('is-valid');
+            } else {
+                this.classList.remove('is-valid');
+                this.classList.add('is-invalid');
+            }
+        });
+
+        document.getElementById('email').addEventListener('input', function (e) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (emailRegex.test(this.value)) {
+                this.classList.remove('is-invalid');
+                this.classList.add('is-valid');
+            } else {
+                this.classList.remove('is-valid');
+                this.classList.add('is-invalid');
+            }
+        });
+
+        document.getElementById('age').addEventListener('input', function (e) {
+            const age = parseInt(this.value);
+
+            if (age >= 2 && age <= 6) {
+                this.classList.remove('is-invalid');
+                this.classList.add('is-valid');
+            } else {
+                this.classList.remove('is-valid');
+                this.classList.add('is-invalid');
+            }
         });
     </script>
 </body>
