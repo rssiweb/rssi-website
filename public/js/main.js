@@ -190,28 +190,61 @@ if (document.querySelector('.clients-slider') && typeof Swiper !== 'undefined') 
         }
     });
 }
-// Load header and footer asynchronously
-(async function () {
-    const [header, footer] = await Promise.all([
-        fetch('/header.html').then(r => r.text()),
-        fetch('/footer.html').then(r => r.text())
-    ]);
+// Load header and footer asynchronously (safe for pages without them)
+(async function loadLayout() {
+    try {
+        const headerContainer = document.getElementById('header');
+        const footerContainer = document.getElementById('footer');
 
-    document.getElementById('header').innerHTML = header;
-    document.getElementById('footer').innerHTML = footer;
+        // If neither header nor footer exists, do nothing
+        if (!headerContainer && !footerContainer) return;
 
-    initHeaderScripts();
+        const tasks = [];
+
+        if (headerContainer) {
+            tasks.push(
+                fetch('/header.html')
+                    .then(res => res.ok ? res.text() : '')
+                    .then(html => {
+                        headerContainer.innerHTML = html;
+                        initHeaderScripts(); // run after header is injected
+                    })
+            );
+        }
+
+        if (footerContainer) {
+            tasks.push(
+                fetch('/footer.html')
+                    .then(res => res.ok ? res.text() : '')
+                    .then(html => {
+                        footerContainer.innerHTML = html;
+                    })
+            );
+        }
+
+        await Promise.all(tasks);
+
+    } catch (error) {
+        console.error('Error loading header/footer:', error);
+    }
 })();
 
+
+// Header-specific scripts (fully defensive)
 function initHeaderScripts() {
 
     const mobileNavShow = document.querySelector('.mobile-nav-show');
     const mobileNavHide = document.querySelector('.mobile-nav-hide');
+    const mobileNavToggles = document.querySelectorAll('.mobile-nav-toggle');
+    const dropdownLinks = document.querySelectorAll('.navbar .dropdown > a');
 
-    if (!mobileNavShow || !mobileNavHide) return;
+    // Header not present on this page
+    if (!mobileNavShow || !mobileNavHide || mobileNavToggles.length === 0) {
+        return;
+    }
 
     // Mobile navigation toggle
-    document.querySelectorAll('.mobile-nav-toggle').forEach(el => {
+    mobileNavToggles.forEach(el => {
         el.addEventListener('click', function (event) {
             event.preventDefault();
             document.body.classList.toggle('mobile-nav-active');
@@ -221,34 +254,34 @@ function initHeaderScripts() {
     });
 
     // Mobile dropdown toggle
-    document.querySelectorAll('.navbar .dropdown > a').forEach(el => {
+    dropdownLinks.forEach(el => {
         el.addEventListener('click', function (e) {
-            if (document.body.classList.contains('mobile-nav-active')) {
-                e.preventDefault();
-                this.classList.toggle('active');
-                this.nextElementSibling.classList.toggle('dropdown-active');
+            if (!document.body.classList.contains('mobile-nav-active')) return;
 
-                const icon = this.querySelector('.dropdown-indicator');
-                if (icon) {
-                    icon.classList.toggle('bi-chevron-up');
-                    icon.classList.toggle('bi-chevron-down');
-                }
-            }
+            e.preventDefault();
+            this.classList.toggle('active');
+            this.nextElementSibling?.classList.toggle('dropdown-active');
+
+            const icon = this.querySelector('.dropdown-indicator');
+            icon?.classList.toggle('bi-chevron-up');
+            icon?.classList.toggle('bi-chevron-down');
         });
     });
 
     // Active link highlight
     const currentPath = window.location.pathname.toLowerCase();
+    const navbar = document.getElementById('navbar');
 
-    document.querySelectorAll('#navbar a').forEach(function (link) {
-        const linkPath = link.getAttribute('href');
+    if (navbar) {
+        navbar.querySelectorAll('a').forEach(link => {
+            const linkPath = link.getAttribute('href');
+            if (!linkPath || linkPath === '#') return;
 
-        if (!linkPath || linkPath === "#") return;
-
-        if (currentPath.includes(linkPath.toLowerCase())) {
-            link.classList.add('active');
-        }
-    });
+            if (currentPath.endsWith(linkPath.toLowerCase())) {
+                link.classList.add('active');
+            }
+        });
+    }
 }
 
 // External link warning

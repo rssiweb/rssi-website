@@ -506,12 +506,96 @@
             opacity: 1;
         }
     </style>
+    <style>
+        /*---------------------------------------
+ PACE - PRELOADER
+-----------------------------------------*/
+        .pace {
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .pace-inactive {
+            display: none;
+        }
+
+        .pace .pace-progress {
+            background: #f25560;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            right: 100%;
+            width: 100%;
+            height: 2px;
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- ======= Header ======= -->
-    <div id="header"></div>
+    <header id="main-header" class="header fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <a href="index" class="logo d-flex align-items-center me-auto me-lg-0">
+                <h1>RSSI NGO<span>.</span></h1>
+            </a>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a href="index">Home</a></li>
+
+                    <li class="dropdown">
+                        <a href="#"><span>About</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <ul>
+                            <li><a href="about-us">History</a></li>
+                            <li><a href="holiday">Holiday list</a></li>
+                            <li><a href="media-center">Gallery</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="admission">Admission</a></li>
+
+                    <li class="dropdown">
+                        <a href="#"><span>Careers</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <ul>
+                            <li><a href="registration">Jobs at RSSI NGO</a></li>
+                            <li><a href="jobs">Other Job Opportunities</a></li>
+                            <li><a href="talent-ecosystem">Talent Ecosystem</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="visit-us">Visit us</a></li>
+
+                    <li class="dropdown">
+                        <a href="#"><span>Login</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <ul>
+                            <li><a href="https://login.rssi.in/rssi-student" target="_blank">Students</a></li>
+                            <li><a href="https://login.rssi.in/rssi-member" target="_blank">Associates</a></li>
+                            <li><a href="https://login.rssi.in/recruiters" target="_blank">Recruiters</a></li>
+                            <li><a href="https://login.rssi.in/tap" target="_blank">Applicants</a></li>
+                            <li><a href="https://login.rssi.in/iexplore/home.php" target="_blank">iExplore</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#"><span>Misc.</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <ul>
+                            <li><a href="payment">Payment</a></li>
+                            <li><a href="result-portal">Result Portal</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="kalpana-buds">Kalpana Buds School</a></li>
+                </ul>
+            </nav>
+
+            <a class="btn-book-a-table" href="donation-portal">Donate Now</a>
+
+            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+        </div>
+    </header>
     <!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
@@ -1834,6 +1918,75 @@
         // Fetch and render data when the page loads
         document.addEventListener('DOMContentLoaded', fetchData);
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+
+    <script>
+        /* Mobile nav logic */
+        const mobileNavShow = document.querySelector('.mobile-nav-show');
+        const mobileNavHide = document.querySelector('.mobile-nav-hide');
+
+        document.querySelectorAll('.mobile-nav-toggle').forEach(el => {
+            el.addEventListener('click', function (event) {
+                event.preventDefault();
+                mobileNavToggle();
+            });
+        });
+
+        function mobileNavToggle() {
+            document.body.classList.toggle('mobile-nav-active');
+            mobileNavShow.classList.toggle('d-none');
+            mobileNavHide.classList.toggle('d-none');
+        }
+
+        /* Dropdown toggle */
+        document.querySelectorAll('.navbar .dropdown > a').forEach(el => {
+            el.addEventListener('click', function (event) {
+                if (document.body.classList.contains('mobile-nav-active')) {
+                    event.preventDefault();
+                    this.classList.toggle('active');
+                    this.nextElementSibling.classList.toggle('dropdown-active');
+
+                    let icon = this.querySelector('.dropdown-indicator');
+                    icon.classList.toggle('bi-chevron-up');
+                    icon.classList.toggle('bi-chevron-down');
+                }
+            });
+        });
+
+        /* Active nav highlighting */
+        function navbarlinksActive() {
+            document.querySelectorAll('#navbar a').forEach(link => {
+                if (!link.hash) return;
+
+                let section = document.querySelector(link.hash);
+                if (!section) return;
+
+                let position = window.scrollY + 200;
+
+                if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+
+        window.addEventListener('load', navbarlinksActive);
+        document.addEventListener('scroll', navbarlinksActive);
+
+        /* Google Translate */
+        function googleTranslateElementInit() {
+            const id = (window.innerWidth < 760) ? 'google_translate_element1' : 'google_translate_element';
+
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                includedLanguages: "hi,en,bn"
+            }, id);
+        }
+    </script>
+
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 
 </html>
