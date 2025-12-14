@@ -570,11 +570,11 @@
                     <li class="dropdown">
                         <a href="#"><span>Login</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
-                            <li><a href="https://login.rssi.in/rssi-student" target="_blank">Students</a></li>
-                            <li><a href="https://login.rssi.in/rssi-member" target="_blank">Associates</a></li>
-                            <li><a href="https://login.rssi.in/recruiters" target="_blank">Recruiters</a></li>
-                            <li><a href="https://login.rssi.in/tap" target="_blank">Applicants</a></li>
-                            <li><a href="https://login.rssi.in/iexplore/home.php" target="_blank">iExplore</a></li>
+                            <li><a href="https://login.rssi.in/rssi-student">Students</a></li>
+                            <li><a href="https://login.rssi.in/rssi-member">Associates</a></li>
+                            <li><a href="https://login.rssi.in/recruiters">Recruiters</a></li>
+                            <li><a href="https://login.rssi.in/tap">Applicants</a></li>
+                            <li><a href="https://login.rssi.in/iexplore/home.php">iExplore</a></li>
                         </ul>
                     </li>
 
@@ -1642,7 +1642,7 @@
         // Function to convert URLs to clickable links
         function makeClickableLinks(text) {
             const urlPattern = /(https?:\/\/[^\s]+)/g;
-            return text.replace(urlPattern, '<a href="$1" target="_blank">$1</a>');
+            return text.replace(urlPattern, '<a href="$1">$1</a>');
         }
 
         // Function to convert newlines to <br> tags
@@ -1754,7 +1754,7 @@
             const newBadge = isRecent(item.date) ? `<span class="badge bg-danger blinking-badge">New</span>` : '';
             listItem.innerHTML = `
             <div class="notice-content">
-                <a href="${item.url}" target="_blank" class="text-decoration-none text-dark">
+                <a href="${item.url}" class="text-decoration-none text-dark">
                     ${item.subject}
                 </a>
                 ${newBadge}

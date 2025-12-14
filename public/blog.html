@@ -208,7 +208,7 @@
     // Function to convert URLs to clickable links
     function makeClickableLinks(text) {
       const urlPattern = /(https?:\/\/[^\s]+)/g;
-      return text.replace(urlPattern, '<a href="$1" target="_blank">$1</a>');
+      return text.replace(urlPattern, '<a href="$1">$1</a>');
     }
 
     // Function to convert newlines to <br> tags
