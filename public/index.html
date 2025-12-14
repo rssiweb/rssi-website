@@ -1671,7 +1671,7 @@
                     </div>
                     <!--<h3>${event.event_name}</h3>-->
                     <p>${nl2br(makeClickableLinks(event.event_description))}</p>
-                    ${event.event_image_url ? `<iframe src="${event.event_image_url}" class="responsive-iframe img-fluid rounded mb-3" frameborder="0" allow="autoplay" sandbox="allow-scripts allow-same-origin"></iframe>` : ''}
+                    ${event.event_image_url ? `<img src="${event.event_image_url}" class="img-fluid rounded mb-3" alt="Event image" style="max-height: 500px; object-fit: contain;" loading="lazy">` : ''}
                     <div class="d-flex align-items-center mt-3 text-muted">
                         <div class="pointer" onclick="toggleLike(${event.event_id})">
                             <i class="bi bi-hand-thumbs-up me-1"></i>
