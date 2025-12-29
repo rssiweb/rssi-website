@@ -29,7 +29,7 @@
 
     <!-- Template Main CSS File -->
     <link href="/css/main.css" rel="stylesheet">
-    
+
 </head>
 
 <body>
@@ -87,6 +87,13 @@
                         <!-- Data will be loaded via AJAX -->
                     </tbody>
                 </table>
+                <!-- Add this spinner container here -->
+                <div id="holiday-spinner" class="text-center my-4">
+                    <div class="spinner-border text-secondary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Loading holidays...</p>
+                </div>
 
                 <!-- Notes section -->
                 <div class="mt-4">
@@ -145,6 +152,9 @@
 
                 // Function to fetch holidays using AJAX
                 function fetchHolidays(year) {
+                    // Show spinner and hide table body
+                    $('#holiday-spinner').show();
+                    $('#holiday-table-body').html('');
                     $.ajax({
                         url: scriptURL,
                         type: 'POST',  // Make it a POST request as per your requirement
@@ -170,9 +180,18 @@
                         </tr>
                     `);
                             }
+                            // Hide spinner after data is loaded
+                            $('#holiday-spinner').hide();
                         },
                         error: function () {
                             alert('Error fetching holiday data. Please try again.');
+                            // Hide spinner on error too
+                            $('#holiday-spinner').hide();
+                            $('#holiday-table-body').append(`
+                            <tr>
+                                <td colspan="3">Error loading data. Please try again.</td>
+                            </tr>
+                            `);
                         }
                     });
                 }
