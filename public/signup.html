@@ -424,8 +424,8 @@
                                 <td>
                                     <label for="payment-photo">Upload Payment Screenshot</label>
                                     <p>To make payment, click <a
-                                            href="https://eazypay.icicibank.com/eazypayLink?P1=ldvYO7WCMgfIXlGHmwXsxg=="
-                                           >here</a>.</p>
+                                            href="https://eazypay.icicibank.com/eazypayLink?P1=ldvYO7WCMgfIXlGHmwXsxg==">here</a>.
+                                    </p>
                                 </td>
                                 <td>
                                     <input type="file" class="form-control" id="payment-photo" name="payment-photo"
@@ -1039,6 +1039,14 @@
             const emailInput = document.getElementById('email_verify');
             const signupForm = document.getElementById('signup'); // Reference to the signup form
             const verifyForm = document.getElementById('emailForm'); // Reference to the email form
+            const verifyButton = document.getElementById('verifybutton');
+
+            // Save original button text
+            const originalText = verifyButton.innerHTML;
+
+            // Disable button and show spinner
+            verifyButton.disabled = true;
+            verifyButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Verifying...';
 
             // Send AJAX request
             fetch(scriptURL, {
@@ -1050,6 +1058,10 @@
                     if (data.exists) {
                         alert('This email is already registered. Please use another email.');
                         emailInput.value = ''; // Clear the input field
+
+                        // Reset button to original state
+                        verifyButton.disabled = false;
+                        verifyButton.innerHTML = originalText;
                     } else {
                         alert('No account is linked to this email address. Please proceed with registration.');
 
@@ -1061,12 +1073,20 @@
                         Array.from(verifyForm.elements).forEach(element => {
                             element.setAttribute('disabled', 'true');
                         });
+
+                        // Keep button disabled but show original text
+                        verifyButton.innerHTML = originalText;
                     }
                 })
-                .catch(error => console.error('Error:', error));
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error occurred during verification. Please try again.');
+                    // Reset button to original state on error
+                    verifyButton.disabled = false;
+                    verifyButton.innerHTML = originalText;
+                });
         });
     </script>
-
 
 </body>
 
