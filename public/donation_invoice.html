@@ -214,6 +214,9 @@
                     var donateButton = document.getElementById('donateButton');
                     var newDonorInfo = document.getElementById('newDonorInfo');
 
+                    // Add this flag here
+                    let isContactVerified = false;
+
                     contactNumberInput.addEventListener("input", function (event) {
                         contactNumberVerifyInput.value = this.value;
                     });
@@ -252,6 +255,14 @@
                     function handleVerifyButtonClick(event) {
                         event.preventDefault(); // prevent default form submission
 
+                        const verifyButton = document.getElementById("verifybutton");
+                        // Save original button text
+                        const originalText = verifyButton.innerHTML;
+
+                        // Disable button and show spinner
+                        verifyButton.disabled = true;
+                        verifyButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Finding...';
+
                         fetch(scriptURL, {
                             method: 'POST',
                             body: new FormData(document.forms['get_details_form'])
@@ -266,6 +277,10 @@
                                     donationamount.style.display = 'block';
                                     donateButton.disabled = false;
                                     alert("User data fetched successfully!");
+
+                                    // Disable the contact number input and button after successful verification
+                                    contactNumberInput.disabled = true;
+                                    verifyButton.disabled = true;
                                 } else if (data.status === 'no_records') {
                                     verificationResultDiv.style.display = "none"; // Hide the result div
                                     donationamount.style.display = 'none';
@@ -274,10 +289,20 @@
                                     donorEmailInput.value = "";
                                     telInput.value = "";
                                     alert("No records found in the database. Donate as a new user.");
+
+                                    // Reset button to original state
+                                    verifyButton.disabled = false;
+                                    verifyButton.innerHTML = originalText;
                                 } else {
                                     console.log('Error:', data.message);
                                     alert("Error retrieving user data. Please try again later or contact support.");
+
+                                    // Reset button to original state
+                                    verifyButton.disabled = false;
+                                    verifyButton.innerHTML = originalText;
                                 }
+                                // Reset button to original state
+                                verifyButton.innerHTML = originalText;
 
                                 // Call the updateRequiredFields() function after handling the verify button click
                                 updateRequiredFields();
@@ -285,6 +310,10 @@
                             .catch(error => {
                                 console.log('Error:', error);
                                 alert("Error fetching user data. Please try again later or contact support.");
+
+                                // Reset button to original state on error
+                                verifyButton.disabled = false;
+                                verifyButton.innerHTML = originalText;
 
                                 // Call the updateRequiredFields() function after handling the verify button click
                                 updateRequiredFields();
@@ -302,6 +331,9 @@
                         const newDonorInfo = document.getElementById('newDonorInfo');
                         const verificationResult = document.getElementById('verificationResult');
                         const donationAmountSection = document.getElementById('donationamount');
+                        const contactNumberInput = document.getElementById('contactnumber_verify');
+                        const verifyButton = document.getElementById('verifybutton');
+
 
                         if (donationType === 'existing') {
                             existingDonorInfo.style.display = 'block';
@@ -309,6 +341,18 @@
                             verificationResult.style.display = 'none';
                             donationAmountSection.style.display = 'none';
                             donateButton.disabled = true;
+
+                            // Reset contact number field and button if they were disabled from previous verification
+                            if (contactNumberInput) {
+                                contactNumberInput.disabled = false;
+                                contactNumberInput.removeAttribute('readonly');
+                            }
+                            if (verifyButton) {
+                                verifyButton.disabled = false;
+                                verifyButton.innerHTML = 'Find your details';
+                                verifyButton.classList.remove('btn-success');
+                                verifyButton.classList.add('btn-primary');
+                            }
                         } else if (donationType === 'new') {
                             existingDonorInfo.style.display = 'none';
                             newDonorInfo.style.display = 'block';

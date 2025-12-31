@@ -313,6 +313,9 @@
         var visitButton = document.getElementById('visitButton');
         var newvisitorInfo = document.getElementById('newvisitorInfo');
 
+        // Add this flag here
+        let isContactVerified = false;
+
         contactNumberInput.addEventListener("input", function (event) {
             contactNumberVerifyInput.value = this.value;
         });
@@ -429,6 +432,8 @@
             const newvisitorInfo = document.getElementById('newvisitorInfo');
             const verificationResult = document.getElementById('verificationResult');
             const visitinfoSection = document.getElementById('visitinfo');
+            const contactNumberInput = document.getElementById('contactnumber_verify');
+            const verifyButton = document.getElementById('verifybutton');
 
             if (visitorType === 'existing') {
                 existingvisitorInfo.style.display = 'block';
@@ -436,6 +441,18 @@
                 verificationResult.style.display = 'none';
                 visitinfoSection.style.display = 'none';
                 visitButton.disabled = true;
+
+                // Reset contact number field and button if they were disabled from previous verification
+                if (contactNumberInput) {
+                    contactNumberInput.disabled = false;
+                    contactNumberInput.removeAttribute('readonly');
+                }
+                if (verifyButton) {
+                    verifyButton.disabled = false;
+                    verifyButton.innerHTML = 'Find your details';
+                    verifyButton.classList.remove('btn-success');
+                    verifyButton.classList.add('btn-primary');
+                }
             } else if (visitorType === 'new') {
                 existingvisitorInfo.style.display = 'none';
                 newvisitorInfo.style.display = 'block';
