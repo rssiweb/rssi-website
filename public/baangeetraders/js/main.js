@@ -1,4 +1,4 @@
-// js/main.js?v=1.2
+// js/main.js?v=1.3
 // Also update the DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', function () {
     // Load header and footer dynamically
