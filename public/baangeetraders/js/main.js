@@ -1,4 +1,4 @@
-// js/main.js?v=1.1
+// js/main.js?v=1.2
 // Also update the DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', function () {
     // Load header and footer dynamically
@@ -149,3 +149,65 @@ document.addEventListener('click', function (e) {
         navLink.classList.add('active');
     }
 });
+
+// Add WhatsApp floating button to all pages
+function addWhatsAppButton() {
+    const whatsappButton = document.createElement('a');
+    whatsappButton.href = 'https://wa.me/919429464575?text=Hello%20Baangee%20Traders%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services';
+    whatsappButton.className = 'whatsapp-float';
+    whatsappButton.target = '_blank';
+    whatsappButton.title = 'Chat with us on WhatsApp';
+    whatsappButton.setAttribute('aria-label', 'Chat with us on WhatsApp');
+    
+    whatsappButton.innerHTML = `
+        <i class="bi bi-whatsapp"></i>
+        <div class="whatsapp-tooltip">
+            Chat with us on WhatsApp
+        </div>
+    `;
+    
+    document.body.appendChild(whatsappButton);
+}
+
+// Update the initComponents function in main.js:
+function initComponents() {
+    // Initialize carousel if exists
+    const carousel = document.querySelector('.carousel');
+    if (carousel) {
+        const bsCarousel = new bootstrap.Carousel(carousel, {
+            interval: 5000,
+            wrap: true
+        });
+    }
+    
+    // Animate on scroll
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    animateElements.forEach(el => observer.observe(el));
+    
+    // Voucher selection functionality
+    document.querySelectorAll('.voucher-card').forEach(card => {
+        card.addEventListener('click', function() {
+            document.querySelectorAll('.voucher-card').forEach(c => {
+                c.classList.remove('selected');
+            });
+            this.classList.add('selected');
+            
+            const voucherType = this.dataset.type;
+            document.getElementById('voucherType').value = voucherType;
+        });
+    });
+    
+    // Add WhatsApp button
+    addWhatsAppButton();
+}
