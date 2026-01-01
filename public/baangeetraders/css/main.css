@@ -1,4 +1,4 @@
-/* css/main.css?v=1.3 */
+/* css/main.css?v=1.4 */
 :root {
     --primary-color: #0A2647;
     /* DeepSeek Dark Blue */
@@ -20,6 +20,13 @@ body {
     line-height: 1.6;
     padding-top: 76px;
     /* For fixed navbar */
+}
+
+.logo {
+    height: 40px;
+    /* adjust as needed */
+    width: auto;
+    /* keeps aspect ratio */
 }
 
 /* Header Styles */
