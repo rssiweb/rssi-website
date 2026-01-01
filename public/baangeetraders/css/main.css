@@ -1,10 +1,15 @@
 /* css/main.css */
 :root {
-    --primary-color: #0A2647; /* DeepSeek Dark Blue */
-    --secondary-color: #205295; /* DeepSeek Medium Blue */
-    --accent-color: #2C74B3; /* DeepSeek Light Blue */
-    --light-color: #144272; /* DeepSeek Blue */
-    --highlight-color: #00C4CC; /* DeepSeek Teal */
+    --primary-color: #0A2647;
+    /* DeepSeek Dark Blue */
+    --secondary-color: #205295;
+    /* DeepSeek Medium Blue */
+    --accent-color: #2C74B3;
+    /* DeepSeek Light Blue */
+    --light-color: #144272;
+    /* DeepSeek Blue */
+    --highlight-color: #00C4CC;
+    /* DeepSeek Teal */
     --text-light: #E8F1F5;
     --text-dark: #0A2647;
 }
@@ -13,7 +18,8 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-dark);
     line-height: 1.6;
-    padding-top: 76px; /* For fixed navbar */
+    padding-top: 76px;
+    /* For fixed navbar */
 }
 
 /* Header Styles */
@@ -243,7 +249,8 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.form-control {
+.form-control,
+.form-select {
     padding: 15px;
     border: 1px solid rgba(10, 38, 71, 0.2);
     border-radius: 10px;
@@ -410,24 +417,25 @@ body {
     body {
         padding-top: 70px;
     }
-    
-    .hero-carousel, .carousel-item {
+
+    .hero-carousel,
+    .carousel-item {
         height: 500px;
     }
-    
+
     .carousel-caption {
         padding: 20px;
         bottom: 20%;
     }
-    
+
     .carousel-caption h1 {
         font-size: 2rem;
     }
-    
+
     .section-title {
         font-size: 1.8rem;
     }
-    
+
     .voucher-option {
         min-width: 100%;
     }
