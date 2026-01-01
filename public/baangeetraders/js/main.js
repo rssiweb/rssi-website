@@ -158,14 +158,14 @@ function addWhatsAppButton() {
     whatsappButton.target = '_blank';
     whatsappButton.title = 'Chat with us on WhatsApp';
     whatsappButton.setAttribute('aria-label', 'Chat with us on WhatsApp');
-    
+
     whatsappButton.innerHTML = `
         <i class="bi bi-whatsapp"></i>
         <div class="whatsapp-tooltip">
             Chat with us on WhatsApp
         </div>
     `;
-    
+
     document.body.appendChild(whatsappButton);
 }
 
@@ -179,7 +179,7 @@ function initComponents() {
             wrap: true
         });
     }
-    
+
     // Animate on scroll
     const animateElements = document.querySelectorAll('.animate-on-scroll');
     const observer = new IntersectionObserver((entries) => {
@@ -192,22 +192,100 @@ function initComponents() {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     });
-    
+
     animateElements.forEach(el => observer.observe(el));
-    
+
     // Voucher selection functionality
     document.querySelectorAll('.voucher-card').forEach(card => {
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function () {
             document.querySelectorAll('.voucher-card').forEach(c => {
                 c.classList.remove('selected');
             });
             this.classList.add('selected');
-            
+
             const voucherType = this.dataset.type;
             document.getElementById('voucherType').value = voucherType;
         });
     });
-    
+
     // Add WhatsApp button
     addWhatsAppButton();
+}
+
+// Add Scroll to Top button functionality
+function addScrollToTopButton() {
+    // Create the button
+    const scrollButton = document.createElement('button');
+    scrollButton.className = 'scroll-to-top';
+    scrollButton.setAttribute('aria-label', 'Scroll to top');
+    scrollButton.innerHTML = '<i class="bi bi-chevron-up"></i>';
+
+    // Add click event
+    scrollButton.addEventListener('click', function () {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Add to body
+    document.body.appendChild(scrollButton);
+
+    // Show/hide based on scroll position
+    window.addEventListener('scroll', function () {
+        const scrollButton = document.querySelector('.scroll-to-top');
+        if (scrollButton) {
+            if (window.scrollY > 300) {
+                scrollButton.classList.add('show');
+            } else {
+                scrollButton.classList.remove('show');
+            }
+        }
+    });
+}
+
+// Update the initComponents function to include scroll-to-top button
+function initComponents() {
+    // Initialize carousel if exists
+    const carousel = document.querySelector('.carousel');
+    if (carousel) {
+        const bsCarousel = new bootstrap.Carousel(carousel, {
+            interval: 5000,
+            wrap: true
+        });
+    }
+
+    // Animate on scroll
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    animateElements.forEach(el => observer.observe(el));
+
+    // Voucher selection functionality
+    document.querySelectorAll('.voucher-card').forEach(card => {
+        card.addEventListener('click', function () {
+            document.querySelectorAll('.voucher-card').forEach(c => {
+                c.classList.remove('selected');
+            });
+            this.classList.add('selected');
+
+            const voucherType = this.dataset.type;
+            document.getElementById('voucherType').value = voucherType;
+        });
+    });
+
+    // Add WhatsApp button
+    addWhatsAppButton();
+
+    // Add Scroll to Top button
+    addScrollToTopButton();
 }
