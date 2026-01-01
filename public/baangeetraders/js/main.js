@@ -1,13 +1,17 @@
-// js/main.js
-document.addEventListener('DOMContentLoaded', function() {
+// js/main.js?v=1.1
+// Also update the DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', function () {
     // Load header and footer dynamically
     loadHeader();
     loadFooter();
-    
+
     // Initialize components
     initComponents();
-});
 
+    // Call setActiveNavLink again after a short delay to ensure everything is loaded
+    setTimeout(setActiveNavLink, 100);
+});
+// Update the loadHeader function to call setActiveNavLink after header loads
 function loadHeader() {
     const headerPlaceholder = document.getElementById('header-placeholder');
     if (headerPlaceholder) {
@@ -16,11 +20,14 @@ function loadHeader() {
             .then(data => {
                 headerPlaceholder.innerHTML = data;
                 initNavbar();
+                // Call after header is loaded
+                setActiveNavLink();
             })
             .catch(error => console.error('Error loading header:', error));
     }
 }
 
+// Update the loadFooter function to NOT call setActiveNavLink
 function loadFooter() {
     const footerPlaceholder = document.getElementById('footer-placeholder');
     if (footerPlaceholder) {
@@ -28,7 +35,6 @@ function loadFooter() {
             .then(response => response.text())
             .then(data => {
                 footerPlaceholder.innerHTML = data;
-                setActiveNavLink();
             })
             .catch(error => console.error('Error loading footer:', error));
     }
@@ -36,7 +42,7 @@ function loadFooter() {
 
 function initNavbar() {
     // Navbar scroll effect
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         const navbar = document.querySelector('.navbar');
         if (navbar) {
             if (window.scrollY > 50) {
@@ -49,17 +55,44 @@ function initNavbar() {
 }
 
 function setActiveNavLink() {
-    // Set active nav link based on current page
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    // Get current page path
+    const currentPath = window.location.pathname;
+    const currentPage = currentPath.split('/').pop() || 'index.html';
+
+    // Remove .html extension for comparison
+    const currentPageBase = currentPage.replace('.html', '') || 'index';
+
+    console.log('Current page:', currentPageBase); // For debugging
+
     const navLinks = document.querySelectorAll('.nav-link');
-    
+
     navLinks.forEach(link => {
         const linkHref = link.getAttribute('href');
-        if (linkHref === currentPage || 
-            (currentPage === '' && linkHref === 'index.html') ||
-            (currentPage.includes(linkHref.replace('.html', '')))) {
+
+        if (!linkHref) return;
+
+        // Extract page name from href (remove .html and any # anchors)
+        const linkPage = linkHref.split('#')[0];
+        const linkPageBase = linkPage.replace('.html', '') || 'index';
+
+        // Special handling for home page
+        if (linkPageBase === 'index' && currentPageBase === 'index') {
             link.classList.add('active');
-        } else {
+        }
+        // For other pages, check if they match
+        else if (linkPageBase === currentPageBase) {
+            link.classList.add('active');
+        }
+        // Check if current page starts with link page (for library-registration.html etc.)
+        else if (currentPageBase.includes(linkPageBase) && linkPageBase !== 'index') {
+            link.classList.add('active');
+        }
+        // Handle hash links on the same page
+        else if (linkHref.includes('#') && currentPageBase === 'index') {
+            // Remove active class from hash links by default
+            link.classList.remove('active');
+        }
+        else {
             link.classList.remove('active');
         }
     });
@@ -74,7 +107,7 @@ function initComponents() {
             wrap: true
         });
     }
-    
+
     // Animate on scroll
     const animateElements = document.querySelectorAll('.animate-on-scroll');
     const observer = new IntersectionObserver((entries) => {
@@ -87,19 +120,32 @@ function initComponents() {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     });
-    
+
     animateElements.forEach(el => observer.observe(el));
-    
+
     // Voucher selection functionality
     document.querySelectorAll('.voucher-card').forEach(card => {
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function () {
             document.querySelectorAll('.voucher-card').forEach(c => {
                 c.classList.remove('selected');
             });
             this.classList.add('selected');
-            
+
             const voucherType = this.dataset.type;
             document.getElementById('voucherType').value = voucherType;
         });
     });
 }
+
+// Add click event listeners to nav links for immediate feedback
+document.addEventListener('click', function (e) {
+    if (e.target.matches('.nav-link') || e.target.closest('.nav-link')) {
+        const navLink = e.target.matches('.nav-link') ? e.target : e.target.closest('.nav-link');
+
+        // Update active class immediately
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+        });
+        navLink.classList.add('active');
+    }
+});
