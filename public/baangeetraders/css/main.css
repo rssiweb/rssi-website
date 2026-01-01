@@ -69,15 +69,15 @@ body {
 }
 
 .carousel-item:nth-child(1) {
-    background-image: linear-gradient(rgba(10, 38, 71, 0.8), rgba(10, 38, 71, 0.7)), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-image: linear-gradient(rgba(10, 38, 71, 0.8), rgba(10, 38, 71, 0.7)), url('https://5.imimg.com/data5/SELLER/Default/2023/8/334006313/OP/IZ/BU/154572410/indiamart-vouchers-500x500.jpeg');
 }
 
 .carousel-item:nth-child(2) {
-    background-image: linear-gradient(rgba(10, 38, 71, 0.8), rgba(10, 38, 71, 0.7)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-image: linear-gradient(rgba(10, 38, 71, 0.8), rgba(10, 38, 71, 0.7)), url('https://cdn.prod.website-files.com/604a97c70aee09eed25ce991/61897a35583a9b51db018d3e_MartinPublicSeating-97560-Importance-School-Library-blogbanner1.jpg');
 }
 
 .carousel-item:nth-child(3) {
-    background-image: linear-gradient(rgba(10, 38, 71, 0.8), rgba(10, 38, 71, 0.7)), url('https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-image: linear-gradient(rgba(10, 38, 71, 0.8), rgba(10, 38, 71, 0.7)), url('https://www.fodors.com/wp-content/uploads/2022/05/1-BOOKSTORES-BAM_credit_DavidLand_08.jpg');
 }
 
 .carousel-caption {
