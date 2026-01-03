@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create New Blog Post - RSSI NGO</title>
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Summernote WYSIWYG Editor -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    
+
     <style>
         :root {
             --primary-color: #2c3e50;
             --secondary-color: #3498db;
             --accent-color: #e74c3c;
         }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f8f9fa;
+            position: relative;
+            min-height: 100vh;
         }
-        
+
         .form-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 30px;
             background: white;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
-        
+
         .form-header {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
@@ -40,19 +43,19 @@
             border-radius: 15px 15px 0 0;
             margin-bottom: 30px;
         }
-        
+
         .required-field::after {
             content: " *";
             color: #e74c3c;
         }
-        
+
         .form-section {
             border: 1px solid #e0e0e0;
             border-radius: 10px;
             padding: 25px;
             margin-bottom: 30px;
         }
-        
+
         .form-section-title {
             font-size: 1.2rem;
             font-weight: 600;
@@ -61,7 +64,7 @@
             padding-bottom: 10px;
             border-bottom: 2px solid #e0e0e0;
         }
-        
+
         .image-preview-container {
             width: 100%;
             height: 200px;
@@ -75,18 +78,19 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-        
+
         .image-preview-container:hover {
             border-color: var(--secondary-color);
             background: #f0f7ff;
         }
-        
+
         .image-preview {
             max-width: 100%;
             max-height: 100%;
             display: none;
+            object-fit: contain;
         }
-        
+
         .author-avatar-preview {
             width: 100px;
             height: 100px;
@@ -95,7 +99,13 @@
             border: 3px solid var(--secondary-color);
             cursor: pointer;
         }
-        
+
+        .author-avatar-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .tag-badge {
             display: inline-block;
             background: #e3f2fd;
@@ -105,17 +115,17 @@
             margin: 5px;
             font-size: 0.9rem;
         }
-        
+
         .tag-badge .remove-tag {
             margin-left: 8px;
             cursor: pointer;
             color: #666;
         }
-        
+
         .tag-badge .remove-tag:hover {
             color: #e74c3c;
         }
-        
+
         .btn-submit {
             background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             color: white;
@@ -126,18 +136,18 @@
             font-size: 1.1rem;
             transition: all 0.3s;
         }
-        
+
         .btn-submit:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
         }
-        
+
         .btn-submit:disabled {
             opacity: 0.6;
             cursor: not-allowed;
             transform: none !important;
         }
-        
+
         .status-badge {
             display: inline-block;
             padding: 5px 15px;
@@ -147,63 +157,143 @@
             cursor: pointer;
             border: 2px solid transparent;
         }
-        
+
         .status-badge.active {
             border-color: var(--secondary-color);
         }
-        
+
         .status-draft {
             background: #f8f9fa;
             color: #6c757d;
         }
-        
+
         .status-published {
             background: #d4edda;
             color: #155724;
         }
-        
+
         .status-pending {
             background: #fff3cd;
             color: #856404;
         }
-        
+
         .alert-message {
             display: none;
             padding: 15px;
             border-radius: 10px;
             margin-bottom: 20px;
         }
-        
+
+        /* Fixed loading overlay that covers entire screen */
         .loading-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.7);
             display: none;
             align-items: center;
             justify-content: center;
-            z-index: 9999;
+            z-index: 99999;
         }
-        
+
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+
         .loading-spinner {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        /* Success modal */
+        .success-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100000;
+        }
+
+        .success-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        .success-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <div id="header"></div>
-    
-    <!-- Loading Overlay -->
+
+    <!-- Fixed Loading Overlay (covers entire screen) -->
     <div class="loading-overlay">
-        <div class="spinner-border loading-spinner text-light" role="status">
-            <span class="visually-hidden">Loading...</span>
+        <div class="loading-content">
+            <div class="spinner-border loading-spinner" role="status" style="width: 80px; height: 80px;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <h4>Processing your request...</h4>
+            <p>Please wait while we save your blog post</p>
         </div>
     </div>
-    
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Success!</h3>
+            <p id="successModalMessage">Your blog post has been saved successfully.</p>
+            <div class="success-buttons">
+                <button class="btn btn-outline-secondary" id="createAnotherBtn">
+                    <i class="fas fa-plus me-2"></i>Create Another
+                </button>
+                <button class="btn btn-primary" id="viewBlogBtn">
+                    <i class="fas fa-eye me-2"></i>View Blog
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Form Container -->
     <div class="container my-5">
         <div class="form-container">
@@ -212,54 +302,53 @@
                 <h1 class="display-5 fw-bold mb-3"><i class="fas fa-edit me-3"></i>Create New Blog Post</h1>
                 <p class="lead mb-0">Share your story, insights, or updates with our community</p>
             </div>
-            
+
             <!-- Alert Messages -->
             <div class="alert alert-success alert-message" id="successAlert">
                 <i class="fas fa-check-circle me-2"></i>
                 <span id="successMessage">Blog post saved successfully!</span>
             </div>
-            
+
             <div class="alert alert-danger alert-message" id="errorAlert">
                 <i class="fas fa-exclamation-circle me-2"></i>
                 <span id="errorMessage">Error saving blog post. Please try again.</span>
             </div>
-            
+
             <!-- Blog Form -->
             <form id="blogForm">
                 <!-- Basic Information Section -->
                 <div class="form-section">
                     <h3 class="form-section-title">Basic Information</h3>
-                    
+
                     <div class="row">
                         <div class="col-md-8">
                             <!-- Title -->
                             <div class="mb-4">
                                 <label for="title" class="form-label required-field fw-semibold">Post Title</label>
-                                <input type="text" class="form-control form-control-lg" id="title" 
-                                       placeholder="Enter a compelling title for your post" required>
+                                <input type="text" class="form-control form-control-lg" id="title"
+                                    placeholder="Enter a compelling title for your post" required>
                                 <div class="form-text">Keep it clear, concise, and engaging</div>
                             </div>
-                            
+
                             <!-- Slug (auto-generated) -->
                             <div class="mb-4">
                                 <label for="slug" class="form-label fw-semibold">URL Slug</label>
                                 <div class="input-group">
                                     <span class="input-group-text">/blog/</span>
-                                    <input type="text" class="form-control" id="slug" 
-                                           placeholder="auto-generated-slug">
+                                    <input type="text" class="form-control" id="slug" placeholder="auto-generated-slug">
                                 </div>
                                 <div class="form-text">Leave empty for auto-generation, or customize for SEO</div>
                             </div>
-                            
+
                             <!-- Excerpt -->
                             <div class="mb-4">
                                 <label for="excerpt" class="form-label fw-semibold">Short Excerpt</label>
-                                <textarea class="form-control" id="excerpt" rows="3" 
-                                          placeholder="Brief summary of your post (appears in listings)"></textarea>
+                                <textarea class="form-control" id="excerpt" rows="3"
+                                    placeholder="Brief summary of your post (appears in listings)"></textarea>
                                 <div class="form-text">Keep it under 200 characters for best results</div>
                             </div>
                         </div>
-                        
+
                         <div class="col-md-4">
                             <!-- Featured Image -->
                             <div class="mb-4">
@@ -272,12 +361,12 @@
                                     </div>
                                     <img src="" class="image-preview" id="imagePreview" alt="Preview">
                                 </div>
-                                <input type="file" class="form-control mt-2" id="featuredImage" 
-                                       accept="image/*" style="display: none;">
+                                <input type="file" class="form-control mt-2" id="featuredImage" accept="image/*"
+                                    style="display: none;">
                                 <input type="hidden" id="featuredImageUrl">
                                 <div class="d-flex justify-content-between mt-2">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary" 
-                                            onclick="document.getElementById('featuredImage').click()">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                                        id="uploadFeaturedBtn">
                                         <i class="fas fa-upload me-1"></i> Upload
                                     </button>
                                     <button type="button" class="btn btn-sm btn-outline-danger" id="removeImage">
@@ -288,17 +377,17 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Content Section -->
                 <div class="form-section">
                     <h3 class="form-section-title">Content</h3>
-                    
+
                     <!-- Content Editor -->
                     <div class="mb-4">
                         <label for="content" class="form-label required-field fw-semibold">Post Content</label>
                         <textarea id="content" class="form-control"></textarea>
                     </div>
-                    
+
                     <!-- Reading Time (auto-calculated) -->
                     <div class="row">
                         <div class="col-md-6">
@@ -313,11 +402,11 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Categorization Section -->
                 <div class="form-section">
                     <h3 class="form-section-title">Categorization</h3>
-                    
+
                     <div class="row">
                         <div class="col-md-6">
                             <!-- Category -->
@@ -337,82 +426,87 @@
                                 <div class="form-text">Choose the most relevant category</div>
                             </div>
                         </div>
-                        
+
                         <div class="col-md-6">
                             <!-- Tags -->
                             <div class="mb-4">
                                 <label class="form-label fw-semibold">Tags</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" id="tagInput" 
-                                           placeholder="Add tags (press Enter)">
+                                    <input type="text" class="form-control" id="tagInput"
+                                        placeholder="Add tags (press Enter)">
                                     <button class="btn btn-outline-secondary" type="button" id="addTagBtn">
                                         <i class="fas fa-plus"></i>
                                     </button>
                                 </div>
                                 <div class="form-text">Press Enter or click + to add tags</div>
-                                
+
                                 <!-- Tags Container -->
                                 <div class="mt-3" id="tagsContainer">
                                     <!-- Tags will appear here -->
                                 </div>
-                                
+
                                 <!-- Popular Tags Suggestion -->
                                 <div class="mt-3">
                                     <small class="text-muted me-2">Popular tags:</small>
                                     <small>
-                                        <a href="#" class="text-decoration-none me-2 tag-suggestion" data-tag="ngo">ngo</a>
-                                        <a href="#" class="text-decoration-none me-2 tag-suggestion" data-tag="social-work">social-work</a>
-                                        <a href="#" class="text-decoration-none me-2 tag-suggestion" data-tag="community">community</a>
-                                        <a href="#" class="text-decoration-none me-2 tag-suggestion" data-tag="development">development</a>
+                                        <a href="#" class="text-decoration-none me-2 tag-suggestion"
+                                            data-tag="ngo">ngo</a>
+                                        <a href="#" class="text-decoration-none me-2 tag-suggestion"
+                                            data-tag="social-work">social-work</a>
+                                        <a href="#" class="text-decoration-none me-2 tag-suggestion"
+                                            data-tag="community">community</a>
+                                        <a href="#" class="text-decoration-none me-2 tag-suggestion"
+                                            data-tag="development">development</a>
                                     </small>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Author & Status Section -->
                 <div class="form-section">
                     <h3 class="form-section-title">Author & Status</h3>
-                    
+
                     <div class="row">
                         <div class="col-md-6">
                             <!-- Author Information -->
                             <div class="mb-4">
                                 <label class="form-label fw-semibold">Author Information</label>
-                                
+
                                 <div class="d-flex align-items-center mb-3">
                                     <div class="author-avatar-preview me-3" id="authorAvatarPreview">
-                                        <div class="bg-secondary text-white w-100 h-100 d-flex align-items-center justify-content-center">
+                                        <div
+                                            class="bg-secondary text-white w-100 h-100 d-flex align-items-center justify-content-center">
                                             <i class="fas fa-user fa-2x"></i>
                                         </div>
                                     </div>
                                     <div>
                                         <input type="file" id="authorPhoto" accept="image/*" style="display: none;">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary" 
-                                                onclick="document.getElementById('authorPhoto').click()">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"
+                                            id="uploadAuthorBtn">
                                             <i class="fas fa-camera me-1"></i> Upload Photo
                                         </button>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <input type="text" class="form-control" id="authorName" 
-                                                   placeholder="Author Name">
+                                            <input type="text" class="form-control" id="authorName"
+                                                placeholder="Author Name">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <input type="text" class="form-control" id="authorRole" 
-                                                   placeholder="Author Role/Title">
+                                            <input type="text" class="form-control" id="authorRole"
+                                                placeholder="Author Role/Title">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-md-6">
                             <!-- Publication Status -->
                             <div class="mb-4">
@@ -429,7 +523,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" id="status" value="draft">
-                                
+
                                 <!-- Schedule Publication -->
                                 <div class="mt-4" id="scheduleSection" style="display: none;">
                                     <label for="publishDate" class="form-label fw-semibold">Schedule Publication</label>
@@ -440,7 +534,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Submit Buttons -->
                 <div class="d-flex justify-content-between pt-4 border-top">
                     <div>
@@ -460,26 +554,28 @@
             </form>
         </div>
     </div>
-    
+
     <!-- Footer -->
     <div id="footer"></div>
-    
+
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-    
+
     <script>
         // API endpoint configuration
         const API_BASE = window.location.hostname === 'localhost'
             ? 'http://localhost:8082/blog-api/'
             : 'https://login.rssi.in/blog-api/';
-        
+
         let tags = [];
         let selectedStatus = 'draft';
-        
-        $(document).ready(function() {
-            // Initialize Summernote editor
+        let featuredImageBase64 = null;
+        let authorPhotoBase64 = null;
+
+        $(document).ready(function () {
+            // Initialize Summernote editor with image upload
             $('#content').summernote({
                 height: 400,
                 toolbar: [
@@ -495,19 +591,31 @@
                 ],
                 placeholder: 'Write your amazing content here...',
                 callbacks: {
-                    onChange: function(contents) {
+                    onChange: function (contents) {
                         calculateReadingTime();
+                    },
+                    onImageUpload: function (files) {
+                        // Convert image to base64 and insert directly (will be uploaded to Drive on save)
+                        const file = files[0];
+                        const reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            // Insert image as base64 - will be converted to Drive URL when saving
+                            $('#content').summernote('insertImage', e.target.result);
+                        };
+
+                        reader.readAsDataURL(file);
                     }
                 }
             });
-            
+
             // Setup event listeners
             setupEventListeners();
         });
-        
+
         function setupEventListeners() {
             // Auto-generate slug from title
-            $('#title').on('input', function() {
+            $('#title').on('input', function () {
                 const title = $(this).val();
                 if (title && !$('#slug').val()) {
                     const slug = title.toLowerCase()
@@ -517,53 +625,82 @@
                     $('#slug').val(slug);
                 }
             });
-            
+
             // Featured image upload
-            $('#featuredImage').change(function(e) {
-                uploadImage(e.target.files[0], 'featured');
-            });
-            
-            $('#imagePreviewContainer').click(function() {
+            $('#uploadFeaturedBtn').click(function () {
                 $('#featuredImage').click();
             });
-            
-            $('#removeImage').click(function() {
+
+            $('#featuredImage').change(function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Convert to base64 for preview
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        featuredImageBase64 = e.target.result;
+                        $('#imagePreview').attr('src', featuredImageBase64).show();
+                        $('#imagePlaceholder').hide();
+                        $('#featuredImageUrl').val(featuredImageBase64);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            $('#imagePreviewContainer').click(function () {
+                $('#featuredImage').click();
+            });
+
+            $('#removeImage').click(function () {
                 $('#imagePreview').hide();
                 $('#imagePlaceholder').show();
                 $('#featuredImageUrl').val('');
                 $('#featuredImage').val('');
+                featuredImageBase64 = null;
             });
-            
+
             // Author photo upload
-            $('#authorPhoto').change(function(e) {
-                uploadImage(e.target.files[0], 'author');
+            $('#uploadAuthorBtn').click(function () {
+                $('#authorPhoto').click();
             });
-            
+
+            $('#authorPhoto').change(function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Convert to base64 for preview
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        authorPhotoBase64 = e.target.result;
+                        $('#authorAvatarPreview').html(`<img src="${authorPhotoBase64}" class="w-100 h-100" style="object-fit: cover;">`);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
             // Tags management
-            $('#tagInput').keypress(function(e) {
+            $('#tagInput').keypress(function (e) {
                 if (e.which === 13) {
                     e.preventDefault();
                     addTag();
                 }
             });
-            
+
             $('#addTagBtn').click(addTag);
-            
+
             // Tag suggestions
-            $(document).on('click', '.tag-suggestion', function(e) {
+            $(document).on('click', '.tag-suggestion', function (e) {
                 e.preventDefault();
                 const tag = $(this).data('tag');
                 $('#tagInput').val(tag);
                 addTag();
             });
-            
+
             // Status selection
-            $('.status-badge').click(function() {
+            $('.status-badge').click(function () {
                 $('.status-badge').removeClass('active');
                 $(this).addClass('active');
                 selectedStatus = $(this).data('status');
                 $('#status').val(selectedStatus);
-                
+
                 // Show/hide schedule section for published
                 if (selectedStatus === 'published') {
                     $('#scheduleSection').show();
@@ -571,15 +708,15 @@
                     $('#scheduleSection').hide();
                 }
             });
-            
+
             // Form submission
-            $('#blogForm').submit(function(e) {
+            $('#blogForm').submit(function (e) {
                 e.preventDefault();
                 saveBlogPost();
             });
-            
+
             // Save draft button
-            $('#saveDraftBtn').click(function() {
+            $('#saveDraftBtn').click(function () {
                 selectedStatus = 'draft';
                 $('#status').val('draft');
                 $('.status-badge').removeClass('active');
@@ -587,33 +724,43 @@
                 $('#scheduleSection').hide();
                 saveBlogPost();
             });
-            
+
             // Preview button
-            $('#previewBtn').click(function() {
+            $('#previewBtn').click(function () {
                 previewBlogPost();
             });
+
+            // Success modal buttons
+            $('#createAnotherBtn').click(function () {
+                $('#successModal').hide();
+                resetForm();
+            });
+
+            $('#viewBlogBtn').click(function () {
+                window.location.href = 'blog.html';
+            });
         }
-        
+
         function addTag() {
             const tagInput = $('#tagInput');
             const tag = tagInput.val().trim().toLowerCase();
-            
+
             if (tag && !tags.includes(tag)) {
                 tags.push(tag);
                 renderTags();
                 tagInput.val('');
             }
         }
-        
+
         function removeTag(tag) {
             tags = tags.filter(t => t !== tag);
             renderTags();
         }
-        
+
         function renderTags() {
             const container = $('#tagsContainer');
             container.empty();
-            
+
             tags.forEach(tag => {
                 const badge = `
                     <span class="tag-badge">
@@ -626,55 +773,18 @@
                 container.append(badge);
             });
         }
-        
+
         function calculateReadingTime() {
             const content = $('#content').summernote('code');
             const text = $(content).text();
             const wordCount = text.split(/\s+/).length;
             const readingTime = Math.ceil(wordCount / 200); // 200 words per minute
-            
+
             if (readingTime > 0) {
                 $('#readingTime').val(readingTime);
             }
         }
-        
-        function uploadImage(file, type) {
-            if (!file) return;
-            
-            const formData = new FormData();
-            formData.append('image', file);
-            formData.append('type', type);
-            
-            showLoading(true);
-            
-            $.ajax({
-                url: API_BASE + 'upload_image.php',
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    if (response.success) {
-                        if (type === 'featured') {
-                            $('#imagePreview').attr('src', response.url).show();
-                            $('#imagePlaceholder').hide();
-                            $('#featuredImageUrl').val(response.url);
-                        } else if (type === 'author') {
-                            $('#authorAvatarPreview').html(`<img src="${response.url}" class="w-100 h-100" style="object-fit: cover;">`);
-                        }
-                    } else {
-                        showError('Failed to upload image: ' + (response.message || 'Unknown error'));
-                    }
-                },
-                error: function() {
-                    showError('Failed to upload image. Please try again.');
-                },
-                complete: function() {
-                    showLoading(false);
-                }
-            });
-        }
-        
+
         function saveBlogPost() {
             // Validate required fields
             if (!$('#title').val()) {
@@ -682,82 +792,122 @@
                 $('#title').focus();
                 return;
             }
-            
+
             if (!$('#category').val()) {
                 showError('Category is required');
                 $('#category').focus();
                 return;
             }
-            
+
             const content = $('#content').summernote('code');
             if (!content || content.trim() === '<p><br></p>') {
                 showError('Content is required');
                 return;
             }
-            
-            // Prepare data
+
+            // Prepare data - send base64 images, they'll be uploaded to Drive by PHP
             const blogData = {
                 title: $('#title').val(),
                 slug: $('#slug').val() || generateSlug($('#title').val()),
                 excerpt: $('#excerpt').val(),
                 content: content,
-                featured_image: $('#featuredImageUrl').val(),
+                featured_image: featuredImageBase64 || $('#featuredImageUrl').val() || '',
                 category: $('#category').val(),
                 tags: tags,
                 author_name: $('#authorName').val(),
-                author_photo: $('#authorAvatarPreview img').attr('src') || '',
+                author_photo: authorPhotoBase64 || $('#authorAvatarPreview img').attr('src') || '',
                 reading_time: $('#readingTime').val(),
                 status: selectedStatus,
                 publish_date: $('#publishDate').val() || null
             };
-            
+
             console.log('Saving blog data:', blogData);
-            
+
             showLoading(true);
             $('#submitBtn').prop('disabled', true);
-            
+            $('#saveDraftBtn').prop('disabled', true);
+
             $.ajax({
                 url: API_BASE + 'save_blog.php',
                 type: 'POST',
                 data: JSON.stringify(blogData),
                 contentType: 'application/json',
                 dataType: 'json',
-                success: function(response) {
+                success: function (response) {
                     if (response.success) {
-                        showSuccess('Blog post saved successfully!');
-                        
-                        // Clear form if needed
-                        if (selectedStatus === 'published') {
-                            setTimeout(() => {
-                                window.location.href = 'blog.html';
-                            }, 2000);
-                        }
+                        const message = selectedStatus === 'published'
+                            ? 'Blog post published successfully!'
+                            : 'Blog draft saved successfully!';
+
+                        $('#successModalMessage').text(message);
+                        $('#successModal').show();
+
+                        // Show inline success message
+                        showSuccess(message);
                     } else {
                         showError(response.message || 'Failed to save blog post');
                     }
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.error('Save error:', error);
                     showError('Server error: ' + error);
                 },
-                complete: function() {
+                complete: function () {
                     showLoading(false);
                     $('#submitBtn').prop('disabled', false);
+                    $('#saveDraftBtn').prop('disabled', false);
                 }
             });
         }
-        
+
+        function resetForm() {
+            // Reset all form fields
+            $('#blogForm')[0].reset();
+            $('#content').summernote('code', '');
+            $('#imagePreview').hide();
+            $('#imagePlaceholder').show();
+            $('#authorAvatarPreview').html(`
+                <div class="bg-secondary text-white w-100 h-100 d-flex align-items-center justify-content-center">
+                    <i class="fas fa-user fa-2x"></i>
+                </div>
+            `);
+            tags = [];
+            renderTags();
+            selectedStatus = 'draft';
+            $('#status').val('draft');
+            $('.status-badge').removeClass('active');
+            $('.status-badge[data-status="draft"]').addClass('active');
+            $('#scheduleSection').hide();
+            featuredImageBase64 = null;
+            authorPhotoBase64 = null;
+
+            // Hide alerts
+            $('#successAlert').hide();
+            $('#errorAlert').hide();
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
         function generateSlug(title) {
             return title.toLowerCase()
                 .replace(/[^\w\s-]/g, '')
                 .replace(/[\s_-]+/g, '-')
                 .replace(/^-+|-+$/g, '');
         }
-        
+
         function previewBlogPost() {
             const content = $('#content').summernote('code');
             const previewWindow = window.open('', '_blank');
-            
+
+            // Get preview image URL
+            let previewImageUrl = '';
+            if (featuredImageBase64) {
+                previewImageUrl = featuredImageBase64;
+            } else if ($('#featuredImageUrl').val()) {
+                previewImageUrl = $('#featuredImageUrl').val();
+            }
+
             const previewHTML = `
                 <!DOCTYPE html>
                 <html>
@@ -769,6 +919,7 @@
                         .preview-header { border-bottom: 2px solid #3498db; padding-bottom: 20px; margin-bottom: 30px; }
                         .preview-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 10px; margin-bottom: 20px; }
                         .preview-meta { color: #666; font-size: 0.9rem; margin-bottom: 30px; }
+                        .preview-content img { max-width: 100%; height: auto; }
                     </style>
                 </head>
                 <body>
@@ -781,7 +932,7 @@
                         </div>
                     </div>
                     
-                    ${$('#featuredImageUrl').val() ? `<img src="${$('#featuredImageUrl').val()}" class="preview-image" alt="Featured Image">` : ''}
+                    ${previewImageUrl ? `<img src="${previewImageUrl}" class="preview-image" alt="Featured Image">` : ''}
                     
                     <div class="preview-content">
                         ${content}
@@ -796,11 +947,11 @@
                 </body>
                 </html>
             `;
-            
+
             previewWindow.document.write(previewHTML);
             previewWindow.document.close();
         }
-        
+
         function showLoading(show) {
             if (show) {
                 $('.loading-overlay').fadeIn();
@@ -808,13 +959,13 @@
                 $('.loading-overlay').fadeOut();
             }
         }
-        
+
         function showSuccess(message) {
             $('#successMessage').text(message);
-            $('#successAlert').fadeIn().delay(3000).fadeOut();
+            $('#successAlert').fadeIn();
             $('#errorAlert').hide();
         }
-        
+
         function showError(message) {
             $('#errorMessage').text(message);
             $('#errorAlert').fadeIn();
@@ -822,4 +973,5 @@
         }
     </script>
 </body>
+
 </html>
