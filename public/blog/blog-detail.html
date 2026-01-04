@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Detail - RSSI NGO</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+        }
+
+        .blog-detail-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 80px 0 40px;
+        }
+
+        .blog-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .blog-content h2,
+        .blog-content h3,
+        .blog-content h4 {
+            color: var(--primary-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .blog-content blockquote {
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 20px;
+            margin: 2rem 0;
+            font-style: italic;
+            color: #555;
+        }
+
+        .author-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 3rem 0;
+        }
+
+        .comment-section {
+            margin-top: 3rem;
+        }
+
+        .comment-card {
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: white;
+        }
+
+        .reply-card {
+            margin-left: 40px;
+            background: #f8f9fa;
+        }
+
+        .like-btn {
+            background: transparent;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+            padding: 8px 20px;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .like-btn:hover,
+        .like-btn.liked {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .share-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-3px);
+            text-decoration: none;
+            color: white;
+        }
+
+        .facebook {
+            background: #3b5998;
+        }
+
+        .twitter {
+            background: #1da1f2;
+        }
+
+        .linkedin {
+            background: #0077b5;
+        }
+
+        .whatsapp {
+            background: #25d366;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div id="header"></div>
+
+    <!-- Blog Detail -->
+    <div class="container-fluid p-0">
+        <!-- Blog Header -->
+        <div class="blog-detail-header">
+            <div class="container">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/" class="text-white">Home</a></li>
+                        <li class="breadcrumb-item"><a href="index.html" class="text-white">Blog</a></li>
+                        <li class="breadcrumb-item active text-white" aria-current="page" id="breadcrumbTitle"></li>
+                    </ol>
+                </nav>
+                <h1 class="display-4 fw-bold mb-3" id="blogTitle"></h1>
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <div class="me-3">
+                            <div id="authorAvatar"
+                                style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden; background: white;">
+                            </div>
+                        </div>
+                        <div>
+                            <div id="authorName" class="fw-bold"></div>
+                            <div id="postMeta" class="text-white-50"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn like-btn" id="likeBtn">
+                            <i class="far fa-heart me-2"></i>
+                            <span id="likeCount">0</span> Likes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blog Content -->
+        <div class="container py-5">
+            <div class="row">
+                <!-- Main Content -->
+                <div class="col-lg-8">
+                    <!-- Featured Image -->
+                    <div class="mb-5">
+                        <img id="featuredImage" src="" alt="" class="img-fluid rounded shadow"
+                            style="max-height: 500px; width: 100%; object-fit: cover;">
+                    </div>
+
+                    <!-- Blog Content -->
+                    <div class="blog-content" id="blogContent"></div>
+
+                    <!-- Tags -->
+                    <div class="mt-5" id="postTags"></div>
+
+                    <!-- Share Buttons -->
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn facebook" id="shareFacebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="share-btn twitter" id="shareTwitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="share-btn linkedin" id="shareLinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="share-btn whatsapp" id="shareWhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+
+                    <!-- Author Card -->
+                    <div class="author-card" id="authorCard">
+                        <!-- Author info will be loaded here -->
+                    </div>
+
+                    <!-- Comments Section -->
+                    <div class="comment-section" id="commentSection">
+                        <h3 class="mb-4">Comments (<span id="commentCount">0</span>)</h3>
+
+                        <!-- Comment Form -->
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">Leave a Comment</h5>
+                                <form id="commentForm">
+                                    <div class="mb-3">
+                                        <textarea class="form-control" id="commentContent" rows="4"
+                                            placeholder="Write your comment here..." required></textarea>
+                                    </div>
+                                    <div class="text-end">
+                                        <button type="submit" class="btn btn-primary" id="submitCommentBtn">
+                                            <i class="fas fa-paper-plane me-2"></i> Post Comment
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Comments List -->
+                        <div id="commentsList"></div>
+                    </div>
+
+                    <!-- Related Posts -->
+                    <div class="mt-5" id="relatedPosts">
+                        <h3 class="mb-4">Related Articles</h3>
+                        <div class="row g-4" id="relatedPostsGrid"></div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Table of Contents -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Table of Contents</h5>
+                        </div>
+                        <div class="card-body">
+                            <nav id="tableOfContents"></nav>
+                        </div>
+                    </div>
+
+                    <!-- Reading Stats -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Reading Stats</h5>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Reading Time:</span>
+                                <span id="readingTime"></span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Word Count:</span>
+                                <span id="wordCount"></span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Views:</span>
+                                <span id="postViews"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        // API endpoint configuration
+        const API_BASE = window.location.hostname === 'localhost'
+            ? 'http://localhost:8082/blog-api/'
+            : 'https://login.rssi.in/blog-api/';
+        // Get post slug from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const postSlug = urlParams.get('slug') || urlParams.get('id');
+
+        let currentPost = null;
+        let isLiked = false;
+        let currentUser = null;
+
+        // Load blog post detail
+        $(document).ready(function () {
+            if (!postSlug) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            loadBlogDetail();
+            checkUserLogin();
+            setupEventListeners();
+        });
+
+        // Load blog detail
+        function loadBlogDetail() {
+            $.ajax({
+                url: API_BASE + `get_blog_detail.php?slug=${postSlug}`,
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success) {
+                        currentPost = response.post;
+                        renderBlogDetail(response);
+                        setupShareButtons();
+                        generateTableOfContents();
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                },
+                error: function () {
+                    window.location.href = 'index.html';
+                }
+            });
+        }
+
+        // Render blog detail
+        function renderBlogDetail(data) {
+            const post = data.post;
+
+            // Update page title
+            document.title = `${post.title} - RSSI NGO Blog`;
+
+            // Update breadcrumb
+            $('#breadcrumbTitle').text(post.title.substring(0, 30) + (post.title.length > 30 ? '...' : ''));
+
+            // Update header
+            $('#blogTitle').text(post.title);
+            $('#authorName').text(post.author_name || 'Anonymous');
+            $('#postMeta').html(`
+                ${new Date(post.published_at || post.created_at).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            })} • ${post.reading_time || '5'} min read
+            `);
+
+            // Update author avatar
+            if (post.author_photo) {
+                $('#authorAvatar').html(`<img src="${post.author_photo}" alt="${post.author_name}" style="width:100%;height:100%;object-fit:cover;">`);
+            } else {
+                $('#authorAvatar').html(`
+                    <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width:100%;height:100%;">
+                        ${post.author_name?.charAt(0) || 'A'}
+                    </div>
+                `);
+            }
+
+            // Update featured image
+            if (post.featured_image) {
+                $('#featuredImage').attr('src', post.featured_image).attr('alt', post.title);
+            } else {
+                $('#featuredImage').remove();
+            }
+
+            // Update content
+            $('#blogContent').html(post.content);
+
+            // Update likes
+            updateLikeStatus(data.likes);
+
+            // Update tags
+            if (post.tags && post.tags.length > 0) {
+                let tagsHtml = '<div class="d-flex flex-wrap gap-2">';
+                post.tags.forEach(tag => {
+                    tagsHtml += `<span class="badge bg-secondary">${tag}</span>`;
+                });
+                tagsHtml += '</div>';
+                $('#postTags').html(`<strong>Tags: </strong>${tagsHtml}`);
+            }
+
+            // Update author card
+            $('#authorCard').html(`
+                <div class="row align-items-center">
+                    <div class="col-md-3 text-center mb-3 mb-md-0">
+                        ${post.author_photo ?
+                    `<img src="${post.author_photo}" alt="${post.author_name}" class="rounded-circle" style="width:100px;height:100px;object-fit:cover;">` :
+                    `<div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mx-auto" style="width:100px;height:100px;font-size:2rem;">${post.author_name?.charAt(0) || 'A'}</div>`
+                }
+                    </div>
+                    <div class="col-md-9">
+                        <h4>${post.author_name || 'Anonymous'}</h4>
+                        <p class="text-muted mb-2">${post.author_email || ''}</p>
+                        <p class="mb-0">Author bio would go here. You can store author bio in your database.</p>
+                    </div>
+                </div>
+            `);
+
+            // Update reading stats
+            $('#readingTime').text(`${post.reading_time || '5'} minutes`);
+            $('#wordCount').text(post.content.split(/\s+/).length);
+            $('#postViews').text(post.views);
+
+            // Update comments
+            renderComments(data.comments);
+            $('#commentCount').text(data.comments.length);
+
+            // Render related posts
+            renderRelatedPosts(data.related_posts);
+        }
+
+        // Update like status
+        function updateLikeStatus(likes) {
+            $('#likeCount').text(likes.like_count || 0);
+
+            // Check if current user liked this post
+            if (currentUser && likes.liked_users) {
+                const likedUsers = Array.isArray(likes.liked_users) ? likes.liked_users : [];
+                isLiked = likedUsers.includes(currentUser.name) || likedUsers.includes(currentUser.email);
+
+                if (isLiked) {
+                    $('#likeBtn').addClass('liked');
+                    $('#likeBtn').html('<i class="fas fa-heart me-2"></i><span id="likeCount">' + (likes.like_count || 0) + '</span> Liked');
+                } else {
+                    $('#likeBtn').removeClass('liked');
+                    $('#likeBtn').html('<i class="far fa-heart me-2"></i><span id="likeCount">' + (likes.like_count || 0) + '</span> Likes');
+                }
+            }
+        }
+
+        // Render comments
+        function renderComments(comments) {
+            let commentsHtml = '';
+
+            if (comments.length === 0) {
+                commentsHtml = '<p class="text-muted">No comments yet. Be the first to comment!</p>';
+            } else {
+                comments.forEach(comment => {
+                    commentsHtml += renderComment(comment);
+                });
+            }
+
+            $('#commentsList').html(commentsHtml);
+        }
+
+        // Render single comment
+        function renderComment(comment, isReply = false) {
+            return `
+                <div class="comment-card ${isReply ? 'reply-card' : ''}" id="comment-${comment.id}">
+                    <div class="d-flex">
+                        <div class="me-3">
+                            <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center" style="width:40px;height:40px;">
+                                ${comment.user_name?.charAt(0) || 'U'}
+                            </div>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="mb-1">${comment.user_name || 'Anonymous'}</h6>
+                                <small class="text-muted">${new Date(comment.created_at).toLocaleDateString()}</small>
+                            </div>
+                            <p class="mb-2">${comment.content}</p>
+                            ${!isReply ? `
+                                <button class="btn btn-sm btn-outline-secondary reply-btn" data-comment-id="${comment.id}">
+                                    <i class="fas fa-reply me-1"></i> Reply
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                    ${comment.replies && comment.replies.length > 0 ?
+                    comment.replies.map(reply => renderComment(reply, true)).join('') : ''}
+                    ${!isReply ? `
+                        <div class="reply-form mt-3" id="reply-form-${comment.id}" style="display: none;">
+                            <form class="reply-form" data-parent-id="${comment.id}">
+                                <div class="mb-2">
+                                    <textarea class="form-control form-control-sm" rows="2" placeholder="Write a reply..." required></textarea>
+                                </div>
+                                <div class="text-end">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary cancel-reply-btn">Cancel</button>
+                                    <button type="submit" class="btn btn-sm btn-primary">Post Reply</button>
+                                </div>
+                            </form>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        // Render related posts
+        function renderRelatedPosts(posts) {
+            if (!posts || posts.length === 0) {
+                $('#relatedPosts').hide();
+                return;
+            }
+
+            let postsHtml = '';
+            posts.forEach(post => {
+                postsHtml += `
+                    <div class="col-md-6 col-lg-12">
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="${post.featured_image || 'https://via.placeholder.com/150/e3f2fd/2c3e50?text=RSSI'}" 
+                                         class="img-fluid rounded-start" 
+                                         alt="${post.title}"
+                                         style="height: 120px; object-fit: cover;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h6 class="card-title">
+                                            <a href="blog-detail.html?slug=${post.slug}" class="text-decoration-none">
+                                                ${post.title.substring(0, 60)}${post.title.length > 60 ? '...' : ''}
+                                            </a>
+                                        </h6>
+                                        <p class="card-text"><small class="text-muted">${new Date(post.created_at).toLocaleDateString()}</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            $('#relatedPostsGrid').html(postsHtml);
+        }
+
+        // Setup share buttons
+        function setupShareButtons() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(currentPost.title);
+            const text = encodeURIComponent(currentPost.excerpt || currentPost.title);
+
+            $('#shareFacebook').attr('href', `https://www.facebook.com/sharer/sharer.php?u=${url}`);
+            $('#shareTwitter').attr('href', `https://twitter.com/intent/tweet?url=${url}&text=${text}`);
+            $('#shareLinkedIn').attr('href', `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${text}`);
+            $('#shareWhatsApp').attr('href', `https://wa.me/?text=${title}%20${url}`);
+        }
+
+        // Generate table of contents
+        function generateTableOfContents() {
+            const content = document.getElementById('blogContent');
+            const headings = content.querySelectorAll('h2, h3');
+            let tocHtml = '<ul class="list-unstyled">';
+
+            headings.forEach((heading, index) => {
+                const id = `heading-${index}`;
+                heading.id = id;
+
+                const level = heading.tagName === 'H2' ? '' : 'ms-3';
+                tocHtml += `
+                    <li class="${level} mb-2">
+                        <a href="#${id}" class="text-decoration-none">
+                            ${heading.textContent}
+                        </a>
+                    </li>
+                `;
+            });
+
+            tocHtml += '</ul>';
+            $('#tableOfContents').html(tocHtml);
+        }
+
+        // Check user login
+        function checkUserLogin() {
+            // Check if user is logged in (implement your Google login check here)
+            // For now, we'll check localStorage
+            const userData = localStorage.getItem('user');
+            if (userData) {
+                currentUser = JSON.parse(userData);
+            }
+
+            // If not logged in, show login prompt for commenting
+            if (!currentUser) {
+                $('#commentForm').html(`
+                    <div class="alert alert-info">
+                        Please <a href="#" class="alert-link" id="loginLink">login</a> to post a comment.
+                    </div>
+                `);
+            }
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Like button
+            $('#likeBtn').click(function () {
+                if (!currentUser) {
+                    alert('Please login to like posts');
+                    return;
+                }
+
+                const action = isLiked ? 'unlike' : 'like';
+
+                $.ajax({
+                    url: API_BASE + 'handle_like.php',
+                    type: 'POST',
+                    data: {
+                        post_id: currentPost.id,
+                        user_id: currentUser.id,
+                        user_name: currentUser.name,
+                        user_email: currentUser.email,
+                        action: action
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            isLiked = !isLiked;
+                            const currentCount = parseInt($('#likeCount').text());
+                            $('#likeCount').text(isLiked ? currentCount + 1 : currentCount - 1);
+
+                            if (isLiked) {
+                                $('#likeBtn').addClass('liked');
+                                $('#likeBtn').html('<i class="fas fa-heart me-2"></i><span id="likeCount">' + $('#likeCount').text() + '</span> Liked');
+                            } else {
+                                $('#likeBtn').removeClass('liked');
+                                $('#likeBtn').html('<i class="far fa-heart me-2"></i><span id="likeCount">' + $('#likeCount').text() + '</span> Likes');
+                            }
+                        }
+                    }
+                });
+            });
+
+            // Comment form
+            $(document).on('submit', '#commentForm', function (e) {
+                e.preventDefault();
+
+                if (!currentUser) {
+                    alert('Please login to post comments');
+                    return;
+                }
+
+                const content = $('#commentContent').val().trim();
+                if (!content) {
+                    alert('Please enter a comment');
+                    return;
+                }
+
+                $('#submitCommentBtn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i> Posting...');
+
+                $.ajax({
+                    url: API_BASE + 'handle_comment.php',
+                    type: 'POST',
+                    data: {
+                        post_id: currentPost.id,
+                        content: content,
+                        user_id: currentUser.id,
+                        user_name: currentUser.name,
+                        user_email: currentUser.email
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            $('#commentContent').val('');
+                            alert('Comment submitted for approval. It will appear after review.');
+                        } else {
+                            alert('Failed to submit comment: ' + response.message);
+                        }
+                    },
+                    error: function () {
+                        alert('Error submitting comment');
+                    },
+                    complete: function () {
+                        $('#submitCommentBtn').prop('disabled', false).html('<i class="fas fa-paper-plane me-2"></i> Post Comment');
+                    }
+                });
+            });
+
+            // Reply buttons
+            $(document).on('click', '.reply-btn', function () {
+                const commentId = $(this).data('comment-id');
+                $(`#reply-form-${commentId}`).show();
+            });
+
+            $(document).on('click', '.cancel-reply-btn', function () {
+                $(this).closest('.reply-form').hide();
+            });
+
+            $(document).on('submit', '.reply-form', function (e) {
+                e.preventDefault();
+
+                if (!currentUser) {
+                    alert('Please login to reply');
+                    return;
+                }
+
+                const parentId = $(this).data('parent-id');
+                const content = $(this).find('textarea').val().trim();
+
+                if (!content) {
+                    alert('Please enter a reply');
+                    return;
+                }
+
+                $.ajax({
+                    url: API_BASE + 'handle_comment.php',
+                    type: 'POST',
+                    data: {
+                        post_id: currentPost.id,
+                        parent_id: parentId,
+                        content: content,
+                        user_id: currentUser.id,
+                        user_name: currentUser.name,
+                        user_email: currentUser.email
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            alert('Reply submitted for approval');
+                            $(`#reply-form-${parentId}`).hide();
+                            $(`#reply-form-${parentId} textarea`).val('');
+                        }
+                    }
+                });
+            });
+
+            // Login link
+            $(document).on('click', '#loginLink', function (e) {
+                e.preventDefault();
+                // Implement your Google login here
+                alert('Implement Google login here');
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - RSSI NGO</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .blog-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+
+        .blog-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            background: white;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-image {
+            height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .blog-category {
+            display: inline-block;
+            padding: 5px 15px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .blog-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-top: 1px solid #eee;
+            background: #f9f9f9;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-name {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .post-date {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .stats {
+            display: flex;
+            gap: 15px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-widget {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .widget-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .category-list li {
+            margin-bottom: 10px;
+        }
+
+        .category-list a {
+            display: flex;
+            justify-content: space-between;
+            color: #555;
+            text-decoration: none;
+            padding: 8px 0;
+            transition: color 0.3s;
+        }
+
+        .category-list a:hover {
+            color: var(--secondary-color);
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            padding: 6px 15px;
+            background: #f0f7ff;
+            color: var(--secondary-color);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .tag:hover {
+            background: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+        }
+
+        .featured-post {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .featured-post:last-child {
+            border-bottom: none;
+        }
+
+        .featured-img {
+            width: 100px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+
+        .featured-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .featured-date {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            padding-right: 50px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-btn:hover {
+            background: var(--primary-color);
+        }
+
+        .load-more-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .load-more-btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .no-posts {
+            text-align: center;
+            padding: 50px 20px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .blog-header {
+                padding: 40px 0;
+            }
+
+            .blog-image {
+                height: 200px;
+            }
+        }
+
+        /* Loading states */
+        .opacity-50 {
+            opacity: 0.5;
+        }
+
+        .placeholder-wave {
+            animation: placeholder-wave 2s infinite linear;
+        }
+
+        @keyframes placeholder-wave {
+            0% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+
+            100% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Ensure spinner is visible */
+        #loadingSpinner {
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header (Include your NGO header here) -->
+    <div id="header"></div>
+
+    <!-- Blog Header -->
+    <section class="blog-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold mb-3">Our Blog</h1>
+                    <p class="lead mb-4">Stay updated with our latest stories, insights, and updates from the field.</p>
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Search articles..." id="searchInput">
+                        <button class="search-btn" id="searchBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+
+                    <!-- Add Active Filters Here -->
+                    <div class="mt-3" id="activeFilters" style="display: none;">
+                        <span class="badge bg-secondary me-2">
+                            Active filter: <span id="currentFilter"></span>
+                            <button class="btn-close btn-close-white ms-2" id="resetFilters"></button>
+                        </span>
+                    </div>
+                    <!-- End Active Filters -->
+
+                </div>
+                <div class="col-lg-4 text-center">
+                    <div class="mt-4 mt-lg-0">
+                        <i class="fas fa-blog fa-5x opacity-75"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Main Content -->
+                <div class="col-lg-8">
+                    <div class="row g-4" id="blogPosts">
+                        <!-- Posts will be loaded here -->
+                    </div>
+
+                    <!-- Loading Spinner -->
+                    <div class="text-center py-5" id="loadingSpinner">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-3">Loading articles...</p>
+                    </div>
+
+                    <!-- Load More Button -->
+                    <div class="text-center mt-5" id="loadMoreContainer" style="display: none;">
+                        <button class="btn load-more-btn" id="loadMoreBtn">
+                            <i class="fas fa-plus me-2"></i> Load More Articles
+                        </button>
+                    </div>
+
+                    <!-- No Posts Message -->
+                    <div class="no-posts" id="noPosts" style="display: none;">
+                        <i class="fas fa-newspaper fa-3x mb-3"></i>
+                        <h4>No articles found</h4>
+                        <p>Try searching for something else or check back later for new posts.</p>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Categories Widget -->
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">Categories</h4>
+                        <ul class="category-list" id="categoryList">
+                            <!-- Categories will be loaded here -->
+                        </ul>
+                    </div>
+
+                    <!-- Popular Tags -->
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">Popular Tags</h4>
+                        <div class="tag-cloud" id="tagCloud">
+                            <!-- Tags will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Recent Posts -->
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">Recent Posts</h4>
+                        <div id="recentPosts">
+                            <!-- Recent posts will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="sidebar-widget bg-primary text-white"
+                        style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color))!important;">
+                        <h4 class="widget-title text-white">Subscribe</h4>
+                        <p>Get the latest articles delivered to your inbox.</p>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Your email" id="newsletterEmail">
+                            <button class="btn btn-light" type="button" id="subscribeBtn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <small class="opacity-75">No spam. Unsubscribe anytime.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Include your NGO footer here) -->
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        // API endpoint configuration
+        const API_BASE = window.location.hostname === 'localhost'
+            ? 'http://localhost:8082/blog-api/'
+            : 'https://login.rssi.in/blog-api/';
+
+        let offset = 0;
+        const limit = 6;
+        let currentCategory = null;
+        let currentTag = null;
+        let currentSearch = null;
+        let isLoading = false;
+        let hasMore = true;
+
+        // Initialize
+        $(document).ready(function () {
+            loadBlogPosts();
+            setupEventListeners();
+        });
+
+        function loadBlogPosts() {
+            if (isLoading || !hasMore) return;
+
+            isLoading = true;
+
+            // Show loading states
+            $('#loadingSpinner').show();
+            $('#loadMoreContainer').hide();
+            $('#noPosts').hide(); // Hide no posts message when loading
+
+            // Hide sidebar widgets while loading
+            $('.sidebar-widget').addClass('opacity-50');
+            $('#categoryList').html('<li><div class="placeholder-wave"><span class="placeholder col-8"></span></div></li>');
+            $('#tagCloud').html('<div class="placeholder-wave"><span class="placeholder col-10"></span></div>');
+            $('#recentPosts').html('<div class="placeholder-wave"><span class="placeholder col-12"></span></div>');
+
+            let url = API_BASE + `get_blogs.php?limit=${limit}&offset=${offset}`;
+            if (currentCategory) url += `&category=${encodeURIComponent(currentCategory)}`;
+            if (currentTag) url += `&tag=${encodeURIComponent(currentTag)}`;
+            if (currentSearch) url += `&search=${encodeURIComponent(currentSearch)}`;
+
+            // Add debug parameter for testing
+            url += '&debug=1';
+
+            console.log('Loading from URL:', url);
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    console.log('API Response:', response);
+
+                    if (response.success) {
+                        if (offset === 0) {
+                            $('#blogPosts').empty();
+                            if (response.categories) {
+                                updateSidebar(response.categories, response.tags, response.recent_posts);
+                            }
+                        }
+
+                        if (response.posts && response.posts.length > 0) {
+                            renderBlogPosts(response.posts);
+                            offset += limit;
+                            $('#blogPosts').show();
+                            $('#noPosts').hide();
+                        } else {
+                            if (offset === 0) {
+                                // Create no posts message with clear filters button if needed
+                                let noPostsHtml = '<i class="fas fa-newspaper fa-3x mb-3"></i>';
+                                noPostsHtml += '<h4>No articles found</h4>';
+                                noPostsHtml += '<p>Try searching for something else or check back later for new posts.</p>';
+
+                                // Add clear filters button if any filter is active
+                                if (currentCategory || currentTag || currentSearch) {
+                                    noPostsHtml += '<button class="btn btn-sm btn-outline-primary mt-2" id="clearFiltersBtn">Clear All Filters</button>';
+                                }
+
+                                $('#noPosts').html(noPostsHtml).show();
+                                $('#blogPosts').hide();
+                            }
+                        }
+
+                        hasMore = response.has_more;
+                    } else {
+                        $('#noPosts').show().html('<p>Error loading posts. Please try again.</p>');
+                        $('#blogPosts').hide();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('AJAX Error:', error);
+                    $('#noPosts').show().html('<p>Error connecting to server. Please check your connection.</p>');
+                    $('#blogPosts').hide();
+                },
+                complete: function () {
+                    isLoading = false;
+                    $('#loadingSpinner').hide();
+
+                    // Restore sidebar widgets
+                    $('.sidebar-widget').removeClass('opacity-50');
+
+                    if (hasMore && $('#blogPosts').children().length > 0) {
+                        $('#loadMoreContainer').show();
+                    } else {
+                        $('#loadMoreContainer').hide();
+                    }
+                }
+            });
+        }
+
+        // Update active filters display
+        function updateActiveFilters() {
+            if (currentCategory) {
+                $('#activeFilters').show();
+                $('#currentFilter').text(`Category: ${currentCategory}`);
+            } else if (currentTag) {
+                $('#activeFilters').show();
+                $('#currentFilter').text(`Tag: ${currentTag}`);
+            } else if (currentSearch) {
+                $('#activeFilters').show();
+                $('#currentFilter').text(`Search: ${currentSearch}`);
+            } else {
+                $('#activeFilters').hide();
+            }
+        }
+
+        function renderBlogPosts(posts) {
+            console.log("Rendering posts:", posts);
+
+            posts.forEach(post => {
+                console.log("Processing post:", post.title);
+
+                // Handle missing featured_image
+                const featuredImage = post.featured_image || 'https://via.placeholder.com/400x250/e3f2fd/2c3e50?text=RSSI+BLOG';
+                const authorInitial = (post.author_name || 'A').charAt(0);
+
+                const postHtml = `
+                <div class="col-md-6">
+                    <div class="blog-card">
+                        <a href="blog-detail.html?slug=${post.slug}" class="text-decoration-none">
+                            <img src="${featuredImage}" 
+                                 alt="${post.title}" 
+                                 class="blog-image" 
+                                 onerror="this.src='https://via.placeholder.com/400x250/e3f2fd/2c3e50?text=RSSI+BLOG'">
+                            <div class="p-4">
+                                <span class="blog-category">${post.category || 'Uncategorized'}</span>
+                                <h3 class="blog-title">${post.title}</h3>
+                                <p class="blog-excerpt">${post.excerpt || post.content_preview || 'Read more...'}</p>
+                            </div>
+                        </a>
+                        <div class="blog-meta">
+                    <div class="author-info">
+                        <div class="author-avatar">
+                            ${post.author_photo
+                        ? `<img 
+                                            src="${post.author_photo}" 
+                                            alt="${post.author_name || 'Author'}"
+                                            class="author-img"
+                                            data-initial="${authorInitial}"
+                                       >`
+                        : `<div class="bg-secondary text-white d-flex align-items-center justify-content-center"
+                                           style="width:100%;height:100%;">
+                                           ${authorInitial}
+                                       </div>`
+                    }
+                        </div>
+
+                        <div>
+                            <div class="author-name">${post.author_name || 'Anonymous'}</div>
+                            <div class="post-date">${post.created_at_formatted || 'Recently'}</div>
+                        </div>
+                    </div>
+
+                    <div class="stats">
+                        <div class="stat-item">
+                            <i class="far fa-eye"></i>
+                            <span>${post.views || 0}</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="far fa-comment"></i>
+                            <span>${post.comment_count || 0}</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="far fa-heart"></i>
+                            <span>${post.like_count || 0}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
+                $('#blogPosts').append(postHtml);
+            });
+        }
+
+        // Update sidebar with categories, tags, and recent posts
+        function updateSidebar(categories, tags, recentPosts) {
+            // Categories
+            let categoriesHtml = '';
+            if (categories && categories.length > 0) {
+                categories.forEach(cat => {
+                    categoriesHtml += `
+                    <li>
+                        <a href="#" class="category-link" data-category="${cat.name}">
+                            ${cat.name}
+                            <span class="badge bg-secondary">${cat.post_count}</span>
+                        </a>
+                    </li>
+                `;
+                });
+            } else {
+                categoriesHtml = '<li>No categories found</li>';
+            }
+            $('#categoryList').html(categoriesHtml);
+
+            // Tags
+            let tagsHtml = '';
+            if (tags && tags.length > 0) {
+                tags.forEach(tag => {
+                    tagsHtml += `
+                    <a href="#" class="tag tag-link" data-tag="${tag.name}">
+                        ${tag.name} <small>(${tag.post_count})</small>
+                    </a>
+                `;
+                });
+            } else {
+                tagsHtml = '<span class="text-muted">No tags found</span>';
+            }
+            $('#tagCloud').html(tagsHtml);
+
+            // Recent Posts
+            let recentHtml = '';
+            if (recentPosts && recentPosts.length > 0) {
+                recentPosts.forEach(post => {
+                    const image = post.featured_image || 'https://via.placeholder.com/100x80/e3f2fd/2c3e50?text=RSSI';
+                    recentHtml += `
+                    <div class="featured-post">
+                        <img src="${image}" alt="${post.title}" class="featured-img" 
+                             onerror="this.src='https://via.placeholder.com/100x80/e3f2fd/2c3e50?text=RSSI'">
+                        <div>
+                            <h6 class="featured-title">
+                                <a href="blog-detail.html?slug=${post.slug}" class="text-decoration-none">${post.title}</a>
+                            </h6>
+                            <p class="featured-date">${new Date(post.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</p>
+                        </div>
+                    </div>
+                `;
+                });
+            } else {
+                recentHtml = '<p class="text-muted">No recent posts</p>';
+            }
+            $('#recentPosts').html(recentHtml);
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Load more button
+            $('#loadMoreBtn').click(loadBlogPosts);
+
+            // Category filter
+            $(document).on('click', '.category-link', function (e) {
+                e.preventDefault();
+                const category = $(this).data('category');
+                if (category !== currentCategory) {
+                    currentCategory = category;
+                    currentTag = null;
+                    currentSearch = null;
+                    offset = 0;
+                    hasMore = true;
+                    updateActiveFilters();
+                    loadBlogPosts();
+                }
+            });
+
+            // Tag filter
+            $(document).on('click', '.tag-link', function (e) {
+                e.preventDefault();
+                const tag = $(this).data('tag');
+                if (tag !== currentTag) {
+                    currentTag = tag;
+                    currentCategory = null;
+                    currentSearch = null;
+                    offset = 0;
+                    hasMore = true;
+                    updateActiveFilters();
+                    loadBlogPosts();
+                }
+            });
+
+            // Search button
+            $('#searchBtn').click(function () {
+                performSearch();
+            });
+
+            // Enter key in search input
+            $('#searchInput').keypress(function (e) {
+                if (e.which === 13) {
+                    performSearch();
+                }
+            });
+
+            // Reset filters (from active filters badge)
+            $(document).on('click', '#resetFilters', function (e) {
+                e.preventDefault();
+                clearAllFilters();
+            });
+
+            // Clear filters button (from no posts message)
+            $(document).on('click', '#clearFiltersBtn', function (e) {
+                e.preventDefault();
+                clearAllFilters();
+            });
+        }
+
+        // Perform search function
+        function performSearch() {
+            const searchTerm = $('#searchInput').val().trim();
+            if (searchTerm !== currentSearch) {
+                currentSearch = searchTerm;
+                currentCategory = null;
+                currentTag = null;
+                offset = 0;
+                hasMore = true;
+                updateActiveFilters();
+                loadBlogPosts();
+            }
+        }
+
+        // Clear all filters
+        function clearAllFilters() {
+            currentCategory = null;
+            currentTag = null;
+            currentSearch = null;
+            offset = 0;
+            hasMore = true;
+            $('#searchInput').val('');
+            updateActiveFilters();
+            loadBlogPosts();
+        }
+    </script>
+</body>
+
+</html>
