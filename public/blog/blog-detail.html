@@ -385,9 +385,6 @@
         let currentUser = null;
         const GOOGLE_CLIENT_ID = '880893711562-48c591om401pva696dnk9ffnqb9it4mm.apps.googleusercontent.com';
 
-        // Global Google auth instance
-        let googleAuth = null;
-
         $(document).ready(function () {
             if (!postSlug) {
                 window.location.href = 'index.html';
@@ -457,9 +454,6 @@
         function renderBlogDetail(data) {
             $('#loadingOverlay').fadeOut();
             $('.share-buttons, #authorCard, #commentSection, #relatedPosts').show();
-
-            renderComments(data.comments);
-            $('#commentCount').text(data.comments.length);
 
             const post = data.post;
             document.title = `${post.title} - RSSI NGO Blog`;
@@ -538,6 +532,7 @@
             $('#readingTime, #wordCount, #postViews').find('.placeholder, .placeholder-glow').remove();
             $('#readingTime, #wordCount, #postViews').removeClass('placeholder-glow').css('opacity', '1');
 
+            // Use the new renderComments function
             renderComments(data.comments);
             $('#commentCount').text(data.comments.length);
             renderRelatedPosts(data.related_posts);
@@ -545,6 +540,7 @@
             setTimeout(generateTableOfContents, 200);
         }
 
+        // ==================== UPDATED LIKE STATUS ====================
         function updateLikeStatus(likes) {
             $('#likeCount').text(likes.like_count || 0);
 
@@ -565,7 +561,86 @@
             }
         }
 
-        // Update renderComments to sort comments and replies
+        // ==================== UPDATED COMMENT FUNCTIONS ====================
+        function formatCommentTime(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffSec = Math.floor(diffMs / 1000);
+            const diffMin = Math.floor(diffSec / 60);
+            const diffHour = Math.floor(diffMin / 60);
+            const diffDay = Math.floor(diffHour / 24);
+
+            if (diffSec < 60) {
+                return 'Just now';
+            } else if (diffMin < 60) {
+                return `${diffMin} min ago`;
+            } else if (diffHour < 24) {
+                return `${diffHour} hr ago`;
+            } else if (diffDay === 1) {
+                return 'Yesterday';
+            } else if (diffDay < 7) {
+                return `${diffDay} days ago`;
+            } else {
+                // Format: Jan 5 at 1:05 PM
+                return date.toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric'
+                }) + ' at ' + date.toLocaleTimeString('en-US', {
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    hour12: true
+                });
+            }
+        }
+
+        function renderComment(comment, isReply = false) {
+            // Use user_photo if available, otherwise use user's initial
+            let avatarHtml = '';
+            if (comment.user_photo) {
+                avatarHtml = `<img src="${comment.user_photo}" alt="${comment.user_name}" class="rounded-circle" style="width:100%;height:100%;object-fit:cover;">`;
+            } else {
+                avatarHtml = `
+                <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width:100%;height:100%;">
+                    ${comment.user_name?.charAt(0) || 'U'}
+                </div>
+            `;
+            }
+
+            return `
+            <div class="comment-card ${isReply ? 'reply-card' : ''}" id="comment-${comment.id}">
+                <div class="d-flex">
+                    <div class="me-3">
+                        <div style="width:40px;height:40px;border-radius:50%;overflow:hidden;">
+                            ${avatarHtml}
+                        </div>
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between">
+                            <h6 class="mb-1">${comment.user_name || 'Anonymous'}</h6>
+                            <small class="text-muted">${formatCommentTime(comment.created_at)}</small>
+                        </div>
+                        <p class="mb-2">${comment.content}</p>
+                        ${!isReply ? `<button class="btn btn-sm btn-outline-secondary reply-btn" data-comment-id="${comment.id}"><i class="fas fa-reply me-1"></i> Reply</button>` : ''}
+                    </div>
+                </div>
+                ${comment.replies && comment.replies.length > 0 ?
+                    `<div class="replies-container ms-4 mt-3">${comment.replies.map(reply => renderComment(reply, true)).join('')}</div>`
+                    : ''}
+                ${!isReply ? `
+                    <div class="reply-form mt-3" id="reply-form-${comment.id}" style="display: none;">
+                        <form class="reply-form" data-parent-id="${comment.id}">
+                            <div class="mb-2"><textarea class="form-control form-control-sm" rows="2" placeholder="Write a reply..." required></textarea></div>
+                            <div class="text-end">
+                                <button type="button" class="btn btn-sm btn-outline-secondary cancel-reply-btn">Cancel</button>
+                                <button type="submit" class="btn btn-sm btn-primary">Post Reply</button>
+                            </div>
+                        </form>
+                    </div>` : ''}
+            </div>
+        `;
+        }
+
         function renderComments(comments) {
             let commentsHtml = '';
             if (comments.length === 0) {
@@ -587,53 +662,6 @@
                 });
             }
             $('#commentsList').html(commentsHtml);
-        }
-
-        function renderComment(comment, isReply = false) {
-            // Use user_photo if available, otherwise use user's initial
-            let avatarHtml = '';
-            if (comment.user_photo) {
-                avatarHtml = `<img src="${comment.user_photo}" alt="${comment.user_name}" class="rounded-circle" style="width:100%;height:100%;object-fit:cover;">`;
-            } else {
-                avatarHtml = `
-            <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width:100%;height:100%;">
-                ${comment.user_name?.charAt(0) || 'U'}
-            </div>
-        `;
-            }
-
-            return `
-        <div class="comment-card ${isReply ? 'reply-card' : ''}" id="comment-${comment.id}">
-            <div class="d-flex">
-                <div class="me-3">
-                    <div style="width:40px;height:40px;border-radius:50%;overflow:hidden;">
-                        ${avatarHtml}
-                    </div>
-                </div>
-                <div class="flex-grow-1">
-                    <div class="d-flex justify-content-between">
-                        <h6 class="mb-1">${comment.user_name || 'Anonymous'}</h6>
-                        <small class="text-muted">${formatCommentTime(comment.created_at)}</small>
-                    </div>
-                    <p class="mb-2">${comment.content}</p>
-                    ${!isReply ? `<button class="btn btn-sm btn-outline-secondary reply-btn" data-comment-id="${comment.id}"><i class="fas fa-reply me-1"></i> Reply</button>` : ''}
-                </div>
-            </div>
-            ${comment.replies && comment.replies.length > 0 ?
-                    `<div class="replies-container ms-4 mt-3">${comment.replies.map(reply => renderComment(reply, true)).join('')}</div>`
-                    : ''}
-            ${!isReply ? `
-                <div class="reply-form mt-3" id="reply-form-${comment.id}" style="display: none;">
-                    <form class="reply-form" data-parent-id="${comment.id}">
-                        <div class="mb-2"><textarea class="form-control form-control-sm" rows="2" placeholder="Write a reply..." required></textarea></div>
-                        <div class="text-end">
-                            <button type="button" class="btn btn-sm btn-outline-secondary cancel-reply-btn">Cancel</button>
-                            <button type="submit" class="btn btn-sm btn-primary">Post Reply</button>
-                        </div>
-                    </form>
-                </div>` : ''}
-        </div>
-    `;
         }
 
         function renderRelatedPosts(posts) {
@@ -729,66 +757,59 @@
         function updateLoginButtons() {
             if (currentUser) {
                 $('#loginButtons').html(`
-            <div class="dropdown">
-                <button class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown">
-                    <img src="${currentUser.picture || 'https://via.placeholder.com/25?text=U'}" 
-                         alt="${currentUser.name}" 
-                         class="rounded-circle me-2" 
-                         style="width: 25px; height: 25px; object-fit: cover;">
-                    <span style="font-size: 0.9rem;">${currentUser.name.split(' ')[0]}</span>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#" onclick="switchAccount(); return false;"><i class="fas fa-sync-alt me-2"></i>Switch Account</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser(); return false;"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
-                </ul>
-            </div>
-        `);
+                <div class="dropdown">
+                    <button class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown">
+                        <img src="${currentUser.picture || 'https://via.placeholder.com/25?text=U'}" 
+                             alt="${currentUser.name}" 
+                             class="rounded-circle me-2" 
+                             style="width: 25px; height: 25px; object-fit: cover;">
+                        <span style="font-size: 0.9rem;">${currentUser.name.split(' ')[0]}</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#" onclick="switchAccount(); return false;"><i class="fas fa-sync-alt me-2"></i>Switch Account</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser(); return false;"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                    </ul>
+                </div>
+            `);
             } else {
                 // Show Google's button immediately
                 $('#loginButtons').html('<div id="googleSignInContainer"></div>');
-                setTimeout(renderGoogleButton, 100); // Small delay to ensure container is rendered
+                setTimeout(renderGoogleButton, 100);
             }
         }
 
         function updateCommentForm() {
             if (currentUser) {
                 $('#commentForm').html(`
-            <div class="mb-3">
-                <textarea class="form-control" id="commentContent" rows="4" placeholder="Write your comment here..." required></textarea>
-            </div>
-            <div class="text-end">
-                <button type="submit" class="btn btn-primary" id="submitCommentBtn">
-                    <i class="fas fa-paper-plane me-2"></i> Post Comment
-                </button>
-            </div>
-        `);
+                <div class="mb-3">
+                    <textarea class="form-control" id="commentContent" rows="4" placeholder="Write your comment here..." required></textarea>
+                </div>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary" id="submitCommentBtn">
+                        <i class="fas fa-paper-plane me-2"></i> Post Comment
+                    </button>
+                </div>
+            `);
             } else {
                 $('#commentForm').html(`
-            <div class="alert alert-info mb-0">
-                <i class="fas fa-info-circle me-2"></i>
-                Please <a href="#" class="alert-link fw-bold" id="commentLoginLink">login</a> to post a comment.
-            </div>
-        `);
+                <div class="alert alert-info mb-0">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Please <a href="#" class="alert-link fw-bold" id="commentLoginLink">login</a> to post a comment.
+                </div>
+            `);
 
                 $('#commentLoginLink').off('click').on('click', function (e) {
                     e.preventDefault();
-
-                    // Show clear toast message
                     showToast('Please click the "Sign in with Google" button at the top right to login', 'info');
 
-                    // Optional: Scroll to the login button with animation
                     setTimeout(() => {
                         const loginArea = document.getElementById('loginArea');
                         if (loginArea) {
-                            // Highlight the login area temporarily
                             loginArea.style.boxShadow = '0 0 0 3px rgba(52, 152, 219, 0.5)';
                             loginArea.style.transition = 'box-shadow 0.3s';
-
-                            // Scroll to login area
                             loginArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-                            // Remove highlight after 2 seconds
                             setTimeout(() => {
                                 loginArea.style.boxShadow = '';
                             }, 2000);
@@ -802,13 +823,13 @@
             $('.toast').remove();
             const bgColor = type === 'success' ? 'bg-success' : type === 'error' ? 'bg-danger' : 'bg-info';
             const toast = $(`
-        <div class="toast align-items-center text-white ${bgColor} border-0" role="alert" style="position: fixed; top: 50px; right: 20px; z-index: 1060;">
-            <div class="d-flex">
-                <div class="toast-body">${message}</div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            <div class="toast align-items-center text-white ${bgColor} border-0" role="alert" style="position: fixed; top: 50px; right: 20px; z-index: 1060;">
+                <div class="d-flex">
+                    <div class="toast-body">${message}</div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
             </div>
-        </div>
-    `);
+        `);
             $('body').append(toast);
             const bsToast = new bootstrap.Toast(toast[0]);
             bsToast.show();
@@ -816,11 +837,9 @@
         }
 
         function initGoogleSignIn() {
-            // Wait for Google SDK to load
             if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
                 setupGoogleSignIn();
             } else {
-                // Retry after 1 second if SDK not loaded yet
                 setTimeout(initGoogleSignIn, 1000);
             }
         }
@@ -835,7 +854,6 @@
                 prompt_parent_id: 'googleSignInContainer'
             });
 
-            // If user is not logged in, render the button
             if (!currentUser) {
                 setTimeout(renderGoogleButton, 100);
             }
@@ -850,7 +868,6 @@
                     data: JSON.stringify({ id_token: response.credential }),
                     success: function (response) {
                         if (response.success) {
-                            // Add expiration time (1 hour from now)
                             const userData = {
                                 ...response.user,
                                 expires_at: new Date(Date.now() + 3600000).toISOString()
@@ -876,10 +893,8 @@
                 const container = document.getElementById('googleSignInContainer');
                 if (!container) return;
 
-                // Clear container first
                 container.innerHTML = '';
 
-                // Render Google button
                 google.accounts.id.renderButton(
                     container,
                     {
@@ -892,33 +907,26 @@
                     }
                 );
 
-                // Show One Tap prompt
                 google.accounts.id.prompt();
             } else {
-                // If Google SDK not loaded, show loading message
                 $('#googleSignInContainer').html(`
-            <button class="btn btn-outline-light btn-sm" disabled>
-                <i class="fas fa-spinner fa-spin me-2"></i> Loading Google Login...
-            </button>
-        `);
+                <button class="btn btn-outline-light btn-sm" disabled>
+                    <i class="fas fa-spinner fa-spin me-2"></i> Loading Google Login...
+                </button>
+            `);
             }
         }
 
         function triggerGoogleSignIn() {
             if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-                // First, cancel any existing prompts
                 google.accounts.id.cancel();
-
-                // Try to show One Tap prompt
                 google.accounts.id.prompt();
 
-                // If One Tap doesn't show, manually click the Google button
                 setTimeout(() => {
                     const googleButton = document.querySelector('#googleSignInContainer iframe');
                     if (googleButton) {
                         googleButton.click();
                     } else {
-                        // Re-render button if not present
                         renderGoogleButton();
                         setTimeout(() => {
                             const button = document.querySelector('#googleSignInContainer iframe');
@@ -932,7 +940,6 @@
         }
 
         function switchAccount() {
-            // Clear local storage and Google session
             logoutUser();
         }
 
@@ -940,7 +947,6 @@
             localStorage.removeItem('user');
             currentUser = null;
 
-            // Revoke Google token if available
             if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
                 google.accounts.id.disableAutoSelect();
                 google.accounts.id.revoke();
@@ -984,12 +990,10 @@
                 });
             });
 
-            // First, update the comment submission to reload all comments
             $(document).on('submit', '#commentForm', function (e) {
                 e.preventDefault();
                 if (!currentUser) {
                     showToast('Please login to post comments', 'error');
-                    showToast('Please click the Google Sign-In button at the top right', 'info');
                     return;
                 }
 
@@ -1015,7 +1019,6 @@
                         if (response.success) {
                             $('#commentContent').val('');
                             showToast('Comment posted successfully!', 'success');
-                            // Reload ALL comments to maintain order
                             loadBlogDetail();
                         } else {
                             showToast('Failed to post comment: ' + response.message, 'error');
@@ -1039,10 +1042,9 @@
                 $(this).closest('.reply-form').hide();
             });
 
-            // Replace the entire reply form submit handler with this:
             $(document).on('submit', '.reply-form', function (e) {
                 e.preventDefault();
-                e.stopPropagation(); // Prevent bubbling
+                e.stopPropagation();
 
                 if (!currentUser) {
                     showToast('Please login to reply', 'error');
@@ -1057,16 +1059,12 @@
                     return;
                 }
 
-                // Prevent multiple submissions
                 const submitBtn = $(this).find('button[type="submit"]');
                 if (submitBtn.prop('disabled')) return;
 
                 submitBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-1"></i> Posting...');
-
-                // Hide the form immediately
                 $(this).closest('.reply-form').hide();
 
-                // Submit to server FIRST
                 $.ajax({
                     url: API_BASE + 'handle_comment.php',
                     type: 'POST',
@@ -1081,15 +1079,10 @@
                     success: function (response) {
                         if (response.success) {
                             showToast('Reply posted successfully!', 'success');
-
-                            // Clear the form
                             $(`#reply-form-${parentId} textarea`).val('');
-
-                            // Reload comments to show the reply in correct order
                             loadBlogDetail();
                         } else {
                             showToast('Failed to post reply: ' + response.message, 'error');
-                            // Show the form again on error
                             $(`#reply-form-${parentId}`).show();
                         }
                     },
@@ -1104,40 +1097,19 @@
             });
         }
 
-        function formatCommentTime(dateString) {
-            const date = new Date(dateString);
-            const now = new Date();
-            const diffMs = now - date;
-            const diffSec = Math.floor(diffMs / 1000);
-            const diffMin = Math.floor(diffSec / 60);
-            const diffHour = Math.floor(diffMin / 60);
-            const diffDay = Math.floor(diffHour / 24);
-
-            if (diffSec < 60) {
-                return 'Just now';
-            } else if (diffMin < 60) {
-                return `${diffMin} min ago`;
-            } else if (diffHour < 24) {
-                return `${diffHour} hr ago`;
-            } else if (diffDay === 1) {
-                return 'Yesterday';
-            } else if (diffDay < 7) {
-                return `${diffDay} days ago`;
-            } else {
-                // Format: Jan 5 at 1:05 PM
-                return date.toLocaleDateString('en-US', {
-                    month: 'short',
-                    day: 'numeric'
-                }) + ' at ' + date.toLocaleTimeString('en-US', {
-                    hour: 'numeric',
-                    minute: '2-digit',
-                    hour12: true
-                });
-            }
-        }
-
         // Add CSS for toast
-        const toastCSS = `.toast { min-width: 250px; }`;
+        const toastCSS = `
+        .toast { min-width: 250px; }
+        #commentLoginLink {
+            color: #3498db !important;
+            text-decoration: underline !important;
+            font-weight: 600 !important;
+        }
+        #commentLoginLink:hover {
+            color: #2980b9 !important;
+            text-decoration: none !important;
+        }
+    `;
         $('head').append(`<style>${toastCSS}</style>`);
     </script>
 
