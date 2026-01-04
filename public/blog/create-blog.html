@@ -15,6 +15,10 @@
     <!-- Summernote WYSIWYG Editor -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
+    <!-- Add this in your HTML head -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -259,10 +263,67 @@
             justify-content: center;
             margin-top: 30px;
         }
+
+        /* Add these styles */
+        .login-required-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999999;
+        }
+
+        .login-required-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        #loginArea {
+            display: block !important;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border-bottom: 2px solid #3498db;
+        }
     </style>
 </head>
 
 <body>
+    <!-- Login/User Bar (Fixed at top) -->
+    <div id="loginArea" class="bg-dark text-white py-2" style="position: fixed; top: 0; width: 100%; z-index: 1050;">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-user-circle me-2"></i>
+                <small>Login to create blog posts</small>
+            </div>
+            <div id="loginButtons">
+                <!-- Login button will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Required Overlay -->
+    <div class="login-required-overlay" id="loginRequiredOverlay">
+        <div class="login-required-content">
+            <div class="mb-4">
+                <i class="fas fa-lock fa-4x text-primary mb-3"></i>
+                <h3>Login Required</h3>
+                <p>Please login with Google to create blog posts. Your author information will be automatically filled
+                    from your Google account.</p>
+            </div>
+            <div id="loginOverlayButtons">
+                <!-- Google button will be inserted here -->
+            </div>
+        </div>
+    </div>
     <!-- Header -->
     <div id="header"></div>
 
@@ -571,12 +632,27 @@
             ? 'http://localhost:8082/blog-api/'
             : 'https://login.rssi.in/blog-api/';
 
+        // Login variables
+        const GOOGLE_CLIENT_ID = '880893711562-48c591om401pva696dnk9ffnqb9it4mm.apps.googleusercontent.com';
+        let currentUser = null;
+
+        // Blog variables
         let tags = [];
         let selectedStatus = 'draft';
         let featuredImageBase64 = null;
         let authorPhotoBase64 = null;
 
         $(document).ready(function () {
+            checkUserLogin();
+
+            // Only initialize the form if user is logged in
+            if (currentUser) {
+                initializeForm();
+            } else {
+                // Show login overlay
+                $('#loginRequiredOverlay').show();
+            }
+
             // Initialize Summernote editor with image upload
             $('#content').summernote({
                 height: 400,
@@ -614,6 +690,227 @@
             // Setup event listeners
             setupEventListeners();
         });
+
+        function initializeForm() {
+            // Only run form initialization when user is logged in
+            if (currentUser) {
+                // Auto-fill author information from Google
+                $('#authorName').val(currentUser.name || '');
+
+                // If user has profile picture, use it
+                if (currentUser.picture) {
+                    $('#authorAvatarPreview').html(`<img src="${currentUser.picture}" class="w-100 h-100" style="object-fit: cover;">`);
+                }
+
+                // Check if user is admin and show/hide publish options
+                checkUserAdminStatus();
+
+                // Enable form
+                enableForm(true);
+            }
+        }
+
+        // ==================== GOOGLE LOGIN FUNCTIONS ====================
+        function checkUserLogin() {
+            const userData = localStorage.getItem('user');
+            if (userData) {
+                try {
+                    currentUser = JSON.parse(userData);
+                    // Check if token is still valid (not expired)
+                    if (currentUser.expires_at && new Date() > new Date(currentUser.expires_at)) {
+                        logoutUser();
+                        return;
+                    }
+                    showToast(`Welcome back, ${currentUser.name.split(' ')[0]}!`, 'success');
+                } catch (e) {
+                    console.error('Error parsing user data:', e);
+                    localStorage.removeItem('user');
+                    currentUser = null;
+                }
+            }
+            updateLoginButtons();
+        }
+
+        function updateLoginButtons() {
+            if (currentUser) {
+                $('#loginButtons').html(`
+                <div class="dropdown">
+                    <button class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown">
+                        <img src="${currentUser.picture || 'https://via.placeholder.com/25?text=U'}" 
+                             alt="${currentUser.name}" 
+                             class="rounded-circle me-2" 
+                             style="width: 25px; height: 25px; object-fit: cover;">
+                        <span style="font-size: 0.9rem;">${currentUser.name.split(' ')[0]}</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#" onclick="switchAccount(); return false;"><i class="fas fa-sync-alt me-2"></i>Switch Account</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser(); return false;"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                    </ul>
+                </div>
+            `);
+
+                // Also update the overlay login button
+                $('#loginOverlayButtons').html(`
+                <button class="btn btn-success btn-lg" onclick="hideLoginOverlay()">
+                    <i class="fas fa-check me-2"></i> Continue as ${currentUser.name.split(' ')[0]}
+                </button>
+            `);
+            } else {
+                $('#loginButtons').html('<div id="googleSignInContainer"></div>');
+                $('#loginOverlayButtons').html('<div id="googleSignInOverlayContainer"></div>');
+
+                // Initialize Google Sign-In
+                initGoogleSignIn();
+            }
+        }
+
+        function initGoogleSignIn() {
+            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+                setupGoogleSignIn();
+            } else {
+                setTimeout(initGoogleSignIn, 1000);
+            }
+        }
+
+        function setupGoogleSignIn() {
+            google.accounts.id.initialize({
+                client_id: GOOGLE_CLIENT_ID,
+                callback: handleGoogleSignIn,
+                auto_select: false,
+                cancel_on_tap_outside: true,
+                ux_mode: 'popup'
+            });
+
+            // Render buttons
+            renderGoogleButton('#googleSignInContainer');
+            renderGoogleButton('#googleSignInOverlayContainer');
+        }
+
+        function renderGoogleButton(containerId) {
+            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+                const container = document.querySelector(containerId);
+                if (!container) return;
+
+                container.innerHTML = '';
+
+                google.accounts.id.renderButton(
+                    container,
+                    {
+                        type: 'standard',
+                        theme: 'filled_blue',
+                        size: 'large',
+                        text: 'signin_with',
+                        shape: 'rectangular',
+                        logo_alignment: 'left'
+                    }
+                );
+            } else {
+                $(containerId).html(`
+                <button class="btn btn-outline-light btn-sm" disabled>
+                    <i class="fas fa-spinner fa-spin me-2"></i> Loading Google Login...
+                </button>
+            `);
+            }
+        }
+
+        function handleGoogleSignIn(response) {
+            if (response.credential) {
+                $.ajax({
+                    url: API_BASE + 'google-auth/login.php',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ id_token: response.credential }),
+                    success: function (response) {
+                        if (response.success) {
+                            const userData = {
+                                ...response.user,
+                                expires_at: new Date(Date.now() + 3600000).toISOString()
+                            };
+                            localStorage.setItem('user', JSON.stringify(userData));
+                            currentUser = userData;
+                            updateLoginButtons();
+
+                            // Hide login overlay and initialize form
+                            hideLoginOverlay();
+                            initializeForm();
+
+                            showToast('Login successful!', 'success');
+                        } else {
+                            showToast('Login failed: ' + response.message, 'error');
+                        }
+                    },
+                    error: function () {
+                        showToast('Error connecting to server.', 'error');
+                    }
+                });
+            }
+        }
+
+        function hideLoginOverlay() {
+            $('#loginRequiredOverlay').fadeOut();
+            if (currentUser) {
+                initializeForm();
+            }
+        }
+
+        function logoutUser() {
+            localStorage.removeItem('user');
+            currentUser = null;
+
+            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+                google.accounts.id.disableAutoSelect();
+                google.accounts.id.revoke();
+            }
+
+            updateLoginButtons();
+            $('#loginRequiredOverlay').show();
+            enableForm(false);
+            showToast('Logged out successfully', 'success');
+        }
+
+        function switchAccount() {
+            logoutUser();
+        }
+
+        // ==================== ADMIN CHECK FUNCTION ====================
+        async function checkUserAdminStatus() {
+            if (!currentUser) return;
+
+            try {
+                const response = await fetch(API_BASE + 'check_admin.php?user_id=' + currentUser.id);
+                const data = await response.json();
+
+                if (data.is_admin) {
+                    // User is admin - show all status options
+                    $('.status-badge').show();
+                } else {
+                    // User is not admin - only show draft and pending options
+                    $('.status-badge[data-status="published"]').hide();
+                    $('.status-badge[data-status="pending"]').addClass('active');
+                    $('#status').val('pending');
+                    selectedStatus = 'pending';
+                }
+            } catch (error) {
+                console.error('Error checking admin status:', error);
+                // Default to non-admin permissions
+                $('.status-badge[data-status="published"]').hide();
+                $('.status-badge[data-status="pending"]').addClass('active');
+                $('#status').val('pending');
+                selectedStatus = 'pending';
+            }
+        }
+
+        function enableForm(enabled) {
+            const formElements = $('#blogForm input, #blogForm select, #blogForm textarea, #blogForm button');
+            if (enabled) {
+                formElements.prop('disabled', false);
+                $('#content').summernote('enable');
+            } else {
+                formElements.prop('disabled', true);
+                $('#content').summernote('disable');
+            }
+        }
 
         function setupEventListeners() {
             // Auto-generate slug from title
@@ -765,13 +1062,13 @@
 
             tags.forEach(tag => {
                 const badge = `
-                    <span class="tag-badge">
-                        ${tag}
-                        <span class="remove-tag" onclick="removeTag('${tag}')">
-                            <i class="fas fa-times"></i>
-                        </span>
+                <span class="tag-badge">
+                    ${tag}
+                    <span class="remove-tag" onclick="removeTag('${tag}')">
+                        <i class="fas fa-times"></i>
                     </span>
-                `;
+                </span>
+            `;
                 container.append(badge);
             });
         }
@@ -787,7 +1084,15 @@
             }
         }
 
+        // ==================== FIX TIME FORMAT FOR DATABASE ====================
         function saveBlogPost() {
+            // Validate login first
+            if (!currentUser) {
+                showError('Please login to save blog posts');
+                $('#loginRequiredOverlay').show();
+                return;
+            }
+
             // Validate required fields
             if (!$('#title').val()) {
                 showError('Title is required');
@@ -807,7 +1112,25 @@
                 return;
             }
 
-            // Prepare data - send base64 images, they'll be uploaded to Drive by PHP
+            // Prepare publish date for database
+            let publishDate = null;
+            if (selectedStatus === 'published' && $('#publishDate').val()) {
+                // Convert to ISO string for database (PostgreSQL timestamp without timezone)
+                const dateInput = $('#publishDate').val();
+                const dateObj = new Date(dateInput);
+
+                // Format: YYYY-MM-DD HH:MM:SS for PostgreSQL timestamp
+                const year = dateObj.getFullYear();
+                const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+                const day = String(dateObj.getDate()).padStart(2, '0');
+                const hours = String(dateObj.getHours()).padStart(2, '0');
+                const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+                const seconds = String(dateObj.getSeconds()).padStart(2, '0');
+
+                publishDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+            }
+
+            // Prepare data
             const blogData = {
                 title: $('#title').val(),
                 slug: $('#slug').val() || generateSlug($('#title').val()),
@@ -816,11 +1139,13 @@
                 featured_image: featuredImageBase64 || $('#featuredImageUrl').val() || '',
                 category: $('#category').val(),
                 tags: tags,
-                author_name: $('#authorName').val(),
-                author_photo: authorPhotoBase64 || $('#authorAvatarPreview img').attr('src') || '',
+                author_name: currentUser.name || $('#authorName').val(),
+                author_email: currentUser.email || '',
+                author_photo: currentUser.picture || authorPhotoBase64 || '',
                 reading_time: $('#readingTime').val(),
                 status: selectedStatus,
-                publish_date: $('#publishDate').val() || null
+                publish_date: publishDate,
+                user_id: currentUser.id  // Add user ID for admin check on server
             };
 
             console.log('Saving blog data:', blogData);
@@ -839,12 +1164,13 @@
                     if (response.success) {
                         const message = selectedStatus === 'published'
                             ? 'Blog post published successfully!'
-                            : 'Blog draft saved successfully!';
+                            : selectedStatus === 'pending'
+                                ? 'Blog submitted for review!'
+                                : 'Blog draft saved successfully!';
 
                         $('#successModalMessage').text(message);
                         $('#successModal').show();
 
-                        // Show inline success message
                         showSuccess(message);
                     } else {
                         showError(response.message || 'Failed to save blog post');
@@ -869,10 +1195,10 @@
             $('#imagePreview').hide();
             $('#imagePlaceholder').show();
             $('#authorAvatarPreview').html(`
-                <div class="bg-secondary text-white w-100 h-100 d-flex align-items-center justify-content-center">
-                    <i class="fas fa-user fa-2x"></i>
-                </div>
-            `);
+            <div class="bg-secondary text-white w-100 h-100 d-flex align-items-center justify-content-center">
+                <i class="fas fa-user fa-2x"></i>
+            </div>
+        `);
             tags = [];
             renderTags();
             selectedStatus = 'draft';
@@ -911,44 +1237,44 @@
             }
 
             const previewHTML = `
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <title>Preview: ${$('#title').val()}</title>
-                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-                    <style>
-                        body { padding: 20px; max-width: 800px; margin: 0 auto; }
-                        .preview-header { border-bottom: 2px solid #3498db; padding-bottom: 20px; margin-bottom: 30px; }
-                        .preview-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 10px; margin-bottom: 20px; }
-                        .preview-meta { color: #666; font-size: 0.9rem; margin-bottom: 30px; }
-                        .preview-content img { max-width: 100%; height: auto; }
-                    </style>
-                </head>
-                <body>
-                    <div class="preview-header">
-                        <h1>${$('#title').val()}</h1>
-                        <div class="preview-meta">
-                            <span class="badge bg-primary">${$('#category').val()}</span>
-                            <span class="ms-3"><i class="fas fa-user"></i> ${$('#authorName').val() || 'Author'}</span>
-                            <span class="ms-3"><i class="fas fa-clock"></i> ${$('#readingTime').val()} min read</span>
-                        </div>
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Preview: ${$('#title').val()}</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+                <style>
+                    body { padding: 20px; max-width: 800px; margin: 0 auto; }
+                    .preview-header { border-bottom: 2px solid #3498db; padding-bottom: 20px; margin-bottom: 30px; }
+                    .preview-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 10px; margin-bottom: 20px; }
+                    .preview-meta { color: #666; font-size: 0.9rem; margin-bottom: 30px; }
+                    .preview-content img { max-width: 100%; height: auto; }
+                </style>
+            </head>
+            <body>
+                <div class="preview-header">
+                    <h1>${$('#title').val()}</h1>
+                    <div class="preview-meta">
+                        <span class="badge bg-primary">${$('#category').val()}</span>
+                        <span class="ms-3"><i class="fas fa-user"></i> ${$('#authorName').val() || 'Author'}</span>
+                        <span class="ms-3"><i class="fas fa-clock"></i> ${$('#readingTime').val()} min read</span>
                     </div>
-                    
-                    ${previewImageUrl ? `<img src="${previewImageUrl}" class="preview-image" alt="Featured Image">` : ''}
-                    
-                    <div class="preview-content">
-                        ${content}
+                </div>
+                
+                ${previewImageUrl ? `<img src="${previewImageUrl}" class="preview-image" alt="Featured Image">` : ''}
+                
+                <div class="preview-content">
+                    ${content}
+                </div>
+                
+                ${tags.length > 0 ? `
+                    <div class="mt-5 pt-4 border-top">
+                        <strong>Tags:</strong>
+                        ${tags.map(tag => `<span class="badge bg-light text-dark me-2">${tag}</span>`).join('')}
                     </div>
-                    
-                    ${tags.length > 0 ? `
-                        <div class="mt-5 pt-4 border-top">
-                            <strong>Tags:</strong>
-                            ${tags.map(tag => `<span class="badge bg-light text-dark me-2">${tag}</span>`).join('')}
-                        </div>
-                    ` : ''}
-                </body>
-                </html>
-            `;
+                ` : ''}
+            </body>
+            </html>
+        `;
 
             previewWindow.document.write(previewHTML);
             previewWindow.document.close();
@@ -972,6 +1298,30 @@
             $('#errorMessage').text(message);
             $('#errorAlert').fadeIn();
             $('#successAlert').hide();
+        }
+
+        // Add this function to show toast messages
+        function showToast(message, type = 'info') {
+            $('.toast').remove();
+            const bgColor = type === 'success' ? 'bg-success' : type === 'error' ? 'bg-danger' : 'bg-info';
+            const toast = $(`
+            <div class="toast align-items-center text-white ${bgColor} border-0" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 1060; max-width: 400px;">
+                <div class="d-flex">
+                    <div class="toast-body p-3">
+                        <div class="d-flex align-items-center">
+                            <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'} me-3" style="font-size: 1.2rem;"></i>
+                            <div style="flex: 1;">${message}</div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            </div>
+        `);
+            $('body').append(toast);
+            const bsToast = new bootstrap.Toast(toast[0]);
+            bsToast.show();
+
+            setTimeout(() => toast.remove(), 3000);
         }
     </script>
 </body>
