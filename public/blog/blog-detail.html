@@ -544,9 +544,16 @@
 
         function updateLikeStatus(likes) {
             $('#likeCount').text(likes.like_count || 0);
-            if (currentUser && likes.liked_users) {
+
+            // Check if current user has liked this post
+            if (currentUser) {
                 const likedUsers = Array.isArray(likes.liked_users) ? likes.liked_users : [];
-                isLiked = likedUsers.includes(currentUser.name) || likedUsers.includes(currentUser.email);
+                isLiked = likedUsers.some(user =>
+                    user === currentUser.id ||
+                    user === currentUser.email ||
+                    user === currentUser.name
+                );
+
                 if (isLiked) {
                     $('#likeBtn').addClass('liked').html(`<i class="fas fa-heart me-2"></i><span id="likeCount">${likes.like_count || 0}</span> Liked`);
                 } else {
@@ -848,13 +855,29 @@
         }
 
         function triggerGoogleSignIn() {
-            // If Google button exists, click it programmatically
-            const googleButton = document.querySelector('#googleSignInContainer iframe');
-            if (googleButton) {
-                googleButton.click();
+            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+                // First, cancel any existing prompts
+                google.accounts.id.cancel();
+
+                // Try to show One Tap prompt
+                google.accounts.id.prompt();
+
+                // If One Tap doesn't show, manually click the Google button
+                setTimeout(() => {
+                    const googleButton = document.querySelector('#googleSignInContainer iframe');
+                    if (googleButton) {
+                        googleButton.click();
+                    } else {
+                        // Re-render button if not present
+                        renderGoogleButton();
+                        setTimeout(() => {
+                            const button = document.querySelector('#googleSignInContainer iframe');
+                            if (button) button.click();
+                        }, 300);
+                    }
+                }, 500);
             } else {
-                // If not, try to render the button again
-                renderGoogleButton();
+                showToast('Google Sign-In is not ready. Please try again.', 'error');
             }
         }
 
@@ -915,15 +938,44 @@
                 e.preventDefault();
                 if (!currentUser) {
                     showToast('Please login to post comments', 'error');
-                    triggerGoogleSignIn(); // Fixed: Changed from showGoogleLoginPopup() to triggerGoogleSignIn()
+                    triggerGoogleSignIn();
                     return;
                 }
+
                 const content = $('#commentContent').val().trim();
                 if (!content) {
                     showToast('Please enter a comment', 'error');
                     return;
                 }
+
                 $('#submitCommentBtn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i> Posting...');
+
+                // Create a temporary comment for immediate display
+                const tempCommentId = 'temp-' + Date.now();
+                const tempComment = {
+                    id: tempCommentId,
+                    user_name: currentUser.name,
+                    content: content,
+                    created_at: new Date().toISOString(),
+                    replies: []
+                };
+
+                // Add temporary comment immediately
+                const commentsList = $('#commentsList');
+                if (commentsList.find('.comment-card').length === 0 && commentsList.text().includes('No comments yet')) {
+                    commentsList.html(renderComment(tempComment));
+                } else {
+                    commentsList.append(renderComment(tempComment));
+                }
+
+                // Update comment count
+                const currentCount = parseInt($('#commentCount').text()) || 0;
+                $('#commentCount').text(currentCount + 1);
+
+                // Clear the form
+                $('#commentContent').val('');
+
+                // Submit to server
                 $.ajax({
                     url: API_BASE + 'handle_comment.php',
                     type: 'POST',
@@ -936,14 +988,22 @@
                     },
                     success: function (response) {
                         if (response.success) {
-                            $('#commentContent').val('');
-                            showToast('Comment submitted for approval. It will appear after review.', 'success');
+                            showToast('Comment posted successfully!', 'success');
+
+                            // Replace temporary comment with real one when page reloads
+                            // Or update the temporary comment ID if you want real-time updates
+                            $(`#comment-${tempCommentId}`).attr('id', `comment-${response.comment_id}`);
                         } else {
-                            showToast('Failed to submit comment: ' + response.message, 'error');
+                            showToast('Failed to post comment: ' + response.message, 'error');
+                            // Remove the temporary comment on failure
+                            $(`#comment-${tempCommentId}`).remove();
+                            $('#commentCount').text(currentCount); // Restore count
                         }
                     },
                     error: function () {
                         showToast('Error submitting comment', 'error');
+                        $(`#comment-${tempCommentId}`).remove();
+                        $('#commentCount').text(currentCount); // Restore count
                     },
                     complete: function () {
                         $('#submitCommentBtn').prop('disabled', false).html('<i class="fas fa-paper-plane me-2"></i> Post Comment');
@@ -966,18 +1026,52 @@
                     showToast('Please login to reply', 'error');
                     return;
                 }
+
                 const parentId = $(this).data('parent-id');
                 const content = $(this).find('textarea').val().trim();
                 if (!content) {
                     showToast('Please enter a reply', 'error');
                     return;
                 }
+
+                // Prevent multiple submissions
+                const submitBtn = $(this).find('button[type="submit"]');
+                if (submitBtn.prop('disabled')) return;
+
+                submitBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-1"></i> Posting...');
+
+                // Create temporary reply
+                const tempReplyId = 'temp-reply-' + Date.now();
+                const tempReply = {
+                    id: tempReplyId,
+                    user_name: currentUser.name,
+                    content: content,
+                    created_at: new Date().toISOString()
+                };
+
+                // Add reply immediately to the parent comment
+                const parentComment = $(`#comment-${parentId}`);
+                const repliesContainer = parentComment.find('.reply-card').last().parent();
+
+                if (repliesContainer.length === 0) {
+                    // Create replies container if it doesn't exist
+                    parentComment.append('<div class="replies-container"></div>');
+                    parentComment.find('.replies-container').append(renderComment(tempReply, true));
+                } else {
+                    repliesContainer.append(renderComment(tempReply, true));
+                }
+
+                // Clear the form
+                $(this).find('textarea').val('');
+                $(`#reply-form-${parentId}`).hide();
+
+                // Submit to server
                 $.ajax({
                     url: API_BASE + 'handle_comment.php',
                     type: 'POST',
                     data: {
                         post_id: currentPost.id,
-                        parent_id: parentId,
+                        parent_id: parentId, // Make sure this is being sent
                         content: content,
                         user_id: currentUser.id,
                         user_name: currentUser.name,
@@ -985,10 +1079,21 @@
                     },
                     success: function (response) {
                         if (response.success) {
-                            showToast('Reply submitted for approval', 'success');
-                            $(`#reply-form-${parentId}`).hide();
-                            $(`#reply-form-${parentId} textarea`).val('');
+                            showToast('Reply posted successfully!', 'success');
+                            // Update temporary reply ID
+                            $(`#comment-${tempReplyId}`).attr('id', `comment-${response.comment_id}`);
+                        } else {
+                            showToast('Failed to post reply: ' + response.message, 'error');
+                            // Remove temporary reply on failure
+                            $(`#comment-${tempReplyId}`).remove();
                         }
+                    },
+                    error: function () {
+                        showToast('Error submitting reply', 'error');
+                        $(`#comment-${tempReplyId}`).remove();
+                    },
+                    complete: function () {
+                        submitBtn.prop('disabled', false).html('Post Reply');
                     }
                 });
             });
