@@ -458,6 +458,9 @@
             $('#loadingOverlay').fadeOut();
             $('.share-buttons, #authorCard, #commentSection, #relatedPosts').show();
 
+            renderComments(data.comments);
+            $('#commentCount').text(data.comments.length);
+
             const post = data.post;
             document.title = `${post.title} - RSSI NGO Blog`;
 
@@ -562,12 +565,24 @@
             }
         }
 
+        // Update renderComments to sort comments and replies
         function renderComments(comments) {
             let commentsHtml = '';
             if (comments.length === 0) {
                 commentsHtml = '<p class="text-muted">No comments yet. Be the first to comment!</p>';
             } else {
-                comments.forEach(comment => {
+                // Sort comments by date (newest first)
+                const sortedComments = [...comments].sort((a, b) =>
+                    new Date(b.created_at) - new Date(a.created_at)
+                );
+
+                sortedComments.forEach(comment => {
+                    // Sort replies by date (oldest first for replies)
+                    if (comment.replies && comment.replies.length > 0) {
+                        comment.replies = [...comment.replies].sort((a, b) =>
+                            new Date(a.created_at) - new Date(b.created_at)
+                        );
+                    }
                     commentsHtml += renderComment(comment);
                 });
             }
@@ -575,36 +590,50 @@
         }
 
         function renderComment(comment, isReply = false) {
-            return `
-            <div class="comment-card ${isReply ? 'reply-card' : ''}" id="comment-${comment.id}">
-                <div class="d-flex">
-                    <div class="me-3">
-                        <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center" style="width:40px;height:40px;">
-                            ${comment.user_name?.charAt(0) || 'U'}
-                        </div>
-                    </div>
-                    <div class="flex-grow-1">
-                        <div class="d-flex justify-content-between">
-                            <h6 class="mb-1">${comment.user_name || 'Anonymous'}</h6>
-                            <small class="text-muted">${new Date(comment.created_at).toLocaleDateString()}</small>
-                        </div>
-                        <p class="mb-2">${comment.content}</p>
-                        ${!isReply ? `<button class="btn btn-sm btn-outline-secondary reply-btn" data-comment-id="${comment.id}"><i class="fas fa-reply me-1"></i> Reply</button>` : ''}
-                    </div>
-                </div>
-                ${comment.replies && comment.replies.length > 0 ? comment.replies.map(reply => renderComment(reply, true)).join('') : ''}
-                ${!isReply ? `
-                    <div class="reply-form mt-3" id="reply-form-${comment.id}" style="display: none;">
-                        <form class="reply-form" data-parent-id="${comment.id}">
-                            <div class="mb-2"><textarea class="form-control form-control-sm" rows="2" placeholder="Write a reply..." required></textarea></div>
-                            <div class="text-end">
-                                <button type="button" class="btn btn-sm btn-outline-secondary cancel-reply-btn">Cancel</button>
-                                <button type="submit" class="btn btn-sm btn-primary">Post Reply</button>
-                            </div>
-                        </form>
-                    </div>` : ''}
+            // Use user_photo if available, otherwise use user's initial
+            let avatarHtml = '';
+            if (comment.user_photo) {
+                avatarHtml = `<img src="${comment.user_photo}" alt="${comment.user_name}" class="rounded-circle" style="width:100%;height:100%;object-fit:cover;">`;
+            } else {
+                avatarHtml = `
+            <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width:100%;height:100%;">
+                ${comment.user_name?.charAt(0) || 'U'}
             </div>
         `;
+            }
+
+            return `
+        <div class="comment-card ${isReply ? 'reply-card' : ''}" id="comment-${comment.id}">
+            <div class="d-flex">
+                <div class="me-3">
+                    <div style="width:40px;height:40px;border-radius:50%;overflow:hidden;">
+                        ${avatarHtml}
+                    </div>
+                </div>
+                <div class="flex-grow-1">
+                    <div class="d-flex justify-content-between">
+                        <h6 class="mb-1">${comment.user_name || 'Anonymous'}</h6>
+                        <small class="text-muted">${formatCommentTime(comment.created_at)}</small>
+                    </div>
+                    <p class="mb-2">${comment.content}</p>
+                    ${!isReply ? `<button class="btn btn-sm btn-outline-secondary reply-btn" data-comment-id="${comment.id}"><i class="fas fa-reply me-1"></i> Reply</button>` : ''}
+                </div>
+            </div>
+            ${comment.replies && comment.replies.length > 0 ?
+                    `<div class="replies-container ms-4 mt-3">${comment.replies.map(reply => renderComment(reply, true)).join('')}</div>`
+                    : ''}
+            ${!isReply ? `
+                <div class="reply-form mt-3" id="reply-form-${comment.id}" style="display: none;">
+                    <form class="reply-form" data-parent-id="${comment.id}">
+                        <div class="mb-2"><textarea class="form-control form-control-sm" rows="2" placeholder="Write a reply..." required></textarea></div>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-sm btn-outline-secondary cancel-reply-btn">Cancel</button>
+                            <button type="submit" class="btn btn-sm btn-primary">Post Reply</button>
+                        </div>
+                    </form>
+                </div>` : ''}
+        </div>
+    `;
         }
 
         function renderRelatedPosts(posts) {
@@ -736,14 +765,35 @@
         `);
             } else {
                 $('#commentForm').html(`
-            <div class="alert alert-info">
+            <div class="alert alert-info mb-0">
                 <i class="fas fa-info-circle me-2"></i>
-                Please <a href="#" class="alert-link" id="commentLoginLink">login</a> to post a comment.
+                Please <a href="#" class="alert-link fw-bold" id="commentLoginLink">login</a> to post a comment.
             </div>
         `);
+
                 $('#commentLoginLink').off('click').on('click', function (e) {
                     e.preventDefault();
-                    triggerGoogleSignIn();
+
+                    // Show clear toast message
+                    showToast('Please click the "Sign in with Google" button at the top right to login', 'info');
+
+                    // Optional: Scroll to the login button with animation
+                    setTimeout(() => {
+                        const loginArea = document.getElementById('loginArea');
+                        if (loginArea) {
+                            // Highlight the login area temporarily
+                            loginArea.style.boxShadow = '0 0 0 3px rgba(52, 152, 219, 0.5)';
+                            loginArea.style.transition = 'box-shadow 0.3s';
+
+                            // Scroll to login area
+                            loginArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                            // Remove highlight after 2 seconds
+                            setTimeout(() => {
+                                loginArea.style.boxShadow = '';
+                            }, 2000);
+                        }
+                    }, 300);
                 });
             }
         }
@@ -934,11 +984,12 @@
                 });
             });
 
+            // First, update the comment submission to reload all comments
             $(document).on('submit', '#commentForm', function (e) {
                 e.preventDefault();
                 if (!currentUser) {
                     showToast('Please login to post comments', 'error');
-                    triggerGoogleSignIn();
+                    showToast('Please click the Google Sign-In button at the top right', 'info');
                     return;
                 }
 
@@ -950,32 +1001,6 @@
 
                 $('#submitCommentBtn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i> Posting...');
 
-                // Create a temporary comment for immediate display
-                const tempCommentId = 'temp-' + Date.now();
-                const tempComment = {
-                    id: tempCommentId,
-                    user_name: currentUser.name,
-                    content: content,
-                    created_at: new Date().toISOString(),
-                    replies: []
-                };
-
-                // Add temporary comment immediately
-                const commentsList = $('#commentsList');
-                if (commentsList.find('.comment-card').length === 0 && commentsList.text().includes('No comments yet')) {
-                    commentsList.html(renderComment(tempComment));
-                } else {
-                    commentsList.append(renderComment(tempComment));
-                }
-
-                // Update comment count
-                const currentCount = parseInt($('#commentCount').text()) || 0;
-                $('#commentCount').text(currentCount + 1);
-
-                // Clear the form
-                $('#commentContent').val('');
-
-                // Submit to server
                 $.ajax({
                     url: API_BASE + 'handle_comment.php',
                     type: 'POST',
@@ -988,22 +1013,16 @@
                     },
                     success: function (response) {
                         if (response.success) {
+                            $('#commentContent').val('');
                             showToast('Comment posted successfully!', 'success');
-
-                            // Replace temporary comment with real one when page reloads
-                            // Or update the temporary comment ID if you want real-time updates
-                            $(`#comment-${tempCommentId}`).attr('id', `comment-${response.comment_id}`);
+                            // Reload ALL comments to maintain order
+                            loadBlogDetail();
                         } else {
                             showToast('Failed to post comment: ' + response.message, 'error');
-                            // Remove the temporary comment on failure
-                            $(`#comment-${tempCommentId}`).remove();
-                            $('#commentCount').text(currentCount); // Restore count
                         }
                     },
                     error: function () {
                         showToast('Error submitting comment', 'error');
-                        $(`#comment-${tempCommentId}`).remove();
-                        $('#commentCount').text(currentCount); // Restore count
                     },
                     complete: function () {
                         $('#submitCommentBtn').prop('disabled', false).html('<i class="fas fa-paper-plane me-2"></i> Post Comment');
@@ -1020,8 +1039,11 @@
                 $(this).closest('.reply-form').hide();
             });
 
+            // Replace the entire reply form submit handler with this:
             $(document).on('submit', '.reply-form', function (e) {
                 e.preventDefault();
+                e.stopPropagation(); // Prevent bubbling
+
                 if (!currentUser) {
                     showToast('Please login to reply', 'error');
                     return;
@@ -1029,6 +1051,7 @@
 
                 const parentId = $(this).data('parent-id');
                 const content = $(this).find('textarea').val().trim();
+
                 if (!content) {
                     showToast('Please enter a reply', 'error');
                     return;
@@ -1040,38 +1063,16 @@
 
                 submitBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-1"></i> Posting...');
 
-                // Create temporary reply
-                const tempReplyId = 'temp-reply-' + Date.now();
-                const tempReply = {
-                    id: tempReplyId,
-                    user_name: currentUser.name,
-                    content: content,
-                    created_at: new Date().toISOString()
-                };
+                // Hide the form immediately
+                $(this).closest('.reply-form').hide();
 
-                // Add reply immediately to the parent comment
-                const parentComment = $(`#comment-${parentId}`);
-                const repliesContainer = parentComment.find('.reply-card').last().parent();
-
-                if (repliesContainer.length === 0) {
-                    // Create replies container if it doesn't exist
-                    parentComment.append('<div class="replies-container"></div>');
-                    parentComment.find('.replies-container').append(renderComment(tempReply, true));
-                } else {
-                    repliesContainer.append(renderComment(tempReply, true));
-                }
-
-                // Clear the form
-                $(this).find('textarea').val('');
-                $(`#reply-form-${parentId}`).hide();
-
-                // Submit to server
+                // Submit to server FIRST
                 $.ajax({
                     url: API_BASE + 'handle_comment.php',
                     type: 'POST',
                     data: {
                         post_id: currentPost.id,
-                        parent_id: parentId, // Make sure this is being sent
+                        parent_id: parentId,
                         content: content,
                         user_id: currentUser.id,
                         user_name: currentUser.name,
@@ -1080,23 +1081,59 @@
                     success: function (response) {
                         if (response.success) {
                             showToast('Reply posted successfully!', 'success');
-                            // Update temporary reply ID
-                            $(`#comment-${tempReplyId}`).attr('id', `comment-${response.comment_id}`);
+
+                            // Clear the form
+                            $(`#reply-form-${parentId} textarea`).val('');
+
+                            // Reload comments to show the reply in correct order
+                            loadBlogDetail();
                         } else {
                             showToast('Failed to post reply: ' + response.message, 'error');
-                            // Remove temporary reply on failure
-                            $(`#comment-${tempReplyId}`).remove();
+                            // Show the form again on error
+                            $(`#reply-form-${parentId}`).show();
                         }
                     },
                     error: function () {
                         showToast('Error submitting reply', 'error');
-                        $(`#comment-${tempReplyId}`).remove();
+                        $(`#reply-form-${parentId}`).show();
                     },
                     complete: function () {
                         submitBtn.prop('disabled', false).html('Post Reply');
                     }
                 });
             });
+        }
+
+        function formatCommentTime(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffSec = Math.floor(diffMs / 1000);
+            const diffMin = Math.floor(diffSec / 60);
+            const diffHour = Math.floor(diffMin / 60);
+            const diffDay = Math.floor(diffHour / 24);
+
+            if (diffSec < 60) {
+                return 'Just now';
+            } else if (diffMin < 60) {
+                return `${diffMin} min ago`;
+            } else if (diffHour < 24) {
+                return `${diffHour} hr ago`;
+            } else if (diffDay === 1) {
+                return 'Yesterday';
+            } else if (diffDay < 7) {
+                return `${diffDay} days ago`;
+            } else {
+                // Format: Jan 5 at 1:05 PM
+                return date.toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric'
+                }) + ' at ' + date.toLocaleTimeString('en-US', {
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    hour12: true
+                });
+            }
         }
 
         // Add CSS for toast
