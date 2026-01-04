@@ -1493,7 +1493,7 @@
         const toastCSS = `.toast { min-width: 250px; }`;
         $('head').append(`<style>${toastCSS}</style>`);
     </script>
-    <script>
+    <!-- <script>
         const GOOGLE_CLIENT_ID = '880893711562-48c591om401pva696dnk9ffnqb9it4mm.apps.googleusercontent.com';
 
         function initGoogleSignIn() {
@@ -1590,6 +1590,192 @@
 
         // Make loginWithGoogle globally available
         window.loginWithGoogle = loginWithGoogle;
+    </script> -->
+    <script>
+        const GOOGLE_CLIENT_ID = '880893711562-48c591om401pva696dnk9ffnqb9it4mm.apps.googleusercontent.com';
+
+        // Function to handle Google Sign-In
+        function handleCredentialResponse(response) {
+            console.log('Google Sign-In response:', response);
+
+            if (response.credential) {
+                const API_BASE = window.location.hostname === 'localhost'
+                    ? 'http://localhost:8082/blog-api/'
+                    : 'https://login.rssi.in/blog-api/';
+
+                console.log('Sending Google token to server...');
+
+                $.ajax({
+                    url: API_BASE + 'google-auth/login.php',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ id_token: response.credential }),
+                    success: function (serverResponse) {
+                        console.log('Server login response:', serverResponse);
+                        if (serverResponse.success && serverResponse.user) {
+                            // Store user data
+                            localStorage.setItem('user', JSON.stringify(serverResponse.user));
+
+                            // Show success message
+                            if (typeof showToast === 'function') {
+                                showToast('Login successful! Welcome ' + serverResponse.user.name, 'success');
+                            }
+
+                            // Reload page to update UI
+                            setTimeout(() => {
+                                location.reload();
+                            }, 1500);
+                        } else {
+                            console.error('Login failed:', serverResponse);
+                            if (typeof showToast === 'function') {
+                                showToast('Login failed: ' + (serverResponse.message || 'Unknown error'), 'error');
+                            }
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Server error:', status, error);
+                        if (typeof showToast === 'function') {
+                            showToast('Server error. Please try again.', 'error');
+                        }
+                    }
+                });
+            } else {
+                console.error('No credential in response');
+                if (typeof showToast === 'function') {
+                    showToast('Login cancelled or failed.', 'error');
+                }
+            }
+        }
+
+        // Initialize Google Sign-In
+        function initGoogleSignIn() {
+            // Load Google Identity Services script if not already loaded
+            if (!window.google) {
+                const script = document.createElement('script');
+                script.src = 'https://accounts.google.com/gsi/client';
+                script.async = true;
+                script.defer = true;
+                script.onload = initializeGoogle;
+                document.head.appendChild(script);
+            } else {
+                initializeGoogle();
+            }
+        }
+
+        function initializeGoogle() {
+            console.log('Initializing Google Sign-In with client ID:', GOOGLE_CLIENT_ID.substring(0, 10) + '...');
+
+            // Check if Google library is available
+            if (!window.google || !google.accounts || !google.accounts.id) {
+                console.error('Google Identity Services not loaded');
+                return;
+            }
+
+            try {
+                // Initialize Google Identity Services
+                google.accounts.id.initialize({
+                    client_id: GOOGLE_CLIENT_ID,
+                    callback: handleCredentialResponse,
+                    auto_select: false,
+                    cancel_on_tap_outside: true,
+                    ux_mode: 'popup',
+                    use_fedcm_for_prompt: false // Disable FedCM if causing issues
+                });
+
+                console.log('Google Sign-In initialized successfully');
+
+                // Try to render a button if needed (optional)
+                // This is just for debugging - we'll use our own button
+                try {
+                    google.accounts.id.renderButton(
+                        document.getElementById('googleSignInDebug'),
+                        {
+                            type: 'standard',
+                            theme: 'outline',
+                            size: 'medium',
+                            text: 'signin_with',
+                            shape: 'rectangular',
+                            logo_alignment: 'left',
+                            width: 'auto'
+                        }
+                    );
+                } catch (e) {
+                    console.log('Debug button not rendered:', e.message);
+                }
+
+            } catch (error) {
+                console.error('Error initializing Google Sign-In:', error);
+            }
+        }
+
+        // Function to trigger Google Sign-In
+        function loginWithGoogle() {
+            console.log('Triggering Google Sign-In...');
+
+            if (!window.google || !google.accounts || !google.accounts.id) {
+                console.error('Google Sign-In not available');
+                if (typeof showToast === 'function') {
+                    showToast('Google Sign-In not loaded. Please refresh the page.', 'error');
+                }
+                // Try to reinitialize
+                initGoogleSignIn();
+                return;
+            }
+
+            try {
+                // Trigger the Google Sign-In popup
+                google.accounts.id.prompt((notification) => {
+                    console.log('Prompt notification:', notification);
+
+                    if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                        // If prompt fails, show One Tap UI
+                        console.log('Prompt not displayed, showing One Tap UI');
+
+                        // Display One Tap UI
+                        google.accounts.id.prompt();
+
+                        if (typeof showToast === 'function') {
+                            showToast('Please click the Google Sign-In prompt', 'info');
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error triggering Google Sign-In:', error);
+                if (typeof showToast === 'function') {
+                    showToast('Error: ' + error.message, 'error');
+                }
+            }
+        }
+
+        // Initialize when document is ready
+        $(document).ready(function () {
+            console.log('Document ready, setting up Google Sign-In');
+
+            // Initialize Google Sign-In
+            initGoogleSignIn();
+
+            // Set up click handlers
+            setTimeout(() => {
+                $(document).off('click', '#googleLoginBtn').on('click', '#googleLoginBtn', function (e) {
+                    e.preventDefault();
+                    console.log('Google login button clicked');
+                    loginWithGoogle();
+                });
+
+                $(document).off('click', '#commentLoginLink').on('click', '#commentLoginLink', function (e) {
+                    e.preventDefault();
+                    console.log('Comment login link clicked');
+                    loginWithGoogle();
+                });
+            }, 1000);
+
+            // Add debug button to HTML (hidden by default)
+            $('body').append('<div id="googleSignInDebug" style="display:none;"></div>');
+        });
+
+        // Make functions globally available
+        window.loginWithGoogle = loginWithGoogle;
+        window.handleCredentialResponse = handleCredentialResponse;
     </script>
 </body>
 
