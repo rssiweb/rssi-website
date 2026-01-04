@@ -190,14 +190,14 @@
         }
 
         /* Floating Action Button */
-        .fab-container {
+        #float {
             position: fixed;
             bottom: 30px;
             right: 30px;
             z-index: 1000;
         }
 
-        .fab {
+        #float .fab {
             width: 60px;
             height: 60px;
             background: linear-gradient(135deg, #3498db, #2980b9);
@@ -212,27 +212,27 @@
             overflow: hidden;
         }
 
-        .fab:hover {
+        #float .fab:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
         }
 
-        .fab:active {
+        #float .fab:active {
             transform: scale(0.95);
         }
 
-        .fab-icon {
+        #float .fab-icon {
             color: white;
             font-size: 24px;
             transition: transform 0.3s ease;
         }
 
-        .fab:hover .fab-icon {
+        #float .fab:hover .fab-icon {
             transform: rotate(90deg);
         }
 
-        /* Tooltip for the button */
-        .fab-tooltip {
+        /* Tooltip */
+        #float .fab-tooltip {
             position: absolute;
             right: 70px;
             top: 50%;
@@ -249,7 +249,7 @@
             pointer-events: none;
         }
 
-        .fab-tooltip::after {
+        #float .fab-tooltip::after {
             content: '';
             position: absolute;
             top: 50%;
@@ -260,31 +260,30 @@
             border-color: transparent transparent transparent rgba(0, 0, 0, 0.8);
         }
 
-        .fab:hover .fab-tooltip {
+        #float .fab:hover .fab-tooltip {
             opacity: 1;
             visibility: visible;
             right: 75px;
         }
 
-        /* For mobile responsiveness */
+        /* Mobile */
         @media (max-width: 768px) {
-            .fab-container {
+            #float {
                 bottom: 20px;
                 right: 20px;
             }
 
-            .fab {
+            #float .fab {
                 width: 50px;
                 height: 50px;
             }
 
-            .fab-icon {
+            #float .fab-icon {
                 font-size: 20px;
             }
 
-            .fab-tooltip {
+            #float .fab-tooltip {
                 display: none;
-                /* Hide tooltip on mobile */
             }
         }
     </style>
@@ -1229,7 +1228,7 @@
         $('head').append(`<style>${toastCSS}</style>`);
     </script>
     <!-- Floating Create Post Button -->
-    <div class="fab-container">
+    <div class="fab-container" id="float">
         <a href="create-blog.html" class="fab" id="createPostFab">
             <i class="fas fa-plus fab-icon"></i>
             <span class="fab-tooltip">Create New Post</span>
