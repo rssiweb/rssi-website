@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Blog Post - RSSI NGO</title>
+    <!-- Add the same head content as create-blog.html -->
+</head>
+<body>
+    <!-- Similar to create-blog.html but pre-filled with post data -->
+    <script>
+        // Get post ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('id');
+        
+        if (postId) {
+            // Load post data and populate form
+            loadPostData(postId);
+        } else {
+            window.location.href = 'user-portal.html';
+        }
+        
+        function loadPostData(postId) {
+            // AJAX call to get post data
+            // Pre-fill the form
+            // Handle update instead of create
+        }
+    </script>
+</body>
+</html>
