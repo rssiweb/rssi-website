@@ -188,17 +188,6 @@
             /* Force show */
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
-
-        /* Login button styling */
-        #googleLoginBtn {
-            transition: all 0.3s ease;
-            border-color: #fff;
-        }
-
-        #googleLoginBtn:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateY(-1px);
-        }
     </style>
 </head>
 
@@ -704,53 +693,50 @@
         function updateLoginButtons() {
             if (currentUser) {
                 $('#loginButtons').html(`
-                <div class="dropdown">
-                    <button class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown">
-                        <img src="${currentUser.picture || 'https://via.placeholder.com/25?text=U'}" 
-                             alt="${currentUser.name}" 
-                             class="rounded-circle me-2" 
-                             style="width: 25px; height: 25px; object-fit: cover;">
-                        <span style="font-size: 0.9rem;">${currentUser.name.split(' ')[0]}</span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#" onclick="switchAccount(); return false;"><i class="fas fa-sync-alt me-2"></i>Switch Account</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser(); return false;"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
-                    </ul>
-                </div>
-            `);
-            } else {
-                $('#loginButtons').html(`
-                <button class="btn btn-outline-light btn-sm" id="googleLoginBtn">
-                    <i class="fab fa-google me-2"></i> Login with Google
+            <div class="dropdown">
+                <button class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown">
+                    <img src="${currentUser.picture || 'https://via.placeholder.com/25?text=U'}" 
+                         alt="${currentUser.name}" 
+                         class="rounded-circle me-2" 
+                         style="width: 25px; height: 25px; object-fit: cover;">
+                    <span style="font-size: 0.9rem;">${currentUser.name.split(' ')[0]}</span>
                 </button>
-            `);
-                $('#googleLoginBtn').off('click').on('click', showGoogleLoginPopup);
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#" onclick="switchAccount(); return false;"><i class="fas fa-sync-alt me-2"></i>Switch Account</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser(); return false;"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                </ul>
+            </div>
+        `);
+            } else {
+                // Show Google's button immediately
+                $('#loginButtons').html('<div id="googleSignInContainer"></div>');
+                setTimeout(renderGoogleButton, 100); // Small delay to ensure container is rendered
             }
         }
 
         function updateCommentForm() {
             if (currentUser) {
                 $('#commentForm').html(`
-                <div class="mb-3">
-                    <textarea class="form-control" id="commentContent" rows="4" placeholder="Write your comment here..." required></textarea>
-                </div>
-                <div class="text-end">
-                    <button type="submit" class="btn btn-primary" id="submitCommentBtn">
-                        <i class="fas fa-paper-plane me-2"></i> Post Comment
-                    </button>
-                </div>
-            `);
+            <div class="mb-3">
+                <textarea class="form-control" id="commentContent" rows="4" placeholder="Write your comment here..." required></textarea>
+            </div>
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary" id="submitCommentBtn">
+                    <i class="fas fa-paper-plane me-2"></i> Post Comment
+                </button>
+            </div>
+        `);
             } else {
                 $('#commentForm').html(`
-                <div class="alert alert-info">
-                    <i class="fas fa-info-circle me-2"></i>
-                    Please <a href="#" class="alert-link" id="commentLoginLink">login</a> to post a comment.
-                </div>
-            `);
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle me-2"></i>
+                Please <a href="#" class="alert-link" id="commentLoginLink">login</a> to post a comment.
+            </div>
+        `);
                 $('#commentLoginLink').off('click').on('click', function (e) {
                     e.preventDefault();
-                    showGoogleLoginPopup();
+                    triggerGoogleSignIn();
                 });
             }
         }
@@ -759,13 +745,13 @@
             $('.toast').remove();
             const bgColor = type === 'success' ? 'bg-success' : type === 'error' ? 'bg-danger' : 'bg-info';
             const toast = $(`
-            <div class="toast align-items-center text-white ${bgColor} border-0" role="alert" style="position: fixed; top: 50px; right: 20px; z-index: 1060;">
-                <div class="d-flex">
-                    <div class="toast-body">${message}</div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-                </div>
+        <div class="toast align-items-center text-white ${bgColor} border-0" role="alert" style="position: fixed; top: 50px; right: 20px; z-index: 1060;">
+            <div class="d-flex">
+                <div class="toast-body">${message}</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
             </div>
-        `);
+        </div>
+    `);
             $('body').append(toast);
             const bsToast = new bootstrap.Toast(toast[0]);
             bsToast.show();
@@ -788,9 +774,14 @@
                 callback: handleGoogleSignIn,
                 auto_select: false,
                 cancel_on_tap_outside: true,
-                ux_mode: 'popup', // Always use popup mode
-                prompt_parent_id: 'googleLoginBtn' // Attach to our button
+                ux_mode: 'popup',
+                prompt_parent_id: 'googleSignInContainer'
             });
+
+            // If user is not logged in, render the button
+            if (!currentUser) {
+                setTimeout(renderGoogleButton, 100);
+            }
         }
 
         function handleGoogleSignIn(response) {
@@ -823,14 +814,17 @@
             }
         }
 
-        function showGoogleLoginPopup() {
+        function renderGoogleButton() {
             if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-                // Clear any stored credentials to force account selection
-                google.accounts.id.cancel();
+                const container = document.getElementById('googleSignInContainer');
+                if (!container) return;
 
-                // Create and render the Google Sign-In button
+                // Clear container first
+                container.innerHTML = '';
+
+                // Render Google button
                 google.accounts.id.renderButton(
-                    document.getElementById('loginButtons'),
+                    container,
                     {
                         type: 'standard',
                         theme: 'outline',
@@ -841,21 +835,32 @@
                     }
                 );
 
-                // Also show the One Tap prompt for convenience
+                // Show One Tap prompt
                 google.accounts.id.prompt();
             } else {
-                showToast('Google Sign-In not available. Please refresh the page.', 'error');
+                // If Google SDK not loaded, show loading message
+                $('#googleSignInContainer').html(`
+            <button class="btn btn-outline-light btn-sm" disabled>
+                <i class="fas fa-spinner fa-spin me-2"></i> Loading Google Login...
+            </button>
+        `);
+            }
+        }
+
+        function triggerGoogleSignIn() {
+            // If Google button exists, click it programmatically
+            const googleButton = document.querySelector('#googleSignInContainer iframe');
+            if (googleButton) {
+                googleButton.click();
+            } else {
+                // If not, try to render the button again
+                renderGoogleButton();
             }
         }
 
         function switchAccount() {
             // Clear local storage and Google session
             logoutUser();
-
-            // Show login popup immediately
-            setTimeout(() => {
-                showGoogleLoginPopup();
-            }, 500);
         }
 
         function logoutUser() {
@@ -871,16 +876,13 @@
             updateLoginButtons();
             updateCommentForm();
             showToast('Logged out successfully', 'success');
-
-            // Clear the login button area
-            $('#loginButtons').empty();
         }
 
         function setupEventListeners() {
             $('#likeBtn').click(function () {
                 if (!currentUser) {
                     showToast('Please login to like posts', 'error');
-                    showGoogleLoginPopup();
+                    triggerGoogleSignIn();
                     return;
                 }
                 const action = isLiked ? 'unlike' : 'like';
@@ -913,7 +915,7 @@
                 e.preventDefault();
                 if (!currentUser) {
                     showToast('Please login to post comments', 'error');
-                    showGoogleLoginPopup();
+                    triggerGoogleSignIn(); // Fixed: Changed from showGoogleLoginPopup() to triggerGoogleSignIn()
                     return;
                 }
                 const content = $('#commentContent').val().trim();
