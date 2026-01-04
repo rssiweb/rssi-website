@@ -320,6 +320,105 @@
             align-items: center;
             justify-content: center;
         }
+
+        /* Floating Action Button */
+        .fab-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .fab {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .fab:active {
+            transform: scale(0.95);
+        }
+
+        .fab-icon {
+            color: white;
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .fab:hover .fab-icon {
+            transform: rotate(90deg);
+        }
+
+        /* Tooltip for the button */
+        .fab-tooltip {
+            position: absolute;
+            right: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .fab-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -5px;
+            transform: translateY(-50%);
+            border-width: 5px 0 5px 5px;
+            border-style: solid;
+            border-color: transparent transparent transparent rgba(0, 0, 0, 0.8);
+        }
+
+        .fab:hover .fab-tooltip {
+            opacity: 1;
+            visibility: visible;
+            right: 75px;
+        }
+
+        /* For mobile responsiveness */
+        @media (max-width: 768px) {
+            .fab-container {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .fab {
+                width: 50px;
+                height: 50px;
+            }
+
+            .fab-icon {
+                font-size: 20px;
+            }
+
+            .fab-tooltip {
+                display: none;
+                /* Hide tooltip on mobile */
+            }
+        }
     </style>
 </head>
 
@@ -784,6 +883,13 @@
             loadBlogPosts();
         }
     </script>
+    <!-- Floating Create Post Button -->
+    <div class="fab-container">
+        <a href="create-blog.html" class="fab" id="createPostFab">
+            <i class="fas fa-plus fab-icon"></i>
+            <span class="fab-tooltip">Create New Post</span>
+        </a>
+    </div>
 </body>
 
 </html>

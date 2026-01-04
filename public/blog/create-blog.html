@@ -198,10 +198,15 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.7);
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: center;
             z-index: 99999;
+        }
+
+        .loading-overlay.show {
+            display: flex;
+            /* When loading is shown */
         }
 
 
@@ -224,10 +229,15 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.8);
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: center;
             z-index: 100000;
+        }
+
+        .success-modal.show {
+            display: flex;
+            /* When modal is shown */
         }
 
         .success-content {
@@ -1032,7 +1042,7 @@
 
             // Success modal buttons
             $('#createAnotherBtn').click(function () {
-                $('#successModal').hide();
+                $('#successModal').removeClass('show').hide();
                 resetForm();
             });
 
@@ -1170,7 +1180,7 @@
                                 : 'Blog draft saved successfully!';
 
                         $('#successModalMessage').text(message);
-                        $('#successModal').show();
+                        $('#successModal').addClass('show').show();
 
                         showSuccess(message);
                     } else {
@@ -1283,9 +1293,9 @@
 
         function showLoading(show) {
             if (show) {
-                $('.loading-overlay').fadeIn();
+                $('.loading-overlay').addClass('show').fadeIn();
             } else {
-                $('.loading-overlay').fadeOut();
+                $('.loading-overlay').removeClass('show').fadeOut();
             }
         }
 
