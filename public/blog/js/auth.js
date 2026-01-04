@@ -1,8 +1,3 @@
-// API endpoint configuration
-const API_BASE = window.location.hostname === 'localhost'
-    ? 'http://localhost:8082/blog-api/'
-    : 'https://login.rssi.in/blog-api/';
-
 const GOOGLE_CLIENT_ID = '880893711562-48c591om401pva696dnk9ffnqb9it4mm.apps.googleusercontent.com';
 
 // Global currentUser variable - this should be the same reference as in blog-detail.js
@@ -42,17 +37,17 @@ function handleGoogleSignIn(response) {
             success: function (response) {
                 if (response.success) {
                     localStorage.setItem('user', JSON.stringify(response.user));
-                    
+
                     // Update the global currentUser variable
                     if (typeof window.currentUser !== 'undefined') {
                         window.currentUser = response.user;
                     }
-                    
+
                     // Trigger UI updates
                     updateLoginButtons();
                     updateCommentForm();
                     showToast('Login successful!', 'success');
-                    
+
                     // Refresh like status if on blog detail page
                     if (window.currentPost) {
                         updateLikeStatus(window.currentPost.likes);
@@ -79,21 +74,21 @@ function loginWithGoogle() {
 
 function logoutUser() {
     localStorage.removeItem('user');
-    
+
     // Clear the global currentUser variable
     if (typeof window.currentUser !== 'undefined') {
         window.currentUser = null;
     }
-    
+
     if (window.google && google.accounts && google.accounts.id) {
         google.accounts.id.disableAutoSelect();
     }
-    
+
     // Trigger UI updates
     updateLoginButtons();
     updateCommentForm();
     showToast('Logged out successfully', 'success');
-    
+
     // Refresh like status if on blog detail page
     if (window.currentPost) {
         updateLikeStatus(window.currentPost.likes);

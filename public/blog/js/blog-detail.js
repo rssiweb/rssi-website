@@ -89,10 +89,10 @@ function renderBlogDetail(data) {
     $('#authorName').text(post.author_name || 'Anonymous');
     $('#postMeta').html(`
         ${new Date(post.published_at || post.created_at).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        })} • ${post.reading_time || '5'} min read
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    })} • ${post.reading_time || '5'} min read
     `);
 
     if (post.author_photo) {
@@ -140,9 +140,9 @@ function renderBlogDetail(data) {
         <div class="row align-items-center">
             <div class="col-md-3 text-center mb-3 mb-md-0">
                 ${post.author_photo ?
-                    `<img src="${post.author_photo}" alt="${post.author_name}" class="rounded-circle" style="width:100px;height:100px;object-fit:cover;">` :
-                    `<div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mx-auto" style="width:100px;height:100px;font-size:2rem;">${post.author_name?.charAt(0) || 'A'}</div>`
-                }
+            `<img src="${post.author_photo}" alt="${post.author_name}" class="rounded-circle" style="width:100px;height:100px;object-fit:cover;">` :
+            `<div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mx-auto" style="width:100px;height:100px;font-size:2rem;">${post.author_name?.charAt(0) || 'A'}</div>`
+        }
             </div>
             <div class="col-md-9">
                 <h4>${post.author_name || 'Anonymous'}</h4>
@@ -329,7 +329,7 @@ function updateLoginButtons() {
                 <i class="fab fa-google me-2"></i> Login with Google
             </button>
         `);
-        $('#googleLoginBtn').off('click').on('click', function() {
+        $('#googleLoginBtn').off('click').on('click', function () {
             // This will be handled by auth.js
             loginWithGoogle();
         });
