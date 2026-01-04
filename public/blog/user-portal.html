@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Blog Dashboard - RSSI NGO</title>
     <!-- Favicons -->
     <link href="/img/favicon.ico" rel="icon">
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Sign-In -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    
+
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -65,10 +66,25 @@
             margin-bottom: 15px;
         }
 
-        .total-posts .stats-icon { background: linear-gradient(135deg, #3498db, #2980b9); color: white; }
-        .published-posts .stats-icon { background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; }
-        .draft-posts .stats-icon { background: linear-gradient(135deg, #f39c12, #e67e22); color: white; }
-        .pending-posts .stats-icon { background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; }
+        .total-posts .stats-icon {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .published-posts .stats-icon {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+        }
+
+        .draft-posts .stats-icon {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+        }
+
+        .pending-posts .stats-icon {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+        }
 
         .stats-number {
             font-size: 2.5rem;
@@ -113,9 +129,20 @@
             font-weight: 500;
         }
 
-        .status-draft { background: #fff3cd; color: #856404; }
-        .status-published { background: #d4edda; color: #155724; }
-        .status-pending { background: #cce5ff; color: #004085; }
+        .status-draft {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-published {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-pending {
+            background: #cce5ff;
+            color: #004085;
+        }
 
         .action-btn {
             padding: 6px 12px;
@@ -148,8 +175,13 @@
         }
 
         @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
         }
 
         /* Login Required */
@@ -171,11 +203,11 @@
             .dashboard-container {
                 padding: 10px;
             }
-            
+
             .stats-card {
                 margin-bottom: 15px;
             }
-            
+
             .table-responsive {
                 margin: 0 -15px;
                 padding: 0 15px;
@@ -224,6 +256,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Login/User Bar -->
     <div id="loginArea" class="bg-dark text-white py-2" style="position: sticky; top: 0; width: 100%; z-index: 1050;">
@@ -329,14 +362,18 @@
                             <h4 class="mb-0">Your Blog Posts</h4>
                             <div class="d-flex">
                                 <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-sm btn-outline-light active" data-filter="all">All</button>
-                                    <button type="button" class="btn btn-sm btn-outline-light" data-filter="published">Published</button>
-                                    <button type="button" class="btn btn-sm btn-outline-light" data-filter="draft">Drafts</button>
-                                    <button type="button" class="btn btn-sm btn-outline-light" data-filter="pending">Pending</button>
+                                    <button type="button" class="btn btn-sm btn-outline-light active"
+                                        data-filter="all">All</button>
+                                    <button type="button" class="btn btn-sm btn-outline-light"
+                                        data-filter="published">Published</button>
+                                    <button type="button" class="btn btn-sm btn-outline-light"
+                                        data-filter="draft">Drafts</button>
+                                    <button type="button" class="btn btn-sm btn-outline-light"
+                                        data-filter="pending">Pending</button>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="table-responsive">
                             <table class="table table-hover mb-0">
                                 <thead>
@@ -387,12 +424,12 @@
 
         // Google Client ID
         const GOOGLE_CLIENT_ID = '880893711562-48c591om401pva696dnk9ffnqb9it4mm.apps.googleusercontent.com';
-        
+
         let currentUser = null;
         let userPosts = [];
         let currentFilter = 'all';
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             checkUserLogin();
             setupEventListeners();
         });
@@ -408,12 +445,12 @@
                         logoutUser();
                         return;
                     }
-                    
+
                     // Update UI for logged in user
                     updateLoginButtons();
                     showDashboard();
                     loadUserPosts();
-                    
+
                 } catch (e) {
                     console.error('Error parsing user data:', e);
                     localStorage.removeItem('user');
@@ -443,7 +480,7 @@
                         </ul>
                     </div>
                 `);
-                
+
                 // Update user name in dashboard
                 $('#userName').text(currentUser.name.split(' ')[0]);
             } else {
@@ -469,7 +506,7 @@
                 cancel_on_tap_outside: true,
                 ux_mode: 'popup'
             });
-            
+
             // Render buttons
             renderGoogleButton('#googleSignInContainer');
             renderGoogleButton('#googlePortalSignInContainer');
@@ -479,9 +516,9 @@
             if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
                 const container = document.querySelector(containerId);
                 if (!container) return;
-                
+
                 container.innerHTML = '';
-                
+
                 google.accounts.id.renderButton(
                     container,
                     {
@@ -505,7 +542,7 @@
         function handleGoogleSignIn(response) {
             if (response.credential) {
                 showLoading(true);
-                
+
                 $.ajax({
                     url: API_BASE + 'google-auth/login.php',
                     type: 'POST',
@@ -520,11 +557,11 @@
                             localStorage.setItem('user', JSON.stringify(userData));
                             currentUser = userData;
                             updateLoginButtons();
-                            
+
                             // Show dashboard and load posts
                             showDashboard();
                             loadUserPosts();
-                            
+
                             showToast('Login successful! Welcome to your dashboard.', 'success');
                         } else {
                             showToast('Login failed: ' + response.message, 'error');
@@ -554,12 +591,12 @@
         function logoutUser() {
             localStorage.removeItem('user');
             currentUser = null;
-            
+
             if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
                 google.accounts.id.disableAutoSelect();
                 google.accounts.id.revoke();
             }
-            
+
             updateLoginButtons();
             showLoginRequired();
             showToast('Logged out successfully', 'success');
@@ -572,14 +609,14 @@
         // ==================== POST MANAGEMENT FUNCTIONS ====================
         function loadUserPosts() {
             if (!currentUser) return;
-            
+
             showLoading(true);
-            
+
             $.ajax({
                 url: API_BASE + 'get_user_posts.php?user_id=' + currentUser.id,
                 type: 'GET',
                 dataType: 'json',
-                success: function(response) {
+                success: function (response) {
                     if (response.success) {
                         userPosts = response.posts || [];
                         updateStats();
@@ -590,7 +627,7 @@
                     }
                     showLoading(false);
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.error('Error loading posts:', error);
                     showToast('Error loading posts. Please try again.', 'error');
                     userPosts = [];
@@ -604,7 +641,7 @@
             const published = userPosts.filter(post => post.status === 'published').length;
             const draft = userPosts.filter(post => post.status === 'draft').length;
             const pending = userPosts.filter(post => post.status === 'pending').length;
-            
+
             $('#totalPosts').text(total);
             $('#publishedPosts').text(published);
             $('#draftPosts').text(draft);
@@ -614,22 +651,22 @@
         function renderPostsTable() {
             const $tbody = $('#postsTableBody');
             const $emptyState = $('#emptyState');
-            
+
             $tbody.empty();
-            
+
             // Filter posts based on current filter
             let filteredPosts = userPosts;
             if (currentFilter !== 'all') {
                 filteredPosts = userPosts.filter(post => post.status === currentFilter);
             }
-            
+
             if (filteredPosts.length === 0) {
                 $emptyState.show();
                 return;
             }
-            
+
             $emptyState.hide();
-            
+
             filteredPosts.forEach(post => {
                 const row = createPostRow(post);
                 $tbody.append(row);
@@ -643,12 +680,12 @@
                 month: 'short',
                 day: 'numeric'
             });
-            
+
             // Status badge
             let statusBadge = '';
             let statusClass = '';
-            
-            switch(post.status) {
+
+            switch (post.status) {
                 case 'published':
                     statusClass = 'status-published';
                     statusBadge = 'Published';
@@ -662,10 +699,10 @@
                     statusBadge = 'Pending Review';
                     break;
             }
-            
+
             // Action buttons based on status
             let actionButtons = '';
-            
+
             if (post.status === 'draft') {
                 actionButtons = `
                     <button class="btn btn-sm btn-primary action-btn edit-post" data-id="${post.id}">
@@ -697,7 +734,7 @@
                     </button>
                 `;
             }
-            
+
             return `
                 <tr class="post-row">
                     <td>
@@ -724,7 +761,7 @@
         }
 
         function viewPost(slug) {
-            window.open(`blog-post.html?slug=${slug}`, '_blank');
+            window.open(`blog-detail.html?slug=${slug}`, '_blank');
         }
 
         function editPost(postId) {
@@ -736,19 +773,19 @@
             if (!confirm('Are you sure you want to delete this post? This action cannot be undone.')) {
                 return;
             }
-            
+
             showLoading(true);
-            
+
             $.ajax({
                 url: API_BASE + 'delete_post.php',
                 type: 'POST',
                 contentType: 'application/json',
-                data: JSON.stringify({ 
+                data: JSON.stringify({
                     post_id: postId,
-                    user_id: currentUser.id 
+                    user_id: currentUser.id
                 }),
                 dataType: 'json',
-                success: function(response) {
+                success: function (response) {
                     if (response.success) {
                         showToast('Post deleted successfully', 'success');
                         // Remove from local array and update UI
@@ -760,7 +797,7 @@
                     }
                     showLoading(false);
                 },
-                error: function() {
+                error: function () {
                     showToast('Error deleting post. Please try again.', 'error');
                     showLoading(false);
                 }
@@ -769,18 +806,18 @@
 
         function submitForReview(postId) {
             showLoading(true);
-            
+
             $.ajax({
                 url: API_BASE + 'update_post_status.php',
                 type: 'POST',
                 contentType: 'application/json',
-                data: JSON.stringify({ 
+                data: JSON.stringify({
                     post_id: postId,
                     status: 'pending',
-                    user_id: currentUser.id 
+                    user_id: currentUser.id
                 }),
                 dataType: 'json',
-                success: function(response) {
+                success: function (response) {
                     if (response.success) {
                         showToast('Post submitted for review', 'success');
                         // Update local data
@@ -795,7 +832,7 @@
                     }
                     showLoading(false);
                 },
-                error: function() {
+                error: function () {
                     showToast('Error submitting post. Please try again.', 'error');
                     showLoading(false);
                 }
@@ -805,33 +842,33 @@
         // ==================== EVENT LISTENERS ====================
         function setupEventListeners() {
             // Filter buttons
-            $('[data-filter]').click(function() {
+            $('[data-filter]').click(function () {
                 $('[data-filter]').removeClass('active');
                 $(this).addClass('active');
                 currentFilter = $(this).data('filter');
                 renderPostsTable();
             });
-            
+
             // Edit post (delegated event for dynamically created buttons)
-            $(document).on('click', '.edit-post', function() {
+            $(document).on('click', '.edit-post', function () {
                 const postId = $(this).data('id');
                 editPost(postId);
             });
-            
+
             // Submit post for review
-            $(document).on('click', '.submit-post', function() {
+            $(document).on('click', '.submit-post', function () {
                 const postId = $(this).data('id');
                 submitForReview(postId);
             });
-            
+
             // Delete post
-            $(document).on('click', '.delete-post', function() {
+            $(document).on('click', '.delete-post', function () {
                 const postId = $(this).data('id');
                 deletePost(postId);
             });
-            
+
             // Refresh button in dashboard
-            $('#refreshBtn').click(function() {
+            $('#refreshBtn').click(function () {
                 loadUserPosts();
             });
         }
@@ -848,18 +885,18 @@
         function showToast(message, type = 'info') {
             // Remove existing toasts
             $('.toast').remove();
-            
-            const bgColor = type === 'success' ? 'bg-success' : 
-                           type === 'error' ? 'bg-danger' : 'bg-info';
-            
+
+            const bgColor = type === 'success' ? 'bg-success' :
+                type === 'error' ? 'bg-danger' : 'bg-info';
+
             const toast = $(`
                 <div class="toast align-items-center text-white ${bgColor} border-0" role="alert" 
                      style="position: fixed; top: 20px; right: 20px; z-index: 1060; max-width: 400px;">
                     <div class="d-flex">
                         <div class="toast-body p-3">
                             <div class="d-flex align-items-center">
-                                <i class="fas ${type === 'success' ? 'fa-check-circle' : 
-                                               type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'} 
+                                <i class="fas ${type === 'success' ? 'fa-check-circle' :
+                    type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'} 
                                    me-3" style="font-size: 1.2rem;"></i>
                                 <div style="flex: 1;">${message}</div>
                             </div>
@@ -868,13 +905,14 @@
                     </div>
                 </div>
             `);
-            
+
             $('body').append(toast);
             const bsToast = new bootstrap.Toast(toast[0]);
             bsToast.show();
-            
+
             setTimeout(() => toast.remove(), 3000);
         }
     </script>
 </body>
+
 </html>

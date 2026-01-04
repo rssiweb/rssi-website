@@ -1,29 +1,1484 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Blog Post - RSSI NGO</title>
-    <!-- Add the same head content as create-blog.html -->
-</head>
-<body>
-    <!-- Similar to create-blog.html but pre-filled with post data -->
-    <script>
-        // Get post ID from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const postId = urlParams.get('id');
-        
-        if (postId) {
-            // Load post data and populate form
-            loadPostData(postId);
-        } else {
-            window.location.href = 'user-portal.html';
+    <!-- Favicons -->
+    <link href="/img/favicon.ico" rel="icon">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Summernote WYSIWYG Editor -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+
+    <!-- Add this in your HTML head -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
         }
-        
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            border-radius: 15px 15px 0 0;
+            margin-bottom: 30px;
+        }
+
+        .required-field::after {
+            content: " *";
+            color: #e74c3c;
+        }
+
+        .form-section {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .image-preview-container {
+            width: 100%;
+            height: 200px;
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .image-preview-container:hover {
+            border-color: var(--secondary-color);
+            background: #f0f7ff;
+        }
+
+        .image-preview {
+            max-width: 100%;
+            max-height: 100%;
+            display: none;
+            object-fit: contain;
+        }
+
+        .author-avatar-preview {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--secondary-color);
+            cursor: pointer;
+        }
+
+        .author-avatar-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tag-badge {
+            display: inline-block;
+            background: #e3f2fd;
+            color: var(--secondary-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9rem;
+        }
+
+        .tag-badge .remove-tag {
+            margin-left: 8px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .tag-badge .remove-tag:hover {
+            color: #e74c3c;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 12px 40px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-right: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .status-badge.active {
+            border-color: var(--secondary-color);
+        }
+
+        .status-draft {
+            background: #f8f9fa;
+            color: #6c757d;
+        }
+
+        .status-published {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .alert-message {
+            display: none;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Fixed loading overlay that covers entire screen */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+        }
+
+        .loading-overlay.show {
+            display: flex;
+        }
+
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        /* Success modal */
+        .success-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100000;
+        }
+
+        .success-modal.show {
+            display: flex;
+        }
+
+        .success-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        .success-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        /* Add these styles */
+        .login-required-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999999;
+        }
+
+        .login-required-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        #loginArea {
+            display: block !important;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border-bottom: 2px solid #3498db;
+        }
+
+        /* Warning for non-draft posts */
+        .edit-warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .edit-warning i {
+            color: #f39c12;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Login/User Bar (Fixed at top) -->
+    <div id="loginArea" class="bg-dark text-white py-2" style="position: fixed; top: 0; width: 100%; z-index: 1050;">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-edit me-2"></i>
+                <small>Edit Blog Post</small>
+            </div>
+            <div id="loginButtons">
+                <!-- Login button will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Required Overlay -->
+    <div class="login-required-overlay" id="loginRequiredOverlay">
+        <div class="login-required-content">
+            <div class="mb-4">
+                <i class="fas fa-lock fa-4x text-primary mb-3"></i>
+                <h3>Login Required</h3>
+                <p>Please login with Google to edit blog posts.</p>
+            </div>
+            <div id="loginOverlayButtons">
+                <!-- Google button will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Fixed Loading Overlay (covers entire screen) -->
+    <div class="loading-overlay">
+        <div class="loading-content">
+            <div class="spinner-border loading-spinner" role="status" style="width: 80px; height: 80px;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <h4>Processing your request...</h4>
+            <p>Please wait while we save your changes</p>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Success!</h3>
+            <p id="successModalMessage">Your blog post has been updated successfully.</p>
+            <div class="success-buttons">
+                <button class="btn btn-outline-secondary" id="editAgainBtn">
+                    <i class="fas fa-edit me-2"></i>Edit Again
+                </button>
+                <button class="btn btn-primary" id="viewPostBtn">
+                    <i class="fas fa-eye me-2"></i>View Post
+                </button>
+                <button class="btn btn-success" id="dashboardBtn">
+                    <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Form Container -->
+    <div class="container my-5">
+        <div class="form-container">
+            <!-- Form Header -->
+            <div class="form-header">
+                <h1 class="display-5 fw-bold mb-3"><i class="fas fa-edit me-3"></i>Edit Blog Post</h1>
+                <p class="lead mb-0">Update your post content and information</p>
+            </div>
+
+            <!-- Warning for non-draft posts -->
+            <div class="edit-warning" id="editWarning">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <span id="warningMessage"></span>
+            </div>
+
+            <!-- Alert Messages -->
+            <div class="alert alert-success alert-message" id="successAlert">
+                <i class="fas fa-check-circle me-2"></i>
+                <span id="successMessage">Blog post updated successfully!</span>
+            </div>
+
+            <div class="alert alert-danger alert-message" id="errorAlert">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                <span id="errorMessage">Error updating blog post. Please try again.</span>
+            </div>
+
+            <!-- Blog Form -->
+            <form id="blogForm">
+                <input type="hidden" id="postId" value="">
+                <input type="hidden" id="originalStatus" value="">
+
+                <!-- Basic Information Section -->
+                <div class="form-section">
+                    <h3 class="form-section-title">Basic Information</h3>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <!-- Title -->
+                            <div class="mb-4">
+                                <label for="title" class="form-label required-field fw-semibold">Post Title</label>
+                                <input type="text" class="form-control form-control-lg" id="title"
+                                    placeholder="Enter a compelling title for your post" required>
+                                <div class="form-text">Keep it clear, concise, and engaging</div>
+                            </div>
+
+                            <!-- Slug (auto-generated) -->
+                            <div class="mb-4">
+                                <label for="slug" class="form-label fw-semibold">URL Slug</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">/blog/</span>
+                                    <input type="text" class="form-control" id="slug" placeholder="auto-generated-slug">
+                                </div>
+                                <div class="form-text">Leave empty for auto-generation, or customize for SEO</div>
+                            </div>
+
+                            <!-- Excerpt -->
+                            <div class="mb-4">
+                                <label for="excerpt" class="form-label fw-semibold">Short Excerpt</label>
+                                <textarea class="form-control" id="excerpt" rows="3"
+                                    placeholder="Brief summary of your post (appears in listings)"></textarea>
+                                <div class="form-text">Keep it under 200 characters for best results</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <!-- Featured Image -->
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">Featured Image</label>
+                                <div class="image-preview-container" id="imagePreviewContainer">
+                                    <div class="text-center" id="imagePlaceholder">
+                                        <i class="fas fa-image fa-3x text-muted mb-3"></i>
+                                        <p class="text-muted mb-0">Click to upload image</p>
+                                        <small class="text-muted">Recommended: 1200×630 pixels</small>
+                                    </div>
+                                    <img src="" class="image-preview" id="imagePreview" alt="Preview">
+                                </div>
+                                <input type="file" class="form-control mt-2" id="featuredImage" accept="image/*"
+                                    style="display: none;">
+                                <input type="hidden" id="featuredImageUrl">
+                                <div class="d-flex justify-content-between mt-2">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                                        id="uploadFeaturedBtn">
+                                        <i class="fas fa-upload me-1"></i> Upload
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" id="removeImage">
+                                        <i class="fas fa-trash me-1"></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Section -->
+                <div class="form-section">
+                    <h3 class="form-section-title">Content</h3>
+
+                    <!-- Content Editor -->
+                    <div class="mb-4">
+                        <label for="content" class="form-label required-field fw-semibold">Post Content</label>
+                        <textarea id="content" class="form-control"></textarea>
+                    </div>
+
+                    <!-- Reading Time (auto-calculated) -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">Reading Time</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="readingTime" min="1" value="5">
+                                    <span class="input-group-text">minutes</span>
+                                </div>
+                                <div class="form-text">Estimated reading time for visitors</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categorization Section -->
+                <div class="form-section">
+                    <h3 class="form-section-title">Categorization</h3>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Category -->
+                            <div class="mb-4">
+                                <label for="category" class="form-label required-field fw-semibold">Category</label>
+                                <select class="form-select" id="category" required>
+                                    <option value="">Select a category</option>
+                                    <option value="News">News</option>
+                                    <option value="Events">Events</option>
+                                    <option value="Stories">Stories</option>
+                                    <option value="Updates">Updates</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Health">Health</option>
+                                    <option value="Environment">Environment</option>
+                                    <option value="Technology">Technology</option>
+                                </select>
+                                <div class="form-text">Choose the most relevant category</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <!-- Tags -->
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">Tags</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" id="tagInput"
+                                        placeholder="Add tags (press Enter)">
+                                    <button class="btn btn-outline-secondary" type="button" id="addTagBtn">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                                <div class="form-text">Press Enter or click + to add tags</div>
+
+                                <!-- Tags Container -->
+                                <div class="mt-3" id="tagsContainer">
+                                    <!-- Tags will appear here -->
+                                </div>
+
+                                <!-- Popular Tags Suggestion -->
+                                <div class="mt-3">
+                                    <small class="text-muted me-2">Popular tags:</small>
+                                    <small>
+                                        <a href="#" class="text-decoration-none me-2 tag-suggestion"
+                                            data-tag="ngo">ngo</a>
+                                        <a href="#" class="text-decoration-none me-2 tag-suggestion"
+                                            data-tag="social-work">social-work</a>
+                                        <a href="#" class="text-decoration-none me-2 tag-suggestion"
+                                            data-tag="community">community</a>
+                                        <a href="#" class="text-decoration-none me-2 tag-suggestion"
+                                            data-tag="development">development</a>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Author & Status Section -->
+                <div class="form-section">
+                    <h3 class="form-section-title">Author & Status</h3>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Author Information -->
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">Author Information</label>
+
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="author-avatar-preview me-3" id="authorAvatarPreview">
+                                        <div
+                                            class="bg-secondary text-white w-100 h-100 d-flex align-items-center justify-content-center">
+                                            <i class="fas fa-user fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <input type="file" id="authorPhoto" accept="image/*" style="display: none;">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"
+                                            id="uploadAuthorBtn">
+                                            <i class="fas fa-camera me-1"></i> Upload Photo
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" id="authorName"
+                                                placeholder="Author Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" id="authorRole"
+                                                placeholder="Author Role/Title">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <!-- Publication Status -->
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">Publication Status</label>
+                                <div class="d-flex mb-3">
+                                    <div class="status-badge status-draft" data-status="draft">
+                                        <i class="fas fa-save me-1"></i> Save as Draft
+                                    </div>
+                                    <div class="status-badge status-published" data-status="published">
+                                        <i class="fas fa-paper-plane me-1"></i> Publish Now
+                                    </div>
+                                    <div class="status-badge status-pending" data-status="pending">
+                                        <i class="fas fa-clock me-1"></i> Pending Review
+                                    </div>
+                                </div>
+                                <input type="hidden" id="status" value="draft">
+
+                                <!-- Schedule Publication -->
+                                <div class="mt-4" id="scheduleSection" style="display: none;">
+                                    <label for="publishDate" class="form-label fw-semibold">Schedule Publication</label>
+                                    <input type="datetime-local" class="form-control" id="publishDate">
+                                    <div class="form-text">Leave empty to publish immediately</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Buttons -->
+                <div class="d-flex justify-content-between pt-4 border-top">
+                    <div>
+                        <button type="button" class="btn btn-outline-secondary" id="previewBtn">
+                            <i class="fas fa-eye me-2"></i> Preview
+                        </button>
+                        <button type="button" class="btn btn-outline-danger" id="cancelBtn">
+                            <i class="fas fa-times me-2"></i> Cancel
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-outline-primary" id="saveDraftBtn">
+                            <i class="fas fa-save me-2"></i> Save Draft
+                        </button>
+                        <button type="submit" class="btn btn-submit ms-2" id="submitBtn">
+                            <i class="fas fa-paper-plane me-2"></i> Update Post
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+    <script>
+        // API endpoint configuration
+        const API_BASE = window.location.hostname === 'localhost'
+            ? 'http://localhost:8082/blog-api/'
+            : 'https://login.rssi.in/blog-api/';
+
+        // Login variables
+        const GOOGLE_CLIENT_ID = '880893711562-48c591om401pva696dnk9ffnqb9it4mm.apps.googleusercontent.com';
+        let currentUser = null;
+
+        // Blog variables
+        let tags = [];
+        let selectedStatus = 'draft';
+        let featuredImageBase64 = null;
+        let authorPhotoBase64 = null;
+        let postId = null;
+        let originalStatus = '';
+        let originalSlug = '';
+
+        $(document).ready(function () {
+            checkUserLogin();
+            
+            // Get post ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            postId = urlParams.get('id');
+            
+            if (!postId) {
+                showError('No post ID specified');
+                setTimeout(() => {
+                    window.location.href = 'user-portal.html';
+                }, 2000);
+                return;
+            }
+
+            // Only load post if user is logged in
+            if (currentUser) {
+                loadPostData(postId);
+            } else {
+                $('#loginRequiredOverlay').show();
+            }
+
+            // Initialize Summernote editor with image upload
+            $('#content').summernote({
+                height: 400,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video', 'hr']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ],
+                placeholder: 'Write your amazing content here...',
+                callbacks: {
+                    onChange: function (contents) {
+                        calculateReadingTime();
+                    },
+                    onImageUpload: function (files) {
+                        // Convert image to base64 and insert directly (will be uploaded to Drive on save)
+                        const file = files[0];
+                        const reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            // Insert image as base64 - will be converted to Drive URL when saving
+                            $('#content').summernote('insertImage', e.target.result);
+                        };
+
+                        reader.readAsDataURL(file);
+                    }
+                }
+            });
+
+            // Setup event listeners
+            setupEventListeners();
+        });
+
         function loadPostData(postId) {
-            // AJAX call to get post data
-            // Pre-fill the form
-            // Handle update instead of create
+            showLoading(true);
+            
+            $.ajax({
+                url: API_BASE + 'get_post.php?id=' + postId + '&user_id=' + currentUser.id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success) {
+                        populateForm(response.post);
+                    } else {
+                        showError(response.message || 'Failed to load post');
+                        setTimeout(() => {
+                            window.location.href = 'user-portal.html';
+                        }, 2000);
+                    }
+                    showLoading(false);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Load error:', error);
+                    showError('Error loading post: ' + error);
+                    showLoading(false);
+                    setTimeout(() => {
+                        window.location.href = 'user-portal.html';
+                    }, 2000);
+                }
+            });
+        }
+
+        function populateForm(post) {
+            // Check if user owns this post
+            if (post.author_email !== currentUser.email) {
+                showError('You do not have permission to edit this post');
+                setTimeout(() => {
+                    window.location.href = 'user-portal.html';
+                }, 2000);
+                return;
+            }
+
+            // Store original data
+            originalStatus = post.status;
+            originalSlug = post.slug;
+            
+            // Populate basic fields
+            $('#postId').val(post.id);
+            $('#title').val(post.title);
+            $('#slug').val(post.slug);
+            $('#excerpt').val(post.excerpt || '');
+            $('#category').val(post.category);
+            $('#readingTime').val(post.reading_time || 5);
+            $('#authorName').val(post.author_name || '');
+            
+            // Populate tags
+            if (post.tags && post.tags.length > 0) {
+                tags = post.tags;
+                renderTags();
+            }
+            
+            // Set status
+            selectedStatus = post.status;
+            $('#status').val(selectedStatus);
+            $('#originalStatus').val(originalStatus);
+            
+            // Update status badges
+            $('.status-badge').removeClass('active');
+            $(`.status-badge[data-status="${selectedStatus}"]`).addClass('active');
+            
+            // Show warning if not draft
+            if (originalStatus !== 'draft') {
+                showEditWarning(originalStatus);
+            }
+            
+            // Check admin status to show/hide publish option
+            checkUserAdminStatus();
+            
+            // Populate featured image if exists
+            if (post.featured_image) {
+                $('#imagePreview').attr('src', post.featured_image).show();
+                $('#imagePlaceholder').hide();
+                $('#featuredImageUrl').val(post.featured_image);
+            }
+            
+            // Populate author photo if exists
+            if (post.author_photo) {
+                $('#authorAvatarPreview').html(`<img src="${post.author_photo}" class="w-100 h-100" style="object-fit: cover;">`);
+            }
+            
+            // Populate content in Summernote
+            $('#content').summernote('code', post.content);
+            
+            // Calculate reading time
+            calculateReadingTime();
+            
+            // Enable form
+            enableForm(true);
+        }
+
+        function showEditWarning(status) {
+            const $warning = $('#editWarning');
+            let message = '';
+            
+            switch(status) {
+                case 'published':
+                    message = 'This post is already published. Editing will create a new revision.';
+                    break;
+                case 'pending':
+                    message = 'This post is pending review. Changes may affect the review process.';
+                    break;
+                default:
+                    return;
+            }
+            
+            $('#warningMessage').text(message);
+            $warning.show();
+        }
+
+        function initializeForm() {
+            // Only run form initialization when user is logged in
+            if (currentUser) {
+                // Auto-fill author information from Google
+                $('#authorName').val(currentUser.name || '');
+
+                // If user has profile picture, use it
+                if (currentUser.picture) {
+                    $('#authorAvatarPreview').html(`<img src="${currentUser.picture}" class="w-100 h-100" style="object-fit: cover;">`);
+                }
+
+                // Enable form
+                enableForm(true);
+            }
+        }
+
+        // ==================== GOOGLE LOGIN FUNCTIONS ====================
+        function checkUserLogin() {
+            const userData = localStorage.getItem('user');
+            if (userData) {
+                try {
+                    currentUser = JSON.parse(userData);
+                    // Check if token is still valid (not expired)
+                    if (currentUser.expires_at && new Date() > new Date(currentUser.expires_at)) {
+                        logoutUser();
+                        return;
+                    }
+                } catch (e) {
+                    console.error('Error parsing user data:', e);
+                    localStorage.removeItem('user');
+                    currentUser = null;
+                }
+            }
+            updateLoginButtons();
+        }
+
+        function updateLoginButtons() {
+            if (currentUser) {
+                $('#loginButtons').html(`
+                <div class="dropdown">
+                    <button class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown">
+                        <img src="${currentUser.picture || 'https://via.placeholder.com/25?text=U'}" 
+                             alt="${currentUser.name}" 
+                             class="rounded-circle me-2" 
+                             style="width: 25px; height: 25px; object-fit: cover;">
+                        <span style="font-size: 0.9rem;">${currentUser.name.split(' ')[0]}</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="user-portal.html"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
+                        <li><a class="dropdown-item" href="create-blog.html"><i class="fas fa-plus me-2"></i>Create New</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#" onclick="switchAccount(); return false;"><i class="fas fa-sync-alt me-2"></i>Switch Account</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser(); return false;"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                    </ul>
+                </div>
+            `);
+
+                // Also update the overlay login button
+                $('#loginOverlayButtons').html(`
+                <button class="btn btn-success btn-lg" onclick="hideLoginOverlay()">
+                    <i class="fas fa-check me-2"></i> Continue as ${currentUser.name.split(' ')[0]}
+                </button>
+            `);
+            } else {
+                $('#loginButtons').html('<div id="googleSignInContainer"></div>');
+                $('#loginOverlayButtons').html('<div id="googleSignInOverlayContainer"></div>');
+
+                // Initialize Google Sign-In
+                initGoogleSignIn();
+            }
+        }
+
+        function initGoogleSignIn() {
+            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+                setupGoogleSignIn();
+            } else {
+                setTimeout(initGoogleSignIn, 1000);
+            }
+        }
+
+        function setupGoogleSignIn() {
+            google.accounts.id.initialize({
+                client_id: GOOGLE_CLIENT_ID,
+                callback: handleGoogleSignIn,
+                auto_select: false,
+                cancel_on_tap_outside: true,
+                ux_mode: 'popup'
+            });
+
+            // Render buttons
+            renderGoogleButton('#googleSignInContainer');
+            renderGoogleButton('#googleSignInOverlayContainer');
+        }
+
+        function renderGoogleButton(containerId) {
+            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+                const container = document.querySelector(containerId);
+                if (!container) return;
+
+                container.innerHTML = '';
+
+                google.accounts.id.renderButton(
+                    container,
+                    {
+                        type: 'standard',
+                        theme: 'filled_blue',
+                        size: 'large',
+                        text: 'signin_with',
+                        shape: 'rectangular',
+                        logo_alignment: 'left'
+                    }
+                );
+            } else {
+                $(containerId).html(`
+                <button class="btn btn-outline-light btn-sm" disabled>
+                    <i class="fas fa-spinner fa-spin me-2"></i> Loading Google Login...
+                </button>
+            `);
+            }
+        }
+
+        function handleGoogleSignIn(response) {
+            if (response.credential) {
+                $.ajax({
+                    url: API_BASE + 'google-auth/login.php',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ id_token: response.credential }),
+                    success: function (response) {
+                        if (response.success) {
+                            const userData = {
+                                ...response.user,
+                                expires_at: new Date(Date.now() + 3600000).toISOString()
+                            };
+                            localStorage.setItem('user', JSON.stringify(userData));
+                            currentUser = userData;
+                            updateLoginButtons();
+
+                            // Hide login overlay and load post data
+                            hideLoginOverlay();
+                            loadPostData(postId);
+
+                            showToast('Login successful!', 'success');
+                        } else {
+                            showToast('Login failed: ' + response.message, 'error');
+                        }
+                    },
+                    error: function () {
+                        showToast('Error connecting to server.', 'error');
+                    }
+                });
+            }
+        }
+
+        function hideLoginOverlay() {
+            $('#loginRequiredOverlay').fadeOut();
+            if (currentUser && postId) {
+                loadPostData(postId);
+            }
+        }
+
+        function logoutUser() {
+            localStorage.removeItem('user');
+            currentUser = null;
+
+            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+                google.accounts.id.disableAutoSelect();
+                google.accounts.id.revoke();
+            }
+
+            updateLoginButtons();
+            $('#loginRequiredOverlay').show();
+            enableForm(false);
+            showToast('Logged out successfully', 'success');
+        }
+
+        function switchAccount() {
+            logoutUser();
+        }
+
+        // ==================== ADMIN CHECK FUNCTION ====================
+        async function checkUserAdminStatus() {
+            if (!currentUser) return;
+
+            try {
+                const response = await fetch(API_BASE + 'check_admin.php?user_id=' + currentUser.id);
+                const data = await response.json();
+
+                if (data.is_admin) {
+                    // User is admin - show all status options
+                    $('.status-badge').show();
+                } else {
+                    // User is not admin - only show draft and pending options
+                    $('.status-badge[data-status="published"]').hide();
+                    
+                    // If current status is published, change to pending
+                    if (selectedStatus === 'published') {
+                        selectedStatus = 'pending';
+                        $('#status').val('pending');
+                        $('.status-badge').removeClass('active');
+                        $('.status-badge[data-status="pending"]').addClass('active');
+                    }
+                }
+            } catch (error) {
+                console.error('Error checking admin status:', error);
+                // Default to non-admin permissions
+                $('.status-badge[data-status="published"]').hide();
+            }
+        }
+
+        function enableForm(enabled) {
+            const formElements = $('#blogForm input, #blogForm select, #blogForm textarea, #blogForm button');
+            if (enabled) {
+                formElements.prop('disabled', false);
+                $('#content').summernote('enable');
+            } else {
+                formElements.prop('disabled', true);
+                $('#content').summernote('disable');
+            }
+        }
+
+        function setupEventListeners() {
+            // Auto-generate slug from title
+            $('#title').on('input', function () {
+                const title = $(this).val();
+                if (title && !$('#slug').val()) {
+                    const slug = title.toLowerCase()
+                        .replace(/[^\w\s-]/g, '')
+                        .replace(/[\s_-]+/g, '-')
+                        .replace(/^-+|-+$/g, '');
+                    $('#slug').val(slug);
+                }
+            });
+
+            // Featured image upload
+            $('#uploadFeaturedBtn').click(function () {
+                $('#featuredImage').click();
+            });
+
+            $('#featuredImage').change(function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Convert to base64 for preview
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        featuredImageBase64 = e.target.result;
+                        $('#imagePreview').attr('src', featuredImageBase64).show();
+                        $('#imagePlaceholder').hide();
+                        $('#featuredImageUrl').val(featuredImageBase64);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            $('#imagePreviewContainer').click(function () {
+                $('#featuredImage').click();
+            });
+
+            $('#removeImage').click(function () {
+                $('#imagePreview').hide();
+                $('#imagePlaceholder').show();
+                $('#featuredImageUrl').val('');
+                $('#featuredImage').val('');
+                featuredImageBase64 = null;
+            });
+
+            // Author photo upload
+            $('#uploadAuthorBtn').click(function () {
+                $('#authorPhoto').click();
+            });
+
+            $('#authorPhoto').change(function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Convert to base64 for preview
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        authorPhotoBase64 = e.target.result;
+                        $('#authorAvatarPreview').html(`<img src="${authorPhotoBase64}" class="w-100 h-100" style="object-fit: cover;">`);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Tags management
+            $('#tagInput').keypress(function (e) {
+                if (e.which === 13) {
+                    e.preventDefault();
+                    addTag();
+                }
+            });
+
+            $('#addTagBtn').click(addTag);
+
+            // Tag suggestions
+            $(document).on('click', '.tag-suggestion', function (e) {
+                e.preventDefault();
+                const tag = $(this).data('tag');
+                $('#tagInput').val(tag);
+                addTag();
+            });
+
+            // Status selection
+            $('.status-badge').click(function () {
+                if (originalStatus === 'published') {
+                    showToast('Published posts can only be saved as drafts for revision.', 'warning');
+                    return;
+                }
+                
+                $('.status-badge').removeClass('active');
+                $(this).addClass('active');
+                selectedStatus = $(this).data('status');
+                $('#status').val(selectedStatus);
+
+                // Show/hide schedule section for published
+                if (selectedStatus === 'published') {
+                    $('#scheduleSection').show();
+                } else {
+                    $('#scheduleSection').hide();
+                }
+            });
+
+            // Form submission
+            $('#blogForm').submit(function (e) {
+                e.preventDefault();
+                updateBlogPost();
+            });
+
+            // Save draft button
+            $('#saveDraftBtn').click(function () {
+                selectedStatus = 'draft';
+                $('#status').val('draft');
+                $('.status-badge').removeClass('active');
+                $('.status-badge[data-status="draft"]').addClass('active');
+                $('#scheduleSection').hide();
+                updateBlogPost();
+            });
+
+            // Preview button
+            $('#previewBtn').click(function () {
+                previewBlogPost();
+            });
+
+            // Cancel button
+            $('#cancelBtn').click(function () {
+                if (confirm('Are you sure you want to cancel editing? Any unsaved changes will be lost.')) {
+                    window.location.href = 'user-portal.html';
+                }
+            });
+
+            // Success modal buttons
+            $('#editAgainBtn').click(function () {
+                $('#successModal').removeClass('show').hide();
+                // Reload the page to get fresh data
+                window.location.reload();
+            });
+
+            $('#viewPostBtn').click(function () {
+                window.open('blog-post.html?slug=' + originalSlug, '_blank');
+            });
+
+            $('#dashboardBtn').click(function () {
+                window.location.href = 'user-portal.html';
+            });
+        }
+
+        function addTag() {
+            const tagInput = $('#tagInput');
+            const tag = tagInput.val().trim().toLowerCase();
+
+            if (tag && !tags.includes(tag)) {
+                tags.push(tag);
+                renderTags();
+                tagInput.val('');
+            }
+        }
+
+        function removeTag(tag) {
+            tags = tags.filter(t => t !== tag);
+            renderTags();
+        }
+
+        function renderTags() {
+            const container = $('#tagsContainer');
+            container.empty();
+
+            tags.forEach(tag => {
+                const badge = `
+                <span class="tag-badge">
+                    ${tag}
+                    <span class="remove-tag" onclick="removeTag('${tag}')">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </span>
+            `;
+                container.append(badge);
+            });
+        }
+
+        function calculateReadingTime() {
+            const content = $('#content').summernote('code');
+            const text = $(content).text();
+            const wordCount = text.split(/\s+/).length;
+            const readingTime = Math.ceil(wordCount / 200); // 200 words per minute
+
+            if (readingTime > 0) {
+                $('#readingTime').val(readingTime);
+            }
+        }
+
+        function updateBlogPost() {
+            // Validate login first
+            if (!currentUser) {
+                showError('Please login to update blog posts');
+                $('#loginRequiredOverlay').show();
+                return;
+            }
+
+            // Validate required fields
+            if (!$('#title').val()) {
+                showError('Title is required');
+                $('#title').focus();
+                return;
+            }
+
+            if (!$('#category').val()) {
+                showError('Category is required');
+                $('#category').focus();
+                return;
+            }
+
+            const content = $('#content').summernote('code');
+            if (!content || content.trim() === '<p><br></p>') {
+                showError('Content is required');
+                return;
+            }
+
+            // Prepare publish date for database
+            let publishDate = null;
+            if (selectedStatus === 'published' && $('#publishDate').val()) {
+                // Convert to ISO string for database (PostgreSQL timestamp without timezone)
+                const dateInput = $('#publishDate').val();
+                const dateObj = new Date(dateInput);
+
+                // Format: YYYY-MM-DD HH:MM:SS for PostgreSQL timestamp
+                const year = dateObj.getFullYear();
+                const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+                const day = String(dateObj.getDate()).padStart(2, '0');
+                const hours = String(dateObj.getHours()).padStart(2, '0');
+                const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+                const seconds = String(dateObj.getSeconds()).padStart(2, '0');
+
+                publishDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+            }
+
+            // Prepare data
+            const blogData = {
+                id: $('#postId').val(),
+                title: $('#title').val(),
+                slug: $('#slug').val() || generateSlug($('#title').val()),
+                excerpt: $('#excerpt').val(),
+                content: content,
+                featured_image: featuredImageBase64 || $('#featuredImageUrl').val() || '',
+                category: $('#category').val(),
+                tags: tags,
+                author_name: currentUser.name || $('#authorName').val(),
+                author_email: currentUser.email || '',
+                author_photo: currentUser.picture || authorPhotoBase64 || '',
+                reading_time: $('#readingTime').val(),
+                status: selectedStatus,
+                publish_date: publishDate,
+                user_id: currentUser.id,
+                original_status: originalStatus
+            };
+
+            console.log('Updating blog data:', blogData);
+
+            showLoading(true);
+            $('#submitBtn').prop('disabled', true);
+            $('#saveDraftBtn').prop('disabled', true);
+
+            $.ajax({
+                url: API_BASE + 'update_blog.php',
+                type: 'POST',
+                data: JSON.stringify(blogData),
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success) {
+                        const message = selectedStatus === 'published'
+                            ? 'Blog post updated and published successfully!'
+                            : selectedStatus === 'pending'
+                                ? 'Blog updated and submitted for review!'
+                                : 'Blog draft updated successfully!';
+
+                        $('#successModalMessage').text(message);
+                        $('#successModal').addClass('show').show();
+
+                        showSuccess(message);
+                    } else {
+                        showError(response.message || 'Failed to update blog post');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Update error:', error);
+                    showError('Server error: ' + error);
+                },
+                complete: function () {
+                    showLoading(false);
+                    $('#submitBtn').prop('disabled', false);
+                    $('#saveDraftBtn').prop('disabled', false);
+                }
+            });
+        }
+
+        function generateSlug(title) {
+            return title.toLowerCase()
+                .replace(/[^\w\s-]/g, '')
+                .replace(/[\s_-]+/g, '-')
+                .replace(/^-+|-+$/g, '');
+        }
+
+        function previewBlogPost() {
+            const content = $('#content').summernote('code');
+            const previewWindow = window.open('', '_blank');
+
+            // Get preview image URL
+            let previewImageUrl = '';
+            if (featuredImageBase64) {
+                previewImageUrl = featuredImageBase64;
+            } else if ($('#featuredImageUrl').val()) {
+                previewImageUrl = $('#featuredImageUrl').val();
+            }
+
+            const previewHTML = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Preview: ${$('#title').val()}</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+                <style>
+                    body { padding: 20px; max-width: 800px; margin: 0 auto; }
+                    .preview-header { border-bottom: 2px solid #3498db; padding-bottom: 20px; margin-bottom: 30px; }
+                    .preview-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 10px; margin-bottom: 20px; }
+                    .preview-meta { color: #666; font-size: 0.9rem; margin-bottom: 30px; }
+                    .preview-content img { max-width: 100%; height: auto; }
+                </style>
+            </head>
+            <body>
+                <div class="preview-header">
+                    <h1>${$('#title').val()}</h1>
+                    <div class="preview-meta">
+                        <span class="badge bg-primary">${$('#category').val()}</span>
+                        <span class="ms-3"><i class="fas fa-user"></i> ${$('#authorName').val() || 'Author'}</span>
+                        <span class="ms-3"><i class="fas fa-clock"></i> ${$('#readingTime').val()} min read</span>
+                    </div>
+                </div>
+                
+                ${previewImageUrl ? `<img src="${previewImageUrl}" class="preview-image" alt="Featured Image">` : ''}
+                
+                <div class="preview-content">
+                    ${content}
+                </div>
+                
+                ${tags.length > 0 ? `
+                    <div class="mt-5 pt-4 border-top">
+                        <strong>Tags:</strong>
+                        ${tags.map(tag => `<span class="badge bg-light text-dark me-2">${tag}</span>`).join('')}
+                    </div>
+                ` : ''}
+            </body>
+            </html>
+        `;
+
+            previewWindow.document.write(previewHTML);
+            previewWindow.document.close();
+        }
+
+        function showLoading(show) {
+            if (show) {
+                $('.loading-overlay').addClass('show').fadeIn();
+            } else {
+                $('.loading-overlay').removeClass('show').fadeOut();
+            }
+        }
+
+        function showSuccess(message) {
+            $('#successMessage').text(message);
+            $('#successAlert').fadeIn();
+            $('#errorAlert').hide();
+        }
+
+        function showError(message) {
+            $('#errorMessage').text(message);
+            $('#errorAlert').fadeIn();
+            $('#successAlert').hide();
+        }
+
+        // Add this function to show toast messages
+        function showToast(message, type = 'info') {
+            $('.toast').remove();
+            const bgColor = type === 'success' ? 'bg-success' : 
+                           type === 'error' ? 'bg-danger' : 
+                           type === 'warning' ? 'bg-warning' : 'bg-info';
+            
+            const toast = $(`
+            <div class="toast align-items-center text-white ${bgColor} border-0" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 1060; max-width: 400px;">
+                <div class="d-flex">
+                    <div class="toast-body p-3">
+                        <div class="d-flex align-items-center">
+                            <i class="fas ${type === 'success' ? 'fa-check-circle' : 
+                                          type === 'error' ? 'fa-exclamation-circle' : 
+                                          type === 'warning' ? 'fa-exclamation-triangle' : 'fa-info-circle'} 
+                               me-3" style="font-size: 1.2rem;"></i>
+                            <div style="flex: 1;">${message}</div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            </div>
+        `);
+            $('body').append(toast);
+            const bsToast = new bootstrap.Toast(toast[0]);
+            bsToast.show();
+
+            setTimeout(() => toast.remove(), 3000);
         }
     </script>
 </body>
