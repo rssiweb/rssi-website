@@ -546,11 +546,26 @@
 
             // Check if current user has liked this post
             if (currentUser) {
-                const likedUsers = Array.isArray(likes.liked_users) ? likes.liked_users : [];
-                isLiked = likedUsers.some(user =>
-                    user === currentUser.id ||
-                    user === currentUser.email ||
-                    user === currentUser.name
+
+                let likedUsers = [];
+
+                // Parse the liked_users from the API response
+                if (typeof likes.liked_users === 'string') {
+                    try {
+                        // Remove the curly braces and parse as array
+                        const cleanStr = likes.liked_users.replace(/[{}"]/g, '');
+                        likedUsers = cleanStr.split(',').map(user => user.trim()).filter(user => user);
+                    } catch (e) {
+                        console.error('Error parsing liked_users:', e);
+                    }
+                } else if (Array.isArray(likes.liked_users)) {
+                    likedUsers = likes.liked_users;
+                }
+
+                // Check if current user is in the liked users list
+                isLiked = likedUsers.some(likedUser =>
+                    likedUser === currentUser.name ||
+                    likedUser === currentUser.email
                 );
 
                 if (isLiked) {
