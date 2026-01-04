@@ -564,7 +564,6 @@
 
                 // Check if current user is in the liked users list
                 isLiked = likedUsers.some(likedUser =>
-                    likedUser === currentUser.name ||
                     likedUser === currentUser.email
                 );
 
@@ -622,6 +621,9 @@
             `;
             }
 
+            // FOR REPLIES: Use updated_at instead of created_at
+            const timestamp = isReply ? (comment.updated_at || comment.created_at) : comment.created_at;
+
             return `
             <div class="comment-card ${isReply ? 'reply-card' : ''}" id="comment-${comment.id}">
                 <div class="d-flex">
@@ -633,7 +635,7 @@
                     <div class="flex-grow-1">
                         <div class="d-flex justify-content-between">
                             <h6 class="mb-1">${comment.user_name || 'Anonymous'}</h6>
-                            <small class="text-muted">${formatCommentTime(comment.created_at)}</small>
+                            <small class="text-muted">${formatCommentTime(timestamp)}</small>
                         </div>
                         <p class="mb-2">${comment.content}</p>
                         ${!isReply ? `<button class="btn btn-sm btn-outline-secondary reply-btn" data-comment-id="${comment.id}"><i class="fas fa-reply me-1"></i> Reply</button>` : ''}
