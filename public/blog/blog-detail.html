@@ -261,21 +261,39 @@
                     </div>
 
                     <!-- Reading Stats -->
+                    <!-- Update the Reading Stats card -->
                     <div class="card mb-4">
                         <div class="card-body">
                             <h5 class="card-title">Reading Stats</h5>
                             <div class="d-flex justify-content-between mb-2">
                                 <span>Reading Time:</span>
-                                <span id="readingTime"></span>
+                                <span id="readingTime" class="placeholder-glow">
+                                    <span class="placeholder col-4"></span>
+                                </span>
                             </div>
                             <div class="d-flex justify-content-between mb-2">
                                 <span>Word Count:</span>
-                                <span id="wordCount"></span>
+                                <span id="wordCount" class="placeholder-glow">
+                                    <span class="placeholder col-3"></span>
+                                </span>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <span>Views:</span>
-                                <span id="postViews"></span>
+                                <span id="postViews" class="placeholder-glow">
+                                    <span class="placeholder col-2"></span>
+                                </span>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Add loading spinner for main content -->
+                    <div id="loadingOverlay"
+                        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; justify-content: center; align-items: center;">
+                        <div class="text-center">
+                            <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-3">Loading blog post...</p>
                         </div>
                     </div>
                 </div>
@@ -315,30 +333,70 @@
             setupEventListeners();
         });
 
+        function showLoadingState() {
+            // Add placeholders
+            $('#blogTitle').html('<span class="placeholder col-8"></span>');
+            $('#authorName').html('<span class="placeholder col-4"></span>');
+            $('#postMeta').html('<span class="placeholder col-6"></span>');
+            $('#blogContent').html(`
+        <div class="placeholder-glow">
+            <p class="placeholder col-12"></p>
+            <p class="placeholder col-11"></p>
+            <p class="placeholder col-10"></p>
+            <p class="placeholder col-9"></p>
+            <p class="placeholder col-8"></p>
+        </div>
+    `);
+
+            // Hide share buttons and author card initially
+            $('.share-buttons, #authorCard, #commentSection, #relatedPosts').hide();
+        }
+
         // Load blog detail
         function loadBlogDetail() {
             $.ajax({
                 url: API_BASE + `get_blog_detail.php?slug=${postSlug}`,
                 type: 'GET',
                 dataType: 'json',
+                beforeSend: function () {
+                    showLoadingState();
+                },
                 success: function (response) {
                     if (response.success) {
                         currentPost = response.post;
                         renderBlogDetail(response);
                         setupShareButtons();
-                        generateTableOfContents();
+                        setTimeout(generateTableOfContents, 100); // Wait for DOM
                     } else {
-                        window.location.href = 'index.html';
+                        $('#loadingOverlay').html(`
+                    <div class="alert alert-danger">
+                        <h4>Post Not Found</h4>
+                        <p>The blog post you're looking for doesn't exist.</p>
+                        <a href="index.html" class="btn btn-primary">Back to Blog</a>
+                    </div>
+                `);
                     }
                 },
-                error: function () {
-                    window.location.href = 'index.html';
+                error: function (xhr, status, error) {
+                    $('#loadingOverlay').html(`
+                <div class="alert alert-danger">
+                    <h4>Error Loading Post</h4>
+                    <p>There was a problem loading the blog post. Please try again.</p>
+                    <button onclick="location.reload()" class="btn btn-primary">Retry</button>
+                    <a href="index.html" class="btn btn-secondary">Back to Blog</a>
+                </div>
+            `);
                 }
             });
         }
 
         // Render blog detail
         function renderBlogDetail(data) {
+            // Hide loading overlay
+            $('#loadingOverlay').fadeOut();
+
+            // Show hidden sections
+            $('.share-buttons, #authorCard, #commentSection, #relatedPosts').show();
             const post = data.post;
 
             // Update page title
@@ -351,22 +409,22 @@
             $('#blogTitle').text(post.title);
             $('#authorName').text(post.author_name || 'Anonymous');
             $('#postMeta').html(`
-                ${new Date(post.published_at || post.created_at).toLocaleDateString('en-US', {
+        ${new Date(post.published_at || post.created_at).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric'
             })} • ${post.reading_time || '5'} min read
-            `);
+    `);
 
             // Update author avatar
             if (post.author_photo) {
                 $('#authorAvatar').html(`<img src="${post.author_photo}" alt="${post.author_name}" style="width:100%;height:100%;object-fit:cover;">`);
             } else {
                 $('#authorAvatar').html(`
-                    <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width:100%;height:100%;">
-                        ${post.author_name?.charAt(0) || 'A'}
-                    </div>
-                `);
+            <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width:100%;height:100%;">
+                ${post.author_name?.charAt(0) || 'A'}
+            </div>
+        `);
             }
 
             // Update featured image
@@ -382,37 +440,59 @@
             // Update likes
             updateLikeStatus(data.likes);
 
-            // Update tags
-            if (post.tags && post.tags.length > 0) {
-                let tagsHtml = '<div class="d-flex flex-wrap gap-2">';
-                post.tags.forEach(tag => {
-                    tagsHtml += `<span class="badge bg-secondary">${tag}</span>`;
-                });
-                tagsHtml += '</div>';
-                $('#postTags').html(`<strong>Tags: </strong>${tagsHtml}`);
+            // Update tags - FIXED
+            if (post.tags) {
+                let tagsArray = [];
+
+                // Handle different tag formats
+                if (typeof post.tags === 'string') {
+                    // Remove curly braces and split by comma
+                    const cleanTags = post.tags.replace(/[{}"]/g, '');
+                    tagsArray = cleanTags.split(',').filter(tag => tag.trim() !== '');
+                } else if (Array.isArray(post.tags)) {
+                    tagsArray = post.tags;
+                }
+
+                if (tagsArray.length > 0) {
+                    let tagsHtml = '<div class="d-flex flex-wrap gap-2">';
+                    tagsArray.forEach(tag => {
+                        const cleanTag = tag.trim();
+                        if (cleanTag) {
+                            tagsHtml += `<span class="badge bg-secondary">${cleanTag}</span>`;
+                        }
+                    });
+                    tagsHtml += '</div>';
+                    $('#postTags').html(`<strong>Tags: </strong>${tagsHtml}`);
+                } else {
+                    $('#postTags').html('');
+                }
             }
 
             // Update author card
             $('#authorCard').html(`
-                <div class="row align-items-center">
-                    <div class="col-md-3 text-center mb-3 mb-md-0">
-                        ${post.author_photo ?
+        <div class="row align-items-center">
+            <div class="col-md-3 text-center mb-3 mb-md-0">
+                ${post.author_photo ?
                     `<img src="${post.author_photo}" alt="${post.author_name}" class="rounded-circle" style="width:100px;height:100px;object-fit:cover;">` :
                     `<div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mx-auto" style="width:100px;height:100px;font-size:2rem;">${post.author_name?.charAt(0) || 'A'}</div>`
                 }
-                    </div>
-                    <div class="col-md-9">
-                        <h4>${post.author_name || 'Anonymous'}</h4>
-                        <p class="text-muted mb-2">${post.author_email || ''}</p>
-                        <p class="mb-0">Author bio would go here. You can store author bio in your database.</p>
-                    </div>
-                </div>
-            `);
+            </div>
+            <div class="col-md-9">
+                <h4>${post.author_name || 'Anonymous'}</h4>
+                <p class="text-muted mb-2">${post.author_email || ''}</p>
+                <p class="mb-0">Author bio would go here. You can store author bio in your database.</p>
+            </div>
+        </div>
+    `);
 
-            // Update reading stats
+            // Update reading stats - FIXED
             $('#readingTime').text(`${post.reading_time || '5'} minutes`);
-            $('#wordCount').text(post.content.split(/\s+/).length);
-            $('#postViews').text(post.views);
+            $('#wordCount').text(post.word_count || post.content.split(/\s+/).length);
+            $('#postViews').text(post.views || 0);
+
+            // Remove placeholders from reading stats
+            $('#readingTime, #wordCount, #postViews').find('.placeholder, .placeholder-glow').remove();
+            $('#readingTime, #wordCount, #postViews').removeClass('placeholder-glow').css('opacity', '1');
 
             // Update comments
             renderComments(data.comments);
@@ -420,6 +500,12 @@
 
             // Render related posts
             renderRelatedPosts(data.related_posts);
+
+            // Remove placeholders from other areas
+            $('.placeholder, .placeholder-glow').removeClass('placeholder placeholder-glow');
+
+            // Generate table of contents after content is rendered
+            setTimeout(generateTableOfContents, 200);
         }
 
         // Update like status
@@ -551,26 +637,38 @@
         // Generate table of contents
         function generateTableOfContents() {
             const content = document.getElementById('blogContent');
-            const headings = content.querySelectorAll('h2, h3');
+            if (!content) return;
+
+            const headings = content.querySelectorAll('h1, h2, h3, h4');
             let tocHtml = '<ul class="list-unstyled">';
 
-            headings.forEach((heading, index) => {
-                const id = `heading-${index}`;
-                heading.id = id;
+            if (headings.length === 0) {
+                tocHtml = '<p class="text-muted">No headings found</p>';
+            } else {
+                headings.forEach((heading, index) => {
+                    const id = `heading-${index}`;
+                    heading.id = id;
 
-                const level = heading.tagName === 'H2' ? '' : 'ms-3';
-                tocHtml += `
-                    <li class="${level} mb-2">
-                        <a href="#${id}" class="text-decoration-none">
-                            ${heading.textContent}
-                        </a>
-                    </li>
-                `;
-            });
+                    const level = heading.tagName === 'H1' ? '' :
+                        heading.tagName === 'H2' ? 'ms-2' :
+                            heading.tagName === 'H3' ? 'ms-4' : 'ms-5';
 
-            tocHtml += '</ul>';
+                    tocHtml += `
+                <li class="${level} mb-2">
+                    <a href="#${id}" class="text-decoration-none">
+                        ${heading.textContent}
+                    </a>
+                </li>
+            `;
+                });
+                tocHtml += '</ul>';
+            }
+
             $('#tableOfContents').html(tocHtml);
         }
+
+        // Call this after content is rendered
+        setTimeout(generateTableOfContents, 100); // Small delay to ensure DOM is ready
 
         // Check user login
         function checkUserLogin() {
