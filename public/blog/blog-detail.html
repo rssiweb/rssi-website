@@ -817,10 +817,10 @@
                 );
 
                 sortedComments.forEach(comment => {
-                    // Sort replies by date (oldest first for replies)
+                    // Sort replies by date (newest first for replies too)
                     if (comment.replies && comment.replies.length > 0) {
                         comment.replies = [...comment.replies].sort((a, b) =>
-                            new Date(a.created_at) - new Date(b.created_at)
+                            new Date(b.created_at) - new Date(a.created_at)
                         );
                     }
                     commentsHtml += renderComment(comment);
@@ -1015,13 +1015,30 @@
                     },
                     success: function (response) {
                         if (response.success) {
-                            $('#commentContent').val('');
                             showToast('Comment posted successfully!', 'success');
-                            loadBlogDetail(); // Reload to show new comment
+                            $(this).find('#commentContent').val('');
+
+                            if (response.comment) {
+                                // Add the new comment at the top
+                                const commentHtml = renderComment(response.comment);
+
+                                if ($('#commentsList').find('p.text-muted').length > 0) {
+                                    $('#commentsList').html(commentHtml);
+                                } else {
+                                    $('#commentsList').prepend(commentHtml);
+                                }
+
+                                // Update comment count
+                                const currentCount = parseInt($('#commentCount').text());
+                                $('#commentCount').text(currentCount + 1);
+                            } else {
+                                // If server doesn't return comment, reload all comments
+                                loadComments();
+                            }
                         } else {
                             showToast('Failed to post comment: ' + response.message, 'error');
                         }
-                    },
+                    }.bind(this), // Bind 'this' context
                     error: function () {
                         showToast('Error submitting comment', 'error');
                     },
@@ -1061,10 +1078,18 @@
                 }
 
                 const submitBtn = $(this).find('button[type="submit"]');
+                const cancelBtn = $(this).find('.cancel-reply-btn');
+                const textarea = $(this).find('textarea');
+
                 if (submitBtn.prop('disabled')) return;
 
+                // Disable form controls and show loading state
                 submitBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-1"></i> Posting...');
-                $(this).closest('.reply-form').hide();
+                cancelBtn.prop('disabled', true);
+                textarea.prop('disabled', true);
+
+                // Optional: Show a small loading indicator in the reply form
+                $(this).append('<div class="reply-loading text-center mt-2"><small class="text-muted"><i class="fas fa-spinner fa-spin me-1"></i> Posting reply...</small></div>');
 
                 $.ajax({
                     url: API_BASE + 'handle_comment.php',
@@ -1080,22 +1105,80 @@
                     success: function (response) {
                         if (response.success) {
                             showToast('Reply posted successfully!', 'success');
-                            $(`#reply-form-${parentId} textarea`).val('');
-                            loadBlogDetail();
+
+                            // Clear the form
+                            textarea.val('');
+
+                            // Remove the loading indicator
+                            $(`#reply-form-${parentId} .reply-loading`).remove();
+
+                            if (response.comment) {
+                                // Add the new reply
+                                const replyHtml = renderComment(response.comment, true);
+
+                                // Find or create replies container
+                                let repliesContainer = $(`#comment-${parentId} .replies-container`);
+                                if (repliesContainer.length === 0) {
+                                    // Create replies container if it doesn't exist
+                                    $(`#comment-${parentId}`).append('<div class="replies-container ms-4 mt-3"></div>');
+                                    repliesContainer = $(`#comment-${parentId} .replies-container`);
+                                }
+
+                                // Add reply at the top (newest first)
+                                repliesContainer.prepend(replyHtml);
+
+                                // Hide the form after successful submission
+                                setTimeout(() => {
+                                    $(`#reply-form-${parentId}`).slideUp(200);
+                                }, 300);
+                            } else {
+                                // If server doesn't return reply, reload comments
+                                loadComments();
+                            }
                         } else {
                             showToast('Failed to post reply: ' + response.message, 'error');
-                            $(`#reply-form-${parentId}`).show();
+                            // Re-enable form controls
+                            submitBtn.prop('disabled', false).html('Post Reply');
+                            cancelBtn.prop('disabled', false);
+                            textarea.prop('disabled', false);
+                            $(`#reply-form-${parentId} .reply-loading`).remove();
                         }
                     },
                     error: function () {
                         showToast('Error submitting reply', 'error');
-                        $(`#reply-form-${parentId}`).show();
+                        // Re-enable form controls
+                        submitBtn.prop('disabled', false).html('Post Reply');
+                        cancelBtn.prop('disabled', false);
+                        textarea.prop('disabled', false);
+                        $(`#reply-form-${parentId} .reply-loading`).remove();
                     },
                     complete: function () {
-                        submitBtn.prop('disabled', false).html('Post Reply');
+                        // Final cleanup
+                        setTimeout(() => {
+                            submitBtn.prop('disabled', false).html('Post Reply');
+                            cancelBtn.prop('disabled', false);
+                            textarea.prop('disabled', false);
+                        }, 500);
                     }
                 });
             });
+
+            function loadComments() {
+                $.ajax({
+                    url: API_BASE + `get_comments.php?post_id=${currentPost.id}`,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.success) {
+                            renderComments(response.comments);
+                            $('#commentCount').text(response.comments.length);
+                        }
+                    },
+                    error: function () {
+                        console.error('Error loading comments');
+                    }
+                });
+            }
         }
         // Add CSS for toast
         const toastCSS = `
