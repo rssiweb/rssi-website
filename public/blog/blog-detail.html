@@ -898,6 +898,7 @@
 
                 $('#commentLoginLink').off('click').on('click', function (e) {
                     e.preventDefault();
+                    window.scrollTo(0, 0);
                     showToast('Please click the "Sign in with Google" button at the top right to login', 'info');
 
                     setTimeout(() => {
@@ -926,6 +927,7 @@
 
             $('#commentLoginLink').off('click').on('click', function (e) {
                 e.preventDefault();
+                window.scrollTo(0, 0);
                 showToast('Please click the "Sign in with Google" button at the top right to login', 'info');
 
                 setTimeout(() => {
