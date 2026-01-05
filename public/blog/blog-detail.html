@@ -12,6 +12,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Template Main CSS File -->
+    <link href="css/main.css" rel="stylesheet">
     <!-- Add this in your HTML head -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 
@@ -449,19 +451,14 @@
 
     <!-- Footer -->
     <div id="footer"></div>
-    <!-- Floating Create Post Button -->
-    <div class="fab-container" id="float">
-        <a href="create-blog.html" class="fab" id="createPostFab">
-            <i class="fas fa-plus fab-icon"></i>
-            <span class="fab-tooltip">Create New Post</span>
-        </a>
-    </div>
+
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Include header script -->
     <script src="includes/header.js?v=1.2.0"></script>
     <script src="js/auth.js?v=1.2.0"></script>
+    <script src="js/maiin.js"></script>
     <script>
         // Get post slug from URL
         const urlParams = new URLSearchParams(window.location.search);
@@ -479,23 +476,25 @@
             // Hide all content initially
             hideContent();
             loadBlogDetail();
-            checkUserLoginStatus();
+
+            // Register for auth state changes
+            if (typeof onAuthStateChange === 'function') {
+                onAuthStateChange(handleAuthStateChange);
+            }
+
             setupEventListeners();
+            initScrollToTop();
         });
 
-        function checkUserLoginStatus() {
-            // Use the global currentUser from auth.js
-            if (currentUser) {
-                updateCommentForm();
-            } else {
-                showCommentLoginPrompt();
-            }
+        function handleAuthStateChange(user) {
+            currentUser = user;
+            updateCommentForm();
+            updateLikeButton();
         }
 
         function hideContent() {
             // Hide all content areas
             $('#blogTitle, #authorName, #postMeta, #authorAvatar, #featuredImage, #blogContent, #authorCard, .share-buttons, #commentSection, #relatedPosts').hide();
-            $('#float').hide();
         }
 
         function showLoadingState() {
@@ -505,29 +504,29 @@
             $('#postMeta').html('<span class="placeholder col-6"></span>').show();
             $('#authorAvatar').html('<div class="placeholder" style="width:50px;height:50px;border-radius:50%;"></div>').show();
             $('#blogContent').html(`
-                <div class="placeholder-glow">
-                    <p class="placeholder col-12"></p>
-                    <p class="placeholder col-11"></p>
-                    <p class="placeholder col-10"></p>
-                    <p class="placeholder col-9"></p>
-                    <p class="placeholder col-8"></p>
-                </div>
-            `).show();
+            <div class="placeholder-glow">
+                <p class="placeholder col-12"></p>
+                <p class="placeholder col-11"></p>
+                <p class="placeholder col-10"></p>
+                <p class="placeholder col-9"></p>
+                <p class="placeholder col-8"></p>
+            </div>
+        `).show();
 
             $('#authorCard').html(`
-                <div class="row align-items-center">
-                    <div class="col-md-3 text-center mb-3 mb-md-0">
-                        <div class="placeholder" style="width:100px;height:100px;border-radius:50%;"></div>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="placeholder col-4 mb-2"></div>
-                        <div class="placeholder col-6 mb-3"></div>
-                        <div class="placeholder col-12"></div>
-                        <div class="placeholder col-11"></div>
-                        <div class="placeholder col-10"></div>
-                    </div>
+            <div class="row align-items-center">
+                <div class="col-md-3 text-center mb-3 mb-md-0">
+                    <div class="placeholder" style="width:100px;height:100px;border-radius:50%;"></div>
                 </div>
-            `).show();
+                <div class="col-md-9">
+                    <div class="placeholder col-4 mb-2"></div>
+                    <div class="placeholder col-6 mb-3"></div>
+                    <div class="placeholder col-12"></div>
+                    <div class="placeholder col-11"></div>
+                    <div class="placeholder col-10"></div>
+                </div>
+            </div>
+        `).show();
 
             $('.share-buttons, #commentSection, #relatedPosts').hide();
         }
@@ -549,24 +548,24 @@
                     } else {
                         // Show error
                         $('#blogContent').html(`
-                            <div class="alert alert-danger">
-                                <h4>Post Not Found</h4>
-                                <p>The blog post you're looking for doesn't exist.</p>
-                                <a href="index.html" class="btn btn-primary">Back to Blog</a>
-                            </div>
-                        `).show();
+                        <div class="alert alert-danger">
+                            <h4>Post Not Found</h4>
+                            <p>The blog post you're looking for doesn't exist.</p>
+                            <a href="index.html" class="btn btn-primary">Back to Blog</a>
+                        </div>
+                    `).show();
                         $('.share-buttons, #authorCard, #commentSection, #relatedPosts').hide();
                     }
                 },
                 error: function (xhr, status, error) {
                     $('#blogContent').html(`
-                        <div class="alert alert-danger">
-                            <h4>Error Loading Post</h4>
-                            <p>There was a problem loading the blog post. Please try again.</p>
-                            <button onclick="location.reload()" class="btn btn-primary">Retry</button>
-                            <a href="index.html" class="btn btn-secondary">Back to Blog</a>
-                        </div>
-                    `).show();
+                    <div class="alert alert-danger">
+                        <h4>Error Loading Post</h4>
+                        <p>There was a problem loading the blog post. Please try again.</p>
+                        <button onclick="location.reload()" class="btn btn-primary">Retry</button>
+                        <a href="index.html" class="btn btn-secondary">Back to Blog</a>
+                    </div>
+                `).show();
                     $('.share-buttons, #authorCard, #commentSection, #relatedPosts').hide();
                 }
             });
@@ -581,22 +580,22 @@
             $('#blogTitle').text(post.title);
             $('#authorName').text(post.author_name || 'Anonymous');
             $('#postMeta').html(`
-                ${new Date(post.published_at || post.created_at).toLocaleDateString('en-US', {
+            ${new Date(post.published_at || post.created_at).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric'
             })} • ${post.reading_time || '5'} min read
-            `);
+        `);
 
             // Update author avatar
             if (post.author_photo) {
                 $('#authorAvatar').html(`<img src="${post.author_photo}" alt="${post.author_name}" style="width:100%;height:100%;object-fit:cover;">`);
             } else {
                 $('#authorAvatar').html(`
-                    <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width:100%;height:100%;">
-                        ${post.author_name?.charAt(0) || 'A'}
-                    </div>
-                `);
+                <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width:100%;height:100%;">
+                    ${post.author_name?.charAt(0) || 'A'}
+                </div>
+            `);
             }
 
             // Update featured image
@@ -635,20 +634,20 @@
 
             // Update author card
             $('#authorCard').html(`
-                <div class="row align-items-center">
-                    <div class="col-md-3 text-center mb-3 mb-md-0">
-                        ${post.author_photo ?
+            <div class="row align-items-center">
+                <div class="col-md-3 text-center mb-3 mb-md-0">
+                    ${post.author_photo ?
                     `<img src="${post.author_photo}" alt="${post.author_name}" class="rounded-circle" style="width:100px;height:100px;object-fit:cover;">` :
                     `<div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mx-auto" style="width:100px;height:100px;font-size:2rem;">${post.author_name?.charAt(0) || 'A'}</div>`
                 }
-                    </div>
-                    <div class="col-md-9">
-                        <h4>${post.author_name || 'Anonymous'}</h4>
-                        <p class="text-muted mb-2">${post.author_email || ''}</p>
-                        <p class="mb-0">Author bio would go here. You can store author bio in your database.</p>
-                    </div>
                 </div>
-            `);
+                <div class="col-md-9">
+                    <h4>${post.author_name || 'Anonymous'}</h4>
+                    <p class="text-muted mb-2">${post.author_email || ''}</p>
+                    <p class="mb-0">Author bio would go here. You can store author bio in your database.</p>
+                </div>
+            </div>
+        `);
 
             // Update reading stats
             $('#readingTime').text(`${post.reading_time || '5'} minutes`);
@@ -665,7 +664,7 @@
             renderRelatedPosts(data.related_posts);
 
             // Show all content
-            $('.share-buttons, #authorCard, #commentSection, #relatedPosts, #float').show();
+            $('.share-buttons, #authorCard, #commentSection, #relatedPosts').show();
 
             // Remove placeholders
             $('.placeholder, .placeholder-glow').removeClass('placeholder placeholder-glow');
@@ -673,7 +672,6 @@
             setTimeout(generateTableOfContents, 200);
         }
 
-        // ==================== UPDATED LIKE STATUS ====================
         function updateLikeStatus(likes) {
             $('#likeCount').text(likes.like_count || 0);
 
@@ -704,10 +702,28 @@
                 } else {
                     $('#likeBtn').removeClass('liked').html(`<i class="far fa-heart me-2"></i><span id="likeCount">${likes.like_count || 0}</span> Likes`);
                 }
+            } else {
+                // Reset for logged out users
+                $('#likeBtn').removeClass('liked').html(`<i class="far fa-heart me-2"></i><span id="likeCount">${likes.like_count || 0}</span> Likes`);
             }
         }
 
-        // ==================== UPDATED COMMENT FUNCTIONS ====================
+        function updateLikeButton() {
+            if (currentUser && currentPost) {
+                // Re-check like status when user logs in/out
+                $.ajax({
+                    url: API_BASE + `get_blog_detail.php?slug=${postSlug}`,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.success) {
+                            updateLikeStatus(response.likes);
+                        }
+                    }
+                });
+            }
+        }
+
         function formatCommentTime(dateString) {
             const date = new Date(dateString);
             const now = new Date();
@@ -747,47 +763,47 @@
                 avatarHtml = `<img src="${comment.user_photo}" alt="${comment.user_name}" class="rounded-circle" style="width:100%;height:100%;object-fit:cover;">`;
             } else {
                 avatarHtml = `
-                    <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width:100%;height:100%;">
-                        ${comment.user_name?.charAt(0) || 'U'}
-                    </div>
-                `;
+                <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width:100%;height:100%;">
+                    ${comment.user_name?.charAt(0) || 'U'}
+                </div>
+            `;
             }
 
             // FOR REPLIES: Use updated_at instead of created_at
             const timestamp = isReply ? (comment.updated_at || comment.created_at) : comment.created_at;
 
             return `
-                <div class="comment-card ${isReply ? 'reply-card' : ''}" id="comment-${comment.id}">
-                    <div class="d-flex">
-                        <div class="me-3">
-                            <div style="width:40px;height:40px;border-radius:50%;overflow:hidden;">
-                                ${avatarHtml}
-                            </div>
-                        </div>
-                        <div class="flex-grow-1">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="mb-1">${comment.user_name || 'Anonymous'}</h6>
-                                <small class="text-muted">${formatCommentTime(timestamp)}</small>
-                            </div>
-                            <p class="mb-2">${comment.content}</p>
-                            ${!isReply ? `<button class="btn btn-sm btn-outline-secondary reply-btn" data-comment-id="${comment.id}"><i class="fas fa-reply me-1"></i> Reply</button>` : ''}
+            <div class="comment-card ${isReply ? 'reply-card' : ''}" id="comment-${comment.id}">
+                <div class="d-flex">
+                    <div class="me-3">
+                        <div style="width:40px;height:40px;border-radius:50%;overflow:hidden;">
+                            ${avatarHtml}
                         </div>
                     </div>
-                    ${comment.replies && comment.replies.length > 0 ?
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between">
+                            <h6 class="mb-1">${comment.user_name || 'Anonymous'}</h6>
+                            <small class="text-muted">${formatCommentTime(timestamp)}</small>
+                        </div>
+                        <p class="mb-2">${comment.content}</p>
+                        ${!isReply ? `<button class="btn btn-sm btn-outline-secondary reply-btn" data-comment-id="${comment.id}"><i class="fas fa-reply me-1"></i> Reply</button>` : ''}
+                    </div>
+                </div>
+                ${comment.replies && comment.replies.length > 0 ?
                     `<div class="replies-container ms-4 mt-3">${comment.replies.map(reply => renderComment(reply, true)).join('')}</div>`
                     : ''}
-                    ${!isReply ? `
-                        <div class="reply-form mt-3" id="reply-form-${comment.id}" style="display: none;">
-                            <form class="reply-form" data-parent-id="${comment.id}">
-                                <div class="mb-2"><textarea class="form-control form-control-sm" rows="2" placeholder="Write a reply..." required></textarea></div>
-                                <div class="text-end">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary cancel-reply-btn">Cancel</button>
-                                    <button type="submit" class="btn btn-sm btn-primary">Post Reply</button>
-                                </div>
-                            </form>
-                        </div>` : ''}
-                </div>
-            `;
+                ${!isReply ? `
+                    <div class="reply-form mt-3" id="reply-form-${comment.id}" style="display: none;">
+                        <form class="reply-form" data-parent-id="${comment.id}">
+                            <div class="mb-2"><textarea class="form-control form-control-sm" rows="2" placeholder="Write a reply..." required></textarea></div>
+                            <div class="text-end">
+                                <button type="button" class="btn btn-sm btn-outline-secondary cancel-reply-btn">Cancel</button>
+                                <button type="submit" class="btn btn-sm btn-primary">Post Reply</button>
+                            </div>
+                        </form>
+                    </div>` : ''}
+            </div>
+        `;
         }
 
         function renderComments(comments) {
@@ -821,27 +837,27 @@
             let postsHtml = '';
             posts.forEach(post => {
                 postsHtml += `
-                    <div class="col-md-6 col-lg-12">
-                        <div class="card mb-3">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src="${post.featured_image || 'https://via.placeholder.com/150/e3f2fd/2c3e50?text=RSSI'}" 
-                                         class="img-fluid rounded-start" alt="${post.title}" style="height: 120px; object-fit: cover;">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h6 class="card-title">
-                                            <a href="blog-detail.html?slug=${post.slug}" class="text-decoration-none">
-                                                ${post.title.substring(0, 60)}${post.title.length > 60 ? '...' : ''}
-                                            </a>
-                                        </h6>
-                                        <p class="card-text"><small class="text-muted">${new Date(post.created_at).toLocaleDateString()}</small></p>
-                                    </div>
+                <div class="col-md-6 col-lg-12">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="${post.featured_image || 'https://via.placeholder.com/150/e3f2fd/2c3e50?text=RSSI'}" 
+                                     class="img-fluid rounded-start" alt="${post.title}" style="height: 120px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <a href="blog-detail.html?slug=${post.slug}" class="text-decoration-none">
+                                            ${post.title.substring(0, 60)}${post.title.length > 60 ? '...' : ''}
+                                        </a>
+                                    </h6>
+                                    <p class="card-text"><small class="text-muted">${new Date(post.created_at).toLocaleDateString()}</small></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                `;
+                </div>
+            `;
             });
             $('#relatedPostsGrid').html(postsHtml);
         }
@@ -879,79 +895,67 @@
         function updateCommentForm() {
             if (currentUser) {
                 $('#commentForm').html(`
-                    <div class="mb-3">
+                <div class="card border-primary">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div style="width:40px;height:40px;border-radius:50%;overflow:hidden;margin-right:10px;">
+                                ${currentUser.picture ?
+                        `<img src="${currentUser.picture}" alt="${currentUser.name}" style="width:100%;height:100%;object-fit:cover;">` :
+                        `<div class="bg-primary text-white d-flex align-items-center justify-content-center" style="width:100%;height:100%;">${currentUser.name?.charAt(0) || 'U'}</div>`
+                    }
+                            </div>
+                            <div>
+                                <strong>${currentUser.name}</strong><br>
+                                <small class="text-muted">Posting as ${currentUser.email}</small>
+                            </div>
+                        </div>
                         <textarea class="form-control" id="commentContent" rows="4" placeholder="Write your comment here..." required></textarea>
+                        <div class="text-end mt-3">
+                            <button type="submit" class="btn btn-primary" id="submitCommentBtn">
+                                <i class="fas fa-paper-plane me-2"></i> Post Comment
+                            </button>
+                        </div>
                     </div>
-                    <div class="text-end">
-                        <button type="submit" class="btn btn-primary" id="submitCommentBtn">
-                            <i class="fas fa-paper-plane me-2"></i> Post Comment
-                        </button>
-                    </div>
-                `);
+                </div>
+            `);
             } else {
                 $('#commentForm').html(`
-                    <div class="alert alert-info mb-0">
-                        <i class="fas fa-info-circle me-2"></i>
-                        Please <a href="#" class="alert-link fw-bold" id="commentLoginLink">login</a> to post a comment.
+                <div class="card border-primary">
+                    <div class="card-body text-center">
+                        <h5 class="card-title mb-3">Login to Comment</h5>
+                        <p class="card-text mb-4">Please login to share your thoughts and join the discussion.</p>
+                        
+                        <div class="d-flex justify-content-center mb-4">
+                            <div id="commentLoginButtonContainer">
+                                <!-- Google Sign-In button will be inserted here -->
+                            </div>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <small class="text-muted">By signing in, you agree to our Terms of Service and Privacy Policy</small>
+                        </div>
                     </div>
-                `);
-
-                $('#commentLoginLink').off('click').on('click', function (e) {
-                    e.preventDefault();
-                    window.scrollTo(0, 0);
-                    showToast('Please click the "Sign in with Google" button at the top right to login', 'info');
-
-                    setTimeout(() => {
-                        const loginArea = document.getElementById('loginArea');
-                        if (loginArea) {
-                            loginArea.style.boxShadow = '0 0 0 3px rgba(52, 152, 219, 0.5)';
-                            loginArea.style.transition = 'box-shadow 0.3s';
-                            loginArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-                            setTimeout(() => {
-                                loginArea.style.boxShadow = '';
-                            }, 2000);
-                        }
-                    }, 300);
-                });
-            }
-        }
-
-        function showCommentLoginPrompt() {
-            $('#commentForm').html(`
-                <div class="alert alert-info mb-0">
-                    <i class="fas fa-info-circle me-2"></i>
-                    Please <a href="#" class="alert-link fw-bold" id="commentLoginLink">login</a> to post a comment.
                 </div>
             `);
 
-            $('#commentLoginLink').off('click').on('click', function (e) {
-                e.preventDefault();
-                window.scrollTo(0, 0);
-                showToast('Please click the "Sign in with Google" button at the top right to login', 'info');
-
-                setTimeout(() => {
-                    const loginArea = document.getElementById('loginArea');
-                    if (loginArea) {
-                        loginArea.style.boxShadow = '0 0 0 3px rgba(52, 152, 219, 0.5)';
-                        loginArea.style.transition = 'box-shadow 0.3s';
-                        loginArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-                        setTimeout(() => {
-                            loginArea.style.boxShadow = '';
-                        }, 2000);
-                    }
-                }, 300);
-            });
+                // Load Google Sign-In button
+                if (typeof createGoogleSignInButton === 'function') {
+                    createGoogleSignInButton('commentLoginButtonContainer');
+                }
+            }
         }
 
         function setupEventListeners() {
+            // Like button
             $('#likeBtn').click(function () {
                 if (!currentUser) {
                     showToast('Please login to like posts', 'error');
-                    triggerGoogleSignIn();
+                    if (typeof triggerGoogleSignIn === 'function') {
+                        triggerGoogleSignIn();
+                    }
                     return;
                 }
+
                 const action = isLiked ? 'unlike' : 'like';
                 $.ajax({
                     url: API_BASE + 'handle_like.php',
@@ -974,24 +978,30 @@
                                 $('#likeBtn').removeClass('liked').html(`<i class="far fa-heart me-2"></i><span id="likeCount">${$('#likeCount').text()}</span> Likes`);
                             }
                         }
+                    },
+                    error: function () {
+                        showToast('Error updating like', 'error');
                     }
                 });
             });
 
+            // Comment form submission
             $(document).on('submit', '#commentForm', function (e) {
                 e.preventDefault();
+
                 if (!currentUser) {
                     showToast('Please login to post comments', 'error');
                     return;
                 }
 
-                const content = $('#commentContent').val().trim();
+                const content = $(this).find('#commentContent').val().trim();
                 if (!content) {
                     showToast('Please enter a comment', 'error');
                     return;
                 }
 
-                $('#submitCommentBtn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i> Posting...');
+                const submitBtn = $(this).find('#submitCommentBtn');
+                submitBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i> Posting...');
 
                 $.ajax({
                     url: API_BASE + 'handle_comment.php',
@@ -1007,7 +1017,7 @@
                         if (response.success) {
                             $('#commentContent').val('');
                             showToast('Comment posted successfully!', 'success');
-                            loadBlogDetail();
+                            loadBlogDetail(); // Reload to show new comment
                         } else {
                             showToast('Failed to post comment: ' + response.message, 'error');
                         }
@@ -1016,20 +1026,23 @@
                         showToast('Error submitting comment', 'error');
                     },
                     complete: function () {
-                        $('#submitCommentBtn').prop('disabled', false).html('<i class="fas fa-paper-plane me-2"></i> Post Comment');
+                        submitBtn.prop('disabled', false).html('<i class="fas fa-paper-plane me-2"></i> Post Comment');
                     }
                 });
             });
 
+            // Reply button
             $(document).on('click', '.reply-btn', function () {
                 const commentId = $(this).data('comment-id');
                 $(`#reply-form-${commentId}`).show();
             });
 
+            // Cancel reply
             $(document).on('click', '.cancel-reply-btn', function () {
                 $(this).closest('.reply-form').hide();
             });
 
+            // Submit reply
             $(document).on('submit', '.reply-form', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -1084,20 +1097,10 @@
                 });
             });
         }
-
         // Add CSS for toast
         const toastCSS = `
-            .toast { min-width: 250px; }
-            #commentLoginLink {
-                color: #3498db !important;
-                text-decoration: underline !important;
-                font-weight: 600 !important;
-            }
-            #commentLoginLink:hover {
-                color: #2980b9 !important;
-                text-decoration: none !important;
-            }
-        `;
+        .toast { min-width: 250px; }
+    `;
         $('head').append(`<style>${toastCSS}</style>`);
     </script>
 </body>

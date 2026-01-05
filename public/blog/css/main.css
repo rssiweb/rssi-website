@@ -1,0 +1,69 @@
+/* Scroll to Top Floating Button */
+#scrollToTopFab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#scrollToTopFab .fab {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: none;
+    outline: none;
+}
+
+#scrollToTopFab .fab:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+    text-decoration: none;
+}
+
+#scrollToTopFab .fab:active {
+    transform: translateY(-2px);
+}
+
+#scrollToTopFab .fab-icon {
+    color: white;
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+#scrollToTopFab .fab:hover .fab-icon {
+    transform: translateY(-3px);
+}
+
+/* Accessibility focus styles */
+#scrollToTopFab .fab:focus {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    #scrollToTopFab {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    #scrollToTopFab .fab {
+        width: 50px;
+        height: 50px;
+    }
+    
+    #scrollToTopFab .fab-icon {
+        font-size: 20px;
+    }
+}

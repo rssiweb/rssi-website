@@ -1,4 +1,4 @@
-// js/auth.js?v=1.2.0 - Centralized authentication management for all pages
+// js/auth.js?v=1.2.2 - Centralized authentication management for all pages
 
 // API endpoint configuration
 const API_BASE = window.location.hostname === 'localhost'
@@ -10,6 +10,31 @@ const GOOGLE_CLIENT_ID = '880893711562-48c591om401pva696dnk9ffnqb9it4mm.apps.goo
 
 // Global user variable
 let currentUser = null;
+let authStateCallbacks = [];
+
+// ==================== AUTH STATE MANAGEMENT ====================
+
+// Register callback for auth state changes
+function onAuthStateChange(callback) {
+    if (typeof callback === 'function') {
+        authStateCallbacks.push(callback);
+        // Call immediately with current state
+        callback(currentUser);
+    }
+}
+
+// Notify all registered callbacks
+function notifyAuthStateChange() {
+    authStateCallbacks.forEach(callback => {
+        if (typeof callback === 'function') {
+            try {
+                callback(currentUser);
+            } catch (error) {
+                console.error('Error in auth state callback:', error);
+            }
+        }
+    });
+}
 
 // ==================== CORE AUTH FUNCTIONS ====================
 
@@ -17,12 +42,14 @@ function checkUserLogin() {
     const userData = localStorage.getItem('user');
     if (userData) {
         try {
-            currentUser = JSON.parse(userData);
+            const parsedUser = JSON.parse(userData);
             // Check if token is still valid
-            if (currentUser.expires_at && new Date() > new Date(currentUser.expires_at)) {
+            if (parsedUser.expires_at && new Date() > new Date(parsedUser.expires_at)) {
+                console.log('Token expired, logging out');
                 logoutUser();
                 return false;
             }
+            currentUser = parsedUser;
             return true;
         } catch (e) {
             console.error('Error parsing user data:', e);
@@ -36,12 +63,19 @@ function checkUserLogin() {
 }
 
 function updateLoginButtons() {
-    const loginContainer = $('#loginButtons');
-    if (!loginContainer.length) return;
+    // Update all login button containers on the page
+    updateLoginButtonContainer('#loginButtons');
+    updateLoginButtonContainer('#loginArea');
+    updateLoginButtonContainer('.login-buttons-container');
+}
+
+function updateLoginButtonContainer(selector) {
+    const container = $(selector);
+    if (!container.length) return;
 
     if (currentUser) {
         // User is logged in - show user menu
-        loginContainer.html(`
+        container.html(`
             <div class="dropdown">
                 <button class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown">
                     <img src="${currentUser.picture || 'https://via.placeholder.com/25?text=U'}" 
@@ -60,33 +94,46 @@ function updateLoginButtons() {
             </div>
         `);
     } else {
-        // User not logged in - show original Google Sign-In button
-        loginContainer.html(`
-            <div id="g_id_onload"
-                 data-client_id="${GOOGLE_CLIENT_ID}"
-                 data-context="signin"
-                 data-ux_mode="popup"
-                 data-callback="handleGoogleSignIn"
-                 data-auto_prompt="false">
-            </div>
-            <div class="g_id_signin"
-                 data-type="standard"
-                 data-shape="rectangular"
-                 data-theme="filled_blue"
-                 data-text="signin_with"
-                 data-size="medium"
-                 data-logo_alignment="left"
-                 data-width="auto">
+        // User not logged in - show Google Sign-In button
+        const uniqueId = 'gsi_' + Math.random().toString(36).substr(2, 9);
+        container.html(`
+            <div id="${uniqueId}_container" class="gsi-container">
+                <div class="g_id_signin"
+                     data-type="standard"
+                     data-shape="rectangular"
+                     data-theme="filled_blue"
+                     data-text="signin_with"
+                     data-size="medium"
+                     data-logo_alignment="left">
+                </div>
             </div>
         `);
-
-        // Load Google Identity Services script if not already loaded
-        if (!document.querySelector('script[src*="accounts.google.com/gsi/client"]')) {
-            const script = document.createElement('script');
-            script.src = 'https://accounts.google.com/gsi/client';
-            script.async = true;
-            script.defer = true;
-            document.head.appendChild(script);
+        
+        // Initialize Google Sign-In for this button
+        if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+            google.accounts.id.initialize({
+                client_id: GOOGLE_CLIENT_ID,
+                callback: handleGoogleSignIn,
+                auto_select: false,
+                cancel_on_tap_outside: true,
+                ux_mode: 'popup'
+            });
+            
+            const buttonElement = document.querySelector(`#${uniqueId}_container .g_id_signin`);
+            if (buttonElement) {
+                google.accounts.id.renderButton(
+                    buttonElement,
+                    {
+                        type: 'standard',
+                        theme: 'filled_blue',
+                        size: 'medium',
+                        text: 'signin_with',
+                        shape: 'rectangular',
+                        logo_alignment: 'left',
+                        width: 'auto'
+                    }
+                );
+            }
         }
     }
 }
@@ -95,11 +142,28 @@ function initGoogleSignIn() {
     if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
         setupGoogleSignIn();
     } else {
-        setTimeout(initGoogleSignIn, 1000);
+        // Load Google Identity Services script if not already loaded
+        if (!document.querySelector('script[src*="accounts.google.com/gsi/client"]')) {
+            const script = document.createElement('script');
+            script.src = 'https://accounts.google.com/gsi/client';
+            script.async = true;
+            script.defer = true;
+            script.onload = function() {
+                setTimeout(setupGoogleSignIn, 100);
+            };
+            document.head.appendChild(script);
+        } else {
+            setTimeout(initGoogleSignIn, 100);
+        }
     }
 }
 
 function setupGoogleSignIn() {
+    if (typeof google === 'undefined' || !google.accounts || !google.accounts.id) {
+        console.error('Google Identity Services not loaded');
+        return;
+    }
+    
     google.accounts.id.initialize({
         client_id: GOOGLE_CLIENT_ID,
         callback: handleGoogleSignIn,
@@ -107,37 +171,22 @@ function setupGoogleSignIn() {
         cancel_on_tap_outside: true,
         ux_mode: 'popup'
     });
-
-    // Only render the button if user is not logged in
-    if (!currentUser) {
-        // Check if Google Sign-In button container exists
-        const gsiContainer = document.querySelector('.g_id_signin');
-        if (gsiContainer && !gsiContainer.hasAttribute('data-rendered')) {
-            google.accounts.id.renderButton(
-                gsiContainer,
-                {
-                    type: 'standard',
-                    theme: 'filled_blue',
-                    size: 'medium',
-                    text: 'signin_with',
-                    shape: 'rectangular',
-                    logo_alignment: 'left',
-                    width: 'auto'
-                }
-            );
-            gsiContainer.setAttribute('data-rendered', 'true');
-        }
-    }
+    
+    // Update login buttons after Google script loads
+    updateLoginButtons();
 }
 
 function handleGoogleSignIn(response) {
     if (response.credential) {
+        showLoading(true);
+        
         $.ajax({
             url: API_BASE + 'google-auth/login.php',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({ id_token: response.credential }),
             success: function (response) {
+                showLoading(false);
                 if (response.success) {
                     const userData = {
                         ...response.user,
@@ -146,8 +195,13 @@ function handleGoogleSignIn(response) {
                     localStorage.setItem('user', JSON.stringify(userData));
                     currentUser = userData;
 
-                    // Update UI
+                    // Update UI immediately
                     updateLoginButtons();
+                    notifyAuthStateChange();
+                    
+                    // Trigger custom event for pages listening
+                    $(document).trigger('auth:login', [currentUser]);
+                    
                     showToast('Login successful! Welcome ' + userData.name.split(' ')[0] + '!', 'success');
 
                     // Reload page for protected pages
@@ -162,7 +216,9 @@ function handleGoogleSignIn(response) {
                     showToast('Login failed: ' + response.message, 'error');
                 }
             },
-            error: function () {
+            error: function (xhr, status, error) {
+                showLoading(false);
+                console.error('Login error:', error);
                 showToast('Error connecting to server. Please try again.', 'error');
             }
         });
@@ -178,7 +234,13 @@ function logoutUser() {
         google.accounts.id.revoke();
     }
 
+    // Update UI immediately
     updateLoginButtons();
+    notifyAuthStateChange();
+    
+    // Trigger custom event for pages listening
+    $(document).trigger('auth:logout');
+    
     showToast('Logged out successfully', 'success');
 
     // Redirect to home page if on protected pages
@@ -195,26 +257,18 @@ function switchAccount() {
     logoutUser();
 }
 
-// ==================== PAGE PROTECTION FUNCTIONS ====================
-
-// For pages that require login (user-portal.html, create-blog.html, edit-blog.html)
-function protectPage() {
-    if (!checkUserLogin()) {
-        showLoginRequired();
-        return false;
-    }
-    return true;
-}
-
-function showLoginRequired() {
-    // This should be implemented per page since UI differs
-    console.log('Login required for this page');
-    // Pages will override this with their own UI
-}
-
 // ==================== UTILITY FUNCTIONS ====================
 
+function showLoading(show) {
+    if (show) {
+        $('.loading-overlay').addClass('show').fadeIn();
+    } else {
+        $('.loading-overlay').removeClass('show').fadeOut();
+    }
+}
+
 function showToast(message, type = 'info') {
+    // Remove existing toasts
     $('.toast').remove();
 
     const bgColor = type === 'success' ? 'bg-success' :
@@ -247,6 +301,80 @@ function showToast(message, type = 'info') {
     setTimeout(() => toast.remove(), 3000);
 }
 
+// Function to trigger Google Sign-In from anywhere
+function triggerGoogleSignIn() {
+    if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+        google.accounts.id.prompt();
+    } else {
+        showToast('Please use the Sign In button on the page', 'info');
+    }
+}
+
+// Function to create Google Sign-In button in any container
+function createGoogleSignInButton(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    const uniqueId = 'gsi_' + Math.random().toString(36).substr(2, 9);
+    container.innerHTML = `
+        <div class="g_id_signin"
+             data-type="standard"
+             data-shape="rectangular"
+             data-theme="filled_blue"
+             data-text="signin_with"
+             data-size="large"
+             data-logo_alignment="left">
+        </div>
+    `;
+    
+    // Initialize Google Sign-In for this button
+    if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+        google.accounts.id.initialize({
+            client_id: GOOGLE_CLIENT_ID,
+            callback: handleGoogleSignIn,
+            auto_select: false,
+            cancel_on_tap_outside: true,
+            ux_mode: 'popup'
+        });
+        
+        const buttonElement = container.querySelector('.g_id_signin');
+        if (buttonElement) {
+            google.accounts.id.renderButton(
+                buttonElement,
+                {
+                    type: 'standard',
+                    theme: 'filled_blue',
+                    size: 'large',
+                    text: 'signin_with',
+                    shape: 'rectangular',
+                    logo_alignment: 'left',
+                    width: 300
+                }
+            );
+        }
+    } else {
+        // Retry if Google script not loaded
+        setTimeout(() => createGoogleSignInButton(containerId), 100);
+    }
+}
+
+// ==================== PAGE PROTECTION FUNCTIONS ====================
+
+function protectPage() {
+    if (!checkUserLogin()) {
+        showLoginRequired();
+        return false;
+    }
+    return true;
+}
+
+function showLoginRequired() {
+    // Default implementation - pages can override
+    console.log('Login required for this page');
+}
+
+// ==================== INITIALIZATION ====================
+
 // Initialize auth when DOM is ready
 $(document).ready(function () {
     checkUserLogin();
@@ -265,3 +393,6 @@ window.logoutUser = logoutUser;
 window.switchAccount = switchAccount;
 window.protectPage = protectPage;
 window.showToast = showToast;
+window.onAuthStateChange = onAuthStateChange;
+window.showLoading = showLoading;
+window.createGoogleSignInButton = createGoogleSignInButton;
