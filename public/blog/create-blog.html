@@ -276,26 +276,29 @@
         }
 
         /* Add these styles */
-        .login-required-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+        /* Login Required Section */
+        .login-required {
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 999999;
+            min-height: 70vh;
+            text-align: center;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .login-required-content {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
+        .login-content {
             max-width: 500px;
-            width: 90%;
+            padding: 40px;
+        }
+
+        .login-content i {
+            font-size: 4rem;
+            color: #3498db;
+            margin-bottom: 20px;
         }
 
         #loginArea {
@@ -317,16 +320,14 @@
     <!-- Header will be loaded here -->
     <div id="header"></div>
 
-    <!-- Login Required Overlay -->
-    <div class="login-required-overlay" id="loginRequiredOverlay">
-        <div class="login-required-content">
-            <div class="mb-4">
-                <i class="fas fa-lock fa-4x text-primary mb-3"></i>
-                <h3>Login Required</h3>
-                <p>Please login with Google to create blog posts. Your author information will be automatically filled
-                    from your Google account.</p>
-            </div>
-            <div id="loginOverlayButtons">
+    <!-- Login Required Section (shown when not logged in) -->
+    <div id="loginRequired" class="login-required" style="display: none;">
+        <div class="login-content">
+            <i class="fas fa-lock fa-4x text-primary mb-4"></i>
+            <h3>Login Required</h3>
+            <p class="mb-4">Please login with Google to create blog posts. Your author information will be automatically
+                filled from your Google account.</p>
+            <div id="loginPortalButtons" class="mt-4">
                 <!-- Google button will be inserted here -->
             </div>
         </div>
@@ -640,64 +641,84 @@
         let selectedStatus = 'draft';
         let featuredImageBase64 = null;
         let authorPhotoBase64 = null;
+        let summernoteInitialized = false;
 
         $(document).ready(function () {
-            // Check if user is logged in (using centralized auth.js)
-            if (checkUserLogin()) {
-                showDashboard();
-            } else {
-                showLoginRequired();
-            }
+            // Check login status and handle page state
+            handlePageState();
 
-            // Initialize Summernote only if user is logged in
-            if (currentUser) {
-                initializeSummernote();
-                setupEventListeners();
-            }
+            // Setup header auth callback (for when user logs in after page load)
+            $(document).on('auth:login', function () {
+                handlePageState();
+            });
         });
 
-        // ==================== PAGE-SPECIFIC FUNCTIONS ====================
+        // ==================== PAGE STATE MANAGEMENT ====================
+
+        function handlePageState() {
+            // Check if user is logged in (using centralized auth.js)
+            if (checkUserLogin()) {
+                // User is logged in, show dashboard
+                showDashboard();
+                if (!summernoteInitialized) {
+                    initializeSummernote();
+                    setupEventListeners();
+                    summernoteInitialized = true;
+                }
+            } else {
+                // User not logged in, show login required
+                showLoginRequired();
+                if (summernoteInitialized) {
+                    // Destroy summernote if it was initialized
+                    $('#content').summernote('destroy');
+                    summernoteInitialized = false;
+                }
+            }
+        }
 
         function showDashboard() {
-            $('#loginRequiredOverlay').hide();
+            $('#loginRequired').hide();
             $('.form-container').show();
             initializeForm();
-            initializeSummernote();
-            setupEventListeners();
+
+            if (!summernoteInitialized) {
+                initializeSummernote();
+                setupEventListeners();
+                summernoteInitialized = true;
+            }
         }
 
         function showLoginRequired() {
-            $('#loginRequiredOverlay').show();
+            $('#loginRequired').show();
             $('.form-container').hide();
 
-            // Render Google button in overlay
-            renderGoogleButtonForOverlay('#loginOverlayButtons');
+            // Render Google button in login required section
+            renderGoogleButtonForPortal('#loginPortalButtons');
         }
 
-        function renderGoogleButtonForOverlay(containerId) {
-            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-                const container = document.querySelector(containerId);
-                if (!container) return;
-
-                container.innerHTML = '';
-
-                google.accounts.id.renderButton(
-                    container,
-                    {
-                        type: 'standard',
-                        theme: 'filled_blue',
-                        size: 'large',
-                        text: 'signin_with',
-                        shape: 'rectangular',
-                        logo_alignment: 'left'
-                    }
-                );
-            } else {
-                $(containerId).html(`
-                <button class="btn btn-outline-secondary btn-lg" disabled>
-                    <i class="fas fa-spinner fa-spin me-2"></i> Loading Google Login...
-                </button>
+        function renderGoogleButtonForPortal(containerId) {
+            $(containerId).html(`
+                <div id="g_id_onload"
+                    data-client_id="${GOOGLE_CLIENT_ID}"
+                    data-context="signin"
+                    data-ux_mode="popup"
+                    data-callback="handleGoogleSignIn"
+                    data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin"
+                    data-type="standard"
+                    data-shape="rectangular"
+                    data-theme="filled_blue"
+                    data-text="signin_with"
+                    data-size="large"
+                    data-logo_alignment="left"
+                    data-width="auto">
+                </div>
             `);
+
+            // Initialize Google Sign-In if not already done
+            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+                setupGoogleSignIn();
             }
         }
 
@@ -720,34 +741,37 @@
         }
 
         function initializeSummernote() {
-            $('#content').summernote({
-                height: 400,
-                toolbar: [
-                    ['style', ['style']],
-                    ['font', ['bold', 'italic', 'underline', 'clear']],
-                    ['fontname', ['fontname']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['height', ['height']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture', 'video', 'hr']],
-                    ['view', ['fullscreen', 'codeview', 'help']]
-                ],
-                placeholder: 'Write your amazing content here...',
-                callbacks: {
-                    onChange: function (contents) {
-                        calculateReadingTime();
-                    },
-                    onImageUpload: function (files) {
-                        const file = files[0];
-                        const reader = new FileReader();
-                        reader.onload = function (e) {
-                            $('#content').summernote('insertImage', e.target.result);
-                        };
-                        reader.readAsDataURL(file);
+            if ($('#content').length && !summernoteInitialized) {
+                $('#content').summernote({
+                    height: 400,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'italic', 'underline', 'clear']],
+                        ['fontname', ['fontname']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['height', ['height']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video', 'hr']],
+                        ['view', ['fullscreen', 'codeview', 'help']]
+                    ],
+                    placeholder: 'Write your amazing content here...',
+                    callbacks: {
+                        onChange: function (contents) {
+                            calculateReadingTime();
+                        },
+                        onImageUpload: function (files) {
+                            const file = files[0];
+                            const reader = new FileReader();
+                            reader.onload = function (e) {
+                                $('#content').summernote('insertImage', e.target.result);
+                            };
+                            reader.readAsDataURL(file);
+                        }
                     }
-                }
-            });
+                });
+                summernoteInitialized = true;
+            }
         }
 
         async function checkUserAdminStatus() {
@@ -778,13 +802,17 @@
             const formElements = $('#blogForm input, #blogForm select, #blogForm textarea, #blogForm button');
             if (enabled) {
                 formElements.prop('disabled', false);
-                $('#content').summernote('enable');
+                if ($('#content').summernote) {
+                    $('#content').summernote('enable');
+                }
             } else {
                 formElements.prop('disabled', true);
-                $('#content').summernote('disable');
+                if ($('#content').summernote) {
+                    $('#content').summernote('disable');
+                }
             }
         }
-
+        // ==================== EVENT LISTENERS ====================
         function setupEventListeners() {
             // Auto-generate slug from title
             $('#title').on('input', function () {

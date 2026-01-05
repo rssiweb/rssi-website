@@ -412,29 +412,28 @@
         }
 
         function renderGoogleButtonForPortal(containerId) {
-            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-                const container = document.querySelector(containerId);
-                if (!container) return;
-
-                container.innerHTML = '';
-
-                google.accounts.id.renderButton(
-                    container,
-                    {
-                        type: 'standard',
-                        theme: 'filled_blue',
-                        size: 'large',
-                        text: 'signin_with',
-                        shape: 'rectangular',
-                        logo_alignment: 'left'
-                    }
-                );
-            } else {
-                $(containerId).html(`
-                <button class="btn btn-outline-secondary btn-lg" disabled>
-                    <i class="fas fa-spinner fa-spin me-2"></i> Loading Google Login...
-                </button>
+            $(containerId).html(`
+                <div id="g_id_onload"
+                    data-client_id="${GOOGLE_CLIENT_ID}"
+                    data-context="signin"
+                    data-ux_mode="popup"
+                    data-callback="handleGoogleSignIn"
+                    data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin"
+                    data-type="standard"
+                    data-shape="rectangular"
+                    data-theme="filled_blue"
+                    data-text="signin_with"
+                    data-size="large"
+                    data-logo_alignment="left"
+                    data-width="auto">
+                </div>
             `);
+
+            // Initialize Google Sign-In if not already done
+            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+                setupGoogleSignIn();
             }
         }
 
