@@ -1,4 +1,4 @@
-// includes/header.js - Simple header include with active link highlighting
+// includes/header.js?v=1.2.0 - Simple header include with active link highlighting
 
 function includeHeader() {
     const headerHTML = `

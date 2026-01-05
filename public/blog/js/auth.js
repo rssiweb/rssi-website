@@ -1,4 +1,4 @@
-// js/auth.js - Centralized authentication management for all pages
+// js/auth.js?v=1.2.0 - Centralized authentication management for all pages
 
 // API endpoint configuration
 const API_BASE = window.location.hostname === 'localhost'
