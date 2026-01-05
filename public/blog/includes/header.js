@@ -1,4 +1,5 @@
-// Header include script with active link highlighting
+// includes/header.js - Simple header include with active link highlighting
+
 function includeHeader() {
     const headerHTML = `
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="border-bottom: 2px solid #3498db;">
@@ -46,10 +47,8 @@ function includeHeader() {
                     </ul>
 
                     <!-- Login Button/User Menu on Right -->
-                    <div id="headerLoginButtons" class="d-flex align-items-center">
-                        <div id="loginButtons">
-                            <!-- Login button will be inserted here by JavaScript -->
-                        </div>
+                    <div id="loginButtons" class="d-flex align-items-center">
+                        <!-- Will be populated by auth.js -->
                     </div>
                 </div>
             </div>
@@ -63,7 +62,6 @@ function includeHeader() {
     highlightActiveNav();
 }
 
-// Function to highlight active navigation link
 function highlightActiveNav() {
     // Get current page filename
     const currentPage = window.location.pathname.split('/').pop().toLowerCase();
@@ -71,93 +69,29 @@ function highlightActiveNav() {
     // Remove active class from all nav links
     document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
-        link.classList.remove('fw-bold');
     });
     
-    // Highlight based on current page
+    // Add active class based on current page
     if (currentPage === 'index.html' || currentPage === '') {
-        const link = document.getElementById('nav-index');
-        if (link) {
-            link.classList.add('active');
-            link.classList.add('fw-bold');
-        }
+        document.getElementById('nav-index')?.classList.add('active');
     } 
     else if (currentPage === 'user-portal.html') {
-        const link = document.getElementById('nav-portal');
-        if (link) {
-            link.classList.add('active');
-            link.classList.add('fw-bold');
-        }
+        document.getElementById('nav-portal')?.classList.add('active');
     } 
     else if (currentPage === 'create-blog.html') {
-        const link = document.getElementById('nav-create');
-        if (link) {
-            link.classList.add('active');
-            link.classList.add('fw-bold');
-        }
+        document.getElementById('nav-create')?.classList.add('active');
     }
     else if (currentPage === 'blog-detail.html') {
-        // Blog detail page is under Blog Home section
-        const link = document.getElementById('nav-index');
-        if (link) {
-            link.classList.add('active');
-            link.classList.add('fw-bold');
-        }
+        document.getElementById('nav-index')?.classList.add('active');
     }
     else if (currentPage === 'edit-blog.html') {
-        // Edit page is under Dashboard section
-        const link = document.getElementById('nav-portal');
-        if (link) {
-            link.classList.add('active');
-            link.classList.add('fw-bold');
-        }
+        document.getElementById('nav-portal')?.classList.add('active');
     }
-}
-
-// Add CSS for active link styling
-function addActiveLinkStyles() {
-    const style = document.createElement('style');
-    style.textContent = `
-        .nav-link.active {
-            background-color: rgba(255, 255, 255, 0.1) !important;
-            border-radius: 5px;
-            color: #fff !important;
-        }
-        
-        .nav-link.active i {
-            color: #3498db !important;
-        }
-        
-        .nav-link {
-            transition: all 0.3s ease;
-            color: rgba(255, 255, 255, 0.8) !important;
-        }
-        
-        .nav-link:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 5px;
-            color: #fff !important;
-        }
-        
-        .dropdown-item.active {
-            background-color: #3498db !important;
-            color: white !important;
-        }
-    `;
-    document.head.appendChild(style);
 }
 
 // Initialize when page loads
 document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('header')) {
-        addActiveLinkStyles();
         includeHeader();
-    }
-});
-
-// Also highlight on page changes (for single page apps)
-document.addEventListener('click', function(e) {
-    if (e.target.matches('.nav-link') || e.target.closest('.nav-link')) {
-        setTimeout(highlightActiveNav, 100);
     }
 });

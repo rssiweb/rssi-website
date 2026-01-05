@@ -374,104 +374,44 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Include header script -->
     <script src="includes/header.js"></script>
+    <script src="js/auth.js"></script>
 
     <script>
-        // API endpoint configuration
-        const API_BASE = window.location.hostname === 'localhost'
-            ? 'http://localhost:8082/blog-api/'
-            : 'https://login.rssi.in/blog-api/';
-
-        // Google Client ID
-        const GOOGLE_CLIENT_ID = '880893711562-48c591om401pva696dnk9ffnqb9it4mm.apps.googleusercontent.com';
-
-        let currentUser = null;
+        // Page-specific variables
         let userPosts = [];
         let currentFilter = 'all';
 
         $(document).ready(function () {
-            checkUserLogin();
-            setupEventListeners();
-        });
-
-        // ==================== GOOGLE LOGIN FUNCTIONS ====================
-        function checkUserLogin() {
-            const userData = localStorage.getItem('user');
-            if (userData) {
-                try {
-                    currentUser = JSON.parse(userData);
-                    // Check if token is still valid
-                    if (currentUser.expires_at && new Date() > new Date(currentUser.expires_at)) {
-                        logoutUser();
-                        return;
-                    }
-
-                    // Update UI for logged in user
-                    updateLoginButtons();
-                    showDashboard();
-                    loadUserPosts();
-
-                } catch (e) {
-                    console.error('Error parsing user data:', e);
-                    localStorage.removeItem('user');
-                    currentUser = null;
-                    showLoginRequired();
-                }
+            // Check if user is logged in (using centralized auth.js)
+            if (checkUserLogin()) {
+                showDashboard();
+                loadUserPosts();
             } else {
                 showLoginRequired();
             }
-        }
 
-        function updateLoginButtons() {
+            setupEventListeners();
+        });
+
+        // ==================== PAGE-SPECIFIC FUNCTIONS ====================
+
+        function showDashboard() {
+            $('#loginRequired').hide();
+            $('#dashboardContent').show();
             if (currentUser) {
-                $('#loginButtons').html(`
-                    <div class="dropdown">
-                        <button class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown">
-                            <img src="${currentUser.picture || 'https://via.placeholder.com/25?text=U'}" 
-                                 alt="${currentUser.name}" 
-                                 class="rounded-circle me-2" 
-                                 style="width: 25px; height: 25px; object-fit: cover;">
-                            <span style="font-size: 0.9rem;">${currentUser.name.split(' ')[0]}</span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#" onclick="switchAccount(); return false;"><i class="fas fa-sync-alt me-2"></i>Switch Account</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser(); return false;"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
-                        </ul>
-                    </div>
-                `);
-
-                // Update user name in dashboard
                 $('#userName').text(currentUser.name.split(' ')[0]);
-            } else {
-                $('#loginButtons').html('<div id="googleSignInContainer"></div>');
-                $('#loginPortalButtons').html('<div id="googlePortalSignInContainer"></div>');
-                initGoogleSignIn();
             }
         }
 
-        function initGoogleSignIn() {
-            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-                setupGoogleSignIn();
-            } else {
-                setTimeout(initGoogleSignIn, 1000);
-            }
+        function showLoginRequired() {
+            $('#loginRequired').show();
+            $('#dashboardContent').hide();
+
+            // Render Google button in login required section
+            renderGoogleButtonForPortal('#loginPortalButtons');
         }
 
-        function setupGoogleSignIn() {
-            google.accounts.id.initialize({
-                client_id: GOOGLE_CLIENT_ID,
-                callback: handleGoogleSignIn,
-                auto_select: false,
-                cancel_on_tap_outside: true,
-                ux_mode: 'popup'
-            });
-
-            // Render buttons
-            renderGoogleButton('#googleSignInContainer');
-            renderGoogleButton('#googlePortalSignInContainer');
-        }
-
-        function renderGoogleButton(containerId) {
+        function renderGoogleButtonForPortal(containerId) {
             if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
                 const container = document.querySelector(containerId);
                 if (!container) return;
@@ -491,78 +431,11 @@
                 );
             } else {
                 $(containerId).html(`
-                    <button class="btn btn-outline-secondary btn-lg" disabled>
-                        <i class="fas fa-spinner fa-spin me-2"></i> Loading Google Login...
-                    </button>
-                `);
+                <button class="btn btn-outline-secondary btn-lg" disabled>
+                    <i class="fas fa-spinner fa-spin me-2"></i> Loading Google Login...
+                </button>
+            `);
             }
-        }
-
-        function handleGoogleSignIn(response) {
-            if (response.credential) {
-                showLoading(true);
-
-                $.ajax({
-                    url: API_BASE + 'google-auth/login.php',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify({ id_token: response.credential }),
-                    success: function (response) {
-                        if (response.success) {
-                            const userData = {
-                                ...response.user,
-                                expires_at: new Date(Date.now() + 3600000).toISOString()
-                            };
-                            localStorage.setItem('user', JSON.stringify(userData));
-                            currentUser = userData;
-                            updateLoginButtons();
-
-                            // Show dashboard and load posts
-                            showDashboard();
-                            loadUserPosts();
-
-                            showToast('Login successful! Welcome to your dashboard.', 'success');
-                        } else {
-                            showToast('Login failed: ' + response.message, 'error');
-                        }
-                        showLoading(false);
-                    },
-                    error: function () {
-                        showToast('Error connecting to server.', 'error');
-                        showLoading(false);
-                    }
-                });
-            }
-        }
-
-        function showDashboard() {
-            $('#loginRequired').hide();
-            $('#dashboardContent').show();
-            $('#pageTitle').text(`${currentUser.name.split(' ')[0]}'s Dashboard`);
-        }
-
-        function showLoginRequired() {
-            $('#loginRequired').show();
-            $('#dashboardContent').hide();
-            updateLoginButtons();
-        }
-
-        function logoutUser() {
-            localStorage.removeItem('user');
-            currentUser = null;
-
-            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-                google.accounts.id.disableAutoSelect();
-                google.accounts.id.revoke();
-            }
-
-            updateLoginButtons();
-            showLoginRequired();
-            showToast('Logged out successfully', 'success');
-        }
-
-        function switchAccount() {
-            logoutUser();
         }
 
         // ==================== POST MANAGEMENT FUNCTIONS ====================
@@ -664,59 +537,59 @@
 
             if (post.status === 'draft') {
                 actionButtons = `
-                    <button class="btn btn-sm btn-primary action-btn edit-post" data-id="${post.id}">
-                        <i class="fas fa-edit"></i> Edit
-                    </button>
-                    <button class="btn btn-sm btn-success action-btn submit-post" data-id="${post.id}">
-                        <i class="fas fa-paper-plane"></i> Submit
-                    </button>
-                    <button class="btn btn-sm btn-danger action-btn delete-post" data-id="${post.id}">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                `;
+                <button class="btn btn-sm btn-primary action-btn edit-post" data-id="${post.id}">
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+                <button class="btn btn-sm btn-success action-btn submit-post" data-id="${post.id}">
+                    <i class="fas fa-paper-plane"></i> Submit
+                </button>
+                <button class="btn btn-sm btn-danger action-btn delete-post" data-id="${post.id}">
+                    <i class="fas fa-trash"></i>
+                </button>
+            `;
             } else if (post.status === 'pending') {
                 actionButtons = `
-                    <button class="btn btn-sm btn-primary action-btn edit-post" data-id="${post.id}">
-                        <i class="fas fa-edit"></i> Edit
-                    </button>
-                    <button class="btn btn-sm btn-warning action-btn" onclick="viewPost('${post.slug}')">
-                        <i class="fas fa-eye"></i> Preview
-                    </button>
-                `;
+                <button class="btn btn-sm btn-primary action-btn edit-post" data-id="${post.id}">
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+                <button class="btn btn-sm btn-warning action-btn" onclick="viewPost('${post.slug}')">
+                    <i class="fas fa-eye"></i> Preview
+                </button>
+            `;
             } else if (post.status === 'published') {
                 actionButtons = `
-                    <button class="btn btn-sm btn-outline-primary action-btn" onclick="viewPost('${post.slug}')">
-                        <i class="fas fa-eye"></i> View
-                    </button>
-                    <button class="btn btn-sm btn-outline-secondary action-btn edit-post" data-id="${post.id}">
-                        <i class="fas fa-edit"></i> Edit
-                    </button>
-                `;
+                <button class="btn btn-sm btn-outline-primary action-btn" onclick="viewPost('${post.slug}')">
+                    <i class="fas fa-eye"></i> View
+                </button>
+                <button class="btn btn-sm btn-outline-secondary action-btn edit-post" data-id="${post.id}">
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+            `;
             }
 
             return `
-                <tr class="post-row">
-                    <td>
-                        <div class="fw-semibold">${post.title}</div>
-                        <small class="text-muted">${post.excerpt || 'No excerpt'}</small>
-                    </td>
-                    <td>
-                        <span class="badge bg-light text-dark">${post.category}</span>
-                    </td>
-                    <td>
-                        <span class="status-badge ${statusClass}">${statusBadge}</span>
-                    </td>
-                    <td>
-                        <i class="fas fa-eye me-1 text-muted"></i> ${post.views || 0}
-                    </td>
-                    <td>${createdDate}</td>
-                    <td>
-                        <div class="d-flex">
-                            ${actionButtons}
-                        </div>
-                    </td>
-                </tr>
-            `;
+            <tr class="post-row">
+                <td>
+                    <div class="fw-semibold">${post.title}</div>
+                    <small class="text-muted">${post.excerpt || 'No excerpt'}</small>
+                </td>
+                <td>
+                    <span class="badge bg-light text-dark">${post.category}</span>
+                </td>
+                <td>
+                    <span class="status-badge ${statusClass}">${statusBadge}</span>
+                </td>
+                <td>
+                    <i class="fas fa-eye me-1 text-muted"></i> ${post.views || 0}
+                </td>
+                <td>${createdDate}</td>
+                <td>
+                    <div class="d-flex">
+                        ${actionButtons}
+                    </div>
+                </td>
+            </tr>
+        `;
         }
 
         function viewPost(slug) {
@@ -839,37 +712,6 @@
             } else {
                 $('#loadingOverlay').removeClass('show');
             }
-        }
-
-        function showToast(message, type = 'info') {
-            // Remove existing toasts
-            $('.toast').remove();
-
-            const bgColor = type === 'success' ? 'bg-success' :
-                type === 'error' ? 'bg-danger' : 'bg-info';
-
-            const toast = $(`
-                <div class="toast align-items-center text-white ${bgColor} border-0" role="alert" 
-                     style="position: fixed; top: 20px; right: 20px; z-index: 1060; max-width: 400px;">
-                    <div class="d-flex">
-                        <div class="toast-body p-3">
-                            <div class="d-flex align-items-center">
-                                <i class="fas ${type === 'success' ? 'fa-check-circle' :
-                    type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'} 
-                                   me-3" style="font-size: 1.2rem;"></i>
-                                <div style="flex: 1;">${message}</div>
-                            </div>
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-                    </div>
-                </div>
-            `);
-
-            $('body').append(toast);
-            const bsToast = new bootstrap.Toast(toast[0]);
-            bsToast.show();
-
-            setTimeout(() => toast.remove(), 3000);
         }
     </script>
 </body>

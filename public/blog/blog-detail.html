@@ -460,27 +460,26 @@
 
     <!-- Footer -->
     <div id="footer"></div>
-
+    <!-- Floating Create Post Button -->
+    <div class="fab-container" id="float">
+        <a href="create-blog.html" class="fab" id="createPostFab">
+            <i class="fas fa-plus fab-icon"></i>
+            <span class="fab-tooltip">Create New Post</span>
+        </a>
+    </div>
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Include header script -->
     <script src="includes/header.js"></script>
-
+    <script src="js/auth.js"></script>
     <script>
-        // API endpoint configuration
-        const API_BASE = window.location.hostname === 'localhost'
-            ? 'http://localhost:8082/blog-api/'
-            : 'https://login.rssi.in/blog-api/';
-
         // Get post slug from URL
         const urlParams = new URLSearchParams(window.location.search);
         const postSlug = urlParams.get('slug') || urlParams.get('id');
 
         let currentPost = null;
         let isLiked = false;
-        let currentUser = null;
-        const GOOGLE_CLIENT_ID = '880893711562-48c591om401pva696dnk9ffnqb9it4mm.apps.googleusercontent.com';
 
         $(document).ready(function () {
             if (!postSlug) {
@@ -489,10 +488,18 @@
             }
 
             loadBlogDetail();
-            checkUserLogin();
+            checkUserLoginStatus();
             setupEventListeners();
-            initGoogleSignIn();
         });
+
+        function checkUserLoginStatus() {
+            // Use the global currentUser from auth.js
+            if (currentUser) {
+                updateCommentForm();
+            } else {
+                showCommentLoginPrompt();
+            }
+        }
 
         function showLoadingState() {
             $('#blogTitle').html('<span class="placeholder col-8"></span>');
@@ -629,7 +636,6 @@
             $('#readingTime, #wordCount, #postViews').find('.placeholder, .placeholder-glow').remove();
             $('#readingTime, #wordCount, #postViews').removeClass('placeholder-glow').css('opacity', '1');
 
-            // Use the new renderComments function
             renderComments(data.comments);
             $('#commentCount').text(data.comments.length);
             renderRelatedPosts(data.related_posts);
@@ -643,7 +649,6 @@
 
             // Check if current user has liked this post
             if (currentUser) {
-
                 let likedUsers = [];
 
                 // Parse the liked_users from the API response
@@ -840,59 +845,6 @@
             $('#tableOfContents').html(tocHtml);
         }
 
-        // ==================== SIMPLIFIED LOGIN FUNCTIONS ====================
-        function checkUserLogin() {
-            const userData = localStorage.getItem('user');
-            if (userData) {
-                try {
-                    currentUser = JSON.parse(userData);
-                    // Check if token is still valid (not expired)
-                    if (currentUser.expires_at && new Date() > new Date(currentUser.expires_at)) {
-                        // Token expired, clear and show login
-                        logoutUser();
-                        return;
-                    }
-                    showToast(`Welcome back, ${currentUser.name.split(' ')[0]}!`, 'success');
-                } catch (e) {
-                    console.error('Error parsing user data:', e);
-                    localStorage.removeItem('user');
-                    currentUser = null;
-                }
-            }
-            showLoginArea();
-        }
-
-        function showLoginArea() {
-            $('#loginArea').show();
-            updateLoginButtons();
-            updateCommentForm();
-        }
-
-        function updateLoginButtons() {
-            if (currentUser) {
-                $('#loginButtons').html(`
-                <div class="dropdown">
-                    <button class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown">
-                        <img src="${currentUser.picture || 'https://via.placeholder.com/25?text=U'}" 
-                             alt="${currentUser.name}" 
-                             class="rounded-circle me-2" 
-                             style="width: 25px; height: 25px; object-fit: cover;">
-                        <span style="font-size: 0.9rem;">${currentUser.name.split(' ')[0]}</span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#" onclick="switchAccount(); return false;"><i class="fas fa-sync-alt me-2"></i>Switch Account</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser(); return false;"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
-                    </ul>
-                </div>
-            `);
-            } else {
-                // Show Google's button immediately
-                $('#loginButtons').html('<div id="googleSignInContainer"></div>');
-                setTimeout(renderGoogleButton, 100);
-            }
-        }
-
         function updateCommentForm() {
             if (currentUser) {
                 $('#commentForm').html(`
@@ -933,142 +885,31 @@
             }
         }
 
-        function showToast(message, type = 'info') {
-            $('.toast').remove();
-            const bgColor = type === 'success' ? 'bg-success' : type === 'error' ? 'bg-danger' : 'bg-info';
-            const toast = $(`
-            <div class="toast align-items-center text-white ${bgColor} border-0" role="alert" style="position: fixed; top: 50px; right: 20px; z-index: 1060;">
-                <div class="d-flex">
-                    <div class="toast-body">${message}</div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-                </div>
+        function showCommentLoginPrompt() {
+            $('#commentForm').html(`
+            <div class="alert alert-info mb-0">
+                <i class="fas fa-info-circle me-2"></i>
+                Please <a href="#" class="alert-link fw-bold" id="commentLoginLink">login</a> to post a comment.
             </div>
         `);
-            $('body').append(toast);
-            const bsToast = new bootstrap.Toast(toast[0]);
-            bsToast.show();
-            setTimeout(() => toast.remove(), 3000);
-        }
 
-        function initGoogleSignIn() {
-            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-                setupGoogleSignIn();
-            } else {
-                setTimeout(initGoogleSignIn, 1000);
-            }
-        }
-
-        function setupGoogleSignIn() {
-            google.accounts.id.initialize({
-                client_id: GOOGLE_CLIENT_ID,
-                callback: handleGoogleSignIn,
-                auto_select: false,
-                cancel_on_tap_outside: true,
-                ux_mode: 'popup',
-                prompt_parent_id: 'googleSignInContainer'
-            });
-
-            if (!currentUser) {
-                setTimeout(renderGoogleButton, 100);
-            }
-        }
-
-        function handleGoogleSignIn(response) {
-            if (response.credential) {
-                $.ajax({
-                    url: API_BASE + 'google-auth/login.php',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify({ id_token: response.credential }),
-                    success: function (response) {
-                        if (response.success) {
-                            const userData = {
-                                ...response.user,
-                                expires_at: new Date(Date.now() + 3600000).toISOString()
-                            };
-                            localStorage.setItem('user', JSON.stringify(userData));
-                            currentUser = userData;
-                            updateLoginButtons();
-                            updateCommentForm();
-                            showToast('Login successful!', 'success');
-                        } else {
-                            showToast('Login failed: ' + response.message, 'error');
-                        }
-                    },
-                    error: function () {
-                        showToast('Error connecting to server. Please try again.', 'error');
-                    }
-                });
-            }
-        }
-
-        function renderGoogleButton() {
-            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-                const container = document.getElementById('googleSignInContainer');
-                if (!container) return;
-
-                container.innerHTML = '';
-
-                google.accounts.id.renderButton(
-                    container,
-                    {
-                        type: 'standard',
-                        theme: 'filled_blue',
-                        size: 'large',
-                        text: 'signin_with',
-                        shape: 'rectangular',
-                        logo_alignment: 'left'
-                    }
-                );
-
-                google.accounts.id.prompt();
-            } else {
-                $('#googleSignInContainer').html(`
-                <button class="btn btn-outline-light btn-sm" disabled>
-                    <i class="fas fa-spinner fa-spin me-2"></i> Loading Google Login...
-                </button>
-            `);
-            }
-        }
-
-        function triggerGoogleSignIn() {
-            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-                google.accounts.id.cancel();
-                google.accounts.id.prompt();
+            $('#commentLoginLink').off('click').on('click', function (e) {
+                e.preventDefault();
+                showToast('Please click the "Sign in with Google" button at the top right to login', 'info');
 
                 setTimeout(() => {
-                    const googleButton = document.querySelector('#googleSignInContainer iframe');
-                    if (googleButton) {
-                        googleButton.click();
-                    } else {
-                        renderGoogleButton();
+                    const loginArea = document.getElementById('loginArea');
+                    if (loginArea) {
+                        loginArea.style.boxShadow = '0 0 0 3px rgba(52, 152, 219, 0.5)';
+                        loginArea.style.transition = 'box-shadow 0.3s';
+                        loginArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
                         setTimeout(() => {
-                            const button = document.querySelector('#googleSignInContainer iframe');
-                            if (button) button.click();
-                        }, 300);
+                            loginArea.style.boxShadow = '';
+                        }, 2000);
                     }
-                }, 500);
-            } else {
-                showToast('Google Sign-In is not ready. Please try again.', 'error');
-            }
-        }
-
-        function switchAccount() {
-            logoutUser();
-        }
-
-        function logoutUser() {
-            localStorage.removeItem('user');
-            currentUser = null;
-
-            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-                google.accounts.id.disableAutoSelect();
-                google.accounts.id.revoke();
-            }
-
-            updateLoginButtons();
-            updateCommentForm();
-            showToast('Logged out successfully', 'success');
+                }, 300);
+            });
         }
 
         function setupEventListeners() {
@@ -1226,13 +1067,6 @@
     `;
         $('head').append(`<style>${toastCSS}</style>`);
     </script>
-    <!-- Floating Create Post Button -->
-    <div class="fab-container" id="float">
-        <a href="create-blog.html" class="fab" id="createPostFab">
-            <i class="fas fa-plus fab-icon"></i>
-            <span class="fab-tooltip">Create New Post</span>
-        </a>
-    </div>
 </body>
 
 </html>
