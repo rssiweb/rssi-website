@@ -442,17 +442,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Add loading spinner for main content -->
-                    <div id="loadingOverlay"
-                        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; justify-content: center; align-items: center;">
-                        <div class="text-center">
-                            <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                            <p class="mt-3">Loading blog post...</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -487,6 +476,8 @@
                 return;
             }
 
+            // Hide all content initially
+            hideContent();
             loadBlogDetail();
             checkUserLoginStatus();
             setupEventListeners();
@@ -501,21 +492,44 @@
             }
         }
 
-        function showLoadingState() {
-            $('#blogTitle').html('<span class="placeholder col-8"></span>');
-            $('#authorName').html('<span class="placeholder col-4"></span>');
-            $('#postMeta').html('<span class="placeholder col-6"></span>');
-            $('#blogContent').html(`
-            <div class="placeholder-glow">
-                <p class="placeholder col-12"></p>
-                <p class="placeholder col-11"></p>
-                <p class="placeholder col-10"></p>
-                <p class="placeholder col-9"></p>
-                <p class="placeholder col-8"></p>
-            </div>
-        `);
+        function hideContent() {
+            // Hide all content areas
+            $('#blogTitle, #authorName, #postMeta, #authorAvatar, #featuredImage, #blogContent, #authorCard, .share-buttons, #commentSection, #relatedPosts').hide();
+            $('#float').hide();
+        }
 
-            $('.share-buttons, #authorCard, #commentSection, #relatedPosts').hide();
+        function showLoadingState() {
+            // Show placeholders for main content areas
+            $('#blogTitle').html('<span class="placeholder col-8"></span>').show();
+            $('#authorName').html('<span class="placeholder col-4"></span>').show();
+            $('#postMeta').html('<span class="placeholder col-6"></span>').show();
+            $('#authorAvatar').html('<div class="placeholder" style="width:50px;height:50px;border-radius:50%;"></div>').show();
+            $('#blogContent').html(`
+                <div class="placeholder-glow">
+                    <p class="placeholder col-12"></p>
+                    <p class="placeholder col-11"></p>
+                    <p class="placeholder col-10"></p>
+                    <p class="placeholder col-9"></p>
+                    <p class="placeholder col-8"></p>
+                </div>
+            `).show();
+
+            $('#authorCard').html(`
+                <div class="row align-items-center">
+                    <div class="col-md-3 text-center mb-3 mb-md-0">
+                        <div class="placeholder" style="width:100px;height:100px;border-radius:50%;"></div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="placeholder col-4 mb-2"></div>
+                        <div class="placeholder col-6 mb-3"></div>
+                        <div class="placeholder col-12"></div>
+                        <div class="placeholder col-11"></div>
+                        <div class="placeholder col-10"></div>
+                    </div>
+                </div>
+            `).show();
+
+            $('.share-buttons, #commentSection, #relatedPosts').hide();
         }
 
         function loadBlogDetail() {
@@ -533,65 +547,70 @@
                         setupShareButtons();
                         setTimeout(generateTableOfContents, 100);
                     } else {
-                        $('#loadingOverlay').html(`
-                        <div class="alert alert-danger">
-                            <h4>Post Not Found</h4>
-                            <p>The blog post you're looking for doesn't exist.</p>
-                            <a href="index.html" class="btn btn-primary">Back to Blog</a>
-                        </div>
-                    `);
+                        // Show error
+                        $('#blogContent').html(`
+                            <div class="alert alert-danger">
+                                <h4>Post Not Found</h4>
+                                <p>The blog post you're looking for doesn't exist.</p>
+                                <a href="index.html" class="btn btn-primary">Back to Blog</a>
+                            </div>
+                        `).show();
+                        $('.share-buttons, #authorCard, #commentSection, #relatedPosts').hide();
                     }
                 },
                 error: function (xhr, status, error) {
-                    $('#loadingOverlay').html(`
-                    <div class="alert alert-danger">
-                        <h4>Error Loading Post</h4>
-                        <p>There was a problem loading the blog post. Please try again.</p>
-                        <button onclick="location.reload()" class="btn btn-primary">Retry</button>
-                        <a href="index.html" class="btn btn-secondary">Back to Blog</a>
-                    </div>
-                `);
+                    $('#blogContent').html(`
+                        <div class="alert alert-danger">
+                            <h4>Error Loading Post</h4>
+                            <p>There was a problem loading the blog post. Please try again.</p>
+                            <button onclick="location.reload()" class="btn btn-primary">Retry</button>
+                            <a href="index.html" class="btn btn-secondary">Back to Blog</a>
+                        </div>
+                    `).show();
+                    $('.share-buttons, #authorCard, #commentSection, #relatedPosts').hide();
                 }
             });
         }
 
         function renderBlogDetail(data) {
-            $('#loadingOverlay').fadeOut();
-            $('.share-buttons, #authorCard, #commentSection, #relatedPosts').show();
-
             const post = data.post;
             document.title = `${post.title} - RSSI NGO Blog`;
 
+            // Update header
             $('#breadcrumbTitle').text(post.title.substring(0, 30) + (post.title.length > 30 ? '...' : ''));
             $('#blogTitle').text(post.title);
             $('#authorName').text(post.author_name || 'Anonymous');
             $('#postMeta').html(`
-            ${new Date(post.published_at || post.created_at).toLocaleDateString('en-US', {
+                ${new Date(post.published_at || post.created_at).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric'
             })} • ${post.reading_time || '5'} min read
-        `);
+            `);
 
+            // Update author avatar
             if (post.author_photo) {
                 $('#authorAvatar').html(`<img src="${post.author_photo}" alt="${post.author_name}" style="width:100%;height:100%;object-fit:cover;">`);
             } else {
                 $('#authorAvatar').html(`
-                <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width:100%;height:100%;">
-                    ${post.author_name?.charAt(0) || 'A'}
-                </div>
-            `);
+                    <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width:100%;height:100%;">
+                        ${post.author_name?.charAt(0) || 'A'}
+                    </div>
+                `);
             }
 
+            // Update featured image
             if (post.featured_image) {
-                $('#featuredImage').attr('src', post.featured_image).attr('alt', post.title);
+                $('#featuredImage').attr('src', post.featured_image).attr('alt', post.title).show();
             } else {
-                $('#featuredImage').remove();
+                $('#featuredImage').hide();
             }
 
-            $('#blogContent').html(post.content);
+            // Update blog content
+            $('#blogContent').html(post.content).addClass('fade-in');
             updateLikeStatus(data.likes);
 
+            // Update tags
             if (post.tags) {
                 let tagsArray = [];
                 if (typeof post.tags === 'string') {
@@ -614,32 +633,43 @@
                 }
             }
 
+            // Update author card
             $('#authorCard').html(`
-            <div class="row align-items-center">
-                <div class="col-md-3 text-center mb-3 mb-md-0">
-                    ${post.author_photo ?
+                <div class="row align-items-center">
+                    <div class="col-md-3 text-center mb-3 mb-md-0">
+                        ${post.author_photo ?
                     `<img src="${post.author_photo}" alt="${post.author_name}" class="rounded-circle" style="width:100px;height:100px;object-fit:cover;">` :
                     `<div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mx-auto" style="width:100px;height:100px;font-size:2rem;">${post.author_name?.charAt(0) || 'A'}</div>`
                 }
+                    </div>
+                    <div class="col-md-9">
+                        <h4>${post.author_name || 'Anonymous'}</h4>
+                        <p class="text-muted mb-2">${post.author_email || ''}</p>
+                        <p class="mb-0">Author bio would go here. You can store author bio in your database.</p>
+                    </div>
                 </div>
-                <div class="col-md-9">
-                    <h4>${post.author_name || 'Anonymous'}</h4>
-                    <p class="text-muted mb-2">${post.author_email || ''}</p>
-                    <p class="mb-0">Author bio would go here. You can store author bio in your database.</p>
-                </div>
-            </div>
-        `);
+            `);
 
+            // Update reading stats
             $('#readingTime').text(`${post.reading_time || '5'} minutes`);
             $('#wordCount').text(post.word_count || post.content.split(/\s+/).length);
             $('#postViews').text(post.views || 0);
             $('#readingTime, #wordCount, #postViews').find('.placeholder, .placeholder-glow').remove();
             $('#readingTime, #wordCount, #postViews').removeClass('placeholder-glow').css('opacity', '1');
 
+            // Update comments
             renderComments(data.comments);
             $('#commentCount').text(data.comments.length);
+
+            // Update related posts
             renderRelatedPosts(data.related_posts);
+
+            // Show all content
+            $('.share-buttons, #authorCard, #commentSection, #relatedPosts, #float').show();
+
+            // Remove placeholders
             $('.placeholder, .placeholder-glow').removeClass('placeholder placeholder-glow');
+
             setTimeout(generateTableOfContents, 200);
         }
 
@@ -717,47 +747,47 @@
                 avatarHtml = `<img src="${comment.user_photo}" alt="${comment.user_name}" class="rounded-circle" style="width:100%;height:100%;object-fit:cover;">`;
             } else {
                 avatarHtml = `
-                <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width:100%;height:100%;">
-                    ${comment.user_name?.charAt(0) || 'U'}
-                </div>
-            `;
+                    <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width:100%;height:100%;">
+                        ${comment.user_name?.charAt(0) || 'U'}
+                    </div>
+                `;
             }
 
             // FOR REPLIES: Use updated_at instead of created_at
             const timestamp = isReply ? (comment.updated_at || comment.created_at) : comment.created_at;
 
             return `
-            <div class="comment-card ${isReply ? 'reply-card' : ''}" id="comment-${comment.id}">
-                <div class="d-flex">
-                    <div class="me-3">
-                        <div style="width:40px;height:40px;border-radius:50%;overflow:hidden;">
-                            ${avatarHtml}
+                <div class="comment-card ${isReply ? 'reply-card' : ''}" id="comment-${comment.id}">
+                    <div class="d-flex">
+                        <div class="me-3">
+                            <div style="width:40px;height:40px;border-radius:50%;overflow:hidden;">
+                                ${avatarHtml}
+                            </div>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="mb-1">${comment.user_name || 'Anonymous'}</h6>
+                                <small class="text-muted">${formatCommentTime(timestamp)}</small>
+                            </div>
+                            <p class="mb-2">${comment.content}</p>
+                            ${!isReply ? `<button class="btn btn-sm btn-outline-secondary reply-btn" data-comment-id="${comment.id}"><i class="fas fa-reply me-1"></i> Reply</button>` : ''}
                         </div>
                     </div>
-                    <div class="flex-grow-1">
-                        <div class="d-flex justify-content-between">
-                            <h6 class="mb-1">${comment.user_name || 'Anonymous'}</h6>
-                            <small class="text-muted">${formatCommentTime(timestamp)}</small>
-                        </div>
-                        <p class="mb-2">${comment.content}</p>
-                        ${!isReply ? `<button class="btn btn-sm btn-outline-secondary reply-btn" data-comment-id="${comment.id}"><i class="fas fa-reply me-1"></i> Reply</button>` : ''}
-                    </div>
-                </div>
-                ${comment.replies && comment.replies.length > 0 ?
+                    ${comment.replies && comment.replies.length > 0 ?
                     `<div class="replies-container ms-4 mt-3">${comment.replies.map(reply => renderComment(reply, true)).join('')}</div>`
                     : ''}
-                ${!isReply ? `
-                    <div class="reply-form mt-3" id="reply-form-${comment.id}" style="display: none;">
-                        <form class="reply-form" data-parent-id="${comment.id}">
-                            <div class="mb-2"><textarea class="form-control form-control-sm" rows="2" placeholder="Write a reply..." required></textarea></div>
-                            <div class="text-end">
-                                <button type="button" class="btn btn-sm btn-outline-secondary cancel-reply-btn">Cancel</button>
-                                <button type="submit" class="btn btn-sm btn-primary">Post Reply</button>
-                            </div>
-                        </form>
-                    </div>` : ''}
-            </div>
-        `;
+                    ${!isReply ? `
+                        <div class="reply-form mt-3" id="reply-form-${comment.id}" style="display: none;">
+                            <form class="reply-form" data-parent-id="${comment.id}">
+                                <div class="mb-2"><textarea class="form-control form-control-sm" rows="2" placeholder="Write a reply..." required></textarea></div>
+                                <div class="text-end">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary cancel-reply-btn">Cancel</button>
+                                    <button type="submit" class="btn btn-sm btn-primary">Post Reply</button>
+                                </div>
+                            </form>
+                        </div>` : ''}
+                </div>
+            `;
         }
 
         function renderComments(comments) {
@@ -791,27 +821,27 @@
             let postsHtml = '';
             posts.forEach(post => {
                 postsHtml += `
-                <div class="col-md-6 col-lg-12">
-                    <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="${post.featured_image || 'https://via.placeholder.com/150/e3f2fd/2c3e50?text=RSSI'}" 
-                                     class="img-fluid rounded-start" alt="${post.title}" style="height: 120px; object-fit: cover;">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h6 class="card-title">
-                                        <a href="blog-detail.html?slug=${post.slug}" class="text-decoration-none">
-                                            ${post.title.substring(0, 60)}${post.title.length > 60 ? '...' : ''}
-                                        </a>
-                                    </h6>
-                                    <p class="card-text"><small class="text-muted">${new Date(post.created_at).toLocaleDateString()}</small></p>
+                    <div class="col-md-6 col-lg-12">
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="${post.featured_image || 'https://via.placeholder.com/150/e3f2fd/2c3e50?text=RSSI'}" 
+                                         class="img-fluid rounded-start" alt="${post.title}" style="height: 120px; object-fit: cover;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h6 class="card-title">
+                                            <a href="blog-detail.html?slug=${post.slug}" class="text-decoration-none">
+                                                ${post.title.substring(0, 60)}${post.title.length > 60 ? '...' : ''}
+                                            </a>
+                                        </h6>
+                                        <p class="card-text"><small class="text-muted">${new Date(post.created_at).toLocaleDateString()}</small></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            `;
+                `;
             });
             $('#relatedPostsGrid').html(postsHtml);
         }
@@ -824,6 +854,7 @@
             $('#shareTwitter').attr('href', `https://twitter.com/intent/tweet?url=${url}&text=${text}`);
             $('#shareLinkedIn').attr('href', `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${text}`);
             $('#shareWhatsApp').attr('href', `https://wa.me/?text=${title}%20${url}`);
+            $('.share-buttons').show();
         }
 
         function generateTableOfContents() {
@@ -848,22 +879,22 @@
         function updateCommentForm() {
             if (currentUser) {
                 $('#commentForm').html(`
-                <div class="mb-3">
-                    <textarea class="form-control" id="commentContent" rows="4" placeholder="Write your comment here..." required></textarea>
-                </div>
-                <div class="text-end">
-                    <button type="submit" class="btn btn-primary" id="submitCommentBtn">
-                        <i class="fas fa-paper-plane me-2"></i> Post Comment
-                    </button>
-                </div>
-            `);
+                    <div class="mb-3">
+                        <textarea class="form-control" id="commentContent" rows="4" placeholder="Write your comment here..." required></textarea>
+                    </div>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary" id="submitCommentBtn">
+                            <i class="fas fa-paper-plane me-2"></i> Post Comment
+                        </button>
+                    </div>
+                `);
             } else {
                 $('#commentForm').html(`
-                <div class="alert alert-info mb-0">
-                    <i class="fas fa-info-circle me-2"></i>
-                    Please <a href="#" class="alert-link fw-bold" id="commentLoginLink">login</a> to post a comment.
-                </div>
-            `);
+                    <div class="alert alert-info mb-0">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Please <a href="#" class="alert-link fw-bold" id="commentLoginLink">login</a> to post a comment.
+                    </div>
+                `);
 
                 $('#commentLoginLink').off('click').on('click', function (e) {
                     e.preventDefault();
@@ -887,11 +918,11 @@
 
         function showCommentLoginPrompt() {
             $('#commentForm').html(`
-            <div class="alert alert-info mb-0">
-                <i class="fas fa-info-circle me-2"></i>
-                Please <a href="#" class="alert-link fw-bold" id="commentLoginLink">login</a> to post a comment.
-            </div>
-        `);
+                <div class="alert alert-info mb-0">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Please <a href="#" class="alert-link fw-bold" id="commentLoginLink">login</a> to post a comment.
+                </div>
+            `);
 
             $('#commentLoginLink').off('click').on('click', function (e) {
                 e.preventDefault();
@@ -1054,17 +1085,17 @@
 
         // Add CSS for toast
         const toastCSS = `
-        .toast { min-width: 250px; }
-        #commentLoginLink {
-            color: #3498db !important;
-            text-decoration: underline !important;
-            font-weight: 600 !important;
-        }
-        #commentLoginLink:hover {
-            color: #2980b9 !important;
-            text-decoration: none !important;
-        }
-    `;
+            .toast { min-width: 250px; }
+            #commentLoginLink {
+                color: #3498db !important;
+                text-decoration: underline !important;
+                font-weight: 600 !important;
+            }
+            #commentLoginLink:hover {
+                color: #2980b9 !important;
+                text-decoration: none !important;
+            }
+        `;
         $('head').append(`<style>${toastCSS}</style>`);
     </script>
 </body>
