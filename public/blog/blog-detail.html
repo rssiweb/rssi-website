@@ -1001,6 +1001,10 @@
                 }
 
                 const submitBtn = $(this).find('#submitCommentBtn');
+                const textarea = $(this).find('#commentContent');
+
+                // Disable the textarea and submit button
+                textarea.prop('disabled', true);
                 submitBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i> Posting...');
 
                 $.ajax({
@@ -1043,6 +1047,8 @@
                         showToast('Error submitting comment', 'error');
                     },
                     complete: function () {
+                        // Re-enable the textarea and submit button
+                        textarea.prop('disabled', false);
                         submitBtn.prop('disabled', false).html('<i class="fas fa-paper-plane me-2"></i> Post Comment');
                     }
                 });
@@ -1124,8 +1130,8 @@
                                     repliesContainer = $(`#comment-${parentId} .replies-container`);
                                 }
 
-                                // Add reply at the top (newest first)
-                                repliesContainer.prepend(replyHtml);
+                                // CHANGE THIS LINE: Add reply at the END (newest last)
+                                repliesContainer.append(replyHtml); // Changed from prepend() to append()
 
                                 // Hide the form after successful submission
                                 setTimeout(() => {
