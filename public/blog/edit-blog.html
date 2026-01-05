@@ -251,6 +251,7 @@
                 transform: translateY(-50px);
                 opacity: 0;
             }
+
             to {
                 transform: translateY(0);
                 opacity: 1;
@@ -270,27 +271,29 @@
             margin-top: 30px;
         }
 
-        /* Add these styles */
-        .login-required-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+        /* Login Required Section */
+        .login-required {
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 999999;
+            min-height: 70vh;
+            text-align: center;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .login-required-content {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
+        .login-content {
             max-width: 500px;
-            width: 90%;
+            padding: 40px;
+        }
+
+        .login-content i {
+            font-size: 4rem;
+            color: #3498db;
+            margin-bottom: 20px;
         }
 
         #loginArea {
@@ -317,28 +320,17 @@
 </head>
 
 <body>
-    <!-- Login/User Bar (Fixed at top) -->
-    <div id="loginArea" class="bg-dark text-white py-2" style="position: fixed; top: 0; width: 100%; z-index: 1050;">
-        <div class="container d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center">
-                <i class="fas fa-edit me-2"></i>
-                <small>Edit Blog Post</small>
-            </div>
-            <div id="loginButtons">
-                <!-- Login button will be inserted here by JavaScript -->
-            </div>
-        </div>
-    </div>
+    <!-- Header will be loaded here -->
+    <div id="header"></div>
 
-    <!-- Login Required Overlay -->
-    <div class="login-required-overlay" id="loginRequiredOverlay">
-        <div class="login-required-content">
-            <div class="mb-4">
-                <i class="fas fa-lock fa-4x text-primary mb-3"></i>
-                <h3>Login Required</h3>
-                <p>Please login with Google to edit blog posts.</p>
-            </div>
-            <div id="loginOverlayButtons">
+    <!-- Login Required Section (shown when not logged in) -->
+    <div id="loginRequired" class="login-required" style="display: none;">
+        <div class="login-content">
+            <i class="fas fa-lock fa-4x text-primary mb-4"></i>
+            <h3>Login Required</h3>
+            <p class="mb-4">Please login with Google to edit blog posts. You can only edit posts that you have created.
+            </p>
+            <div id="loginPortalButtons" class="mt-4">
                 <!-- Google button will be inserted here -->
             </div>
         </div>
@@ -657,18 +649,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <!-- Include header script -->
+    <script src="includes/header.js?v=1.2.0"></script>
+    <script src="js/auth.js?v=1.2.0"></script>
 
     <script>
-        // API endpoint configuration
-        const API_BASE = window.location.hostname === 'localhost'
-            ? 'http://localhost:8082/blog-api/'
-            : 'https://login.rssi.in/blog-api/';
-
-        // Login variables
-        const GOOGLE_CLIENT_ID = '880893711562-48c591om401pva696dnk9ffnqb9it4mm.apps.googleusercontent.com';
-        let currentUser = null;
-
-        // Blog variables
+        // Blog variables - ONLY page-specific variables
         let tags = [];
         let selectedStatus = 'draft';
         let featuredImageBase64 = null;
@@ -676,14 +662,13 @@
         let postId = null;
         let originalStatus = '';
         let originalSlug = '';
+        let summernoteInitialized = false;
 
         $(document).ready(function () {
-            checkUserLogin();
-            
             // Get post ID from URL
             const urlParams = new URLSearchParams(window.location.search);
             postId = urlParams.get('id');
-            
+
             if (!postId) {
                 showError('No post ID specified');
                 setTimeout(() => {
@@ -692,54 +677,63 @@
                 return;
             }
 
-            // Only load post if user is logged in
-            if (currentUser) {
-                loadPostData(postId);
-            } else {
-                $('#loginRequiredOverlay').show();
-            }
-
-            // Initialize Summernote editor with image upload
-            $('#content').summernote({
-                height: 400,
-                toolbar: [
-                    ['style', ['style']],
-                    ['font', ['bold', 'italic', 'underline', 'clear']],
-                    ['fontname', ['fontname']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['height', ['height']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture', 'video', 'hr']],
-                    ['view', ['fullscreen', 'codeview', 'help']]
-                ],
-                placeholder: 'Write your amazing content here...',
-                callbacks: {
-                    onChange: function (contents) {
-                        calculateReadingTime();
-                    },
-                    onImageUpload: function (files) {
-                        // Convert image to base64 and insert directly (will be uploaded to Drive on save)
-                        const file = files[0];
-                        const reader = new FileReader();
-
-                        reader.onload = function (e) {
-                            // Insert image as base64 - will be converted to Drive URL when saving
-                            $('#content').summernote('insertImage', e.target.result);
-                        };
-
-                        reader.readAsDataURL(file);
-                    }
-                }
-            });
-
-            // Setup event listeners
-            setupEventListeners();
+            // Check login status and handle page state
+            handlePageState();
         });
 
+        // ==================== PAGE STATE MANAGEMENT ====================
+
+        function handlePageState() {
+            // Check if user is logged in (using centralized auth.js)
+            if (checkUserLogin()) {
+                // User is logged in, show dashboard and load post
+                showDashboard();
+                loadPostData(postId);
+                if (!summernoteInitialized) {
+                    initializeSummernote();
+                    setupEventListeners();
+                    summernoteInitialized = true;
+                }
+            } else {
+                // User not logged in, show login required
+                showLoginRequired();
+                if (summernoteInitialized) {
+                    // Destroy summernote if it was initialized
+                    $('#content').summernote('destroy');
+                    summernoteInitialized = false;
+                }
+            }
+        }
+
+        function showDashboard() {
+            $('#loginRequired').hide();
+            $('.form-container').show();
+            initializeForm();
+
+            if (!summernoteInitialized) {
+                initializeSummernote();
+                setupEventListeners();
+                summernoteInitialized = true;
+            }
+        }
+
+        function showLoginRequired() {
+            $('#loginRequired').show();
+            $('.form-container').hide();
+
+            // Simple login button that uses existing auth system
+            $('#loginPortalButtons').html(`
+            <button class="btn btn-primary btn-lg" onclick="triggerGoogleSignIn()">
+                <i class="fab fa-google me-2"></i> Sign in with Google
+            </button>
+        `);
+        }
+
         function loadPostData(postId) {
+            if (!currentUser || !postId) return;
+
             showLoading(true);
-            
+
             $.ajax({
                 url: API_BASE + 'get_post.php?id=' + postId + '&user_id=' + currentUser.id,
                 type: 'GET',
@@ -779,7 +773,7 @@
             // Store original data
             originalStatus = post.status;
             originalSlug = post.slug;
-            
+
             // Populate basic fields
             $('#postId').val(post.id);
             $('#title').val(post.title);
@@ -788,48 +782,51 @@
             $('#category').val(post.category);
             $('#readingTime').val(post.reading_time || 5);
             $('#authorName').val(post.author_name || '');
-            
+
             // Populate tags
             if (post.tags && post.tags.length > 0) {
                 tags = post.tags;
                 renderTags();
             }
-            
+
             // Set status
             selectedStatus = post.status;
             $('#status').val(selectedStatus);
             $('#originalStatus').val(originalStatus);
-            
+
             // Update status badges
             $('.status-badge').removeClass('active');
             $(`.status-badge[data-status="${selectedStatus}"]`).addClass('active');
-            
+
             // Show warning if not draft
             if (originalStatus !== 'draft') {
                 showEditWarning(originalStatus);
             }
-            
+
             // Check admin status to show/hide publish option
             checkUserAdminStatus();
-            
+
             // Populate featured image if exists
             if (post.featured_image) {
                 $('#imagePreview').attr('src', post.featured_image).show();
                 $('#imagePlaceholder').hide();
                 $('#featuredImageUrl').val(post.featured_image);
             }
-            
+
             // Populate author photo if exists
             if (post.author_photo) {
                 $('#authorAvatarPreview').html(`<img src="${post.author_photo}" class="w-100 h-100" style="object-fit: cover;">`);
+            } else if (currentUser.picture) {
+                // Use current user's profile picture
+                $('#authorAvatarPreview').html(`<img src="${currentUser.picture}" class="w-100 h-100" style="object-fit: cover;">`);
             }
-            
+
             // Populate content in Summernote
             $('#content').summernote('code', post.content);
-            
+
             // Calculate reading time
             calculateReadingTime();
-            
+
             // Enable form
             enableForm(true);
         }
@@ -837,8 +834,8 @@
         function showEditWarning(status) {
             const $warning = $('#editWarning');
             let message = '';
-            
-            switch(status) {
+
+            switch (status) {
                 case 'published':
                     message = 'This post is already published. Editing will create a new revision.';
                     break;
@@ -848,7 +845,7 @@
                 default:
                     return;
             }
-            
+
             $('#warningMessage').text(message);
             $warning.show();
         }
@@ -859,181 +856,45 @@
                 // Auto-fill author information from Google
                 $('#authorName').val(currentUser.name || '');
 
-                // If user has profile picture, use it
-                if (currentUser.picture) {
-                    $('#authorAvatarPreview').html(`<img src="${currentUser.picture}" class="w-100 h-100" style="object-fit: cover;">`);
-                }
-
                 // Enable form
                 enableForm(true);
             }
         }
 
-        // ==================== GOOGLE LOGIN FUNCTIONS ====================
-        function checkUserLogin() {
-            const userData = localStorage.getItem('user');
-            if (userData) {
-                try {
-                    currentUser = JSON.parse(userData);
-                    // Check if token is still valid (not expired)
-                    if (currentUser.expires_at && new Date() > new Date(currentUser.expires_at)) {
-                        logoutUser();
-                        return;
-                    }
-                } catch (e) {
-                    console.error('Error parsing user data:', e);
-                    localStorage.removeItem('user');
-                    currentUser = null;
-                }
-            }
-            updateLoginButtons();
-        }
-
-        function updateLoginButtons() {
-            if (currentUser) {
-                $('#loginButtons').html(`
-                <div class="dropdown">
-                    <button class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown">
-                        <img src="${currentUser.picture || 'https://via.placeholder.com/25?text=U'}" 
-                             alt="${currentUser.name}" 
-                             class="rounded-circle me-2" 
-                             style="width: 25px; height: 25px; object-fit: cover;">
-                        <span style="font-size: 0.9rem;">${currentUser.name.split(' ')[0]}</span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="user-portal.html"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
-                        <li><a class="dropdown-item" href="create-blog.html"><i class="fas fa-plus me-2"></i>Create New</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#" onclick="switchAccount(); return false;"><i class="fas fa-sync-alt me-2"></i>Switch Account</a></li>
-                        <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser(); return false;"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
-                    </ul>
-                </div>
-            `);
-
-                // Also update the overlay login button
-                $('#loginOverlayButtons').html(`
-                <button class="btn btn-success btn-lg" onclick="hideLoginOverlay()">
-                    <i class="fas fa-check me-2"></i> Continue as ${currentUser.name.split(' ')[0]}
-                </button>
-            `);
-            } else {
-                $('#loginButtons').html('<div id="googleSignInContainer"></div>');
-                $('#loginOverlayButtons').html('<div id="googleSignInOverlayContainer"></div>');
-
-                // Initialize Google Sign-In
-                initGoogleSignIn();
-            }
-        }
-
-        function initGoogleSignIn() {
-            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-                setupGoogleSignIn();
-            } else {
-                setTimeout(initGoogleSignIn, 1000);
-            }
-        }
-
-        function setupGoogleSignIn() {
-            google.accounts.id.initialize({
-                client_id: GOOGLE_CLIENT_ID,
-                callback: handleGoogleSignIn,
-                auto_select: false,
-                cancel_on_tap_outside: true,
-                ux_mode: 'popup'
-            });
-
-            // Render buttons
-            renderGoogleButton('#googleSignInContainer');
-            renderGoogleButton('#googleSignInOverlayContainer');
-        }
-
-        function renderGoogleButton(containerId) {
-            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-                const container = document.querySelector(containerId);
-                if (!container) return;
-
-                container.innerHTML = '';
-
-                google.accounts.id.renderButton(
-                    container,
-                    {
-                        type: 'standard',
-                        theme: 'filled_blue',
-                        size: 'large',
-                        text: 'signin_with',
-                        shape: 'rectangular',
-                        logo_alignment: 'left'
-                    }
-                );
-            } else {
-                $(containerId).html(`
-                <button class="btn btn-outline-light btn-sm" disabled>
-                    <i class="fas fa-spinner fa-spin me-2"></i> Loading Google Login...
-                </button>
-            `);
-            }
-        }
-
-        function handleGoogleSignIn(response) {
-            if (response.credential) {
-                $.ajax({
-                    url: API_BASE + 'google-auth/login.php',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify({ id_token: response.credential }),
-                    success: function (response) {
-                        if (response.success) {
-                            const userData = {
-                                ...response.user,
-                                expires_at: new Date(Date.now() + 3600000).toISOString()
+        function initializeSummernote() {
+            if ($('#content').length && !summernoteInitialized) {
+                $('#content').summernote({
+                    height: 400,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'italic', 'underline', 'clear']],
+                        ['fontname', ['fontname']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['height', ['height']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video', 'hr']],
+                        ['view', ['fullscreen', 'codeview', 'help']]
+                    ],
+                    placeholder: 'Write your amazing content here...',
+                    callbacks: {
+                        onChange: function (contents) {
+                            calculateReadingTime();
+                        },
+                        onImageUpload: function (files) {
+                            const file = files[0];
+                            const reader = new FileReader();
+                            reader.onload = function (e) {
+                                $('#content').summernote('insertImage', e.target.result);
                             };
-                            localStorage.setItem('user', JSON.stringify(userData));
-                            currentUser = userData;
-                            updateLoginButtons();
-
-                            // Hide login overlay and load post data
-                            hideLoginOverlay();
-                            loadPostData(postId);
-
-                            showToast('Login successful!', 'success');
-                        } else {
-                            showToast('Login failed: ' + response.message, 'error');
+                            reader.readAsDataURL(file);
                         }
-                    },
-                    error: function () {
-                        showToast('Error connecting to server.', 'error');
                     }
                 });
+                summernoteInitialized = true;
             }
         }
 
-        function hideLoginOverlay() {
-            $('#loginRequiredOverlay').fadeOut();
-            if (currentUser && postId) {
-                loadPostData(postId);
-            }
-        }
-
-        function logoutUser() {
-            localStorage.removeItem('user');
-            currentUser = null;
-
-            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-                google.accounts.id.disableAutoSelect();
-                google.accounts.id.revoke();
-            }
-
-            updateLoginButtons();
-            $('#loginRequiredOverlay').show();
-            enableForm(false);
-            showToast('Logged out successfully', 'success');
-        }
-
-        function switchAccount() {
-            logoutUser();
-        }
-
-        // ==================== ADMIN CHECK FUNCTION ====================
         async function checkUserAdminStatus() {
             if (!currentUser) return;
 
@@ -1047,7 +908,7 @@
                 } else {
                     // User is not admin - only show draft and pending options
                     $('.status-badge[data-status="published"]').hide();
-                    
+
                     // If current status is published, change to pending
                     if (selectedStatus === 'published') {
                         selectedStatus = 'pending';
@@ -1067,13 +928,18 @@
             const formElements = $('#blogForm input, #blogForm select, #blogForm textarea, #blogForm button');
             if (enabled) {
                 formElements.prop('disabled', false);
-                $('#content').summernote('enable');
+                if ($('#content').summernote) {
+                    $('#content').summernote('enable');
+                }
             } else {
                 formElements.prop('disabled', true);
-                $('#content').summernote('disable');
+                if ($('#content').summernote) {
+                    $('#content').summernote('disable');
+                }
             }
         }
 
+        // ==================== EVENT LISTENERS ====================
         function setupEventListeners() {
             // Auto-generate slug from title
             $('#title').on('input', function () {
@@ -1161,7 +1027,7 @@
                     showToast('Published posts can only be saved as drafts for revision.', 'warning');
                     return;
                 }
-                
+
                 $('.status-badge').removeClass('active');
                 $(this).addClass('active');
                 selectedStatus = $(this).data('status');
@@ -1267,7 +1133,7 @@
             // Validate login first
             if (!currentUser) {
                 showError('Please login to update blog posts');
-                $('#loginRequiredOverlay').show();
+                showLoginRequired();
                 return;
             }
 
@@ -1293,11 +1159,10 @@
             // Prepare publish date for database
             let publishDate = null;
             if (selectedStatus === 'published' && $('#publishDate').val()) {
-                // Convert to ISO string for database (PostgreSQL timestamp without timezone)
+                // Convert to ISO string for database
                 const dateInput = $('#publishDate').val();
                 const dateObj = new Date(dateInput);
 
-                // Format: YYYY-MM-DD HH:MM:SS for PostgreSQL timestamp
                 const year = dateObj.getFullYear();
                 const month = String(dateObj.getMonth() + 1).padStart(2, '0');
                 const day = String(dateObj.getDate()).padStart(2, '0');
@@ -1450,36 +1315,7 @@
             $('#errorAlert').fadeIn();
             $('#successAlert').hide();
         }
-
-        // Add this function to show toast messages
-        function showToast(message, type = 'info') {
-            $('.toast').remove();
-            const bgColor = type === 'success' ? 'bg-success' : 
-                           type === 'error' ? 'bg-danger' : 
-                           type === 'warning' ? 'bg-warning' : 'bg-info';
-            
-            const toast = $(`
-            <div class="toast align-items-center text-white ${bgColor} border-0" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 1060; max-width: 400px;">
-                <div class="d-flex">
-                    <div class="toast-body p-3">
-                        <div class="d-flex align-items-center">
-                            <i class="fas ${type === 'success' ? 'fa-check-circle' : 
-                                          type === 'error' ? 'fa-exclamation-circle' : 
-                                          type === 'warning' ? 'fa-exclamation-triangle' : 'fa-info-circle'} 
-                               me-3" style="font-size: 1.2rem;"></i>
-                            <div style="flex: 1;">${message}</div>
-                        </div>
-                    </div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-                </div>
-            </div>
-        `);
-            $('body').append(toast);
-            const bsToast = new bootstrap.Toast(toast[0]);
-            bsToast.show();
-
-            setTimeout(() => toast.remove(), 3000);
-        }
     </script>
 </body>
+
 </html>
