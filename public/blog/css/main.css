@@ -1,69 +1,158 @@
-/* Scroll to Top Floating Button */
-#scrollToTopFab {
+/* Scroll to Top Button */
+.scroll-to-top {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    z-index: 1000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-#scrollToTopFab .fab {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #3498db, #2980b9);
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    /* primary to secondary */
+    color: white;
     border-radius: 50%;
-    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    text-align: center;
+    font-size: 20px;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+    /* secondary color with transparency */
+    z-index: 999;
+    transition: all 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
     text-decoration: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    cursor: pointer;
     border: none;
     outline: none;
 }
 
-#scrollToTopFab .fab:hover {
+.scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+    background: linear-gradient(135deg, #2980b9, #3498db);
+    /* darker secondary to secondary */
     transform: translateY(-5px);
     box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+    color: white;
     text-decoration: none;
 }
 
-#scrollToTopFab .fab:active {
+.scroll-to-top:active {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 15px rgba(52, 152, 219, 0.3);
+}
+
+.scroll-to-top i {
+    margin: 0;
+    transition: transform 0.3s;
+}
+
+.scroll-to-top:hover i {
     transform: translateY(-2px);
 }
 
-#scrollToTopFab .fab-icon {
+/* Tooltip for better UX */
+.scroll-to-top::after {
+    content: 'Scroll to Top';
+    position: absolute;
+    bottom: 100%;
+    right: 50%;
+    transform: translateX(50%);
+    background: rgba(52, 73, 94, 0.9);
+    /* dark background matching primary */
     color: white;
-    font-size: 24px;
-    transition: transform 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+    pointer-events: none;
+    z-index: 1000;
 }
 
-#scrollToTopFab .fab:hover .fab-icon {
-    transform: translateY(-3px);
+.scroll-to-top::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    right: 50%;
+    transform: translateX(50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(52, 73, 94, 0.9) transparent transparent transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    margin-bottom: 5px;
+    pointer-events: none;
 }
 
-/* Accessibility focus styles */
-#scrollToTopFab .fab:focus {
-    outline: 2px solid #3498db;
-    outline-offset: 2px;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+.scroll-to-top:hover::after,
+.scroll-to-top:hover::before {
+    opacity: 1;
+    visibility: visible;
 }
 
-/* Mobile */
+/* Pulse animation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+    }
+}
+
+.scroll-to-top.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Mobile responsiveness */
 @media (max-width: 768px) {
-    #scrollToTopFab {
+    .scroll-to-top {
         bottom: 20px;
         right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
     }
-    
-    #scrollToTopFab .fab {
-        width: 50px;
-        height: 50px;
+
+    .scroll-to-top::after {
+        font-size: 11px;
+        padding: 6px 10px;
     }
-    
-    #scrollToTopFab .fab-icon {
-        font-size: 20px;
+}
+
+@media (max-width: 480px) {
+    .scroll-to-top {
+        bottom: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .scroll-to-top::after {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+
+    /* Hide tooltip on very small screens */
+    .scroll-to-top::after,
+    .scroll-to-top::before {
+        display: none;
     }
 }
