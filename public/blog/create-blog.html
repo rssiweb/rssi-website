@@ -503,19 +503,11 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <!-- Category -->
                             <div class="mb-4">
                                 <label for="category" class="form-label required-field fw-semibold">Category</label>
                                 <select class="form-select" id="category" required>
                                     <option value="">Select a category</option>
-                                    <option value="News">News</option>
-                                    <option value="Events">Events</option>
-                                    <option value="Stories">Stories</option>
-                                    <option value="Updates">Updates</option>
-                                    <option value="Education">Education</option>
-                                    <option value="Health">Health</option>
-                                    <option value="Environment">Environment</option>
-                                    <option value="Technology">Technology</option>
+                                    <!-- Categories will be loaded here dynamically -->
                                 </select>
                                 <div class="form-text">Choose the most relevant category</div>
                             </div>
@@ -687,6 +679,9 @@
             $('#loginRequired').hide();
             $('.form-container').show();
             initializeForm();
+
+            // Load categories from API
+            loadCategories();
 
             if (!summernoteInitialized) {
                 initializeSummernote();
@@ -1307,6 +1302,60 @@
             $('#errorMessage').text(message);
             $('#errorAlert').fadeIn();
             $('#successAlert').hide();
+        }
+
+        // Function to load categories from API
+        function loadCategories() {
+            $.ajax({
+                url: API_BASE + 'get_categories.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success && response.categories && response.categories.length > 0) {
+                        populateCategories(response.categories);
+                    } else {
+                        // Show error message if no categories found
+                        console.error('No categories found in response');
+                        $('#category').html('<option value="">No categories available</option>');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error loading categories:', error);
+                    $('#category').html('<option value="">Error loading categories</option>');
+                }
+            });
+        }
+
+        function populateCategories(categories) {
+            const $select = $('#category');
+            $select.empty();
+
+            // Add default option
+            $select.append('<option value="">Select a category</option>');
+
+            // Add categories from API
+            categories.forEach(category => {
+                // Use the 'name' field for display and 'slug' or 'name' for value
+                const optionValue = category.slug || category.name;
+                const optionText = category.name;
+
+                const option = $('<option>', {
+                    value: optionValue,
+                    text: optionText
+                });
+
+                // If you want to select a category that was previously selected (for edit mode)
+                if (window.selectedCategory && window.selectedCategory === optionValue) {
+                    option.prop('selected', true);
+                }
+
+                // Add optional description as title attribute
+                if (category.description) {
+                    option.attr('title', category.description);
+                }
+
+                $select.append(option);
+            });
         }
     </script>
 </body>
