@@ -560,69 +560,52 @@
 
                 <!-- Author & Status Section -->
                 <div class="form-section">
-                    <h3 class="form-section-title">Author & Status</h3>
+                    <h3 class="form-section-title">Author Information</h3>
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <!-- Author Information -->
                             <div class="mb-4">
-                                <label class="form-label fw-semibold">Author Information</label>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <!-- <h6 class="card-title mb-3">
+                                            <i class="fas fa-user-circle me-2"></i>Author Information
+                                        </h6> -->
 
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="author-avatar-preview me-3" id="authorAvatarPreview">
-                                        <div
-                                            class="bg-secondary text-white w-100 h-100 d-flex align-items-center justify-content-center">
-                                            <i class="fas fa-user fa-2x"></i>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="author-avatar-preview me-3" id="authorAvatarPreview">
+                                                <div
+                                                    class="bg-secondary text-white w-100 h-100 d-flex align-items-center justify-content-center rounded-circle">
+                                                    <i class="fas fa-user fa-2x"></i>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <div>
+                                                        <h5 class="mb-1" id="authorNameDisplay">Loading...</h5>
+                                                        <p class="mb-0 text-muted" id="authorEmailDisplay">Loading
+                                                            email...</p>
+                                                    </div>
+                                                    <span class="badge bg-info">
+                                                        <i class="fa-brands fa-google me-1"></i>Google Account
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="alert alert-light border mb-0">
+                                            <div class="d-flex align-items-start">
+                                                <i class="fas fa-info-circle text-info me-2 mt-1"></i>
+                                                <div>
+                                                    <small class="text-muted">
+                                                        Your author information is linked to your Google account.
+                                                        To update your name or profile photo, please update your Google
+                                                        account settings.
+                                                    </small>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div>
-                                        <input type="file" id="authorPhoto" accept="image/*" style="display: none;">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"
-                                            id="uploadAuthorBtn">
-                                            <i class="fas fa-camera me-1"></i> Upload Photo
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <input type="text" class="form-control" id="authorName"
-                                                placeholder="Author Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <input type="text" class="form-control" id="authorRole"
-                                                placeholder="Author Role/Title">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <!-- Publication Status -->
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">Publication Status</label>
-                                <div class="d-flex mb-3">
-                                    <!-- <div class="status-badge status-draft active" data-status="draft">
-                                        <i class="fas fa-save me-1"></i> Save as Draft
-                                    </div> -->
-                                    <div class="status-badge status-published" data-status="published">
-                                        <i class="fas fa-paper-plane me-1"></i> Publish Now
-                                    </div>
-                                    <div class="status-badge status-pending" data-status="pending">
-                                        <i class="fas fa-clock me-1"></i> Pending Review
-                                    </div>
-                                </div>
-                                <input type="hidden" id="status" value="draft">
-
-                                <!-- Schedule Publication -->
-                                <div class="mt-4" id="scheduleSection" style="display: none;">
-                                    <label for="publishDate" class="form-label fw-semibold">Schedule Publication</label>
-                                    <input type="datetime-local" class="form-control" id="publishDate">
-                                    <div class="form-text">Leave empty to publish immediately</div>
                                 </div>
                             </div>
                         </div>
@@ -664,9 +647,7 @@
     <script>
         // Blog variables - ONLY page-specific variables
         let tags = [];
-        let selectedStatus = 'draft';
         let featuredImageBase64 = null;
-        let authorPhotoBase64 = null;
         let summernoteInitialized = false;
 
         $(document).ready(function () {
@@ -724,23 +705,23 @@
 
         function renderGoogleButtonForPortal(containerId) {
             $(containerId).html(`
-                <div id="g_id_onload"
-                    data-client_id="${GOOGLE_CLIENT_ID}"
-                    data-context="signin"
-                    data-ux_mode="popup"
-                    data-callback="handleGoogleSignIn"
-                    data-auto_prompt="false">
-                </div>
-                <div class="g_id_signin"
-                    data-type="standard"
-                    data-shape="rectangular"
-                    data-theme="filled_blue"
-                    data-text="signin_with"
-                    data-size="large"
-                    data-logo_alignment="left"
-                    data-width="auto">
-                </div>
-            `);
+            <div id="g_id_onload"
+                data-client_id="${GOOGLE_CLIENT_ID}"
+                data-context="signin"
+                data-ux_mode="popup"
+                data-callback="handleGoogleSignIn"
+                data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin"
+                data-type="standard"
+                data-shape="rectangular"
+                data-theme="filled_blue"
+                data-text="signin_with"
+                data-size="large"
+                data-logo_alignment="left"
+                data-width="auto">
+            </div>
+        `);
 
             // Initialize Google Sign-In if not already done
             if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
@@ -750,16 +731,18 @@
 
         function initializeForm() {
             if (currentUser) {
-                // Auto-fill author information from Google
-                $('#authorName').val(currentUser.name || '');
+                // Display author information from Google
+                if (currentUser.name) {
+                    $('#authorNameDisplay').text(currentUser.name);
+                }
+                if (currentUser.email) {
+                    $('#authorEmailDisplay').text(currentUser.email);
+                }
 
                 // If user has profile picture, use it
                 if (currentUser.picture) {
-                    $('#authorAvatarPreview').html(`<img src="${currentUser.picture}" class="w-100 h-100" style="object-fit: cover;">`);
+                    $('#authorAvatarPreview').html(`<img src="${currentUser.picture}" class="w-100 h-100 rounded-circle" style="object-fit: cover;">`);
                 }
-
-                // Check if user is admin and show/hide publish options
-                checkUserAdminStatus();
 
                 // Enable form
                 enableForm(true);
@@ -800,30 +783,6 @@
             }
         }
 
-        async function checkUserAdminStatus() {
-            if (!currentUser) return;
-
-            try {
-                const response = await fetch(API_BASE + 'check_admin.php?user_id=' + currentUser.id);
-                const data = await response.json();
-
-                if (data.is_admin) {
-                    $('.status-badge').show();
-                } else {
-                    $('.status-badge[data-status="published"]').hide();
-                    $('.status-badge[data-status="pending"]').addClass('active');
-                    $('#status').val('pending');
-                    selectedStatus = 'pending';
-                }
-            } catch (error) {
-                console.error('Error checking admin status:', error);
-                $('.status-badge[data-status="published"]').hide();
-                $('.status-badge[data-status="pending"]').addClass('active');
-                $('#status').val('pending');
-                selectedStatus = 'pending';
-            }
-        }
-
         function enableForm(enabled) {
             const formElements = $('#blogForm input, #blogForm select, #blogForm textarea, #blogForm button');
             if (enabled) {
@@ -838,6 +797,7 @@
                 }
             }
         }
+
         // ==================== EVENT LISTENERS ====================
         function setupEventListeners() {
             // Auto-generate slug from title
@@ -1036,6 +996,7 @@
                 $('#slugAvailability').addClass('d-none');
                 currentSlug = '';
             }
+
             // Featured image upload
             $('#uploadFeaturedBtn').click(function () {
                 $('#featuredImage').click();
@@ -1068,24 +1029,6 @@
                 featuredImageBase64 = null;
             });
 
-            // Author photo upload
-            $('#uploadAuthorBtn').click(function () {
-                $('#authorPhoto').click();
-            });
-
-            $('#authorPhoto').change(function (e) {
-                const file = e.target.files[0];
-                if (file) {
-                    // Convert to base64 for preview
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        authorPhotoBase64 = e.target.result;
-                        $('#authorAvatarPreview').html(`<img src="${authorPhotoBase64}" class="w-100 h-100" style="object-fit: cover;">`);
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-
             // Tags management
             $('#tagInput').keypress(function (e) {
                 if (e.which === 13) {
@@ -1104,35 +1047,15 @@
                 addTag();
             });
 
-            // Status selection
-            $('.status-badge').click(function () {
-                $('.status-badge').removeClass('active');
-                $(this).addClass('active');
-                selectedStatus = $(this).data('status');
-                $('#status').val(selectedStatus);
-
-                // Show/hide schedule section for published
-                if (selectedStatus === 'published') {
-                    $('#scheduleSection').show();
-                } else {
-                    $('#scheduleSection').hide();
-                }
-            });
-
-            // Form submission
+            // Form submission - Submit Post button (status = pending)
             $('#blogForm').submit(function (e) {
                 e.preventDefault();
-                saveBlogPost();
+                saveBlogPost('pending');
             });
 
-            // Save draft button
+            // Save draft button (status = draft)
             $('#saveDraftBtn').click(function () {
-                selectedStatus = 'draft';
-                $('#status').val('draft');
-                $('.status-badge').removeClass('active');
-                $('.status-badge[data-status="draft"]').addClass('active');
-                $('#scheduleSection').hide();
-                saveBlogPost();
+                saveBlogPost('draft');
             });
 
             // Preview button
@@ -1145,12 +1068,7 @@
                 $('#successModal').removeClass('show').hide();
                 resetForm();
             });
-
-            // $('#viewBlogBtn').click(function () {
-            //     window.location.href = 'index.html';
-            // });
         }
-
         function addTag() {
             const tagInput = $('#tagInput');
             const tag = tagInput.val().trim().toLowerCase();
@@ -1195,12 +1113,11 @@
             }
         }
 
-        // ==================== FIX TIME FORMAT FOR DATABASE ====================
-        function saveBlogPost() {
+        function saveBlogPost(status) {
             // Validate login first
             if (!currentUser) {
                 showError('Please login to save blog posts');
-                $('#loginRequiredOverlay').show();
+                showLoginRequired();
                 return;
             }
 
@@ -1223,40 +1140,21 @@
                 return;
             }
 
-            // Prepare publish date for database
-            let publishDate = null;
-            if (selectedStatus === 'published' && $('#publishDate').val()) {
-                // Convert to ISO string for database (PostgreSQL timestamp without timezone)
-                const dateInput = $('#publishDate').val();
-                const dateObj = new Date(dateInput);
-
-                // Format: YYYY-MM-DD HH:MM:SS for PostgreSQL timestamp
-                const year = dateObj.getFullYear();
-                const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-                const day = String(dateObj.getDate()).padStart(2, '0');
-                const hours = String(dateObj.getHours()).padStart(2, '0');
-                const minutes = String(dateObj.getMinutes()).padStart(2, '0');
-                const seconds = String(dateObj.getSeconds()).padStart(2, '0');
-
-                publishDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-            }
-
             // Prepare data
             const blogData = {
                 title: $('#title').val(),
-                slug: $('#slug').val() || generateSlug($('#title').val()),
+                slug: $('#slug').val() || createSlug($('#title').val()),
                 excerpt: $('#excerpt').val(),
                 content: content,
                 featured_image: featuredImageBase64 || $('#featuredImageUrl').val() || '',
                 category: $('#category').val(),
                 tags: tags,
-                author_name: currentUser.name || $('#authorName').val(),
+                author_name: currentUser.name || '',
                 author_email: currentUser.email || '',
-                author_photo: currentUser.picture || authorPhotoBase64 || '',
+                author_photo: currentUser.picture || '',
                 reading_time: $('#readingTime').val(),
-                status: selectedStatus,
-                publish_date: publishDate,
-                user_id: currentUser.id  // Add user ID for admin check on server
+                status: status, // 'draft' or 'pending' based on button clicked
+                user_id: currentUser.id
             };
 
             console.log('Saving blog data:', blogData);
@@ -1273,11 +1171,9 @@
                 dataType: 'json',
                 success: function (response) {
                     if (response.success) {
-                        const message = selectedStatus === 'published'
-                            ? 'Blog post published successfully!'
-                            : selectedStatus === 'pending'
-                                ? 'Blog submitted for review!'
-                                : 'Blog draft saved successfully!';
+                        const message = status === 'pending'
+                            ? 'Blog submitted for review!'
+                            : 'Blog draft saved successfully!';
 
                         $('#successModalMessage').text(message);
                         $('#successModal').addClass('show').show();
@@ -1306,33 +1202,33 @@
             $('#imagePreview').hide();
             $('#imagePlaceholder').show();
             $('#authorAvatarPreview').html(`
-            <div class="bg-secondary text-white w-100 h-100 d-flex align-items-center justify-content-center">
+            <div class="bg-secondary text-white w-100 h-100 d-flex align-items-center justify-content-center rounded-circle">
                 <i class="fas fa-user fa-2x"></i>
             </div>
         `);
+
+            // Reset author display fields
+            if (currentUser) {
+                $('#authorNameDisplay').text(currentUser.name || 'Not available');
+                $('#authorEmailDisplay').text(currentUser.email || 'Not available');
+                if (currentUser.picture) {
+                    $('#authorAvatarPreview').html(`<img src="${currentUser.picture}" class="w-100 h-100 rounded-circle" style="object-fit: cover;">`);
+                }
+            }
+
             tags = [];
             renderTags();
-            selectedStatus = 'draft';
-            $('#status').val('draft');
-            $('.status-badge').removeClass('active');
-            $('.status-badge[data-status="draft"]').addClass('active');
-            $('#scheduleSection').hide();
             featuredImageBase64 = null;
-            authorPhotoBase64 = null;
 
             // Hide alerts
             $('#successAlert').hide();
             $('#errorAlert').hide();
 
+            // Clear slug status
+            hideSlugStatus();
+
             // Scroll to top
             window.scrollTo(0, 0);
-        }
-
-        function generateSlug(title) {
-            return title.toLowerCase()
-                .replace(/[^\w\s-]/g, '')
-                .replace(/[\s_-]+/g, '-')
-                .replace(/^-+|-+$/g, '');
         }
 
         function previewBlogPost() {
@@ -1347,45 +1243,47 @@
                 previewImageUrl = $('#featuredImageUrl').val();
             }
 
+            const authorName = currentUser ? currentUser.name : 'Author';
+
             const previewHTML = `
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Preview: ${$('#title').val()}</title>
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-            <style>
-                body { padding: 20px; max-width: 800px; margin: 0 auto; }
-                .preview-header { border-bottom: 2px solid #3498db; padding-bottom: 20px; margin-bottom: 30px; }
-                .preview-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 10px; margin-bottom: 20px; }
-                .preview-meta { color: #666; font-size: 0.9rem; margin-bottom: 30px; }
-                .preview-content img { max-width: 100%; height: auto; }
-            </style>
-        </head>
-        <body>
-            <div class="preview-header">
-                <h1>${$('#title').val()}</h1>
-                <div class="preview-meta">
-                    <span class="badge bg-primary">${$('#category').val()}</span>
-                    <span class="ms-3"><i class="fas fa-user"></i> ${$('#authorName').val() || 'Author'}</span>
-                    <span class="ms-3"><i class="fas fa-clock"></i> ${$('#readingTime').val()} min read</span>
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Preview: ${$('#title').val()}</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+                <style>
+                    body { padding: 20px; max-width: 800px; margin: 0 auto; }
+                    .preview-header { border-bottom: 2px solid #3498db; padding-bottom: 20px; margin-bottom: 30px; }
+                    .preview-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 10px; margin-bottom: 20px; }
+                    .preview-meta { color: #666; font-size: 0.9rem; margin-bottom: 30px; }
+                    .preview-content img { max-width: 100%; height: auto; }
+                </style>
+            </head>
+            <body>
+                <div class="preview-header">
+                    <h1>${$('#title').val()}</h1>
+                    <div class="preview-meta">
+                        <span class="badge bg-primary">${$('#category').val()}</span>
+                        <span class="ms-3"><i class="fas fa-user"></i> ${authorName}</span>
+                        <span class="ms-3"><i class="fas fa-clock"></i> ${$('#readingTime').val()} min read</span>
+                    </div>
                 </div>
-            </div>
-            
-            ${previewImageUrl ? `<img src="${previewImageUrl}" class="preview-image" alt="Featured Image">` : ''}
-            
-            <div class="preview-content">
-                ${content}
-            </div>
-            
-            ${tags.length > 0 ? `
-                <div class="mt-5 pt-4 border-top">
-                    <strong>Tags:</strong>
-                    ${tags.map(tag => `<span class="badge bg-light text-dark me-2">${tag}</span>`).join('')}
+                
+                ${previewImageUrl ? `<img src="${previewImageUrl}" class="preview-image" alt="Featured Image">` : ''}
+                
+                <div class="preview-content">
+                    ${content}
                 </div>
-            ` : ''}
-        </body>
-        </html>
-    `;
+                
+                ${tags.length > 0 ? `
+                    <div class="mt-5 pt-4 border-top">
+                        <strong>Tags:</strong>
+                        ${tags.map(tag => `<span class="badge bg-light text-dark me-2">${tag}</span>`).join('')}
+                    </div>
+                ` : ''}
+            </body>
+            </html>
+        `;
 
             previewWindow.document.write(previewHTML);
             previewWindow.document.close();
