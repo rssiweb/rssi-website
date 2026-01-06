@@ -102,3 +102,8 @@ if (typeof jQuery !== 'undefined') {
         addScrollToTopButton();
     });
 }
+
+// Check if user is admin
+function checkUserIsAdmin() {
+    return currentUser && currentUser.is_admin === true;
+}

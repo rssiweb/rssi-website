@@ -228,6 +228,61 @@
             color: #ddd;
             margin-bottom: 20px;
         }
+
+        /* Admin Specific Styles */
+        .admin-actions {
+            min-width: 150px;
+        }
+
+        .admin-badge {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .btn-admin-publish {
+            background: linear-gradient(135deg, #27ae60, #219653);
+            color: white;
+            border: none;
+        }
+
+        .btn-admin-reject {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+        }
+
+        .btn-admin-edit {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+        }
+
+        /* Admin stats card */
+        .admin-stats-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .admin-stats-card .stats-icon {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+        }
+
+        /* Admin filter buttons */
+        .admin-filter-btn.active {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            border-color: #9b59b6;
+        }
     </style>
 </head>
 
@@ -345,9 +400,11 @@
                                         <th>Title</th>
                                         <th>Category</th>
                                         <th>Status</th>
+                                        <th>Author</th>
                                         <th>Views</th>
                                         <th>Created</th>
                                         <th>Actions</th>
+                                        <th id="adminActionsHeader" style="display: none;">Admin Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody id="postsTableBody">
@@ -383,6 +440,8 @@
         // Page-specific variables
         let userPosts = [];
         let currentFilter = 'all';
+        let isAdmin = false;
+        let adminPosts = []; // For admin view of all posts
 
         $(document).ready(function () {
             // Check if user is logged in (using centralized auth.js)
@@ -403,6 +462,8 @@
             $('#dashboardContent').show();
             if (currentUser) {
                 $('#userName').text(currentUser.name.split(' ')[0]);
+                // Check if user is admin
+                checkIfUserIsAdmin();
             }
         }
 
@@ -488,11 +549,37 @@
 
             $tbody.empty();
 
-            // Filter posts based on current filter
-            let filteredPosts = userPosts;
-            if (currentFilter !== 'all') {
-                filteredPosts = userPosts.filter(post => post.status === currentFilter);
+            // Determine which posts to show based on user type and current filter
+            let postsToShow = isAdmin ? adminPosts : userPosts;
+
+            // Show admin actions column for admins
+            if (isAdmin) {
+                $('#adminActionsHeader').show();
+            } else {
+                $('#adminActionsHeader').hide();
             }
+
+            // Filter posts based on current filter
+            let filteredPosts = [];
+
+            console.log('Current filter:', currentFilter);
+            console.log('Total posts available:', postsToShow.length);
+
+            if (currentFilter === 'all') {
+                // Show all posts for regular users
+                filteredPosts = postsToShow;
+            } else if (currentFilter === 'admin-all') {
+                // Show all posts for admin
+                filteredPosts = postsToShow;
+            } else if (currentFilter === 'admin-pending') {
+                // Show only pending posts for admin
+                filteredPosts = postsToShow.filter(post => post.status === 'pending');
+            } else {
+                // Handle regular filters (published, draft, pending) for both admin and regular users
+                filteredPosts = postsToShow.filter(post => post.status === currentFilter);
+            }
+
+            console.log('Filtered posts:', filteredPosts.length);
 
             if (filteredPosts.length === 0) {
                 $emptyState.show();
@@ -518,74 +605,156 @@
             // Status badge
             let statusBadge = '';
             let statusClass = '';
+            let statusIcon = '';
 
             switch (post.status) {
                 case 'published':
                     statusClass = 'status-published';
                     statusBadge = 'Published';
+                    statusIcon = 'fa-check-circle';
                     break;
                 case 'draft':
                     statusClass = 'status-draft';
                     statusBadge = 'Draft';
+                    statusIcon = 'fa-edit';
                     break;
                 case 'pending':
                     statusClass = 'status-pending';
                     statusBadge = 'Pending Review';
+                    statusIcon = 'fa-clock';
                     break;
             }
 
-            // Action buttons based on status
+            // Action buttons based on status and ownership
             let actionButtons = '';
 
+            // Check if this is the user's own post
+            const isOwnPost = currentUser && (currentUser.email === post.author_email);
+
             if (post.status === 'draft') {
-                actionButtons = `
+                if (isOwnPost) {
+                    actionButtons = `
                 <button class="btn btn-sm btn-primary action-btn edit-post" data-id="${post.id}">
                     <i class="fas fa-edit"></i> Edit
                 </button>
                 <button class="btn btn-sm btn-success action-btn submit-post" data-id="${post.id}">
                     <i class="fas fa-paper-plane"></i> Submit
                 </button>
-                <button class="btn btn-sm btn-danger action-btn delete-post" data-id="${post.id}">
+                <button class="btn btn-sm btn-outline-danger action-btn delete-post" data-id="${post.id}">
                     <i class="fas fa-trash"></i>
                 </button>
             `;
+                } else if (isAdmin) {
+                    actionButtons = `
+                <span class="text-muted small">Author's Draft</span>
+            `;
+                } else {
+                    actionButtons = ''; // Regular users shouldn't see other users' drafts
+                }
             } else if (post.status === 'pending') {
-                actionButtons = `
-                <button class="btn btn-sm btn-warning action-btn" onclick="viewPost('${post.slug}')">
+                if (isOwnPost || isAdmin) {
+                    actionButtons = `
+                <span class="text-muted small">Under Review</span>
+                <button class="btn btn-sm btn-outline-secondary action-btn ms-2" onclick="viewPost('${post.slug}')">
                     <i class="fas fa-eye"></i> Preview
                 </button>
             `;
+                }
             } else if (post.status === 'published') {
                 actionButtons = `
-                <button class="btn btn-sm btn-outline-primary action-btn" onclick="viewPost('${post.slug}')">
-                    <i class="fas fa-eye"></i> View
-                </button>
+            <button class="btn btn-sm btn-outline-primary action-btn" onclick="viewPost('${post.slug}')">
+                <i class="fas fa-eye"></i> View
+            </button>
+            <button class="btn btn-sm btn-outline-success action-btn ms-1" onclick="sharePost('${post.slug}', '${post.title.replace(/'/g, "\\'")}')">
+    <i class="fas fa-share"></i>
+</button>
+        `;
+            }
+
+            // Admin actions column - only for admin users
+            let adminActions = '';
+            if (isAdmin) {
+                // Determine which admin actions to show based on post status and current filter
+                if (post.status === 'pending') {
+                    // Always show admin actions for pending posts
+                    adminActions = `
+                <td class="admin-actions">
+                    <div class="d-flex flex-column gap-2">
+                        <button class="btn btn-sm btn-admin-publish publish-post" data-id="${post.id}">
+                            <i class="fas fa-check-circle me-1"></i> Publish
+                        </button>
+                        <button class="btn btn-sm btn-admin-reject reject-post" data-id="${post.id}">
+                            <i class="fas fa-times-circle me-1"></i> Reject
+                        </button>
+                        <button class="btn btn-sm btn-admin-edit edit-as-admin" data-id="${post.id}">
+                            <i class="fas fa-edit me-1"></i> Edit
+                        </button>
+                    </div>
+                </td>
             `;
+                } else if (post.status === 'published' &&
+                    (currentFilter === 'admin-all' || currentFilter === 'published')) {
+                    // Show admin actions for published posts in admin-all or published tabs
+                    adminActions = `
+                <td class="admin-actions">
+                    <div class="d-flex flex-column gap-2">
+                        <button class="btn btn-sm btn-warning unpublish-post" data-id="${post.id}">
+                            <i class="fas fa-undo me-1"></i> Unpublish
+                        </button>
+                        <button class="btn btn-sm btn-admin-edit edit-as-admin" data-id="${post.id}">
+                            <i class="fas fa-edit me-1"></i> Edit
+                        </button>
+                    </div>
+                </td>
+            `;
+                } else if (post.status === 'draft' &&
+                    (currentFilter === 'admin-all' || currentFilter === 'draft')) {
+                    // Show admin actions for draft posts in admin-all or draft tabs
+                    adminActions = `
+                <td class="admin-actions">
+                    <div class="d-flex flex-column gap-2">
+                        <button class="btn btn-sm btn-admin-edit edit-as-admin" data-id="${post.id}">
+                            <i class="fas fa-edit me-1"></i> Edit
+                        </button>
+                    </div>
+                </td>
+            `;
+                } else {
+                    // Empty admin column for consistency
+                    adminActions = `<td class="admin-actions"></td>`;
+                }
             }
 
             return `
-            <tr class="post-row">
-                <td>
-                    <div class="fw-semibold">${post.title}</div>
-                    <small class="text-muted">${post.excerpt || 'No excerpt'}</small>
-                </td>
-                <td>
-                    <span class="badge bg-light text-dark">${post.category}</span>
-                </td>
-                <td>
-                    <span class="status-badge ${statusClass}">${statusBadge}</span>
-                </td>
-                <td>
-                    <i class="fas fa-eye me-1 text-muted"></i> ${post.views || 0}
-                </td>
-                <td>${createdDate}</td>
-                <td>
-                    <div class="d-flex">
-                        ${actionButtons}
-                    </div>
-                </td>
-            </tr>
-        `;
+    <tr class="post-row" data-id="${post.id}" data-status="${post.status}" data-slug="${post.slug}">
+        <td>
+            <div class="fw-semibold">${post.title}</div>
+            <small class="text-muted">${post.excerpt || 'No excerpt'}</small>
+        </td>
+        <td>
+            <span class="badge bg-light text-dark">${post.category}</span>
+        </td>
+        <td>
+            <span class="status-badge ${statusClass}">
+                <i class="fas ${statusIcon} me-1"></i>${statusBadge}
+            </span>
+        </td>
+        <td>
+            <small>${post.author_name || 'Unknown'}</small>
+            ${post.author_email ? `<br><small class="text-muted">${post.author_email}</small>` : ''}
+        </td>
+        <td>
+            <i class="fas fa-eye me-1 text-muted"></i> ${post.views || 0}
+        </td>
+        <td>${createdDate}</td>
+        <td>
+            <div class="d-flex align-items-center">
+                ${actionButtons}
+            </div>
+        </td>
+        ${isAdmin ? adminActions : ''}
+    </tr>
+`;
         }
 
         function viewPost(slug) {
@@ -673,18 +842,25 @@
 
         // ==================== EVENT LISTENERS ====================
         function setupEventListeners() {
-            // Filter buttons
-            $('[data-filter]').click(function () {
+            // Filter buttons (using event delegation for dynamically added buttons)
+            $(document).on('click', '[data-filter]', function () {
                 $('[data-filter]').removeClass('active');
                 $(this).addClass('active');
                 currentFilter = $(this).data('filter');
+                console.log('Filter changed to:', currentFilter);
                 renderPostsTable();
             });
 
-            // Edit post (delegated event for dynamically created buttons)
+            // Edit post
             $(document).on('click', '.edit-post', function () {
                 const postId = $(this).data('id');
                 editPost(postId);
+            });
+
+            // Edit as admin
+            $(document).on('click', '.edit-as-admin', function () {
+                const postId = $(this).data('id');
+                adminEditPost(postId);
             });
 
             // Submit post for review
@@ -693,15 +869,28 @@
                 submitForReview(postId);
             });
 
+            // Admin publish post
+            $(document).on('click', '.publish-post', function () {
+                const postId = $(this).data('id');
+                adminPublishPost(postId);
+            });
+
+            // Admin reject post
+            $(document).on('click', '.reject-post', function () {
+                const postId = $(this).data('id');
+                adminRejectPost(postId);
+            });
+
+            // Admin unpublish post
+            $(document).on('click', '.unpublish-post', function () {
+                const postId = $(this).data('id');
+                adminUnpublishPost(postId);
+            });
+
             // Delete post
             $(document).on('click', '.delete-post', function () {
                 const postId = $(this).data('id');
                 deletePost(postId);
-            });
-
-            // Refresh button in dashboard
-            $('#refreshBtn').click(function () {
-                loadUserPosts();
             });
         }
 
@@ -711,6 +900,361 @@
                 $('#loadingOverlay').addClass('show');
             } else {
                 $('#loadingOverlay').removeClass('show');
+            }
+        }
+
+        function checkIfUserIsAdmin() {
+            if (!currentUser || !currentUser.id) {
+                console.log('No current user found');
+                isAdmin = false;
+                hideAdminFeatures();
+                return;
+            }
+
+            $.ajax({
+                url: API_BASE + 'check_admin.php?user_id=' + currentUser.id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    console.log('Admin check response:', response);
+
+                    if (response.success && response.is_admin === true) {
+                        isAdmin = true;
+                        currentUser.is_admin = true;
+                        console.log('User is admin, showing admin features');
+                        showAdminFeatures();
+                        // Load admin posts separately
+                        loadAllPostsForAdmin();
+                        // Also reload user posts for the stats
+                        loadUserPosts();
+                    } else {
+                        isAdmin = false;
+                        currentUser.is_admin = false;
+                        console.log('User is not admin');
+                        hideAdminFeatures();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error checking admin status:', error);
+                    isAdmin = false;
+                    hideAdminFeatures();
+                }
+            });
+        }
+
+        function showAdminFeatures() {
+            console.log('Showing admin features');
+
+            // Show admin actions column
+            $('#adminActionsHeader').show();
+
+            // Update the filter buttons to include ALL options for admin
+            $('.btn-group').html(`
+        <button type="button" class="btn btn-sm btn-outline-light active" data-filter="admin-all">
+            All Posts
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-light" data-filter="admin-pending">
+            Pending Review
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-light" data-filter="published">
+            Published
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-light" data-filter="draft">
+            Drafts
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-light" data-filter="pending">
+            Pending (User View)
+        </button>
+    `);
+
+            // Set current filter to admin-all
+            currentFilter = 'admin-all';
+
+            // Add admin stats section
+            $('#statsRow').after(`
+        <div class="row mb-4" id="adminStatsRow">
+            <div class="col-md-12">
+                <div class="admin-stats-card">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <h5 class="mb-1"><i class="fas fa-user-shield me-2"></i>Admin Dashboard</h5>
+                            <p class="text-muted mb-0">Manage all blog posts</p>
+                        </div>
+                        <div class="d-flex">
+                            <span class="badge bg-purple me-2" id="totalPending">0 Pending</span>
+                            <span class="badge bg-success" id="totalToReview">0 To Review</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `);
+
+            // Update welcome message
+            $('#userName').append('<span class="admin-badge">ADMIN</span>');
+
+            // Add CSS for new badges
+            $('<style>')
+                .prop('type', 'text/css')
+                .html(`
+            .bg-purple { background: linear-gradient(135deg, #9b59b6, #8e44ad) !important; }
+        `)
+                .appendTo('head');
+        }
+
+        function hideAdminFeatures() {
+            // Hide admin column
+            $('#adminActionsHeader').hide();
+            $('.admin-actions').remove();
+
+            // Remove admin filter buttons
+            $('.admin-filter-btn').remove();
+
+            // Remove admin stats
+            $('#adminStatsRow').remove();
+
+            // Remove admin badge from username
+            $('.admin-badge').remove();
+        }
+
+        function loadAllPostsForAdmin() {
+            if (!isAdmin) return;
+
+            console.log('Loading all posts for admin...');
+            showLoading(true);
+
+            $.ajax({
+                url: API_BASE + 'get_all_posts.php?user_id=' + currentUser.id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    console.log('Admin posts response:', response);
+
+                    if (response.success) {
+                        adminPosts = response.posts || [];
+                        console.log('Loaded admin posts:', adminPosts.length);
+                        updateAdminStats();
+                        // Re-render table with admin posts
+                        renderPostsTable();
+                    } else {
+                        showToast('Error loading posts: ' + response.message, 'error');
+                    }
+                    showLoading(false);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error loading admin posts:', error);
+                    showToast('Error loading posts. Please try again.', 'error');
+                    showLoading(false);
+                }
+            });
+        }
+
+        function updateAdminStats() {
+            if (!isAdmin || adminPosts.length === 0) return;
+
+            const totalPending = adminPosts.filter(post => post.status === 'pending').length;
+            const totalToReview = adminPosts.filter(post =>
+                post.status === 'pending' || post.status === 'draft'
+            ).length;
+
+            $('#totalPending').text(totalPending + ' Pending');
+            $('#totalToReview').text(totalToReview + ' To Review');
+        }
+
+        function shouldShowAdminActions(status, currentFilter) {
+            if (!isAdmin) return false;
+
+            // Always show admin actions for pending posts
+            if (status === 'pending') return true;
+
+            // Show admin actions for all posts in admin-all tab
+            if (currentFilter === 'admin-all') return true;
+
+            return false;
+        }
+
+        // Admin function to publish a post
+        function adminPublishPost(postId) {
+            if (!isAdmin || !confirm('Publish this post?')) return;
+
+            showLoading(true);
+
+            $.ajax({
+                url: API_BASE + 'admin_publish_post.php',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    post_id: postId,
+                    admin_id: currentUser.id,
+                    publish_date: new Date().toISOString()
+                }),
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success) {
+                        showToast('Post published successfully!', 'success');
+
+                        // Reload all data
+                        setTimeout(() => {
+                            loadUserPosts();
+                            if (isAdmin) {
+                                loadAllPostsForAdmin();
+                            }
+                        }, 500);
+
+                    } else {
+                        showToast('Error: ' + response.message, 'error');
+                    }
+                    showLoading(false);
+                },
+                error: function (xhr, status, error) {
+                    showToast('Error publishing post', 'error');
+                    showLoading(false);
+                }
+            });
+        }
+
+        // Admin function to reject a post
+        function adminRejectPost(postId) {
+            if (!isAdmin) return;
+
+            const reason = prompt('Enter rejection reason (optional):');
+
+            showLoading(true);
+
+            $.ajax({
+                url: API_BASE + 'admin_reject_post.php',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    post_id: postId,
+                    admin_id: currentUser.id,
+                    reason: reason,
+                    status: 'draft' // Change back to draft
+                }),
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success) {
+                        showToast('Post rejected and returned to draft', 'success');
+
+                        // Reload all data
+                        setTimeout(() => {
+                            loadUserPosts();
+                            if (isAdmin) {
+                                loadAllPostsForAdmin();
+                            }
+                        }, 500);
+
+                    } else {
+                        showToast('Error: ' + response.message, 'error');
+                    }
+                    showLoading(false);
+                },
+                error: function (xhr, status, error) {
+                    showToast('Error rejecting post', 'error');
+                    showLoading(false);
+                }
+            });
+        }
+
+        function adminEditPost(postId) {
+            // Redirect to edit page with post ID and admin flag
+            window.location.href = `edit-blog.html?id=${postId}&admin=true`;
+        }
+
+        function adminUnpublishPost(postId) {
+            if (!isAdmin || !confirm('Unpublish this post? It will be set to draft status.')) return;
+
+            showLoading(true);
+
+            $.ajax({
+                url: API_BASE + 'admin_update_status.php',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    post_id: postId,
+                    admin_id: currentUser.id,
+                    status: 'draft'
+                }),
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success) {
+                        showToast('Post unpublished successfully', 'success');
+
+                        // Reload all data
+                        setTimeout(() => {
+                            if (isAdmin) {
+                                loadAllPostsForAdmin();
+                            }
+                            loadUserPosts();
+                        }, 500);
+
+                    } else {
+                        showToast('Error: ' + response.message, 'error');
+                    }
+                    showLoading(false);
+                },
+                error: function () {
+                    showToast('Error unpublishing post', 'error');
+                    showLoading(false);
+                }
+            });
+        }
+
+        function sharePost(slug) {
+            const postUrl = window.location.origin + '/blog-detail.html?slug=' + slug;
+
+            // Create a simple modal
+            const modalHtml = `
+        <div class="modal fade" id="simpleShareModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Share This Post</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Copy this URL to share:</p>
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="${postUrl}" id="simpleShareUrl" readonly>
+                            <button class="btn btn-primary" type="button" onclick="copySimpleShareUrl()">
+                                <i class="fas fa-copy me-1"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+            $('#simpleShareModal').remove();
+            $('body').append(modalHtml);
+
+            const modal = new bootstrap.Modal(document.getElementById('simpleShareModal'));
+            modal.show();
+
+            // Auto-select and focus
+            setTimeout(() => {
+                const input = document.getElementById('simpleShareUrl');
+                input.select();
+                input.focus();
+            }, 100);
+        }
+
+        function copySimpleShareUrl() {
+            const input = document.getElementById('simpleShareUrl');
+            input.select();
+
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showToast('URL copied to clipboard!', 'success');
+                    // Close modal after successful copy
+                    setTimeout(() => {
+                        bootstrap.Modal.getInstance(document.getElementById('simpleShareModal')).hide();
+                    }, 1000);
+                }
+            } catch (err) {
+                console.error('Failed to copy:', err);
             }
         }
     </script>
