@@ -551,9 +551,6 @@
             `;
             } else if (post.status === 'pending') {
                 actionButtons = `
-                <button class="btn btn-sm btn-primary action-btn edit-post" data-id="${post.id}">
-                    <i class="fas fa-edit"></i> Edit
-                </button>
                 <button class="btn btn-sm btn-warning action-btn" onclick="viewPost('${post.slug}')">
                     <i class="fas fa-eye"></i> Preview
                 </button>
@@ -562,9 +559,6 @@
                 actionButtons = `
                 <button class="btn btn-sm btn-outline-primary action-btn" onclick="viewPost('${post.slug}')">
                     <i class="fas fa-eye"></i> View
-                </button>
-                <button class="btn btn-sm btn-outline-secondary action-btn edit-post" data-id="${post.id}">
-                    <i class="fas fa-edit"></i> Edit
                 </button>
             `;
             }
