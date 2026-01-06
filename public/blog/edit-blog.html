@@ -552,14 +552,12 @@
 
                 <!-- Author & Status Section -->
                 <div class="form-section">
-                    <h3 class="form-section-title">Author & Status</h3>
+                    <h3 class="form-section-title">Author Information</h3>
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <!-- Author Information -->
                             <div class="mb-4">
-                                <label class="form-label fw-semibold">Author Information</label>
-
                                 <div class="d-flex align-items-center mb-3">
                                     <div class="author-avatar-preview me-3" id="authorAvatarPreview">
                                         <div
@@ -592,32 +590,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-6">
-                            <!-- Publication Status -->
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">Publication Status</label>
-                                <div class="d-flex mb-3">
-                                    <!-- <div class="status-badge status-draft" data-status="draft">
-                                        <i class="fas fa-save me-1"></i> Save as Draft
-                                    </div> -->
-                                    <div class="status-badge status-published" data-status="published">
-                                        <i class="fas fa-paper-plane me-1"></i> Publish Now
-                                    </div>
-                                    <div class="status-badge status-pending" data-status="pending">
-                                        <i class="fas fa-clock me-1"></i> Pending Review
-                                    </div>
-                                </div>
-                                <input type="hidden" id="status" value="draft">
-
-                                <!-- Schedule Publication -->
-                                <div class="mt-4" id="scheduleSection" style="display: none;">
-                                    <label for="publishDate" class="form-label fw-semibold">Schedule Publication</label>
-                                    <input type="datetime-local" class="form-control" id="publishDate">
-                                    <div class="form-text">Leave empty to publish immediately</div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -636,7 +608,7 @@
                             <i class="fas fa-save me-2"></i> Save Draft
                         </button>
                         <button type="submit" class="btn btn-submit ms-2" id="submitBtn">
-                            <i class="fas fa-paper-plane me-2"></i> Update Post
+                            <i class="fas fa-paper-plane me-2"></i> Submit for Review
                         </button>
                     </div>
                 </div>
@@ -659,7 +631,6 @@
     <script>
         // Blog variables - ONLY page-specific variables
         let tags = [];
-        let selectedStatus = 'draft';
         let featuredImageBase64 = null;
         let authorPhotoBase64 = null;
         let postId = null;
@@ -792,22 +763,15 @@
                 renderTags();
             }
 
-            // Set status
-            selectedStatus = post.status;
-            $('#status').val(selectedStatus);
-            $('#originalStatus').val(originalStatus);
-
-            // Update status badges
-            $('.status-badge').removeClass('active');
-            $(`.status-badge[data-status="${selectedStatus}"]`).addClass('active');
-
-            // Show warning if not draft
+            // Check if post is pending - if yes, disable form immediately
             if (originalStatus !== 'draft') {
-                showEditWarning(originalStatus);
+                console.log('Post is pending, disabling form...');
+                disableFormForPending();
+                showEditWarning('pending');
+            } else {
+                // Enable form for non-pending posts
+                enableForm(true);
             }
-
-            // Check admin status to show/hide publish option
-            checkUserAdminStatus();
 
             // Populate featured image if exists
             if (post.featured_image) {
@@ -829,9 +793,6 @@
 
             // Calculate reading time
             calculateReadingTime();
-
-            // Enable form
-            enableForm(true);
         }
 
         function showEditWarning(status) {
@@ -843,7 +804,7 @@
                     message = 'This post is already published. Editing will create a new revision.';
                     break;
                 case 'pending':
-                    message = 'This post is pending review. Changes may affect the review process.';
+                    message = 'This post is pending review and cannot be edited. Please wait for admin approval or contact support.';
                     break;
                 default:
                     return;
@@ -853,14 +814,93 @@
             $warning.show();
         }
 
+        function disableFormForPending() {
+            console.log('Disabling form for pending post');
+
+            // Disable all form elements
+            enableForm(false);
+
+            // Remove all event listeners from action buttons
+            $('#previewBtn').off('click');
+            $('#cancelBtn').off('click');
+            $('#saveDraftBtn').off('click');
+            $('#submitBtn').off('click');
+
+            // Disable form submission
+            $('#blogForm').off('submit');
+
+            // Style buttons to show they're disabled
+            $('#previewBtn, #cancelBtn, #saveDraftBtn, #submitBtn')
+                .prop('disabled', true)
+                .css({
+                    'opacity': '0.5',
+                    'cursor': 'not-allowed'
+                });
+
+            // Show a clear message
+            $('#submitBtn')
+                .html('<i class="fas fa-lock me-2"></i> Editing Locked (Under Review)')
+                .removeClass('btn-submit')
+                .addClass('btn-secondary');
+
+            // Add a visual indicator on the form
+            $('.form-container').css('position', 'relative');
+
+            // Remove any existing remove-tag event handlers
+            $('.remove-tag').off('click');
+
+            // Disable tag removal
+            $('.remove-tag').css({
+                'pointer-events': 'none',
+                'opacity': '0.5',
+                'cursor': 'not-allowed'
+            }).html('<i class="fas fa-times"></i>');
+
+            // Disable popular tags suggestions
+            $('.tag-suggestion')
+                .css({
+                    'pointer-events': 'none',
+                    'opacity': '0.5',
+                    'cursor': 'not-allowed',
+                    'text-decoration': 'none',
+                    'color': '#6c757d'
+                })
+                .off('click');
+
+            // Disable tag input and button
+            $('#tagInput')
+                .prop('disabled', true)
+                .attr('placeholder', 'Tags disabled - post under review')
+                .css('opacity', '0.5');
+
+            $('#addTagBtn')
+                .prop('disabled', true)
+                .css('opacity', '0.5');
+
+            // Disable all other clickable elements
+            $('.image-preview-container').off('click');
+            $('#uploadFeaturedBtn').off('click').prop('disabled', true).css('opacity', '0.5');
+            $('#removeImage').off('click').prop('disabled', true).css('opacity', '0.5');
+            $('#uploadAuthorBtn').off('click').prop('disabled', true).css('opacity', '0.5');
+            $('#tagInput').off('keypress');
+            $('#addTagBtn').off('click');
+            $('.tag-suggestion').off('click');
+
+            // Also disable Summernote toolbar buttons if any
+            $('.note-toolbar button').prop('disabled', true).css('opacity', '0.5');
+            $('.note-editable').prop('contenteditable', 'false');
+        }
+
         function initializeForm() {
             // Only run form initialization when user is logged in
             if (currentUser) {
                 // Auto-fill author information from Google
                 $('#authorName').val(currentUser.name || '');
 
-                // Enable form
-                enableForm(true);
+                // Enable form (but check if it's pending)
+                if (originalStatus !== 'pending') {
+                    enableForm(true);
+                }
             }
         }
 
@@ -898,47 +938,90 @@
             }
         }
 
-        async function checkUserAdminStatus() {
-            if (!currentUser) return;
-
-            try {
-                const response = await fetch(API_BASE + 'check_admin.php?user_id=' + currentUser.id);
-                const data = await response.json();
-
-                if (data.is_admin) {
-                    // User is admin - show all status options
-                    $('.status-badge').show();
-                } else {
-                    // User is not admin - only show draft and pending options
-                    $('.status-badge[data-status="published"]').hide();
-
-                    // If current status is published, change to pending
-                    if (selectedStatus === 'published') {
-                        selectedStatus = 'pending';
-                        $('#status').val('pending');
-                        $('.status-badge').removeClass('active');
-                        $('.status-badge[data-status="pending"]').addClass('active');
-                    }
-                }
-            } catch (error) {
-                console.error('Error checking admin status:', error);
-                // Default to non-admin permissions
-                $('.status-badge[data-status="published"]').hide();
-            }
-        }
-
         function enableForm(enabled) {
-            const formElements = $('#blogForm input, #blogForm select, #blogForm textarea, #blogForm button');
+            const form = $('#blogForm');
+            const formElements = form.find('input, select, textarea, button');
+
             if (enabled) {
+                // Enable all form elements
                 formElements.prop('disabled', false);
+
+                // Enable Summernote editor
                 if ($('#content').summernote) {
                     $('#content').summernote('enable');
+                    $('.note-editable').prop('contenteditable', 'true');
+                    $('.note-toolbar button').prop('disabled', false).css('opacity', '1');
                 }
+
+                // Remove disabled styling
+                $('.form-container').css({
+                    'position': 'relative',
+                    'opacity': '1'
+                });
+
+                // Restore button styling
+                $('#submitBtn')
+                    .html('<i class="fas fa-paper-plane me-2"></i> Submit for Review')
+                    .addClass('btn-submit')
+                    .removeClass('btn-secondary')
+                    .css({
+                        'opacity': '1',
+                        'cursor': 'pointer'
+                    });
+
+                // Re-enable other buttons
+                $('#previewBtn, #cancelBtn, #saveDraftBtn, #uploadFeaturedBtn, #removeImage, #uploadAuthorBtn, #addTagBtn')
+                    .prop('disabled', false)
+                    .css({
+                        'opacity': '1',
+                        'cursor': 'pointer'
+                    });
+
+                // Re-enable tag input
+                $('#tagInput')
+                    .prop('disabled', false)
+                    .attr('placeholder', 'Add tags (press Enter)')
+                    .css('opacity', '1');
+
+                // Re-enable tag removal
+                $('.remove-tag')
+                    .css({
+                        'pointer-events': 'auto',
+                        'opacity': '1',
+                        'cursor': 'pointer'
+                    });
+
+                // Re-enable popular tags suggestions
+                $('.tag-suggestion')
+                    .css({
+                        'pointer-events': 'auto',
+                        'opacity': '1',
+                        'cursor': 'pointer',
+                        'color': ''
+                    })
+                    .addClass('text-decoration-none');
+
             } else {
+                // Disable all form elements
                 formElements.prop('disabled', true);
+
+                // Disable Summernote editor
                 if ($('#content').summernote) {
                     $('#content').summernote('disable');
+                    $('.note-editable').prop('contenteditable', 'false');
                 }
+
+                // Add disabled styling to the entire container
+                $('.form-container').css({
+                    'position': 'relative',
+                    'opacity': '0.7'
+                });
+
+                // Style buttons as disabled
+                form.find('button').css({
+                    'opacity': '0.5',
+                    'cursor': 'not-allowed'
+                });
             }
         }
 
@@ -1024,40 +1107,17 @@
                 addTag();
             });
 
-            // Status selection
-            $('.status-badge').click(function () {
-                if (originalStatus === 'published') {
-                    showToast('Published posts can only be saved as drafts for revision.', 'warning');
-                    return;
-                }
-
-                $('.status-badge').removeClass('active');
-                $(this).addClass('active');
-                selectedStatus = $(this).data('status');
-                $('#status').val(selectedStatus);
-
-                // Show/hide schedule section for published
-                if (selectedStatus === 'published') {
-                    $('#scheduleSection').show();
-                } else {
-                    $('#scheduleSection').hide();
-                }
-            });
-
             // Form submission
             $('#blogForm').submit(function (e) {
                 e.preventDefault();
-                updateBlogPost();
+                // Set status to pending when Update Post is clicked
+                updateBlogPost('pending');
             });
 
             // Save draft button
             $('#saveDraftBtn').click(function () {
-                selectedStatus = 'draft';
-                $('#status').val('draft');
-                $('.status-badge').removeClass('active');
-                $('.status-badge[data-status="draft"]').addClass('active');
-                $('#scheduleSection').hide();
-                updateBlogPost();
+                // Set status to draft when Save Draft is clicked
+                updateBlogPost('draft');
             });
 
             // Preview button
@@ -1132,12 +1192,18 @@
             }
         }
 
-        function updateBlogPost() {
+        function updateBlogPost(status) {
             // Validate login first
             if (!currentUser) {
                 showError('Please login to update blog posts');
                 showLoginRequired();
                 return;
+            }
+
+            // Prevent editing if post is pending
+            if (originalStatus !== 'draft') {
+                showError('This post is under review and cannot be edited.');
+                return false;
             }
 
             // Validate required fields
@@ -1159,23 +1225,6 @@
                 return;
             }
 
-            // Prepare publish date for database
-            let publishDate = null;
-            if (selectedStatus === 'published' && $('#publishDate').val()) {
-                // Convert to ISO string for database
-                const dateInput = $('#publishDate').val();
-                const dateObj = new Date(dateInput);
-
-                const year = dateObj.getFullYear();
-                const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-                const day = String(dateObj.getDate()).padStart(2, '0');
-                const hours = String(dateObj.getHours()).padStart(2, '0');
-                const minutes = String(dateObj.getMinutes()).padStart(2, '0');
-                const seconds = String(dateObj.getSeconds()).padStart(2, '0');
-
-                publishDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-            }
-
             // Prepare data
             const blogData = {
                 id: $('#postId').val(),
@@ -1190,8 +1239,7 @@
                 author_email: currentUser.email || '',
                 author_photo: currentUser.picture || authorPhotoBase64 || '',
                 reading_time: $('#readingTime').val(),
-                status: selectedStatus,
-                publish_date: publishDate,
+                status: status,
                 user_id: currentUser.id,
                 original_status: originalStatus
             };
@@ -1210,16 +1258,22 @@
                 dataType: 'json',
                 success: function (response) {
                     if (response.success) {
-                        const message = selectedStatus === 'published'
-                            ? 'Blog post updated and published successfully!'
-                            : selectedStatus === 'pending'
-                                ? 'Blog updated and submitted for review!'
-                                : 'Blog draft updated successfully!';
+                        // Update original status to reflect the new status
+                        originalStatus = status;
+
+                        const message = status === 'pending'
+                            ? 'Blog updated and submitted for review!'
+                            : 'Blog draft updated successfully!';
 
                         $('#successModalMessage').text(message);
                         $('#successModal').addClass('show').show();
 
                         showSuccess(message);
+
+                        // If status is now pending, disable the form
+                        if (status === 'pending') {
+                            disableFormForPending();
+                        }
                     } else {
                         showError(response.message || 'Failed to update blog post');
                     }
