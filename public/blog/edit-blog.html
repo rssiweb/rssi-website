@@ -416,14 +416,37 @@
                                 <div class="form-text">Keep it clear, concise, and engaging</div>
                             </div>
 
-                            <!-- Slug (auto-generated) -->
+                            <!-- Slug (with generate button and validation) -->
                             <div class="mb-4">
                                 <label for="slug" class="form-label fw-semibold">URL Slug</label>
-                                <div class="input-group">
+                                <div class="input-group mb-2">
                                     <span class="input-group-text">/blog/</span>
                                     <input type="text" class="form-control" id="slug" placeholder="auto-generated-slug">
+                                    <button class="btn btn-outline-secondary" type="button" id="generateSlugBtn">
+                                        <i class="fas fa-magic me-1"></i> Generate
+                                    </button>
                                 </div>
-                                <div class="form-text">Leave empty for auto-generation, or customize for SEO</div>
+
+                                <!-- Slug status indicator -->
+                                <!-- <div id="slugStatus" class="d-none">
+                                    <div class="d-flex align-items-center mt-1">
+                                        <i class="fas me-2" id="slugStatusIcon"></i>
+                                        <small id="slugStatusText"></small>
+                                    </div>
+                                </div> -->
+
+                                <!-- Slug availability indicator -->
+                                <div id="slugAvailability" class="d-none mt-2">
+                                    <div class="alert alert-sm mb-0 p-2" id="slugAvailabilityAlert">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fas fa-spinner fa-spin me-2"></i>
+                                            <span>Checking availability...</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-text">Click "Generate" to create a URL-friendly slug, or customize it
+                                    manually</div>
                             </div>
 
                             <!-- Excerpt -->
@@ -1035,16 +1058,201 @@
         // ==================== EVENT LISTENERS ====================
         function setupEventListeners() {
             // Auto-generate slug from title
-            $('#title').on('input', function () {
-                const title = $(this).val();
-                if (title && !$('#slug').val()) {
-                    const slug = title.toLowerCase()
-                        .replace(/[^\w\s-]/g, '')
-                        .replace(/[\s_-]+/g, '-')
-                        .replace(/^-+|-+$/g, '');
-                    $('#slug').val(slug);
-                }
+            // Slug generation and validation
+            let slugCheckTimeout = null;
+            let currentSlug = '';
+
+            $(document).ready(function () {
+                // Generate slug button
+                $('#generateSlugBtn').click(function () {
+                    generateSlugFromTitle();
+                });
+
+                // Auto-generate when title loses focus (optional)
+                $('#title').on('blur', function () {
+                    if (!$('#slug').val()) {
+                        generateSlugFromTitle();
+                    }
+                });
+
+                // Check slug availability when slug changes
+                $('#slug').on('input', function () {
+                    checkSlugAvailability($(this).val());
+                });
+
+                // Also check when slug input loses focus
+                $('#slug').on('blur', function () {
+                    if ($(this).val()) {
+                        checkSlugAvailability($(this).val());
+                    }
+                });
+
+                // Manually trigger slug check on keyup with debounce
+                $('#slug').on('keyup', function () {
+                    clearTimeout(slugCheckTimeout);
+                    slugCheckTimeout = setTimeout(() => {
+                        if ($(this).val()) {
+                            checkSlugAvailability($(this).val());
+                        }
+                    }, 500);
+                });
             });
+
+            function generateSlugFromTitle() {
+                const title = $('#title').val().trim();
+
+                if (!title) {
+                    showToast('Please enter a title first', 'error');
+                    $('#title').focus();
+                    return;
+                }
+
+                // Show loading state
+                $('#generateSlugBtn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-1"></i> Generating...');
+
+                // Generate slug
+                const generatedSlug = createSlug(title);
+
+                // Set the slug value
+                $('#slug').val(generatedSlug);
+
+                // Check availability
+                checkSlugAvailability(generatedSlug);
+
+                // Restore button state
+                setTimeout(() => {
+                    $('#generateSlugBtn').prop('disabled', false).html('<i class="fas fa-magic me-1"></i> Generate');
+                }, 500);
+            }
+
+            function createSlug(text) {
+                return text
+                    .toLowerCase()
+                    .trim()
+                    // Replace spaces with dashes
+                    .replace(/\s+/g, '-')
+                    // Remove special characters
+                    .replace(/[^\w\-]+/g, '')
+                    // Replace multiple dashes with single dash
+                    .replace(/\-\-+/g, '-')
+                    // Remove leading/trailing dashes
+                    .replace(/^-+/, '')
+                    .replace(/-+$/, '')
+                    // Limit length
+                    .substring(0, 100);
+            }
+
+            function checkSlugAvailability(slug) {
+                if (!slug || slug.length < 3) {
+                    hideSlugStatus();
+                    return;
+                }
+
+                // Don't check if slug hasn't changed
+                if (slug === currentSlug) return;
+
+                currentSlug = slug;
+
+                // Show checking state
+                showSlugChecking();
+
+                // Get current post ID (for edit mode)
+                const postId = $('#postId').val() || 0;
+
+                // Check availability via API
+                $.ajax({
+                    url: API_BASE + 'check_slug.php',
+                    type: 'POST',
+                    data: {
+                        slug: slug,
+                        post_id: postId
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            if (response.available) {
+                                showSlugAvailable();
+                            } else {
+                                showSlugUnavailable(response.suggestions);
+                            }
+                        } else {
+                            showSlugError(response.message || 'Error checking slug');
+                        }
+                    },
+                    error: function () {
+                        showSlugError('Error connecting to server');
+                    }
+                });
+            }
+
+            function showSlugChecking() {
+                $('#slugAvailability').removeClass('d-none');
+                $('#slugAvailabilityAlert')
+                    .removeClass('alert-success alert-danger alert-warning')
+                    .addClass('alert-info')
+                    .html('<div class="d-flex align-items-center"><i class="fas fa-spinner fa-spin me-2"></i><span>Checking availability...</span></div>');
+            }
+
+            function showSlugAvailable() {
+                $('#slugStatus').removeClass('d-none');
+                $('#slugStatusIcon')
+                    .removeClass('fa-times-circle fa-exclamation-circle')
+                    .addClass('fa-check-circle text-success');
+                $('#slugStatusText').text('✓ Slug is available').addClass('text-success').removeClass('text-danger text-warning');
+
+                $('#slugAvailabilityAlert')
+                    .removeClass('alert-info alert-danger alert-warning')
+                    .addClass('alert-success')
+                    .html('<div class="d-flex align-items-center"><i class="fas fa-check-circle me-2"></i><span>This slug is available!</span></div>');
+            }
+
+            function showSlugUnavailable(suggestions = []) {
+                $('#slugStatus').removeClass('d-none');
+                $('#slugStatusIcon')
+                    .removeClass('fa-check-circle fa-exclamation-circle')
+                    .addClass('fa-times-circle text-danger');
+                $('#slugStatusText').text('✗ This slug is already taken').addClass('text-danger').removeClass('text-success text-warning');
+
+                let suggestionsHtml = '<div class="d-flex align-items-center"><i class="fas fa-times-circle me-2"></i><span>This slug is already taken.</span></div>';
+
+                if (suggestions && suggestions.length > 0) {
+                    suggestionsHtml += '<div class="mt-2"><small>Suggestions:</small><div class="d-flex flex-wrap gap-2 mt-1">';
+                    suggestions.forEach(suggestion => {
+                        suggestionsHtml += `<button type="button" class="btn btn-sm btn-outline-primary slug-suggestion" data-slug="${suggestion}">${suggestion}</button>`;
+                    });
+                    suggestionsHtml += '</div></div>';
+                }
+
+                $('#slugAvailabilityAlert')
+                    .removeClass('alert-info alert-success alert-warning')
+                    .addClass('alert-danger')
+                    .html(suggestionsHtml);
+
+                // Add click handlers for suggestions
+                $('.slug-suggestion').off('click').on('click', function () {
+                    const suggestedSlug = $(this).data('slug');
+                    $('#slug').val(suggestedSlug);
+                    checkSlugAvailability(suggestedSlug);
+                });
+            }
+
+            function showSlugError(message) {
+                $('#slugStatus').removeClass('d-none');
+                $('#slugStatusIcon')
+                    .removeClass('fa-check-circle fa-times-circle')
+                    .addClass('fa-exclamation-circle text-warning');
+                $('#slugStatusText').text('⚠ ' + message).addClass('text-warning').removeClass('text-success text-danger');
+
+                $('#slugAvailabilityAlert')
+                    .removeClass('alert-info alert-success alert-danger')
+                    .addClass('alert-warning')
+                    .html(`<div class="d-flex align-items-center"><i class="fas fa-exclamation-triangle me-2"></i><span>${message}</span></div>`);
+            }
+
+            function hideSlugStatus() {
+                $('#slugStatus').addClass('d-none');
+                $('#slugAvailability').addClass('d-none');
+                currentSlug = '';
+            }
 
             // Featured image upload
             $('#uploadFeaturedBtn').click(function () {
