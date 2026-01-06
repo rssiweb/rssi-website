@@ -558,33 +558,44 @@
                         <div class="col-md-12">
                             <!-- Author Information -->
                             <div class="mb-4">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="author-avatar-preview me-3" id="authorAvatarPreview">
-                                        <div
-                                            class="bg-secondary text-white w-100 h-100 d-flex align-items-center justify-content-center">
-                                            <i class="fas fa-user fa-2x"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <input type="file" id="authorPhoto" accept="image/*" style="display: none;">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"
-                                            id="uploadAuthorBtn">
-                                            <i class="fas fa-camera me-1"></i> Upload Photo
-                                        </button>
-                                    </div>
-                                </div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <!-- <h6 class="card-title mb-3">
+                                            <i class="fas fa-user-circle me-2"></i>Author Information
+                                        </h6> -->
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <input type="text" class="form-control" id="authorName"
-                                                placeholder="Author Name">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="author-avatar-preview me-3" id="authorAvatarPreview">
+                                                <div
+                                                    class="bg-secondary text-white w-100 h-100 d-flex align-items-center justify-content-center rounded-circle">
+                                                    <i class="fas fa-user fa-2x"></i>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <div>
+                                                        <h5 class="mb-1" id="authorNameDisplay">Loading...</h5>
+                                                        <p class="mb-0 text-muted" id="authorEmailDisplay">Loading
+                                                            email...</p>
+                                                    </div>
+                                                    <span class="badge bg-info">
+                                                        <i class="fa-brands fa-google me-1"></i>Google Account
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <input type="text" class="form-control" id="authorRole"
-                                                placeholder="Author Role/Title">
+
+                                        <div class="alert alert-light border mb-0">
+                                            <div class="d-flex align-items-start">
+                                                <i class="fas fa-info-circle text-info me-2 mt-1"></i>
+                                                <div>
+                                                    <small class="text-muted">
+                                                        Your author information is linked to your Google account.
+                                                        To update your name or profile photo, please update your Google
+                                                        account settings.
+                                                    </small>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -632,7 +643,6 @@
         // Blog variables - ONLY page-specific variables
         let tags = [];
         let featuredImageBase64 = null;
-        let authorPhotoBase64 = null;
         let postId = null;
         let originalStatus = '';
         let originalSlug = '';
@@ -755,7 +765,10 @@
             $('#excerpt').val(post.excerpt || '');
             $('#category').val(post.category);
             $('#readingTime').val(post.reading_time || 5);
-            $('#authorName').val(post.author_name || '');
+
+            // Populate author display fields
+            $('#authorNameDisplay').text(post.author_name || currentUser.name || 'Not available');
+            $('#authorEmailDisplay').text(post.author_email || currentUser.email || 'Not available');
 
             // Populate tags
             if (post.tags && post.tags.length > 0) {
@@ -781,10 +794,7 @@
             }
 
             // Populate author photo if exists
-            if (post.author_photo) {
-                $('#authorAvatarPreview').html(`<img src="${post.author_photo}" class="w-100 h-100" style="object-fit: cover;">`);
-            } else if (currentUser.picture) {
-                // Use current user's profile picture
+            if (currentUser.picture) {
                 $('#authorAvatarPreview').html(`<img src="${currentUser.picture}" class="w-100 h-100" style="object-fit: cover;">`);
             }
 
@@ -881,7 +891,6 @@
             $('.image-preview-container').off('click');
             $('#uploadFeaturedBtn').off('click').prop('disabled', true).css('opacity', '0.5');
             $('#removeImage').off('click').prop('disabled', true).css('opacity', '0.5');
-            $('#uploadAuthorBtn').off('click').prop('disabled', true).css('opacity', '0.5');
             $('#tagInput').off('keypress');
             $('#addTagBtn').off('click');
             $('.tag-suggestion').off('click');
@@ -894,8 +903,6 @@
         function initializeForm() {
             // Only run form initialization when user is logged in
             if (currentUser) {
-                // Auto-fill author information from Google
-                $('#authorName').val(currentUser.name || '');
 
                 // Enable form (but check if it's pending)
                 if (originalStatus !== 'pending') {
@@ -970,7 +977,7 @@
                     });
 
                 // Re-enable other buttons
-                $('#previewBtn, #cancelBtn, #saveDraftBtn, #uploadFeaturedBtn, #removeImage, #uploadAuthorBtn, #addTagBtn')
+                $('#previewBtn, #cancelBtn, #saveDraftBtn, #uploadFeaturedBtn, #removeImage, #addTagBtn')
                     .prop('disabled', false)
                     .css({
                         'opacity': '1',
@@ -1069,24 +1076,6 @@
                 $('#featuredImageUrl').val('');
                 $('#featuredImage').val('');
                 featuredImageBase64 = null;
-            });
-
-            // Author photo upload
-            $('#uploadAuthorBtn').click(function () {
-                $('#authorPhoto').click();
-            });
-
-            $('#authorPhoto').change(function (e) {
-                const file = e.target.files[0];
-                if (file) {
-                    // Convert to base64 for preview
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        authorPhotoBase64 = e.target.result;
-                        $('#authorAvatarPreview').html(`<img src="${authorPhotoBase64}" class="w-100 h-100" style="object-fit: cover;">`);
-                    };
-                    reader.readAsDataURL(file);
-                }
             });
 
             // Tags management
@@ -1235,9 +1224,9 @@
                 featured_image: featuredImageBase64 || $('#featuredImageUrl').val() || '',
                 category: $('#category').val(),
                 tags: tags,
-                author_name: $('#authorName').val(),
+                author_name: currentUser.name,
                 author_email: currentUser.email || '',
-                author_photo: authorPhotoBase64 || '',
+                author_photo: currentUser.picture || '',
                 reading_time: $('#readingTime').val(),
                 status: status,
                 user_id: currentUser.id,
@@ -1328,7 +1317,7 @@
                     <h1>${$('#title').val()}</h1>
                     <div class="preview-meta">
                         <span class="badge bg-primary">${$('#category').val()}</span>
-                        <span class="ms-3"><i class="fas fa-user"></i> ${$('#authorName').val() || 'Author'}</span>
+                        <span class="ms-3"><i class="fas fa-user"></i> ${currentUser.name || 'Author'}</span>
                         <span class="ms-3"><i class="fas fa-clock"></i> ${$('#readingTime').val()} min read</span>
                     </div>
                 </div>
