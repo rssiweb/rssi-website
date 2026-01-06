@@ -763,19 +763,18 @@
             }
 
             // Check if post was rejected (has is_rejected flag or rejection reason)
-            const isRejected = post.is_rejected === 't' || (post.rejection_reason && post.rejection_reason.trim() !== '');
+            const isRejected = post.is_rejected === 't';
 
-            if (isRejected && post.rejection_reason) {
+            if (isRejected) {
                 const rejectionEntries = parseRejectionHistory(post.rejection_reason);
 
-                if (rejectionEntries.length > 0) {
-                    const latestRejection = rejectionEntries[0];
+                const latestRejection = rejectionEntries[0];
 
-                    if (isAdmin) {
-                        // Admin view with popover
-                        const popoverContent = formatRejectionHistoryForPopover(rejectionEntries);
+                if (isAdmin) {
+                    // Admin view with popover
+                    const popoverContent = formatRejectionHistoryForPopover(rejectionEntries);
 
-                        rejectionBadge = `
+                    rejectionBadge = `
                         <div class="mt-2">
                             <span class="badge bg-danger rejection-badge" 
                                   data-bs-toggle="popover" 
@@ -788,16 +787,15 @@
                             </span>
                         </div>
                     `;
-                    } else {
-                        // Non-admin view - simple badge without popover
-                        rejectionBadge = `
+                } else {
+                    // Non-admin view - simple badge without popover
+                    rejectionBadge = `
                         <div class="mt-2">
                             <span class="badge bg-danger">
                                 <i class="fas fa-times-circle me-1"></i>Rejected (${formatRejectionDate(latestRejection.date)})
                             </span>
                         </div>
                     `;
-                    }
                 }
             }
 

@@ -361,9 +361,9 @@
                 <button class="btn btn-outline-secondary" id="editAgainBtn">
                     <i class="fas fa-edit me-2"></i>Edit Again
                 </button>
-                <button class="btn btn-primary" id="viewPostBtn">
+                <!-- <button class="btn btn-primary" id="viewPostBtn">
                     <i class="fas fa-eye me-2"></i>View Post
-                </button>
+                </button> -->
                 <button class="btn btn-success" id="dashboardBtn">
                     <i class="fas fa-tachometer-alt me-2"></i>Dashboard
                 </button>
@@ -1139,9 +1139,9 @@
                 window.location.reload();
             });
 
-            $('#viewPostBtn').click(function () {
-                window.open('blog-detail.html?slug=' + originalSlug, '_blank');
-            });
+            // $('#viewPostBtn').click(function () {
+            //     window.open('blog-detail.html?slug=' + originalSlug, '_blank');
+            // });
 
             $('#dashboardBtn').click(function () {
                 window.location.href = 'user-portal.html';
@@ -1235,9 +1235,9 @@
                 featured_image: featuredImageBase64 || $('#featuredImageUrl').val() || '',
                 category: $('#category').val(),
                 tags: tags,
-                author_name: currentUser.name || $('#authorName').val(),
+                author_name: $('#authorName').val(),
                 author_email: currentUser.email || '',
-                author_photo: currentUser.picture || authorPhotoBase64 || '',
+                author_photo: authorPhotoBase64 || '',
                 reading_time: $('#readingTime').val(),
                 status: status,
                 user_id: currentUser.id,
