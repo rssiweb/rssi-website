@@ -208,6 +208,7 @@ if (document.querySelector('.clients-slider') && typeof Swiper !== 'undefined') 
                     .then(html => {
                         headerContainer.innerHTML = html;
                         initHeaderScripts(); // run after header is injected
+                        generateBreadcrumbs(); // generate breadcrumbs after header
                     })
             );
         }
@@ -321,3 +322,147 @@ document.addEventListener("click", function (e) {
         }
     } catch (err) { }
 });
+
+// Generate breadcrumbs based on navigation structure and current page
+function generateBreadcrumbs() {
+    const breadcrumbList = document.getElementById('breadcrumb-list');
+    const pageTitle = document.getElementById('page-title');
+
+    // If no breadcrumbs container exists on this page, exit
+    if (!breadcrumbList || !pageTitle) return;
+
+    const currentPath = window.location.pathname.toLowerCase();
+    const navbar = document.getElementById('navbar');
+    if (!navbar) return;
+
+    // Find the active link in the navigation
+    let activeLink = null;
+    const navLinks = navbar.querySelectorAll('a[href]');
+    
+    // Clean current path for comparison
+    const cleanCurrentPath = currentPath.replace(/\.(html|php)$/, '').replace(/\/$/, '');
+    const currentPage = cleanCurrentPath.split('/').pop() || 'index';
+
+    // First pass: Find exact matches
+    navLinks.forEach(link => {
+        const linkPath = link.getAttribute('href').toLowerCase();
+        const cleanLinkPath = linkPath.replace(/\.(html|php)$/, '');
+        
+        // Check for exact match
+        if (cleanLinkPath === currentPage || 
+            (currentPage === '' && cleanLinkPath === 'index') ||
+            (currentPage === 'index' && cleanLinkPath === 'index')) {
+            activeLink = link;
+        }
+    });
+
+    // If no exact match found, try partial matches
+    if (!activeLink) {
+        navLinks.forEach(link => {
+            const linkPath = link.getAttribute('href').toLowerCase();
+            if (linkPath && linkPath !== '#' && currentPath.includes(linkPath)) {
+                activeLink = link;
+            }
+        });
+    }
+
+    if (!activeLink) {
+        // Fallback: Use document title or URL
+        const fallbackTitle = document.title.split('|')[0].trim() || 
+                             currentPage.charAt(0).toUpperCase() + currentPage.slice(1);
+        pageTitle.textContent = fallbackTitle;
+        breadcrumbList.innerHTML = '<li><a href="index">Home</a></li><li>' + fallbackTitle + '</li>';
+        return;
+    }
+
+    // Build breadcrumb trail
+    const breadcrumbs = [];
+    const addedTexts = new Set(); // Track added items to prevent duplicates
+
+    // Start with Home
+    breadcrumbs.push({ text: 'Home', url: 'index' });
+    addedTexts.add('Home');
+
+    // Function to get dropdown text
+    function getDropdownText(dropdownElement) {
+        const span = dropdownElement.querySelector('span');
+        if (span) return span.textContent.trim();
+        
+        // Remove dropdown indicator and trim
+        return dropdownElement.textContent
+            .replace(/▼/g, '')
+            .replace(/chevron-down/gi, '')
+            .replace(/chevron-up/gi, '')
+            .trim();
+    }
+
+    // Function to traverse up and find all parent dropdowns
+    function findParentDropdowns(element) {
+        const parents = [];
+        let currentElement = element;
+        
+        while (currentElement && currentElement !== navbar) {
+            // Check if this is a dropdown link or inside a dropdown
+            const isDirectLink = currentElement.tagName === 'A' && currentElement.getAttribute('href') === '#';
+            const parentLi = currentElement.closest('li.dropdown');
+            
+            if (parentLi) {
+                const dropdownLink = parentLi.querySelector('a[href="#"]');
+                if (dropdownLink && !dropdownLink.contains(currentElement)) {
+                    const text = getDropdownText(dropdownLink);
+                    if (text && !parents.includes(text)) {
+                        parents.unshift(text); // Add to beginning to maintain order
+                    }
+                }
+            }
+            
+            currentElement = currentElement.parentElement;
+        }
+        
+        return parents;
+    }
+
+    // Get current page text (clean it)
+    let currentPageText = activeLink.textContent;
+    // Remove dropdown indicators and trim
+    currentPageText = currentPageText
+        .replace(/▼/g, '')
+        .replace(/chevron-down/gi, '')
+        .replace(/chevron-up/gi, '')
+        .replace('dropdown-indicator', '')
+        .replace('bi bi-chevron-down', '')
+        .replace('bi bi-chevron-up', '')
+        .trim();
+
+    // Find parent dropdowns
+    const parentDropdowns = findParentDropdowns(activeLink);
+    
+    // Add parent dropdowns to breadcrumbs (avoiding duplicates)
+    parentDropdowns.forEach(text => {
+        if (text && !addedTexts.has(text) && text !== currentPageText) {
+            breadcrumbs.push({ text: text, url: null });
+            addedTexts.add(text);
+        }
+    });
+
+    // Add current page (if not already added as a parent)
+    if (currentPageText && !addedTexts.has(currentPageText)) {
+        breadcrumbs.push({ text: currentPageText, url: null });
+        addedTexts.add(currentPageText);
+    }
+
+    // Set page title (use the cleaned text)
+    pageTitle.textContent = currentPageText;
+
+    // Generate breadcrumb HTML
+    let breadcrumbHTML = '';
+    breadcrumbs.forEach((crumb, index) => {
+        if (crumb.url && index < breadcrumbs.length - 1) {
+            breadcrumbHTML += `<li><a href="${crumb.url}">${crumb.text}</a></li>`;
+        } else {
+            breadcrumbHTML += `<li>${crumb.text}</li>`;
+        }
+    });
+
+    breadcrumbList.innerHTML = breadcrumbHTML;
+}
