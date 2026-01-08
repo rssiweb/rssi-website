@@ -141,8 +141,53 @@
                         </script>
 
                         <div class="mb-3">
-                            <label for="nationalId" class="form-label">Upload Aadhar</label>
-                            <input type="file" class="form-control" id="nationalId" name="nationalId" required>
+                            <label for="idType" class="form-label">Select Government Photo ID Type</label>
+                            <select class="form-select" id="idType" name="idType" required>
+                                <option value="" selected disabled>Choose ID type...</option>
+                                <option value="aadhar">Aadhar Card</option>
+                                <option value="driving_license">Driving License</option>
+                                <option value="pan">PAN Card</option>
+                                <option value="voter">Voter ID Card</option>
+                                <option value="passport">Passport</option>
+                                <option value="other">Other Government ID</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="idNumber" class="form-label">ID Number</label>
+                            <input type="text" class="form-control" id="idNumber" name="idNumber"
+                                placeholder="Enter your ID number" required>
+                            <div class="form-text" id="idNumberHelp">
+                                Please enter the number from your selected ID document
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="governmentId" class="form-label">Upload Selected ID</label>
+                            <input type="file" class="form-control" id="governmentId" name="governmentId"
+                                accept=".pdf,.jpg,.jpeg,.png,.heic" required>
+                            <div class="form-text">
+                                Please upload a clear photo/scan of your selected government-issued photo ID.
+                                Accepted formats: PDF, JPG, PNG, HEIC (Max size: 5MB)
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info mt-3" role="alert">
+                            <h6 class="alert-heading">Security Requirement</h6>
+                            <p class="mb-0">
+                                For the safety of our children and to maintain security standards, all visitors
+                                and donors must submit a Visitor Request Form. This includes:
+                            </p>
+                            <ul class="mb-0 mt-2">
+                                <li>Anyone wishing to interact with the children</li>
+                                <li>Individuals donating food items or other materials</li>
+                                <li>All first-time visitors to the facility</li>
+                            </ul>
+                            <hr>
+                            <p class="mb-0">
+                                Your government-issued photo ID helps us verify your identity and ensure
+                                a safe environment for everyone.
+                            </p>
                         </div>
 
                         <div class="mb-3">
@@ -472,7 +517,9 @@
             const fullNameInput = document.getElementById("fullName");
             const emailInput = document.getElementById("email");
             const contactNumberNewInput = document.getElementById("contactNumberNew");
-            const nationalIdInput = document.getElementById("nationalId");
+            const governmentIdInput = document.getElementById("governmentId");
+            const idTypeInput = document.getElementById("idType");
+            const idNumberInput = document.getElementById("idNumber");
             const photoInput = document.getElementById("photo");
 
             // Set required attribute based on the visitor type
@@ -480,13 +527,17 @@
                 fullNameInput.removeAttribute("required");
                 emailInput.removeAttribute("required");
                 contactNumberNewInput.removeAttribute("required");
-                nationalIdInput.removeAttribute("required");
+                governmentIdInput.removeAttribute("required");
+                idTypeInput.removeAttribute("required");
+                idNumberInput.removeAttribute("required");
                 photoInput.removeAttribute("required");
             } else if (visitorType === "new") {
                 fullNameInput.setAttribute("required", true);
                 emailInput.setAttribute("required", true);
                 contactNumberNewInput.setAttribute("required", true);
-                nationalIdInput.setAttribute("required", true);
+                governmentIdInput.setAttribute("required", true);
+                idTypeInput.removeAttribute("required", true);
+                idNumberInput.removeAttribute("required", true);
                 photoInput.setAttribute("required", true);
             }
         }

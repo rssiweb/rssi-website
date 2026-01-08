@@ -146,22 +146,35 @@
                         </script>
 
                         <div class="mb-3">
-                            <label for="documentType" class="form-label">National Identifier Type</label>
-                            <select class="form-select" id="documentType" name="documentType" required>
-                                <option disabled selected>Select</option>
-                                <option value="pan">Permanent Account Number (PAN)</option>
-                                <option value="aadhaar">Aadhaar Number</option>
-                                <option value="taxIdentification">Tax Identification Number</option>
-                                <option value="passport">Passport number</option>
-                                <option value="voterId">Elector's photo identity number</option>
-                                <option value="drivingLicense">Driving License number</option>
-                                <option value="rationCard">Ration card number</option>
+                            <label for="idType" class="form-label">Select Government Photo ID Type</label>
+                            <select class="form-select" id="idType" name="idType" required>
+                                <option value="" selected disabled>Choose ID type...</option>
+                                <option value="aadhar">Aadhar Card</option>
+                                <option value="driving_license">Driving License</option>
+                                <option value="pan">PAN Card</option>
+                                <option value="voter">Voter ID Card</option>
+                                <option value="passport">Passport</option>
+                                <option value="other">Other Government ID</option>
                             </select>
                         </div>
 
                         <div class="mb-3">
-                            <label for="nationalId" class="form-label">National Identifier Number</label>
-                            <input type="text" class="form-control" id="nationalId" name="nationalId" required>
+                            <label for="idNumber" class="form-label">ID Number</label>
+                            <input type="text" class="form-control" id="idNumber" name="idNumber"
+                                placeholder="Enter your ID number" required>
+                            <div class="form-text" id="idNumberHelp">
+                                Please enter the number from your selected ID document
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="governmentId" class="form-label">Upload Selected ID</label>
+                            <input type="file" class="form-control" id="governmentId" name="governmentId"
+                                accept=".pdf,.jpg,.jpeg,.png,.heic" required>
+                            <div class="form-text">
+                                Please upload a clear photo/scan of your selected government-issued photo ID.
+                                Accepted formats: PDF, JPG, PNG, HEIC (Max size: 5MB)
+                            </div>
                         </div>
 
                         <div class="mb-3">
@@ -375,7 +388,9 @@
                         const emailInput = document.getElementById("email");
                         const contactNumberNewInput = document.getElementById("contactNumberNew");
                         const documentTypeInput = document.getElementById("documentType");
-                        const nationalIdInput = document.getElementById("nationalId");
+                        const governmentIdInput = document.getElementById("governmentId");
+                        const idTypeInput = document.getElementById("idType");
+                        const idNumberInput = document.getElementById("idNumber");
                         const postalAddressInput = document.getElementById("postalAddress");
 
                         // Set required attribute based on the donation type
@@ -384,14 +399,18 @@
                             emailInput.removeAttribute("required");
                             contactNumberNewInput.removeAttribute("required");
                             documentTypeInput.removeAttribute("required");
-                            nationalIdInput.removeAttribute("required");
+                            governmentIdInput.removeAttribute("required");
+                            idTypeInput.removeAttribute("required");
+                            idNumberInput.removeAttribute("required");
                             postalAddressInput.removeAttribute("required");
                         } else if (donationType === "new") {
                             fullNameInput.setAttribute("required", true);
                             emailInput.setAttribute("required", true);
                             contactNumberNewInput.setAttribute("required", true);
                             documentTypeInput.setAttribute("required", true);
-                            nationalIdInput.setAttribute("required", true);
+                            governmentIdInput.setAttribute("required", true);
+                            idTypeInput.removeAttribute("required", true);
+                            idNumberInput.removeAttribute("required", true);
                             postalAddressInput.setAttribute("required", true);
                         }
                     }
