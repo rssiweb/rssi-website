@@ -1270,3 +1270,177 @@ section {
 #loading-spinner[style*="display: none"] {
     display: none !important;
 }
+
+/*--------------------------------------------------------------
+# clients
+--------------------------------------------------------------*/
+/* Marquee Container */
+.clients-marquee {
+    position: relative;
+    overflow: hidden;
+    padding: 60px 0;
+    width: 100%;
+    /* Fade edges for modern look */
+    mask-image: linear-gradient(to right,
+            transparent,
+            black 10%,
+            black 90%,
+            transparent);
+    -webkit-mask-image: linear-gradient(to right,
+            transparent,
+            black 10%,
+            black 90%,
+            transparent);
+}
+
+/* Marquee Content */
+.marquee-content {
+    display: flex;
+    gap: 60px;
+    width: max-content;
+    animation: scroll 80s linear infinite;
+    padding: 10px 0;
+}
+
+/* Pause animation on hover */
+.clients-marquee:hover .marquee-content {
+    animation-play-state: paused;
+}
+
+/* Client Items - Bigger and better */
+.client-item {
+    flex: 0 0 auto;
+    width: 200px;
+    height: 110px;
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    will-change: transform;
+}
+
+/* Logo Images */
+.client-item img {
+    max-width: 100%;
+    max-height: 70px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.9;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover Effects */
+.client-item:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 25px 50px rgba(206, 18, 18, 0.15);
+    border: 1px solid rgba(206, 18, 18, 0.1);
+}
+
+.client-item:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Animation Keyframes */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .client-item {
+        width: 180px;
+        height: 100px;
+        padding: 25px;
+    }
+
+    .client-item img {
+        max-height: 60px;
+    }
+
+    .marquee-content {
+        gap: 50px;
+    }
+}
+
+@media (max-width: 992px) {
+    .clients-marquee {
+        padding: 50px 0;
+    }
+
+    .client-item {
+        width: 160px;
+        height: 90px;
+        padding: 20px;
+    }
+
+    .client-item img {
+        max-height: 55px;
+    }
+
+    .marquee-content {
+        gap: 40px;
+        animation-duration: 60s;
+    }
+}
+
+@media (max-width: 768px) {
+    .clients-marquee {
+        mask-image: linear-gradient(to right,
+                transparent,
+                black 5%,
+                black 95%,
+                transparent);
+        -webkit-mask-image: linear-gradient(to right,
+                transparent,
+                black 5%,
+                black 95%,
+                transparent);
+    }
+
+    .client-item {
+        width: 140px;
+        height: 80px;
+        padding: 15px;
+    }
+
+    .client-item img {
+        max-height: 50px;
+    }
+
+    .marquee-content {
+        gap: 30px;
+        animation-duration: 50s;
+    }
+}
+
+@media (max-width: 480px) {
+    .client-item {
+        width: 120px;
+        height: 70px;
+        padding: 12px;
+    }
+
+    .client-item img {
+        max-height: 45px;
+    }
+
+    .marquee-content {
+        gap: 25px;
+        animation-duration: 40s;
+    }
+}
