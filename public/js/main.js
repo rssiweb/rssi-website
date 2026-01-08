@@ -1,194 +1,18 @@
-document.addEventListener('DOMContentLoaded', () => {
-    "use strict";
-
-    /**
-     * Preloader
-     */
-    // const preloader = document.querySelector('#preloader');
-    // if (preloader) {
-    //     window.addEventListener('load', () => {
-    //         preloader.remove();
-    //     });
-    // }
-
-    /**
-     * Sticky header on scroll
-     */
-    const selectHeader = document.querySelector('#header');
-    if (selectHeader) {
-        document.addEventListener('scroll', () => {
-            window.scrollY > 100 ? selectHeader.classList.add('sticked') : selectHeader.classList.remove('sticked');
-        });
-    }
-
-    /**
-     * Scroll top button
-     */
-    const scrollTop = document.querySelector('.scroll-top');
-    if (scrollTop) {
-        const togglescrollTop = function () {
-            window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
-        }
-        window.addEventListener('load', togglescrollTop);
-        document.addEventListener('scroll', togglescrollTop);
-        scrollTop.addEventListener('click', window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        }));
-    }
-
-    /**
-     * Initiate glightbox
-     */
-    const glightbox = GLightbox({
-        selector: '.glightbox'
-    });
-
-    /**
-     * Initiate pURE cOUNTER
-     */
-    new PureCounter();
-
-    /**
-     * Init swiper slider with 1 slide at once in desktop view
-     */
-    new Swiper('.slides-1', {
-        speed: 600,
-        loop: true,
-        autoplay: {
-            delay: 5000,
-            disableOnInteraction: false
-        },
-        slidesPerView: 'auto',
-        pagination: {
-            el: '.swiper-pagination',
-            type: 'bullets',
-            clickable: true
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        }
-    });
-
-    /**
-     * Init swiper slider with 3 slides at once in desktop view
-     */
-    new Swiper('.slides-3', {
-        speed: 600,
-        loop: true,
-        autoplay: {
-            delay: 5000,
-            disableOnInteraction: false
-        },
-        slidesPerView: 'auto',
-        pagination: {
-            el: '.swiper-pagination',
-            type: 'bullets',
-            clickable: true
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        breakpoints: {
-            320: {
-                slidesPerView: 1,
-                spaceBetween: 40
-            },
-
-            1200: {
-                slidesPerView: 3,
-            }
-        }
-    });
-
-    /**
-     * Gallery Slider
-     */
-    new Swiper('.gallery-slider', {
-        speed: 400,
-        loop: true,
-        centeredSlides: true,
-        autoplay: {
-            delay: 5000,
-            disableOnInteraction: false
-        },
-        slidesPerView: 'auto',
-        pagination: {
-            el: '.swiper-pagination',
-            type: 'bullets',
-            clickable: true
-        },
-        breakpoints: {
-            320: {
-                slidesPerView: 1,
-                spaceBetween: 20
-            },
-            640: {
-                slidesPerView: 3,
-                spaceBetween: 20
-            },
-            992: {
-                slidesPerView: 5,
-                spaceBetween: 20
-            }
-        }
-    });
-
-    /**
-     * Animation on scroll function and init
-     */
-    // function aos_init() {
-    //     AOS.init({
-    //         duration: 1000,
-    //         easing: 'ease-in-out',
-    //         once: true,
-    //         mirror: false
-    //     });
-    // }
-    // window.addEventListener('load', () => {
-    //     aos_init();
-    // });
-
-});
 
 /**
- * Clients Slider
+ * Scroll top button
  */
-if (document.querySelector('.clients-slider') && typeof Swiper !== 'undefined') {
-    new Swiper('.clients-slider', {
-        speed: 400,
-        loop: true,
-        autoplay: {
-            delay: 5000,
-            disableOnInteraction: false
-        },
-        slidesPerView: 'auto',
-        pagination: {
-            el: '.swiper-pagination',
-            type: 'bullets',
-            clickable: true
-        },
-        breakpoints: {
-            320: {
-                slidesPerView: 2,
-                spaceBetween: 40
-            },
-            480: {
-                slidesPerView: 3,
-                spaceBetween: 60
-            },
-            640: {
-                slidesPerView: 4,
-                spaceBetween: 80
-            },
-            992: {
-                slidesPerView: 6,
-                spaceBetween: 120
-            }
-        }
-    });
+const scrollTop = document.querySelector('.scroll-top');
+if (scrollTop) {
+    const togglescrollTop = function () {
+        window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
+    }
+    window.addEventListener('load', togglescrollTop);
+    document.addEventListener('scroll', togglescrollTop);
+    scrollTop.addEventListener('click', window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    }));
 }
 // Load header and footer asynchronously (safe for pages without them)
 (async function loadLayout() {
@@ -338,7 +162,7 @@ function generateBreadcrumbs() {
     // Find the active link in the navigation
     let activeLink = null;
     const navLinks = navbar.querySelectorAll('a[href]');
-    
+
     // Clean current path for comparison
     const cleanCurrentPath = currentPath.replace(/\.(html|php)$/, '').replace(/\/$/, '');
     const currentPage = cleanCurrentPath.split('/').pop() || 'index';
@@ -347,9 +171,9 @@ function generateBreadcrumbs() {
     navLinks.forEach(link => {
         const linkPath = link.getAttribute('href').toLowerCase();
         const cleanLinkPath = linkPath.replace(/\.(html|php)$/, '');
-        
+
         // Check for exact match
-        if (cleanLinkPath === currentPage || 
+        if (cleanLinkPath === currentPage ||
             (currentPage === '' && cleanLinkPath === 'index') ||
             (currentPage === 'index' && cleanLinkPath === 'index')) {
             activeLink = link;
@@ -368,8 +192,8 @@ function generateBreadcrumbs() {
 
     if (!activeLink) {
         // Fallback: Use document title or URL
-        const fallbackTitle = document.title.split('|')[0].trim() || 
-                             currentPage.charAt(0).toUpperCase() + currentPage.slice(1);
+        const fallbackTitle = document.title.split('|')[0].trim() ||
+            currentPage.charAt(0).toUpperCase() + currentPage.slice(1);
         pageTitle.textContent = fallbackTitle;
         breadcrumbList.innerHTML = '<li><a href="index">Home</a></li><li>' + fallbackTitle + '</li>';
         return;
@@ -387,7 +211,7 @@ function generateBreadcrumbs() {
     function getDropdownText(dropdownElement) {
         const span = dropdownElement.querySelector('span');
         if (span) return span.textContent.trim();
-        
+
         // Remove dropdown indicator and trim
         return dropdownElement.textContent
             .replace(/▼/g, '')
@@ -400,12 +224,12 @@ function generateBreadcrumbs() {
     function findParentDropdowns(element) {
         const parents = [];
         let currentElement = element;
-        
+
         while (currentElement && currentElement !== navbar) {
             // Check if this is a dropdown link or inside a dropdown
             const isDirectLink = currentElement.tagName === 'A' && currentElement.getAttribute('href') === '#';
             const parentLi = currentElement.closest('li.dropdown');
-            
+
             if (parentLi) {
                 const dropdownLink = parentLi.querySelector('a[href="#"]');
                 if (dropdownLink && !dropdownLink.contains(currentElement)) {
@@ -415,10 +239,10 @@ function generateBreadcrumbs() {
                     }
                 }
             }
-            
+
             currentElement = currentElement.parentElement;
         }
-        
+
         return parents;
     }
 
@@ -436,7 +260,7 @@ function generateBreadcrumbs() {
 
     // Find parent dropdowns
     const parentDropdowns = findParentDropdowns(activeLink);
-    
+
     // Add parent dropdowns to breadcrumbs (avoiding duplicates)
     parentDropdowns.forEach(text => {
         if (text && !addedTexts.has(text) && text !== currentPageText) {
