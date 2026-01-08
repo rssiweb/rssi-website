@@ -32,6 +32,27 @@ a:hover {
     text-decoration: none;
 }
 
+/*---------------------------------------
+ PACE - PRELOADER
+-----------------------------------------*/
+.pace {
+    pointer-events: none;
+    user-select: none;
+}
+
+.pace-inactive {
+    display: none;
+}
+
+.pace .pace-progress {
+    background: #f25560;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    right: 100%;
+    width: 100%;
+    height: 2px;
+}
 
 /*--------------------------------------------------------------
 # Sections & Section Header

@@ -290,3 +290,15 @@ function generateBreadcrumbs() {
 
     breadcrumbList.innerHTML = breadcrumbHTML;
 }
+
+// Pace options (optional)
+window.paceOptions = {
+    ajax: true,
+    document: true,
+    eventLag: false
+};
+
+// Pace JS loader
+var paceScript = document.createElement('script');
+paceScript.src = 'https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js';
+document.head.appendChild(paceScript);
