@@ -995,74 +995,72 @@
         </div>
         <!-- END Projects-->
 
-        <div id="custom-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <section class="section-content">
-                            <h3 class="section-title">Announcements</h3>
-                            <div class="news-item card">
-                                <!-- Nav tabs -->
-                                <ul class="nav nav-tabs" id="announcementTabs" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" id="news-tab" data-bs-toggle="tab"
-                                            data-bs-target="#news-tab-pane" type="button" role="tab"
-                                            aria-controls="news-tab-pane" aria-selected="true">News Highlights</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="notices-tab" data-bs-toggle="tab"
-                                            data-bs-target="#notices-tab-pane" type="button" role="tab"
-                                            aria-controls="notices-tab-pane" aria-selected="false">Notices</button>
-                                    </li>
-                                </ul>
+        <div id="custom-section" class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <section class="section-content">
+                        <h3 class="section-title">Announcements</h3>
+                        <div class="news-item card">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" id="announcementTabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="news-tab" data-bs-toggle="tab"
+                                        data-bs-target="#news-tab-pane" type="button" role="tab"
+                                        aria-controls="news-tab-pane" aria-selected="true">News Highlights</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="notices-tab" data-bs-toggle="tab"
+                                        data-bs-target="#notices-tab-pane" type="button" role="tab"
+                                        aria-controls="notices-tab-pane" aria-selected="false">Notices</button>
+                                </li>
+                            </ul>
 
-                                <!-- Tab panes -->
-                                <div class="tab-content">
-                                    <div class="tab-pane fade show active" id="news-tab-pane" role="tabpanel"
-                                        aria-labelledby="news-tab" tabindex="0">
-                                        <ul class="list-group list-group-flush" id="news-list">
-                                            <!-- News items will be dynamically inserted here -->
-                                        </ul>
-                                        <!-- Load More News button (will be shown only for News tab) -->
-                                    </div>
-                                    <div class="tab-pane fade" id="notices-tab-pane" role="tabpanel"
-                                        aria-labelledby="notices-tab" tabindex="0">
-                                        <ul class="list-group list-group-flush" id="notices-list">
-                                            <!-- Notice items will be dynamically inserted here -->
-                                        </ul>
-                                        <!-- Load More Notices button (will be shown only for Notices tab) -->
-                                    </div>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="news-tab-pane" role="tabpanel"
+                                    aria-labelledby="news-tab" tabindex="0">
+                                    <ul class="list-group list-group-flush" id="news-list">
+                                        <!-- News items will be dynamically inserted here -->
+                                    </ul>
+                                    <!-- Load More News button (will be shown only for News tab) -->
+                                </div>
+                                <div class="tab-pane fade" id="notices-tab-pane" role="tabpanel"
+                                    aria-labelledby="notices-tab" tabindex="0">
+                                    <ul class="list-group list-group-flush" id="notices-list">
+                                        <!-- Notice items will be dynamically inserted here -->
+                                    </ul>
+                                    <!-- Load More Notices button (will be shown only for Notices tab) -->
                                 </div>
                             </div>
-                        </section>
-                    </div>
+                        </div>
+                    </section>
+                </div>
 
-                    <!-- Activities & Initiatives Section -->
-                    <div class="col-md-6">
-                        <section class="section-content">
-                            <h2 class="section-title">Activities & Initiatives</h2>
-                            <div class="scrollable-content card">
-                                <!-- Blog Posts Container -->
-                                <div id="blog-posts"></div>
+                <!-- Activities & Initiatives Section -->
+                <div class="col-md-6">
+                    <section class="section-content">
+                        <h2 class="section-title">Activities & Initiatives</h2>
+                        <div class="scrollable-content card">
+                            <!-- Blog Posts Container -->
+                            <div id="blog-posts"></div>
 
-                                <!-- Loading Spinner and Text -->
-                                <div class="d-flex justify-content-center align-items-center" id="loading-spinner">
-                                    <div class="spinner-border text-primary" role="status">
-                                        <span class="visually-hidden">Loading...</span>
-                                    </div>
-                                    <span class="ms-2">Loading...</span>
+                            <!-- Loading Spinner and Text -->
+                            <div class="d-flex justify-content-center align-items-center" id="loading-spinner">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
                                 </div>
-
-                                <!-- Load More Button and No More Posts Message -->
-                                <div class="d-flex justify-content-center mt-4">
-                                    <button id="load-more-btn" class="btn btn-gradient">Load More</button>
-                                    <p id="no-more-posts" class="text-muted text-center mt-4" style="display: none;">
-                                        That's all we have for you now.
-                                    </p>
-                                </div>
+                                <span class="ms-2">Loading...</span>
                             </div>
-                        </section>
-                    </div>
+
+                            <!-- Load More Button and No More Posts Message -->
+                            <div class="d-flex justify-content-center mt-4">
+                                <button id="load-more-btn" class="btn btn-gradient">Load More</button>
+                                <p id="no-more-posts" class="text-muted text-center mt-4" style="display: none;">
+                                    That's all we have for you now.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
