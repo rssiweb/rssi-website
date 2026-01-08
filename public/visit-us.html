@@ -165,7 +165,7 @@
                         <div class="mb-3">
                             <label for="governmentId" class="form-label">Upload Selected ID</label>
                             <input type="file" class="form-control" id="governmentId" name="governmentId"
-                                accept=".pdf,.jpg,.jpeg,.png,.heic" required>
+                                accept=".pdf,.jpg,.jpeg,.png,.heic" onchange="compressImageBeforeUpload(this)" required>
                             <div class="form-text">
                                 Please upload a clear photo/scan of your selected government-issued photo ID.
                                 Accepted formats: PDF, JPG, PNG, HEIC (Max size: 5MB)
@@ -194,7 +194,7 @@
                             <label for="photo" class="form-label">Upload
                                 Photo</label>
                             <input type="file" class="form-control" id="photo" name="photo" required
-                                accept="image/*;capture=camera">
+                                accept="image/*;capture=camera" onchange="compressImageBeforeUpload(this)">
                             <img src="/img/photo_guide.jpg" alt="Uploaded Photo"
                                 style="max-width: 200px; max-height: 200px;">
                         </div>
@@ -268,7 +268,8 @@
                                     <div class="mb-3">
                                         <label for="instituteid" class="form-label">Institute ID</label>
                                         <input type="file" class="form-control" id="instituteid" name="instituteid"
-                                            accept=".pdf,.doc,.docx" required>
+                                            accept=".pdf,.doc,.docx" onchange="compressImageBeforeUpload(this)"
+                                            required>
                                         <small id="type-of-admission-help" class="form-text text-muted">Please upload a
                                             copy of your college ID or any other document that shows your student ID or
                                             enrollment number.</small>
@@ -282,7 +283,7 @@
                             <div class="mb-3">
                                 <label for="paymentdoc" class="form-label">Payment Document</label>
                                 <input type="file" class="form-control" id="paymentdoc" name="paymentdoc"
-                                    accept=".pdf,.doc,.docx" required>
+                                    accept=".pdf,.doc,.docx" onchange="compressImageBeforeUpload(this)" required>
                                 <small id="type-of-admission-help" class="form-text text-muted">The one-time application
                                     fee is Rs. 200 and must be paid during registration.</small>
                             </div>
@@ -346,6 +347,7 @@
     <!-- Load jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="/js/main.js?v=1.4.0"></script>
+    <script src="/js/image-compressor-100kb.js"></script>
     <!-- JavaScript to handle form logic -->
     <script>
         var contactNumberInput = document.getElementById("contactnumber_verify");
