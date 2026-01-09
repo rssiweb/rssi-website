@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construction Materials | Baangee Traders</title>
+    <meta name="description"
+        content="Baangee Traders deals in premium construction materials including Dalmia Cement and other high-quality building products for reliable and durable construction projects.">
+    <meta name="keywords"
+        content="Baangee Traders construction, construction materials, Dalmia Cement, building materials, cement suppliers">
+    <meta name="author" content="Baangee Traders">
+
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css?v=1.5">
+    <style>
+        .construction-hero {
+            background: linear-gradient(rgba(10, 38, 71, 0.85), rgba(10, 38, 71, 0.9)), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0 80px;
+            margin-bottom: 60px;
+        }
+
+        .brand-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9f7fe 100%);
+        }
+
+        .brand-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            margin-bottom: 30px;
+        }
+
+        .brand-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 196, 204, 0.15);
+        }
+
+        .brand-logo {
+            height: 80px;
+            margin-bottom: 25px;
+            object-fit: contain;
+        }
+
+        .material-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            margin-bottom: 30px;
+        }
+
+        .material-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 196, 204, 0.15);
+        }
+
+        .material-img {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .material-content {
+            padding: 25px;
+        }
+
+        .material-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .material-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: -35px auto 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .material-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 196, 204, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list i {
+            color: var(--highlight-color);
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .application-section {
+            padding: 80px 0;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+            transition: all 0.3s;
+        }
+
+        .application-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 196, 204, 0.1);
+        }
+
+        .application-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .cta-construction {
+            background: linear-gradient(135deg, var(--primary-color), var(--light-color));
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            border-radius: 20px;
+            margin: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-construction:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            opacity: 0.1;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .stats-box {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--highlight-color);
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .construction-hero {
+                padding: 100px 0 60px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="construction-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-4 fw-bold mb-4">Premium Construction Materials</h1>
+                    <p class="lead mb-4">Supplying high-quality construction materials for residential, commercial, and
+                        industrial projects</p>
+                    <a href="#contact" class="btn btn-service btn-lg">Get Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="brand-section">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title center">Trusted Brands We Deal With</h2>
+                    <p class="lead">We partner with leading manufacturers to bring you the best construction materials
+                        in the market</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="brand-card animate-on-scroll">
+                        <img src="https://mma.prnewswire.com/media/681292/Dalmia_Bharat_Limited_Logo.jpg?p=twitter"
+                            alt="Dalmia Cement" class="brand-logo">
+                        <h3>Dalmia Cement</h3>
+                        <p>Premium quality cement known for its strength, durability, and consistent performance in
+                            various construction applications.</p>
+                        <!-- <div class="mt-4">
+                            <span class="badge bg-primary me-2">OPC</span>
+                            <span class="badge bg-primary me-2">PPC</span>
+                            <span class="badge bg-primary">PSC</span>
+                        </div> -->
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="brand-card animate-on-scroll">
+                        <img src="https://pathfinderstraining.com/wp-content/uploads/2024/05/Ambuja-Adani-Logo.png"
+                            alt="Ambuja Cement" class="brand-logo">
+                        <h3>Ambuja Cement</h3>
+                        <p>High-quality cement with excellent workability and finish, trusted by builders and
+                            contractors nationwide.</p>
+                        <!-- <div class="mt-4">
+                            <span class="badge bg-primary me-2">All Grades</span>
+                            <span class="badge bg-primary">Bulk Supply</span>
+                        </div> -->
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mx-auto">
+                    <div class="brand-card animate-on-scroll">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/96/Ultratech_Cement_Logo.svg/250px-Ultratech_Cement_Logo.svg.png"
+                            alt="UltraTech Cement" class="brand-logo">
+                        <h3>Other Premium Brands</h3>
+                        <p>We also supply a wide range of construction materials from other reputed manufacturers in the
+                            industry.</p>
+                        <!-- <div class="mt-4">
+                            <span class="badge bg-primary me-2">Steel</span>
+                            <span class="badge bg-primary me-2">Aggregates</span>
+                            <span class="badge bg-primary">Sanitary</span>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Materials Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title center">Our Construction Materials</h2>
+                    <p class="lead">Comprehensive range of construction materials for every phase of your project</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Cement -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="material-card animate-on-scroll">
+                        <div class="material-icon mt-3">
+                            <i class="fas fa-hammer"></i>
+                        </div>
+                        <img src="https://www.cement.org/wp-content/uploads/2024/07/AdobeStock_123745217-e1721140501481.png"
+                            alt="Cement" class="material-img">
+                        <div class="material-content">
+                            <h3 class="material-title">Cement & Concrete</h3>
+                            <p>All types of cement including OPC, PPC, PSC in various grades. Ready-mix concrete and
+                                concrete additives.</p>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check-circle"></i> All major brands</li>
+                                <li><i class="fas fa-check-circle"></i> Bulk quantity discounts</li>
+                                <li><i class="fas fa-check-circle"></i> Timely delivery</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Steel -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="material-card animate-on-scroll">
+                        <div class="material-icon mt-3">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <img src="https://steelfabservices.com.au/wp-content/uploads/2023/10/Untitled-design-2023-10-27T140950.975.jpg"
+                            alt="Steel" class="material-img">
+                        <div class="material-content">
+                            <h3 class="material-title">Steel & Reinforcement</h3>
+                            <p>TMT bars, structural steel, mesh, and all reinforcement materials meeting IS standards.
+                            </p>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check-circle"></i> TMT Bars (Fe 500/550)</li>
+                                <li><i class="fas fa-check-circle"></i> Structural steel sections</li>
+                                <li><i class="fas fa-check-circle"></i> Binding wires & mesh</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aggregates -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="material-card animate-on-scroll">
+                        <div class="material-icon mt-3">
+                            <i class="fas fa-mountain"></i>
+                        </div>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhwR4r4Linw0w5eNbTx5kWs-cjsp1mucJRYw&s"
+                            alt="Aggregates" class="material-img">
+                        <div class="material-content">
+                            <h3 class="material-title">Aggregates & Sand</h3>
+                            <p>Coarse aggregates, fine aggregates, M-sand, river sand, and other filling materials.</p>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check-circle"></i> All size aggregates</li>
+                                <li><i class="fas fa-check-circle"></i> Quality tested materials</li>
+                                <li><i class="fas fa-check-circle"></i> Direct quarry supply</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bricks -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="material-card animate-on-scroll">
+                        <div class="material-icon mt-3">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTFi9ZOIvCP-I9dcHN2Wl70dtxJBFaTdp9wQ&s"
+                            alt="Bricks" class="material-img">
+                        <div class="material-content">
+                            <h3 class="material-title">Bricks & Blocks</h3>
+                            <p>Clay bricks, fly ash bricks, concrete blocks, AAC blocks, and other masonry materials.
+                            </p>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check-circle"></i> Red clay bricks</li>
+                                <li><i class="fas fa-check-circle"></i> Fly ash bricks</li>
+                                <li><i class="fas fa-check-circle"></i> Concrete blocks</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plumbing -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="material-card animate-on-scroll">
+                        <div class="material-icon mt-3">
+                            <i class="fas fa-faucet"></i>
+                        </div>
+                        <img src="https://5.imimg.com/data5/SELLER/Default/2024/9/452288857/TF/GR/DU/228991454/sanitary-plumbing-services.jpeg"
+                            alt="Plumbing" class="material-img">
+                        <div class="material-content">
+                            <h3 class="material-title">Plumbing & Sanitary</h3>
+                            <p>CP fittings, pipes, sanitaryware, bathroom fittings, and complete plumbing solutions.</p>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check-circle"></i> UPVC/CPVC pipes</li>
+                                <li><i class="fas fa-check-circle"></i> Bathroom fittings</li>
+                                <li><i class="fas fa-check-circle"></i> Sanitary ware</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Electrical -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="material-card animate-on-scroll">
+                        <div class="material-icon mt-3">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <img src="https://i.ytimg.com/vi/NUfGooq9-4I/maxresdefault.jpg" alt="Electrical"
+                            class="material-img">
+                        <div class="material-content">
+                            <h3 class="material-title">Electrical & Wiring</h3>
+                            <p>Electrical wires, cables, conduits, switches, MCBs, and complete electrical solutions.
+                            </p>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check-circle"></i> Wires & cables</li>
+                                <li><i class="fas fa-check-circle"></i> Conduit pipes</li>
+                                <li><i class="fas fa-check-circle"></i> Switches & fixtures</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="feature-grid">
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Quality Guaranteed</h4>
+                    <p>All materials are sourced from certified manufacturers with quality assurance.</p>
+                </div>
+
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck-fast"></i>
+                    </div>
+                    <h4>On-Time Delivery</h4>
+                    <p>Efficient logistics to ensure materials reach your site as per schedule.</p>
+                </div>
+
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <h4>Competitive Pricing</h4>
+                    <p>Best market prices with volume discounts for bulk orders.</p>
+                </div>
+
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4>Technical Support</h4>
+                    <p>Expert guidance on material selection and usage for your projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section class="application-section">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title center">Project Applications</h2>
+                    <p class="lead">Our materials are used in diverse construction projects</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="application-card animate-on-scroll">
+                        <img src="https://thumbs.dreamstime.com/b/modern-residential-building-beautiful-recreation-area-modern-residential-building-recreation-area-131403554.jpg"
+                            alt="Residential" class="application-img">
+                        <h4>Residential Buildings</h4>
+                        <p>Materials for individual homes, apartments, and housing complexes.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="application-card animate-on-scroll">
+                        <img src="https://dwarkaexpressway-bucket.s3.ap-south-1.amazonaws.com/images/5d3b827bf93e9cfb1c00db3c5c50a4.jpg"
+                            alt="Commercial" class="application-img">
+                        <h4>Commercial Projects</h4>
+                        <p>Office buildings, shopping malls, hotels, and retail spaces.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="application-card animate-on-scroll">
+                        <img src="https://mahendraconstructions.co.in/img/services2/industrial-construction.jpg"
+                            alt="Industrial" class="application-img">
+                        <h4>Industrial Construction</h4>
+                        <p>Factories, warehouses, plants, and industrial facilities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stats-box">
+                        <div class="stats-number">500+</div>
+                        <h5>Projects Supplied</h5>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stats-box">
+                        <div class="stats-number">50+</div>
+                        <h5>Material Types</h5>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stats-box">
+                        <div class="stats-number">12+</div>
+                        <h5>Years Experience</h5>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stats-box">
+                        <div class="stats-number">24/7</div>
+                        <h5>Support Available</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-construction" id="contact">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="mb-4">Start Your Construction Project With Confidence</h2>
+                <p class="mb-5 lead">Get a free quote for your construction material requirements. Our experts will help
+                    you choose the right materials for your project.</p>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <a href="tel:+917820068151" class="btn btn-service-outline w-100">
+                                    <i class="fas fa-phone me-2"></i> Call for Quote
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="https://wa.me/917820068151" class="btn btn-service w-100">
+                                    <i class="fab fa-whatsapp me-2"></i> WhatsApp Quote
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="index.html#contact" class="btn btn-service-outline w-100">
+                                    <i class="fas fa-file-alt me-2"></i> Request Catalog
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Main JS -->
+    <script src="js/main.js?v=1.5"></script>
+</body>
+
+</html>

@@ -1,5 +1,9 @@
-// js/main.js?v=1.4
-// Also update the DOMContentLoaded event listener
+// js/main.js?v=1.5
+// Main JavaScript file for Baangee Traders website
+
+/***************************************************************
+ * DOM CONTENT LOADED - MAIN INITIALIZATION
+ ***************************************************************/
 document.addEventListener('DOMContentLoaded', function () {
     // Load header and footer dynamically
     loadHeader();
@@ -11,7 +15,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // Call setActiveNavLink again after a short delay to ensure everything is loaded
     setTimeout(setActiveNavLink, 100);
 });
-// Update the loadHeader function to call setActiveNavLink after header loads
+
+/***************************************************************
+ * HEADER AND FOOTER LOADING FUNCTIONS
+ ***************************************************************/
+
+/**
+ * Loads the header content from includes/header.html
+ */
 function loadHeader() {
     const headerPlaceholder = document.getElementById('header-placeholder');
     if (headerPlaceholder) {
@@ -27,7 +38,9 @@ function loadHeader() {
     }
 }
 
-// Update the loadFooter function to NOT call setActiveNavLink
+/**
+ * Loads the footer content from includes/footer.html
+ */
 function loadFooter() {
     const footerPlaceholder = document.getElementById('footer-placeholder');
     if (footerPlaceholder) {
@@ -40,6 +53,13 @@ function loadFooter() {
     }
 }
 
+/***************************************************************
+ * NAVBAR FUNCTIONS
+ ***************************************************************/
+
+/**
+ * Initializes navbar scroll effects
+ */
 function initNavbar() {
     // Navbar scroll effect
     window.addEventListener('scroll', function () {
@@ -54,6 +74,15 @@ function initNavbar() {
     });
 }
 
+/***************************************************************
+ * ACTIVE NAVIGATION LINK HANDLING
+ * Updated to support dropdown navigation
+ ***************************************************************/
+
+/**
+ * Sets active state for navigation links and dropdown items
+ * Handles both regular nav links and dropdown items
+ */
 function setActiveNavLink() {
     // Get current page path
     const currentPath = window.location.pathname;
@@ -64,8 +93,16 @@ function setActiveNavLink() {
 
     console.log('Current page:', currentPageBase); // For debugging
 
+    // Get all navigation links
     const navLinks = document.querySelectorAll('.nav-link');
+    // Get all dropdown items
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
 
+    // Reset all active states
+    navLinks.forEach(link => link.classList.remove('active'));
+    dropdownItems.forEach(item => item.classList.remove('active'));
+
+    // Process navigation links (including dropdown toggles)
     navLinks.forEach(link => {
         const linkHref = link.getAttribute('href');
 
@@ -92,84 +129,54 @@ function setActiveNavLink() {
             // Remove active class from hash links by default
             link.classList.remove('active');
         }
-        else {
-            link.classList.remove('active');
+    });
+
+    // Process dropdown items
+    dropdownItems.forEach(item => {
+        const itemHref = item.getAttribute('href');
+
+        if (!itemHref) return;
+
+        // Extract page name from href (remove .html and any # anchors)
+        const itemPage = itemHref.split('#')[0];
+        const itemPageBase = itemPage.replace('.html', '') || 'index';
+
+        // Check if dropdown item matches current page
+        if (itemPageBase === currentPageBase) {
+            item.classList.add('active');
+
+            // Also activate the parent dropdown toggle if item is active
+            const parentDropdown = item.closest('.dropdown-menu');
+            if (parentDropdown) {
+                const dropdownToggle = parentDropdown.previousElementSibling;
+                if (dropdownToggle && dropdownToggle.classList.contains('nav-link')) {
+                    dropdownToggle.classList.add('active');
+                }
+            }
+        }
+        // Check if current page starts with dropdown item page
+        else if (currentPageBase.includes(itemPageBase) && itemPageBase !== 'index') {
+            item.classList.add('active');
+
+            // Also activate the parent dropdown toggle if item is active
+            const parentDropdown = item.closest('.dropdown-menu');
+            if (parentDropdown) {
+                const dropdownToggle = parentDropdown.previousElementSibling;
+                if (dropdownToggle && dropdownToggle.classList.contains('nav-link')) {
+                    dropdownToggle.classList.add('active');
+                }
+            }
         }
     });
 }
 
-function initComponents() {
-    // Initialize carousel if exists
-    const carousel = document.querySelector('.carousel');
-    if (carousel) {
-        const bsCarousel = new bootstrap.Carousel(carousel, {
-            interval: 5000,
-            wrap: true
-        });
-    }
+/***************************************************************
+ * COMPONENT INITIALIZATION
+ ***************************************************************/
 
-    // Animate on scroll
-    const animateElements = document.querySelectorAll('.animate-on-scroll');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animated');
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
-
-    animateElements.forEach(el => observer.observe(el));
-
-    // Voucher selection functionality
-    document.querySelectorAll('.voucher-card').forEach(card => {
-        card.addEventListener('click', function () {
-            document.querySelectorAll('.voucher-card').forEach(c => {
-                c.classList.remove('selected');
-            });
-            this.classList.add('selected');
-
-            const voucherType = this.dataset.type;
-            document.getElementById('voucherType').value = voucherType;
-        });
-    });
-}
-
-// Add click event listeners to nav links for immediate feedback
-document.addEventListener('click', function (e) {
-    if (e.target.matches('.nav-link') || e.target.closest('.nav-link')) {
-        const navLink = e.target.matches('.nav-link') ? e.target : e.target.closest('.nav-link');
-
-        // Update active class immediately
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.classList.remove('active');
-        });
-        navLink.classList.add('active');
-    }
-});
-
-// Add WhatsApp floating button to all pages
-function addWhatsAppButton() {
-    const whatsappButton = document.createElement('a');
-    whatsappButton.href = 'https://wa.me/919429464575?text=Hello%20Baangee%20Traders%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services';
-    whatsappButton.className = 'whatsapp-float';
-    whatsappButton.target = '_blank';
-    whatsappButton.title = 'Chat with us on WhatsApp';
-    whatsappButton.setAttribute('aria-label', 'Chat with us on WhatsApp');
-
-    whatsappButton.innerHTML = `
-        <i class="bi bi-whatsapp"></i>
-        <div class="whatsapp-tooltip">
-            Chat with us on WhatsApp
-        </div>
-    `;
-
-    document.body.appendChild(whatsappButton);
-}
-
-// Update the initComponents function in main.js:
+/**
+ * Initializes all website components
+ */
 function initComponents() {
     // Initialize carousel if exists
     const carousel = document.querySelector('.carousel');
@@ -210,9 +217,39 @@ function initComponents() {
 
     // Add WhatsApp button
     addWhatsAppButton();
+
+    // Add scroll to top button
+    addScrollToTopButton();
 }
 
-// Add Scroll to Top button functionality
+/***************************************************************
+ * FLOATING BUTTONS
+ ***************************************************************/
+
+/**
+ * Adds floating WhatsApp button to all pages
+ */
+function addWhatsAppButton() {
+    const whatsappButton = document.createElement('a');
+    whatsappButton.href = 'https://wa.me/919429464575?text=Hello%20Baangee%20Traders%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services';
+    whatsappButton.className = 'whatsapp-float';
+    whatsappButton.target = '_blank';
+    whatsappButton.title = 'Chat with us on WhatsApp';
+    whatsappButton.setAttribute('aria-label', 'Chat with us on WhatsApp');
+
+    whatsappButton.innerHTML = `
+        <i class="bi bi-whatsapp"></i>
+        <div class="whatsapp-tooltip">
+            Chat with us on WhatsApp
+        </div>
+    `;
+
+    document.body.appendChild(whatsappButton);
+}
+
+/**
+ * Adds scroll-to-top button functionality
+ */
 function addScrollToTopButton() {
     // Create the button
     const scrollButton = document.createElement('button');
@@ -237,55 +274,30 @@ function addScrollToTopButton() {
         if (scrollButton) {
             if (window.scrollY > 300) {
                 scrollButton.classList.add('show');
+                document.body.classList.add('scroll-active'); // Add this line
             } else {
                 scrollButton.classList.remove('show');
+                document.body.classList.remove('scroll-active'); // Add this line
             }
         }
     });
 }
 
-// Update the initComponents function to include scroll-to-top button
-function initComponents() {
-    // Initialize carousel if exists
-    const carousel = document.querySelector('.carousel');
-    if (carousel) {
-        const bsCarousel = new bootstrap.Carousel(carousel, {
-            interval: 5000,
-            wrap: true
+/***************************************************************
+ * EVENT LISTENERS FOR USER INTERACTION
+ ***************************************************************/
+
+/**
+ * Global click event listener for immediate navigation feedback
+ */
+document.addEventListener('click', function (e) {
+    if (e.target.matches('.nav-link') || e.target.closest('.nav-link')) {
+        const navLink = e.target.matches('.nav-link') ? e.target : e.target.closest('.nav-link');
+
+        // Update active class immediately
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
         });
+        navLink.classList.add('active');
     }
-
-    // Animate on scroll
-    const animateElements = document.querySelectorAll('.animate-on-scroll');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animated');
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
-
-    animateElements.forEach(el => observer.observe(el));
-
-    // Voucher selection functionality
-    document.querySelectorAll('.voucher-card').forEach(card => {
-        card.addEventListener('click', function () {
-            document.querySelectorAll('.voucher-card').forEach(c => {
-                c.classList.remove('selected');
-            });
-            this.classList.add('selected');
-
-            const voucherType = this.dataset.type;
-            document.getElementById('voucherType').value = voucherType;
-        });
-    });
-
-    // Add WhatsApp button
-    addWhatsAppButton();
-
-    // Add Scroll to Top button
-    addScrollToTopButton();
-}
+});

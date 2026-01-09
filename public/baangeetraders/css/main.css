@@ -1,35 +1,39 @@
-/* css/main.css?v=1.4 */
+/* css/main.css?v=1.5 */
+/* Baangee Traders - Main Stylesheet */
+
+/***************************************************************
+ * CSS VARIABLES (CUSTOM PROPERTIES)
+ ***************************************************************/
 :root {
-    --primary-color: #0A2647;
-    /* DeepSeek Dark Blue */
-    --secondary-color: #205295;
-    /* DeepSeek Medium Blue */
-    --accent-color: #2C74B3;
-    /* DeepSeek Light Blue */
-    --light-color: #144272;
-    /* DeepSeek Blue */
-    --highlight-color: #00C4CC;
-    /* DeepSeek Teal */
+    --primary-color: #0A2647;      /* DeepSeek Dark Blue */
+    --secondary-color: #205295;    /* DeepSeek Medium Blue */
+    --accent-color: #2C74B3;       /* DeepSeek Light Blue */
+    --light-color: #144272;        /* DeepSeek Blue */
+    --highlight-color: #00C4CC;    /* DeepSeek Teal */
     --text-light: #E8F1F5;
     --text-dark: #0A2647;
 }
 
+/***************************************************************
+ * BASE STYLES
+ ***************************************************************/
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-dark);
     line-height: 1.6;
-    padding-top: 76px;
-    /* For fixed navbar */
+    padding-top: 76px; /* For fixed navbar */
 }
 
 .logo {
-    height: 40px;
-    /* adjust as needed */
-    width: auto;
-    /* keeps aspect ratio */
+    height: 40px;   /* adjust as needed */
+    width: auto;    /* keeps aspect ratio */
 }
 
-/* Header Styles */
+/***************************************************************
+ * NAVIGATION & HEADER STYLES
+ ***************************************************************/
+
+/* Navbar Base */
 .navbar {
     background-color: var(--primary-color);
     padding: 15px 0;
@@ -52,6 +56,7 @@ body {
     color: var(--highlight-color);
 }
 
+/* Navigation Links */
 .nav-link {
     color: white !important;
     font-weight: 500;
@@ -69,7 +74,53 @@ body {
     font-weight: 600;
 }
 
-/* Hero Carousel */
+/* Dropdown Styles */
+.dropdown-menu {
+    background-color: var(--primary-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 10px 0;
+    margin-top: 10px;
+}
+
+.dropdown-item {
+    color: white !important;
+    font-weight: 500;
+    padding: 10px 20px;
+    transition: all 0.3s;
+}
+
+/* Dropdown Hover Effect */
+.dropdown-item:hover {
+    color: var(--highlight-color) !important;
+    transform: translateY(-2px);
+    background-color: rgba(0, 196, 204, 0.1) !important; /* Teal background on hover */
+    padding-left: 25px;
+}
+
+/* Dropdown Active State (Same as Hover) */
+.dropdown-item.active {
+    color: var(--highlight-color) !important;
+    transform: translateY(-2px);
+    background-color: rgba(0, 196, 204, 0.1) !important; /* Same teal background */
+    padding-left: 25px;
+}
+
+.dropdown-divider {
+    border-color: rgba(255, 255, 255, 0.1);
+    margin: 10px 0;
+}
+
+/* Dropdown Toggle Active State */
+.nav-link.dropdown-toggle.active {
+    color: var(--highlight-color) !important;
+    font-weight: 600;
+}
+
+/***************************************************************
+ * HERO CAROUSEL
+ ***************************************************************/
 .hero-carousel {
     height: 600px;
     overflow: hidden;
@@ -81,18 +132,33 @@ body {
     background-position: center;
 }
 
+/* Carousel Background Images */
 .carousel-item:nth-child(1) {
-    background-image: linear-gradient(rgba(10, 38, 71, 0.8), rgba(10, 38, 71, 0.7)), url('https://5.imimg.com/data5/SELLER/Default/2023/8/334006313/OP/IZ/BU/154572410/indiamart-vouchers-500x500.jpeg');
+    background-image: linear-gradient(rgba(10, 38, 71, 0.8), rgba(10, 38, 71, 0.7)), 
+                      url('https://5.imimg.com/data5/SELLER/Default/2023/8/334006313/OP/IZ/BU/154572410/indiamart-vouchers-500x500.jpeg');
 }
 
 .carousel-item:nth-child(2) {
-    background-image: linear-gradient(rgba(10, 38, 71, 0.8), rgba(10, 38, 71, 0.7)), url('https://cdn.prod.website-files.com/604a97c70aee09eed25ce991/61897a35583a9b51db018d3e_MartinPublicSeating-97560-Importance-School-Library-blogbanner1.jpg');
+    background-image: linear-gradient(rgba(10, 38, 71, 0.8), rgba(10, 38, 71, 0.7)), 
+                      url('https://cdn.prod.website-files.com/604a97c70aee09eed25ce991/61897a35583a9b51db018d3e_MartinPublicSeating-97560-Importance-School-Library-blogbanner1.jpg');
 }
 
 .carousel-item:nth-child(3) {
-    background-image: linear-gradient(rgba(10, 38, 71, 0.8), rgba(10, 38, 71, 0.7)), url('https://www.fodors.com/wp-content/uploads/2022/05/1-BOOKSTORES-BAM_credit_DavidLand_08.jpg');
+    background-image: linear-gradient(rgba(10, 38, 71, 0.8), rgba(10, 38, 71, 0.7)), 
+                      url('https://www.fodors.com/wp-content/uploads/2022/05/1-BOOKSTORES-BAM_credit_DavidLand_08.jpg');
 }
 
+.carousel-item:nth-child(4) {
+    background-image: linear-gradient(rgba(10, 38, 71, 0.8), rgba(10, 38, 71, 0.7)), 
+                      url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+}
+
+.carousel-item:nth-child(5) {
+    background-image: linear-gradient(rgba(10, 38, 71, 0.8), rgba(10, 38, 71, 0.7)), 
+                      url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+}
+
+/* Carousel Caption */
 .carousel-caption {
     bottom: 30%;
     text-align: left;
@@ -119,7 +185,11 @@ body {
     margin-bottom: 30px;
 }
 
-/* Section Styles */
+/***************************************************************
+ * SECTION & COMPONENT STYLES
+ ***************************************************************/
+
+/* Section Titles */
 .section-title {
     color: var(--primary-color);
     font-weight: 700;
@@ -187,6 +257,7 @@ body {
     margin-bottom: 20px;
 }
 
+/* Button Styles */
 .btn-service {
     background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
     color: white;
@@ -222,7 +293,7 @@ body {
     border: none;
 }
 
-/* Founder Message */
+/* Founder Message Section */
 .founder-section {
     background: linear-gradient(135deg, var(--primary-color), var(--light-color));
     color: white;
@@ -266,6 +337,10 @@ body {
     font-weight: 500;
 }
 
+/***************************************************************
+ * FORM STYLES
+ ***************************************************************/
+
 /* Contact Form */
 .contact-form {
     background: white;
@@ -304,7 +379,59 @@ body {
     box-shadow: 0 10px 20px rgba(0, 196, 204, 0.2);
 }
 
-/* Footer */
+/* Voucher Inquiry Page */
+.inquiry-form-container {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.voucher-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.voucher-option {
+    flex: 1;
+    min-width: 200px;
+}
+
+.voucher-card {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.voucher-card:hover,
+.voucher-card.selected {
+    border-color: var(--highlight-color);
+    background: rgba(0, 196, 204, 0.05);
+}
+
+.voucher-card i {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+/* Library Registration Form */
+.library-form-container {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/***************************************************************
+ * FOOTER STYLES
+ ***************************************************************/
 .footer {
     background-color: var(--primary-color);
     color: white;
@@ -361,7 +488,11 @@ body {
     color: rgba(255, 255, 255, 0.7);
 }
 
-/* Map */
+/***************************************************************
+ * UTILITY COMPONENTS
+ ***************************************************************/
+
+/* Map Container */
 .map-container {
     border-radius: 10px;
     overflow: hidden;
@@ -387,84 +518,9 @@ body {
     padding: 80px 0;
 }
 
-/* Voucher Inquiry Page Specific */
-.inquiry-form-container {
-    background: white;
-    border-radius: 15px;
-    padding: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.voucher-options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.voucher-option {
-    flex: 1;
-    min-width: 200px;
-}
-
-.voucher-card {
-    background: #f8f9fa;
-    border: 2px solid #e9ecef;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.voucher-card:hover,
-.voucher-card.selected {
-    border-color: var(--highlight-color);
-    background: rgba(0, 196, 204, 0.05);
-}
-
-.voucher-card i {
-    font-size: 2rem;
-    color: var(--accent-color);
-    margin-bottom: 15px;
-}
-
-/* Library Registration Form */
-.library-form-container {
-    background: white;
-    border-radius: 15px;
-    padding: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    body {
-        padding-top: 70px;
-    }
-
-    .hero-carousel,
-    .carousel-item {
-        height: 500px;
-    }
-
-    .carousel-caption {
-        padding: 20px;
-        bottom: 20%;
-    }
-
-    .carousel-caption h1 {
-        font-size: 2rem;
-    }
-
-    .section-title {
-        font-size: 1.8rem;
-    }
-
-    .voucher-option {
-        min-width: 100%;
-    }
-}
+/***************************************************************
+ * FLOATING ACTION BUTTONS
+ ***************************************************************/
 
 /* WhatsApp Floating Button */
 .whatsapp-float {
@@ -500,7 +556,7 @@ body {
     margin: 0;
 }
 
-/* WhatsApp tooltip */
+/* WhatsApp Tooltip */
 .whatsapp-tooltip {
     position: absolute;
     right: 70px;
@@ -535,35 +591,16 @@ body {
     transform: translateX(0);
 }
 
-/* WhatsApp pulse animation */
+/* WhatsApp Pulse Animation */
 @keyframes whatsapp-pulse {
     0% {
         box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
     }
-
     70% {
         box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
     }
-
     100% {
         box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-    }
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        font-size: 25px;
-        bottom: 20px;
-        right: 20px;
-    }
-
-    .whatsapp-tooltip {
-        font-size: 12px;
-        padding: 6px 12px;
-        right: 60px;
     }
 }
 
@@ -611,14 +648,92 @@ body {
     margin: 0;
 }
 
-/* Adjust positioning when WhatsApp button is present */
-.whatsapp-float+.scroll-to-top {
-    bottom: 100px;
-    /* Move up to avoid overlapping with WhatsApp button */
+/* Floating Buttons Positioning */
+.whatsapp-float,
+.scroll-to-top {
+    right: 30px;
+    bottom: 30px;
+    transition: all 0.3s ease;
 }
 
-/* Responsive adjustments */
+/* Scroll Active States */
+body.scroll-active .scroll-to-top {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+body.scroll-active .whatsapp-float {
+    bottom: 100px; /* Moves WhatsApp up when scroll-to-top appears */
+}
+
+/***************************************************************
+ * RESPONSIVE MEDIA QUERIES
+ ***************************************************************/
+
+/* Mobile Responsive Dropdown */
+@media (max-width: 991px) {
+    .dropdown-menu {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        padding-left: 20px;
+    }
+    
+    .dropdown-item {
+        padding: 8px 15px;
+    }
+    
+    .dropdown-item:hover,
+    .dropdown-item.active {
+        padding-left: 20px;
+        background-color: rgba(0, 196, 204, 0.1) !important;
+    }
+}
+
+/* General Mobile Responsive */
 @media (max-width: 768px) {
+    body {
+        padding-top: 70px;
+    }
+    
+    .hero-carousel,
+    .carousel-item {
+        height: 500px;
+    }
+    
+    .carousel-caption {
+        padding: 20px;
+        bottom: 20%;
+    }
+    
+    .carousel-caption h1 {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .voucher-option {
+        min-width: 100%;
+    }
+    
+    /* Mobile Floating Buttons */
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .whatsapp-tooltip {
+        font-size: 12px;
+        padding: 6px 12px;
+        right: 60px;
+    }
+    
     .scroll-to-top {
         width: 45px;
         height: 45px;
@@ -626,8 +741,15 @@ body {
         bottom: 20px;
         right: 20px;
     }
-
-    .whatsapp-float+.scroll-to-top {
+    
+    .whatsapp-float,
+    .scroll-to-top {
+        right: 20px;
+        bottom: 20px;
+    }
+    
+    /* Mobile Scroll Active States */
+    body.scroll-active .whatsapp-float {
         bottom: 80px;
     }
 }

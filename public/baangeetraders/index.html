@@ -18,7 +18,7 @@
     <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <!-- Main CSS -->
-    <link rel="stylesheet" href="css/main.css?v=1.4">
+    <link rel="stylesheet" href="css/main.css?v=1.5">
 </head>
 
 <body>
@@ -39,12 +39,27 @@
                         <li class="nav-item">
                             <a class="nav-link" href="index.html">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="voucher-inquiry.html">Voucher Inquiry</a>
+
+                        <!-- Projects Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="projectsDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Projects
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
+                                <li><a class="dropdown-item" href="voucher-inquiry.html">Corporate Voucher Solutions</a>
+                                </li>
+                                <li><a class="dropdown-item" href="library-registration.html">CSC Bal Vidyalaya &
+                                        Library</a></li>
+                                <li><a class="dropdown-item">CSC Book Centre</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="agriculture.html">Agriculture</a></li>
+                                <li><a class="dropdown-item" href="construction.html">Construction</a></li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="library-registration.html">CSC Bal Vidyalaya & Library</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="notice-recruitment.html">Notice & Recruitment</a>
                         </li>
@@ -53,7 +68,8 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-outline-light ms-2"
-                                href="https://www.baangeetraders.com/login">Admin Login</a>
+                                href="https://www.baangeetraders.com/login">Admin
+                                Login</a>
                         </li>
                     </ul>
                 </div>
@@ -67,6 +83,8 @@
             <button type="button" data-bs-target=".carousel" data-bs-slide-to="0" class="active"></button>
             <button type="button" data-bs-target=".carousel" data-bs-slide-to="1"></button>
             <button type="button" data-bs-target=".carousel" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target=".carousel" data-bs-slide-to="3"></button>
+            <button type="button" data-bs-target=".carousel" data-bs-slide-to="4"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -91,6 +109,22 @@
                     <p>Your premier destination for educational materials, textbooks, and academic resources for schools
                         and colleges.</p>
                     <a href="#services" class="btn btn-service">Explore Services</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-caption animate__animated animate__fadeInUp">
+                    <h1>Agriculture Solutions</h1>
+                    <p>Supplying high-quality pesticides, fertilizers, seeds, and agricultural tools to empower farmers
+                        and enhance productivity across the region.</p>
+                    <a href="agriculture.html" class="btn btn-service">Explore Agriculture</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-caption animate__animated animate__fadeInUp">
+                    <h1>Construction Materials</h1>
+                    <p>Premium construction materials including Dalmia Cement and other quality brands for residential,
+                        commercial, and industrial projects.</p>
+                    <a href="construction.html" class="btn btn-service">View Materials</a>
                 </div>
             </div>
         </div>
@@ -284,7 +318,7 @@
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Main JS -->
-    <script src="js/main.js?v=1.4"></script>
+    <script src="js/main.js?v=1.5"></script>
 </body>
 
 </html>
