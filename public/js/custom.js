@@ -234,3 +234,84 @@ if (!document.addEventListener) {
         }
     };
 }
+
+/**
+ * Success stories
+ */
+// Initialize Swiper for the Stories of Change section
+document.addEventListener('DOMContentLoaded', function () {
+    // Use the specific class for this section
+    const storiesSwiper = new Swiper('#stories-of-change .stories-swiper', {
+        // Show 3 slides at once on desktop
+        slidesPerView: 3,
+        spaceBetween: 25,
+        centeredSlides: false,
+        loop: true,
+        speed: 600,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+
+        // Navigation arrows
+        navigation: {
+            nextEl: '#stories-of-change .stories-swiper-button-next',
+            prevEl: '#stories-of-change .stories-swiper-button-prev',
+        },
+
+        // Pagination
+        pagination: {
+            el: '#stories-of-change .stories-swiper-pagination',
+            clickable: true,
+            dynamicBullets: true,
+        },
+
+        // Responsive breakpoints
+        breakpoints: {
+            // Mobile: 1 slide
+            320: {
+                slidesPerView: 1,
+                spaceBetween: 20
+            },
+            // Tablet: 2 slides
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 25
+            },
+            // Desktop: 3 slides
+            1200: {
+                slidesPerView: 3,
+                spaceBetween: 25
+            }
+        },
+
+        // Slide effects
+        grabCursor: true,
+        slideToClickedSlide: false,
+
+        // Accessibility
+        a11y: {
+            prevSlideMessage: 'Previous story',
+            nextSlideMessage: 'Next story',
+        }
+    });
+
+    // Button click handlers - specific to this section
+    document.querySelector('#stories-of-change .stories-view-all-btn').addEventListener('click', function (e) {
+        e.preventDefault();
+        console.log('View All clicked - Stories of Change section');
+        // Add your navigation logic here
+    });
+
+    // Read More button handlers - specific to this section
+    document.querySelectorAll('#stories-of-change .stories-read-more').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            const storyName = this.parentElement.querySelector('.stories-name').textContent;
+            console.log(`Read more about: ${storyName} - Stories of Change section`);
+            // Add your navigation logic here
+        });
+    });
+
+    console.log('Stories of Change Swiper initialized with 3 slides visible on desktop');
+});

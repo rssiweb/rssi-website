@@ -302,3 +302,151 @@ window.paceOptions = {
 var paceScript = document.createElement('script');
 paceScript.src = 'https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js';
 document.head.appendChild(paceScript);
+
+
+/**
+ * Add this script after your existing JavaScript
+ */
+
+// Clipboard functionality for link icons
+document.addEventListener('DOMContentLoaded', function () {
+    // Function to copy link to clipboard
+    function copyLinkToClipboard(sectionId, linkIcon, tooltip) {
+        // Get the full URL with the section hash
+        const currentUrl = window.location.href.split('#')[0];
+        const linkToCopy = `${currentUrl}#${sectionId}`;
+
+        // Use the Clipboard API
+        navigator.clipboard.writeText(linkToCopy)
+            .then(() => {
+                // Show success state
+                linkIcon.classList.add('copied');
+                linkIcon.innerHTML = '<i class="bi bi-check2"></i>';
+
+                // Update tooltip text
+                tooltip.textContent = 'Copied!';
+                tooltip.classList.add('show');
+
+                // Zoom and highlight the section
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.classList.add('zoom-highlight');
+
+                    // Remove highlight after animation
+                    setTimeout(() => {
+                        section.classList.remove('zoom-highlight');
+                    }, 2000);
+                }
+
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    linkIcon.classList.remove('copied');
+                    linkIcon.innerHTML = '<i class="bi bi-link-45deg"></i>';
+                    tooltip.classList.remove('show');
+                    tooltip.textContent = 'Copy link';
+                }, 2000);
+            })
+            .catch(err => {
+                // Fallback for older browsers
+                console.error('Failed to copy: ', err);
+
+                // Try fallback method
+                const textArea = document.createElement('textarea');
+                textArea.value = linkToCopy;
+                document.body.appendChild(textArea);
+                textArea.select();
+
+                try {
+                    document.execCommand('copy');
+
+                    // Show success even with fallback
+                    linkIcon.classList.add('copied');
+                    linkIcon.innerHTML = '<i class="fas fa-check"></i>';
+                    tooltip.textContent = 'Copied!';
+                    tooltip.classList.add('show');
+
+                    // Zoom and highlight the section
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        section.classList.add('zoom-highlight');
+                        setTimeout(() => {
+                            section.classList.remove('zoom-highlight');
+                        }, 2000);
+                    }
+
+                    // Reset after 2 seconds
+                    setTimeout(() => {
+                        linkIcon.classList.remove('copied');
+                        linkIcon.innerHTML = '<i class="bi bi-link-45deg"></i>';
+                        tooltip.classList.remove('show');
+                        tooltip.textContent = 'Copy link';
+                    }, 2000);
+                } catch (err) {
+                    // Show error
+                    tooltip.textContent = 'Failed to copy';
+                    tooltip.classList.add('show');
+                    setTimeout(() => {
+                        tooltip.classList.remove('show');
+                        tooltip.textContent = 'Copy link';
+                    }, 2000);
+                }
+
+                document.body.removeChild(textArea);
+            });
+    }
+
+    // Attach click handlers to all link icons
+    document.querySelectorAll('.heading-link-icon .link-icon').forEach(linkIcon => {
+        const tooltip = linkIcon.parentElement.querySelector('.link-tooltip');
+
+        // Get section ID from the href attribute or find parent section
+        let sectionId = linkIcon.getAttribute('href');
+        if (sectionId && sectionId.startsWith('#')) {
+            sectionId = sectionId.substring(1); // Remove the #
+        } else {
+            // Find the closest section with an ID
+            const section = linkIcon.closest('section[id]');
+            if (section) {
+                sectionId = section.id;
+            }
+        }
+
+        if (sectionId) {
+            linkIcon.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                copyLinkToClipboard(sectionId, linkIcon, tooltip);
+            });
+
+            // Show tooltip on hover
+            linkIcon.addEventListener('mouseenter', function () {
+                if (!linkIcon.classList.contains('copied')) {
+                    tooltip.classList.add('show');
+                }
+            });
+
+            linkIcon.addEventListener('mouseleave', function () {
+                if (!linkIcon.classList.contains('copied')) {
+                    tooltip.classList.remove('show');
+                }
+            });
+        }
+    });
+
+    // Check URL hash on page load and highlight if matches
+    if (window.location.hash) {
+        const sectionId = window.location.hash.substring(1);
+        const section = document.getElementById(sectionId);
+        if (section) {
+            // Small delay to ensure page is loaded
+            setTimeout(() => {
+                section.classList.add('zoom-highlight');
+
+                // Remove highlight after 2 seconds
+                setTimeout(() => {
+                    section.classList.remove('zoom-highlight');
+                }, 2000);
+            }, 500);
+        }
+    }
+});

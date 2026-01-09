@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
     <!-- Template Main CSS File -->
-    <link href="/css/main.css?v=1.3.1" rel="stylesheet">
+    <link href="/css/main.css?v=1.3.2" rel="stylesheet">
 
     <!-- Google Tag (gtag.js) - Place After CSS to Ensure Fast Rendering -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11316670180"></script>
@@ -245,7 +245,7 @@
         #custom-section .container {
             background-color: #ffffff;
             /* Pure white container */
-            padding: 2rem;
+            /* padding: 2rem; */
             border-radius: 0.5rem;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             /* Subtle shadow */
@@ -511,6 +511,332 @@
             opacity: 1;
         }
     </style>
+    <style>
+        /* ID-specific styles - won't conflict with other sections */
+        #stories-of-change {
+            --stories-primary-color: #FFBF00;
+            --stories-secondary-color: #f8f9fa;
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        #stories-of-change .stories-left-column {
+            padding-right: 40px;
+        }
+
+        #stories-of-change .stories-main-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        #stories-of-change .stories-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        #stories-of-change .stories-view-all-btn {
+            padding: 12px 36px;
+            background-color: #000;
+            color: #fff;
+            border: 2px solid #000;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        #stories-of-change .stories-view-all-btn:hover {
+            background-color: transparent;
+            color: #000;
+        }
+
+        /* Right Column - Swiper Styles */
+        #stories-of-change .stories-right-column {
+            /* padding-left: 20px; */
+        }
+
+        #stories-of-change .stories-swiper-container {
+            width: 100%;
+            position: relative;
+            /* padding: 0 40px; */
+        }
+
+        #stories-of-change .stories-swiper {
+            width: 100%;
+            height: 480px;
+        }
+
+        #stories-of-change .stories-card {
+            height: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #stories-of-change .stories-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        #stories-of-change .stories-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        #stories-of-change .stories-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        #stories-of-change .stories-card:hover .stories-image img {
+            transform: scale(1.05);
+        }
+
+        #stories-of-change .stories-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #stories-of-change .stories-divider {
+            width: 50px;
+            height: 3px;
+            background-color: var(--stories-primary-color);
+            margin-bottom: 15px;
+        }
+
+        #stories-of-change .stories-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 12px;
+        }
+
+        #stories-of-change .stories-desc {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        #stories-of-change .stories-read-more {
+            color: var(--stories-primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            padding-bottom: 3px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        #stories-of-change .stories-read-more:hover {
+            border-bottom-color: var(--stories-primary-color);
+        }
+
+        /* Swiper Navigation - ID Specific */
+        #stories-of-change .stories-swiper-button-next,
+        #stories-of-change .stories-swiper-button-prev {
+            color: #999;
+            /* Light gray */
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 50px;
+            /* Slightly larger */
+            height: 50px;
+            /* Slightly larger */
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        #stories-of-change .swiper-button-next:hover,
+        #stories-of-change .swiper-button-prev:hover {
+            background-color: rgba(255, 255, 255, 1);
+            color: #666;
+            /* Slightly darker on hover */
+        }
+
+        #stories-of-change .swiper-button-next::after,
+        #stories-of-change .swiper-button-prev::after {
+            font-size: 1.75rem;
+            /* Larger arrow icons */
+        }
+
+        #stories-of-change .stories-swiper-button-prev {
+            left: 0;
+        }
+
+        #stories-of-change .stories-swiper-button-next {
+            right: 0;
+        }
+
+        #stories-of-change .stories-swiper-pagination {
+            position: relative;
+            margin-top: 25px;
+        }
+
+        #stories-of-change .stories-swiper-pagination-bullet {
+            width: 10px;
+            height: 10px;
+            background: #ddd;
+            opacity: 1;
+        }
+
+        #stories-of-change .stories-swiper-pagination-bullet-active {
+            background: var(--stories-primary-color);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1400px) {
+            #stories-of-change .stories-main-title {
+                font-size: 3rem;
+            }
+
+            #stories-of-change .stories-swiper {
+                height: 460px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            #stories-of-change {
+                padding: 60px 0;
+            }
+
+            #stories-of-change .stories-left-column {
+                padding-right: 30px;
+            }
+
+            #stories-of-change .stories-main-title {
+                font-size: 2.75rem;
+            }
+
+            #stories-of-change .stories-description {
+                font-size: 1.05rem;
+            }
+
+            #stories-of-change .stories-swiper {
+                height: 440px;
+            }
+
+            #stories-of-change .stories-content {
+                padding: 20px;
+            }
+
+            #stories-of-change .stories-name {
+                font-size: 1.35rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            #stories-of-change {
+                padding: 50px 0;
+            }
+
+            #stories-of-change .stories-left-column {
+                padding-right: 0;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+
+            #stories-of-change .stories-right-column {
+                padding-left: 0;
+            }
+
+            #stories-of-change .stories-main-title {
+                font-size: 2.5rem;
+            }
+
+            #stories-of-change .stories-swiper-container {
+                padding: 0 50px;
+            }
+
+            #stories-of-change .stories-swiper {
+                height: 420px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #stories-of-change .stories-main-title {
+                font-size: 2.25rem;
+            }
+
+            #stories-of-change .stories-description {
+                font-size: 1rem;
+            }
+
+            #stories-of-change .stories-swiper {
+                height: 400px;
+            }
+
+            #stories-of-change .stories-image {
+                height: 180px;
+            }
+
+            #stories-of-change .stories-name {
+                font-size: 1.3rem;
+            }
+
+            #stories-of-change .stories-swiper-button-prev {
+                left: 10px;
+            }
+
+            #stories-of-change .stories-swiper-button-next {
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            #stories-of-change {
+                padding: 40px 0;
+            }
+
+            #stories-of-change .stories-main-title {
+                font-size: 2rem;
+            }
+
+            #stories-of-change .stories-view-all-btn {
+                padding: 10px 30px;
+                font-size: 0.95rem;
+            }
+
+            #stories-of-change .stories-swiper-container {
+                padding: 0 30px;
+            }
+
+            #stories-of-change .stories-swiper {
+                height: 380px;
+            }
+
+            #stories-of-change .stories-image {
+                height: 160px;
+            }
+
+            #stories-of-change .stories-content {
+                padding: 18px;
+            }
+
+            #stories-of-change .stories-name {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -756,11 +1082,133 @@
         </section>
         <!-- End About Section -->
 
-        <section class="section-bg">
+        <!-- Stories of Change Section with ID -->
+        <section id="stories-of-change" style="background-color: #ffd865;">
+            <div class="container">
+                <div class="row align-items-start">
+                    <!-- Left Column - Text Content -->
+                    <div class="col-lg-4 col-md-12 stories-left-column">
+                        <!-- Reusable heading with link icon -->
+                        <div class="section-heading-wrapper">
+                            <h1 class="stories-main-title">Stories Of Change</h1>
+                            <div class="heading-link-icon">
+                                <a href="#stories-of-change" class="link-icon" title="Copy link to this section">
+                                    <i class="bi bi-link-45deg"></i>
+                                </a>
+                                <div class="link-tooltip">Copy link</div>
+                            </div>
+                        </div>
+
+                        <p class="stories-description">
+                            Step into the heart of RSSI NGO’s mission through our Stories of Change, a collection of
+                            real-life journeys that reflect the resilience, determination, and hope of the communities
+                            we serve. From children gaining access to quality education to women and youth building
+                            skills for a better future, these stories highlight the transformative impact of education,
+                            awareness, and empowerment. Discover how, together with our communities, donors, and
+                            partners, RSSI NGO is creating sustainable change, one story at a time.
+                        </p>
+                        <a href="#" class="stories-view-all-btn">View All</a>
+                    </div>
+
+                    <!-- Right Column - Swiper -->
+                    <div class="col-lg-8 col-md-12 stories-right-column">
+                        <div class="stories-swiper-container">
+                            <div class="stories-swiper swiper">
+                                <div class="swiper-wrapper">
+                                    <!-- Story 1 -->
+                                    <div class="swiper-slide">
+                                        <div class="stories-card">
+                                            <div class="stories-image">
+                                                <img src="/img/success/ss1.jpeg" alt="Rishab">
+                                            </div>
+                                            <div class="stories-content">
+                                                <div class="stories-divider"></div>
+                                                <h3 class="stories-name">Rishab</h3>
+                                                <p class="stories-desc">
+                                                    Rishab from Uttar Pradesh is a special child who has shown inspiring
+                                                    progress, gaining confidence and moving towards independence.
+                                                </p>
+                                                <a href="#" class="stories-read-more">Read More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Story 2 -->
+                                    <div class="swiper-slide">
+                                        <div class="stories-card">
+                                            <div class="stories-image">
+                                                <img src="/img/success/ss2.jpeg" alt="Hari prakash">
+                                            </div>
+                                            <div class="stories-content">
+                                                <div class="stories-divider"></div>
+                                                <h3 class="stories-name">Hari prakash</h3>
+                                                <p class="stories-desc">
+                                                    Hari Prakash, a first-generation learner from an economically weaker
+                                                    background, has performed well in his studies and made his parents
+                                                    proud.
+                                                </p>
+                                                <a href="#" class="stories-read-more">Read More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Story 3 -->
+                                    <div class="swiper-slide">
+                                        <div class="stories-card">
+                                            <div class="stories-image">
+                                                <img src="/img/success/ss3.jpeg" alt="Chahat">
+                                            </div>
+                                            <div class="stories-content">
+                                                <div class="stories-divider"></div>
+                                                <h3 class="stories-name">Chahat</h3>
+                                                <p class="stories-desc">
+                                                    Chahat, a 10-year-old first-generation learner, grows stronger in
+                                                    her studies with the support of her family and regular ration
+                                                    supplies.
+                                                </p>
+                                                <a href="#" class="stories-read-more">Read More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Story 4 -->
+                                    <div class="swiper-slide">
+                                        <div class="stories-card">
+                                            <div class="stories-image">
+                                                <img src="/img/success/ss4.jpeg" alt="Prince">
+                                            </div>
+                                            <div class="stories-content">
+                                                <div class="stories-divider"></div>
+                                                <h3 class="stories-name">Prince</h3>
+                                                <p class="stories-desc">
+                                                    Prince’s mother fought against all odds to ensure he could study.
+                                                    With the support of RSSI NGO, he is now pursuing his education and
+                                                    making progress every day.
+                                                </p>
+                                                <a href="#" class="stories-read-more">Read More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Navigation buttons -->
+                                <div class="stories-swiper-button-next swiper-button-next"></div>
+                                <div class="stories-swiper-button-prev swiper-button-prev"></div>
+
+                                <!-- Pagination dots -->
+                                <div class="stories-swiper-pagination swiper-pagination"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
             <div id="announcements-carousel" class="swiper container">
                 <div class="section-header">
-                    <h2>Our Programs</h2>
-                    <p>From <span>The Field</span> to <span>The Future</span></p>
+                    <h2>What We Do</h2>
+                    <p>Educate. Empower. <span>Transform.</span></p>
                 </div>
                 <div class="swiper-wrapper">
                     <!-- Slide 1 -->
@@ -876,192 +1324,217 @@
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
             </div>
+
+            <!-- Modals for Read More -->
+            <!-- Modal for Shiksha -->
+            <div class="modal fade" id="modalShiksha" tabindex="-1" aria-labelledby="modalShikshaLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalShikshaLabel">Shiksha</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Shiksha is a self-funded initiative by RSSI NGO that delivers quality education at a
+                                fraction of the market cost. At Kalpana Buds School, students contribute only around
+                                13%
+                                of the actual educational expenses. In our NGO division, students pay less than 4%
+                                of
+                                the market cost. The majority of the expenses are covered by our directorial fund,
+                                making education both affordable and empowering for the students. By bridging this
+                                financial gap, we ensure that every child has the opportunity to thrive. Learn more
+                                about how you can support our work.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal for Suraksha -->
+            <div class="modal fade" id="modalSuraksha" tabindex="-1" aria-labelledby="modalSurakshaLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalSurakshaLabel">Suraksha</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                For the promotion of menstrual hygiene among adolescent girls aged 10-19 in rural
+                                areas,
+                                we focus on improving access to hygienic sanitary products and educating girls about
+                                the
+                                menstrual cycle. Our comprehensive approach includes regular health screenings,
+                                monthly
+                                awareness sessions, and the free distribution of sanitary pads as needed. This
+                                holistic
+                                strategy ensures that girls are well-informed, prepared, and supported throughout
+                                their
+                                menstrual health journey.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal for Swabhiman -->
+            <div class="modal fade" id="modalSwabhiman" tabindex="-1" aria-labelledby="modalSwabhimanLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalSwabhimanLabel">Swabhiman</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Launched in 2017 to address the challenges through a simple yet effective approach.
+                                The
+                                programme is specifically aimed at realization of both individual and collective
+                                self-esteem and inner strength for marginalized and socially excluded women and
+                                adolescent girls through innovative community practices.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal for Eco club -->
+            <div class="modal fade" id="ecoClub" tabindex="-1" aria-labelledby="ecoClubLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ecoClubLabel">Eco Club</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Eco Club fosters environmental awareness and sustainability through workshops, tree
+                                plantation drives, and recycling programs. It aims to cultivate a sense of
+                                responsibility,
+                                empower individuals with eco-friendly practices, and inspire collective action for a
+                                greener
+                                future. The club encourages students to develop innovative solutions for
+                                environmental
+                                challenges, promotes waste management initiatives, and actively engages communities
+                                in
+                                conservation efforts. Through hands-on activities and awareness campaigns, it
+                                strives to
+                                instill long-term ecological values, ensuring a more sustainable and responsible
+                                society.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal for Robotics and AI -->
+            <div class="modal fade" id="modalRoboticsAI" tabindex="-1" aria-labelledby="modalRoboticsAILabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalRoboticsAILabel">Robotics and AI</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Our Robotics and AI program is designed to equip students with cutting-edge
+                                technological
+                                skills, fostering innovation and creativity in emerging fields. Launched in 2020,
+                                this
+                                initiative provides hands-on learning experiences through robotics, coding, and
+                                artificial
+                                intelligence applications.</p>
+
+                            <p>The program focuses on developing problem-solving abilities, critical thinking, and
+                                technical expertise through structured workshops, AI-driven projects, and
+                                interactive
+                                coding
+                                sessions. Students engage in real-world applications, innovation challenges, and
+                                collaborative projects to prepare for the rapidly evolving tech landscape. By
+                                bridging
+                                the
+                                gap between theory and practice, we aim to inspire young minds to become future
+                                leaders
+                                in
+                                robotics and AI.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
-        <!-- Modals for Read More -->
-        <!-- Modal for Shiksha -->
-        <div class="modal fade" id="modalShiksha" tabindex="-1" aria-labelledby="modalShikshaLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalShikshaLabel">Shiksha</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            Shiksha is a self-funded initiative by RSSI NGO that delivers quality education at a
-                            fraction of the market cost. At Kalpana Buds School, students contribute only around 13%
-                            of the actual educational expenses. In our NGO division, students pay less than 4% of
-                            the market cost. The majority of the expenses are covered by our directorial fund,
-                            making education both affordable and empowering for the students. By bridging this
-                            financial gap, we ensure that every child has the opportunity to thrive. Learn more
-                            about how you can support our work.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal for Suraksha -->
-        <div class="modal fade" id="modalSuraksha" tabindex="-1" aria-labelledby="modalSurakshaLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalSurakshaLabel">Suraksha</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            For the promotion of menstrual hygiene among adolescent girls aged 10-19 in rural areas,
-                            we focus on improving access to hygienic sanitary products and educating girls about the
-                            menstrual cycle. Our comprehensive approach includes regular health screenings, monthly
-                            awareness sessions, and the free distribution of sanitary pads as needed. This holistic
-                            strategy ensures that girls are well-informed, prepared, and supported throughout their
-                            menstrual health journey.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal for Swabhiman -->
-        <div class="modal fade" id="modalSwabhiman" tabindex="-1" aria-labelledby="modalSwabhimanLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalSwabhimanLabel">Swabhiman</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            Launched in 2017 to address the challenges through a simple yet effective approach. The
-                            programme is specifically aimed at realization of both individual and collective
-                            self-esteem and inner strength for marginalized and socially excluded women and
-                            adolescent girls through innovative community practices.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal for Eco club -->
-        <div class="modal fade" id="ecoClub" tabindex="-1" aria-labelledby="ecoClubLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="ecoClubLabel">Eco Club</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            Eco Club fosters environmental awareness and sustainability through workshops, tree
-                            plantation drives, and recycling programs. It aims to cultivate a sense of responsibility,
-                            empower individuals with eco-friendly practices, and inspire collective action for a greener
-                            future. The club encourages students to develop innovative solutions for environmental
-                            challenges, promotes waste management initiatives, and actively engages communities in
-                            conservation efforts. Through hands-on activities and awareness campaigns, it strives to
-                            instill long-term ecological values, ensuring a more sustainable and responsible society.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal for Robotics and AI -->
-        <div class="modal fade" id="modalRoboticsAI" tabindex="-1" aria-labelledby="modalRoboticsAILabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalRoboticsAILabel">Robotics and AI</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            Our Robotics and AI program is designed to equip students with cutting-edge technological
-                            skills, fostering innovation and creativity in emerging fields. Launched in 2020, this
-                            initiative provides hands-on learning experiences through robotics, coding, and artificial
-                            intelligence applications.</p>
-
-                        <p>The program focuses on developing problem-solving abilities, critical thinking, and
-                            technical expertise through structured workshops, AI-driven projects, and interactive coding
-                            sessions. Students engage in real-world applications, innovation challenges, and
-                            collaborative projects to prepare for the rapidly evolving tech landscape. By bridging the
-                            gap between theory and practice, we aim to inspire young minds to become future leaders in
-                            robotics and AI.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- END Projects-->
 
         <div id="custom-section" class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <section class="section-content">
-                        <h3 class="section-title">Announcements</h3>
-                        <div class="news-item card">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs" id="announcementTabs" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="news-tab" data-bs-toggle="tab"
-                                        data-bs-target="#news-tab-pane" type="button" role="tab"
-                                        aria-controls="news-tab-pane" aria-selected="true">News Highlights</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="notices-tab" data-bs-toggle="tab"
-                                        data-bs-target="#notices-tab-pane" type="button" role="tab"
-                                        aria-controls="notices-tab-pane" aria-selected="false">Notices</button>
-                                </li>
-                            </ul>
+                    <!-- <section class="section-content"> -->
+                    <h3 class="section-title">Announcements</h3>
+                    <div class="news-item card">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" id="announcementTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="news-tab" data-bs-toggle="tab"
+                                    data-bs-target="#news-tab-pane" type="button" role="tab"
+                                    aria-controls="news-tab-pane" aria-selected="true">News Highlights</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="notices-tab" data-bs-toggle="tab"
+                                    data-bs-target="#notices-tab-pane" type="button" role="tab"
+                                    aria-controls="notices-tab-pane" aria-selected="false">Notices</button>
+                            </li>
+                        </ul>
 
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div class="tab-pane fade show active" id="news-tab-pane" role="tabpanel"
-                                    aria-labelledby="news-tab" tabindex="0">
-                                    <ul class="list-group list-group-flush" id="news-list">
-                                        <!-- News items will be dynamically inserted here -->
-                                    </ul>
-                                    <!-- Load More News button (will be shown only for News tab) -->
-                                </div>
-                                <div class="tab-pane fade" id="notices-tab-pane" role="tabpanel"
-                                    aria-labelledby="notices-tab" tabindex="0">
-                                    <ul class="list-group list-group-flush" id="notices-list">
-                                        <!-- Notice items will be dynamically inserted here -->
-                                    </ul>
-                                    <!-- Load More Notices button (will be shown only for Notices tab) -->
-                                </div>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="news-tab-pane" role="tabpanel"
+                                aria-labelledby="news-tab" tabindex="0">
+                                <ul class="list-group list-group-flush" id="news-list">
+                                    <!-- News items will be dynamically inserted here -->
+                                </ul>
+                                <!-- Load More News button (will be shown only for News tab) -->
+                            </div>
+                            <div class="tab-pane fade" id="notices-tab-pane" role="tabpanel"
+                                aria-labelledby="notices-tab" tabindex="0">
+                                <ul class="list-group list-group-flush" id="notices-list">
+                                    <!-- Notice items will be dynamically inserted here -->
+                                </ul>
+                                <!-- Load More Notices button (will be shown only for Notices tab) -->
                             </div>
                         </div>
-                    </section>
+                    </div>
+                    <!-- </section> -->
                 </div>
 
                 <!-- Activities & Initiatives Section -->
                 <div class="col-md-6">
-                    <section class="section-content">
-                        <h2 class="section-title">Activities & Initiatives</h2>
-                        <div class="scrollable-content card">
-                            <!-- Blog Posts Container -->
-                            <div id="blog-posts"></div>
+                    <!-- <section class="section-content"> -->
+                    <h2 class="section-title">Activities & Initiatives</h2>
+                    <div class="scrollable-content card">
+                        <!-- Blog Posts Container -->
+                        <div id="blog-posts"></div>
 
-                            <!-- Loading Spinner and Text -->
-                            <div class="d-flex justify-content-center align-items-center" id="loading-spinner">
-                                <div class="spinner-border text-primary" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                                <span class="ms-2">Loading...</span>
+                        <!-- Loading Spinner and Text -->
+                        <div class="d-flex justify-content-center align-items-center" id="loading-spinner">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
                             </div>
-
-                            <!-- Load More Button and No More Posts Message -->
-                            <div class="d-flex justify-content-center mt-4">
-                                <button id="load-more-btn" class="btn btn-gradient">Load More</button>
-                                <p id="no-more-posts" class="text-muted text-center mt-4" style="display: none;">
-                                    That's all we have for you now.
-                                </p>
-                            </div>
+                            <span class="ms-2">Loading...</span>
                         </div>
-                    </section>
+
+                        <!-- Load More Button and No More Posts Message -->
+                        <div class="d-flex justify-content-center mt-4">
+                            <button id="load-more-btn" class="btn btn-gradient">Load More</button>
+                            <p id="no-more-posts" class="text-muted text-center mt-4" style="display: none;">
+                                That's all we have for you now.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- </section> -->
                 </div>
             </div>
         </div>
@@ -1381,7 +1854,7 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="section-header">
-                    <h2>United in care</h2>
+                    <h2>Voices Behind the Mission</h2>
                     <p>A message of <span>hope and unity</span></p>
                 </div>
 
@@ -1501,8 +1974,8 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- Load jQuery -->
     <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
-    <script src="/js/main.js?v=1.4.0"></script>
-    <script src="/js/custom.js?v=1.1.0"></script>
+    <script src="/js/main.js?v=1.4.1"></script>
+    <script src="/js/custom.js?v=1.1.1"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const swiper = new Swiper('#announcements-carousel', {
