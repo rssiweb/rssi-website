@@ -136,10 +136,17 @@
                     </div>
 
                     <div class="col-md-6">
-                        <div class="container mt-md-0 mt-5"> <!-- Adjusted margin top for medium and small devices -->
+                        <div class="container mt-md-0 mt-5">
                             <h2>Contact Us</h2>
                             <form action="#" method="POST" name="contactForm" id="contactForm">
                                 <input type="hidden" class="form-control" name="form-type" value="contact_Form">
+
+                                <!-- Honeypot field for extra bot protection -->
+                                <div class="d-none" aria-hidden="true">
+                                    <label for="website">Leave this field blank</label>
+                                    <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+                                </div>
+
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name</label>
                                     <input type="text" class="form-control" name="name" id="name"
@@ -161,6 +168,32 @@
                                     <textarea class="form-control" name="message" id="message" rows="5"
                                         placeholder="Enter your message" required></textarea>
                                 </div>
+
+                                <!-- Math CAPTCHA Section -->
+                                <div class="mb-3">
+                                    <label class="form-label">Anti-Bot Verification</label>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <span class="me-2 fw-bold">Solve this simple math:</span>
+                                        <span id="captchaQuestion" class="fw-bold fs-5 text-primary"></span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <input type="number" class="form-control" id="captchaAnswer"
+                                                name="captchaAnswer" placeholder="Your answer" required>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button type="button" id="refreshCaptcha" class="btn btn-outline-secondary">
+                                                <i class="bi bi-arrow-clockwise"></i> Refresh
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div id="captcha-error" class="form-text text-danger d-none mt-2">
+                                        <i class="bi bi-exclamation-triangle"></i> Incorrect answer. Please try again.
+                                    </div>
+                                    <small class="form-text text-muted">This helps us prevent automated spam
+                                        submissions.</small>
+                                </div>
+
                                 <button type="submit" id="submit" class="btn btn-primary">Submit</button>
                             </form>
                         </div>
@@ -273,51 +306,173 @@
 
         const contactForm = document.getElementById("contactForm");
 
-        document.getElementById("submit").addEventListener("click", async function (event) {
-            event.preventDefault(); // Prevent default form submission
+        // Simple CAPTCHA generation
+        function generateCaptcha() {
+            const operators = [
+                { symbol: '+', method: (a, b) => a + b },
+                { symbol: '-', method: (a, b) => a - b },
+                { symbol: '×', method: (a, b) => a * b }
+            ];
 
+            const operator = operators[Math.floor(Math.random() * operators.length)];
+            let num1, num2;
+
+            if (operator.symbol === '-') {
+                // For subtraction, ensure positive result
+                num2 = Math.floor(Math.random() * 9) + 1;
+                num1 = num2 + Math.floor(Math.random() * 9) + 1;
+            } else {
+                num1 = Math.floor(Math.random() * 10) + 1;
+                num2 = Math.floor(Math.random() * 10) + 1;
+            }
+
+            const question = `${num1} ${operator.symbol} ${num2}`;
+            const answer = operator.method(num1, num2);
+
+            return { question, answer };
+        }
+
+        // Store CAPTCHA answer
+        let currentCaptchaAnswer;
+
+        // Generate and display CAPTCHA
+        function generateAndDisplayCaptcha() {
+            const captcha = generateCaptcha();
+            document.getElementById('captchaQuestion').textContent = captcha.question + " = ?";
+            currentCaptchaAnswer = captcha.answer;
+
+            // Update hidden field for expected answer
+            let hiddenInput = document.querySelector('input[name="captchaExpected"]');
+            if (!hiddenInput) {
+                hiddenInput = document.createElement('input');
+                hiddenInput.type = 'hidden';
+                hiddenInput.name = 'captchaExpected';
+                contactForm.appendChild(hiddenInput);
+            }
+            hiddenInput.value = captcha.answer;
+
+            // Clear user's answer
+            document.getElementById('captchaAnswer').value = '';
+            document.getElementById('captcha-error').classList.add('d-none');
+        }
+
+        // Show alert and reset CAPTCHA
+        function showCaptchaErrorAndReset(message) {
+            // Show alert
+            alert(message);
+
+            // Show error message below CAPTCHA
+            document.getElementById("captcha-error").classList.remove("d-none");
+
+            // Focus on CAPTCHA input
+            document.getElementById('captchaAnswer').focus();
+
+            // Generate new CAPTCHA
+            generateAndDisplayCaptcha();
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            generateAndDisplayCaptcha();
+
+            // Refresh CAPTCHA button
+            document.getElementById('refreshCaptcha').addEventListener('click', function () {
+                generateAndDisplayCaptcha();
+            });
+        });
+
+        // Form submission handler
+        document.getElementById("submit").addEventListener("click", async function (event) {
+            event.preventDefault();
+
+            // Form validation
             if (!contactForm.checkValidity()) {
-                contactForm.reportValidity(); // Show the default validation messages
+                contactForm.reportValidity();
                 return;
             }
 
-            // Disable the donate button immediately upon form submission
+            // Check if CAPTCHA is filled
+            const userAnswer = document.getElementById('captchaAnswer').value;
+            if (!userAnswer) {
+                showCaptchaErrorAndReset("Please solve the verification question before submitting.");
+                return;
+            }
+
+            // Check if CAPTCHA is correct
+            const userAnswerNum = parseInt(userAnswer);
+            if (isNaN(userAnswerNum)) {
+                showCaptchaErrorAndReset("Please enter a valid number for the verification question.");
+                return;
+            }
+
+            if (userAnswerNum !== currentCaptchaAnswer) {
+                showCaptchaErrorAndReset("Incorrect answer! Please try solving the verification question again.");
+                return;
+            }
+
+            // CAPTCHA passed - hide any error message
+            document.getElementById("captcha-error").classList.add("d-none");
+
+            // Disable submit button
             this.disabled = true;
-            // Show the Bootstrap modal
-            const myModal = new bootstrap.Modal(document.getElementById("myModal"), {
-                backdrop: 'static',
-                keyboard: false
-            });
-            myModal.show();
+            this.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Submitting...';
+
+            // Show loading modal if exists
+            let myModal = null;
+            if (document.getElementById("myModal")) {
+                myModal = new bootstrap.Modal(document.getElementById("myModal"), {
+                    backdrop: 'static',
+                    keyboard: false
+                });
+                myModal.show();
+            }
 
             try {
+                // Create FormData with additional fields
+                const formData = new FormData(contactForm);
+                formData.append('submission_time', new Date().toISOString());
+                formData.append('form_load_time', Date.now());
+
                 const response = await fetch(scriptURL, {
                     method: 'POST',
-                    body: new FormData(contactForm)
+                    body: formData
                 });
+
                 const result = await response.json();
 
-                console.log("API Response:", result); // For testing purposes, log the entire response
-
                 if (!result.error) {
-                    alert(`Submitted successfully! reference ID: ${result.queryid}`);
-                    contactForm.reset(); // Reset the form after successful submission
-                    location.reload(); // Reload the page after successful submission
+                    alert(`Submitted successfully! Reference ID: ${result.queryid}`);
+                    contactForm.reset();
+                    generateAndDisplayCaptcha();
+                    // Optional: reload after 2 seconds
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
                 } else {
+                    generateAndDisplayCaptcha();
                     if (result.errorMessage === "") {
                         alert("Error occurred during form submission. Please try again later.");
                     } else {
-                        alert("Unknown error occurred during form submission.");
+                        alert(result.errorMessage);
                     }
                 }
             } catch (error) {
                 console.error(error);
+                generateAndDisplayCaptcha();
                 alert("Error occurred during form submission. Please try again later.");
             } finally {
-                // Re-enable the donate button after the form submission process is finished
+                // Re-enable button
                 this.disabled = false;
-                myModal.hide();
+                this.innerHTML = 'Submit';
+                if (myModal) {
+                    myModal.hide();
+                }
             }
+        });
+
+        // Clear error when user starts typing in CAPTCHA field
+        document.getElementById('captchaAnswer').addEventListener('input', function () {
+            document.getElementById('captcha-error').classList.add('d-none');
         });
     </script>
     <script>
