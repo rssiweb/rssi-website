@@ -176,6 +176,51 @@
             background: linear-gradient(to right, var(--highlight-color), var(--accent-color));
             transition: width 0.5s ease;
         }
+
+        /* Password field with icon inside */
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper .form-control {
+            padding-right: 45px;
+        }
+
+        .password-icon-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 5px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .password-icon-btn:hover {
+            background-color: rgba(0, 196, 204, 0.1);
+            color: var(--highlight-color);
+        }
+
+        .password-icon-btn:focus {
+            outline: none;
+            background-color: rgba(0, 196, 204, 0.15);
+            color: var(--highlight-color);
+        }
+
+        /* Ensure icon doesn't interfere with input focus */
+        .password-icon-btn:focus-visible {
+            box-shadow: 0 0 0 2px rgba(0, 196, 204, 0.25);
+        }
     </style>
 </head>
 
@@ -426,10 +471,19 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="password" class="form-label">Password *</label>
-                                            <input type="password" class="form-control" id="password" name="password"
-                                                required>
-                                            <small class="text-muted">Minimum 8 characters with letters and
-                                                numbers</small>
+                                            <div class="password-wrapper">
+                                                <input type="password" class="form-control" id="password"
+                                                    name="password" required>
+                                                <button type="button" class="password-icon-btn" id="togglePassword"
+                                                    aria-label="Show password">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </div>
+                                            <div class="form-text">
+                                                <small class="text-muted">Minimum 8 characters with letters and
+                                                    numbers</small>
+                                                <div id="passwordStrength" class="mt-1"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -789,6 +843,46 @@
 
             // Initialize progress tracking
             setupProgressTracking();
+        });
+    </script>
+    <script>
+        // Password visibility toggle
+        document.addEventListener('DOMContentLoaded', function () {
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+
+            if (togglePassword && passwordInput) {
+                togglePassword.addEventListener('click', function () {
+                    // Toggle password visibility
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+
+                    // Toggle icon and aria-label
+                    const icon = this.querySelector('i');
+                    if (type === 'text') {
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                        this.setAttribute('aria-label', 'Hide password');
+                        this.setAttribute('title', 'Hide password');
+                    } else {
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                        this.setAttribute('aria-label', 'Show password');
+                        this.setAttribute('title', 'Show password');
+                    }
+
+                    // Maintain focus on password input
+                    passwordInput.focus();
+                });
+
+                // Handle keyboard navigation
+                togglePassword.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            }
         });
     </script>
 </body>
