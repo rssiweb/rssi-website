@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancellation & Refund Policy | Baangee Traders</title>
+    <meta name="description"
+        content="Cancellation and Refund Policy for Baangee Traders. Detailed information on return policies for corporate vouchers, educational services, agriculture products, and construction materials.">
+    <meta name="keywords"
+        content="Baangee Traders Refund Policy, Cancellation Policy, Return Policy, Corporate Vouchers Refund, Educational Services Refund, Agriculture Products Return, Construction Materials Return">
+    <meta name="author" content="Baangee Traders">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/main.css?v=1.7">
+    <style>
+        .refund-hero {
+            background: linear-gradient(rgba(10, 38, 71, 0.85), rgba(10, 38, 71, 0.9)), url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0 60px;
+            margin-bottom: 60px;
+        }
+
+        .refund-content {
+            padding: 60px 0;
+        }
+
+        .policy-timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 30px 0;
+        }
+
+        .policy-timeline:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--highlight-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--highlight-color);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--highlight-color);
+        }
+
+        .service-policy {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px;
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .service-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .policy-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin: 30px 0;
+        }
+
+        .policy-table table {
+            margin-bottom: 0;
+        }
+
+        .policy-table thead {
+            background: linear-gradient(135deg, var(--primary-color), var(--light-color));
+            color: white;
+        }
+
+        .policy-table th {
+            border: none;
+            padding: 15px;
+            font-weight: 600;
+        }
+
+        .policy-table td {
+            padding: 15px;
+            vertical-align: middle;
+            border-color: #eee;
+        }
+
+        .refund-process {
+            background: linear-gradient(135deg, rgba(0, 196, 204, 0.1), rgba(0, 196, 204, 0.05));
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid var(--highlight-color);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--highlight-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .contact-support {
+            background: linear-gradient(135deg, var(--primary-color), var(--light-color));
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .refund-hero {
+                padding: 80px 0 40px;
+            }
+
+            .refund-content {
+                padding: 40px 0;
+            }
+
+            .policy-table {
+                font-size: 0.9rem;
+            }
+
+            .policy-table th,
+            .policy-table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="refund-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-5 fw-bold mb-4">Cancellation & Refund Policy</h1>
+                    <p class="lead">Clear guidelines for order cancellations and refunds across all our services</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Policy Content -->
+    <section class="refund-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="alert alert-info">
+                        <h5><i class="fas fa-info-circle me-2"></i>Policy Overview</h5>
+                        <p class="mb-0">This policy outlines the terms for cancellations and refunds for Baangee Traders
+                            services. Please read carefully as policies vary by service type.</p>
+                    </div>
+
+                    <h3 class="mb-4">Service-Specific Policies</h3>
+
+                    <!-- Corporate Vouchers -->
+                    <div class="service-policy">
+                        <div class="service-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h4>Corporate Voucher Solutions</h4>
+                        <div class="policy-timeline">
+                            <div class="timeline-item">
+                                <h5>Cancellation Policy</h5>
+                                <p>Voucher orders can be cancelled within 24 hours of purchase. After 24 hours,
+                                    cancellations may be subject to processing fees. Activated vouchers cannot be
+                                    cancelled.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>Refund Policy</h5>
+                                <p>Refunds for cancelled voucher orders will be processed within 7-10 business days.
+                                    Refund amount may be reduced by processing fees and any third-party charges.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>Validity & Expiry</h5>
+                                <p>Vouchers have specific validity periods. Expired vouchers cannot be refunded or
+                                    extended. Please check validity before purchase.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Educational Services -->
+                    <div class="service-policy">
+                        <div class="service-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <h4>CSC Educational Services</h4>
+                        <div class="policy-timeline">
+                            <div class="timeline-item">
+                                <h5>Library Registration</h5>
+                                <p>Library membership fees are non-refundable. Cancellations must be submitted 7 days
+                                    before the next billing cycle.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>Book Orders</h5>
+                                <p>Books can be returned within 7 days if damaged or incorrect. Returns must be in
+                                    original condition with all accessories.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>Educational Programs</h5>
+                                <p>Program fees are refundable if cancelled at least 15 days before program start date,
+                                    minus administrative charges.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agriculture Products -->
+                    <div class="service-policy">
+                        <div class="service-icon">
+                            <i class="fas fa-tractor"></i>
+                        </div>
+                        <h4>Agriculture Products</h4>
+                        <div class="policy-timeline">
+                            <div class="timeline-item">
+                                <h5>Order Cancellation</h5>
+                                <p>Orders can be cancelled before dispatch. Once dispatched, cancellations are not
+                                    possible. Contact us immediately for cancellation requests.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>Returns & Refunds</h5>
+                                <p>Defective or damaged products can be returned within 15 days of delivery. Returns
+                                    require proof of purchase and original packaging.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>Quality Issues</h5>
+                                <p>For quality complaints, contact us within 48 hours of delivery with photos/videos as
+                                    evidence. Refunds or replacements will be processed after investigation.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Construction Materials -->
+                    <div class="service-policy">
+                        <div class="service-icon">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <h4>Construction Materials</h4>
+                        <div class="policy-timeline">
+                            <div class="timeline-item">
+                                <h5>Cancellation Window</h5>
+                                <p>Cancellations accepted within 6 hours of order placement for standard items. Custom
+                                    orders cannot be cancelled once production begins.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>Returns Policy</h5>
+                                <p>Materials can be returned within 7 days if unopened and in original condition. Bulk
+                                    materials (cement, aggregates) cannot be returned.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>Defective Products</h5>
+                                <p>Defective materials must be reported within 24 hours of delivery. We will arrange
+                                    inspection and replacement if defect is verified.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- General Refund Policy Table -->
+                    <div class="policy-table">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Service Type</th>
+                                    <th>Cancellation Period</th>
+                                    <th>Refund Processing Time</th>
+                                    <th>Special Conditions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Corporate Vouchers</td>
+                                    <td>24 hours</td>
+                                    <td>7-10 business days</td>
+                                    <td>Activated vouchers non-refundable</td>
+                                </tr>
+                                <tr>
+                                    <td>Educational Services</td>
+                                    <td>Varies by service</td>
+                                    <td>10-15 business days</td>
+                                    <td>Membership fees non-refundable</td>
+                                </tr>
+                                <tr>
+                                    <td>Agriculture Products</td>
+                                    <td>Before dispatch</td>
+                                    <td>10-14 business days</td>
+                                    <td>Quality claims within 48 hours</td>
+                                </tr>
+                                <tr>
+                                    <td>Construction Materials</td>
+                                    <td>6 hours</td>
+                                    <td>14-21 business days</td>
+                                    <td>Bulk items non-returnable</td>
+                                </tr>
+                                <tr>
+                                    <td>General Products</td>
+                                    <td>48 hours</td>
+                                    <td>7-10 business days</td>
+                                    <td>Original packaging required</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Refund Process -->
+                    <div class="refund-process">
+                        <h4 class="mb-4"><i class="fas fa-sync-alt me-2"></i>Refund Process Timeline</h4>
+
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div>
+                                <h6 class="mb-1">Request Submission</h6>
+                                <p class="mb-0">Submit cancellation/refund request via email, phone, or member portal
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div>
+                                <h6 class="mb-1">Verification</h6>
+                                <p class="mb-0">Our team verifies eligibility (1-2 business days)</p>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div>
+                                <h6 class="mb-1">Approval</h6>
+                                <p class="mb-0">Refund approved and processing initiated (1 business day)</p>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <div>
+                                <h6 class="mb-1">Bank Processing</h6>
+                                <p class="mb-0">Refund processed by bank/payment gateway (3-7 business days)</p>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">5</div>
+                            <div>
+                                <h6 class="mb-1">Completion</h6>
+                                <p class="mb-0">Refund appears in your account (additional 2-3 days)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Important Notes -->
+                    <div class="alert alert-warning">
+                        <h5><i class="fas fa-exclamation-triangle me-2"></i>Important Notes</h5>
+                        <ul class="mb-0">
+                            <li>Refunds will be issued to the original payment method</li>
+                            <li>Processing fees and shipping charges may be non-refundable</li>
+                            <li>Digital products and services may have different refund terms</li>
+                            <li>Seasonal or clearance items may be non-returnable</li>
+                            <li>Refunds for bank transfers may take additional time</li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact for Support -->
+                    <div class="contact-support">
+                        <h4 class="mb-3"><i class="fas fa-headset me-2"></i>Need Help with Refunds?</h4>
+                        <p class="mb-4">Our customer support team is here to assist you with any cancellation or refund
+                            queries.</p>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <p><i class="fas fa-phone me-2"></i> <a href="tel:+919429464575" class="text-white">+91
+                                        94294 64575</a></p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <p><i class="fas fa-envelope me-2"></i> <a href="mailto:director@baangeetraders.com"
+                                        class="text-white">director@baangeetraders.com</a></p>
+                            </div>
+                        </div>
+                        <p class="mb-0"><strong>Policy Updated:</strong> January 10, 2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Main JS -->
+    <script src="js/main.js?v=1.5"></script>
+</body>
+
+</html>
