@@ -637,15 +637,7 @@
                         return;
                     }
 
-                    // Show success message
-                    const plan = document.querySelector('input[name="membershipPlan"]:checked').value;
-                    const planNames = {
-                        'basic': 'Basic Member',
-                        'premium': 'Premium Member',
-                        'business': 'Business Member'
-                    };
-
-                    alert(`Thank you for registering as a ${planNames[plan]}! Your account is being created. You will receive a confirmation email shortly.`);
+                    alert(`Thank you for registering! Your account is being created. You will receive a confirmation email shortly.`);
 
                     // In real implementation, this would be an AJAX call to backend
                     console.log('Member registration data:', data);
@@ -657,39 +649,60 @@
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
 
-                // Real-time password strength check
+                // Alternative: Simple checklist version
                 const passwordInput = document.getElementById('password');
                 if (passwordInput) {
                     passwordInput.addEventListener('input', function () {
                         const password = this.value;
-                        const strengthText = document.getElementById('passwordStrength');
+                        const strengthDiv = document.getElementById('passwordStrength');
 
-                        if (!strengthText) {
-                            // Create strength indicator if it doesn't exist
-                            const strengthDiv = document.createElement('div');
-                            strengthDiv.id = 'passwordStrength';
-                            strengthDiv.className = 'form-text';
-                            this.parentNode.appendChild(strengthDiv);
+                        if (!strengthDiv) {
+                            const newDiv = document.createElement('div');
+                            newDiv.id = 'passwordStrength';
+                            newDiv.className = 'form-text';
+                            this.parentNode.appendChild(newDiv);
                         }
 
-                        let strength = 'Weak';
-                        let color = 'text-danger';
+                        const updatedDiv = document.getElementById('passwordStrength');
+                        if (!updatedDiv) return;
 
-                        if (password.length >= 8) {
-                            const hasLetter = /[a-zA-Z]/.test(password);
-                            const hasNumber = /\d/.test(password);
+                        // Check criteria
+                        const checks = [
+                            { label: 'At least 8 characters', met: password.length >= 8 },
+                            { label: 'Contains lowercase letter', met: /[a-z]/.test(password) },
+                            { label: 'Contains UPPERCASE letter', met: /[A-Z]/.test(password) },
+                            { label: 'Contains number', met: /\d/.test(password) },
+                            { label: 'Contains special character', met: /[^a-zA-Z0-9]/.test(password) }
+                        ];
 
-                            if (hasLetter && hasNumber) {
-                                strength = 'Strong';
-                                color = 'text-success';
-                            } else if (hasLetter || hasNumber) {
-                                strength = 'Medium';
-                                color = 'text-warning';
-                            }
+                        const metCount = checks.filter(check => check.met).length;
+
+                        // Determine strength
+                        let strength, strengthClass;
+                        if (password.length === 0) {
+                            strength = 'Enter password';
+                            strengthClass = 'text-muted';
+                        } else if (metCount === 5) {
+                            strength = 'Strong ✓';
+                            strengthClass = 'text-success';
+                        } else if (metCount >= 3) {
+                            strength = 'Medium';
+                            strengthClass = 'text-warning';
+                        } else {
+                            strength = 'Weak';
+                            strengthClass = 'text-danger';
                         }
 
-                        document.getElementById('passwordStrength').innerHTML =
-                            `Password strength: <span class="${color}">${strength}</span>`;
+                        // Generate HTML
+                        let html = `<div class="mb-2"><strong class="${strengthClass}">${strength}</strong></div>`;
+
+                        checks.forEach(check => {
+                            const icon = check.met ? '✓' : '○';
+                            const color = check.met ? 'text-success' : 'text-muted';
+                            html += `<div class="small ${color} mb-1">${icon} ${check.label}</div>`;
+                        });
+
+                        updatedDiv.innerHTML = html;
                     });
                 }
             }
