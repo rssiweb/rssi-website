@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.0.8/dist/css/glightbox.min.css" />
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="/css/main.css?v=1.3.3" rel="stylesheet">
@@ -576,6 +578,194 @@
 
             #stories-of-change .stories-name {
                 font-size: 1.25rem;
+            }
+        }
+    </style>
+    <style>
+        /* RSSI Blog Section - Scoped styles to avoid conflicts */
+        .rssi-blogs-section {
+            font-family: inherit;
+            /* Inherit from parent */
+        }
+
+        .rssi-blogs-section .section-title {
+            color: #2c3e50;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .rssi-blogs-section .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #3498db;
+        }
+
+        .rssi-blogs-section .blog-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eaeaea;
+        }
+
+        .rssi-blogs-section .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .rssi-blogs-section .blog-image-container {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+        }
+
+        .rssi-blogs-section .blog-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .rssi-blogs-section .blog-card:hover .blog-image {
+            transform: scale(1.05);
+        }
+
+        .rssi-blogs-section .blog-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #3498db;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            z-index: 1;
+        }
+
+        .rssi-blogs-section .blog-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .rssi-blogs-section .blog-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .rssi-blogs-section .blog-excerpt {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .rssi-blogs-section .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+            margin-top: auto;
+        }
+
+        .rssi-blogs-section .author-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .rssi-blogs-section .author-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 10px;
+            background: #f0f7ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3498db;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .rssi-blogs-section .author-name {
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        .rssi-blogs-section .post-date {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .rssi-blogs-section .read-more-btn {
+            color: #3498db;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .rssi-blogs-section .read-more-btn:hover {
+            color: #2980b9;
+        }
+
+        .rssi-blogs-section .read-more-btn i {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+
+        .rssi-blogs-section .read-more-btn:hover i {
+            transform: translateX(3px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .rssi-blogs-section .blog-image-container {
+                height: 180px;
+            }
+
+            .rssi-blogs-section .blog-content {
+                padding: 15px;
+            }
+
+            .rssi-blogs-section .blog-title {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .rssi-blogs-section .col-md-6 {
+                margin-bottom: 20px;
+            }
+
+            .rssi-blogs-section .blog-image-container {
+                height: 160px;
             }
         }
     </style>
@@ -1217,8 +1407,6 @@
         </section>
         <!-- END Projects-->
 
-
-
         <!-- ======= Why Us Section ======= -->
         <section id="why-us" class="why-us section-bg">
             <div class="container" data-aos="fade-up">
@@ -1326,6 +1514,7 @@
                         </div>
                     </div>
                     <!-- End Stats Item -->
+
                 </div>
             </div>
         </section>
@@ -1398,11 +1587,6 @@
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
-                <!-- <section id="hero" class="hero" style="min-height: 0; padding: 0;">
-                    <a href="media-center" class="btn-watch-video d-flex align-items-center"><i
-                            class="bi bi-play-circle"></i><span>&nbsp;Watch
-                            Video</span></a>
-                </section> -->
             </div>
         </section>
         <!-- End Gallery Section -->
@@ -1532,6 +1716,50 @@
         </section>
         <!-- End Clients Section -->
 
+        <!-- Latest Blogs Section -->
+        <section class="rssi-blogs-section py-5 bg-light">
+            <div class="container">
+                <div class="row mb-4">
+                    <div class="col-12 d-flex justify-content-between align-items-center">
+                        <h2 class="section-title mb-0">Latest from Our Blog</h2>
+                        <a href="/blog/index.html" class="btn btn-outline-primary">
+                            View All Articles <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Blog Posts Container -->
+                <div class="row g-4" id="rssiBlogPosts">
+                    <!-- Posts will be loaded here -->
+                </div>
+
+                <!-- Loading Spinner -->
+                <div class="text-center py-4" id="rssiLoadingSpinner">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2 text-muted">Loading latest articles...</p>
+                </div>
+
+                <!-- View All Button (shown after loading) -->
+                <div class="text-center mt-4" id="rssiViewAll" style="display: none;">
+                    <a href="/blog/index.html" class="btn btn-primary px-4">
+                        <i class="fas fa-newspaper me-2"></i> View All Blog Articles
+                    </a>
+                </div>
+
+                <!-- No Posts Message -->
+                <div class="text-center py-5" id="rssiNoPosts" style="display: none;">
+                    <i class="fas fa-newspaper fa-3x text-muted mb-3"></i>
+                    <h4 class="text-muted">No articles yet</h4>
+                    <p class="text-muted">Check back soon for our latest updates and stories.</p>
+                    <a href="/blog/index.html" class="btn btn-outline-primary mt-2">
+                        Visit Blog <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- ======= Chefs Section ======= -->
         <section id="chefs" class="chefs section-bg">
             <div class="container" data-aos="fade-up">
@@ -1658,9 +1886,19 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- Load jQuery -->
-    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="/js/main.js?v=1.4.1"></script>
     <script src="/js/custom.js?v=1.1.1"></script>
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const swiper = new Swiper('#announcements-carousel', {
@@ -1828,6 +2066,98 @@
     </script>
 
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script>
+        // RSSI Blogs Script for Main Page
+        $(document).ready(function () {
+            loadLatestBlogs();
+        });
+
+        function loadLatestBlogs() {
+            const API_BASE = window.location.hostname === 'localhost'
+                ? 'http://localhost:8082/blog-api/'
+                : 'https://login.rssi.in/blog-api/';
+
+            // Show loading spinner
+            $('#rssiLoadingSpinner').show();
+            $('#rssiNoPosts').hide();
+            $('#rssiViewAll').hide();
+
+            // Load only 3 latest posts for the homepage
+            const url = API_BASE + 'get_blogs.php?limit=3&offset=0&debug=1';
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success && response.posts && response.posts.length > 0) {
+                        renderBlogPosts(response.posts);
+                        $('#rssiViewAll').show();
+                        $('#rssiNoPosts').hide();
+                    } else {
+                        // No posts available
+                        $('#rssiNoPosts').show();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error loading blogs:', error);
+                    $('#rssiNoPosts').show();
+                },
+                complete: function () {
+                    $('#rssiLoadingSpinner').hide();
+                }
+            });
+        }
+
+        function renderBlogPosts(posts) {
+            const $container = $('#rssiBlogPosts');
+            $container.empty();
+
+            posts.forEach(post => {
+                // Handle missing images
+                const featuredImage = post.featured_image || 'https://via.placeholder.com/400x200/e3f2fd/2c3e50?text=RSSI+Blog';
+                const authorInitial = (post.author_name || 'A').charAt(0);
+                const excerpt = post.excerpt || post.content_preview || 'Read more about our latest work and initiatives...';
+
+                const postHtml = `
+            <div class="col-md-4">
+                <div class="blog-card">
+                    <div class="blog-image-container">
+                        <img src="${featuredImage}" 
+                             alt="${post.title}" 
+                             class="blog-image"
+                             onerror="this.src='https://via.placeholder.com/400x200/e3f2fd/2c3e50?text=RSSI+Blog'">
+                        <span class="blog-badge">${post.category || 'News'}</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">${post.title}</h3>
+                        <p class="blog-excerpt">${excerpt}</p>
+                        <div class="blog-meta">
+                            <div class="author-info">
+                                <div class="author-avatar">
+                                    ${post.author_photo
+                        ? `<img src="${post.author_photo}" alt="${post.author_name}" style="width:100%;height:100%;object-fit:cover;">`
+                        : authorInitial
+                    }
+                                </div>
+                                <div>
+                                    <div class="author-name">${post.author_name || 'RSSI Team'}</div>
+                                    <div class="post-date">${post.created_at_formatted || 'Recently'}</div>
+                                </div>
+                            </div>
+                            <a href="/blog/index.html" class="read-more-btn">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+
+                $container.append(postHtml);
+            });
+        }
+    </script>
 </body>
 
 </html>
