@@ -342,7 +342,7 @@
                 <span class="visually-hidden">Loading...</span>
             </div>
             <h4>Processing your request...</h4>
-            <p>Please wait while we save your blog post</p>
+            <p>Do not refresh or close this window</p>
         </div>
     </div>
 
@@ -358,9 +358,9 @@
                 <button class="btn btn-outline-secondary" id="createAnotherBtn">
                     <i class="fas fa-plus me-2"></i>Create Another
                 </button>
-                <!-- <button class="btn btn-primary" id="viewBlogBtn">
-                    <i class="fas fa-eye me-2"></i>View Blog
-                </button> -->
+                <button class="btn btn-primary" id="goToDashboardBtn">
+                    <i class="fas fa-tachometer-alt me-2"></i>Go to Dashboard
+                </button>
             </div>
         </div>
     </div>
@@ -657,8 +657,8 @@
         function handlePageState() {
             // Check if user is logged in (using centralized auth.js)
             if (checkUserLogin()) {
-                // User is logged in, show dashboard
-                showDashboard();
+                // User is logged in, show blog editor
+                showEditorPage();
                 if (!summernoteInitialized) {
                     initializeSummernote();
                     setupEventListeners();
@@ -675,7 +675,9 @@
             }
         }
 
-        function showDashboard() {
+        // ==================== PAGE-SPECIFIC FUNCTIONS ====================
+
+        function showEditorPage() {
             $('#loginRequired').hide();
             $('.form-container').show();
             initializeForm();
@@ -695,35 +697,9 @@
             $('.form-container').hide();
 
             // Render Google button in login required section
-            renderGoogleButtonForPortal('#loginPortalButtons');
+            createGoogleSignInButton('loginPortalButtons');
         }
-
-        function renderGoogleButtonForPortal(containerId) {
-            $(containerId).html(`
-            <div id="g_id_onload"
-                data-client_id="${GOOGLE_CLIENT_ID}"
-                data-context="signin"
-                data-ux_mode="popup"
-                data-callback="handleGoogleSignIn"
-                data-auto_prompt="false">
-            </div>
-            <div class="g_id_signin"
-                data-type="standard"
-                data-shape="rectangular"
-                data-theme="filled_blue"
-                data-text="signin_with"
-                data-size="large"
-                data-logo_alignment="left"
-                data-width="auto">
-            </div>
-        `);
-
-            // Initialize Google Sign-In if not already done
-            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-                setupGoogleSignIn();
-            }
-        }
-
+        // ==================== FORM & EDITOR INITIALIZATION ====================
         function initializeForm() {
             if (currentUser) {
                 // Display author information from Google
@@ -1062,6 +1038,10 @@
             $('#createAnotherBtn').click(function () {
                 $('#successModal').removeClass('show').hide();
                 resetForm();
+            });
+
+            $('#goToDashboardBtn').click(function () {
+                window.location.href = 'user-portal.html';
             });
         }
         function addTag() {

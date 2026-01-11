@@ -332,7 +332,7 @@
             <h3>Login Required</h3>
             <p class="mb-4">Please login with Google to edit blog posts. You can only edit posts that you have created.
             </p>
-            <div id="loginPortalButtons" class="mt-4">
+            <div id="loginPortalButtons" class="mt-4 d-flex justify-content-center">
                 <!-- Google button will be inserted here -->
             </div>
         </div>
@@ -345,7 +345,7 @@
                 <span class="visually-hidden">Loading...</span>
             </div>
             <h4>Processing your request...</h4>
-            <p>Please wait while we save your changes</p>
+            <p>Do not refresh or close this window</p>
         </div>
     </div>
 
@@ -686,7 +686,7 @@
             // Check if user is logged in (using centralized auth.js)
             if (checkUserLogin()) {
                 // User is logged in, show dashboard and load post
-                showDashboard();
+                showEditorPage();
                 loadPostData(postId);
                 if (!summernoteInitialized) {
                     initializeSummernote();
@@ -704,7 +704,7 @@
             }
         }
 
-        function showDashboard() {
+        function showEditorPage() {
             $('#loginRequired').hide();
             $('.form-container').show();
             initializeForm();
@@ -723,12 +723,8 @@
             $('#loginRequired').show();
             $('.form-container').hide();
 
-            // Simple login button that uses existing auth system
-            $('#loginPortalButtons').html(`
-            <button class="btn btn-primary btn-lg" onclick="triggerGoogleSignIn()">
-                <i class="fab fa-google me-2"></i> Sign in with Google
-            </button>
-        `);
+            // Render Google button in login required section
+            createGoogleSignInButton('loginPortalButtons');
         }
 
         function loadPostData(postId) {
