@@ -130,7 +130,7 @@ function updateLoginButtonContainer(selector) {
                         text: 'signin_with',
                         shape: 'rectangular',
                         logo_alignment: 'left',
-                        width: 'auto'
+                        // width: 'auto'
                     }
                 );
             }
