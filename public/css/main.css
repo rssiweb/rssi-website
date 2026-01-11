@@ -67,48 +67,6 @@ section {
     background-color: #f8f9fa;
 }
 
-.section-header {
-    text-align: center;
-    padding-bottom: 30px;
-}
-
-.section-header h2 {
-    font-size: 13px;
-    letter-spacing: 1px;
-    font-weight: 600;
-    margin: 0;
-    padding: 0;
-    color: #7f7f90;
-    text-transform: uppercase;
-    position: relative;
-    display: inline-block;
-    padding-bottom: 15px;
-}
-
-/* Half dash underline for h2 */
-.section-header h2::after {
-    content: '';
-    position: absolute;
-    left: 25%;
-    bottom: 0;
-    width: 50%;
-    height: 2px;
-    background: var(--color-primary);
-}
-
-.section-header p {
-    margin: 15px 0 0;
-    font-size: 40px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    line-height: 1.2;
-}
-
-.section-header p span {
-    color: var(--color-primary);
-    position: relative;
-}
-
 /*--------------------------------------------------------------
 # Breadcrumbs
 --------------------------------------------------------------*/
