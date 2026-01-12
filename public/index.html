@@ -580,14 +580,14 @@
         }
     </style>
     <style>
-        /* RSSI Blog Section - Scoped styles to avoid conflicts */
+        /* RSSI Blog Section - Updated with main theme colors */
         .rssi-blogs-section {
             font-family: inherit;
             /* Inherit from parent */
         }
 
         .rssi-blogs-section .section-title {
-            color: #2c3e50;
+            color: var(--color-secondary);
             font-weight: 600;
             position: relative;
             padding-bottom: 10px;
@@ -600,23 +600,24 @@
             left: 0;
             width: 60px;
             height: 3px;
-            background: #3498db;
+            background: var(--color-primary);
         }
 
         .rssi-blogs-section .blog-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 8px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             height: 100%;
             display: flex;
             flex-direction: column;
-            border: 1px solid #eaeaea;
+            border: 1px solid rgba(55, 55, 63, 0.1);
+            box-shadow: 0px 0 20px rgba(55, 55, 63, 0.08);
         }
 
         .rssi-blogs-section .blog-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 0 30px rgba(55, 55, 63, 0.15);
         }
 
         .rssi-blogs-section .blog-image-container {
@@ -633,20 +634,21 @@
         }
 
         .rssi-blogs-section .blog-card:hover .blog-image {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         .rssi-blogs-section .blog-badge {
             position: absolute;
             top: 15px;
             left: 15px;
-            background: #3498db;
+            background: var(--color-primary);
             color: white;
-            padding: 4px 12px;
+            padding: 5px 15px;
             border-radius: 20px;
             font-size: 12px;
-            font-weight: 500;
+            font-weight: 600;
             z-index: 1;
+            box-shadow: 0 4px 12px rgba(206, 18, 18, 0.2);
         }
 
         .rssi-blogs-section .blog-content {
@@ -659,7 +661,7 @@
         .rssi-blogs-section .blog-title {
             font-size: 1.1rem;
             font-weight: 600;
-            color: #2c3e50;
+            color: var(--color-secondary);
             margin-bottom: 10px;
             line-height: 1.4;
             /* Line clamp with full browser compatibility */
@@ -672,7 +674,7 @@
         }
 
         .rssi-blogs-section .blog-excerpt {
-            color: #666;
+            color: #6c757d;
             font-size: 0.9rem;
             line-height: 1.5;
             margin-bottom: 15px;
@@ -691,7 +693,7 @@
             justify-content: space-between;
             align-items: center;
             padding-top: 15px;
-            border-top: 1px solid #f0f0f0;
+            border-top: 1px solid rgba(55, 55, 63, 0.1);
             margin-top: auto;
         }
 
@@ -706,174 +708,98 @@
             border-radius: 50%;
             overflow: hidden;
             margin-right: 10px;
-            background: #f0f7ff;
+            background: rgba(206, 18, 18, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #3498db;
+            color: var(--color-primary);
             font-weight: 600;
             font-size: 14px;
         }
 
         .rssi-blogs-section .author-name {
             font-size: 0.85rem;
-            color: #555;
+            color: #7f7f90;
         }
 
         .rssi-blogs-section .post-date {
             font-size: 0.8rem;
-            color: #888;
+            color: rgba(127, 127, 144, 0.7);
         }
 
         .rssi-blogs-section .read-more-btn {
-            color: #3498db;
+            color: var(--color-primary);
             font-size: 0.9rem;
-            font-weight: 500;
+            font-weight: 600;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+            position: relative;
         }
 
-        .rssi-blogs-section .read-more-btn:hover {
-            color: #2980b9;
+        .rssi-blogs-section .read-more-btn:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--color-primary);
+            visibility: hidden;
+            width: 0px;
+            transition: all 0.3s ease-in-out 0s;
+        }
+
+        .rssi-blogs-section .read-more-btn:hover,
+        .rssi-blogs-section .blog-card:hover .read-more-btn {
+            color: #000;
+        }
+
+        .rssi-blogs-section .read-more-btn:hover:before,
+        .rssi-blogs-section .blog-card:hover .read-more-btn:before {
+            visibility: visible;
+            width: 100%;
         }
 
         .rssi-blogs-section .read-more-btn i {
             margin-left: 5px;
-            transition: transform 0.3s;
-        }
-
-        .rssi-blogs-section .read-more-btn:hover i {
-            transform: translateX(3px);
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .rssi-blogs-section .blog-image-container {
-                height: 180px;
-            }
-
-            .rssi-blogs-section .blog-content {
-                padding: 15px;
-            }
-
-            .rssi-blogs-section .blog-title {
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .rssi-blogs-section .col-md-4 {
-                margin-bottom: 20px;
-            }
-
-            .rssi-blogs-section .blog-image-container {
-                height: 160px;
-            }
-
-            /* Adjust line-clamp for mobile */
-            .rssi-blogs-section .blog-title {
-                -webkit-line-clamp: 2;
-                line-clamp: 2;
-            }
-
-            .rssi-blogs-section .blog-excerpt {
-                -webkit-line-clamp: 2;
-                line-clamp: 2;
-            }
-        }
-
-        /* Blog Section Buttons Styling */
-
-        /* Header "View All Articles" Button */
-        .rssi-blogs-section .btn-outline-primary {
-            --btn-primary-color: #3498db;
-            --btn-hover-color: #2980b9;
-            --btn-text-color: #3498db;
-            --btn-hover-text-color: #fff;
-            --btn-border-width: 2px;
-            --btn-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-            color: var(--btn-text-color);
-            border: var(--btn-border-width) solid var(--btn-primary-color);
-            background-color: transparent;
-            padding: 10px 24px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            border-radius: 30px;
-            text-decoration: none;
-            transition: var(--btn-transition);
-            display: inline-flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .rssi-blogs-section .btn-outline-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.7s ease;
-            z-index: -1;
-        }
-
-        .rssi-blogs-section .btn-outline-primary:hover {
-            color: var(--btn-hover-text-color);
-            background-color: var(--btn-primary-color);
-            border-color: var(--btn-primary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.25);
-        }
-
-        .rssi-blogs-section .btn-outline-primary:hover::before {
-            left: 100%;
-        }
-
-        .rssi-blogs-section .btn-outline-primary:active {
-            transform: translateY(0);
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
-        }
-
-        .rssi-blogs-section .btn-outline-primary i {
+            font-size: 12px;
             transition: transform 0.3s ease;
-            font-size: 0.9em;
         }
 
-        .rssi-blogs-section .btn-outline-primary:hover i {
-            transform: translateX(4px);
+        .rssi-blogs-section .read-more-btn:hover i,
+        .rssi-blogs-section .blog-card:hover .read-more-btn i {
+            transform: translateX(5px);
         }
 
-        /* Main "View All Blog Articles" Button */
+        /* Modern Fresh "View All Blog Articles" Button */
         .rssi-blogs-section .btn-primary {
-            --btn-primary-color: #3498db;
-            --btn-hover-color: #2980b9;
-            --btn-gradient-start: #3498db;
-            --btn-gradient-end: #2c3e50;
-            --btn-shadow-color: rgba(52, 152, 219, 0.3);
-            --btn-text-color: #fff;
-            --btn-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --btn-primary: var(--color-primary);
+            --btn-hover: #ec2727;
+            --btn-light: rgba(206, 18, 18, 0.1);
+            --btn-text: #fff;
+            --btn-glow: rgba(206, 18, 18, 0.4);
 
-            color: var(--btn-text-color);
-            background: linear-gradient(135deg, var(--btn-gradient-start) 0%, var(--btn-gradient-end) 100%);
+            color: var(--btn-text);
+            background: var(--btn-primary);
             border: none;
-            padding: 12px 32px;
+            padding: 12px 36px;
             font-weight: 600;
             font-size: 1rem;
-            border-radius: 30px;
+            border-radius: 50px;
             text-decoration: none;
-            transition: var(--btn-transition);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: inline-flex;
             align-items: center;
             position: relative;
             overflow: hidden;
             z-index: 1;
-            box-shadow: 0 4px 15px var(--btn-shadow-color);
+            box-shadow:
+                0 4px 20px var(--btn-glow),
+                0 0 0 1px rgba(206, 18, 18, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
 
         .rssi-blogs-section .btn-primary::before {
@@ -883,7 +809,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--btn-hover-color) 0%, #1a252f 100%);
+            background: linear-gradient(135deg, var(--btn-hover) 0%, #b31414 100%);
             opacity: 0;
             transition: opacity 0.4s ease;
             z-index: -1;
@@ -894,57 +820,49 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 5px;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.5);
-            opacity: 0;
-            border-radius: 100%;
-            transform: scale(1, 1) translate(-50%, -50%);
-            transform-origin: 50% 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
             z-index: 0;
+            border-radius: 50%;
         }
 
         .rssi-blogs-section .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(52, 152, 219, 0.35);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow:
+                0 8px 30px rgba(206, 18, 18, 0.45),
+                0 0 0 1px rgba(206, 18, 18, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
 
         .rssi-blogs-section .btn-primary:hover::before {
             opacity: 1;
         }
 
-        .rssi-blogs-section .btn-primary:active {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 18px rgba(52, 152, 219, 0.3);
+        .rssi-blogs-section .btn-primary:hover::after {
+            width: 200px;
+            height: 200px;
         }
 
-        .rssi-blogs-section .btn-primary:active::after {
-            animation: ripple 0.6s ease-out;
+        .rssi-blogs-section .btn-primary:active {
+            transform: translateY(-1px) scale(1);
+            box-shadow:
+                0 4px 20px rgba(206, 18, 18, 0.3),
+                0 0 0 1px rgba(206, 18, 18, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
         .rssi-blogs-section .btn-primary i {
-            margin-right: 8px;
-            font-size: 1.1em;
-            transition: transform 0.3s ease;
+            margin-right: 10px;
+            font-size: 1.2em;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .rssi-blogs-section .btn-primary:hover i {
-            transform: rotate(15deg) scale(1.1);
-        }
-
-        /* Ripple effect for click */
-        @keyframes ripple {
-            0% {
-                width: 5px;
-                height: 5px;
-                opacity: 1;
-            }
-
-            100% {
-                width: 200px;
-                height: 200px;
-                opacity: 0;
-            }
+            transform: translateX(5px) rotate(15deg);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
         }
 
         /* Button Loading Animation for #rssiViewAll */
@@ -968,9 +886,16 @@
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .rssi-blogs-section .btn-outline-primary {
-                padding: 8px 20px;
-                font-size: 0.9rem;
+            .rssi-blogs-section .blog-image-container {
+                height: 180px;
+            }
+
+            .rssi-blogs-section .blog-content {
+                padding: 15px;
+            }
+
+            .rssi-blogs-section .blog-title {
+                font-size: 1rem;
             }
 
             .rssi-blogs-section .btn-primary {
@@ -995,31 +920,44 @@
         }
 
         @media (max-width: 576px) {
-            .rssi-blogs-section .btn-outline-primary {
-                width: 100%;
-                justify-content: center;
-                margin-top: 10px;
+            .rssi-blogs-section .col-md-4 {
+                margin-bottom: 20px;
+            }
+
+            .rssi-blogs-section .blog-image-container {
+                height: 160px;
+            }
+
+            /* Adjust line-clamp for mobile */
+            .rssi-blogs-section .blog-title {
+                -webkit-line-clamp: 2;
+                line-clamp: 2;
+            }
+
+            .rssi-blogs-section .blog-excerpt {
+                -webkit-line-clamp: 2;
+                line-clamp: 2;
             }
 
             .rssi-blogs-section .btn-primary {
                 width: 100%;
                 max-width: 280px;
+                padding: 10px 24px;
             }
         }
 
         /* Button focus states for accessibility */
-        .rssi-blogs-section .btn-outline-primary:focus,
         .rssi-blogs-section .btn-primary:focus {
-            outline: 2px solid rgba(52, 152, 219, 0.5);
+            outline: 2px solid rgba(206, 18, 18, 0.5);
             outline-offset: 3px;
         }
 
         /* Button disabled state */
-        .rssi-blogs-section .btn-outline-primary:disabled,
         .rssi-blogs-section .btn-primary:disabled {
             opacity: 0.6;
             cursor: not-allowed;
             transform: none !important;
+            background: rgba(206, 18, 18, 0.5);
         }
     </style>
 </head>
@@ -1980,9 +1918,6 @@
                 <div class="row mb-4">
                     <div class="col-12 d-flex justify-content-between align-items-center">
                         <h2 class="section-title mb-0">Latest from Our Blog</h2>
-                        <a href="/blog/index.html" class="btn btn-outline-primary" target="_blank">
-                            View All Articles <i class="fas fa-arrow-right ms-2"></i>
-                        </a>
                     </div>
                 </div>
 
