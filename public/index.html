@@ -785,6 +785,244 @@
                 line-clamp: 2;
             }
         }
+
+        /* Blog Section Buttons Styling */
+
+        /* Header "View All Articles" Button */
+        .rssi-blogs-section .btn-outline-primary {
+            --btn-primary-color: #3498db;
+            --btn-hover-color: #2980b9;
+            --btn-text-color: #3498db;
+            --btn-hover-text-color: #fff;
+            --btn-border-width: 2px;
+            --btn-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+            color: var(--btn-text-color);
+            border: var(--btn-border-width) solid var(--btn-primary-color);
+            background-color: transparent;
+            padding: 10px 24px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: var(--btn-transition);
+            display: inline-flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .rssi-blogs-section .btn-outline-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+            z-index: -1;
+        }
+
+        .rssi-blogs-section .btn-outline-primary:hover {
+            color: var(--btn-hover-text-color);
+            background-color: var(--btn-primary-color);
+            border-color: var(--btn-primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.25);
+        }
+
+        .rssi-blogs-section .btn-outline-primary:hover::before {
+            left: 100%;
+        }
+
+        .rssi-blogs-section .btn-outline-primary:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+        }
+
+        .rssi-blogs-section .btn-outline-primary i {
+            transition: transform 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .rssi-blogs-section .btn-outline-primary:hover i {
+            transform: translateX(4px);
+        }
+
+        /* Main "View All Blog Articles" Button */
+        .rssi-blogs-section .btn-primary {
+            --btn-primary-color: #3498db;
+            --btn-hover-color: #2980b9;
+            --btn-gradient-start: #3498db;
+            --btn-gradient-end: #2c3e50;
+            --btn-shadow-color: rgba(52, 152, 219, 0.3);
+            --btn-text-color: #fff;
+            --btn-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+            color: var(--btn-text-color);
+            background: linear-gradient(135deg, var(--btn-gradient-start) 0%, var(--btn-gradient-end) 100%);
+            border: none;
+            padding: 12px 32px;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: var(--btn-transition);
+            display: inline-flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 4px 15px var(--btn-shadow-color);
+        }
+
+        .rssi-blogs-section .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--btn-hover-color) 0%, #1a252f 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .rssi-blogs-section .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%, -50%);
+            transform-origin: 50% 50%;
+            z-index: 0;
+        }
+
+        .rssi-blogs-section .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(52, 152, 219, 0.35);
+        }
+
+        .rssi-blogs-section .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        .rssi-blogs-section .btn-primary:active {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(52, 152, 219, 0.3);
+        }
+
+        .rssi-blogs-section .btn-primary:active::after {
+            animation: ripple 0.6s ease-out;
+        }
+
+        .rssi-blogs-section .btn-primary i {
+            margin-right: 8px;
+            font-size: 1.1em;
+            transition: transform 0.3s ease;
+        }
+
+        .rssi-blogs-section .btn-primary:hover i {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        /* Ripple effect for click */
+        @keyframes ripple {
+            0% {
+                width: 5px;
+                height: 5px;
+                opacity: 1;
+            }
+
+            100% {
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+            }
+        }
+
+        /* Button Loading Animation for #rssiViewAll */
+        #rssiViewAll {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .rssi-blogs-section .btn-outline-primary {
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+
+            .rssi-blogs-section .btn-primary {
+                padding: 10px 28px;
+                font-size: 0.95rem;
+            }
+
+            .rssi-blogs-section .row.mb-4 {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .rssi-blogs-section .row.mb-4 .col-12 {
+                width: 100%;
+                text-align: center;
+            }
+
+            .rssi-blogs-section .row.mb-4 h2 {
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .rssi-blogs-section .btn-outline-primary {
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+
+            .rssi-blogs-section .btn-primary {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+
+        /* Button focus states for accessibility */
+        .rssi-blogs-section .btn-outline-primary:focus,
+        .rssi-blogs-section .btn-primary:focus {
+            outline: 2px solid rgba(52, 152, 219, 0.5);
+            outline-offset: 3px;
+        }
+
+        /* Button disabled state */
+        .rssi-blogs-section .btn-outline-primary:disabled,
+        .rssi-blogs-section .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
     </style>
 </head>
 
@@ -900,7 +1138,7 @@
     <!-- ======= Hero Section ======= -->
 
     <section id="hero" class="hero">
-        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-pause="hover">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-pause="hover" data-aos="zoom-out">
             <div class="carousel-inner">
                 <!-- First Slide -->
                 <div class="carousel-item active">
@@ -1069,78 +1307,92 @@
                                 <div class="swiper-wrapper">
                                     <!-- Story 1 -->
                                     <div class="swiper-slide">
-                                        <div class="stories-card">
-                                            <div class="stories-image">
-                                                <img src="/img/success/ss1.jpeg" alt="Rishab">
+                                        <a href="#">
+                                            <div class="stories-card">
+                                                <div class="stories-image">
+                                                    <img src="/img/success/ss1.jpeg" alt="Rishab">
+                                                </div>
+                                                <div class="stories-content">
+                                                    <div class="stories-divider"></div>
+                                                    <h3 class="stories-name">Rishab</h3>
+                                                    <p class="stories-desc">
+                                                        Rishab from Uttar Pradesh is a special child who has shown
+                                                        inspiring
+                                                        progress, gaining confidence and moving towards independence.
+                                                    </p>
+                                                    <p class="stories-read-more">Read More</p>
+                                                </div>
                                             </div>
-                                            <div class="stories-content">
-                                                <div class="stories-divider"></div>
-                                                <h3 class="stories-name">Rishab</h3>
-                                                <p class="stories-desc">
-                                                    Rishab from Uttar Pradesh is a special child who has shown inspiring
-                                                    progress, gaining confidence and moving towards independence.
-                                                </p>
-                                                <a href="#" class="stories-read-more">Read More</a>
-                                            </div>
-                                        </div>
+                                        </a>
                                     </div>
 
                                     <!-- Story 2 -->
                                     <div class="swiper-slide">
-                                        <div class="stories-card">
-                                            <div class="stories-image">
-                                                <img src="/img/success/ss2.jpeg" alt="Hari prakash">
+                                        <a href="#">
+                                            <div class="stories-card">
+                                                <div class="stories-image">
+                                                    <img src="/img/success/ss2.jpeg" alt="Hari prakash">
+                                                </div>
+                                                <div class="stories-content">
+                                                    <div class="stories-divider"></div>
+                                                    <h3 class="stories-name">Hari prakash</h3>
+                                                    <p class="stories-desc">
+                                                        Hari Prakash, a first-generation learner from an economically
+                                                        weaker
+                                                        background, has performed well in his studies and made his
+                                                        parents
+                                                        proud.
+                                                    </p>
+                                                    <p class="stories-read-more">Read More</p>
+                                                </div>
                                             </div>
-                                            <div class="stories-content">
-                                                <div class="stories-divider"></div>
-                                                <h3 class="stories-name">Hari prakash</h3>
-                                                <p class="stories-desc">
-                                                    Hari Prakash, a first-generation learner from an economically weaker
-                                                    background, has performed well in his studies and made his parents
-                                                    proud.
-                                                </p>
-                                                <a href="#" class="stories-read-more">Read More</a>
-                                            </div>
-                                        </div>
+                                        </a>
                                     </div>
 
                                     <!-- Story 3 -->
                                     <div class="swiper-slide">
-                                        <div class="stories-card">
-                                            <div class="stories-image">
-                                                <img src="/img/success/ss3.jpeg" alt="Chahat">
+                                        <a href="#">
+                                            <div class="stories-card">
+                                                <div class="stories-image">
+                                                    <img src="/img/success/ss3.jpeg" alt="Chahat">
+                                                </div>
+                                                <div class="stories-content">
+                                                    <div class="stories-divider"></div>
+                                                    <h3 class="stories-name">Chahat</h3>
+                                                    <p class="stories-desc">
+                                                        Chahat, a 10-year-old first-generation learner, grows stronger
+                                                        in
+                                                        her studies with the support of her family and regular ration
+                                                        supplies.
+                                                    </p>
+                                                    <p class="stories-read-more">Read More</p>
+                                                </div>
                                             </div>
-                                            <div class="stories-content">
-                                                <div class="stories-divider"></div>
-                                                <h3 class="stories-name">Chahat</h3>
-                                                <p class="stories-desc">
-                                                    Chahat, a 10-year-old first-generation learner, grows stronger in
-                                                    her studies with the support of her family and regular ration
-                                                    supplies.
-                                                </p>
-                                                <a href="#" class="stories-read-more">Read More</a>
-                                            </div>
-                                        </div>
+                                        </a>
                                     </div>
 
                                     <!-- Story 4 -->
                                     <div class="swiper-slide">
-                                        <div class="stories-card">
-                                            <div class="stories-image">
-                                                <img src="/img/success/ss4.jpeg" alt="Prince">
+                                        <a href="#">
+                                            <div class="stories-card">
+                                                <div class="stories-image">
+                                                    <img src="/img/success/ss4.jpeg" alt="Prince">
+                                                </div>
+                                                <div class="stories-content">
+                                                    <div class="stories-divider"></div>
+                                                    <h3 class="stories-name">Prince</h3>
+                                                    <p class="stories-desc">
+                                                        Prince’s mother fought against all odds to ensure he could
+                                                        study.
+                                                        With the support of RSSI NGO, he is now pursuing his education
+                                                        and
+                                                        making progress every day.
+                                                    </p>
+                                                    <p class="stories-read-more">Read More</p>
+                                                </div>
                                             </div>
-                                            <div class="stories-content">
-                                                <div class="stories-divider"></div>
-                                                <h3 class="stories-name">Prince</h3>
-                                                <p class="stories-desc">
-                                                    Prince’s mother fought against all odds to ensure he could study.
-                                                    With the support of RSSI NGO, he is now pursuing his education and
-                                                    making progress every day.
-                                                </p>
-                                                <a href="#" class="stories-read-more">Read More</a>
-                                            </div>
-                                        </div>
                                     </div>
+                                    </a>
                                 </div>
 
                                 <!-- Navigation buttons -->
