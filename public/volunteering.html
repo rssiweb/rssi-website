@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11316670180"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'AW-11316670180');
+    </script>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>RSSI Volunteering - Make a Difference as a Volunteer</title>
+    <meta name="description"
+        content="Volunteer with RSSI NGO. Join our education initiatives, gain valuable experience, and receive community service certification.">
+    <meta name="keywords"
+        content="RSSI volunteering, NGO volunteer, community service, volunteer opportunities, education volunteer, social work">
+    <meta name="author" content="RSSI NGO">
+
+    <!-- Favicons -->
+    <link href="/img/favicon.ico" rel="icon">
+    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Vendor CSS Files -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Template Main CSS File -->
+    <link href="/css/main.css?v=1.3.4" rel="stylesheet">
+
+    <style>
+        .volunteer-hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 4rem 0 3rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .volunteer-card {
+            border: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .volunteer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .volunteer-badge {
+            font-size: 0.9rem;
+            background-color: #198754;
+        }
+
+        .requirements-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            height: 100%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eee;
+            margin-bottom: 1rem;
+        }
+
+        .requirement-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .requirement-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .requirement-item i {
+            color: #198754;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            margin-top: 0.2rem;
+        }
+
+        .amity-banner {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .process-step {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .process-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: #198754;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .document-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .document-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .document-list li:last-child {
+            border-bottom: none;
+        }
+
+        .document-list li i {
+            color: #198754;
+            margin-right: 0.75rem;
+        }
+
+        .important-note {
+            background-color: #fff3cd;
+            border: 1px solid #ffecb5;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 10px;
+            height: 10px;
+            background-color: #198754;
+            border-radius: 50%;
+        }
+
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 1.5rem;
+            bottom: -1.5rem;
+            width: 2px;
+            background-color: #e9ecef;
+        }
+
+        .timeline-item:last-child:after {
+            display: none;
+        }
+
+        .volunteer-details-card {
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .volunteer-details-card .card-header {
+            background-color: #fff;
+            border-bottom: none;
+            font-weight: 600;
+            color: #333;
+            padding: 1rem 1.25rem;
+            position: relative;
+            padding-bottom: 1.25rem;
+        }
+
+        .volunteer-details-card .card-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 1.25rem;
+            width: 60px;
+            height: 3px;
+            background-color: #198754;
+            border-radius: 2px;
+        }
+
+        .group-info {
+            background-color: #e8f5e8;
+            border: 1px solid #c3e6c3;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .shift-timings {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .shift-option {
+            display: inline-block;
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            margin: 0.25rem;
+            border: 1px solid #dee2e6;
+            font-weight: 500;
+        }
+
+        /* Modern Tab Styles */
+        .tab-container {
+            background: #fff;
+            border-radius: 12px;
+            padding: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .tab-nav {
+            display: flex;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 0.25rem;
+            position: relative;
+        }
+
+        .tab-button {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            border-radius: 8px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .tab-button:hover:not(.active) {
+            color: #198754;
+            background: rgba(25, 135, 84, 0.05);
+        }
+
+        .tab-button.active {
+            color: #198754;
+        }
+
+        .tab-indicator {
+            position: absolute;
+            top: 0.25rem;
+            bottom: 0.25rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(25, 135, 84, 0.15);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 0;
+        }
+
+        .tab-content {
+            animation: fadeIn 0.5s ease;
+            padding: 1.5rem 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modern badge for Amity tab */
+        .amity-badge {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Icon styles */
+        .tab-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .tab-button.active .tab-icon {
+            transform: scale(1.1);
+        }
+
+        /* For responsive */
+        @media (max-width: 768px) {
+            .tab-button {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .tab-button span:last-child {
+                display: none;
+            }
+
+            .amity-badge {
+                display: none;
+            }
+        }
+
+        .common-benefits {
+            margin-left: 1rem;
+            /* Add left margin */
+            padding-left: 1rem;
+            /* Optional: add padding too */
+        }
+
+        /* Or if you want it aligned with the tab content */
+        .tab-content .border-top {
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        /* Option 1 CSS */
+        .documents-section {
+            background: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid #e9ecef;
+        }
+
+        .document-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 100%;
+            border: 1px solid #dee2e6;
+        }
+
+        .document-card.amity-specific {
+            border: 2px solid #ffc107;
+            background: #fffcf3;
+        }
+
+        .document-card-header {
+            background: #198754;
+            color: white;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0;
+        }
+
+        .document-card.amity-specific .document-card-header {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .document-list {
+            list-style: none;
+            padding: 1rem;
+            margin: 0;
+        }
+
+        .document-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .document-list li:last-child {
+            border-bottom: none;
+        }
+
+        .document-list li i {
+            margin-right: 0.75rem;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        .document-special {
+            padding: 1rem;
+            background: #fff;
+            /* border-radius: 6px; */
+            margin: 1rem;
+            /* border-left: 3px solid #ffc107; */
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .documents-section {
+                padding: 1rem;
+            }
+
+            .document-card {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <div id="header"></div>
+    <!-- End Header -->
+
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 id="page-title">Volunteer Opportunities</h2>
+                    <ol id="breadcrumb-list">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/get-involved">Get Involved</a></li>
+                        <li>Volunteer</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumbs -->
+
+        <section class="sample-page">
+            <div class="container" data-aos="fade-up">
+
+                <!-- Hero Section -->
+                <div class="volunteer-hero">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-8">
+                                <h1 class="mb-3">Volunteer with RSSI NGO</h1>
+                                <p class="lead mb-4">Join our education initiative and make a meaningful impact in the
+                                    lives of young learners. Gain valuable experience while contributing to community
+                                    development.</p>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge volunteer-badge">Community Service</span>
+                                    <span class="badge bg-secondary">Education</span>
+                                    <span class="badge bg-info">Part-Time</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-lg-end">
+                                <a href="signup.html" class="btn btn-success btn-lg">
+                                    <i class="bi bi-person-badge me-2"></i>Apply as Volunteer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Amity University Special Program -->
+                <div class="amity-banner">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8">
+                            <h3 class="mb-2"><i class="bi bi-mortarboard-fill me-2"></i>Amity University HVCO Project
+                            </h3>
+                            <p class="mb-0">Exclusive 3-month internship program for Amity University, Lucknow campus
+                                students under "Volunteer" association type.</p>
+                        </div>
+                        <div class="col-lg-4 text-lg-end">
+                            <a href="signup.html" class="btn btn-light btn-lg">
+                                <i class="bi bi-pencil-square me-2"></i>Apply Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="row mt-4">
+                    <!-- Left Column: Volunteer Requirements -->
+                    <div class="col-lg-6">
+                        <div class="volunteer-details-card">
+                            <div class="card-header mb-3">
+                                <i class="bi bi-list-check me-2"></i>Volunteer Requirements
+                            </div>
+                            <div class="card-body">
+                                <!-- Modern Tab Container -->
+                                <div class="tab-container">
+                                    <div class="tab-nav">
+                                        <!-- Indicator (will be positioned by JS) -->
+                                        <div class="tab-indicator" id="tab-indicator"></div>
+
+                                        <!-- Standard Program Tab -->
+                                        <button class="tab-button active" data-target="standard-tab" id="tab-standard">
+                                            <i class="bi bi-people tab-icon"></i>
+                                            <span>Standard Program</span>
+                                        </button>
+
+                                        <!-- Amity University Tab -->
+                                        <button class="tab-button" data-target="amity-tab" id="tab-amity">
+                                            <i class="bi bi-mortarboard tab-icon"></i>
+                                            <span>Amity University</span>
+                                            <span class="amity-badge ms-1">HVCO</span>
+                                        </button>
+                                    </div>
+
+
+                                    <!-- Tab Contents -->
+                                    <div class="tab-content">
+                                        <!-- Standard Program Content -->
+                                        <div id="standard-tab" class="program-details active">
+                                            <div class="requirements-card">
+                                                <div class="requirement-item">
+                                                    <i class="bi bi-calendar-month"></i>
+                                                    <div>
+                                                        <h6 class="mb-1">Minimum Duration</h6>
+                                                        <p class="text-muted mb-0">4 months commitment required</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="requirement-item">
+                                                    <i class="bi bi-clock"></i>
+                                                    <div>
+                                                        <h6 class="mb-1">Time Commitment</h6>
+                                                        <p class="text-muted mb-0">Part-Time: 3 days a week</p>
+                                                        <div class="shift-timings mt-2">
+                                                            <p class="mb-1"><strong>Shift Options:</strong></p>
+                                                            <div>
+                                                                <span class="shift-option">11:00 AM to 3:00 PM</span>
+                                                                <span class="shift-option">OR</span>
+                                                                <span class="shift-option">2:30 PM to 6:30 PM</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="requirement-item">
+                                                    <i class="bi bi-person-workspace"></i>
+                                                    <div>
+                                                        <h6 class="mb-1">Responsibilities</h6>
+                                                        <p class="text-muted mb-0">
+                                                            Empower the community through education and outreach.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Amity Program Content -->
+                                        <div id="amity-tab" class="program-details">
+                                            <div class="requirements-card">
+                                                <div class="requirement-item">
+                                                    <i class="bi bi-calendar-month"></i>
+                                                    <div>
+                                                        <h6 class="mb-1">Minimum Duration</h6>
+                                                        <p class="text-muted mb-0">3 months internship program</p>
+                                                        <small class="text-danger">Exclusively for Amity University,
+                                                            Lucknow
+                                                            campus students</small>
+                                                    </div>
+                                                </div>
+
+                                                <div class="requirement-item">
+                                                    <i class="bi bi-clock"></i>
+                                                    <div>
+                                                        <h6 class="mb-1">Time Commitment</h6>
+                                                        <div class="shift-timings mt-2">
+                                                            <p class="mb-1"><strong>Required Schedule:</strong></p>
+                                                            <div>
+                                                                <span class="shift-option bg-danger text-white">1 Full
+                                                                    Day
+                                                                    (10:45 AM - 6:30 PM)</span>
+                                                                <span class="shift-option bg-warning">+</span>
+                                                                <span class="shift-option">1 Half Day Shift</span>
+                                                            </div>
+                                                            <p class="text-danger mt-2 mb-0"><small><i
+                                                                        class="bi bi-exclamation-triangle"></i> Sunday
+                                                                    is not a
+                                                                    working day</small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="requirement-item">
+                                                    <i class="bi bi-person-workspace"></i>
+                                                    <div>
+                                                        <h6 class="mb-1">Responsibilities</h6>
+                                                        <p class="text-muted mb-0">
+                                                            Specialized educational projects, community surveys,
+                                                            workshop
+                                                            facilitation, and structured internship activities
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Option 1: Common Benefits -->
+                                <div class="mt-4 pt-3 border-top common-benefits">
+                                    <h6 class="mb-3"><i class="bi bi-check2-circle me-1"></i>Common Benefits</h6>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="d-flex align-items-start mb-2">
+                                                <i class="bi bi-cash text-success me-2 mt-1"></i>
+                                                <div>
+                                                    <small class="text-muted">Compensation</small>
+                                                    <p class="mb-0 small">Unpaid volunteer position</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="d-flex align-items-start mb-2">
+                                                <i class="bi bi-award text-warning me-2 mt-1"></i>
+                                                <div>
+                                                    <small class="text-muted">Certification</small>
+                                                    <p class="mb-0 small">Experience letter & Community Service
+                                                        Certificate</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="volunteer-details-card mt-4">
+                            <div class="card-header mb-3">
+                                <i class="bi bi-people me-2"></i>Group Volunteering
+                            </div>
+                            <div class="card-body">
+                                <div class="group-info">
+                                    <h5><i class="bi bi-info-circle me-2"></i>Important Information for Groups
+                                    </h5>
+                                    <p class="mb-2">We welcome group volunteering applications, but please note:
+                                    </p>
+                                    <ul class="mb-3">
+                                        <li>All students must apply <strong>individually</strong> through our
+                                            registration portal</li>
+                                        <li>Each applicant will receive their own individual certificate</li>
+                                        <li>For group certificates: You can merge individual certificates and
+                                            upload to
+                                            your college portal</li>
+                                        <li>Group coordination should be managed by the students themselves</li>
+                                    </ul>
+                                    <p class="mb-0"><strong>Note:</strong> The organization does not issue
+                                        combined
+                                        group certificates.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Application Process -->
+                    <div class="col-lg-6">
+                        <div class="volunteer-details-card">
+                            <div class="card-header mb-3">
+                                <i class="bi bi-clipboard-check me-2"></i>Application Process
+                            </div>
+                            <div class="card-body">
+                                <div class="process-step">
+                                    <div class="step-number">1</div>
+                                    <h5>Online Registration</h5>
+                                    <p>Visit the official website of RSSI NGO. Navigate to the Volunteering
+                                        portal and
+                                        register yourself by selecting the type of association as
+                                        <strong>"Volunteer"</strong>.
+                                    </p>
+                                </div>
+
+                                <div class="process-step">
+                                    <div class="step-number">2</div>
+                                    <h5>Identity Verification</h5>
+                                    <p>After registration, you will receive an email with your candidate profile
+                                        credentials and a secure identity verification link.</p>
+                                    <p>Log in to your profile and upload the required documents for
+                                        verification. Only
+                                        <strong>Aadhaar Card</strong> is accepted for identity verification.
+                                    </p>
+                                    <div class="alert alert-warning">
+                                        <i class="bi bi-clock me-1"></i>
+                                        <strong>Processing Time:</strong> Interview schedule within 7-14
+                                        business days
+                                        after identity verification completion.
+                                    </div>
+                                </div>
+
+                                <div class="process-step">
+                                    <div class="step-number">3</div>
+                                    <h5>Interview Process</h5>
+                                    <p>Upon successful verification, you'll receive an interview schedule. The
+                                        selection
+                                        process includes:</p>
+                                    <ul class="mb-3">
+                                        <li><strong>Document Verification:</strong> Visit RSSI centre with
+                                            original
+                                            documents</li>
+                                        <li><strong>Personal Interview:</strong> Assessment of communication
+                                            skills and
+                                            suitability</li>
+                                        <li><strong>Final Selection:</strong> Based on interview performance and
+                                            document verification</li>
+                                    </ul>
+
+                                    <div class="documents-section">
+                                        <h6 class="mb-3"><i class="bi bi-files me-1"></i>Required Documents for
+                                            Interview</h6>
+                                        <p class="text-muted mb-3">Bring these original documents for verification:</p>
+
+                                        <div class="row g-3">
+                                            <!-- Standard Documents (Required by ALL) -->
+                                            <div class="col-lg-6">
+                                                <div class="document-card">
+                                                    <div class="document-card-header">
+                                                        <h6 class="mb-0"><i class="bi bi-person-vcard me-2"></i>Required
+                                                            for ALL Applicants</h6>
+                                                    </div>
+                                                    <ul class="document-list">
+                                                        <li>
+                                                            <i class="bi bi-check-circle-fill text-success"></i>
+                                                            <span>Aadhaar Card (original)</span>
+                                                        </li>
+                                                        <li>
+                                                            <i class="bi bi-check-circle-fill text-success"></i>
+                                                            <span>High School Marksheet (10th)</span>
+                                                        </li>
+                                                        <li>
+                                                            <i class="bi bi-check-circle-fill text-success"></i>
+                                                            <span>Intermediate Marksheet (10+2)</span>
+                                                        </li>
+                                                        <li>
+                                                            <i class="bi bi-check-circle-fill text-success"></i>
+                                                            <span>Updated Resume/CV</span>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="document-note p-3 border-top">
+                                                        <small class="text-muted">
+                                                            <i class="bi bi-info-circle me-1"></i>
+                                                            Graduates must also bring Graduation Certificate
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Amity Specific (ADDITIONAL Requirements) -->
+                                            <div class="col-lg-6">
+                                                <div class="document-card amity-specific">
+                                                    <div class="document-card-header">
+                                                        <h6 class="mb-0"><i
+                                                                class="bi bi-mortarboard me-2"></i>Additional for Amity
+                                                            University Students</h6>
+                                                    </div>
+                                                    <div class="document-special p-3">
+                                                        <div class="alert alert-warning mb-3">
+                                                            <i class="bi bi-exclamation-triangle me-2"></i>
+                                                            <strong>Amity students must bring:</strong><br>
+                                                            <span class="small">ALL standard documents listed on the
+                                                                left <strong>PLUS</strong> the items below</span>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <h6 class="small text-muted mb-2">Instead of Graduation
+                                                                Certificate:</h6>
+                                                            <div class="d-flex align-items-start mb-2">
+                                                                <i
+                                                                    class="bi bi-check-square-fill text-success mt-1 me-2"></i>
+                                                                <div>
+                                                                    <span class="fw-semibold">Valid College ID
+                                                                        Card</span><br>
+                                                                    <small class="text-muted">Current year ID card with
+                                                                        photo</small>
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-flex align-items-start">
+                                                                <i
+                                                                    class="bi bi-plus-square-fill text-primary mt-1 me-2"></i>
+                                                                <div>
+                                                                    <span class="fw-semibold">Current Study
+                                                                        Proof</span><br>
+                                                                    <small class="text-muted">Any official document
+                                                                        confirming current year of study</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="amity-note">
+                                                            <small class="text-muted">
+                                                                <i class="bi bi-lightbulb me-1"></i>
+                                                                <em>If current year proof unavailable, bring most recent
+                                                                    academic certificate</em>
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Important Notes Section -->
+                                        <div class="row mt-3">
+                                            <div class="col-12">
+                                                <div class="alert alert-danger">
+                                                    <div class="d-flex align-items-start">
+                                                        <i class="bi bi-exclamation-octagon-fill mt-1 me-2"></i>
+                                                        <div>
+                                                            <strong>Important Verification Rules:</strong>
+                                                            <ul class="mb-0 mt-1 small">
+                                                                <li>Only <strong>original documents</strong> or
+                                                                    <strong>live DigiLocker certificates</strong> are
+                                                                    accepted
+                                                                </li>
+                                                                <li>Screenshots, photocopies, or scanned copies will
+                                                                    <strong>not</strong> be processed
+                                                                </li>
+                                                                <li>Documents must be valid and legible</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Summary Note -->
+                                                <div class="card border-info">
+                                                    <div class="card-body py-2">
+                                                        <div class="d-flex align-items-center">
+                                                            <i class="bi bi-card-checklist text-info fs-5 me-3"></i>
+                                                            <div>
+                                                                <p class="mb-0 small">
+                                                                    <strong>Amity University Students:</strong> You need
+                                                                    to bring <strong>all 4 documents from the left
+                                                                        column</strong> PLUS <strong>both items from the
+                                                                        Amity-specific requirements</strong>.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Offline Support & Timeline -->
+                        <div class="volunteer-details-card mt-4">
+                            <div class="card-header mb-3">
+                                <i class="bi bi-headset me-2"></i>Support & Timeline
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="requirements-card h-100">
+                                            <h5><i class="bi bi-telephone me-2"></i>Offline Support</h5>
+                                            <p class="text-muted">Need assistance with the application process?
+                                            </p>
+                                            <p><strong>Service Charge:</strong> ₹500 for offline support or
+                                                expedited
+                                                processing</p>
+                                            <p class="mb-0"><small>Contact us for offline assistance with
+                                                    registration
+                                                    and document submission.</small></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="requirements-card h-100">
+                                            <h5><i class="bi bi-calendar-event me-2"></i>Process Timeline</h5>
+                                            <div class="timeline-item">
+                                                <strong>Registration:</strong> Immediate upon form submission
+                                            </div>
+                                            <div class="timeline-item">
+                                                <strong>Verification:</strong> 2-3 business days
+                                            </div>
+                                            <div class="timeline-item">
+                                                <strong>Interview Schedule:</strong> Within 7-14 business days
+                                            </div>
+                                            <div class="timeline-item">
+                                                <strong>Final Decision:</strong> Within 3 days after interview
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-center mt-4">
+                                    <a href="signup.html" class="btn btn-success btn-lg px-5">
+                                        <i class="bi bi-person-badge me-2"></i>Start Your Application
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="row mt-5">
+                    <div class="col-lg-12">
+                        <div class="volunteer-details-card">
+                            <div class="card-header mb-3">
+                                <i class="bi bi-question-circle me-2"></i>Frequently Asked Questions
+                            </div>
+                            <div class="card-body">
+                                <div class="accordion" id="volunteerFAQ">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#faq1">
+                                                Can I volunteer only on Sundays?
+                                            </button>
+                                        </h2>
+                                        <div id="faq1" class="accordion-collapse collapse show"
+                                            data-bs-parent="#volunteerFAQ">
+                                            <div class="accordion-body">
+                                                <strong>No, Sunday is not a working day.</strong> Volunteers
+                                                must select
+                                                availability from Monday to Saturday.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#faq2">
+                                                Do I need to apply individually if I'm in a group?
+                                            </button>
+                                        </h2>
+                                        <div id="faq2" class="accordion-collapse collapse"
+                                            data-bs-parent="#volunteerFAQ">
+                                            <div class="accordion-body">
+                                                <strong>Yes, all students must apply individually.</strong> Each
+                                                applicant registers separately through our portal and receives
+                                                individual certificates. For group submissions to your college,
+                                                you can
+                                                merge individual certificates and upload them together.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#faq3">
+                                                What documents do I need for the interview?
+                                            </button>
+                                        </h2>
+                                        <div id="faq3" class="accordion-collapse collapse"
+                                            data-bs-parent="#volunteerFAQ">
+                                            <div class="accordion-body">
+                                                You need to bring <strong>original documents</strong> including:
+                                                <ul class="mt-2 mb-2">
+                                                    <li>Aadhaar Card</li>
+                                                    <li>10th and 12th Marksheets</li>
+                                                    <li>Graduation certificates (if applicable)</li>
+                                                    <li>Updated Resume/CV</li>
+                                                </ul>
+                                                <strong>Note:</strong> DigiLocker live certificates are
+                                                acceptable, but
+                                                photocopies or screenshots are not.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#faq4">
+                                                How long does the application process take?
+                                            </button>
+                                        </h2>
+                                        <div id="faq4" class="accordion-collapse collapse"
+                                            data-bs-parent="#volunteerFAQ">
+                                            <div class="accordion-body">
+                                                The complete process typically takes 2-3 weeks:
+                                                <ul class="mt-2 mb-2">
+                                                    <li>Registration & Verification: 2-3 business days</li>
+                                                    <li>Interview Schedule: Within 7-14 business days after
+                                                        verification
+                                                    </li>
+                                                    <li>Interview & Selection: Within a week of interview</li>
+                                                </ul>
+                                                Offline support (₹500 service charge) can expedite the process.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#faq5">
+                                                Is this program only for Amity University students?
+                                            </button>
+                                        </h2>
+                                        <div id="faq5" class="accordion-collapse collapse"
+                                            data-bs-parent="#volunteerFAQ">
+                                            <div class="accordion-body">
+                                                <strong>The HVCO 3-month internship is exclusive to Amity
+                                                    University,
+                                                    Lucknow campus students.</strong> However, our regular
+                                                4-month
+                                                volunteer program is open to all eligible candidates. Both
+                                                programs use
+                                                the "Volunteer" association type during registration.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final CTA -->
+                <div class="text-center py-5 mt-4">
+                    <h2 class="mb-3">Ready to Make a Difference?</h2>
+                    <p class="lead mb-4">Join our volunteer community and contribute to meaningful education
+                        initiatives.</p>
+                    <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                        <a href="signup.html" class="btn btn-success btn-lg px-5">
+                            <i class="bi bi-person-badge me-2"></i>Apply as Volunteer
+                        </a>
+                        <a href="https://wa.me/917980168159?text=Hello%2C%20I%20am%20interested%20in%20joining%20the%20volunteer%20community%20for%20RSSI%20NGO."
+                            target="_blank" class="btn btn-outline-success btn-lg px-5">
+                            <i class="bi bi-whatsapp me-2"></i>Ask Questions
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    <!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <div id="footer"></div>
+    <!-- End Footer -->
+
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <!--<div id="preloader"></div>-->
+
+    <!-- Vendor JS Files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+    <!-- Template Main JS File -->
+    <!-- Load jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/js/main.js?v=1.4.2"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
+    <!-- Glow Cookies v3.0.1 -->
+    <script>
+        glowCookies.start('en', {
+            analytics: 'G-S25QWTFJ2S',
+            policyLink: 'disclaimer'
+        });
+    </script>
+    <script>
+        // Modern Tab Switching with Animation
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.program-details');
+            const tabIndicator = document.getElementById('tab-indicator');
+            const tabNav = document.querySelector('.tab-nav');
+
+            // Function to update tab indicator position
+            function updateTabIndicator(activeButton) {
+                if (!tabIndicator || !activeButton) return;
+
+                const navRect = tabNav.getBoundingClientRect();
+                const buttonRect = activeButton.getBoundingClientRect();
+
+                tabIndicator.style.left = `${buttonRect.left - navRect.left}px`;
+                tabIndicator.style.width = `${buttonRect.width}px`;
+                tabIndicator.style.opacity = '1';
+            }
+
+            // Function to switch tab
+            function switchTab(button) {
+                const targetId = button.getAttribute('data-target');
+
+                // Update active button
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Update indicator position
+                updateTabIndicator(button);
+
+                // Hide all tab contents
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    content.style.opacity = '0';
+                    content.style.transform = 'translateY(10px)';
+                    setTimeout(() => {
+                        content.style.display = 'none';
+                    }, 300);
+                });
+
+                // Show target tab content with animation
+                setTimeout(() => {
+                    const targetContent = document.getElementById(targetId);
+                    targetContent.style.display = 'block';
+                    setTimeout(() => {
+                        targetContent.style.opacity = '1';
+                        targetContent.style.transform = 'translateY(0)';
+                        targetContent.classList.add('active');
+                    }, 10);
+                }, 300);
+
+                // Update URL
+                updateTabURL(button.id === 'tab-amity' ? 'amity' : 'standard');
+            }
+
+            // Add click event to tab buttons
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    if (!this.classList.contains('active')) {
+                        switchTab(this);
+                    }
+                });
+            });
+
+            // Update URL functions
+            function updateTabURL(tabId) {
+                const url = new URL(window.location);
+                url.searchParams.set('program', tabId);
+                window.history.replaceState(null, null, url.toString());
+            }
+
+            function activateTabFromURL() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const programParam = urlParams.get('program');
+
+                console.log('URL param program:', programParam); // Debug log
+
+                let targetButton;
+                if (programParam === 'amity') {
+                    targetButton = document.getElementById('tab-amity');
+                    console.log('Found amity button:', targetButton); // Debug log
+                } else {
+                    targetButton = document.getElementById('tab-standard');
+                }
+
+                if (targetButton) {
+                    console.log('Switching to tab:', targetButton.id); // Debug log
+                    // Use setTimeout to ensure DOM is ready
+                    setTimeout(() => {
+                        switchTab(targetButton);
+                    }, 100);
+                }
+            }
+
+            function handlePopState() {
+                activateTabFromURL();
+            }
+
+            // Initialize on DOM load
+            setTimeout(() => {
+                // Set initial indicator position
+                const activeButton = document.querySelector('.tab-button.active');
+                if (activeButton && tabIndicator) {
+                    updateTabIndicator(activeButton);
+                }
+
+                // Activate tab from URL - run AFTER everything is loaded
+                setTimeout(() => {
+                    activateTabFromURL();
+                }, 300);
+            }, 100);
+
+            // Listen for browser back/forward
+            window.addEventListener('popstate', handlePopState);
+
+            // Handle window resize to update indicator
+            let resizeTimeout;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    const activeButton = document.querySelector('.tab-button.active');
+                    if (activeButton) {
+                        updateTabIndicator(activeButton);
+                    }
+                }, 250);
+            });
+        });
+
+        // Add CSS transitions for the program details
+        document.addEventListener('DOMContentLoaded', function () {
+            const style = document.createElement('style');
+            style.textContent = `
+        .program-details {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        
+        .program-details.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        #tab-indicator {
+            opacity: 0;
+            transition: left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+                        width 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+                        opacity 0.3s ease;
+        }
+        
+        .tab-button {
+            position: relative;
+            z-index: 1;
+        }
+    `;
+            document.head.appendChild(style);
+
+            // Make sure default tab is visible
+            const defaultTab = document.querySelector('#standard-tab');
+            if (defaultTab) {
+                defaultTab.style.display = 'block';
+                defaultTab.style.opacity = '1';
+                defaultTab.style.transform = 'translateY(0)';
+            }
+        });
+    </script>
+
+</body>
+
+</html>
