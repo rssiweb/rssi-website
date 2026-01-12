@@ -836,6 +836,157 @@
                 line-clamp: 2;
             }
         }
+
+        /* ===== APPROACH 1: HOVER-REVEAL OVERLAY ===== */
+
+        /* Make last card special */
+        .rssi-blogs-section .blog-card:last-child {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* View All Overlay */
+        .rssi-blogs-section .view-all-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg,
+                    rgba(206, 18, 18, 0.92) 0%,
+                    rgba(55, 55, 63, 0.92) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10;
+            text-align: center;
+            color: white;
+            backdrop-filter: blur(2px);
+        }
+
+        /* Hover effect for overlay */
+        .rssi-blogs-section .blog-card:last-child:hover .view-all-overlay {
+            opacity: 1;
+        }
+
+        /* Animated Plus Icon in Corner */
+        .rssi-blogs-section .view-all-plus {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            z-index: 5;
+            box-shadow: 0 4px 12px rgba(206, 18, 18, 0.3);
+        }
+
+        .rssi-blogs-section .blog-card:last-child:hover .view-all-plus {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Overlay Content Styling */
+        .rssi-blogs-section .view-all-icon {
+            font-size: 42px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .rssi-blogs-section .blog-card:last-child:hover .view-all-icon {
+            transform: scale(1.1);
+        }
+
+        .rssi-blogs-section .view-all-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .rssi-blogs-section .view-all-subtext {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            max-width: 250px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .rssi-blogs-section .view-all-arrow {
+            font-size: 22px;
+            animation: subtlePulse 2s infinite;
+        }
+
+        @keyframes subtlePulse {
+
+            0%,
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateX(5px);
+                opacity: 0.8;
+            }
+        }
+
+        /* Ensure last card image has dim effect on hover */
+        .rssi-blogs-section .blog-card:last-child .blog-image {
+            transition: all 0.4s ease;
+        }
+
+        .rssi-blogs-section .blog-card:last-child:hover .blog-image {
+            filter: brightness(0.6);
+            transform: scale(1.05);
+        }
+
+        /* Responsive for overlay */
+        @media (max-width: 768px) {
+            .rssi-blogs-section .view-all-overlay {
+                padding: 20px;
+            }
+
+            .rssi-blogs-section .view-all-text {
+                font-size: 1.3rem;
+            }
+
+            .rssi-blogs-section .view-all-icon {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .rssi-blogs-section .view-all-plus {
+                width: 35px;
+                height: 35px;
+                font-size: 1.3rem;
+                top: 15px;
+                right: 15px;
+            }
+
+            .rssi-blogs-section .view-all-text {
+                font-size: 1.2rem;
+            }
+
+            .rssi-blogs-section .view-all-subtext {
+                font-size: 0.85rem;
+            }
+        }
     </style>
 </head>
 
@@ -2167,41 +2318,71 @@
             const $container = $('#rssiBlogPosts');
             $container.empty();
 
-            posts.forEach(post => {
+            posts.forEach((post, index) => {
                 // Handle missing images
                 const featuredImage = post.featured_image || 'https://via.placeholder.com/400x200/e3f2fd/2c3e50?text=RSSI+Blog';
                 const authorInitial = (post.author_name || 'A').charAt(0);
                 const excerpt = post.excerpt || post.content_preview || 'Read more about our latest work and initiatives...';
 
+                // Check if this is the last post (3rd post)
+                const isLastPost = index === posts.length - 1;
+
                 const postHtml = `
             <div class="col-md-4">
-                <a href="/blog/blog-detail.html?slug=${post.slug}" target="_blank">
+                ${isLastPost ?
+                        // Last card links to blog index page
+                        `<a href="/blog/index.html" target="_blank" class="view-all-card-link">` :
+                        // Other cards link to individual posts
+                        `<a href="/blog/blog-detail.html?slug=${post.slug}" target="_blank">`
+                    }
                 <div class="blog-card">
                     <div class="blog-image-container">
-                        <img src="${featuredImage}" 
-                             alt="${post.title}" 
+                        <img src="${isLastPost ? 'https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=200&q=80' : featuredImage}" 
+                             alt="${isLastPost ? 'View All Articles' : post.title}" 
                              class="blog-image"
                              onerror="this.src='https://via.placeholder.com/400x200/e3f2fd/2c3e50?text=RSSI+Blog'">
-                        <span class="blog-badge">${post.category || 'News'}</span>
+                        <span class="blog-badge">${isLastPost ? 'Explore All' : (post.category || 'News')}</span>
+                        
+                        ${isLastPost ? `
+                            <!-- View All Overlay (shows on hover) -->
+                            <div class="view-all-overlay">
+                                <div class="view-all-icon">
+                                    <i class="bi bi-grid-3x3-gap"></i>
+                                </div>
+                                <div class="view-all-text">View All Articles</div>
+                                <div class="view-all-subtext">Browse our complete collection of stories</div>
+                                <div class="view-all-arrow">
+                                    <i class="bi bi-arrow-right"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- Animated Plus Icon -->
+                            <div class="view-all-plus">
+                                <i class="bi bi-plus-lg"></i>
+                            </div>
+                        ` : ''}
                     </div>
                     <div class="blog-content">
-                        <h3 class="blog-title">${post.title}</h3>
-                        <p class="blog-excerpt">${excerpt}</p>
+                        <h3 class="blog-title">${isLastPost ? 'Explore More Stories' : post.title}</h3>
+                        <p class="blog-excerpt">${isLastPost ? 'Discover our complete archive of articles, insights, and success stories from RSSI.' : excerpt}</p>
                         <div class="blog-meta">
                             <div class="author-info">
                                 <div class="author-avatar">
-                                    ${post.author_photo
-                        ? `<img src="${post.author_photo}" alt="${post.author_name}" style="width:100%;height:100%;object-fit:cover;">`
-                        : authorInitial
+                                    ${isLastPost ?
+                        `<i class="bi bi-collection"></i>` :
+                        (post.author_photo
+                            ? `<img src="${post.author_photo}" alt="${post.author_name}" style="width:100%;height:100%;object-fit:cover;">`
+                            : authorInitial
+                        )
                     }
                                 </div>
                                 <div>
-                                    <div class="author-name">${post.author_name || 'RSSI Team'}</div>
-                                    <div class="post-date">${post.created_at_formatted || 'Recently'}</div>
+                                    <div class="author-name">${isLastPost ? 'Full Archive' : (post.author_name || 'RSSI Team')}</div>
+                                    <div class="post-date">${isLastPost ? 'Click to Browse' : (post.created_at_formatted || 'Recently')}</div>
                                 </div>
                             </div>
                             <p class="read-more-btn">
-                                Read More <i class="bi bi-arrow-right"></i>
+                                ${isLastPost ? 'View All' : 'Read More'} <i class="bi bi-${isLastPost ? 'arrow-up-right' : 'arrow-right'}"></i>
                             </p>
                         </div>
                     </div>
