@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11316670180"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'AW-11316670180');
+    </script>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>RSSI Membership - Join Our NGO Community</title>
+    <meta name="description"
+        content="Become a RSSI NGO member and support education initiatives. Get access to our community, certificates, and contribute to social impact.">
+    <meta name="keywords"
+        content="RSSI NGO membership, community service, NGO supporter, education NGO, social impact, community certificate">
+    <meta name="author" content="RSSI NGO">
+
+    <!-- Favicons -->
+    <link href="/img/favicon.ico" rel="icon">
+    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Vendor CSS Files -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Template Main CSS File -->
+    <link href="/css/main.css?v=1.3.4" rel="stylesheet">
+
+    <style>
+        .membership-hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 4rem 0 3rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .pricing-card {
+            border: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .pricing-header {
+            padding: 2rem 1.5rem 1.5rem;
+            text-align: center;
+        }
+
+        .pricing-popular {
+            border: 2px solid #0d6efd;
+            position: relative;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            background: #0d6efd;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin: 1rem 0;
+        }
+
+        .pricing-period {
+            font-size: 1rem;
+            color: #666;
+            font-weight: normal;
+        }
+
+        .features-list {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .features-list li {
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .features-list li i {
+            color: #0d6efd;
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .join-button {
+            background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+            border: none;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            width: 100%;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .join-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.2);
+        }
+
+        .value-proposition {
+            background-color: #f0f8ff;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 4px solid #0d6efd;
+        }
+
+        .benefit-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            height: 100%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eee;
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-icon i {
+            font-size: 1.5rem;
+            color: #0d6efd;
+        }
+
+        .faq-section {
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: #f0f8ff;
+            color: #0d6efd;
+            border-color: #cfe2ff;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            height: 100%;
+            border: 1px solid #eee;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #0d6efd;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .membership-details-card {
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .membership-details-card .card-header {
+            background-color: #fff;
+            border-bottom: none;
+            font-weight: 600;
+            color: #333;
+            padding: 1rem 1.25rem;
+            position: relative;
+            padding-bottom: 1.25rem;
+        }
+
+        .membership-details-card .card-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 1.25rem;
+            width: 60px;
+            height: 3px;
+            background-color: #0d6efd;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <div id="header"></div>
+    <!-- End Header -->
+
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 id="page-title">Become a Member</h2>
+                    <ol id="breadcrumb-list">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/get-involved">Get Involved</a></li>
+                        <li>Membership</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumbs -->
+
+        <section class="sample-page">
+            <div class="container" data-aos="fade-up">
+
+                <!-- Hero Section -->
+                <div class="membership-hero">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-8">
+                                <h1 class="mb-3">Join RSSI NGO as a Member</h1>
+                                <p class="lead mb-4">Support education initiatives and become part of our growing
+                                    community without time commitment. Your membership enables us to continue our
+                                    mission of empowering young learners.</p>
+                            </div>
+                            <div class="col-lg-4 text-lg-end">
+                                <a href="signup.html" class="btn btn-primary btn-lg">
+                                    <i class="bi bi-person-plus me-2"></i>Join Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Cards -->
+                <div class="row justify-content-center mb-5">
+                    <div class="col-lg-5 mb-4">
+                        <div class="pricing-card shadow-sm">
+                            <div class="pricing-header">
+                                <h3 class="h4 mb-3">Monthly Membership</h3>
+                                <div class="pricing-price">
+                                    ₹ 1,999<span class="pricing-period">/month</span>
+                                </div>
+                                <p class="text-muted">Perfect for short-term engagement</p>
+                            </div>
+                            <ul class="features-list">
+                                <li><i class="bi bi-check-circle-fill"></i> No time or work commitment required</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Access to centre premises with pre-approved
+                                    visit request</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Relevant experience letter</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Community Service Certificate</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Monthly newsletter updates</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Flexible cancellation</li>
+                            </ul>
+                            <div class="p-3">
+                                <a href="signup.html" class="btn btn-primary join-button">
+                                    Choose Monthly Plan
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5 mb-4">
+                        <div class="pricing-card shadow-sm pricing-popular">
+                            <div class="popular-badge">Most Popular</div>
+                            <div class="pricing-header">
+                                <h3 class="h4 mb-3">3-Year Membership</h3>
+                                <div class="pricing-price">
+                                    ₹ 4,999<span class="pricing-period">/3 years</span>
+                                </div>
+                                <p class="text-muted">Best value for long-term supporters</p>
+                                <div class="badge bg-success fs-6 mb-2">Best Value</div>
+                            </div>
+                            <ul class="features-list">
+                                <li><i class="bi bi-check-circle-fill"></i> <strong>All Monthly benefits</strong></li>
+                                <li><i class="bi bi-star-fill"></i> Special recognition on our website</li>
+                                <li><i class="bi bi-star-fill"></i> Priority access to events and workshops</li>
+                                <li><i class="bi bi-star-fill"></i> Annual impact report with your name</li>
+                                <li><i class="bi bi-star-fill"></i> Personalized thank you certificate</li>
+                                <li><i class="bi bi-star-fill"></i> Exclusive member newsletter</li>
+                            </ul>
+                            <div class="p-3">
+                                <a href="signup.html" class="btn btn-primary join-button">
+                                    Choose 3-Year Plan
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Value Proposition -->
+                <div class="value-proposition">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8">
+                            <h3 class="mb-3">Your Membership Makes a Difference</h3>
+                            <p class="mb-0">Every membership contribution directly supports our educational programs,
+                                helping us provide quality education to underprivileged children. Your support enables
+                                classroom materials, teacher training, and learning resources.</p>
+                        </div>
+                        <div class="col-lg-4 text-lg-end">
+                            <a href="signup.html" class="btn btn-primary btn-lg">
+                                <i class="bi bi-heart-fill me-2"></i>Support Education
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefits Section -->
+                <div class="row mb-5">
+                    <div class="col-lg-12">
+                        <div class="membership-details-card">
+                            <div class="card-header">
+                                Membership Benefits
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-4">
+                                    <div class="col-md-4">
+                                        <div class="benefit-card">
+                                            <div class="benefit-icon">
+                                                <i class="bi bi-calendar-check"></i>
+                                            </div>
+                                            <h5>Flexible Commitment</h5>
+                                            <p class="text-muted">No fixed time commitment required. Support at your
+                                                convenience.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="benefit-card">
+                                            <div class="benefit-icon">
+                                                <i class="bi bi-building"></i>
+                                            </div>
+                                            <h5>Centre Access</h5>
+                                            <p class="text-muted">Visit our centre with pre-approved requests to see the
+                                                impact firsthand.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="benefit-card">
+                                            <div class="benefit-icon">
+                                                <i class="bi bi-award"></i>
+                                            </div>
+                                            <h5>Recognition</h5>
+                                            <p class="text-muted">Receive experience letter and community service
+                                                certificate for your support.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- How It Works -->
+                <div class="row mb-5">
+                    <div class="col-lg-12">
+                        <div class="membership-details-card">
+                            <div class="card-header">
+                                How to Become a Member
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-4">
+                                    <div class="col-md-3">
+                                        <div class="step-card">
+                                            <div class="step-number">1</div>
+                                            <h5>Choose Plan</h5>
+                                            <p class="text-muted small">Select monthly or 3-year membership</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="step-card">
+                                            <div class="step-number">2</div>
+                                            <h5>Register Online</h5>
+                                            <p class="text-muted small">Complete simple registration form</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="step-card">
+                                            <div class="step-number">3</div>
+                                            <h5>Payment</h5>
+                                            <p class="text-muted small">Secure online payment</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="step-card">
+                                            <div class="step-number">4</div>
+                                            <h5>Welcome Kit</h5>
+                                            <p class="text-muted small">Receive certificate and benefits</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <a href="signup.html" class="btn btn-primary">
+                                        <i class="bi bi-person-plus me-2"></i>Start Registration
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="faq-section">
+                    <h3 class="text-center mb-4">Frequently Asked Questions</h3>
+
+                    <div class="accordion" id="membershipFAQ">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq1">
+                                    Is there any work commitment required?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#membershipFAQ">
+                                <div class="accordion-body">
+                                    No, there is no work or time commitment required. Membership is purely a support
+                                    role. You can choose to engage with our activities if you wish, but it's not
+                                    mandatory.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq2">
+                                    How do I visit the centre?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#membershipFAQ">
+                                <div class="accordion-body">
+                                    Members can request centre visits through our online portal. All visits require
+                                    pre-approval for security and operational reasons. We typically respond to visit
+                                    requests within 48 hours.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq3">
+                                    What certificates will I receive?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#membershipFAQ">
+                                <div class="accordion-body">
+                                    All members receive a <strong>Relevant Experience Letter</strong> and a
+                                    <strong>Community Service Certificate</strong>. 3-year members also receive a
+                                    special recognition certificate.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq4">
+                                    Can I cancel my membership?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#membershipFAQ">
+                                <div class="accordion-body">
+                                    Monthly memberships can be cancelled anytime. 3-year memberships are non-refundable
+                                    but can be transferred to another person with prior approval.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq5">
+                                    How will my contribution be used?
+                                </button>
+                            </h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#membershipFAQ">
+                                <div class="accordion-body">
+                                    Your membership fees directly support our educational programs, including learning
+                                    materials, teacher salaries, classroom maintenance, and student scholarships. We
+                                    publish annual reports detailing fund utilization.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final CTA -->
+                <div class="text-center py-5">
+                    <h2 class="mb-4">Ready to Make a Difference?</h2>
+                    <p class="lead mb-4">Join hundreds of members supporting quality education for underprivileged
+                        children.</p>
+                    <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                        <a href="signup.html" class="btn btn-primary btn-lg px-5">
+                            <i class="bi bi-person-plus me-2"></i>Become a Member
+                        </a>
+                        <a href="https://wa.me/917980168159?text=Hello%20RSSI%20NGO%2C%20I%20would%20like%20to%20know%20more%20about%20membership."
+                            class="btn btn-outline-primary btn-lg px-5" target="_blank" rel="noopener">
+                            <i class="bi bi-whatsapp me-2"></i>Ask Questions
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    <!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <div id="footer"></div>
+    <!-- End Footer -->
+
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <!--<div id="preloader"></div>-->
+
+    <!-- Vendor JS Files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+    <!-- Template Main JS File -->
+    <!-- Load jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/js/main.js?v=1.4.2"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set page title and breadcrumbs
+            document.getElementById('page-title').textContent = 'Membership Program';
+
+            // Highlight the "Most Popular" card with animation
+            const popularCard = document.querySelector('.pricing-popular');
+            if (popularCard) {
+                popularCard.style.boxShadow = '0 5px 20px rgba(13, 110, 253, 0.15)';
+            }
+
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Initialize all tooltips (if any)
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
+    <!-- Glow Cookies v3.0.1 -->
+    <script>
+        glowCookies.start('en', {
+            analytics: 'G-S25QWTFJ2S',
+            policyLink: 'disclaimer'
+        });
+    </script>
+
+</body>
+
+</html>
