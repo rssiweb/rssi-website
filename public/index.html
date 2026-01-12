@@ -26,8 +26,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.0.8/dist/css/glightbox.min.css" />
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="/css/main.css?v=1.3.3" rel="stylesheet">
@@ -1093,8 +1091,8 @@
                         </a>
                         <ul>
                             <li><a href="announcements">Announcements</a></li>
-                            <li><a href="media-center">Gallery</a></li>
-                            <li><a href="blog/index.html">Read Articles</a></li>
+                            <!-- <li><a href="media-center">Gallery</a></li> -->
+                            <li><a href="blog/index.html" target="_blank">Read Articles</a></li>
                             <li><a href="visit-us">Visitor Form</a></li>
                             <li><a href="holiday">Holiday List</a></li>
                         </ul>
@@ -1129,7 +1127,7 @@
     <!-- ======= Hero Section ======= -->
 
     <section id="hero" class="hero">
-        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-pause="hover" data-aos="zoom-out">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-pause="hover">
             <div class="carousel-inner">
                 <!-- First Slide -->
                 <div class="carousel-item active">
@@ -1211,7 +1209,7 @@
 
         <!-- ======= About Section ======= -->
         <section id="about" class="about">
-            <div class="container" data-aos="fade-up">
+            <div class="container">
 
                 <div class="row mb-5 text-center">
                     <div class="col-lg-8 mx-auto">
@@ -1221,7 +1219,7 @@
                 </div>
 
                 <div class="row gy-4">
-                    <div class="col-lg-7 position-relative about-video" data-aos="fade-up" data-aos-delay="150">
+                    <div class="col-lg-7 position-relative about-video">
                         <div class="ratio ratio-16x9 h-100"> <!-- Maintains aspect ratio while filling height -->
                             <iframe
                                 src="https://www.youtube.com/embed/IlK-LQSEPrM?autoplay=1&mute=1&loop=1&playlist=IlK-LQSEPrM"
@@ -1229,7 +1227,7 @@
                                 class="w-100 h-100"></iframe>
                         </div>
                     </div>
-                    <div class="col-lg-5 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
+                    <div class="col-lg-5 d-flex align-items-end">
                         <div class="content ps-0 ps-lg-5">
                             <p>
                                 Rina Shiksha Sahayak Foundation (RSSI) is a pioneering learning organization committed
@@ -1265,7 +1263,7 @@
 
         <!-- Stories of Change Section with ID -->
         <section id="stories-of-change" style="background-color: #ffd865;">
-            <div class="container" data-aos="fade-up">
+            <div class="container">
                 <div class="row align-items-start">
                     <!-- Left Column - Text Content -->
                     <div class="col-lg-4 col-md-12 stories-left-column">
@@ -1400,7 +1398,7 @@
         </section>
 
         <section id="projects">
-            <div id="announcements-carousel" class="swiper container" data-aos="fade-up">
+            <div id="announcements-carousel" class="swiper container">
 
                 <div class="row mb-5 text-center">
                     <div class="col-lg-8 mx-auto">
@@ -1669,9 +1667,9 @@
 
         <!-- ======= Why Us Section ======= -->
         <section id="why-us" class="why-us section-bg">
-            <div class="container" data-aos="fade-up">
+            <div class="container">
                 <div class="row gy-4">
-                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-4">
                         <div class="why-box">
                             <h3>Why Choose RSSI?</h3>
                             <p>
@@ -1691,7 +1689,7 @@
                     <div class="col-lg-8 d-flex align-items-center">
                         <div class="row gy-4">
 
-                            <div class="col-xl-4" data-aos="fade-up" data-aos-delay="200">
+                            <div class="col-xl-4">
                                 <div class="icon-box d-flex flex-column justify-content-center align-items-center">
                                     <i class="bi bi-chat-square-heart-fill"></i>
                                     <h4>Feel good about your contribution</h4>
@@ -1701,7 +1699,7 @@
                             </div>
                             <!-- End Icon Box -->
 
-                            <div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
+                            <div class="col-xl-4">
                                 <div class="icon-box d-flex flex-column justify-content-center align-items-center">
                                     <i class="bi bi-handbag-fill"></i>
                                     <h4>Gain hands on experience</h4>
@@ -1712,7 +1710,7 @@
                             </div>
                             <!-- End Icon Box -->
 
-                            <div class="col-xl-4" data-aos="fade-up" data-aos-delay="400">
+                            <div class="col-xl-4">
                                 <div class="icon-box d-flex flex-column justify-content-center align-items-center">
                                     <i class="bi bi-diagram-3"></i>
                                     <h4>Network with interesting people</h4>
@@ -1730,7 +1728,7 @@
 
         <!-- ======= Stats Counter Section ======= -->
         <section id="stats-counter" class="stats-counter">
-            <div class="container" data-aos="zoom-out">
+            <div class="container">
 
                 <div class="row gy-4">
 
@@ -1782,7 +1780,7 @@
 
         <!-- ======= Gallery Section ======= -->
         <section id="gallery" class="gallery section-bg">
-            <div class="container" data-aos="fade-up">
+            <div class="container">
 
                 <div class="gallery-slider swiper">
                     <div class="swiper-wrapper align-items-center">
@@ -1853,7 +1851,7 @@
 
         <!-- ======= Clients Section ======= -->
         <section id="clients" class="clients">
-            <div class="container" data-aos="zoom-out">
+            <div class="container">
 
                 <div class="row text-center">
                     <div class="col-lg-8 mx-auto">
@@ -1978,7 +1976,7 @@
 
         <!-- Latest Blogs Section -->
         <section class="rssi-blogs-section py-5 bg-light">
-            <div class="container" data-aos="fade-up">
+            <div class="container">
                 <div class="row mb-4">
                     <div class="col-12 d-flex justify-content-between align-items-center">
                         <h2 class="section-title mb-0">Latest from Our Blog</h2>
@@ -2022,7 +2020,7 @@
 
         <!-- ======= Chefs Section ======= -->
         <section id="chefs" class="chefs">
-            <div class="container" data-aos="fade-up">
+            <div class="container">
 
                 <div class="row mb-5 text-center">
                     <div class="col-lg-8 mx-auto">
@@ -2033,7 +2031,7 @@
 
                 <div class="row gy-4">
 
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                         <div class="chef-member">
                             <div class="member-img">
                                 <img src="/img/key-members/members-img1.jpg" class="img-fluid" alt="">
@@ -2055,7 +2053,7 @@
                     </div>
                     <!-- End Chefs Member -->
 
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                         <div class="chef-member">
                             <div class="member-img">
                                 <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/c_fill,w_300,h_300,g_auto/v1704613959/faculties/VKGP24119_Subhash_Chandra_Nag.jpg"
@@ -2077,7 +2075,7 @@
                     </div>
                     <!-- End Chefs Member -->
 
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                         <div class="chef-member">
                             <div class="member-img">
                                 <img src="/img/key-members/members-img2.jpg" class="img-fluid" alt="">
@@ -2149,16 +2147,6 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="/js/main.js?v=1.4.1"></script>
     <script src="/js/custom.js?v=1.1.1"></script>
-    <!-- AOS Animation -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 1000,
-            easing: 'ease-in-out',
-            once: true,
-            mirror: false
-        });
-    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const swiper = new Swiper('#announcements-carousel', {
