@@ -4,6 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Dynamic Meta Tags -->
+    <meta name="description" id="metaDescription" content="">
+    <meta name="keywords" id="metaKeywords" content="">
+    <meta name="author" id="metaAuthor" content="">
+    <meta property="og:title" id="ogTitle" content="">
+    <meta property="og:description" id="ogDescription" content="">
+    <meta property="og:image" id="ogImage" content="">
+    <meta property="og:url" id="ogUrl" content="">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" id="twitterTitle" content="">
+    <meta name="twitter:description" id="twitterDescription" content="">
+    <meta name="twitter:image" id="twitterImage" content="">
     <title>Blog Detail - RSSI NGO</title>
     <!-- Favicons -->
     <link href="/img/favicon.ico" rel="icon">
@@ -466,9 +479,35 @@
             });
         }
 
+        function updateMetaTags(post) {
+            // Update basic meta tags
+            $('#metaDescription').attr('content', post.excerpt || post.content.substring(0, 160) + '...');
+            $('#metaKeywords').attr('content', post.tags || post.keywords || 'blog, RSSI NGO, article');
+            $('#metaAuthor').attr('content', post.author_name || 'RSSI NGO');
+
+            // Update Open Graph tags for social sharing
+            $('#ogTitle').attr('content', post.title);
+            $('#ogDescription').attr('content', post.excerpt || post.content.substring(0, 200) + '...');
+            $('#ogImage').attr('content', post.featured_image || '/img/default-og-image.jpg');
+            $('#ogUrl').attr('content', window.location.href);
+
+            // Update Twitter Card tags
+            $('#twitterTitle').attr('content', post.title);
+            $('#twitterDescription').attr('content', post.excerpt || post.content.substring(0, 200) + '...');
+            $('#twitterImage').attr('content', post.featured_image || '/img/default-twitter-image.jpg');
+
+            // Canonical URL
+            if (!document.querySelector('link[rel="canonical"]')) {
+                $('head').append(`<link rel="canonical" href="${window.location.href}" />`);
+            }
+        }
+
         function renderBlogDetail(data) {
             const post = data.post;
             document.title = `${post.title} - RSSI NGO Blog`;
+
+            // Update meta tags
+            updateMetaTags(post);
 
             // Update header
             $('#breadcrumbTitle').text(post.title.substring(0, 30) + (post.title.length > 30 ? '...' : ''));
