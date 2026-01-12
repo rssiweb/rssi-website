@@ -9,10 +9,15 @@ if (scrollTop) {
     }
     window.addEventListener('load', togglescrollTop);
     document.addEventListener('scroll', togglescrollTop);
-    scrollTop.addEventListener('click', window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    }));
+
+    // FIXED: This should be an event listener with a function
+    scrollTop.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 }
 // Load header and footer asynchronously (safe for pages without them)
 (async function loadLayout() {

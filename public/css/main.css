@@ -143,18 +143,27 @@ section {
     width: 44px;
     height: 44px;
     border-radius: 50px;
-    transition: all 0.4s;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
 .scroll-top i {
     font-size: 24px;
     color: #fff;
     line-height: 0;
+    transition: transform 0.3s ease;
 }
 
 .scroll-top:hover {
     background: #ec2727;
-    color: #fff;
+    transform: translateY(-5px);
+}
+
+.scroll-top:hover i {
+    transform: translateY(-2px);
 }
 
 .scroll-top.active {
