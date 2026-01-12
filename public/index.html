@@ -774,104 +774,6 @@
             transform: translateX(5px);
         }
 
-        /* Modern Fresh "View All Blog Articles" Button */
-        .rssi-blogs-section .btn-primary {
-            --btn-primary: var(--color-primary);
-            --btn-hover: #ec2727;
-            --btn-light: rgba(206, 18, 18, 0.1);
-            --btn-text: #fff;
-            --btn-glow: rgba(206, 18, 18, 0.4);
-
-            color: var(--btn-text);
-            background: var(--btn-primary);
-            border: none;
-            padding: 12px 36px;
-            font-weight: 600;
-            font-size: 1rem;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: inline-flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            box-shadow:
-                0 4px 20px var(--btn-glow),
-                0 0 0 1px rgba(206, 18, 18, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        }
-
-        .rssi-blogs-section .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--btn-hover) 0%, #b31414 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: -1;
-        }
-
-        .rssi-blogs-section .btn-primary::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            transition: width 0.4s ease, height 0.4s ease;
-            z-index: 0;
-            border-radius: 50%;
-        }
-
-        .rssi-blogs-section .btn-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow:
-                0 8px 30px rgba(206, 18, 18, 0.45),
-                0 0 0 1px rgba(206, 18, 18, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-        }
-
-        .rssi-blogs-section .btn-primary:hover::before {
-            opacity: 1;
-        }
-
-        .rssi-blogs-section .btn-primary:hover::after {
-            width: 200px;
-            height: 200px;
-        }
-
-        .rssi-blogs-section .btn-primary:active {
-            transform: translateY(-1px) scale(1);
-            box-shadow:
-                0 4px 20px rgba(206, 18, 18, 0.3),
-                0 0 0 1px rgba(206, 18, 18, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-
-        .rssi-blogs-section .btn-primary i {
-            margin-right: 10px;
-            font-size: 1.2em;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .rssi-blogs-section .btn-primary:hover i {
-            transform: translateX(5px) rotate(15deg);
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-        }
-
-        /* Button Loading Animation for #rssiViewAll */
-        #rssiViewAll {
-            animation: fadeInUp 0.6s ease-out forwards;
-            opacity: 0;
-            animation-delay: 0.3s;
-        }
-
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -896,11 +798,6 @@
 
             .rssi-blogs-section .blog-title {
                 font-size: 1rem;
-            }
-
-            .rssi-blogs-section .btn-primary {
-                padding: 10px 28px;
-                font-size: 0.95rem;
             }
 
             .rssi-blogs-section .row.mb-4 {
@@ -938,26 +835,6 @@
                 -webkit-line-clamp: 2;
                 line-clamp: 2;
             }
-
-            .rssi-blogs-section .btn-primary {
-                width: 100%;
-                max-width: 280px;
-                padding: 10px 24px;
-            }
-        }
-
-        /* Button focus states for accessibility */
-        .rssi-blogs-section .btn-primary:focus {
-            outline: 2px solid rgba(206, 18, 18, 0.5);
-            outline-offset: 3px;
-        }
-
-        /* Button disabled state */
-        .rssi-blogs-section .btn-primary:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none !important;
-            background: rgba(206, 18, 18, 0.5);
         }
     </style>
 </head>
@@ -1932,13 +1809,6 @@
                         <span class="visually-hidden">Loading...</span>
                     </div>
                     <p class="mt-2 text-muted">Loading latest articles...</p>
-                </div>
-
-                <!-- View All Button (shown after loading) -->
-                <div class="text-center mt-4" id="rssiViewAll" style="display: none;">
-                    <a href="/blog/index.html" class="btn btn-primary px-4" target="_blank">
-                        <i class="fas fa-newspaper me-2"></i> View All Blog Articles
-                    </a>
                 </div>
 
                 <!-- No Posts Message -->
