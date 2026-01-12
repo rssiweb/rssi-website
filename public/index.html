@@ -2264,7 +2264,7 @@
             $('#rssiViewAll').hide();
 
             // Load only 3 latest posts for the homepage
-            const url = API_BASE + 'get_blogs.php?limit=3&offset=0&debug=1';
+            const url = API_BASE + 'get_blogs.php?limit=3&is_featured=true&offset=0&debug=1';
 
             $.ajax({
                 url: url,
