@@ -664,10 +664,13 @@
             color: #2c3e50;
             margin-bottom: 10px;
             line-height: 1.4;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+            /* Line clamp with full browser compatibility */
             overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            text-overflow: ellipsis;
         }
 
         .rssi-blogs-section .blog-excerpt {
@@ -676,10 +679,13 @@
             line-height: 1.5;
             margin-bottom: 15px;
             flex-grow: 1;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
+            /* Line clamp with full browser compatibility */
             overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            text-overflow: ellipsis;
         }
 
         .rssi-blogs-section .blog-meta {
@@ -760,12 +766,23 @@
         }
 
         @media (max-width: 576px) {
-            .rssi-blogs-section .col-md-6 {
+            .rssi-blogs-section .col-md-4 {
                 margin-bottom: 20px;
             }
 
             .rssi-blogs-section .blog-image-container {
                 height: 160px;
+            }
+
+            /* Adjust line-clamp for mobile */
+            .rssi-blogs-section .blog-title {
+                -webkit-line-clamp: 2;
+                line-clamp: 2;
+            }
+
+            .rssi-blogs-section .blog-excerpt {
+                -webkit-line-clamp: 2;
+                line-clamp: 2;
             }
         }
     </style>
@@ -1761,7 +1778,7 @@
         </section>
 
         <!-- ======= Chefs Section ======= -->
-        <section id="chefs" class="chefs section-bg">
+        <section id="chefs" class="chefs">
             <div class="container" data-aos="fade-up">
 
                 <div class="row mb-5 text-center">
@@ -2122,6 +2139,7 @@
 
                 const postHtml = `
             <div class="col-md-4">
+                <a href="/blog/blog-detail.html?slug=${post.slug}" target="_blank">
                 <div class="blog-card">
                     <div class="blog-image-container">
                         <img src="${featuredImage}" 
@@ -2146,12 +2164,13 @@
                                     <div class="post-date">${post.created_at_formatted || 'Recently'}</div>
                                 </div>
                             </div>
-                            <a href="/blog/index.html" class="read-more-btn">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
+                            <p class="read-more-btn">
+                                Read More <i class="bi bi-arrow-right"></i>
+                            </p>
                         </div>
                     </div>
                 </div>
+                </a>
             </div>`;
 
                 $container.append(postHtml);
