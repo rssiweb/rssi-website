@@ -290,7 +290,29 @@
             /* Dark gray text */
         }
     </style>
+    <style>
+        /* Initial state: Low opacity */
+        .btn-read-more {
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+            /* Smooth transition */
+        }
 
+        /* Hover state: Increase opacity */
+        .btn-read-more:hover {
+            opacity: 0.8;
+        }
+
+        /* Focus state: Increase opacity (only for keyboard focus) */
+        .btn-read-more:focus-visible {
+            opacity: 1;
+        }
+
+        /* Active state (when clicked): Increase opacity */
+        .btn-read-more:active {
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <body>
