@@ -114,44 +114,6 @@ function initHeaderScripts() {
     }
 }
 
-// External link warning
-document.addEventListener("click", function (e) {
-    const link = e.target.closest("a");
-
-    if (!link) return;
-
-    const currentDomain = window.location.hostname;
-
-    try {
-        const linkUrl = new URL(link.href, window.location.origin);
-
-        // Skip Google Translate & system links
-        if (
-            link.href.includes("translate.google") ||
-            link.href.startsWith("javascript:") ||
-            link.classList.contains("goog-te-menu-value") ||
-            link.closest(".goog-te-menu-frame") ||
-            link.closest("#google_translate_element") ||
-            link.hasAttribute("data-skip-external-check")
-        ) {
-            return;
-        }
-
-        // Only external links
-        if (linkUrl.hostname && linkUrl.hostname !== currentDomain) {
-            e.preventDefault();
-
-            const confirmLeave = confirm(
-                "You are being redirected to an external website. Do you want to continue?"
-            );
-
-            if (confirmLeave) {
-                window.open(link.href, "_blank");
-            }
-        }
-    } catch (err) { }
-});
-
 // Generate breadcrumbs based on navigation structure and current page
 function generateBreadcrumbs() {
     const breadcrumbList = document.getElementById('breadcrumb-list');
@@ -223,32 +185,6 @@ function generateBreadcrumbs() {
             .replace(/chevron-down/gi, '')
             .replace(/chevron-up/gi, '')
             .trim();
-    }
-
-    // Function to traverse up and find all parent dropdowns
-    function findParentDropdowns(element) {
-        const parents = [];
-        let currentElement = element;
-
-        while (currentElement && currentElement !== navbar) {
-            // Check if this is a dropdown link or inside a dropdown
-            const isDirectLink = currentElement.tagName === 'A' && currentElement.getAttribute('href') === '#';
-            const parentLi = currentElement.closest('li.dropdown');
-
-            if (parentLi) {
-                const dropdownLink = parentLi.querySelector('a[href="#"]');
-                if (dropdownLink && !dropdownLink.contains(currentElement)) {
-                    const text = getDropdownText(dropdownLink);
-                    if (text && !parents.includes(text)) {
-                        parents.unshift(text); // Add to beginning to maintain order
-                    }
-                }
-            }
-
-            currentElement = currentElement.parentElement;
-        }
-
-        return parents;
     }
 
     // Get current page text (clean it)
@@ -454,4 +390,127 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 500);
         }
     }
+});
+
+// main.js - SIMPLIFIED FOR JQUERY
+$(document).ready(function () {
+    // Wait a bit for header/footer to load
+    setTimeout(initializePage, 500);
+});
+
+function initializePage() {
+    // ========== MOBILE NAV ==========
+    const mobileNavShow = document.querySelector('.mobile-nav-show');
+    const mobileNavHide = document.querySelector('.mobile-nav-hide');
+
+    if (mobileNavShow && mobileNavHide) {
+        document.querySelectorAll('.mobile-nav-toggle').forEach(el => {
+            el.addEventListener('click', function (event) {
+                event.preventDefault();
+                mobileNavToggle();
+            });
+        });
+    }
+
+    function mobileNavToggle() {
+        if (!mobileNavShow || !mobileNavHide) return;
+        document.body.classList.toggle('mobile-nav-active');
+        mobileNavShow.classList.toggle('d-none');
+        mobileNavHide.classList.toggle('d-none');
+    }
+
+    // ========== DROPDOWN TOGGLE ==========
+    document.querySelectorAll('.navbar .dropdown > a').forEach(el => {
+        el.addEventListener('click', function (event) {
+            if (document.body.classList.contains('mobile-nav-active')) {
+                event.preventDefault();
+                this.classList.toggle('active');
+                this.nextElementSibling.classList.toggle('dropdown-active');
+
+                let icon = this.querySelector('.dropdown-indicator');
+                if (icon) {
+                    icon.classList.toggle('bi-chevron-up');
+                    icon.classList.toggle('bi-chevron-down');
+                }
+            }
+        });
+    });
+
+    // ========== ACTIVE NAV HIGHLIGHTING ==========
+    function navbarlinksActive() {
+        document.querySelectorAll('#navbar a').forEach(link => {
+            if (!link.hash) return;
+
+            let section = document.querySelector(link.hash);
+            if (!section) return;
+
+            let position = window.scrollY + 200;
+
+            if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    }
+
+    window.addEventListener('load', navbarlinksActive);
+    document.addEventListener('scroll', navbarlinksActive);
+
+    // ========== GOOGLE TRANSLATE ==========
+    const translateElement = document.getElementById('google_translate_element');
+    if (translateElement) {
+        window.googleTranslateElementInit = function () {
+            if (typeof google !== 'undefined' && google.translate) {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                    includedLanguages: "hi,en,bn"
+                }, 'google_translate_element');
+            }
+        };
+
+        // Load script if not already loaded
+        if (!document.querySelector('script[src*="translate.google"]')) {
+            const script = document.createElement('script');
+            script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            script.async = true;
+            document.head.appendChild(script);
+        }
+    }
+}
+
+// ========== EXTERNAL LINK WARNING ==========
+document.addEventListener("click", function (e) {
+    const link = e.target.closest("a");
+    if (!link) return;
+
+    const currentDomain = window.location.hostname;
+
+    try {
+        const linkUrl = new URL(link.href, window.location.origin);
+
+        // Skip Google Translate & system links
+        if (
+            link.href.includes("translate.google") ||
+            link.href.startsWith("javascript:") ||
+            link.classList.contains("goog-te-menu-value") ||
+            link.closest(".goog-te-menu-frame") ||
+            link.closest("#google_translate_element") ||
+            link.hasAttribute("data-skip-external-check")
+        ) {
+            return;
+        }
+
+        // Only external links
+        if (linkUrl.hostname && linkUrl.hostname !== currentDomain) {
+            e.preventDefault();
+            const confirmLeave = confirm(
+                "You are being redirected to an external website. Do you want to continue?"
+            );
+            if (confirmLeave) {
+                window.open(link.href, "_blank");
+            }
+        }
+    } catch (err) { }
 });
