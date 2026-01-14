@@ -1,4 +1,3 @@
-
 /**
  * Scroll top button
  */
@@ -10,7 +9,6 @@ if (scrollTop) {
     window.addEventListener('load', togglescrollTop);
     document.addEventListener('scroll', togglescrollTop);
 
-    // FIXED: This should be an event listener with a function
     scrollTop.addEventListener('click', function (e) {
         e.preventDefault();
         window.scrollTo({
@@ -19,6 +17,7 @@ if (scrollTop) {
         });
     });
 }
+
 // Load header and footer asynchronously (safe for pages without them)
 (async function loadLayout() {
     try {
@@ -59,10 +58,8 @@ if (scrollTop) {
     }
 })();
 
-
 // Header-specific scripts (fully defensive)
 function initHeaderScripts() {
-
     const mobileNavShow = document.querySelector('.mobile-nav-show');
     const mobileNavHide = document.querySelector('.mobile-nav-hide');
     const mobileNavToggles = document.querySelectorAll('.mobile-nav-toggle');
@@ -98,20 +95,65 @@ function initHeaderScripts() {
         });
     });
 
-    // Active link highlight
+    // Active link highlight - SIMPLIFIED VERSION
     const currentPath = window.location.pathname.toLowerCase();
     const navbar = document.getElementById('navbar');
 
     if (navbar) {
-        navbar.querySelectorAll('a').forEach(link => {
+        navbar.querySelectorAll('a[href]').forEach(link => {
             const linkPath = link.getAttribute('href');
             if (!linkPath || linkPath === '#') return;
 
+            // Check if current path ends with link path
             if (currentPath.endsWith(linkPath.toLowerCase())) {
                 link.classList.add('active');
+
+                // Also activate parent dropdowns
+                let parent = link.parentElement;
+                while (parent && parent !== navbar) {
+                    if (parent.classList.contains('dropdown')) {
+                        const dropdownToggle = parent.querySelector('a');
+                        if (dropdownToggle) dropdownToggle.classList.add('active');
+                    }
+                    parent = parent.parentElement;
+                }
             }
         });
     }
+}
+
+// MISSING FUNCTION: Find parent dropdowns
+function findParentDropdowns(element) {
+    const parentDropdowns = [];
+    let currentElement = element.parentElement;
+    const navbar = document.getElementById('navbar');
+
+    while (currentElement && currentElement !== navbar) {
+        if (currentElement.classList.contains('dropdown')) {
+            const dropdownText = getDropdownText(currentElement.querySelector('a'));
+            if (dropdownText) {
+                parentDropdowns.unshift(dropdownText); // Add to beginning to maintain order
+            }
+        }
+        currentElement = currentElement.parentElement;
+    }
+
+    return parentDropdowns;
+}
+
+// Function to get dropdown text
+function getDropdownText(dropdownElement) {
+    if (!dropdownElement) return '';
+
+    const span = dropdownElement.querySelector('span');
+    if (span) return span.textContent.trim();
+
+    // Remove dropdown indicator and trim
+    return dropdownElement.textContent
+        .replace(/▼/g, '')
+        .replace(/chevron-down/gi, '')
+        .replace(/chevron-up/gi, '')
+        .trim();
 }
 
 // Generate breadcrumbs based on navigation structure and current page
@@ -120,11 +162,18 @@ function generateBreadcrumbs() {
     const pageTitle = document.getElementById('page-title');
 
     // If no breadcrumbs container exists on this page, exit
-    if (!breadcrumbList || !pageTitle) return;
+    if (!breadcrumbList || !pageTitle) {
+        console.log('Breadcrumb elements not found on this page');
+        return;
+    }
 
     const currentPath = window.location.pathname.toLowerCase();
     const navbar = document.getElementById('navbar');
-    if (!navbar) return;
+    if (!navbar) {
+        // Fallback: Use simple breadcrumbs
+        generateSimpleBreadcrumbs();
+        return;
+    }
 
     // Find the active link in the navigation
     let activeLink = null;
@@ -158,11 +207,8 @@ function generateBreadcrumbs() {
     }
 
     if (!activeLink) {
-        // Fallback: Use document title or URL
-        const fallbackTitle = document.title.split('|')[0].trim() ||
-            currentPage.charAt(0).toUpperCase() + currentPage.slice(1);
-        pageTitle.textContent = fallbackTitle;
-        breadcrumbList.innerHTML = '<li><a href="index">Home</a></li><li>' + fallbackTitle + '</li>';
+        // Fallback: Use simple breadcrumbs
+        generateSimpleBreadcrumbs();
         return;
     }
 
@@ -171,21 +217,8 @@ function generateBreadcrumbs() {
     const addedTexts = new Set(); // Track added items to prevent duplicates
 
     // Start with Home
-    breadcrumbs.push({ text: 'Home', url: 'index' });
+    breadcrumbs.push({ text: 'Home', url: '/' });
     addedTexts.add('Home');
-
-    // Function to get dropdown text
-    function getDropdownText(dropdownElement) {
-        const span = dropdownElement.querySelector('span');
-        if (span) return span.textContent.trim();
-
-        // Remove dropdown indicator and trim
-        return dropdownElement.textContent
-            .replace(/▼/g, '')
-            .replace(/chevron-down/gi, '')
-            .replace(/chevron-up/gi, '')
-            .trim();
-    }
 
     // Get current page text (clean it)
     let currentPageText = activeLink.textContent;
@@ -232,6 +265,45 @@ function generateBreadcrumbs() {
     breadcrumbList.innerHTML = breadcrumbHTML;
 }
 
+// Simple fallback breadcrumb function
+function generateSimpleBreadcrumbs() {
+    const breadcrumbList = document.getElementById('breadcrumb-list');
+    const pageTitle = document.getElementById('page-title');
+
+    if (!breadcrumbList || !pageTitle) return;
+
+    // Get current path
+    const currentPath = window.location.pathname;
+
+    // Extract page name from path
+    let pageName = currentPath.split('/').pop() || 'Home';
+
+    // Remove file extension
+    pageName = pageName.replace(/\.[^/.]+$/, "");
+
+    // If it's empty or index, set to Home
+    if (pageName === '' || pageName === 'index' || pageName === 'home') {
+        pageName = 'Home';
+    }
+
+    // Format for display
+    const displayName = pageName
+        .replace(/-/g, ' ')
+        .replace(/_/g, ' ')
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+
+    // Set page title
+    pageTitle.textContent = displayName;
+
+    // Generate breadcrumbs
+    breadcrumbList.innerHTML = `
+        <li><a href="/">Home</a></li>
+        <li>${displayName}</li>
+    `;
+}
+
 // Pace options (optional)
 window.paceOptions = {
     ajax: true,
@@ -244,42 +316,28 @@ var paceScript = document.createElement('script');
 paceScript.src = 'https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js';
 document.head.appendChild(paceScript);
 
-
-/**
- * Add this script after your existing JavaScript
- */
-
 // Clipboard functionality for link icons
 document.addEventListener('DOMContentLoaded', function () {
     // Function to copy link to clipboard
     function copyLinkToClipboard(sectionId, linkIcon, tooltip) {
-        // Get the full URL with the section hash
         const currentUrl = window.location.href.split('#')[0];
         const linkToCopy = `${currentUrl}#${sectionId}`;
 
-        // Use the Clipboard API
         navigator.clipboard.writeText(linkToCopy)
             .then(() => {
-                // Show success state
                 linkIcon.classList.add('copied');
                 linkIcon.innerHTML = '<i class="bi bi-check2"></i>';
-
-                // Update tooltip text
                 tooltip.textContent = 'Copied!';
                 tooltip.classList.add('show');
 
-                // Zoom and highlight the section
                 const section = document.getElementById(sectionId);
                 if (section) {
                     section.classList.add('zoom-highlight');
-
-                    // Remove highlight after animation
                     setTimeout(() => {
                         section.classList.remove('zoom-highlight');
                     }, 2000);
                 }
 
-                // Reset after 2 seconds
                 setTimeout(() => {
                     linkIcon.classList.remove('copied');
                     linkIcon.innerHTML = '<i class="bi bi-link-45deg"></i>';
@@ -288,10 +346,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }, 2000);
             })
             .catch(err => {
-                // Fallback for older browsers
                 console.error('Failed to copy: ', err);
-
-                // Try fallback method
                 const textArea = document.createElement('textarea');
                 textArea.value = linkToCopy;
                 document.body.appendChild(textArea);
@@ -299,14 +354,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 try {
                     document.execCommand('copy');
-
-                    // Show success even with fallback
                     linkIcon.classList.add('copied');
-                    linkIcon.innerHTML = '<i class="fas fa-check"></i>';
+                    linkIcon.innerHTML = '<i class="bi bi-check2"></i>';
                     tooltip.textContent = 'Copied!';
                     tooltip.classList.add('show');
 
-                    // Zoom and highlight the section
                     const section = document.getElementById(sectionId);
                     if (section) {
                         section.classList.add('zoom-highlight');
@@ -315,7 +367,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         }, 2000);
                     }
 
-                    // Reset after 2 seconds
                     setTimeout(() => {
                         linkIcon.classList.remove('copied');
                         linkIcon.innerHTML = '<i class="bi bi-link-45deg"></i>';
@@ -323,7 +374,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         tooltip.textContent = 'Copy link';
                     }, 2000);
                 } catch (err) {
-                    // Show error
                     tooltip.textContent = 'Failed to copy';
                     tooltip.classList.add('show');
                     setTimeout(() => {
@@ -339,13 +389,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Attach click handlers to all link icons
     document.querySelectorAll('.heading-link-icon .link-icon').forEach(linkIcon => {
         const tooltip = linkIcon.parentElement.querySelector('.link-tooltip');
-
-        // Get section ID from the href attribute or find parent section
         let sectionId = linkIcon.getAttribute('href');
+
         if (sectionId && sectionId.startsWith('#')) {
-            sectionId = sectionId.substring(1); // Remove the #
+            sectionId = sectionId.substring(1);
         } else {
-            // Find the closest section with an ID
             const section = linkIcon.closest('section[id]');
             if (section) {
                 sectionId = section.id;
@@ -359,7 +407,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 copyLinkToClipboard(sectionId, linkIcon, tooltip);
             });
 
-            // Show tooltip on hover
             linkIcon.addEventListener('mouseenter', function () {
                 if (!linkIcon.classList.contains('copied')) {
                     tooltip.classList.add('show');
@@ -379,11 +426,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const sectionId = window.location.hash.substring(1);
         const section = document.getElementById(sectionId);
         if (section) {
-            // Small delay to ensure page is loaded
             setTimeout(() => {
                 section.classList.add('zoom-highlight');
-
-                // Remove highlight after 2 seconds
                 setTimeout(() => {
                     section.classList.remove('zoom-highlight');
                 }, 2000);
@@ -392,53 +436,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// main.js - SIMPLIFIED FOR JQUERY
+// main.js - SIMPLIFIED FOR JQUERY - REMOVE DUPLICATE INITIALIZATION
 $(document).ready(function () {
-    // Wait a bit for header/footer to load
-    setTimeout(initializePage, 500);
-});
+    // Remove the setTimeout call to avoid duplicate initialization
+    // The header is already initialized in initHeaderScripts()
 
-function initializePage() {
-    // ========== MOBILE NAV ==========
-    const mobileNavShow = document.querySelector('.mobile-nav-show');
-    const mobileNavHide = document.querySelector('.mobile-nav-hide');
-
-    if (mobileNavShow && mobileNavHide) {
-        document.querySelectorAll('.mobile-nav-toggle').forEach(el => {
-            el.addEventListener('click', function (event) {
-                event.preventDefault();
-                mobileNavToggle();
-            });
-        });
-    }
-
-    function mobileNavToggle() {
-        if (!mobileNavShow || !mobileNavHide) return;
-        document.body.classList.toggle('mobile-nav-active');
-        mobileNavShow.classList.toggle('d-none');
-        mobileNavHide.classList.toggle('d-none');
-    }
-
-    // ========== DROPDOWN TOGGLE ==========
-    document.querySelectorAll('.navbar .dropdown > a').forEach(el => {
-        el.addEventListener('click', function (event) {
-            if (document.body.classList.contains('mobile-nav-active')) {
-                event.preventDefault();
-                this.classList.toggle('active');
-                this.nextElementSibling.classList.toggle('dropdown-active');
-
-                let icon = this.querySelector('.dropdown-indicator');
-                if (icon) {
-                    icon.classList.toggle('bi-chevron-up');
-                    icon.classList.toggle('bi-chevron-down');
-                }
-            }
-        });
-    });
-
-    // ========== ACTIVE NAV HIGHLIGHTING ==========
+    // Just run active highlighting for scroll-based navigation
     function navbarlinksActive() {
-        document.querySelectorAll('#navbar a').forEach(link => {
+        document.querySelectorAll('#navbar a[href^="#"]').forEach(link => {
             if (!link.hash) return;
 
             let section = document.querySelector(link.hash);
@@ -454,31 +459,61 @@ function initializePage() {
         });
     }
 
-    window.addEventListener('load', navbarlinksActive);
-    document.addEventListener('scroll', navbarlinksActive);
+    // Only run this for pages with hash-based navigation
+    if (window.location.hash || document.querySelector('section[id]')) {
+        window.addEventListener('load', navbarlinksActive);
+        document.addEventListener('scroll', navbarlinksActive);
+    }
 
-    // ========== GOOGLE TRANSLATE ==========
-    const translateElement = document.getElementById('google_translate_element');
-    if (translateElement) {
+    // Google Translate initialization - FIXED VERSION
+    function initializeGoogleTranslate() {
+        const translateElement = document.getElementById('google_translate_element');
+        if (!translateElement) return;
+
+        // Define the callback function
         window.googleTranslateElementInit = function () {
             if (typeof google !== 'undefined' && google.translate) {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'en',
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                    includedLanguages: "hi,en,bn"
-                }, 'google_translate_element');
+                try {
+                    new google.translate.TranslateElement({
+                        pageLanguage: 'en',
+                        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                        includedLanguages: "hi,en,bn",
+                        autoDisplay: false,
+                        multilanguagePage: true
+                    }, 'google_translate_element');
+                } catch (e) {
+                    console.error('Google Translate initialization error:', e);
+                }
             }
         };
 
-        // Load script if not already loaded
-        if (!document.querySelector('script[src*="translate.google"]')) {
-            const script = document.createElement('script');
-            script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-            script.async = true;
-            document.head.appendChild(script);
+        // Check if Google Translate script is already loaded
+        if (window.google && google.translate) {
+            // If already loaded, initialize immediately
+            window.googleTranslateElementInit();
+        } else {
+            // Load the script if not already loaded
+            if (!document.querySelector('script[src*="translate.google"]')) {
+                const script = document.createElement('script');
+                script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+                script.async = true;
+                script.defer = true;
+
+                // Add error handling
+                script.onerror = function () {
+                    console.error('Failed to load Google Translate script');
+                    // Show fallback message if needed
+                    translateElement.innerHTML = '<div style="color: #666; font-size: 14px;">Translation service temporarily unavailable</div>';
+                };
+
+                document.head.appendChild(script);
+            }
         }
     }
-}
+
+    // Initialize Google Translate with a small delay to ensure DOM is ready
+    setTimeout(initializeGoogleTranslate, 500);
+});
 
 // ========== EXTERNAL LINK WARNING ==========
 document.addEventListener("click", function (e) {
