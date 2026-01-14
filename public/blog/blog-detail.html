@@ -800,6 +800,7 @@
             const url = window.location.hostname === 'localhost'
                 ? `http://localhost:8082/blog-detail.php?slug=${postSlug}`
                 : `https://login.rssi.in/blog-detail.php?slug=${postSlug}`;
+            // const url = encodeURIComponent(window.location.href);
             const title = encodeURIComponent(currentPost.title);
             const text = encodeURIComponent(currentPost.excerpt || currentPost.title);
             $('#shareFacebook').attr('href', `https://www.facebook.com/sharer/sharer.php?u=${url}`);
