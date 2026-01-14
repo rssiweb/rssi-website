@@ -957,47 +957,6 @@
             policyLink: 'disclaimer'
         });
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Set page title and breadcrumbs
-            document.getElementById('page-title').textContent = 'Internship Program';
-
-            // Initialize accordion
-            const accordionButtons = document.querySelectorAll('.accordion-button');
-            accordionButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    this.classList.toggle('collapsed');
-                });
-            });
-
-            // Add smooth scrolling
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            // Highlight duration box
-            const durationBox = document.querySelector('.duration-box');
-            if (durationBox) {
-                setTimeout(() => {
-                    durationBox.style.transform = 'scale(1.02)';
-                    durationBox.style.transition = 'transform 0.3s ease';
-                }, 500);
-            }
-        });
-    </script>
-
 </body>
 
 </html>
