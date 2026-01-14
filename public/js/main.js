@@ -58,42 +58,62 @@ if (scrollTop) {
     }
 })();
 
-// Header-specific scripts (fully defensive)
-function initHeaderScripts() {
-    const mobileNavShow = document.querySelector('.mobile-nav-show');
-    const mobileNavHide = document.querySelector('.mobile-nav-hide');
-    const mobileNavToggles = document.querySelectorAll('.mobile-nav-toggle');
-    const dropdownLinks = document.querySelectorAll('.navbar .dropdown > a');
-
-    // Header not present on this page
-    if (!mobileNavShow || !mobileNavHide || mobileNavToggles.length === 0) {
+// Simple event delegation for mobile menu (works for all pages)
+function initializeMobileMenuDelegation() {
+    // Check if already initialized to prevent duplicates
+    if (window.mobileMenuEventsInitialized) {
         return;
     }
 
-    // Mobile navigation toggle
-    mobileNavToggles.forEach(el => {
-        el.addEventListener('click', function (event) {
+    // Single event listener for the whole document
+    document.addEventListener('click', function (event) {
+        // Mobile nav toggle
+        if (event.target.closest('.mobile-nav-toggle')) {
             event.preventDefault();
+            const mobileNavShow = document.querySelector('.mobile-nav-show');
+            const mobileNavHide = document.querySelector('.mobile-nav-hide');
+
             document.body.classList.toggle('mobile-nav-active');
             mobileNavShow.classList.toggle('d-none');
             mobileNavHide.classList.toggle('d-none');
-        });
+            return;
+        }
+
+        // Dropdown toggle (only in mobile mode)
+        if (document.body.classList.contains('mobile-nav-active') &&
+            event.target.closest('.navbar .dropdown > a')) {
+            event.preventDefault();
+            const dropdownLink = event.target.closest('.navbar .dropdown > a');
+
+            dropdownLink.classList.toggle('active');
+            dropdownLink.nextElementSibling?.classList.toggle('dropdown-active');
+
+            const icon = dropdownLink.querySelector('.dropdown-indicator');
+            if (icon) {
+                icon.classList.toggle('bi-chevron-up');
+                icon.classList.toggle('bi-chevron-down');
+            }
+            return;
+        }
+
+        // Close mobile nav when clicking outside (optional enhancement)
+        if (document.body.classList.contains('mobile-nav-active') &&
+            !event.target.closest('.navbar') &&
+            !event.target.closest('.mobile-nav-toggle')) {
+            document.body.classList.remove('mobile-nav-active');
+            document.querySelector('.mobile-nav-show')?.classList.remove('d-none');
+            document.querySelector('.mobile-nav-hide')?.classList.add('d-none');
+        }
     });
 
-    // Mobile dropdown toggle
-    dropdownLinks.forEach(el => {
-        el.addEventListener('click', function (e) {
-            if (!document.body.classList.contains('mobile-nav-active')) return;
+    window.mobileMenuEventsInitialized = true;
+    console.log('Mobile menu event delegation initialized');
+}
 
-            e.preventDefault();
-            this.classList.toggle('active');
-            this.nextElementSibling?.classList.toggle('dropdown-active');
-
-            const icon = this.querySelector('.dropdown-indicator');
-            icon?.classList.toggle('bi-chevron-up');
-            icon?.classList.toggle('bi-chevron-down');
-        });
-    });
+// Header-specific scripts (fully defensive)
+function initHeaderScripts() {
+    // Initialize mobile menu using event delegation
+    initializeMobileMenuDelegation();
 
     // Active link highlight - SIMPLIFIED VERSION
     const currentPath = window.location.pathname.toLowerCase();
@@ -121,6 +141,14 @@ function initHeaderScripts() {
         });
     }
 }
+
+// Initialize mobile menu for hardcoded headers (like index.html)
+document.addEventListener('DOMContentLoaded', function () {
+    // Check if mobile menu elements exist on page load
+    if (document.querySelector('.mobile-nav-toggle')) {
+        setTimeout(initializeMobileMenuDelegation, 100);
+    }
+});
 
 // MISSING FUNCTION: Find parent dropdowns
 function findParentDropdowns(element) {
@@ -513,6 +541,9 @@ $(document).ready(function () {
 
     // Initialize Google Translate with a small delay to ensure DOM is ready
     setTimeout(initializeGoogleTranslate, 500);
+
+    // Ensure mobile menu is initialized for jQuery pages too
+    setTimeout(initializeMobileMenuDelegation, 300);
 });
 
 // ========== EXTERNAL LINK WARNING ==========
