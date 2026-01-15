@@ -1,4 +1,5 @@
-<!-- adv.html - Complete Working Banner Carousel -->
+<!-- adv.html - Using Swiper.js for Smooth Carousel -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"> -->
 <style>
     /* Banner Carousel Container */
     .banner-carousel {
@@ -7,96 +8,7 @@
         border-radius: 12px;
         overflow: hidden;
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        /* min-height: 180px; */
-    }
-
-    .banner-slides {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-        position: relative;
-        /* height: 100%; */
-    }
-
-    .banner-slide {
-        min-width: 100%;
-        position: relative;
-        padding: 20px;
-        transition: all 0.3s ease;
-        /* height: 100%; */
-        /* Add flex-shrink to prevent shrinking */
-        flex-shrink: 0;
-        /* Ensure content doesn't affect height */
-        display: flex;
-        align-items: stretch;
-    }
-
-    .banner-slide.active {
-        transform: scale(1.02);
-        z-index: 2;
-    }
-
-    /* Carousel Controls */
-    .carousel-controls {
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        transform: translateY(-50%);
-        display: flex;
-        justify-content: space-between;
-        padding: 0 15px;
-        z-index: 5;
-        pointer-events: none;
-    }
-
-    .carousel-btn {
-        background: rgba(255, 255, 255, 0.8);
-        border: none;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-size: 20px;
-        color: #333;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        pointer-events: auto;
-    }
-
-    .carousel-btn:hover {
-        background: white;
-        transform: scale(1.1);
-    }
-
-    /* Carousel Indicators (Dots) */
-    .carousel-indicators {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        margin-top: 15px;
-        position: absolute;
-        bottom: 15px;
-        left: 0;
-        right: 0;
-        z-index: 5;
-        pointer-events: none;
-    }
-
-    .indicator {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.5);
-        cursor: pointer;
-        transition: all 0.3s ease;
-        pointer-events: auto;
-    }
-
-    .indicator.active {
-        background: white;
-        transform: scale(1.2);
+        min-height: 180px;
     }
 
     /* Banner-specific styles */
@@ -133,59 +45,65 @@
         height: 100%;
     }
 
-    /* Update banner classes to stretch */
-    .amity-banner,
-    .srijan-banner,
-    .student-banner,
-    .kalpana-banner {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 100%;
+    /* Swiper customization */
+    .banner-swiper {
+        border-radius: 12px;
     }
 
-    /* Swipe animation */
-    @keyframes slideIn {
-        from {
-            opacity: 0.5;
-        }
-
-        to {
-            opacity: 1;
-        }
+    .banner-swiper .swiper-slide {
+        height: auto;
     }
 
-    .slide-in {
-        animation: slideIn 0.3s ease-out;
+    /* Custom navigation buttons */
+    .banner-swiper .swiper-button-next,
+    .banner-swiper .swiper-button-prev {
+        background: rgba(255, 255, 255, 0.8);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
     }
 
-    /* Mobile touch support */
-    .banner-slides {
-        touch-action: pan-y;
+    .banner-swiper .swiper-button-next:after,
+    .banner-swiper .swiper-button-prev:after {
+        font-size: 20px;
+        color: #999;
+        /* font-weight: bold; */
+    }
+
+    .banner-swiper .swiper-button-next:hover,
+    .banner-swiper .swiper-button-prev:hover {
+        background: white;
+        transform: scale(1.1);
+    }
+
+    /* Custom pagination dots */
+    .banner-swiper .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
+        background: rgba(255, 255, 255, 0.5);
+        opacity: 1;
+    }
+
+    .banner-swiper .swiper-pagination-bullet-active {
+        background: white;
+        transform: scale(1.2);
     }
 
     /* Fix for button clicks */
-    .banner-slide * {
-        pointer-events: auto;
-    }
-
-    /* Disable pointer events on slides except active one */
-    .banner-slide:not(.active) * {
-        pointer-events: none;
-    }
-
-    .banner-slide.active * {
-        pointer-events: auto;
+    .banner-swiper a,
+    .banner-swiper button {
+        pointer-events: auto !important;
     }
 </style>
 
 <!-- Banner Carousel Component -->
-<div class="banner-carousel-component" id="rssiBannerAds">
-    <div class="banner-carousel" id="rssiBannerCarousel">
-        <div class="banner-slides" id="rssiBannerSlides">
+<div class="banner-carousel">
+    <div class="swiper banner-swiper">
+        <div class="swiper-wrapper">
             <!-- Banner 1: Amity University -->
-            <div class="banner-slide active slide-in">
+            <div class="swiper-slide">
                 <div class="amity-banner">
                     <div class="row align-items-center">
                         <div class="col-lg-8">
@@ -199,7 +117,7 @@
                             </p>
                         </div>
                         <div class="col-lg-4 text-lg-end">
-                            <a href="internships.html" class="btn btn-light btn-lg" onclick="event.stopPropagation()">
+                            <a href="internships.html" class="btn btn-light btn-lg">
                                 <i class="bi bi-pencil-square me-2"></i>Apply for 1-Month
                             </a>
                         </div>
@@ -208,7 +126,7 @@
             </div>
 
             <!-- Banner 2: Srijan 6.0 -->
-            <div class="banner-slide">
+            <div class="swiper-slide">
                 <div class="srijan-banner">
                     <div class="row align-items-center">
                         <div class="col-lg-8">
@@ -226,15 +144,9 @@
                                 <strong>For 2-month internship:</strong> Register under the Internship program on this
                                 page.
                             </p>
-                            <!-- <p class="mb-0 mt-2" style="font-size: 0.95rem;">
-                                <i class="bi bi-info-circle me-1"></i>
-                                <strong>Early applicants benefit:</strong> Outstation students can opt for online
-                                interview.
-                            </p> -->
                         </div>
                         <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
-                            <a href="internships.html" class="btn btn-light btn-lg" style="color: #32A3D0;"
-                                onclick="event.stopPropagation()">
+                            <a href="internships.html" class="btn btn-light btn-lg" style="color: #32A3D0;">
                                 <i class="bi bi-send-check me-2"></i>Apply Now
                             </a>
                             <div class="mt-2" style="font-size: 0.9rem;">
@@ -247,7 +159,7 @@
             </div>
 
             <!-- Banner 3: Student Internship -->
-            <div class="banner-slide">
+            <div class="swiper-slide">
                 <div class="student-banner">
                     <div class="row align-items-center">
                         <div class="col-lg-8">
@@ -261,8 +173,7 @@
                             </p>
                         </div>
                         <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
-                            <a href="internships.html" class="btn btn-light btn-lg" style="color: #6f42c1;"
-                                onclick="event.stopPropagation()">
+                            <a href="internships.html" class="btn btn-light btn-lg" style="color: #6f42c1;">
                                 <i class="bi bi-briefcase me-2"></i>Start Internship
                             </a>
                             <div class="mt-2" style="font-size: 0.9rem;">
@@ -274,7 +185,7 @@
             </div>
 
             <!-- Banner 4: Kalpana Buds School -->
-            <div class="banner-slide">
+            <div class="swiper-slide">
                 <div class="kalpana-banner">
                     <div class="row align-items-center">
                         <div class="col-lg-8">
@@ -293,8 +204,7 @@
                             </p>
                         </div>
                         <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
-                            <a href="kalpana-buds#contact" class="btn btn-light btn-lg" style="color: #d3465a;"
-                                onclick="event.stopPropagation()">
+                            <a href="kalpana-buds#contact" class="btn btn-light btn-lg" style="color: #d3465a;">
                                 <i class="bi bi-mortarboard me-2"></i>Admission Inquiry
                             </a>
                             <div class="mt-2" style="font-size: 0.9rem;">
@@ -309,296 +219,112 @@
             </div>
         </div>
 
-        <!-- Navigation Controls -->
-        <div class="carousel-controls">
-            <button class="carousel-btn" data-action="prev" title="Previous banner">
-                <i class="bi bi-chevron-left"></i>
-            </button>
-            <button class="carousel-btn" data-action="next" title="Next banner">
-                <i class="bi bi-chevron-right"></i>
-            </button>
-        </div>
+        <!-- Navigation buttons -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
 
-        <!-- Indicators Container (Dot Sliders) -->
-        <div class="carousel-indicators" id="rssiBannerIndicators"></div>
+        <!-- Pagination dots -->
+        <div class="swiper-pagination"></div>
     </div>
 </div>
 
+<!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
 <script>
     // Initialize only once
-    if (!window.rssiBannerInitialized) {
-        window.rssiBannerInitialized = true;
-
-        // Banner Carousel Class
-        class BannerCarousel {
-            constructor(containerId) {
-                this.container = document.getElementById(containerId);
-                if (!this.container) return;
-
-                this.carousel = this.container.querySelector('.banner-carousel');
-                this.slidesContainer = this.container.querySelector('.banner-slides');
-                this.slides = this.slidesContainer.querySelectorAll('.banner-slide');
-                this.totalSlides = this.slides.length;
-                this.currentSlide = 0;
-                this.startX = 0;
-                this.isDragging = false;
-                this.autoSlideInterval = null;
-
-                this.init();
+    if (!window.rssiBannerSwiper) {
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check if Swiper is already loaded
+            if (typeof Swiper === 'undefined') {
+                console.error('Swiper.js not loaded');
+                return;
             }
 
-            // Add this method to BannerCarousel class
-            equalizeBannerHeights() {
-                let maxHeight = 0;
-
-                // Reset all banner heights first
-                this.slides.forEach(slide => {
-                    const banner = slide.querySelector('.amity-banner, .srijan-banner, .student-banner, .kalpana-banner');
-                    if (banner) {
-                        banner.style.height = 'auto';
+            // Initialize banner swiper
+            window.rssiBannerSwiper = new Swiper('.banner-swiper', {
+                speed: 600,
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                },
+                slidesPerView: 1,
+                spaceBetween: 0,
+                effect: 'slide', // Smooth slide effect
+                grabCursor: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    dynamicBullets: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                // Auto height to adjust to tallest slide
+                autoHeight: true,
+                // Prevent click issues
+                preventClicks: false,
+                preventClicksPropagation: false,
+                // Keyboard control
+                keyboard: {
+                    enabled: true,
+                },
+                // Mousewheel control (optional)
+                mousewheel: {
+                    forceToAxis: true,
+                },
+                // Responsive breakpoints
+                breakpoints: {
+                    768: {
+                        autoHeight: false,
                     }
-                });
-
-                // Find the maximum height
-                this.slides.forEach(slide => {
-                    const banner = slide.querySelector('.amity-banner, .srijan-banner, .student-banner, .kalpana-banner');
-                    if (banner) {
-                        const height = banner.offsetHeight;
-                        if (height > maxHeight) {
-                            maxHeight = height;
-                        }
+                },
+                // Callbacks for additional control
+                on: {
+                    init: function () {
+                        console.log('Banner Swiper initialized');
+                    },
+                    slideChange: function () {
+                        // Optional: Add any slide change logic
                     }
-                });
-
-                // Apply the maximum height to all banners
-                this.slides.forEach(slide => {
-                    const banner = slide.querySelector('.amity-banner, .srijan-banner, .student-banner, .kalpana-banner');
-                    if (banner && maxHeight > 0) {
-                        banner.style.height = maxHeight + 'px';
-                    }
-                });
-
-                // Also set the carousel container height
-                if (maxHeight > 0) {
-                    this.carousel.style.height = (maxHeight + 40) + 'px'; // Add padding
                 }
-            }
+            });
 
-            init() {
-                // Create indicators (dot sliders)
-                this.createIndicators();
-
-                // Equalize banner heights
-                this.equalizeBannerHeights();
-
-                // Update display
-                this.updateCarousel();
-
-                // Add event listeners
-                this.addEventListeners();
-
-                // Start auto slide if more than 1 slide
-                if (this.totalSlides > 1) {
-                    this.startAutoSlide();
-                }
-
-                // Recalculate heights on window resize
-                window.addEventListener('resize', () => {
-                    setTimeout(() => this.equalizeBannerHeights(), 100);
-                });
-            }
-
-            // Create dot indicators
-            createIndicators() {
-                const indicatorsContainer = this.container.querySelector('.carousel-indicators');
-                if (!indicatorsContainer) return;
-
-                indicatorsContainer.innerHTML = '';
-
-                for (let i = 0; i < this.totalSlides; i++) {
-                    const indicator = document.createElement('div');
-                    indicator.className = `indicator ${i === this.currentSlide ? 'active' : ''}`;
-                    indicator.dataset.index = i;
-                    indicator.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        this.goToSlide(i);
-                    });
-                    indicatorsContainer.appendChild(indicator);
-                }
-            }
-
-            // Update carousel display
-            updateCarousel() {
-                // Remove active class from all slides
-                this.slides.forEach(slide => {
-                    slide.classList.remove('active');
-                });
-
-                // Add active class to current slide
-                if (this.slides[this.currentSlide]) {
-                    this.slides[this.currentSlide].classList.add('active');
-                }
-
-                // Move slides
-                const offset = -this.currentSlide * 100;
-                this.slidesContainer.style.transform = `translateX(${offset}%)`;
-
-                // Update indicators (dots)
-                this.updateIndicators();
-            }
-
-            // Update dot indicators
-            updateIndicators() {
-                const indicators = this.container.querySelectorAll('.indicator');
-                indicators.forEach((indicator, index) => {
-                    if (index === this.currentSlide) {
-                        indicator.classList.add('active');
-                    } else {
-                        indicator.classList.remove('active');
-                    }
-                });
-            }
-
-            // Go to specific slide
-            goToSlide(index) {
-                if (index >= 0 && index < this.totalSlides) {
-                    this.currentSlide = index;
-                    this.updateCarousel();
-                }
-            }
-
-            // Next slide
-            nextSlide() {
-                this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
-                this.updateCarousel();
-            }
-
-            // Previous slide
-            prevSlide() {
-                this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-                this.updateCarousel();
-            }
-
-            // Touch/swipe functionality
-            handleTouchStart(e) {
-                this.startX = e.touches ? e.touches[0].clientX : e.clientX;
-                this.isDragging = true;
-                this.slidesContainer.style.transition = 'none';
-            }
-
-            handleTouchMove(e) {
-                if (!this.isDragging) return;
-
-                const currentX = e.touches ? e.touches[0].clientX : e.clientX;
-                const diff = this.startX - currentX;
-
-                if (Math.abs(diff) > 50) {
-                    this.slidesContainer.style.transform = `translateX(calc(-${this.currentSlide * 100}% - ${diff}px))`;
-                }
-            }
-
-            handleTouchEnd(e) {
-                if (!this.isDragging) return;
-
-                this.isDragging = false;
-                this.slidesContainer.style.transition = 'transform 0.3s ease';
-
-                const endX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
-                const diff = this.startX - endX;
-
-                if (Math.abs(diff) > 100) {
-                    if (diff > 0) {
-                        this.nextSlide(); // Swipe left
-                    } else {
-                        this.prevSlide(); // Swipe right
-                    }
-                } else {
-                    this.updateCarousel(); // Return to current slide
-                }
-            }
-
-            // Auto slide
-            startAutoSlide() {
-                if (this.totalSlides > 1) {
-                    this.autoSlideInterval = setInterval(() => this.nextSlide(), 5000);
-                }
-            }
-
-            stopAutoSlide() {
-                if (this.autoSlideInterval) {
-                    clearInterval(this.autoSlideInterval);
-                    this.autoSlideInterval = null;
-                }
-            }
-
-            // Add event listeners
-            addEventListeners() {
-                // Swipe events
-                this.slidesContainer.addEventListener('touchstart', (e) => this.handleTouchStart(e));
-                this.slidesContainer.addEventListener('touchmove', (e) => this.handleTouchMove(e));
-                this.slidesContainer.addEventListener('touchend', (e) => this.handleTouchEnd(e));
-
-                this.slidesContainer.addEventListener('mousedown', (e) => this.handleTouchStart(e));
-                this.slidesContainer.addEventListener('mousemove', (e) => this.handleTouchMove(e));
-                this.slidesContainer.addEventListener('mouseup', (e) => this.handleTouchEnd(e));
-                this.slidesContainer.addEventListener('mouseleave', (e) => this.handleTouchEnd(e));
-
-                // Navigation buttons
-                const prevBtn = this.container.querySelector('[data-action="prev"]');
-                const nextBtn = this.container.querySelector('[data-action="next"]');
-
-                if (prevBtn) {
-                    prevBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        this.prevSlide();
-                    });
-                }
-
-                if (nextBtn) {
-                    nextBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        this.nextSlide();
-                    });
-                }
-
-                // Pause auto slide on hover
-                this.carousel.addEventListener('mouseenter', () => this.stopAutoSlide());
-                this.carousel.addEventListener('mouseleave', () => {
-                    if (this.totalSlides > 1) {
-                        this.startAutoSlide();
-                    }
-                });
-
-                // Fix for button clicks
-                this.container.querySelectorAll('a, button').forEach(element => {
-                    if (!element.closest('.carousel-controls') && !element.closest('.carousel-indicators')) {
-                        element.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                        });
-                    }
-                });
-            }
-        }
-
-        // Initialize when DOM is ready
-        document.addEventListener('DOMContentLoaded', () => {
-            const bannerContainer = document.getElementById('rssiBannerAds');
-            if (bannerContainer) {
-                window.rssiBannerCarousel = new BannerCarousel('rssiBannerAds');
-            }
+            console.log('Banner carousel initialized with Swiper.js');
         });
 
         // Also try to initialize immediately if DOM is already loaded
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initBanner);
+            document.addEventListener('DOMContentLoaded', initBannerSwiper);
         } else {
             // DOM is already loaded
-            setTimeout(() => {
-                const bannerContainer = document.getElementById('rssiBannerAds');
-                if (bannerContainer) {
-                    window.rssiBannerCarousel = new BannerCarousel('rssiBannerAds');
-                }
-            }, 100);
+            setTimeout(initBannerSwiper, 100);
+        }
+
+        function initBannerSwiper() {
+            const swiperEl = document.querySelector('.banner-swiper');
+            if (swiperEl && typeof Swiper !== 'undefined' && !window.rssiBannerSwiper) {
+                window.rssiBannerSwiper = new Swiper('.banner-swiper', {
+                    speed: 600,
+                    loop: true,
+                    autoplay: {
+                        delay: 5000,
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: true,
+                    },
+                    slidesPerView: 1,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    autoHeight: true,
+                });
+            }
         }
     }
 </script>
