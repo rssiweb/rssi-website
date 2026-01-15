@@ -56,6 +56,41 @@
         <!-- End Breadcrumbs -->
         <section class="sample-page">
             <div class="container">
+                <div class="container mt-3">
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert" id="visitorAlert">
+                        <h2 class="alert-heading">
+                            <i class="bi bi-shield-check me-2"></i>Visitor Registration Requirement
+                        </h2>
+
+                        <p class="mt-3 mb-2">
+                            All first-time visitors to RSSI must complete the <strong>Visit Us Form</strong> prior to
+                            visiting the centre for any official, administrative, or non-routine purpose.
+                        </p>
+
+                        <p class="mb-2">
+                            Submission of a valid government-issued photo ID is required for identity verification and
+                            to help maintain a safe and secure environment.
+                        </p>
+
+                        <hr>
+
+                        <p class="mb-0">
+                            Returning visitors who have previously completed the Visit Us Form can simply book their
+                            visit using their registered mobile number.
+                        </p>
+
+                        <!-- Close button with timer -->
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-3"
+                            data-bs-dismiss="alert" aria-label="Close">
+                            <span id="alertTimer"
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                                10
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+
                 <!-- Part 1: visitor Information -->
                 <form action="#" method="POST" name="visitorInfoForm" id="visitorInfoForm"
                     enctype="multipart/form-data">
@@ -173,24 +208,6 @@
                             </div>
                         </div>
 
-                        <div class="alert alert-info mt-3" role="alert">
-                            <h6 class="alert-heading">Security Requirement</h6>
-                            <p class="mb-0">
-                                For the safety of our children and to maintain security standards, all visitors
-                                and donors must submit a Visitor Request Form. This includes:
-                            </p>
-                            <ul class="mb-0 mt-2">
-                                <li>Anyone wishing to interact with the children</li>
-                                <li>Individuals donating food items or other materials</li>
-                                <li>All first-time visitors to the facility</li>
-                            </ul>
-                            <hr>
-                            <p class="mb-0">
-                                Your government-issued photo ID helps us verify your identity and ensure
-                                a safe environment for everyone.
-                            </p>
-                        </div>
-
                         <div class="mb-3">
                             <label for="photo" class="form-label">Upload
                                 Photo</label>
@@ -282,11 +299,75 @@
                                 <input type="email" class="form-control" id="mentoremail" name="mentoremail" required>
                             </div>
                             <div class="mb-3">
+                                <label class="form-label">
+                                    Additional Services (Optional)
+                                </label>
+                                <small class="text-muted d-block mb-2">
+                                    Base services included with the application are applied by default.
+                                    Charges for selected additional services are listed below.
+                                </small>
+
+                                <!-- Certificate -->
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" name="additional_services[]"
+                                        id="service_certificate" value="certificate">
+                                    <label class="form-check-label" for="service_certificate">
+                                        Certificate / Acknowledgment Letter
+                                    </label>
+                                </div>
+
+                                <!-- Interview -->
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" name="additional_services[]"
+                                        id="service_interview" value="interview" onchange="toggleInterviewDuration()">
+                                    <label class="form-check-label" for="service_interview">
+                                        Interview with Centre In-Charge or Teachers
+                                    </label>
+                                </div>
+
+                                <div class="mb-3" id="interview_duration_container" style="display:none;">
+                                    <label for="interview_duration" class="form-label">Duration (minutes)</label>
+                                    <input type="number" min="1"
+                                        class="form-control form-control-sm w-auto d-inline-block"
+                                        name="interview_duration" id="interview_duration" value="30"
+                                        style="width: 80px;">
+                                </div>
+
+                                <!-- Videography -->
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" name="additional_services[]"
+                                        id="service_video" value="videography" onchange="toggleCameraCount()">
+                                    <label class="form-check-label" for="service_video">
+                                        Videography (personal camera or mobile)
+                                    </label>
+                                </div>
+
+                                <div class="mb-3" id="camera_count_container" style="display:none;">
+                                    <label for="camera_count" class="form-label">Number of cameras / devices</label>
+                                    <input type="number" min="1"
+                                        class="form-control form-control-sm w-auto d-inline-block" name="camera_count"
+                                        id="camera_count" value="1" style="width: 80px;">
+                                </div>
+                            </div>
+
+                            <div class="alert alert-warning">
+                                <i class="bi bi-info-circle me-2"></i>
+                                <small>
+                                    Payment details and the payment link are provided below. <strong>Completing the
+                                        payment alone does not confirm your visit slot.</strong>
+                                    After making the payment, please download the payment receipt and upload it below
+                                    before submitting the form.
+                                    Requests with unverified or incorrect payment information will be <strong>cancelled
+                                        or marked invalid</strong>.
+                                </small>
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="paymentdoc" class="form-label">Payment Receipt</label>
                                 <input type="file" class="form-control" id="paymentdoc" name="paymentdoc"
                                     accept=".pdf,.doc,.docx" onchange="compressImageBeforeUpload(this)" required>
                                 <small id="type-of-admission-help" class="form-text text-muted">Upload proof of payment
-                                    (screenshot/receipt) for application fee</small>
+                                    (receipt or screenshot)</small>
                             </div>
 
                             <!-- Fee Structure Tabs -->
@@ -328,8 +409,8 @@
                                             </ul>
 
                                             <h6><i class="bi bi-calendar-plus me-2"></i>Extended Engagement:</h6>
-                                            <p class="mb-0">
-                                                <strong>Applicable to repeat visits or multi-day engagements:</strong>
+                                            <p class="mb-0 ps-3">
+                                                <strong>For repeat visits or multi-day engagements:</strong>
                                                 Rs. 150 per person per additional day (from the second day onwards)
                                             </p>
 
@@ -341,29 +422,16 @@
                                                     certificate</li>
                                                 <li><strong>Interview with Centre In-Charge or Teachers:</strong> Rs.
                                                     250 per session (30 minutes)</li>
+                                                <li><strong>Videography (personal camera or mobile, with prior
+                                                        approval):</strong> Rs. 100 per device</li>
                                             </ul>
-                                            <p class="small mb-3">
-                                                Additional services are not included in application or extended
-                                                engagement charges and are billed separately.
-                                            </p>
                                             <hr class="my-3">
 
                                             <div class="text-center">
                                                 <a href="https://eazypay.icicibank.com/eazypayLink?P1=ldvYO7WCMgfIXlGHmwXsxg=="
                                                     class="btn btn-warning btn-lg" target="_blank">
-                                                    <i class="bi bi-credit-card me-2"></i> Pay Application Fee Now
+                                                    <i class="bi bi-credit-card me-2"></i> Proceed to Payment
                                                 </a>
-                                            </div>
-
-                                            <div class="mt-3 alert alert-light">
-                                                <i class="bi bi-info-circle me-2"></i>
-                                                <small>
-                                                    If payment completion issues occur, your application will be held
-                                                    for
-                                                    <strong>two days</strong>.
-                                                    If payment isn't verified within this period, the request will be
-                                                    cancelled.
-                                                </small>
                                             </div>
                                         </div>
                                     </div>
@@ -748,6 +816,32 @@
             });
         });
     </script>
+    <!-- Scripts for conditional display + required logic -->
+    <script>
+        function toggleInterviewDuration() {
+            const checkbox = document.getElementById('service_interview');
+            const container = document.getElementById('interview_duration_container');
+            const input = document.getElementById('interview_duration');
+
+            container.style.display = checkbox.checked ? 'block' : 'none';
+            input.required = checkbox.checked;       // toggle required
+            if (!checkbox.checked) input.value = 30; // reset default if unchecked
+
+            updateRequiredFields();                  // update the asterisk dynamically
+        }
+
+        function toggleCameraCount() {
+            const checkbox = document.getElementById('service_video');
+            const container = document.getElementById('camera_count_container');
+            const input = document.getElementById('camera_count');
+
+            container.style.display = checkbox.checked ? 'block' : 'none';
+            input.required = checkbox.checked;      // toggle required
+            if (!checkbox.checked) input.value = 1; // reset default if unchecked
+
+            updateRequiredFields();                 // update the asterisk dynamically
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
     <script>
         glowCookies.start('en', {
@@ -755,6 +849,30 @@
             policyLink: 'disclaimer'
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const alertEl = document.getElementById('visitorAlert');
+            const timerEl = document.getElementById('alertTimer');
+
+            let seconds = 10; // auto-dismiss time
+            const interval = setInterval(() => {
+                seconds--;
+                if (timerEl) timerEl.textContent = seconds;
+
+                if (seconds <= 0) {
+                    clearInterval(interval);
+                    const alertInstance = bootstrap.Alert.getOrCreateInstance(alertEl);
+                    alertInstance.close();
+                }
+            }, 1000);
+
+            // Stop timer if user closes manually
+            alertEl.addEventListener('closed.bs.alert', () => {
+                clearInterval(interval);
+            });
+        });
+    </script>
+
 </body>
 
 </html>
