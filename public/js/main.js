@@ -544,6 +544,9 @@ $(document).ready(function () {
 
     // Ensure mobile menu is initialized for jQuery pages too
     setTimeout(initializeMobileMenuDelegation, 300);
+
+    // Load banner ad
+    $("#banner-container").load("/includes/adv.html");
 });
 
 // ========== EXTERNAL LINK WARNING ==========
