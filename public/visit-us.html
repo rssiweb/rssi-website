@@ -286,17 +286,116 @@
                                 <input type="file" class="form-control" id="paymentdoc" name="paymentdoc"
                                     accept=".pdf,.doc,.docx" onchange="compressImageBeforeUpload(this)" required>
                                 <small id="type-of-admission-help" class="form-text text-muted">The one-time application
-                                    fee is Rs. 200 and must be paid during registration.</small>
+                                    must be paid during registration.</small>
                             </div>
-                            <p>
-                                Click <a
-                                    href="https://eazypay.icicibank.com/eazypayLink?P1=ldvYO7WCMgfIXlGHmwXsxg==">here</a>
-                                to
-                                complete the payment. In case of any issues with payment completion or providing a valid
-                                payment document, your application will be temporarily held for two days to ensure
-                                everything is in order. If payment isn't received within this time, unfortunately, the
-                                held request will be cancelled.
-                            </p>
+                            <div class="mt-3">
+                                <!-- Tab Navigation -->
+                                <ul class="nav nav-tabs" id="visitorTypeTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="individual-tab" data-bs-toggle="tab"
+                                            data-bs-target="#individual" type="button" role="tab"
+                                            aria-controls="individual" aria-selected="true">
+                                            Individual / Small Group (1-10 Members)
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="largegroup-tab" data-bs-toggle="tab"
+                                            data-bs-target="#largegroup" type="button" role="tab"
+                                            aria-controls="largegroup" aria-selected="false">
+                                            Large Group (10+ Members)
+                                        </button>
+                                    </li>
+                                </ul>
+
+                                <!-- Tab Content -->
+                                <div class="tab-content p-3 border border-top-0 rounded-bottom"
+                                    id="visitorTypeTabContent">
+                                    <!-- Individual / Small Group Tab -->
+                                    <div class="tab-pane fade show active" id="individual" role="tabpanel"
+                                        aria-labelledby="individual-tab">
+                                        <div class="alert alert-warning mt-0" role="alert">
+                                            <h6 class="alert-heading">Fee Structure</h6>
+                                            <p class="mb-0">
+                                                The one-time application fee is Rs. 200 per person and must be paid
+                                                during registration. This
+                                                includes:
+                                            </p>
+                                            <ul class="mb-0 mt-2">
+                                                <li>Interaction with children (supervised)</li>
+                                                <li>Limited photos (group and individual)</li>
+                                                <li>One-day engagement/visit</li>
+                                            </ul>
+
+                                            <p class="mb-0 mt-2">
+                                                Specific services available (additional charges apply):
+                                            </p>
+                                            <ul class="mb-0 mt-1">
+                                                <li>Certification or acknowledgment letter: Rs. 250 per certificate</li>
+                                                <li>Interview with centre in-charge or teachers: Rs. 250 per session
+                                                </li>
+                                            </ul>
+
+                                            <hr>
+
+                                            <p class="mb-0">
+                                                Additional fees apply for extended engagements:
+                                            </p>
+                                            <ul class="mb-0 mt-2">
+                                                <li><strong>Multiple days engagement:</strong> Additional Rs. 150 per
+                                                    person per day</li>
+                                            </ul>
+
+                                            <hr>
+
+                                            <div class="mb-0">
+                                                <a href="https://eazypay.icicibank.com/eazypayLink?P1=ldvYO7WCMgfIXlGHmwXsxg=="
+                                                    class="btn btn-warning" target="_blank">
+                                                    <i class="bi bi-credit-card me-2"></i> Pay Application Fee
+                                                </a>
+                                            </div>
+                                            <p class="mb-0 mt-3">
+                                                In case of any issues with payment completion or providing a valid
+                                                payment document,
+                                                your application will be temporarily held for two days to ensure
+                                                everything is in order.
+                                                If payment isn't received within this time, unfortunately, the held
+                                                request will be cancelled.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Large Group Tab -->
+                                    <div class="tab-pane fade" id="largegroup" role="tabpanel"
+                                        aria-labelledby="largegroup-tab">
+                                        <div class="alert alert-primary mt-0" role="alert">
+                                            <h6 class="alert-heading">Large Group Visits (10+ Members)</h6>
+                                            <p class="mb-0">
+                                                For groups of 10+ members, contact or WhatsApp our visiting officer.
+                                            </p>
+
+                                            <div class="mb-0 mt-3">
+                                                <a href="https://wa.me/917980168159?text=Hello,%20I'm%20interested%20in%20group%20visit%20and%20would%20like%20to%20discuss%20details."
+                                                    class="btn btn-outline-primary" target="_blank">
+                                                    <i class="bi bi-whatsapp me-2"></i> Contact on WhatsApp
+                                                </a>
+                                            </div>
+
+                                            <p class="mb-0 mt-3">
+                                                Please share your name, college/university, designation (or "student" if
+                                                applicable),
+                                                group size, and purpose.
+                                            </p>
+
+                                            <div class="mt-3 p-2 bg-light rounded text-center">
+                                                <small class="text-muted">
+                                                    <i class="bi bi-telephone me-1"></i> Direct call: <strong>79801
+                                                        68159</strong>
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="mb-3">
