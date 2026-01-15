@@ -204,8 +204,45 @@
                             </p>
                         </div>
                         <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
-                            <a href="kalpana-buds#contact" class="btn btn-light btn-lg" style="color: #d3465a;">
-                                <i class="bi bi-mortarboard me-2"></i>Admission Inquiry
+                            <a href="https://wa.me/917980168159?text=Hello,%20I%20would%20like%20to%20know%20more%20about%20Kalpana%20Buds%20School%20admissions."
+                                class="btn btn-light btn-lg" style="color: #d3465a;" target="_blank" rel="noopener">
+                                <i class="bi bi-whatsapp me-2"></i>Admission Inquiry
+                            </a>
+                            <div class="mt-2" style="font-size: 0.9rem;">
+                                <i class="bi bi-calendar-check me-1"></i>2026-27 Session
+                            </div>
+                            <div class="mt-1" style="font-size: 0.85rem;">
+                                <i class="bi bi-telephone me-1"></i>+91 98180 70601 / 79801 68159
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banner 5: RSSI NGO School -->
+            <div class="swiper-slide">
+                <div class="rssi-ngo-banner" style="background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%); 
+          color: white; border-radius: 10px; padding: 1.5rem; height: 100%;">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8">
+                            <div class="d-flex align-items-center mb-3">
+                                <h3 class="mb-0 me-3">
+                                    RSSI NGO
+                                </h3>
+                                <div style="background: rgba(255, 255, 255, 0.9); color: #2E7D32; padding: 6px 12px; 
+                        border-radius: 20px; font-weight: 700; font-size: 1rem;">
+                                    Admissions Open 2026-27
+                                </div>
+                            </div>
+                            <p class="mb-2">
+                                <strong>Class 1 to 5 (Age 6 to 12 years)</strong><br>
+                                Quality education with NIOS exam facility & complete support system
+                            </p>
+                        </div>
+                        <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                            <a href="https://wa.me/917980168159?text=Hello,%20I%20would%20like%20to%20know%20more%20about%20NGO%20admissions."
+                                class="btn btn-light btn-lg" style="color: #2E7D32;" target="_blank" rel="noopener">
+                                <i class="bi bi-whatsapp me-2"></i>Admission Inquiry
                             </a>
                             <div class="mt-2" style="font-size: 0.9rem;">
                                 <i class="bi bi-calendar-check me-1"></i>2026-27 Session
@@ -230,16 +267,17 @@
 
 <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
 <script>
-    // Initialize only once
+    // Initialize banner swiper only once
     if (!window.rssiBannerSwiper) {
-        document.addEventListener('DOMContentLoaded', function () {
-            // Check if Swiper is already loaded
-            if (typeof Swiper === 'undefined') {
-                console.error('Swiper.js not loaded');
+
+        function initBannerCarousel() {
+            // Check if element exists and Swiper is loaded
+            const swiperEl = document.querySelector('.banner-swiper');
+            if (!swiperEl || typeof Swiper === 'undefined') {
                 return;
             }
 
-            // Initialize banner swiper
+            // Initialize Swiper
             window.rssiBannerSwiper = new Swiper('.banner-swiper', {
                 speed: 600,
                 loop: true,
@@ -249,82 +287,25 @@
                     pauseOnMouseEnter: true,
                 },
                 slidesPerView: 1,
-                spaceBetween: 0,
-                effect: 'slide', // Smooth slide effect
-                grabCursor: true,
                 pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
-                    dynamicBullets: true,
                 },
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                 },
-                // Auto height to adjust to tallest slide
                 autoHeight: true,
-                // Prevent click issues
-                preventClicks: false,
-                preventClicksPropagation: false,
-                // Keyboard control
-                keyboard: {
-                    enabled: true,
-                },
-                // Mousewheel control (optional)
-                mousewheel: {
-                    forceToAxis: true,
-                },
-                // Responsive breakpoints
-                breakpoints: {
-                    768: {
-                        autoHeight: false,
-                    }
-                },
-                // Callbacks for additional control
-                on: {
-                    init: function () {
-                        console.log('Banner Swiper initialized');
-                    },
-                    slideChange: function () {
-                        // Optional: Add any slide change logic
-                    }
-                }
             });
 
-            console.log('Banner carousel initialized with Swiper.js');
-        });
-
-        // Also try to initialize immediately if DOM is already loaded
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initBannerSwiper);
-        } else {
-            // DOM is already loaded
-            setTimeout(initBannerSwiper, 100);
+            console.log('Banner carousel initialized');
         }
 
-        function initBannerSwiper() {
-            const swiperEl = document.querySelector('.banner-swiper');
-            if (swiperEl && typeof Swiper !== 'undefined' && !window.rssiBannerSwiper) {
-                window.rssiBannerSwiper = new Swiper('.banner-swiper', {
-                    speed: 600,
-                    loop: true,
-                    autoplay: {
-                        delay: 5000,
-                        disableOnInteraction: false,
-                        pauseOnMouseEnter: true,
-                    },
-                    slidesPerView: 1,
-                    pagination: {
-                        el: '.swiper-pagination',
-                        clickable: true,
-                    },
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                    autoHeight: true,
-                });
-            }
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initBannerCarousel);
+        } else {
+            initBannerCarousel();
         }
     }
 </script>
