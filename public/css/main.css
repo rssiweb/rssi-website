@@ -761,11 +761,11 @@ section {
     width: 100%;
     position: relative;
     min-height: 60vh;
-    display: flex;
+    /* display: flex; */
     align-items: center;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     overflow: hidden;
-    padding: 10% 5% 5%;
+    /* padding: 10% 5% 5%; */
 }
 
 .hero-container {
