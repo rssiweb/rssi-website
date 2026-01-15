@@ -760,12 +760,12 @@ section {
 .hero {
     width: 100%;
     position: relative;
-    min-height: 85vh;
+    min-height: 60vh;
     display: flex;
     align-items: center;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     overflow: hidden;
-    padding: 100px 0;
+    padding: 10% 5% 5%;
 }
 
 .hero-container {
@@ -937,8 +937,8 @@ section {
 
 @media (max-width: 768px) {
     .hero {
-        min-height: 70vh;
-        padding: 80px 0;
+        min-height: 50vh;
+        padding: 20% 3% 3%;
     }
 
     .hero-container {
