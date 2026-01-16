@@ -35,6 +35,84 @@
         }
     </style>
 
+    <style>
+        /* Optional styling for better appearance */
+        #pauseTimerBtn {
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        #pauseTimerBtn:hover {
+            transform: scale(1.1);
+            transition: transform 0.2s;
+        }
+
+        #alertTimer {
+            font-size: 0.7rem;
+            min-width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-close {
+            position: relative;
+        }
+
+        /* Mini notification styles */
+        .mini-notification {
+            position: relative;
+            margin-top: 10px;
+            animation-duration: 0.5s;
+        }
+
+        #expandNotificationBtn {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        #expandNotificationBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animation classes */
+        .animate__animated {
+            animation-duration: 0.5s;
+        }
+
+        .animate__fadeIn {
+            animation-name: fadeIn;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Make alert position relative for absolute positioning */
+        #visitorAlert {
+            position: relative;
+        }
+    </style>
+
+    <!-- Add Animate.css for smooth animations (optional) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
 </head>
 
 <body>
@@ -57,6 +135,7 @@
         <section class="sample-page">
             <div class="container">
                 <div class="container mt-3">
+                    <!-- Main Alert (will collapse to icon) -->
                     <div class="alert alert-primary alert-dismissible fade show" role="alert" id="visitorAlert">
                         <h2 class="alert-heading">
                             <i class="bi bi-shield-check me-2"></i>Visitor Registration Requirement
@@ -79,13 +158,30 @@
                             visit using their registered mobile number.
                         </p>
 
-                        <!-- Close button with timer -->
-                        <button type="button" class="btn-close position-absolute top-0 end-0 m-3"
-                            data-bs-dismiss="alert" aria-label="Close">
-                            <span id="alertTimer"
-                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-                                10
-                            </span>
+                        <!-- Close button with timer and pause button -->
+                        <div class="position-absolute top-0 end-0 m-3 d-flex align-items-center gap-2">
+                            <!-- Pause Button -->
+                            <button type="button" class="btn btn-sm btn-outline-light" id="pauseTimerBtn"
+                                data-paused="false" title="Pause timer">
+                                <i class="bi bi-pause" id="pauseIcon"></i>
+                            </button>
+
+                            <!-- Close button with timer -->
+                            <div class="position-absolute top-0 end-0 m-3">
+                                <span id="alertTimer" class="badge rounded-pill bg-primary"
+                                    style="padding: 8px 12px; font-size: 0.9rem;">
+                                    10
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mini Notification Icon (hidden initially) -->
+                    <div class="mini-notification text-end" id="miniNotification" style="display: none;">
+                        <button type="button" class="btn btn-primary btn-sm rounded-pill" id="expandNotificationBtn"
+                            title="Show visitor information">
+                            <i class="bi bi-info-circle me-1"></i> Visitor Info
+                            <span class="badge bg-white text-primary ms-1" id="notificationBadge">!</span>
                         </button>
                     </div>
                 </div>
@@ -853,22 +949,175 @@
         document.addEventListener('DOMContentLoaded', function () {
             const alertEl = document.getElementById('visitorAlert');
             const timerEl = document.getElementById('alertTimer');
+            const pauseBtn = document.getElementById('pauseTimerBtn');
+            const pauseIcon = document.getElementById('pauseIcon');
+            const closeBtn = document.getElementById('closeAlertBtn');
+            const miniNotification = document.getElementById('miniNotification');
+            const expandNotificationBtn = document.getElementById('expandNotificationBtn');
+            const notificationBadge = document.getElementById('notificationBadge');
 
             let seconds = 10; // auto-dismiss time
-            const interval = setInterval(() => {
-                seconds--;
+            let interval;
+            let isPaused = false;
+            let isCollapsed = false;
+
+            function startTimer() {
+                interval = setInterval(() => {
+                    if (!isPaused) {
+                        seconds--;
+                        if (timerEl) timerEl.textContent = seconds;
+
+                        if (seconds <= 0 && !isCollapsed) {
+                            // Collapse to mini notification instead of closing
+                            collapseToNotification();
+                        }
+                    }
+                }, 1000);
+            }
+
+            // Start the timer initially
+            startTimer();
+
+            function collapseToNotification() {
+                clearInterval(interval);
+                isCollapsed = true;
+
+                // Hide the main alert
+                alertEl.style.display = 'none';
+
+                // Show the mini notification
+                miniNotification.style.display = 'block';
+
+                // Add animation effect
+                miniNotification.classList.add('animate__animated', 'animate__fadeIn');
+
+                // Remove animation classes after animation completes
+                setTimeout(() => {
+                    miniNotification.classList.remove('animate__animated', 'animate__fadeIn');
+                }, 1000);
+            }
+
+            function expandNotification() {
+                // Hide mini notification
+                miniNotification.style.display = 'none';
+
+                // Show the main alert again
+                alertEl.style.display = 'block';
+                alertEl.classList.add('animate__animated', 'animate__fadeIn');
+
+                // Remove collapsed state
+                isCollapsed = false;
+
+                // Reset timer
+                seconds = 10;
                 if (timerEl) timerEl.textContent = seconds;
 
-                if (seconds <= 0) {
-                    clearInterval(interval);
-                    const alertInstance = bootstrap.Alert.getOrCreateInstance(alertEl);
-                    alertInstance.close();
-                }
-            }, 1000);
+                // Restart timer
+                clearInterval(interval);
+                startTimer();
 
-            // Stop timer if user closes manually
+                // Remove animation classes after animation completes
+                setTimeout(() => {
+                    alertEl.classList.remove('animate__animated', 'animate__fadeIn');
+                }, 1000);
+            }
+
+            // Pause/Resume functionality
+            if (pauseBtn) {
+                pauseBtn.addEventListener('click', function () {
+                    isPaused = !isPaused;
+
+                    if (isPaused) {
+                        // Change to play icon and update title
+                        pauseIcon.className = 'bi bi-play';
+                        pauseBtn.setAttribute('title', 'Resume timer');
+                        pauseBtn.setAttribute('data-paused', 'true');
+                        pauseBtn.classList.remove('btn-outline-light');
+                        pauseBtn.classList.add('btn-warning');
+                        timerEl.textContent = 'Paused';
+                    } else {
+                        // Change back to pause icon
+                        pauseIcon.className = 'bi bi-pause';
+                        pauseBtn.setAttribute('title', 'Pause timer');
+                        pauseBtn.setAttribute('data-paused', 'false');
+                        pauseBtn.classList.remove('btn-warning');
+                        pauseBtn.classList.add('btn-outline-light');
+                        timerEl.textContent = seconds;
+                    }
+                });
+            }
+
+            // Expand notification when clicked
+            if (expandNotificationBtn) {
+                expandNotificationBtn.addEventListener('click', function () {
+                    expandNotification();
+                });
+            }
+
+            // Close alert manually
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function () {
+                    clearInterval(interval);
+                    isCollapsed = true;
+                    alertEl.style.display = 'none';
+                    miniNotification.style.display = 'block';
+                });
+            }
+
+            // Stop timer if alert is closed by Bootstrap (if user uses dismiss)
             alertEl.addEventListener('closed.bs.alert', () => {
                 clearInterval(interval);
+                isCollapsed = true;
+                miniNotification.style.display = 'block';
+            });
+
+            // Optional: Add keyboard shortcuts
+            document.addEventListener('keydown', function (e) {
+                // Spacebar to toggle pause
+                if (e.code === 'Space' && pauseBtn && !isCollapsed) {
+                    e.preventDefault();
+                    pauseBtn.click();
+                }
+                // Escape to minimize
+                if (e.code === 'Escape' && !isCollapsed) {
+                    e.preventDefault();
+                    collapseToNotification();
+                }
+                // Enter to expand when notification is visible
+                if (e.code === 'Enter' && isCollapsed && document.activeElement === expandNotificationBtn) {
+                    expandNotification();
+                }
+            });
+
+            // Optional: Auto-hide notification after 1 minute
+            setTimeout(() => {
+                if (isCollapsed && miniNotification.style.display === 'block') {
+                    miniNotification.style.opacity = '0.5';
+                    notificationBadge.textContent = 'i';
+
+                    // Fade out completely after another 30 seconds
+                    setTimeout(() => {
+                        miniNotification.style.display = 'none';
+                    }, 30000);
+                }
+            }, 60000);
+
+            // Optional: Tooltip for buttons
+            if (pauseBtn) {
+                new bootstrap.Tooltip(pauseBtn);
+            }
+            if (expandNotificationBtn) {
+                new bootstrap.Tooltip(expandNotificationBtn);
+            }
+
+            // Add click outside to close notification (optional)
+            document.addEventListener('click', function (e) {
+                if (isCollapsed &&
+                    !miniNotification.contains(e.target) &&
+                    !alertEl.contains(e.target)) {
+                    // Optional: Hide notification if clicked outside
+                    // miniNotification.style.display = 'none';
+                }
             });
         });
     </script>
