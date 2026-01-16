@@ -165,14 +165,6 @@
                                 data-paused="false" title="Pause timer">
                                 <i class="bi bi-pause" id="pauseIcon"></i>
                             </button>
-
-                            <!-- Close button with timer -->
-                            <div class="position-absolute top-0 end-0 m-3">
-                                <span id="alertTimer" class="badge rounded-pill bg-primary"
-                                    style="padding: 8px 12px; font-size: 0.9rem;">
-                                    10
-                                </span>
-                            </div>
                         </div>
                     </div>
 
@@ -491,7 +483,7 @@
                                     <div class="tab-pane fade show active" id="individual" role="tabpanel"
                                         aria-labelledby="individual-tab">
                                         <div class="alert alert-warning">
-                                            <h5><i class="bi bi-credit-card me-2"></i>Application & Service Charges</h5>
+                                            <h5>Application & Service Charges</h5>
                                             <p class="mt-3 mb-3">
                                                 The one-time application fee is <strong>Rs. 200 per
                                                     person</strong> and must be paid during registration.
@@ -531,20 +523,18 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <!-- Large Group Tab -->
                                     <div class="tab-pane fade" id="largegroup" role="tabpanel"
                                         aria-labelledby="largegroup-tab">
                                         <div class="alert alert-primary">
-                                            <h5><i class="bi bi-people-fill me-2"></i>Large Group Visits (10+ Members)
+                                            <h5>Custom Pricing
                                             </h5>
                                             <p class="mb-3">
-                                                For groups of 10+ members, please contact our visiting officer for
-                                                customized arrangements.
+                                                Contact us for custom packages and group discounts.
                                             </p>
 
                                             <div class="text-center mb-3">
-                                                <a href="https://wa.me/917980168159?text=Hello,%20I'm%20interested%20in%20a%20group%20visit.%20%0A%0AName:%20%0ACollege/University:%20%0ADesignation:%20%0AGroup%20Size:%20%0APurpose:%20"
+                                                <a href="https://wa.me/917980168159?text=Hello,%20I'm%20interested%20in%20a%20group%20visit%20for%20college%20project.%20%0A%0AName:%20%0AInstitute:%20%0AGroup%20Size:%20%0APreferred%20Dates:%20"
                                                     class="btn btn-success btn-lg" target="_blank">
                                                     <i class="bi bi-whatsapp me-2"></i> Contact on WhatsApp
                                                 </a>
@@ -948,48 +938,40 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const alertEl = document.getElementById('visitorAlert');
-            const timerEl = document.getElementById('alertTimer');
             const pauseBtn = document.getElementById('pauseTimerBtn');
             const pauseIcon = document.getElementById('pauseIcon');
-            const closeBtn = document.getElementById('closeAlertBtn');
             const miniNotification = document.getElementById('miniNotification');
             const expandNotificationBtn = document.getElementById('expandNotificationBtn');
             const notificationBadge = document.getElementById('notificationBadge');
 
-            let seconds = 10; // auto-dismiss time
-            let interval;
-            let isPaused = false;
             let isCollapsed = false;
 
-            function startTimer() {
-                interval = setInterval(() => {
-                    if (!isPaused) {
-                        seconds--;
-                        if (timerEl) timerEl.textContent = seconds;
+            // Start with the notification collapsed (mini version)
+            function initializeNotification() {
+                // Hide the main alert initially
+                alertEl.style.display = 'none';
 
-                        if (seconds <= 0 && !isCollapsed) {
-                            // Collapse to mini notification instead of closing
-                            collapseToNotification();
-                        }
-                    }
+                // Show the mini notification
+                miniNotification.style.display = 'block';
+                miniNotification.classList.add('animate__animated', 'animate__fadeIn');
+
+                isCollapsed = true;
+
+                // Remove animation classes after animation completes
+                setTimeout(() => {
+                    miniNotification.classList.remove('animate__animated', 'animate__fadeIn');
                 }, 1000);
             }
 
-            // Start the timer initially
-            startTimer();
-
             function collapseToNotification() {
-                clearInterval(interval);
-                isCollapsed = true;
-
                 // Hide the main alert
                 alertEl.style.display = 'none';
 
                 // Show the mini notification
                 miniNotification.style.display = 'block';
-
-                // Add animation effect
                 miniNotification.classList.add('animate__animated', 'animate__fadeIn');
+
+                isCollapsed = true;
 
                 // Remove animation classes after animation completes
                 setTimeout(() => {
@@ -1000,6 +982,7 @@
             function expandNotification() {
                 // Hide mini notification
                 miniNotification.style.display = 'none';
+                miniNotification.classList.remove('animate__animated', 'animate__fadeIn');
 
                 // Show the main alert again
                 alertEl.style.display = 'block';
@@ -1008,115 +991,135 @@
                 // Remove collapsed state
                 isCollapsed = false;
 
-                // Reset timer
-                seconds = 10;
-                if (timerEl) timerEl.textContent = seconds;
-
-                // Restart timer
-                clearInterval(interval);
-                startTimer();
-
                 // Remove animation classes after animation completes
                 setTimeout(() => {
                     alertEl.classList.remove('animate__animated', 'animate__fadeIn');
                 }, 1000);
             }
 
-            // Pause/Resume functionality
-            if (pauseBtn) {
-                pauseBtn.addEventListener('click', function () {
-                    isPaused = !isPaused;
+            // Initialize the notification (collapsed by default)
+            initializeNotification();
 
-                    if (isPaused) {
-                        // Change to play icon and update title
-                        pauseIcon.className = 'bi bi-play';
-                        pauseBtn.setAttribute('title', 'Resume timer');
-                        pauseBtn.setAttribute('data-paused', 'true');
-                        pauseBtn.classList.remove('btn-outline-light');
-                        pauseBtn.classList.add('btn-warning');
-                        timerEl.textContent = 'Paused';
-                    } else {
-                        // Change back to pause icon
-                        pauseIcon.className = 'bi bi-pause';
-                        pauseBtn.setAttribute('title', 'Pause timer');
-                        pauseBtn.setAttribute('data-paused', 'false');
-                        pauseBtn.classList.remove('btn-warning');
-                        pauseBtn.classList.add('btn-outline-light');
-                        timerEl.textContent = seconds;
-                    }
-                });
+            // Remove the pause button functionality since we're removing timer
+            if (pauseBtn) {
+                pauseBtn.style.display = 'none';
             }
 
             // Expand notification when clicked
             if (expandNotificationBtn) {
-                expandNotificationBtn.addEventListener('click', function () {
-                    expandNotification();
+                expandNotificationBtn.addEventListener('click', function (e) {
+                    e.stopPropagation(); // Prevent event bubbling
+                    if (isCollapsed) {
+                        expandNotification();
+                    }
                 });
             }
 
-            // Close alert manually
-            if (closeBtn) {
-                closeBtn.addEventListener('click', function () {
-                    clearInterval(interval);
-                    isCollapsed = true;
-                    alertEl.style.display = 'none';
-                    miniNotification.style.display = 'block';
-                });
-            }
+            // Add close button functionality to the main alert
+            function addCloseButtonToAlert() {
+                // Check if close button already exists
+                if (!document.getElementById('alertCloseBtn')) {
+                    const closeBtn = document.createElement('button');
+                    closeBtn.id = 'alertCloseBtn';
+                    closeBtn.type = 'button';
+                    closeBtn.className = 'btn btn-sm btn-outline-dark position-absolute top-0 end-0 m-3';
+                    closeBtn.setAttribute('title', 'Minimize to visitor info button');
+                    closeBtn.innerHTML = '<i class="bi bi-chevron-down"></i>';
 
-            // Stop timer if alert is closed by Bootstrap (if user uses dismiss)
-            alertEl.addEventListener('closed.bs.alert', () => {
-                clearInterval(interval);
-                isCollapsed = true;
-                miniNotification.style.display = 'block';
-            });
+                    closeBtn.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        collapseToNotification();
+                    });
 
-            // Optional: Add keyboard shortcuts
-            document.addEventListener('keydown', function (e) {
-                // Spacebar to toggle pause
-                if (e.code === 'Space' && pauseBtn && !isCollapsed) {
-                    e.preventDefault();
-                    pauseBtn.click();
+                    // Add tooltip
+                    new bootstrap.Tooltip(closeBtn);
+
+                    // Add to alert
+                    const alertHeader = alertEl.querySelector('.alert-heading');
+                    if (alertHeader) {
+                        alertHeader.parentNode.insertBefore(closeBtn, alertHeader.nextSibling);
+                    }
                 }
-                // Escape to minimize
-                if (e.code === 'Escape' && !isCollapsed) {
-                    e.preventDefault();
+            }
+
+            // Add close button when alert is expanded
+            if (alertEl) {
+                alertEl.addEventListener('shown.bs.collapse', function () {
+                    addCloseButtonToAlert();
+                });
+
+                // Also add close button when we manually expand
+                const observer = new MutationObserver(function (mutations) {
+                    mutations.forEach(function (mutation) {
+                        if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                            if (alertEl.style.display === 'block' && !isCollapsed) {
+                                addCloseButtonToAlert();
+                            }
+                        }
+                    });
+                });
+
+                observer.observe(alertEl, { attributes: true });
+            }
+
+            // Add click outside to close expanded notification
+            document.addEventListener('click', function (e) {
+                if (!isCollapsed &&
+                    alertEl.style.display === 'block' &&
+                    !alertEl.contains(e.target) &&
+                    e.target !== expandNotificationBtn &&
+                    !expandNotificationBtn.contains(e.target)) {
+
                     collapseToNotification();
                 }
-                // Enter to expand when notification is visible
-                if (e.code === 'Enter' && isCollapsed && document.activeElement === expandNotificationBtn) {
-                    expandNotification();
-                }
             });
 
-            // Optional: Auto-hide notification after 1 minute
-            setTimeout(() => {
-                if (isCollapsed && miniNotification.style.display === 'block') {
-                    miniNotification.style.opacity = '0.5';
-                    notificationBadge.textContent = 'i';
-
-                    // Fade out completely after another 30 seconds
-                    setTimeout(() => {
-                        miniNotification.style.display = 'none';
-                    }, 30000);
-                }
-            }, 60000);
-
-            // Optional: Tooltip for buttons
-            if (pauseBtn) {
-                new bootstrap.Tooltip(pauseBtn);
-            }
+            // Optional: Tooltip for expand button
             if (expandNotificationBtn) {
                 new bootstrap.Tooltip(expandNotificationBtn);
             }
 
-            // Add click outside to close notification (optional)
-            document.addEventListener('click', function (e) {
-                if (isCollapsed &&
-                    !miniNotification.contains(e.target) &&
-                    !alertEl.contains(e.target)) {
-                    // Optional: Hide notification if clicked outside
-                    // miniNotification.style.display = 'none';
+            // Make the mini notification always visible (remove auto-hide)
+            // Remove the auto-hide timeout functionality
+
+            // Add hover effect to mini notification
+            if (expandNotificationBtn) {
+                expandNotificationBtn.addEventListener('mouseenter', function () {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+                });
+
+                expandNotificationBtn.addEventListener('mouseleave', function () {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+                });
+            }
+
+            // Make the mini notification persistent - add it to page if not already there
+            // (It's already in the HTML, so we just ensure it stays visible)
+
+            // Optional: Add a subtle pulse animation to the mini notification badge
+            // to draw attention to it
+            if (notificationBadge) {
+                function pulseBadge() {
+                    notificationBadge.classList.add('animate__animated', 'animate__pulse');
+                    setTimeout(() => {
+                        notificationBadge.classList.remove('animate__animated', 'animate__pulse');
+                    }, 1000);
+                }
+
+                // Pulse on page load
+                setTimeout(pulseBadge, 2000);
+
+                // Pulse every 30 seconds to remind user
+                setInterval(pulseBadge, 30000);
+            }
+
+            // Optional: Add keyboard shortcut (Escape to collapse)
+            document.addEventListener('keydown', function (e) {
+                if (e.code === 'Escape' && !isCollapsed) {
+                    e.preventDefault();
+                    collapseToNotification();
                 }
             });
         });
