@@ -137,9 +137,9 @@
                 <div class="container mt-3">
                     <!-- Main Alert (will collapse to icon) -->
                     <div class="alert alert-primary alert-dismissible fade show" role="alert" id="visitorAlert">
-                        <h2 class="alert-heading">
+                        <h3 class="alert-heading">
                             <i class="bi bi-shield-check me-2"></i>Visitor Registration Requirement
-                        </h2>
+                        </h3>
 
                         <p class="mt-3 mb-2">
                             All first-time visitors to RSSI must complete the <strong>Visit Us Form</strong> prior to
@@ -438,18 +438,6 @@
                                 </div>
                             </div>
 
-                            <div class="alert alert-warning">
-                                <i class="bi bi-info-circle me-2"></i>
-                                <small>
-                                    Payment details and the payment link are provided below. <strong>Completing the
-                                        payment alone does not confirm your visit slot.</strong>
-                                    After making the payment, please download the payment receipt and upload it below
-                                    before submitting the form.
-                                    Requests with unverified or incorrect payment information will be <strong>cancelled
-                                        or marked invalid</strong>.
-                                </small>
-                            </div>
-
                             <div class="mb-3">
                                 <label for="paymentdoc" class="form-label">Payment Receipt</label>
                                 <input type="file" class="form-control" id="paymentdoc" name="paymentdoc"
@@ -458,94 +446,130 @@
                                     (receipt or screenshot)</small>
                             </div>
 
-                            <!-- Fee Structure Tabs -->
-                            <div class="mt-4">
-                                <ul class="nav nav-tabs" id="visitorTypeTab" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" id="individual-tab" data-bs-toggle="tab"
-                                            data-bs-target="#individual" type="button" role="tab"
-                                            aria-controls="individual" aria-selected="true">
-                                            <i class="bi bi-person me-2"></i>Individual / Small Group (1-10)
+
+                            <div class="accordion" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                            Application & Service Charges
                                         </button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="largegroup-tab" data-bs-toggle="tab"
-                                            data-bs-target="#largegroup" type="button" role="tab"
-                                            aria-controls="largegroup" aria-selected="false">
-                                            <i class="bi bi-people-fill me-2"></i>Large Group (10+)
-                                        </button>
-                                    </li>
-                                </ul>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show"
+                                        data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <!-- Fee Structure Tabs -->
+                                            <div class="mt-4">
+                                                <ul class="nav nav-tabs" id="visitorTypeTab" role="tablist">
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link active" id="individual-tab"
+                                                            data-bs-toggle="tab" data-bs-target="#individual"
+                                                            type="button" role="tab" aria-controls="individual"
+                                                            aria-selected="true">
+                                                            <i class="bi bi-person me-2"></i>Individual / Small Group
+                                                            (1-10)
+                                                        </button>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link" id="largegroup-tab"
+                                                            data-bs-toggle="tab" data-bs-target="#largegroup"
+                                                            type="button" role="tab" aria-controls="largegroup"
+                                                            aria-selected="false">
+                                                            <i class="bi bi-people-fill me-2"></i>Large Group (10+)
+                                                        </button>
+                                                    </li>
+                                                </ul>
 
-                                <div class="tab-content p-4 border border-top-0 rounded-bottom"
-                                    id="visitorTypeTabContent">
-                                    <!-- Individual / Small Group Tab -->
-                                    <div class="tab-pane fade show active" id="individual" role="tabpanel"
-                                        aria-labelledby="individual-tab">
-                                        <div class="alert alert-warning">
-                                            <h5>Application & Service Charges</h5>
-                                            <p class="mt-3 mb-3">
-                                                The one-time application fee is <strong>Rs. 200 per
-                                                    person</strong> and must be paid during registration.
-                                            </p>
+                                                <div class="tab-content p-4 border border-top-0 rounded-bottom"
+                                                    id="visitorTypeTabContent">
+                                                    <!-- Individual / Small Group Tab -->
+                                                    <div class="tab-pane fade show active" id="individual"
+                                                        role="tabpanel" aria-labelledby="individual-tab">
+                                                        <div class="alert alert-warning">
+                                                            <!-- <h5>Application & Service Charges</h5> -->
+                                                            <p class="mt-3 mb-3">
+                                                                The one-time application fee is <strong>Rs. 200 per
+                                                                    person</strong> and must be paid during
+                                                                registration.
+                                                            </p>
 
-                                            <h6><i class="bi bi-check-circle me-2"></i>Includes:</h6>
-                                            <ul class="mb-3">
-                                                <li>Supervised interaction with children</li>
-                                                <li>Up to 5 photos (group and individual)</li>
-                                                <li>One-day engagement/visit</li>
-                                            </ul>
+                                                            <h6><i class="bi bi-check-circle me-2"></i>Includes:</h6>
+                                                            <ul class="mb-3">
+                                                                <li>Supervised interaction with children</li>
+                                                                <li>Up to 5 photos (group and individual)</li>
+                                                                <li>One-day engagement/visit</li>
+                                                            </ul>
 
-                                            <h6><i class="bi bi-calendar-plus me-2"></i>Extended Engagement:</h6>
-                                            <p class="mb-0 ps-3">
-                                                <strong>For repeat visits or multi-day engagements:</strong>
-                                                Rs. 150 per person per additional day (from the second day onwards)
-                                            </p>
+                                                            <h6><i class="bi bi-calendar-plus me-2"></i>Extended
+                                                                Engagement:
+                                                            </h6>
+                                                            <p class="mb-0 ps-3">
+                                                                <strong>For repeat visits or multi-day
+                                                                    engagements:</strong>
+                                                                Rs. 150 per person per additional day (from the second
+                                                                day
+                                                                onwards)
+                                                            </p>
 
-                                            <hr class="my-3">
+                                                            <hr class="my-3">
 
-                                            <h6><i class="bi bi-plus-circle me-2"></i>Additional Services:</h6>
-                                            <ul class="mb-3">
-                                                <li><strong>Certificate/Acknowledgment Letter:</strong> Rs. 250 per
-                                                    certificate</li>
-                                                <li><strong>Interview with Centre In-Charge or Teachers:</strong> Rs.
-                                                    250 per session (30 minutes)</li>
-                                                <li><strong>Videography (personal camera or mobile, with prior
-                                                        approval):</strong> Rs. 100 per device</li>
-                                            </ul>
-                                            <hr class="my-3">
+                                                            <h6><i class="bi bi-plus-circle me-2"></i>Additional
+                                                                Services:
+                                                            </h6>
+                                                            <ul class="mb-3">
+                                                                <li><strong>Certificate/Acknowledgment Letter:</strong>
+                                                                    Rs.
+                                                                    250 per
+                                                                    certificate</li>
+                                                                <li><strong>Interview with Centre In-Charge or
+                                                                        Teachers:</strong> Rs.
+                                                                    250 per session (30 minutes)</li>
+                                                                <li><strong>Videography (personal camera or mobile, with
+                                                                        prior
+                                                                        approval):</strong> Rs. 100 per device</li>
+                                                            </ul>
+                                                            <hr class="my-3">
 
-                                            <div class="text-center">
-                                                <a href="https://eazypay.icicibank.com/eazypayLink?P1=ldvYO7WCMgfIXlGHmwXsxg=="
-                                                    class="btn btn-warning btn-lg" target="_blank">
-                                                    <i class="bi bi-credit-card me-2"></i> Proceed to Payment
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Large Group Tab -->
-                                    <div class="tab-pane fade" id="largegroup" role="tabpanel"
-                                        aria-labelledby="largegroup-tab">
-                                        <div class="alert alert-primary">
-                                            <h5>Custom Pricing
-                                            </h5>
-                                            <p class="mb-3">
-                                                Contact us for custom packages and group discounts.
-                                            </p>
+                                                            <div class="text-center">
+                                                                <a href="https://eazypay.icicibank.com/eazypayLink?P1=ldvYO7WCMgfIXlGHmwXsxg=="
+                                                                    class="btn btn-warning btn-lg" target="_blank">
+                                                                    <i class="bi bi-credit-card me-2"></i> Proceed to
+                                                                    Payment
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Large Group Tab -->
+                                                    <div class="tab-pane fade" id="largegroup" role="tabpanel"
+                                                        aria-labelledby="largegroup-tab">
+                                                        <div class="alert alert-primary">
+                                                            <h5>Custom Pricing
+                                                            </h5>
+                                                            <p class="mb-3">
+                                                                Contact us for custom packages and group discounts.
+                                                            </p>
 
-                                            <div class="text-center mb-3">
-                                                <a href="https://wa.me/917980168159?text=Hello,%20I'm%20interested%20in%20a%20group%20visit%20for%20college%20project.%20%0A%0AName:%20%0AInstitute:%20%0AGroup%20Size:%20%0APreferred%20Dates:%20"
-                                                    class="btn btn-success btn-lg" target="_blank">
-                                                    <i class="bi bi-whatsapp me-2"></i> Contact on WhatsApp
-                                                </a>
-                                            </div>
+                                                            <div class="text-center mb-3">
+                                                                <a href="https://wa.me/917980168159?text=Hello,%20I'm%20interested%20in%20a%20group%20visit%20for%20college%20project.%20%0A%0AName:%20%0AInstitute:%20%0AGroup%20Size:%20%0APreferred%20Dates:%20"
+                                                                    class="btn btn-success btn-lg" target="_blank">
+                                                                    <i class="bi bi-whatsapp me-2"></i> Contact on
+                                                                    WhatsApp
+                                                                </a>
+                                                            </div>
 
-                                            <div class="text-center mt-3">
-                                                <div class="card bg-light">
-                                                    <div class="card-body">
-                                                        <i class="bi bi-telephone text-primary fs-4"></i>
-                                                        <h6 class="mb-1">Direct Contact</h6>
-                                                        <p class="mb-0 fs-5 text-dark">+91 79801 68159</p>
+                                                            <div class="text-center mt-3">
+                                                                <div class="card bg-light">
+                                                                    <div class="card-body">
+                                                                        <i
+                                                                            class="bi bi-telephone text-primary fs-4"></i>
+                                                                        <h6 class="mb-1">Direct Contact</h6>
+                                                                        <p class="mb-0 fs-5 text-dark">+91 79801 68159
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1024,7 +1048,7 @@
                     closeBtn.type = 'button';
                     closeBtn.className = 'btn btn-sm btn-outline-dark position-absolute top-0 end-0 m-3';
                     closeBtn.setAttribute('title', 'Minimize to visitor info button');
-                    closeBtn.innerHTML = '<i class="bi bi-chevron-down"></i>';
+                    closeBtn.innerHTML = '<i class="bi bi-dash"></i>';
 
                     closeBtn.addEventListener('click', function (e) {
                         e.stopPropagation();
