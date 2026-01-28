@@ -57,18 +57,6 @@
         <!-- End Breadcrumbs -->
         <section class="sample-page">
             <div class="container">
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <p>
-                        If you'd like a donation receipt, please fill out this form. Your transaction ID from your
-                        payment will be needed here.
-                    </p>
-                    <p>
-                        If you haven't made your payment yet, you can find our bank details and payment QR code <a
-                            href="#" class="alert-link" data-bs-toggle="modal"
-                            data-bs-target="#paymentInfoModal">here</a>.
-                    </p>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
                 <!-- Part 1: Donation Information -->
                 <form action="donation_form.php" method="POST" name="donationInfoForm" id="donationInfoForm">
                     <input type="hidden" name="form-type" value="donation_form">
@@ -123,17 +111,19 @@
                     <div id="newDonorInfo" style="display: none;">
                         <div class="mb-3">
                             <label for="fullName" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="fullName" name="fullName" required>
+                            <input type="text" class="form-control" id="fullName" name="fullName"
+                                placeholder="First name as per PAN card for receipt" required>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <input type="email" class="form-control" id="email" name="email"
+                                placeholder="We’ll send your donation receipt here" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="contactNumberNew" class="form-label">Contact Number</label>
                             <input type="tel" class="form-control" id="contactNumberNew" name="contactNumberNew"
-                                pattern="[0-9]{10}" required>
+                                pattern="[0-9]{10}" placeholder="10-digit number, no country code needed" required>
                             <small id="contactNumberError" class="form-text text-danger"></small>
                         </div>
 
@@ -146,36 +136,15 @@
                             inputElement.addEventListener('input', validateInput);
                         </script>
 
-                        <div class="mb-3">
-                            <label for="idType" class="form-label">Select Government Photo ID Type</label>
-                            <select class="form-select" id="idType" name="idType" required>
-                                <option value="" selected disabled>Choose ID type...</option>
-                                <option value="aadhar">Aadhar Card</option>
-                                <option value="driving_license">Driving License</option>
-                                <option value="pan">PAN Card</option>
-                                <option value="voter">Voter ID Card</option>
-                                <option value="passport">Passport</option>
-                                <option value="other">Other Government ID</option>
-                            </select>
+                        <div class="alert alert-info" role="alert">
+                            Please note that if you do not provide your PAN Number, you will not be able to claim 50%
+                            tax exemption u/s 80G in India
                         </div>
 
                         <div class="mb-3">
-                            <label for="idNumber" class="form-label">ID Number</label>
+                            <label for="idNumber" class="form-label">PAN Number</label>
                             <input type="text" class="form-control" id="idNumber" name="idNumber"
-                                placeholder="Enter your ID number" required>
-                            <div class="form-text" id="idNumberHelp">
-                                Please enter the number from your selected ID document
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="governmentId" class="form-label">Upload Selected ID</label>
-                            <input type="file" class="form-control" id="governmentId" name="governmentId"
-                                accept=".pdf,.jpg,.jpeg,.png,.heic" required>
-                            <div class="form-text">
-                                Please upload a clear photo/scan of your selected government-issued photo ID.
-                                Accepted formats: PDF, JPG, PNG, HEIC (Max size: 5MB)
-                            </div>
+                                placeholder="Required for 80G tax exemption in India">
                         </div>
 
                         <div class="mb-3">
@@ -388,8 +357,6 @@
                         const fullNameInput = document.getElementById("fullName");
                         const emailInput = document.getElementById("email");
                         const contactNumberNewInput = document.getElementById("contactNumberNew");
-                        const governmentIdInput = document.getElementById("governmentId");
-                        const idTypeInput = document.getElementById("idType");
                         const idNumberInput = document.getElementById("idNumber");
                         const postalAddressInput = document.getElementById("postalAddress");
 
@@ -398,16 +365,12 @@
                             fullNameInput.removeAttribute("required");
                             emailInput.removeAttribute("required");
                             contactNumberNewInput.removeAttribute("required");
-                            governmentIdInput.removeAttribute("required");
-                            idTypeInput.removeAttribute("required");
                             idNumberInput.removeAttribute("required");
                             postalAddressInput.removeAttribute("required");
                         } else if (donationType === "new") {
                             fullNameInput.setAttribute("required", true);
                             emailInput.setAttribute("required", true);
                             contactNumberNewInput.setAttribute("required", true);
-                            governmentIdInput.setAttribute("required", true);
-                            idTypeInput.removeAttribute("required", true);
                             idNumberInput.removeAttribute("required", true);
                             postalAddressInput.setAttribute("required", true);
                         }
@@ -497,78 +460,6 @@
     <!-- Load jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="/js/main.js?v=7.0.0"></script>
-    <!-- Payment Information Modal -->
-    <div class="modal fade" id="paymentInfoModal" tabindex="-1" aria-labelledby="paymentInfoModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title fs-4 fw-bold" id="paymentInfoModalLabel">
-                        Bank Details & Payment Options
-                    </h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4">
-                    <div class="row g-4">
-                        <!-- Bank Details Section -->
-                        <div class="col-md-7">
-                            <div class="card h-100">
-                                <div class="card-header bg-light">
-                                    <h3 class="h5 mb-0">
-                                        <i class="bi bi-credit-card me-2"></i>Bank Transfer Information
-                                    </h3>
-                                </div>
-                                <div class="card-body">
-                                    <ul class="list-unstyled mb-0">
-                                        <li class="mb-3 d-flex">
-                                            <span class="me-2 fw-bold">Account Number:</span>
-                                            <span class="fw-bold">004201033772</span>
-                                        </li>
-                                        <li class="mb-3 d-flex">
-                                            <span class="me-2 fw-bold">Account Name:</span>
-                                            <span>RINA SHIKSHA SAHAYAK FOUNDATION</span>
-                                        </li>
-                                        <li class="mb-3 d-flex">
-                                            <span class="me-2 fw-bold">Bank Name:</span>
-                                            <span>ICICI Bank - KOLKATA - SALT LAKE</span>
-                                        </li>
-                                        <li class="mb-3 d-flex">
-                                            <span class="me-2 fw-bold">Branch Code:</span>
-                                            <span>0042</span>
-                                        </li>
-                                        <li class="d-flex">
-                                            <span class="me-2 fw-bold">IFSC Code:</span>
-                                            <span class="fw-bold">ICIC0000042</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- QR Code Section -->
-                        <div class="col-md-5">
-                            <div class="card h-100">
-                                <div class="card-header bg-light">
-                                    <h3 class="h5 mb-0">
-                                        <i class="bi bi-qr-code-scan me-2"></i>Scan to Pay
-                                    </h3>
-                                </div>
-                                <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                                    <img src="/img/payment.jpg" alt="Google Pay QR Code" class="img-fluid mb-3"
-                                        style="max-height: 200px;">
-                                    <p class="text-muted small mb-0 text-center">Scan this QR code using UPI apps like
-                                        Google Pay, PhonePe, or Paytm</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>
