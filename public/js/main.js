@@ -43,7 +43,7 @@ if (scrollTop) {
 
         if (footerContainer) {
             tasks.push(
-                fetch('/footer.html')
+                fetch('/footer.html?v=1.0.0')
                     .then(res => res.ok ? res.text() : '')
                     .then(html => {
                         footerContainer.innerHTML = html;
