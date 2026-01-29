@@ -156,6 +156,54 @@
             color: #0d6efd;
             font-weight: 600;
         }
+
+        /* New styles for donor type cards */
+        .donor-type-card {
+            cursor: pointer;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+            background-color: white;
+        }
+
+        .donor-type-card:hover {
+            border-color: #0d6efd;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .donor-type-card.active {
+            border-color: #0d6efd;
+            background-color: #f0f7ff;
+            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.1);
+        }
+
+        .donor-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #0d6efd;
+        }
+
+        .donor-type-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .donor-type-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        /* Hide the original select dropdown */
+        .donor-type-select {
+            display: none;
+        }
     </style>
 </head>
 
@@ -259,16 +307,48 @@
                         <form action="donation_form.php" method="POST" name="donationInfoForm" id="donationInfoForm">
                             <input type="hidden" name="form-type" value="donation_form">
 
-                            <!-- Donor Type Selection -->
+                            <!-- Donor Type Selection - NEW CARD-BASED UI -->
                             <div class="mb-4">
-                                <label for="donationType" class="form-label"><strong>Have you donated
-                                        earlier?</strong></label>
-                                <select class="form-select" id="donationType" name="donationType"
-                                    onchange="toggleDonorSections()" required>
+                                <label class="form-label mb-3"><strong>Have you donated earlier?</strong></label>
+
+                                <!-- Hidden select field (still required for form submission) -->
+                                <select class="form-select donor-type-select" id="donationType" name="donationType"
+                                    required>
                                     <option value="">Select</option>
                                     <option value="new">No, I am a first-time donor</option>
                                     <option value="existing">Yes, I have donated earlier</option>
                                 </select>
+
+                                <!-- Card-based UI -->
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="donor-type-card" data-value="new" onclick="selectDonorType('new')">
+                                            <div class="donor-icon">
+                                                <i class="bi bi-person-plus"></i>
+                                            </div>
+                                            <div class="donor-type-title">
+                                                First Time Donor
+                                            </div>
+                                            <p class="donor-type-desc">
+                                                I'm donating for the first time to RSSI
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="donor-type-card" data-value="existing"
+                                            onclick="selectDonorType('existing')">
+                                            <div class="donor-icon">
+                                                <i class="bi bi-person-check"></i>
+                                            </div>
+                                            <div class="donor-type-title">
+                                                Returning Donor
+                                            </div>
+                                            <p class="donor-type-desc">
+                                                I've donated to RSSI before
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Existing Donor Verification -->
@@ -498,6 +578,22 @@
             nextStep(step);
         }
 
+        // ========== NEW FUNCTION FOR CARD-BASED SELECTION ==========
+        function selectDonorType(type) {
+            // Update the hidden select field
+            const donationTypeSelect = document.getElementById('donationType');
+            donationTypeSelect.value = type;
+
+            // Update card UI
+            document.querySelectorAll('.donor-type-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            document.querySelector(`.donor-type-card[data-value="${type}"]`).classList.add('active');
+
+            // Trigger the original toggle function
+            toggleDonorSections();
+        }
+
         // ========== YOUR ORIGINAL LOGIC STARTS HERE ==========
 
         // Determine the correct script URL based on the environment
@@ -551,7 +647,7 @@
             }
         });
 
-        // Toggle donor sections based on donation type
+        // Toggle donor sections based on donation type - KEPT ORIGINAL
         function toggleDonorSections() {
             const donationType = document.getElementById('donationType').value;
             const existingDonorInfo = document.getElementById('existingDonorInfo');
@@ -600,7 +696,7 @@
             handleDonationTypeChange();
         }
 
-        // Handle required fields based on donation type
+        // Handle required fields based on donation type - KEPT ORIGINAL
         function handleDonationTypeChange() {
             const donationType = document.getElementById("donationType").value;
             const fullNameInput = document.getElementById("fullName");
@@ -625,7 +721,7 @@
             }
         }
 
-        // Verify existing donor
+        // Verify existing donor - KEPT ORIGINAL
         async function handleVerifyButtonClick(event) {
             event.preventDefault();
 
@@ -708,7 +804,7 @@
             }
         }
 
-        // Form submission
+        // Form submission - KEPT ORIGINAL
         document.getElementById("donationInfoForm").addEventListener("submit", async function (event) {
             event.preventDefault();
 
@@ -800,8 +896,16 @@
             }
         });
 
-        // Initialize donation type change event
-        document.getElementById("donationType").addEventListener("change", handleDonationTypeChange);
+        // Initialize donation type change event - MODIFIED FOR CARDS
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add click event listeners to donor type cards
+            document.querySelectorAll('.donor-type-card').forEach(card => {
+                card.addEventListener('click', function () {
+                    const value = this.getAttribute('data-value');
+                    selectDonorType(value);
+                });
+            });
+        });
 
     </script>
 
