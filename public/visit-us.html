@@ -108,6 +108,63 @@
         #visitorAlert {
             position: relative;
         }
+
+        /* Validation styles */
+        .is-invalid {
+            border-color: #dc3545 !important;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right calc(0.375em + 0.1875rem) center;
+            background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+            padding-right: calc(1.5em + 0.75rem);
+        }
+
+        .is-invalid:focus {
+            border-color: #dc3545;
+            box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+        }
+
+        /* Button states */
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+
+        .btn-secondary:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        /* Error message styling */
+        #contactnumber_error {
+            display: block;
+            margin-top: 5px;
+            font-size: 0.875rem;
+        }
+
+        /* Smooth transitions */
+        #visitorAlert,
+        #miniNotification,
+        #alertCloseBtn {
+            transition: all 0.3s ease;
+        }
+
+
+        /* Add to your existing CSS */
+        .tooltip {
+            transition: opacity 0.15s;
+        }
+
+        /* Prevent tooltip from showing during transitions */
+        #alertCloseBtn[style*="display: none"]~.tooltip {
+            display: none !important;
+            opacity: 0 !important;
+        }
     </style>
 
     <!-- Add Animate.css for smooth animations (optional) -->
@@ -160,6 +217,12 @@
 
                         <!-- Close button with timer and pause button -->
                         <div class="position-absolute top-0 end-0 m-3 d-flex align-items-center gap-2">
+                            <!-- Minimize Button -->
+                            <button type="button" class="btn btn-sm btn-outline-dark" id="alertCloseBtn"
+                                data-bs-toggle="tooltip" data-bs-placement="left"
+                                data-bs-title="Minimize to visitor info button" style="display: none;">
+                                <i class="bi bi-dash"></i>
+                            </button>
                             <!-- Pause Button -->
                             <button type="button" class="btn btn-sm btn-outline-light" id="pauseTimerBtn"
                                 data-paused="false" title="Pause timer">
@@ -206,18 +269,50 @@
                     </div>
 
                     <script>
+                        // Validation function for contact number
                         function validateContactNumber(input) {
                             var errorMessage = document.getElementById("contactnumber_error");
                             var verifyButton = document.getElementById("verifybutton");
 
-                            if (!input.checkValidity()) {
+                            // Get the trimmed value
+                            var value = input.value.trim();
+
+                            // Check if it's exactly 10 digits and only contains numbers
+                            var isValid = /^\d{10}$/.test(value);
+
+                            if (!isValid) {
                                 errorMessage.textContent = "Please enter a valid 10-digit contact number.";
                                 verifyButton.disabled = true;
+                                verifyButton.classList.remove('btn-primary');
+                                verifyButton.classList.add('btn-secondary');
+                                // input.classList.add('is-invalid');
                             } else {
                                 errorMessage.textContent = "";
                                 verifyButton.disabled = false;
+                                verifyButton.classList.remove('btn-secondary');
+                                verifyButton.classList.add('btn-primary');
+                                // input.classList.remove('is-invalid');
                             }
+
+                            return isValid;
                         }
+
+                        // Prevent button click when disabled and show error message
+                        document.getElementById("verifybutton").addEventListener("click", function (event) {
+                            const contactInput = document.getElementById("contactnumber_verify");
+                            const errorMessage = document.getElementById("contactnumber_error");
+
+                            // Validate before proceeding
+                            if (!validateContactNumber(contactInput)) {
+                                event.preventDefault();
+                                event.stopPropagation();
+
+                                // Focus on the input field
+                                contactInput.focus();
+
+                                return false;
+                            }
+                        });
                     </script>
 
                     <!-- Get user data -->
@@ -761,6 +856,7 @@
             const visitinfoSection = document.getElementById('visitinfo');
             const contactNumberInput = document.getElementById('contactnumber_verify');
             const verifyButton = document.getElementById('verifybutton');
+            const errorMessage = document.getElementById('contactnumber_error');
 
             if (visitorType === 'existing') {
                 existingvisitorInfo.style.display = 'block';
@@ -769,16 +865,24 @@
                 visitinfoSection.style.display = 'none';
                 visitButton.disabled = true;
 
-                // Reset contact number field and button if they were disabled from previous verification
+                // Reset and initialize validation
+                if (errorMessage) errorMessage.textContent = "";
                 if (contactNumberInput) {
                     contactNumberInput.disabled = false;
                     contactNumberInput.removeAttribute('readonly');
+                    contactNumberInput.classList.remove('is-invalid');
+                    contactNumberInput.value = "";
+
+                    // Force validation on the empty field
+                    setTimeout(() => {
+                        validateContactNumber(contactNumberInput);
+                    }, 10);
                 }
                 if (verifyButton) {
-                    verifyButton.disabled = false;
+                    verifyButton.disabled = true; // Start disabled
                     verifyButton.innerHTML = 'Find your details';
-                    verifyButton.classList.remove('btn-success');
-                    verifyButton.classList.add('btn-primary');
+                    verifyButton.classList.remove('btn-success', 'btn-primary');
+                    verifyButton.classList.add('btn-secondary');
                 }
             } else if (visitorType === 'new') {
                 existingvisitorInfo.style.display = 'none';
@@ -855,6 +959,25 @@
             }
             // Call the updateRequiredFields() function after handling the verify button click
             updateRequiredFields();
+
+            // Setup validation on page load
+            document.addEventListener('DOMContentLoaded', function () {
+                const contactInput = document.getElementById("contactnumber_verify");
+                if (contactInput) {
+                    // Initial validation
+                    validateContactNumber(contactInput);
+
+                    // Add real-time validation
+                    contactInput.addEventListener('input', function () {
+                        validateContactNumber(this);
+                    });
+
+                    // Also validate on blur (when user leaves the field)
+                    contactInput.addEventListener('blur', function () {
+                        validateContactNumber(this);
+                    });
+                }
+            });
         }
 
         // Add event listener to radio buttons
@@ -967,13 +1090,29 @@
             const miniNotification = document.getElementById('miniNotification');
             const expandNotificationBtn = document.getElementById('expandNotificationBtn');
             const notificationBadge = document.getElementById('notificationBadge');
+            const closeBtn = document.getElementById('alertCloseBtn');
 
             let isCollapsed = false;
+            let closeBtnTooltip = null;
+
+            // Initialize tooltip for close button once
+            function initializeCloseButtonTooltip() {
+                if (closeBtn && !closeBtnTooltip) {
+                    closeBtnTooltip = new bootstrap.Tooltip(closeBtn, {
+                        trigger: 'hover'
+                    });
+                }
+            }
 
             // Start with the notification collapsed (mini version)
             function initializeNotification() {
                 // Hide the main alert initially
                 alertEl.style.display = 'none';
+
+                // Hide the close button initially
+                if (closeBtn) {
+                    closeBtn.style.display = 'none';
+                }
 
                 // Show the mini notification
                 miniNotification.style.display = 'block';
@@ -988,8 +1127,18 @@
             }
 
             function collapseToNotification() {
+                // Hide tooltip before hiding button to prevent flicker
+                if (closeBtnTooltip) {
+                    closeBtnTooltip.hide();
+                }
+
                 // Hide the main alert
                 alertEl.style.display = 'none';
+
+                // Hide the close button
+                if (closeBtn) {
+                    closeBtn.style.display = 'none';
+                }
 
                 // Show the mini notification
                 miniNotification.style.display = 'block';
@@ -1012,6 +1161,13 @@
                 alertEl.style.display = 'block';
                 alertEl.classList.add('animate__animated', 'animate__fadeIn');
 
+                // Show the close button
+                if (closeBtn) {
+                    closeBtn.style.display = 'block';
+                    // Initialize tooltip if not already done
+                    initializeCloseButtonTooltip();
+                }
+
                 // Remove collapsed state
                 isCollapsed = false;
 
@@ -1029,61 +1185,30 @@
                 pauseBtn.style.display = 'none';
             }
 
+            // Add event listener to the close button
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    // Prevent tooltip from showing during collapse
+                    if (closeBtnTooltip) {
+                        closeBtnTooltip.hide();
+                    }
+
+                    collapseToNotification();
+                });
+            }
+
             // Expand notification when clicked
             if (expandNotificationBtn) {
                 expandNotificationBtn.addEventListener('click', function (e) {
-                    e.stopPropagation(); // Prevent event bubbling
+                    e.stopPropagation();
+                    e.preventDefault();
                     if (isCollapsed) {
                         expandNotification();
                     }
                 });
-            }
-
-            // Add close button functionality to the main alert
-            function addCloseButtonToAlert() {
-                // Check if close button already exists
-                if (!document.getElementById('alertCloseBtn')) {
-                    const closeBtn = document.createElement('button');
-                    closeBtn.id = 'alertCloseBtn';
-                    closeBtn.type = 'button';
-                    closeBtn.className = 'btn btn-sm btn-outline-dark position-absolute top-0 end-0 m-3';
-                    closeBtn.setAttribute('title', 'Minimize to visitor info button');
-                    closeBtn.innerHTML = '<i class="bi bi-dash"></i>';
-
-                    closeBtn.addEventListener('click', function (e) {
-                        e.stopPropagation();
-                        collapseToNotification();
-                    });
-
-                    // Add tooltip
-                    new bootstrap.Tooltip(closeBtn);
-
-                    // Add to alert
-                    const alertHeader = alertEl.querySelector('.alert-heading');
-                    if (alertHeader) {
-                        alertHeader.parentNode.insertBefore(closeBtn, alertHeader.nextSibling);
-                    }
-                }
-            }
-
-            // Add close button when alert is expanded
-            if (alertEl) {
-                alertEl.addEventListener('shown.bs.collapse', function () {
-                    addCloseButtonToAlert();
-                });
-
-                // Also add close button when we manually expand
-                const observer = new MutationObserver(function (mutations) {
-                    mutations.forEach(function (mutation) {
-                        if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
-                            if (alertEl.style.display === 'block' && !isCollapsed) {
-                                addCloseButtonToAlert();
-                            }
-                        }
-                    });
-                });
-
-                observer.observe(alertEl, { attributes: true });
             }
 
             // Add click outside to close expanded notification
@@ -1092,7 +1217,9 @@
                     alertEl.style.display === 'block' &&
                     !alertEl.contains(e.target) &&
                     e.target !== expandNotificationBtn &&
-                    !expandNotificationBtn.contains(e.target)) {
+                    !expandNotificationBtn.contains(e.target) &&
+                    e.target !== closeBtn &&
+                    !closeBtn.contains(e.target)) {
 
                     collapseToNotification();
                 }
@@ -1103,10 +1230,7 @@
                 new bootstrap.Tooltip(expandNotificationBtn);
             }
 
-            // Make the mini notification always visible (remove auto-hide)
-            // Remove the auto-hide timeout functionality
-
-            // Add hover effect to mini notification
+            // Optional: Add hover effect to mini notification
             if (expandNotificationBtn) {
                 expandNotificationBtn.addEventListener('mouseenter', function () {
                     this.style.transform = 'translateY(-2px)';
@@ -1118,9 +1242,6 @@
                     this.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
                 });
             }
-
-            // Make the mini notification persistent - add it to page if not already there
-            // (It's already in the HTML, so we just ensure it stays visible)
 
             // Optional: Add a subtle pulse animation to the mini notification badge
             // to draw attention to it
