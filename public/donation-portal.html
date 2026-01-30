@@ -922,8 +922,6 @@
 
                     if (result.errorMessage === "already_registered") {
                         errorMessage = "Oops! You are already registered in our database. Please donate as an existing donor.";
-                        // Hide the submission modal
-                        submissionModal.hide();
                     } else if (result.errorMessage) {
                         errorMessage = result.errorMessage;
                     }
