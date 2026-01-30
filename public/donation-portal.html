@@ -864,46 +864,86 @@
                 return;
             }
 
+            // Disable the donate button immediately upon form submission
             const donateButton = document.getElementById('donateButton');
             donateButton.disabled = true;
             donateButton.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Submitting...';
 
-            submissionModalInstance.show();
+            // Show the submission modal
+            const submissionModal = new bootstrap.Modal(document.getElementById('submissionModal'), {
+                backdrop: 'static',
+                keyboard: false
+            });
+            submissionModal.show();
 
             try {
                 const response = await fetch(scriptURL, {
                     method: 'POST',
                     body: new FormData(this)
                 });
-
                 const result = await response.json();
+
                 console.log("API Response:", result);
 
+                // Hide the submission modal
+                submissionModal.hide();
+
+                // Check if submission was successful
                 if (result.error === false) {
+                    // Move to step 3 with success message
                     nextStep(3);
-                    // success UI
+
+                    const confirmationContent = document.getElementById('confirmationContent');
+                    const successHtml = `
+                        <div class="mb-4">
+                            <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+                        </div>
+                        <h2>Thank You for Your Donation!</h2>
+                        <div class="alert alert-success mx-auto mt-4 mb-4" style="max-width: 600px;">
+                            <h4 class="alert-heading">Submitted Successfully!</h4>
+                            <p>Your donation has been successfully recorded.</p>
+                            <hr>
+                            <p class="mb-0"><strong>Donation Reference ID:</strong> ${result.donationId}</p>
+                            <p class="mb-0">The original receipt will be shared via post or email within 7 business days.</p>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <button class="btn btn-outline-primary" onclick="location.reload()">
+                                <i class="bi bi-heart"></i> Make Another Donation
+                            </button>
+                        </div>
+                    `;
+
+                    confirmationContent.innerHTML = successHtml;
+
                 } else {
-                    let errorMessage = "Something went wrong.";
+                    // Show error alert and stay on step 2
+                    let errorMessage = "Error occurred during form submission. Please try again later.";
 
                     if (result.errorMessage === "already_registered") {
-                        errorMessage = "Oops! You are already registered. Please donate as an existing donor.";
+                        errorMessage = "Oops! You are already registered in our database. Please donate as an existing donor.";
+                    } else if (result.errorMessage) {
+                        errorMessage = result.errorMessage;
                     }
 
                     alert(errorMessage);
 
+                    // Re-enable the submit button
                     donateButton.disabled = false;
                     donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
                 }
-
             } catch (error) {
                 console.error(error);
-                alert("Network error. Please try again.");
 
+                // Hide the submission modal
+                submissionModal.hide();
+
+                // Show error alert and stay on step 2
+                alert("Error occurred during form submission. Please try again later.");
+
+                // Re-enable the submit button
                 donateButton.disabled = false;
                 donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
-            } finally {
-                // 🔥 THIS IS THE KEY
-                submissionModalInstance.hide();
             }
         });
 
