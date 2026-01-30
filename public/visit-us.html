@@ -795,30 +795,51 @@
                         visitorNameInput.value = data.data.fullname;
                         visitorEmailInput.value = data.data.email;
                         telInput.value = data.data.tel;
-                        verificationResultDiv.style.display = "block"; // Show the result div
+                        verificationResultDiv.style.display = "block";
                         visitinfo.style.display = 'block';
                         visitButton.disabled = false;
-                        alert("User data fetched successfully!");
 
                         // Disable the contact number input and button after successful verification
                         contactNumberInput.disabled = true;
                         verifyButton.disabled = true;
 
+                        // Show success message with SweetAlert2
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'User data fetched successfully!',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                            timer: 2000,
+                        });
                     } else if (data.status === 'no_records') {
-                        verificationResultDiv.style.display = "none"; // Hide the result div
+                        verificationResultDiv.style.display = "none";
                         visitinfo.style.display = 'none';
                         visitButton.disabled = true;
                         visitorNameInput.value = "";
                         visitorEmailInput.value = "";
                         telInput.value = "";
-                        alert("No records found in the database. Register as a new user.");
+
+                        // Show info message with SweetAlert2
+                        Swal.fire({
+                            title: 'Not Found',
+                            text: 'No records found in the database. Please register as a new user.',
+                            icon: 'info',
+                            confirmButtonText: 'OK',
+                        });
 
                         // Reset button to original state
                         verifyButton.disabled = false;
                         verifyButton.innerHTML = originalText;
                     } else {
                         console.log('Error:', data.message);
-                        alert("Error retrieving user data. Please try again later or contact support.");
+
+                        // Show error message with SweetAlert2
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Error retrieving user data. Please try again later or contact support.',
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                        });
 
                         // Reset button to original state
                         verifyButton.disabled = false;
@@ -833,7 +854,14 @@
                 })
                 .catch(error => {
                     console.log('Error:', error);
-                    alert("Error fetching user data. Please try again later or contact support.");
+
+                    // Show error message with SweetAlert2
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Error fetching user data. Please try again later or contact support.',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
 
                     // Reset button to original state on error
                     verifyButton.disabled = false;
