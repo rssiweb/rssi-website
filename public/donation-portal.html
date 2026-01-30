@@ -877,7 +877,7 @@
             }
         }
 
-        // ========== FORM SUBMISSION - FIXED VERSION (using visitor form pattern) ==========
+        // ========== FORM SUBMISSION - FIXED VERSION (using visitor form pattern EXACTLY) ==========
         document.getElementById("donationInfoForm").addEventListener("submit", async function (event) {
             event.preventDefault();
 
@@ -936,94 +936,95 @@
                 forceRemoveModal();
 
                 // Small delay to ensure DOM updates
-                setTimeout(() => {
-                    if (result.error === false) {
-                        // SUCCESS
-                        donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
+                await new Promise(resolve => setTimeout(resolve, 50));
 
-                        // Show success SweetAlert2
-                        Swal.fire({
-                            title: 'Thank You!',
-                            html: `Your donation has been successfully recorded.<br><br>
-                           <strong>Reference ID:</strong> ${result.donationId}<br>
-                           The receipt will be shared via email within 7 business days.`,
-                            icon: 'success',
-                            confirmButtonText: 'OK',
-                            allowOutsideClick: false,
-                            allowEscapeKey: false
-                        }).then(() => {
-                            // Reset form and reload
-                            document.getElementById('donationInfoForm').reset();
-                            location.reload();
-                        });
+                if (result.error === false) {
+                    // SUCCESS
+                    donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
 
-                    } else {
-                        // ERROR HANDLING
-                        let errorMessage = "Error occurred during form submission. Please try again later.";
-                        let isAlreadyRegistered = false;
-                        let title = "Error";
+                    // Show success SweetAlert2 - using AWAIT like visitor form
+                    await Swal.fire({
+                        title: 'Thank You!',
+                        html: `Your donation has been successfully recorded.<br><br>
+                       <strong>Reference ID:</strong> ${result.donationId}<br>
+                       The receipt will be shared via email within 7 business days.`,
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false
+                    });
 
-                        if (result.errorMessage === "already_registered") {
-                            errorMessage = "Oops! You are already registered in our database. Please donate as an existing donor.";
-                            isAlreadyRegistered = true;
-                            title = "Already Registered";
-                        } else if (result.errorMessage) {
-                            errorMessage = result.errorMessage;
+                    // Reset form and reload AFTER SweetAlert is closed
+                    document.getElementById('donationInfoForm').reset();
+                    location.reload();
+
+                } else {
+                    // ERROR HANDLING
+                    let errorMessage = "Error occurred during form submission. Please try again later.";
+                    let isAlreadyRegistered = false;
+                    let title = "Error";
+
+                    if (result.errorMessage === "already_registered") {
+                        errorMessage = "Oops! You are already registered in our database. Please donate as an existing donor.";
+                        isAlreadyRegistered = true;
+                        title = "Already Registered";
+                    } else if (result.errorMessage) {
+                        errorMessage = result.errorMessage;
+                    }
+
+                    // Reset button text BEFORE showing SweetAlert
+                    donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
+
+                    // Show error SweetAlert2 - using AWAIT like visitor form
+                    await Swal.fire({
+                        title: title,
+                        text: errorMessage,
+                        icon: isAlreadyRegistered ? 'warning' : 'error',
+                        confirmButtonText: 'OK',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        customClass: { popup: 'border-radius-10' }
+                    });
+
+                    // Handle after SweetAlert is closed
+                    if (isAlreadyRegistered) {
+                        // Reset to existing donor flow
+                        selectDonorType('existing');
+
+                        // Clear contact field
+                        const contactInput = document.getElementById('contactnumber_verify');
+                        if (contactInput) {
+                            contactInput.value = '';
+                            contactInput.disabled = false;
                         }
 
-                        // Reset button text
-                        donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
+                        // Reset verify button
+                        const verifyButton = document.getElementById('verifybutton');
+                        if (verifyButton) {
+                            verifyButton.disabled = true;
+                            verifyButton.innerHTML = 'Find your details';
+                            verifyButton.classList.remove('btn-success');
+                            verifyButton.classList.add('btn-primary');
+                        }
 
-                        // Show error SweetAlert2
-                        Swal.fire({
-                            title: title,
-                            text: errorMessage,
-                            icon: isAlreadyRegistered ? 'warning' : 'error',
-                            confirmButtonText: 'OK',
-                            allowOutsideClick: false,
-                            allowEscapeKey: false,
-                            customClass: { popup: 'border-radius-10' }
-                        }).then(() => {
-                            if (isAlreadyRegistered) {
-                                // Reset to existing donor flow
-                                selectDonorType('existing');
+                        // Hide sections
+                        document.getElementById('verificationResult').style.display = 'none';
+                        document.getElementById('donationamount').style.display = 'none';
 
-                                // Clear contact field
-                                const contactInput = document.getElementById('contactnumber_verify');
-                                if (contactInput) {
-                                    contactInput.value = '';
-                                    contactInput.disabled = false;
-                                }
+                        // Clear form fields
+                        ['fullName', 'email', 'contactNumberNew', 'idNumber', 'postalAddress',
+                            'donationAmount', 'transactionid', 'message'].forEach(fieldId => {
+                                const field = document.getElementById(fieldId);
+                                if (field) field.value = '';
+                            });
 
-                                // Reset verify button
-                                const verifyButton = document.getElementById('verifybutton');
-                                if (verifyButton) {
-                                    verifyButton.disabled = true;
-                                    verifyButton.innerHTML = 'Find your details';
-                                    verifyButton.classList.remove('btn-success');
-                                    verifyButton.classList.add('btn-primary');
-                                }
-
-                                // Hide sections
-                                document.getElementById('verificationResult').style.display = 'none';
-                                document.getElementById('donationamount').style.display = 'none';
-
-                                // Clear form fields
-                                ['fullName', 'email', 'contactNumberNew', 'idNumber', 'postalAddress',
-                                    'donationAmount', 'transactionid', 'message'].forEach(fieldId => {
-                                        const field = document.getElementById(fieldId);
-                                        if (field) field.value = '';
-                                    });
-
-                                // Button should stay disabled for existing donor
-                                donateButton.disabled = true;
-                            } else {
-                                // Re-enable for other errors
-                                donateButton.disabled = false;
-                            }
-                        });
+                        // Button should stay disabled for existing donor
+                        donateButton.disabled = true;
+                    } else {
+                        // Re-enable for other errors
+                        donateButton.disabled = false;
                     }
-                }, 50); // Reduced delay (same as visitor form)
+                }
 
             } catch (error) {
                 console.error('Network error:', error);
@@ -1034,19 +1035,18 @@
                 // Reset button text
                 donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
 
-                // Show network error with SweetAlert2
-                setTimeout(() => {
-                    Swal.fire({
-                        title: 'Network Error',
-                        text: 'Network error occurred. Please check your connection and try again.',
-                        icon: 'error',
-                        confirmButtonText: 'OK',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false
-                    }).then(() => {
-                        donateButton.disabled = false;
-                    });
-                }, 50);
+                // Show network error with SweetAlert2 - using AWAIT like visitor form
+                await Swal.fire({
+                    title: 'Network Error',
+                    text: 'Network error occurred. Please check your connection and try again.',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                });
+
+                // Re-enable button after network error
+                donateButton.disabled = false;
             }
         });
 
