@@ -855,7 +855,7 @@
             }
         }
 
-        // Form submission - FIXED VERSION
+        // Form submission - COMPLETE ALTERNATIVE APPROACH
         document.getElementById("donationInfoForm").addEventListener("submit", async function (event) {
             event.preventDefault();
 
@@ -876,6 +876,34 @@
             });
             submissionModal.show();
 
+            // Function to hide modal and show alert with callback
+            function hideModalAndAlert(modal, message, callback) {
+                // Hide the modal
+                modal.hide();
+
+                // Listen for when the modal is completely hidden
+                const modalElement = document.getElementById('submissionModal');
+
+                // Create a one-time event listener
+                const handleModalHidden = function handler() {
+                    // Remove the event listener
+                    modalElement.removeEventListener('hidden.bs.modal', handler);
+
+                    // Show alert after modal is fully hidden
+                    if (message) {
+                        alert(message);
+                    }
+
+                    // Execute callback if provided
+                    if (callback && typeof callback === 'function') {
+                        callback();
+                    }
+                };
+
+                // Add event listener (will be removed after firing once)
+                modalElement.addEventListener('hidden.bs.modal', handleModalHidden, { once: true });
+            }
+
             try {
                 const response = await fetch(scriptURL, {
                     method: 'POST',
@@ -885,7 +913,7 @@
 
                 // Check if submission was successful
                 if (result.error === false) {
-                    // Hide the submission modal first
+                    // Hide the submission modal
                     submissionModal.hide();
 
                     // Move to step 3 with success message
@@ -915,16 +943,13 @@
                     confirmationContent.innerHTML = successHtml;
 
                 } else {
-                    // IMPORTANT: Hide the modal BEFORE showing the alert
-                    submissionModal.hide();
+                    let errorMessage = "Error occurred during form submission. Please try again later.";
 
-                    // Small delay to ensure modal is fully hidden before showing alert
-                    setTimeout(() => {
-                        let errorMessage = "Error occurred during form submission. Please try again later.";
+                    if (result.errorMessage === "already_registered") {
+                        errorMessage = "Oops! You are already registered in our database. Please donate as an existing donor.";
 
-                        if (result.errorMessage === "already_registered") {
-                            errorMessage = "Oops! You are already registered in our database. Please donate as an existing donor.";
-
+                        // Hide modal and show alert, then reset form
+                        hideModalAndAlert(submissionModal, errorMessage, function () {
                             // Reset form to existing donor type
                             selectDonorType('existing');
 
@@ -934,28 +959,36 @@
                             // Reset donate button
                             donateButton.disabled = true;
                             donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
-                        } else if (result.errorMessage) {
-                            errorMessage = result.errorMessage;
-                        }
+                        });
 
-                        alert(errorMessage);
-                    }, 300); // 300ms delay to ensure modal is gone
+                    } else if (result.errorMessage) {
+                        errorMessage = result.errorMessage;
+
+                        // Hide modal and show alert, then reset button
+                        hideModalAndAlert(submissionModal, errorMessage, function () {
+                            // Re-enable the submit button
+                            donateButton.disabled = false;
+                            donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
+                        });
+
+                    } else {
+                        // Generic error handling
+                        hideModalAndAlert(submissionModal, errorMessage, function () {
+                            // Re-enable the submit button
+                            donateButton.disabled = false;
+                            donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
+                        });
+                    }
                 }
             } catch (error) {
                 console.error(error);
 
-                // Hide the submission modal on network/other errors
-                submissionModal.hide();
-
-                // Small delay to ensure modal is fully hidden before showing alert
-                setTimeout(() => {
-                    // Show error alert and stay on step 2
-                    alert("Error occurred during form submission. Please try again later.");
-
+                // Network/other errors
+                hideModalAndAlert(submissionModal, "Error occurred during form submission. Please try again later.", function () {
                     // Re-enable the submit button
                     donateButton.disabled = false;
                     donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
-                }, 300);
+                });
             }
         });
 
