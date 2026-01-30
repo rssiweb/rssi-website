@@ -855,7 +855,7 @@
             }
         }
 
-        // Form submission - UPDATED VERSION FOR already_registered ISSUE
+        // Form submission - FIXED VERSION WITH PROPER MODAL HANDLING
         document.getElementById("donationInfoForm").addEventListener("submit", async function (event) {
             event.preventDefault();
 
@@ -886,11 +886,8 @@
 
                 console.log('API Response:', result); // Debug logging
 
-                // FIRST: Hide the modal in ALL cases
-                submissionModal.hide();
-
-                // Wait for modal to be fully hidden
-                setTimeout(() => {
+                // Function to handle modal dismissal and form reset
+                const handleAfterModalHidden = () => {
                     // Check if submission was successful
                     if (result.error === false) {
                         // Move to step 3 with success message
@@ -976,23 +973,40 @@
                         donateButton.disabled = false;
                         donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
                     }
-                }, 300); // Small delay to ensure modal animation completes
+                };
+
+                // Hide the modal and wait for it to be fully hidden
+                const handleModalHidden = () => {
+                    modalElement.removeEventListener('hidden.bs.modal', handleModalHidden);
+                    handleAfterModalHidden();
+                };
+
+                // Add event listener for when modal is completely hidden
+                modalElement.addEventListener('hidden.bs.modal', handleModalHidden);
+
+                // Now hide the modal
+                submissionModal.hide();
 
             } catch (error) {
                 console.error('Network error:', error);
 
-                // Hide the submission modal on network errors
-                submissionModal.hide();
+                // Network error handling
+                const handleNetworkErrorModalHidden = () => {
+                    modalElement.removeEventListener('hidden.bs.modal', handleNetworkErrorModalHidden);
 
-                // Small delay to ensure modal is fully hidden before showing alert
-                setTimeout(() => {
                     // Show error alert and stay on step 2
                     alert("Network error occurred during form submission. Please check your connection and try again.");
 
                     // Re-enable the submit button
                     donateButton.disabled = false;
                     donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
-                }, 300);
+                };
+
+                // Add event listener for when modal is completely hidden
+                modalElement.addEventListener('hidden.bs.modal', handleNetworkErrorModalHidden);
+
+                // Hide the modal
+                submissionModal.hide();
             }
         });
 
