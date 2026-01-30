@@ -261,8 +261,8 @@
                     <div id="existingvisitorInfo" style="display: none;">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" id="contactnumber_verify"
-                                name="contactnumber_verify" pattern="[0-9]{10}" placeholder="Enter your contact number"
-                                oninput="validateContactNumber(this)">
+                                name="contactnumber_verify" pattern="[0-9]{10}" maxlength="10"
+                                placeholder="Enter your contact number" oninput="validateContactNumber(this)">
                             <button type="submit" class="btn btn-primary" id="verifybutton">Find your details</button>
                         </div>
                         <span id="contactnumber_error" style="color: red;"></span>
@@ -344,7 +344,7 @@
                         <div class="mb-3">
                             <label for="contactNumberNew" class="form-label">Contact Number</label>
                             <input type="tel" class="form-control" id="contactNumberNew" name="contactNumberNew"
-                                pattern="[0-9]{10}" required>
+                                pattern="[0-9]{10}" maxlength="10" required>
                             <small id="type-of-admission-help" class="form-text text-muted">Enter a WhatsApp number to
                                 receive application process alerts.</small><br>
                             <small id="contactNumberError" class="form-text text-danger"></small>
