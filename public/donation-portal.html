@@ -855,7 +855,7 @@
             }
         }
 
-        // Form submission - FIXED VERSION WITH PROPER MODAL HANDLING
+        // Form submission - SIMPLER MANUAL MODAL CLEANUP
         document.getElementById("donationInfoForm").addEventListener("submit", async function (event) {
             event.preventDefault();
 
@@ -884,10 +884,40 @@
                 });
                 const result = await response.json();
 
-                console.log('API Response:', result); // Debug logging
+                console.log('API Response:', result);
 
-                // Function to handle modal dismissal and form reset
-                const handleAfterModalHidden = () => {
+                // MANUALLY REMOVE MODAL to ensure it's gone
+                function forceRemoveModal() {
+                    // Remove modal backdrop if exists
+                    const backdrop = document.querySelector('.modal-backdrop');
+                    if (backdrop) {
+                        backdrop.parentNode.removeChild(backdrop);
+                    }
+
+                    // Remove modal-open class from body
+                    document.body.classList.remove('modal-open');
+                    document.body.style.overflow = '';
+                    document.body.style.paddingRight = '';
+
+                    // Hide the modal
+                    modalElement.classList.remove('show');
+                    modalElement.style.display = 'none';
+                    modalElement.setAttribute('aria-hidden', 'true');
+                    modalElement.removeAttribute('aria-modal');
+                    modalElement.removeAttribute('role');
+
+                    // Reset modal instance state
+                    if (submissionModal) {
+                        submissionModal._isShown = false;
+                        submissionModal._isTransitioning = false;
+                    }
+                }
+
+                // Force remove modal immediately
+                forceRemoveModal();
+
+                // Small delay to ensure DOM updates
+                setTimeout(() => {
                     // Check if submission was successful
                     if (result.error === false) {
                         // Move to step 3 with success message
@@ -918,20 +948,10 @@
 
                     } else {
                         let errorMessage = "Error occurred during form submission. Please try again later.";
-                        let isAlreadyRegistered = false;
 
                         if (result.errorMessage === "already_registered") {
                             errorMessage = "Oops! You are already registered in our database. Please donate as an existing donor.";
-                            isAlreadyRegistered = true;
-                        } else if (result.errorMessage) {
-                            errorMessage = result.errorMessage;
-                        }
 
-                        // Show the alert
-                        alert(errorMessage);
-
-                        // If already_registered, reset the form
-                        if (isAlreadyRegistered) {
                             // Reset form to existing donor type
                             selectDonorType('existing');
 
@@ -967,46 +987,40 @@
                             document.getElementById('donationAmount').value = '';
                             document.getElementById('transactionid').value = '';
                             document.getElementById('message').value = '';
+                        } else if (result.errorMessage) {
+                            errorMessage = result.errorMessage;
                         }
+
+                        // Show the alert
+                        alert(errorMessage);
 
                         // Re-enable the submit button
                         donateButton.disabled = false;
                         donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
                     }
-                };
-
-                // Hide the modal and wait for it to be fully hidden
-                const handleModalHidden = () => {
-                    modalElement.removeEventListener('hidden.bs.modal', handleModalHidden);
-                    handleAfterModalHidden();
-                };
-
-                // Add event listener for when modal is completely hidden
-                modalElement.addEventListener('hidden.bs.modal', handleModalHidden);
-
-                // Now hide the modal
-                submissionModal.hide();
+                }, 100); // Small delay
 
             } catch (error) {
                 console.error('Network error:', error);
 
-                // Network error handling
-                const handleNetworkErrorModalHidden = () => {
-                    modalElement.removeEventListener('hidden.bs.modal', handleNetworkErrorModalHidden);
+                // Force remove modal on network error too
+                function forceRemoveModal() {
+                    const backdrop = document.querySelector('.modal-backdrop');
+                    if (backdrop) backdrop.parentNode.removeChild(backdrop);
+                    document.body.classList.remove('modal-open');
+                    document.body.style.overflow = '';
+                    document.body.style.paddingRight = '';
+                    modalElement.classList.remove('show');
+                    modalElement.style.display = 'none';
+                }
 
-                    // Show error alert and stay on step 2
+                forceRemoveModal();
+
+                setTimeout(() => {
                     alert("Network error occurred during form submission. Please check your connection and try again.");
-
-                    // Re-enable the submit button
                     donateButton.disabled = false;
                     donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
-                };
-
-                // Add event listener for when modal is completely hidden
-                modalElement.addEventListener('hidden.bs.modal', handleNetworkErrorModalHidden);
-
-                // Hide the modal
-                submissionModal.hide();
+                }, 100);
             }
         });
 
