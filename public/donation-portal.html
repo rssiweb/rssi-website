@@ -34,6 +34,7 @@
 
     <!-- Template Main CSS File -->
     <link href="/css/main.css?v=7.0.0" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
         .required-asterisk {
@@ -855,7 +856,7 @@
             }
         }
 
-        // Form submission - SIMPLIFIED VERSION (like visitor form)
+        // Form submission - WITH SWEETALERT2 (Simplified - No manual modal cleanup needed)
         document.getElementById("donationInfoForm").addEventListener("submit", async function (event) {
             event.preventDefault();
 
@@ -867,6 +868,7 @@
             // Disable the donate button immediately upon form submission
             const donateButton = document.getElementById('donateButton');
             donateButton.disabled = true;
+            donateButton.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Submitting...';
 
             // Show the Bootstrap modal
             const modalElement = document.getElementById("submissionModal");
@@ -883,13 +885,14 @@
                 });
                 const result = await response.json();
 
-                console.log("API Response:", result);
+                console.log('API Response:', result);
 
-                // HIDE THE MODAL FIRST - BEFORE CHECKING THE RESULT
+                // HIDE THE MODAL USING BOOTSTRAP'S NORMAL METHOD (Safe with SweetAlert2)
                 submissionModal.hide();
 
-                if (!result.error) {
-                    // Success - move to step 3
+                // Check if submission was successful
+                if (result.error === false) {
+                    // Move to step 3 with success message
                     nextStep(3);
 
                     const confirmationContent = document.getElementById('confirmationContent');
@@ -918,50 +921,98 @@
                 } else {
                     let errorMessage = "Error occurred during form submission. Please try again later.";
                     let isAlreadyRegistered = false;
+                    let title = "Error";
 
                     if (result.errorMessage === "already_registered") {
                         errorMessage = "Oops! You are already registered in our database. Please donate as an existing donor.";
                         isAlreadyRegistered = true;
-
-                        // Reset form to existing donor type
-                        selectDonorType('existing');
-
-                        // Clear and reset the contact number field
-                        const contactNumberInput = document.getElementById('contactnumber_verify');
-                        if (contactNumberInput) {
-                            contactNumberInput.disabled = false;
-                            contactNumberInput.value = '';
-                        }
-
-                        // Reset verify button
-                        const verifyButton = document.getElementById("verifybutton");
-                        if (verifyButton) {
-                            verifyButton.disabled = true;
-                            verifyButton.innerHTML = 'Find your details';
-                        }
-
-                        // Also clear any existing verification results
-                        document.getElementById('verificationResult').style.display = 'none';
-                        document.getElementById('donationamount').style.display = 'none';
-
+                        title = "Already Registered";
                     } else if (result.errorMessage) {
                         errorMessage = result.errorMessage;
                     }
 
-                    alert(errorMessage);
+                    // RESET BUTTON TEXT BEFORE SHOWING SWEETALERT
+                    donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
 
-                    // Re-enable button for all errors EXCEPT "already_registered"
-                    if (!isAlreadyRegistered) {
-                        donateButton.disabled = false;
-                    }
+                    // Use SweetAlert2 instead of native alert
+                    Swal.fire({
+                        title: title,
+                        text: errorMessage,
+                        icon: isAlreadyRegistered ? 'warning' : 'error',
+                        confirmButtonText: 'OK',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        customClass: {
+                            popup: 'border-radius-10'
+                        }
+                    }).then((result) => {
+                        if (isAlreadyRegistered) {
+                            // Reset form to existing donor type
+                            selectDonorType('existing');
+
+                            // Clear and reset the contact number field
+                            const contactNumberInput = document.getElementById('contactnumber_verify');
+                            if (contactNumberInput) {
+                                contactNumberInput.value = '';
+                                contactNumberInput.disabled = false;
+                                contactNumberInput.removeAttribute('readonly');
+                            }
+
+                            // Reset verification button
+                            const verifyButton = document.getElementById('verifybutton');
+                            if (verifyButton) {
+                                verifyButton.disabled = true;
+                                verifyButton.innerHTML = 'Find your details';
+                                verifyButton.classList.remove('btn-success');
+                                verifyButton.classList.add('btn-primary');
+                            }
+
+                            // Hide verification result and donation amount
+                            const verificationResult = document.getElementById('verificationResult');
+                            const donationamount = document.getElementById('donationamount');
+                            if (verificationResult) verificationResult.style.display = 'none';
+                            if (donationamount) donationamount.style.display = 'none';
+
+                            // Clear new donor form fields
+                            document.getElementById('fullName').value = '';
+                            document.getElementById('email').value = '';
+                            document.getElementById('contactNumberNew').value = '';
+                            document.getElementById('idNumber').value = '';
+                            document.getElementById('postalAddress').value = '';
+                            document.getElementById('donationAmount').value = '';
+                            document.getElementById('transactionid').value = '';
+                            document.getElementById('message').value = '';
+
+                            // Button should stay disabled for existing donor until they verify
+                            donateButton.disabled = true;
+
+                        } else {
+                            // Re-enable the submit button for non-registered errors
+                            donateButton.disabled = false;
+                        }
+                    });
                 }
+
             } catch (error) {
-                console.error(error);
+                console.error('Network error:', error);
+
                 // HIDE THE MODAL ON ERROR TOO
                 submissionModal.hide();
-                alert("Error occurred during form submission. Please try again later.");
-                // Re-enable button on network/other errors
-                donateButton.disabled = false;
+
+                // RESET BUTTON TEXT BEFORE SHOWING SWEETALERT
+                donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
+
+                // Use SweetAlert2 for network error too
+                Swal.fire({
+                    title: 'Network Error',
+                    text: 'Network error occurred during form submission. Please check your connection and try again.',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                }).then(() => {
+                    donateButton.disabled = false;
+                });
             }
         });
 
