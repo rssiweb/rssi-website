@@ -883,7 +883,7 @@
                 });
                 const result = await response.json();
 
-                console.log("API Response:", result);
+                // console.log("API Response:", result);
 
                 // Hide the submission modal
                 submissionModal.hide();
@@ -918,7 +918,7 @@
 
                 } else {
                     // Show error alert and stay on step 2
-                    let errorMessage = "Error occurred during form submission. Please try again later.";
+                    // let errorMessage = "Error occurred during form submission. Please try again later.";
 
                     if (result.errorMessage === "already_registered") {
                         errorMessage = "Oops! You are already registered in our database. Please donate as an existing donor.";
