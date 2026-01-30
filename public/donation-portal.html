@@ -355,7 +355,7 @@
                         <h4><span class="step-number">2</span> Enter Donation Details</h4>
                         <p>Fill in your details to generate the receipt.</p>
 
-                        <form action="donation_form.php" method="POST" name="donationInfoForm" id="donationInfoForm">
+                        <form action="#" method="POST" name="donationInfoForm" id="donationInfoForm">
                             <input type="hidden" name="form-type" value="donation_form">
 
                             <!-- Donor Type Selection - NEW CARD-BASED UI -->
@@ -649,8 +649,8 @@
 
         // Determine the correct script URL based on the environment
         const scriptURL = window.location.hostname === 'localhost'
-            ? 'http://localhost:8082/rssi-member/payment-api.php'
-            : 'https://login.rssi.in/rssi-member/payment-api.php';
+            ? 'http://localhost:8082/rssi-member/api/donation.php'
+            : 'https://login.rssi.in/rssi-member/api/donation.php';
 
         // Contact number validation for existing donor
         function validateContactNumber(input) {
