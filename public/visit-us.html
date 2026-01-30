@@ -1029,39 +1029,87 @@
 
             // Disable the button immediately upon form submission
             const visitButton = this;
+            const originalButtonText = visitButton.innerHTML;
             visitButton.disabled = true;
             visitButton.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Submitting...';
 
-            // Show the Bootstrap modal
+            // Get modal element
             const modalElement = document.getElementById("myModal");
+
+            // Remove any existing modal instance first
+            if (modalElement._modal) {
+                try {
+                    modalElement._modal.hide();
+                    delete modalElement._modal;
+                } catch (e) {
+                    console.log('Cleaning existing modal instance');
+                }
+            }
+
+            // Create and show NEW modal instance
             const myModal = new bootstrap.Modal(modalElement, {
                 backdrop: 'static',
                 keyboard: false
             });
+
+            // Store reference to modal instance on the element
+            modalElement._modal = myModal;
+
             myModal.show();
 
-            // REUSABLE MODAL CLEANUP FUNCTION
+            // REUSABLE MODAL CLEANUP FUNCTION - IMPROVED VERSION
             function forceRemoveModal() {
-                // Remove all modal backdrops
-                document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
-                    backdrop.parentNode.removeChild(backdrop);
-                });
+                if (!modalElement) return;
 
-                // Reset body styles
-                document.body.classList.remove('modal-open');
-                document.body.style.overflow = '';
-                document.body.style.paddingRight = '';
+                // Get the modal instance
+                const modalInstance = modalElement._modal ||
+                    bootstrap.Modal.getInstance(modalElement);
 
-                // Hide the modal
-                modalElement.classList.remove('show');
-                modalElement.style.display = 'none';
-                modalElement.setAttribute('aria-hidden', 'true');
-
-                // Reset modal instance state
-                if (myModal) {
-                    myModal._isShown = false;
-                    myModal._isTransitioning = false;
+                // First try to hide using Bootstrap's method
+                if (modalInstance && typeof modalInstance.hide === 'function') {
+                    try {
+                        modalInstance.hide();
+                    } catch (e) {
+                        console.log('Modal hide error:', e);
+                    }
                 }
+
+                // Wait a bit for Bootstrap to do its thing, then force cleanup
+                setTimeout(() => {
+                    // Remove all modal backdrops
+                    document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+                        try {
+                            backdrop.parentNode.removeChild(backdrop);
+                        } catch (e) {
+                            console.log('Backdrop removal error:', e);
+                        }
+                    });
+
+                    // Reset body styles
+                    document.body.classList.remove('modal-open');
+                    document.body.style.overflow = '';
+                    document.body.style.paddingRight = '';
+
+                    // Reset modal element
+                    modalElement.classList.remove('show');
+                    modalElement.style.display = 'none';
+                    modalElement.setAttribute('aria-hidden', 'true');
+                    modalElement.removeAttribute('aria-modal');
+                    modalElement.removeAttribute('role');
+
+                    // Remove modal instance reference
+                    if (modalElement._modal) {
+                        try {
+                            delete modalElement._modal;
+                        } catch (e) { }
+                    }
+
+                    // Force remove any Bootstrap data
+                    try {
+                        $(modalElement).removeData('bs.modal');
+                    } catch (e) { }
+
+                }, 100); // Slightly longer delay for Bootstrap cleanup
             }
 
             try {
@@ -1073,87 +1121,88 @@
 
                 console.log("API Response:", result);
 
-                // Force remove modal immediately
+                // Force remove modal BEFORE showing SweetAlert
                 forceRemoveModal();
 
-                // Small delay to ensure DOM updates
-                setTimeout(() => {
-                    if (!result.error) {
-                        // RESET BUTTON TEXT BEFORE SHOWING SUCCESS SWEETALERT
-                        visitButton.innerHTML = 'Submit';
-                        visitorForm.reset(); // Reset the form after successful submission
-                        // SUCCESS: Show SweetAlert2 success message
-                        Swal.fire({
-                            title: 'Success!',
-                            html: `Submitted successfully!`,
-                            icon: 'success',
-                            confirmButtonText: 'OK',
-                            allowOutsideClick: false,
-                            allowEscapeKey: false
-                        }).then(() => {
-                            location.reload(); // Reload the page after successful submission
-                        });
+                // Wait for cleanup to complete
+                await new Promise(resolve => setTimeout(resolve, 150));
 
-                    } else {
-                        let errorMessage = "Error occurred during form submission. Please try again later.";
-                        let isAlreadyRegistered = false;
-                        let title = "Error";
+                if (!result.error) {
+                    // RESET BUTTON TEXT BEFORE SHOWING SUCCESS SWEETALERT
+                    visitButton.innerHTML = originalButtonText;
+                    visitorForm.reset(); // Reset the form after successful submission
 
-                        if (result.errorMessage === "already_registered") {
-                            errorMessage = "Oops! You are already registered in our database. Please proceed as an existing visitor.";
-                            isAlreadyRegistered = true;
-                            title = "Already Registered";
-                        } else if (result.errorMessage) {
-                            errorMessage = result.errorMessage;
+                    // SUCCESS: Show SweetAlert2 success message
+                    await Swal.fire({
+                        title: 'Success!',
+                        html: `Submitted successfully!`,
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false
+                    });
+
+                    location.reload(); // Reload the page after successful submission
+
+                } else {
+                    let errorMessage = "Error occurred during form submission. Please try again later.";
+                    let isAlreadyRegistered = false;
+                    let title = "Error";
+
+                    if (result.errorMessage === "already_registered") {
+                        errorMessage = "Oops! You are already registered in our database. Please proceed as an existing visitor.";
+                        isAlreadyRegistered = true;
+                        title = "Already Registered";
+                    } else if (result.errorMessage) {
+                        errorMessage = result.errorMessage;
+                    }
+
+                    // RESET BUTTON TEXT BEFORE SHOWING SWEETALERT
+                    visitButton.innerHTML = originalButtonText;
+
+                    // Show SweetAlert2 error message
+                    await Swal.fire({
+                        title: title,
+                        text: errorMessage,
+                        icon: isAlreadyRegistered ? 'warning' : 'error',
+                        confirmButtonText: 'OK',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        customClass: { popup: 'border-radius-10' }
+                    });
+
+                    if (isAlreadyRegistered) {
+                        // Reset form to existing visitor type
+                        document.getElementById('visitorType').value = 'existing';
+                        togglevisitorSections(); // This will show existing visitor section
+
+                        // Also clear any existing verification results
+                        document.getElementById('verificationResult').style.display = 'none';
+                        document.getElementById('visitinfo').style.display = 'none';
+
+                        // Reset the contact number field
+                        const contactInput = document.getElementById("contactnumber_verify");
+                        if (contactInput) {
+                            contactInput.disabled = false;
+                            contactInput.value = '';
                         }
 
-                        // RESET BUTTON TEXT BEFORE SHOWING SWEETALERT
-                        visitButton.innerHTML = 'Submit';
+                        // Reset verify button
+                        const verifyButton = document.getElementById("verifybutton");
+                        if (verifyButton) {
+                            verifyButton.disabled = true;
+                            verifyButton.classList.remove('btn-success', 'btn-primary');
+                            verifyButton.classList.add('btn-secondary');
+                            verifyButton.innerHTML = 'Find your details';
+                        }
 
-                        // Show SweetAlert2 error message
-                        Swal.fire({
-                            title: title,
-                            text: errorMessage,
-                            icon: isAlreadyRegistered ? 'warning' : 'error',
-                            confirmButtonText: 'OK',
-                            allowOutsideClick: false,
-                            allowEscapeKey: false,
-                            customClass: { popup: 'border-radius-10' }
-                        }).then(() => {
-                            if (isAlreadyRegistered) {
-                                // Reset form to existing visitor type
-                                document.getElementById('visitorType').value = 'existing';
-                                togglevisitorSections(); // This will show existing visitor section
-
-                                // Also clear any existing verification results
-                                document.getElementById('verificationResult').style.display = 'none';
-                                document.getElementById('visitinfo').style.display = 'none';
-
-                                // Reset the contact number field
-                                const contactInput = document.getElementById("contactnumber_verify");
-                                if (contactInput) {
-                                    contactInput.disabled = false;
-                                    contactInput.value = '';
-                                }
-
-                                // Reset verify button
-                                const verifyButton = document.getElementById("verifybutton");
-                                if (verifyButton) {
-                                    verifyButton.disabled = true;
-                                    verifyButton.classList.remove('btn-success', 'btn-primary');
-                                    verifyButton.classList.add('btn-secondary');
-                                    verifyButton.innerHTML = 'Find your details';
-                                }
-
-                                // Keep button disabled for existing visitor
-                                visitButton.disabled = true;
-                            } else {
-                                // Re-enable button for other errors
-                                visitButton.disabled = false;
-                            }
-                        });
+                        // Keep button disabled for existing visitor
+                        visitButton.disabled = true;
+                    } else {
+                        // Re-enable button for other errors
+                        visitButton.disabled = false;
                     }
-                }, 50); // Reduced delay
+                }
 
             } catch (error) {
                 console.error(error);
@@ -1162,21 +1211,20 @@
                 forceRemoveModal();
 
                 // Reset button text
-                visitButton.innerHTML = 'Submit';
+                visitButton.innerHTML = originalButtonText;
 
                 // Show network error with SweetAlert2
-                setTimeout(() => {
-                    Swal.fire({
-                        title: 'Network Error',
-                        text: 'Error occurred during form submission. Please check your connection and try again.',
-                        icon: 'error',
-                        confirmButtonText: 'OK',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false
-                    }).then(() => {
-                        visitButton.disabled = false;
-                    });
-                }, 50);
+                await Swal.fire({
+                    title: 'Network Error',
+                    text: 'Error occurred during form submission. Please check your connection and try again.',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                });
+
+                // Re-enable button after network error
+                visitButton.disabled = false;
             }
         });
     </script>
