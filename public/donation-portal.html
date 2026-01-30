@@ -917,30 +917,23 @@
                 // Small delay to ensure DOM updates
                 setTimeout(() => {
                     if (result.error === false) {
-                        // SUCCESS: Move to step 3
-                        nextStep(3);
+                        // RESET BUTTON TEXT
+                        donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
 
-                        const confirmationContent = document.getElementById('confirmationContent');
-                        const successHtml = `
-                    <div class="mb-4">
-                        <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
-                    </div>
-                    <h2>Thank You for Your Donation!</h2>
-                    <div class="alert alert-success mx-auto mt-4 mb-4" style="max-width: 600px;">
-                        <h4 class="alert-heading">Submitted Successfully!</h4>
-                        <p>Your donation has been successfully recorded.</p>
-                        <hr>
-                        <p class="mb-0"><strong>Donation Reference ID:</strong> ${result.donationId}</p>
-                        <p class="mb-0">The original receipt will be shared via post or email within 7 business days.</p>
-                    </div>
-                    
-                    <div class="mt-4">
-                        <button class="btn btn-outline-primary" onclick="location.reload()">
-                            <i class="bi bi-heart"></i> Make Another Donation
-                        </button>
-                    </div>
-                `;
-                        confirmationContent.innerHTML = successHtml;
+                        // RESET FORM FIELDS
+                        document.getElementById('donationInfoForm').reset();
+
+                        // SHOW SUCCESS SWEETALERT (like visitor portal)
+                        Swal.fire({
+                            title: 'Success!',
+                            html: `We’re verifying the details and will email your receipt within 7 business days once approved.`,
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false
+                        }).then(() => {
+                            location.reload(); // Reload the page after user clicks OK
+                        });
 
                     } else {
                         // ERROR HANDLING
