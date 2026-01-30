@@ -998,7 +998,9 @@
             }
 
             // Disable the donate button immediately upon form submission
-            this.disabled = true;
+            const visitButton = this;
+            visitButton.disabled = true;
+
             // Show the Bootstrap modal
             const myModal = new bootstrap.Modal(document.getElementById("myModal"), {
                 backdrop: 'static',
@@ -1015,26 +1017,61 @@
 
                 console.log("API Response:", result); // For testing purposes, log the entire response
 
+                // HIDE THE MODAL FIRST - BEFORE CHECKING THE RESULT
+                myModal.hide();
+
                 if (!result.error) {
                     alert(`Submitted successfully! visitor reference ID: ${result.visitorId}`);
                     visitorForm.reset(); // Reset the form after successful submission
                     location.reload(); // Reload the page after successful submission
                 } else {
-                    if (result.errorMessage === "") {
-                        alert("Error occurred during form submission. Please try again later.");
-                    } else if (result.errorMessage === "already_registered") {
-                        alert("Oops! You are already registered in our database. Please proceed as an existing visitor.");
-                    } else {
-                        alert("Unknown error occurred during form submission.");
+                    let errorMessage = "Error occurred during form submission. Please try again later.";
+
+                    if (result.errorMessage === "already_registered") {
+                        errorMessage = "Oops! You are already registered in our database. Please proceed as an existing visitor.";
+
+                        // Reset form to existing visitor type
+                        document.getElementById('visitorType').value = 'existing';
+                        togglevisitorSections(); // This will show existing visitor section
+
+                        // Also clear any existing verification results
+                        document.getElementById('verificationResult').style.display = 'none';
+                        document.getElementById('visitinfo').style.display = 'none';
+
+                        // Reset the contact number field
+                        const contactInput = document.getElementById("contactnumber_verify");
+                        if (contactInput) {
+                            contactInput.disabled = false;
+                            contactInput.value = '';
+                        }
+
+                        // Reset verify button
+                        const verifyButton = document.getElementById("verifybutton");
+                        if (verifyButton) {
+                            verifyButton.disabled = true;
+                            verifyButton.classList.remove('btn-success', 'btn-primary');
+                            verifyButton.classList.add('btn-secondary');
+                            verifyButton.innerHTML = 'Find your details';
+                        }
+
+                    } else if (result.errorMessage) {
+                        errorMessage = result.errorMessage;
                     }
+
+                    alert(errorMessage);
                 }
             } catch (error) {
                 console.error(error);
+                // HIDE THE MODAL ON ERROR TOO
+                myModal.hide();
                 alert("Error occurred during form submission. Please try again later.");
             } finally {
                 // Re-enable the donate button after the form submission process is finished
-                this.disabled = false;
-                myModal.hide();
+                // ONLY if we're not in the already_registered case (where we need to keep it disabled)
+                const visitorType = document.getElementById('visitorType').value;
+                if (visitorType !== 'existing' || !document.getElementById('contactnumber_verify').disabled) {
+                    visitButton.disabled = false;
+                }
             }
         });
     </script>
