@@ -1026,9 +1026,11 @@
                     location.reload(); // Reload the page after successful submission
                 } else {
                     let errorMessage = "Error occurred during form submission. Please try again later.";
+                    let isAlreadyRegistered = false;
 
                     if (result.errorMessage === "already_registered") {
                         errorMessage = "Oops! You are already registered in our database. Please proceed as an existing visitor.";
+                        isAlreadyRegistered = true;
 
                         // Reset form to existing visitor type
                         document.getElementById('visitorType').value = 'existing';
@@ -1059,19 +1061,19 @@
                     }
 
                     alert(errorMessage);
+
+                    // Re-enable button for all errors EXCEPT "already_registered"
+                    if (!isAlreadyRegistered) {
+                        visitButton.disabled = false;
+                    }
                 }
             } catch (error) {
                 console.error(error);
                 // HIDE THE MODAL ON ERROR TOO
                 myModal.hide();
                 alert("Error occurred during form submission. Please try again later.");
-            } finally {
-                // Re-enable the donate button after the form submission process is finished
-                // ONLY if we're not in the already_registered case (where we need to keep it disabled)
-                const visitorType = document.getElementById('visitorType').value;
-                if (visitorType !== 'existing' || !document.getElementById('contactnumber_verify').disabled) {
-                    visitButton.disabled = false;
-                }
+                // Re-enable button on network/other errors
+                visitButton.disabled = false;
             }
         });
     </script>
