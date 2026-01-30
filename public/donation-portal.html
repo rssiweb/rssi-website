@@ -864,16 +864,18 @@
                 return;
             }
 
-            // Disable the donate button immediately upon form submission
             const donateButton = document.getElementById('donateButton');
             donateButton.disabled = true;
             donateButton.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Submitting...';
 
-            // Show the submission modal
-            const submissionModal = new bootstrap.Modal(document.getElementById('submissionModal'), {
+            // ✅ Create modal ONCE
+            const submissionModalEl = document.getElementById('submissionModal');
+            const submissionModal = new bootstrap.Modal(submissionModalEl, {
                 backdrop: 'static',
                 keyboard: false
             });
+
+            // ✅ SHOW modal exactly when submission starts
             submissionModal.show();
 
             try {
@@ -885,26 +887,22 @@
                 const result = await response.json();
                 console.log("API Response:", result);
 
-                // ALWAYS hide modal once API responds
-                submissionModal.hide();
-
                 if (result.error === false) {
                     nextStep(3);
 
-                    const confirmationContent = document.getElementById('confirmationContent');
-                    confirmationContent.innerHTML = `
-            <div class="mb-4">
-                <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
-            </div>
-            <h2>Thank You for Your Donation!</h2>
-            <div class="alert alert-success mx-auto mt-4 mb-4" style="max-width: 600px;">
-                <h4 class="alert-heading">Submitted Successfully!</h4>
-                <p>Your donation has been successfully recorded.</p>
-                <hr>
-                <p class="mb-0"><strong>Donation Reference ID:</strong> ${result.donationId}</p>
-                <p class="mb-0">The original receipt will be shared via post or email within 7 business days.</p>
-            </div>
-        `;
+                    document.getElementById('confirmationContent').innerHTML = `
+                <div class="mb-4">
+                    <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+                </div>
+                <h2>Thank You for Your Donation!</h2>
+                <div class="alert alert-success mx-auto mt-4 mb-4" style="max-width: 600px;">
+                    <h4 class="alert-heading">Submitted Successfully!</h4>
+                    <p>Your donation has been successfully recorded.</p>
+                    <hr>
+                    <p class="mb-0"><strong>Donation Reference ID:</strong> ${result.donationId}</p>
+                    <p class="mb-0">The original receipt will be shared via post or email within 7 business days.</p>
+                </div>
+            `;
                 } else {
                     let errorMessage = "Error occurred during form submission.";
 
@@ -913,20 +911,20 @@
                     }
 
                     alert(errorMessage);
-
                     donateButton.disabled = false;
                     donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
                 }
 
             } catch (error) {
                 console.error(error);
-
-                // Network / server failure
-                submissionModal.hide();
-
                 alert("Error occurred during form submission. Please try again later.");
                 donateButton.disabled = false;
                 donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
+
+            } finally {
+                // ✅ THIS IS THE GUARANTEE
+                // Modal hides immediately once API finishes (success OR error)
+                submissionModal.hide();
             }
         });
 
