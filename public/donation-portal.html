@@ -855,7 +855,7 @@
             }
         }
 
-        // Form submission - SIMPLER MANUAL MODAL CLEANUP
+        // Form submission - SIMPLIFIED VERSION (like visitor form)
         document.getElementById("donationInfoForm").addEventListener("submit", async function (event) {
             event.preventDefault();
 
@@ -867,10 +867,9 @@
             // Disable the donate button immediately upon form submission
             const donateButton = document.getElementById('donateButton');
             donateButton.disabled = true;
-            donateButton.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Submitting...';
 
-            // Get modal element
-            const modalElement = document.getElementById('submissionModal');
+            // Show the Bootstrap modal
+            const modalElement = document.getElementById("submissionModal");
             const submissionModal = new bootstrap.Modal(modalElement, {
                 backdrop: 'static',
                 keyboard: false
@@ -884,143 +883,85 @@
                 });
                 const result = await response.json();
 
-                console.log('API Response:', result);
+                console.log("API Response:", result);
 
-                // MANUALLY REMOVE MODAL to ensure it's gone
-                function forceRemoveModal() {
-                    // Remove modal backdrop if exists
-                    const backdrop = document.querySelector('.modal-backdrop');
-                    if (backdrop) {
-                        backdrop.parentNode.removeChild(backdrop);
-                    }
+                // HIDE THE MODAL FIRST - BEFORE CHECKING THE RESULT
+                submissionModal.hide();
 
-                    // Remove modal-open class from body
-                    document.body.classList.remove('modal-open');
-                    document.body.style.overflow = '';
-                    document.body.style.paddingRight = '';
+                if (!result.error) {
+                    // Success - move to step 3
+                    nextStep(3);
 
-                    // Hide the modal
-                    modalElement.classList.remove('show');
-                    modalElement.style.display = 'none';
-                    modalElement.setAttribute('aria-hidden', 'true');
-                    modalElement.removeAttribute('aria-modal');
-                    modalElement.removeAttribute('role');
+                    const confirmationContent = document.getElementById('confirmationContent');
+                    const successHtml = `
+                <div class="mb-4">
+                    <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+                </div>
+                <h2>Thank You for Your Donation!</h2>
+                <div class="alert alert-success mx-auto mt-4 mb-4" style="max-width: 600px;">
+                    <h4 class="alert-heading">Submitted Successfully!</h4>
+                    <p>Your donation has been successfully recorded.</p>
+                    <hr>
+                    <p class="mb-0"><strong>Donation Reference ID:</strong> ${result.donationId}</p>
+                    <p class="mb-0">The original receipt will be shared via post or email within 7 business days.</p>
+                </div>
+                
+                <div class="mt-4">
+                    <button class="btn btn-outline-primary" onclick="location.reload()">
+                        <i class="bi bi-heart"></i> Make Another Donation
+                    </button>
+                </div>
+            `;
 
-                    // Reset modal instance state
-                    if (submissionModal) {
-                        submissionModal._isShown = false;
-                        submissionModal._isTransitioning = false;
-                    }
-                }
+                    confirmationContent.innerHTML = successHtml;
 
-                // Force remove modal immediately
-                forceRemoveModal();
+                } else {
+                    let errorMessage = "Error occurred during form submission. Please try again later.";
+                    let isAlreadyRegistered = false;
 
-                // Small delay to ensure DOM updates
-                setTimeout(() => {
-                    // Check if submission was successful
-                    if (result.error === false) {
-                        // Move to step 3 with success message
-                        nextStep(3);
+                    if (result.errorMessage === "already_registered") {
+                        errorMessage = "Oops! You are already registered in our database. Please donate as an existing donor.";
+                        isAlreadyRegistered = true;
 
-                        const confirmationContent = document.getElementById('confirmationContent');
-                        const successHtml = `
-                    <div class="mb-4">
-                        <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
-                    </div>
-                    <h2>Thank You for Your Donation!</h2>
-                    <div class="alert alert-success mx-auto mt-4 mb-4" style="max-width: 600px;">
-                        <h4 class="alert-heading">Submitted Successfully!</h4>
-                        <p>Your donation has been successfully recorded.</p>
-                        <hr>
-                        <p class="mb-0"><strong>Donation Reference ID:</strong> ${result.donationId}</p>
-                        <p class="mb-0">The original receipt will be shared via post or email within 7 business days.</p>
-                    </div>
-                    
-                    <div class="mt-4">
-                        <button class="btn btn-outline-primary" onclick="location.reload()">
-                            <i class="bi bi-heart"></i> Make Another Donation
-                        </button>
-                    </div>
-                `;
+                        // Reset form to existing donor type
+                        selectDonorType('existing');
 
-                        confirmationContent.innerHTML = successHtml;
-
-                    } else {
-                        let errorMessage = "Error occurred during form submission. Please try again later.";
-
-                        if (result.errorMessage === "already_registered") {
-                            errorMessage = "Oops! You are already registered in our database. Please donate as an existing donor.";
-
-                            // Reset form to existing donor type
-                            selectDonorType('existing');
-
-                            // Clear and reset the contact number field
-                            const contactNumberInput = document.getElementById('contactnumber_verify');
-                            if (contactNumberInput) {
-                                contactNumberInput.value = '';
-                                contactNumberInput.disabled = false;
-                                contactNumberInput.removeAttribute('readonly');
-                            }
-
-                            // Reset verification button
-                            const verifyButton = document.getElementById('verifybutton');
-                            if (verifyButton) {
-                                verifyButton.disabled = true;
-                                verifyButton.innerHTML = 'Find your details';
-                                verifyButton.classList.remove('btn-success');
-                                verifyButton.classList.add('btn-primary');
-                            }
-
-                            // Hide verification result and donation amount
-                            const verificationResult = document.getElementById('verificationResult');
-                            const donationamount = document.getElementById('donationamount');
-                            if (verificationResult) verificationResult.style.display = 'none';
-                            if (donationamount) donationamount.style.display = 'none';
-
-                            // Clear new donor form fields
-                            document.getElementById('fullName').value = '';
-                            document.getElementById('email').value = '';
-                            document.getElementById('contactNumberNew').value = '';
-                            document.getElementById('idNumber').value = '';
-                            document.getElementById('postalAddress').value = '';
-                            document.getElementById('donationAmount').value = '';
-                            document.getElementById('transactionid').value = '';
-                            document.getElementById('message').value = '';
-                        } else if (result.errorMessage) {
-                            errorMessage = result.errorMessage;
+                        // Clear and reset the contact number field
+                        const contactNumberInput = document.getElementById('contactnumber_verify');
+                        if (contactNumberInput) {
+                            contactNumberInput.disabled = false;
+                            contactNumberInput.value = '';
                         }
 
-                        // Show the alert
-                        alert(errorMessage);
+                        // Reset verify button
+                        const verifyButton = document.getElementById("verifybutton");
+                        if (verifyButton) {
+                            verifyButton.disabled = true;
+                            verifyButton.innerHTML = 'Find your details';
+                        }
 
-                        // Re-enable the submit button
-                        donateButton.disabled = false;
-                        donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
+                        // Also clear any existing verification results
+                        document.getElementById('verificationResult').style.display = 'none';
+                        document.getElementById('donationamount').style.display = 'none';
+
+                    } else if (result.errorMessage) {
+                        errorMessage = result.errorMessage;
                     }
-                }, 100); // Small delay
 
-            } catch (error) {
-                console.error('Network error:', error);
+                    alert(errorMessage);
 
-                // Force remove modal on network error too
-                function forceRemoveModal() {
-                    const backdrop = document.querySelector('.modal-backdrop');
-                    if (backdrop) backdrop.parentNode.removeChild(backdrop);
-                    document.body.classList.remove('modal-open');
-                    document.body.style.overflow = '';
-                    document.body.style.paddingRight = '';
-                    modalElement.classList.remove('show');
-                    modalElement.style.display = 'none';
+                    // Re-enable button for all errors EXCEPT "already_registered"
+                    if (!isAlreadyRegistered) {
+                        donateButton.disabled = false;
+                    }
                 }
-
-                forceRemoveModal();
-
-                setTimeout(() => {
-                    alert("Network error occurred during form submission. Please check your connection and try again.");
-                    donateButton.disabled = false;
-                    donateButton.innerHTML = 'Submit <i class="bi bi-send"></i>';
-                }, 100);
+            } catch (error) {
+                console.error(error);
+                // HIDE THE MODAL ON ERROR TOO
+                submissionModal.hide();
+                alert("Error occurred during form submission. Please try again later.");
+                // Re-enable button on network/other errors
+                donateButton.disabled = false;
             }
         });
 

@@ -986,6 +986,8 @@
             radioButton.addEventListener('change', toggleFields);
         });
     </script>
+    // Replace the entire form submission script (lines 810-898) with this:
+
     <script>
         const visitorForm = document.getElementById("visitorInfoForm");
 
@@ -1002,7 +1004,8 @@
             visitButton.disabled = true;
 
             // Show the Bootstrap modal
-            const myModal = new bootstrap.Modal(document.getElementById("myModal"), {
+            const modalElement = document.getElementById("myModal");
+            const myModal = new bootstrap.Modal(modalElement, {
                 backdrop: 'static',
                 keyboard: false
             });
@@ -1015,65 +1018,110 @@
                 });
                 const result = await response.json();
 
-                console.log("API Response:", result); // For testing purposes, log the entire response
+                console.log("API Response:", result);
 
-                // HIDE THE MODAL FIRST - BEFORE CHECKING THE RESULT
-                myModal.hide();
-
-                if (!result.error) {
-                    alert(`Submitted successfully! visitor reference ID: ${result.visitorId}`);
-                    visitorForm.reset(); // Reset the form after successful submission
-                    location.reload(); // Reload the page after successful submission
-                } else {
-                    let errorMessage = "Error occurred during form submission. Please try again later.";
-                    let isAlreadyRegistered = false;
-
-                    if (result.errorMessage === "already_registered") {
-                        errorMessage = "Oops! You are already registered in our database. Please proceed as an existing visitor.";
-                        isAlreadyRegistered = true;
-
-                        // Reset form to existing visitor type
-                        document.getElementById('visitorType').value = 'existing';
-                        togglevisitorSections(); // This will show existing visitor section
-
-                        // Also clear any existing verification results
-                        document.getElementById('verificationResult').style.display = 'none';
-                        document.getElementById('visitinfo').style.display = 'none';
-
-                        // Reset the contact number field
-                        const contactInput = document.getElementById("contactnumber_verify");
-                        if (contactInput) {
-                            contactInput.disabled = false;
-                            contactInput.value = '';
-                        }
-
-                        // Reset verify button
-                        const verifyButton = document.getElementById("verifybutton");
-                        if (verifyButton) {
-                            verifyButton.disabled = true;
-                            verifyButton.classList.remove('btn-success', 'btn-primary');
-                            verifyButton.classList.add('btn-secondary');
-                            verifyButton.innerHTML = 'Find your details';
-                        }
-
-                    } else if (result.errorMessage) {
-                        errorMessage = result.errorMessage;
+                // MANUALLY REMOVE MODAL to ensure it's gone
+                function forceRemoveModal() {
+                    // Remove modal backdrop if exists
+                    const backdrop = document.querySelector('.modal-backdrop');
+                    if (backdrop) {
+                        backdrop.parentNode.removeChild(backdrop);
                     }
 
-                    alert(errorMessage);
+                    // Remove modal-open class from body
+                    document.body.classList.remove('modal-open');
+                    document.body.style.overflow = '';
+                    document.body.style.paddingRight = '';
 
-                    // Re-enable button for all errors EXCEPT "already_registered"
-                    if (!isAlreadyRegistered) {
-                        visitButton.disabled = false;
+                    // Hide the modal
+                    modalElement.classList.remove('show');
+                    modalElement.style.display = 'none';
+                    modalElement.setAttribute('aria-hidden', 'true');
+                    modalElement.removeAttribute('aria-modal');
+                    modalElement.removeAttribute('role');
+
+                    // Reset modal instance state
+                    if (myModal) {
+                        myModal._isShown = false;
+                        myModal._isTransitioning = false;
                     }
                 }
+
+                // Force remove modal immediately
+                forceRemoveModal();
+
+                // Small delay to ensure DOM updates
+                setTimeout(() => {
+                    if (!result.error) {
+                        alert(`Submitted successfully! visitor reference ID: ${result.visitorId}`);
+                        visitorForm.reset(); // Reset the form after successful submission
+                        location.reload(); // Reload the page after successful submission
+                    } else {
+                        let errorMessage = "Error occurred during form submission. Please try again later.";
+                        let isAlreadyRegistered = false;
+
+                        if (result.errorMessage === "already_registered") {
+                            errorMessage = "Oops! You are already registered in our database. Please proceed as an existing visitor.";
+                            isAlreadyRegistered = true;
+
+                            // Reset form to existing visitor type
+                            document.getElementById('visitorType').value = 'existing';
+                            togglevisitorSections(); // This will show existing visitor section
+
+                            // Also clear any existing verification results
+                            document.getElementById('verificationResult').style.display = 'none';
+                            document.getElementById('visitinfo').style.display = 'none';
+
+                            // Reset the contact number field
+                            const contactInput = document.getElementById("contactnumber_verify");
+                            if (contactInput) {
+                                contactInput.disabled = false;
+                                contactInput.value = '';
+                            }
+
+                            // Reset verify button
+                            const verifyButton = document.getElementById("verifybutton");
+                            if (verifyButton) {
+                                verifyButton.disabled = true;
+                                verifyButton.classList.remove('btn-success', 'btn-primary');
+                                verifyButton.classList.add('btn-secondary');
+                                verifyButton.innerHTML = 'Find your details';
+                            }
+
+                        } else if (result.errorMessage) {
+                            errorMessage = result.errorMessage;
+                        }
+
+                        alert(errorMessage);
+
+                        // Re-enable button for all errors EXCEPT "already_registered"
+                        if (!isAlreadyRegistered) {
+                            visitButton.disabled = false;
+                        }
+                    }
+                }, 100); // Small delay
+
             } catch (error) {
                 console.error(error);
-                // HIDE THE MODAL ON ERROR TOO
-                myModal.hide();
-                alert("Error occurred during form submission. Please try again later.");
-                // Re-enable button on network/other errors
-                visitButton.disabled = false;
+
+                // Force remove modal on network error too
+                function forceRemoveModal() {
+                    const backdrop = document.querySelector('.modal-backdrop');
+                    if (backdrop) backdrop.parentNode.removeChild(backdrop);
+                    document.body.classList.remove('modal-open');
+                    document.body.style.overflow = '';
+                    document.body.style.paddingRight = '';
+                    modalElement.classList.remove('show');
+                    modalElement.style.display = 'none';
+                }
+
+                forceRemoveModal();
+
+                setTimeout(() => {
+                    alert("Error occurred during form submission. Please try again later.");
+                    // Re-enable button on network/other errors
+                    visitButton.disabled = false;
+                }, 100);
             }
         });
     </script>
