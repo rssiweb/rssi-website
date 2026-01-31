@@ -650,8 +650,8 @@
 
         // Determine the correct script URL based on the environment
         const scriptURL = window.location.hostname === 'localhost'
-            ? 'http://localhost:8082/rssi-member/api/donation.php'
-            : 'https://login.rssi.in/rssi-member/api/donation.php';
+            ? 'http://localhost:8082/api/donation.php'
+            : 'https://login.rssi.in/api/donation.php';
 
         // Contact number validation for existing donor
         function validateContactNumber(input) {
