@@ -964,8 +964,8 @@
     <script>
         // Determine the correct script URL based on the environment
         const scriptURL = window.location.hostname === 'localhost'
-            ? 'http://localhost:8082/rssi-member/payment-api.php'
-            : 'https://login.rssi.in/rssi-member/payment-api.php';
+            ? 'http://localhost:8082/rssi-member/api/signup.php'
+            : 'https://login.rssi.in/rssi-member/api/signup.php';
 
         const emailForm = document.getElementById('emailForm');
         const signup = document.getElementById("signup");
@@ -1009,7 +1009,7 @@
 
                 console.log("API Response:", result);
 
-                if (!result.error) {
+                if (result.success === true) {
                     // Show success message if form submission was successful
                     alert(`Submitted successfully! Application Number: ${result.application_number}\nStep two: Identity Verification.  A verification email with further instructions has been sent to your registered address. Please check your inbox and spam folder.\nSometimes spam filters block automated emails. If you do not find the email in your inbox, please check your spam filter or bulk email folder. If you have any queries regarding your application, please feel free to reach out at +91 7980168159 or email us at info@rssi.in.`);
                     signup.reset(); // Reset the form after successful submission
