@@ -761,6 +761,25 @@
             </div>
         </section>
     </main>
+    <!-- Replace your existing udaanModal div with this Bootstrap 5.3 modal -->
+    <div class="modal fade" id="udaanModal" tabindex="-1" aria-labelledby="udaanModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="udaanModalLabel">Udaan Eligibility & Verification Policy</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Please upload a valid document confirming the student's enrollment in a government school.</p>
+                    <p>If unavailable, you may leave this field blank; however, the organisation will conduct background
+                        verification. Any discrepancy may result in cancellation of admission.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- End #main -->
     <!-- ======= Footer ======= -->
     <div id="footer"></div>
@@ -1589,6 +1608,17 @@
             const supportingDocumentInput = document.getElementById('supporting-document');
             const supportingDocumentHelp = document.getElementById('supporting-document-help');
 
+            // Initialize Bootstrap modal
+            let udaanModal;
+
+            // Wait for Bootstrap to be ready
+            if (typeof bootstrap !== 'undefined') {
+                const modalElement = document.getElementById('udaanModal');
+                if (modalElement) {
+                    udaanModal = new bootstrap.Modal(modalElement);
+                }
+            }
+
             // Initially hide the supporting document field
             supportingDocumentRow.style.display = 'none';
             supportingDocumentInput.required = false;
@@ -1602,7 +1632,21 @@
                     // Show and make required
                     supportingDocumentRow.style.display = 'table-row';
                     supportingDocumentInput.required = false;
-                    supportingDocumentHelp.textContent = 'Udaan is exclusively for government school students. Please upload a valid document confirming the student’s enrollment in a government school. If unavailable, you may leave this field blank; however, the organisation will conduct background verification. Any discrepancy may result in cancellation of admission.';
+                    // Create the help text with clickable link
+                    supportingDocumentHelp.innerHTML = 'Udaan is exclusively for government school students. ' +
+                        '<a href="#" id="udaanEligibilityLink" style="color:#0d6efd; text-decoration:underline; cursor:pointer;">' +
+                        'View Udaan Eligibility Policy</a>';
+
+                    // Add click event listener for the Udaan Eligibility link
+                    const eligibilityLink = document.getElementById('udaanEligibilityLink');
+                    if (eligibilityLink) {
+                        eligibilityLink.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            if (udaanModal) {
+                                udaanModal.show();
+                            }
+                        });
+                    }
                 } else {
                     // Hide and make not required
                     supportingDocumentRow.style.display = 'none';
