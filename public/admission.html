@@ -1601,8 +1601,8 @@
                 if (selectedValue === 'Udaan') {
                     // Show and make required
                     supportingDocumentRow.style.display = 'table-row';
-                    supportingDocumentInput.required = true;
-                    supportingDocumentHelp.textContent = 'Upload the supporting document (PDF, JPG, JPEG, or PNG). Required for Udaan category.';
+                    supportingDocumentInput.required = false;
+                    supportingDocumentHelp.textContent = 'Udaan is exclusively for government school students. Please upload a valid document confirming the student’s enrollment in a government school. If unavailable, you may leave this field blank; however, the organisation will conduct background verification. Any discrepancy may result in cancellation of admission.';
                 } else {
                     // Hide and make not required
                     supportingDocumentRow.style.display = 'none';
