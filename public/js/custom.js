@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Button click handlers - specific to this section
     document.querySelector('#stories-of-change .stories-view-all-btn').addEventListener('click', function (e) {
-        e.preventDefault();
+        // e.preventDefault(); // Uncomment if you want to prevent default link behavior
         console.log('View All clicked - Stories of Change section');
         // Add your navigation logic here
     });
@@ -306,7 +306,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Read More button handlers - specific to this section
     document.querySelectorAll('#stories-of-change .stories-read-more').forEach(button => {
         button.addEventListener('click', function (e) {
-            e.preventDefault();
+            // e.preventDefault();  // Uncomment if you want to prevent default link behavior
             const storyName = this.parentElement.querySelector('.stories-name').textContent;
             console.log(`Read more about: ${storyName} - Stories of Change section`);
             // Add your navigation logic here
