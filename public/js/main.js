@@ -546,7 +546,7 @@ $(document).ready(function () {
     setTimeout(initializeMobileMenuDelegation, 300);
 
     // Load banner ad
-    $("#banner-container").load("/includes/adv.html");
+    $("#banner-container").load("/includes/adv.html?v=1.0.0");
 });
 
 // ========== EXTERNAL LINK WARNING ==========
