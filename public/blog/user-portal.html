@@ -910,16 +910,28 @@
                 `;
                 } else if (post.status === 'published' &&
                     (currentFilter === 'admin-all' || currentFilter === 'published')) {
-                    // Admin can unpublish or edit published posts
+                    // Determine if post is featured
+                    const isFeatured = (post.is_featured == 't' || post.is_featured == true);
+
+                    // Create the featured/unfeatured button
+                    const featuredButton = isFeatured
+                        ? `<button class="btn btn-sm btn-warning unfeatured-post" data-id="${post.id}">
+               <i class="fas fa-star-half-alt me-1"></i> Unfeature
+           </button>`
+                        : `<button class="btn btn-sm btn-info featured-post" data-id="${post.id}">
+               <i class="fas fa-star me-1"></i> Mark Featured
+           </button>`;
+
                     adminActions = `
-                    <td class="admin-actions">
-                        <div class="d-flex flex-column gap-2">
-                            <button class="btn btn-sm btn-warning unpublish-post" data-id="${post.id}">
-                                <i class="fas fa-undo me-1"></i> Unpublish
-                            </button>
-                        </div>
-                    </td>
-                `;
+    <td class="admin-actions">
+        <div class="d-flex flex-column gap-2">
+            <button class="btn btn-sm btn-warning unpublish-post" data-id="${post.id}">
+                <i class="fas fa-undo me-1"></i> Unpublish
+            </button>
+            ${featuredButton}
+        </div>
+    </td>
+`;
                 } else {
                     // Empty admin column for consistency
                     adminActions = `<td class="admin-actions"></td>`;
@@ -1080,6 +1092,18 @@
             $(document).on('click', '.unpublish-post', function () {
                 const postId = $(this).data('id');
                 adminUnpublishPost(postId);
+            });
+
+            // Admin mark as featured
+            $(document).on('click', '.featured-post', function () {
+                const postId = $(this).data('id');
+                toggleFeatured(postId, true);
+            });
+
+            // Admin remove featured
+            $(document).on('click', '.unfeatured-post', function () {
+                const postId = $(this).data('id');
+                toggleFeatured(postId, false);
             });
 
             // Delete post
@@ -1431,6 +1455,41 @@
                 },
                 error: function () {
                     showToast('Error unpublishing post', 'error');
+                    showLoading(false);
+                }
+            });
+        }
+
+        // Toggle featured status
+        function toggleFeatured(postId, isFeatured) {
+            if (!isAdmin) return;
+
+            const action = isFeatured ? 'feature' : 'unfeature';
+            if (!confirm(`Are you sure you want to ${action} this post?`)) return;
+
+            showLoading(true);
+
+            $.ajax({
+                url: API_BASE + 'admin_toggle_featured.php',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    post_id: postId,
+                    admin_id: currentUser.id,
+                    is_featured: isFeatured ? 1 : 0
+                }),
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success) {
+                        showToast(`Post ${isFeatured ? 'marked as featured' : 'unfeatured'} successfully!`, 'success');
+                        loadPosts();
+                    } else {
+                        showToast('Error: ' + response.message, 'error');
+                        showLoading(false);
+                    }
+                },
+                error: function () {
+                    showToast('Error updating featured status', 'error');
                     showLoading(false);
                 }
             });
