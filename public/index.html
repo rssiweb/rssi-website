@@ -1199,7 +1199,6 @@
         <!-- End About Section -->
 
         <!-- Stories of Change Section with ID -->
-        <!-- Stories of Change Section with ID -->
         <section id="stories-of-change" style="background-color: #ffd865;">
             <div class="container">
                 <div class="row align-items-start">
@@ -2201,10 +2200,9 @@
                 ? 'http://localhost:8082/blog-api/'
                 : 'https://login.rssi.in/blog-api/';
 
-            // Show loading state with multiple slides to avoid Swiper warning
+            // Show loading state
             const swiperWrapper = document.querySelector('.stories-swiper .swiper-wrapper');
             if (swiperWrapper) {
-                // Show 3 loading placeholders to avoid Swiper loop warning
                 swiperWrapper.innerHTML = `
             <div class="swiper-slide"><div class="stories-card"><div class="stories-content text-center p-5"><p>Loading stories...</p></div></div></div>
             <div class="swiper-slide"><div class="stories-card"><div class="stories-content text-center p-5"><p>Loading stories...</p></div></div></div>
@@ -2212,8 +2210,8 @@
         `;
             }
 
-            // Fetch 4 random success stories
-            const url = API_BASE + 'get_blogs.php?limit=4&is_success_story=true&offset=0';
+            // Fetch success stories - get as many as possible for smooth looping
+            const url = API_BASE + 'get_blogs.php?limit=10&is_success_story=true&offset=0';
 
             $.ajax({
                 url: url,
@@ -2223,12 +2221,13 @@
                     if (response.success && response.posts && response.posts.length > 0) {
                         renderSuccessStories(response.posts);
                     } else {
-                        showDefaultSuccessStories();
+                        // Hide the section if no stories
+                        $('#stories-of-change').hide();
                     }
                 },
                 error: function (xhr, status, error) {
                     console.error('Error loading success stories:', error);
-                    showDefaultSuccessStories();
+                    $('#stories-of-change').hide();
                 }
             });
         }
@@ -2240,22 +2239,21 @@
             // Clear existing content
             swiperWrapper.innerHTML = '';
 
-            // If less than 3 stories, duplicate them to make loop work properly
-            let storiesToRender = [...stories];
-            if (storiesToRender.length < 3) {
-                // Duplicate stories to have at least 3 for proper looping
-                const originalLength = storiesToRender.length;
-                while (storiesToRender.length < 6) { // Make enough for smooth looping
-                    for (let i = 0; i < originalLength && storiesToRender.length < 6; i++) {
-                        storiesToRender.push({ ...storiesToRender[i], id: storiesToRender[i].id + '_copy_' + i });
-                    }
-                }
+            const hasEnoughSlides = stories.length >= 3;
+
+            if (!hasEnoughSlides) {
+                console.warn('Not enough success stories (need at least 3)');
+                $('#stories-of-change').hide();
+                return;
             }
 
             // Render each story
-            storiesToRender.forEach(story => {
+            stories.forEach(story => {
                 let imageUrl = story.featured_image || '/img/success/default.jpg';
                 let excerpt = story.excerpt || (story.content ? story.content.substring(0, 120) : 'Read this inspiring success story from RSSI NGO.');
+
+                let title = story.title || 'Success Story';
+                if (title.length > 30) title = title.substring(0, 27) + '...';
 
                 const slide = document.createElement('div');
                 slide.className = 'swiper-slide';
@@ -2263,11 +2261,11 @@
             <a href="/blog/blog-detail.html?slug=${story.slug}" target="_blank">
                 <div class="stories-card">
                     <div class="stories-image">
-                        <img src="${imageUrl}" alt="${story.title}" loading="lazy" onerror="this.src='/img/success/default.jpg'">
+                        <img src="${imageUrl}" alt="${title}" loading="lazy" onerror="this.src='/img/success/default.jpg'">
                     </div>
                     <div class="stories-content">
                         <div class="stories-divider"></div>
-                        <h3 class="stories-name">${escapeHtml(story.title.substring(0, 30))}</h3>
+                        <h3 class="stories-name">${escapeHtml(title)}</h3>
                         <p class="stories-desc">
                             ${escapeHtml(excerpt.substring(0, 100))}${excerpt.length > 100 ? '...' : ''}
                         </p>
@@ -2284,13 +2282,18 @@
                 window.storiesSwiper.destroy(true, true);
             }
 
-            // Initialize Swiper with loop disabled or conditional
-            const hasEnoughSlides = storiesToRender.length >= 3;
-
-            window.storiesSwiper = new Swiper('.stories-swiper', {
+            // Use rewind with autoplay
+            const swiperConfig = {
                 slidesPerView: 1,
                 spaceBetween: 20,
-                loop: hasEnoughSlides, // Only enable loop if we have enough slides
+                loop: false,
+                rewind: true, // Smooth transition from last to first
+                speed: 500,
+                autoplay: {
+                    delay: 4000, // Auto-scroll every 4 seconds
+                    disableOnInteraction: false, // Continue autoplay even after user interaction
+                    pauseOnMouseEnter: true, // Pause when mouse hovers
+                },
                 pagination: {
                     el: '.stories-swiper-pagination',
                     clickable: true,
@@ -2310,101 +2313,9 @@
                         slidesPerView: 3,
                     },
                 },
-            });
-        }
+            };
 
-        function showDefaultSuccessStories() {
-            const swiperWrapper = document.querySelector('.stories-swiper .swiper-wrapper');
-            if (!swiperWrapper) return;
-
-            // Your original 4 stories as fallback
-            swiperWrapper.innerHTML = `
-        <div class="swiper-slide">
-            <a href="/blog/blog-detail.html?slug=learning-at-his-own-pace-rishabhs-story" target="_blank">
-                <div class="stories-card">
-                    <div class="stories-image">
-                        <img src="/img/success/ss1.jpeg" alt="Rishab" loading="lazy">
-                    </div>
-                    <div class="stories-content">
-                        <div class="stories-divider"></div>
-                        <h3 class="stories-name">Rishab</h3>
-                        <p class="stories-desc">Rishab from Uttar Pradesh is a special child who has shown inspiring progress, gaining confidence and moving towards independence.</p>
-                        <p class="stories-read-more">Read More</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="swiper-slide">
-            <a href="/blog/blog-detail.html?slug=a-journey-of-growth-and-learning-hari-prakash" target="_blank">
-                <div class="stories-card">
-                    <div class="stories-image">
-                        <img src="/img/success/ss2.jpeg" alt="Hari prakash" loading="lazy">
-                    </div>
-                    <div class="stories-content">
-                        <div class="stories-divider"></div>
-                        <h3 class="stories-name">Hari prakash</h3>
-                        <p class="stories-desc">Hari Prakash, a first-generation learner from an economically weaker background, has performed well in his studies and made his parents proud.</p>
-                        <p class="stories-read-more">Read More</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="swiper-slide">
-            <a href="/blog/blog-detail.html?slug=small-steps-big-success-chahats-story" target="_blank">
-                <div class="stories-card">
-                    <div class="stories-image">
-                        <img src="/img/success/ss3.jpeg" alt="Chahat" loading="lazy">
-                    </div>
-                    <div class="stories-content">
-                        <div class="stories-divider"></div>
-                        <h3 class="stories-name">Chahat</h3>
-                        <p class="stories-desc">Chahat, a 10-year-old first-generation learner, grows stronger in her studies with the support of her family and regular ration supplies.</p>
-                        <p class="stories-read-more">Read More</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="swiper-slide">
-            <a href="/blog/blog-detail.html?slug=the-promising-journey-of-a-young-learner" target="_blank">
-                <div class="stories-card">
-                    <div class="stories-image">
-                        <img src="/img/success/ss4.jpeg" alt="Prince" loading="lazy">
-                    </div>
-                    <div class="stories-content">
-                        <div class="stories-divider"></div>
-                        <h3 class="stories-name">Prince</h3>
-                        <p class="stories-desc">Prince's mother fought against all odds to ensure he could study. With the support of RSSI NGO, he is now pursuing his education and making progress every day.</p>
-                        <p class="stories-read-more">Read More</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-    `;
-
-            // Destroy existing Swiper if it exists
-            if (window.storiesSwiper) {
-                window.storiesSwiper.destroy(true, true);
-            }
-
-            // Initialize Swiper with loop enabled (we have 4 slides)
-            window.storiesSwiper = new Swiper('.stories-swiper', {
-                slidesPerView: 1,
-                spaceBetween: 20,
-                loop: true, // We have 4 slides, so loop is fine
-                pagination: {
-                    el: '.stories-swiper-pagination',
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: '.stories-swiper-button-next',
-                    prevEl: '.stories-swiper-button-prev',
-                },
-                breakpoints: {
-                    640: { slidesPerView: 1 },
-                    768: { slidesPerView: 2 },
-                    1024: { slidesPerView: 3 },
-                },
-            });
+            window.storiesSwiper = new Swiper('.stories-swiper', swiperConfig);
         }
 
         // Helper function to escape HTML
