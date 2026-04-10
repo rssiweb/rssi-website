@@ -913,24 +913,37 @@
                     // Determine if post is featured
                     const isFeatured = (post.is_featured == 't' || post.is_featured == true);
 
+                    // Determine if post is success story
+                    const isSuccessStory = (post.is_success_story == 't' || post.is_success_story == true);
+
                     // Create the featured/unfeatured button
                     const featuredButton = isFeatured
                         ? `<button class="btn btn-sm btn-warning unfeatured-post" data-id="${post.id}">
-               <i class="fas fa-star-half-alt me-1"></i> Unfeature
-           </button>`
+           <i class="fas fa-star-half-alt me-1"></i> Unfeature
+       </button>`
                         : `<button class="btn btn-sm btn-info featured-post" data-id="${post.id}">
-               <i class="fas fa-star me-1"></i> Mark Featured
-           </button>`;
+           <i class="fas fa-star me-1"></i> Mark Featured
+       </button>`;
+
+                    // Create the success story button
+                    const successStoryButton = isSuccessStory
+                        ? `<button class="btn btn-sm btn-secondary unmark-success-post" data-id="${post.id}">
+           <i class="fas fa-heart-broken me-1"></i> Remove from Stories
+       </button>`
+                        : `<button class="btn btn-sm btn-success mark-success-post" data-id="${post.id}">
+           <i class="fas fa-heart me-1"></i> Mark as Success Story
+       </button>`;
 
                     adminActions = `
-    <td class="admin-actions">
-        <div class="d-flex flex-column gap-2">
-            <button class="btn btn-sm btn-warning unpublish-post" data-id="${post.id}">
-                <i class="fas fa-undo me-1"></i> Unpublish
-            </button>
-            ${featuredButton}
-        </div>
-    </td>
+<td class="admin-actions">
+    <div class="d-flex flex-column gap-2">
+        <button class="btn btn-sm btn-warning unpublish-post" data-id="${post.id}">
+            <i class="fas fa-undo me-1"></i> Unpublish
+        </button>
+        ${featuredButton}
+        ${successStoryButton}
+    </div>
+</td>
 `;
                 } else {
                     // Empty admin column for consistency
@@ -1106,6 +1119,18 @@
                 toggleFeatured(postId, false);
             });
 
+            // Admin mark as success story
+            $(document).on('click', '.mark-success-post', function () {
+                const postId = $(this).data('id');
+                toggleSuccessStory(postId, true);
+            });
+
+            // Admin remove from success stories
+            $(document).on('click', '.unmark-success-post', function () {
+                const postId = $(this).data('id');
+                toggleSuccessStory(postId, false);
+            });
+
             // Delete post
             $(document).on('click', '.delete-post', function () {
                 const postId = $(this).data('id');
@@ -1168,6 +1193,8 @@
             $('#adminActionsHeader').show();
             $('#authorColumnHeader').show();
             $('#rejectionColumnHeader').show().text('Rejection Reason');
+            $('#featuredColumnHeader').show();      // ADD THIS
+            $('#successStoryHeader').show();        // ADD THIS
 
             // Update the filter buttons to include ALL options for admin
             $('.btn-group').html(`
@@ -1217,6 +1244,8 @@
             $('#adminActionsHeader').hide();
             $('#authorColumnHeader').hide();
             $('#rejectionColumnHeader').hide();
+            $('#featuredColumnHeader').hide();      // ADD THIS
+            $('#successStoryHeader').hide();        // ADD THIS
 
             // Remove admin filter buttons and reset to default
             $('.btn-group').html(`
@@ -1490,6 +1519,41 @@
                 },
                 error: function () {
                     showToast('Error updating featured status', 'error');
+                    showLoading(false);
+                }
+            });
+        }
+
+        // Toggle success story status
+        function toggleSuccessStory(postId, isSuccessStory) {
+            if (!isAdmin) return;
+
+            const action = isSuccessStory ? 'mark as success story' : 'remove from success stories';
+            if (!confirm(`Are you sure you want to ${action} this post?`)) return;
+
+            showLoading(true);
+
+            $.ajax({
+                url: API_BASE + 'admin_toggle_success_story.php',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    post_id: postId,
+                    admin_id: currentUser.id,
+                    is_success_story: isSuccessStory ? 1 : 0
+                }),
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success) {
+                        showToast(`Post ${isSuccessStory ? 'marked as' : 'removed from'} success stories successfully!`, 'success');
+                        loadPosts();
+                    } else {
+                        showToast('Error: ' + response.message, 'error');
+                        showLoading(false);
+                    }
+                },
+                error: function () {
+                    showToast('Error updating success story status', 'error');
                     showLoading(false);
                 }
             });
