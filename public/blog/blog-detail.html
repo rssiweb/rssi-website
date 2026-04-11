@@ -441,8 +441,19 @@
         }
 
         function loadBlogDetail() {
+            // Build URL with slug
+            let url = API_BASE + `get_blog_detail.php?slug=${postSlug}`;
+
+            // Add user data to URL if user is logged in
+            if (currentUser && currentUser.id) {
+                url += `&user_id=${encodeURIComponent(currentUser.id)}`;
+                url += `&is_admin=${encodeURIComponent(currentUser.is_admin ? 'true' : 'false')}`;
+                console.log('Loading blog with user data:', { user_id: currentUser.id, is_admin: currentUser.is_admin });
+            } else {
+                console.log('Loading blog as guest');
+            }
             $.ajax({
-                url: API_BASE + `get_blog_detail.php?slug=${postSlug}`,
+                url: url,
                 type: 'GET',
                 dataType: 'json',
                 beforeSend: function () {
