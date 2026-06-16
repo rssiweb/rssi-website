@@ -2105,8 +2105,9 @@
             $('#rssiNoPosts').hide();
             $('#rssiViewAll').hide();
 
-            // Load only 3 latest posts for the homepage
-            const url = API_BASE + 'get_blogs.php?limit=3&is_featured=true&offset=0&debug=1';
+            // Set how many posts you want to show (e.g., 5)
+            const numberOfPosts = 5;
+            const url = API_BASE + `get_blogs.php?limit=${numberOfPosts}&is_featured=true&offset=0&debug=1`;
 
             $.ajax({
                 url: url,
@@ -2114,7 +2115,7 @@
                 dataType: 'json',
                 success: function (response) {
                     if (response.success && response.posts && response.posts.length > 0) {
-                        renderBlogPosts(response.posts);
+                        renderBlogPosts(response.posts); // This now adds 5 posts + 1 view all
                         $('#rssiViewAll').show();
                         $('#rssiNoPosts').hide();
                     } else {
@@ -2136,80 +2137,104 @@
             const $container = $('#rssiBlogPosts');
             $container.empty();
 
+            // Render ALL real posts normally
             posts.forEach((post, index) => {
                 // Handle missing images
                 const featuredImage = post.featured_image || 'https://via.placeholder.com/400x200/e3f2fd/2c3e50?text=RSSI+Blog';
                 const authorInitial = (post.author_name || 'A').charAt(0);
                 const excerpt = post.excerpt || post.content_preview || 'Read more about our latest work and initiatives...';
 
-                // Check if this is the last post (3rd post)
-                const isLastPost = index === posts.length - 1;
-
                 const postHtml = `
-            <div class="col-md-4">
-                ${isLastPost ?
-                        // Last card links to blog index page
-                        `<a href="/blog/index.html" target="_blank" class="view-all-card-link">` :
-                        // Other cards link to individual posts
-                        `<a href="/blog/blog-detail.html?slug=${post.slug}" target="_blank">`
-                    }
+        <div class="col-md-4">
+            <a href="/blog/blog-detail.html?slug=${post.slug}" target="_blank">
                 <div class="blog-card">
                     <div class="blog-image-container">
-                        <img src="${isLastPost ? '/img/story_cover.jpeg' : featuredImage}" 
-                             alt="${isLastPost ? 'View All Articles' : post.title}" 
+                        <img src="${featuredImage}" 
+                             alt="${post.title}" 
                              class="blog-image"
                              onerror="this.src='https://via.placeholder.com/400x200/e3f2fd/2c3e50?text=RSSI+Blog'">
-                        <span class="blog-badge">${isLastPost ? 'Explore All' : (post.category || 'News')}</span>
-                        
-                        ${isLastPost ? `
-                            <!-- View All Overlay (shows on hover) -->
-                            <div class="view-all-overlay">
-                                <div class="view-all-icon">
-                                    <i class="bi bi-grid-3x3-gap"></i>
-                                </div>
-                                <div class="view-all-text">View All Articles</div>
-                                <div class="view-all-subtext">Browse our complete collection of stories</div>
-                                <div class="view-all-arrow">
-                                    <i class="bi bi-arrow-right"></i>
-                                </div>
-                            </div>
-                            
-                            <!-- Animated Plus Icon -->
-                            <div class="view-all-plus">
-                                <i class="bi bi-plus-lg"></i>
-                            </div>
-                        ` : ''}
+                        <span class="blog-badge">${post.category || 'News'}</span>
                     </div>
                     <div class="blog-content">
-                        <h3 class="blog-title">${isLastPost ? 'Explore More Stories' : post.title}</h3>
-                        <p class="blog-excerpt">${isLastPost ? 'Discover our complete archive of articles, insights, and success stories from RSSI.' : excerpt}</p>
+                        <h3 class="blog-title">${post.title}</h3>
+                        <p class="blog-excerpt">${excerpt}</p>
                         <div class="blog-meta">
                             <div class="author-info">
                                 <div class="author-avatar">
-                                    ${isLastPost ?
-                        `<i class="bi bi-collection"></i>` :
-                        (post.author_photo
-                            ? `<img src="${post.author_photo}" alt="${post.author_name}" style="width:100%;height:100%;object-fit:cover;">`
-                            : authorInitial
-                        )
+                                    ${post.author_photo
+                        ? `<img src="${post.author_photo}" alt="${post.author_name}" style="width:100%;height:100%;object-fit:cover;">`
+                        : authorInitial
                     }
                                 </div>
                                 <div>
-                                    <div class="author-name">${isLastPost ? 'Full Archive' : (post.author_name || 'RSSI Team')}</div>
-                                    <div class="post-date">${isLastPost ? 'Click to Browse' : (post.created_at_formatted || 'Recently')}</div>
+                                    <div class="author-name">${post.author_name || 'RSSI Team'}</div>
+                                    <div class="post-date">${post.created_at_formatted || 'Recently'}</div>
                                 </div>
                             </div>
                             <p class="read-more-btn">
-                                ${isLastPost ? 'View All' : 'Read More'} <i class="bi bi-${isLastPost ? 'arrow-up-right' : 'arrow-right'}"></i>
+                                Read More <i class="bi bi-arrow-right"></i>
                             </p>
                         </div>
                     </div>
                 </div>
-                </a>
-            </div>`;
+            </a>
+        </div>`;
 
                 $container.append(postHtml);
             });
+
+            // Add the "View All" card separately
+            const viewAllHtml = `
+    <div class="col-md-4">
+        <a href="/blog/index.html" target="_blank" class="view-all-card-link">
+            <div class="blog-card">
+                <div class="blog-image-container">
+                    <img src="/img/story_cover.jpeg" 
+                         alt="View All Articles" 
+                         class="blog-image"
+                         onerror="this.src='https://via.placeholder.com/400x200/e3f2fd/2c3e50?text=RSSI+Blog'">
+                    <span class="blog-badge">Explore All</span>
+                    
+                    <!-- View All Overlay (shows on hover) -->
+                    <div class="view-all-overlay">
+                        <div class="view-all-icon">
+                            <i class="bi bi-grid-3x3-gap"></i>
+                        </div>
+                        <div class="view-all-text">View All Articles</div>
+                        <div class="view-all-subtext">Browse our complete collection of stories</div>
+                        <div class="view-all-arrow">
+                            <i class="bi bi-arrow-right"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Animated Plus Icon -->
+                    <div class="view-all-plus">
+                        <i class="bi bi-plus-lg"></i>
+                    </div>
+                </div>
+                <div class="blog-content">
+                    <h3 class="blog-title">Explore More Stories</h3>
+                    <p class="blog-excerpt">Discover our complete archive of articles, insights, and success stories from RSSI.</p>
+                    <div class="blog-meta">
+                        <div class="author-info">
+                            <div class="author-avatar">
+                                <i class="bi bi-collection"></i>
+                            </div>
+                            <div>
+                                <div class="author-name">Full Archive</div>
+                                <div class="post-date">Click to Browse</div>
+                            </div>
+                        </div>
+                        <p class="read-more-btn">
+                            View All <i class="bi bi-arrow-up-right"></i>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>`;
+
+            $container.append(viewAllHtml);
         }
     </script>
     <script>
