@@ -64,14 +64,18 @@
                 <!-- <h2 class="text-center mb-4">Holiday List</h2> -->
 
                 <!-- Year Filter with Automatic Data Fetch -->
-                <div class="d-flex justify-content-end align-items-center mb-4">
-                    <div class="me-3">
-                        <label for="holiday-year" class="form-label">Select Year</label>
-                    </div>
-                    <div>
-                        <select id="holiday-year" class="form-select">
-                            <!-- Options will be added dynamically -->
+                <div class="d-flex justify-content-end align-items-center mb-4 gap-3 flex-wrap">
+                    <div class="d-flex align-items-center">
+                        <label for="holiday-location" class="form-label me-3 mb-0">Select Location</label>
+                        <select id="holiday-location" class="form-select">
+                            <option value="" disabled selected>-- Select Location --</option>
+                            <option value="__all__">All Locations</option>
+                            <!-- Options loaded via AJAX -->
                         </select>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <label for="holiday-year" class="form-label me-3 mb-0">Select Year</label>
+                        <select id="holiday-year" class="form-select"></select>
                     </div>
                 </div>
 
@@ -115,89 +119,123 @@
 
         <script>
             $(document).ready(function () {
-                // Dynamic script URL based on the environment (local or production)
+                // ---- Single API endpoint ----
                 const scriptURL = window.location.hostname === 'localhost'
                     ? 'http://localhost:8082/rssi-member/payment-api.php'
                     : 'https://login.rssi.in/rssi-member/payment-api.php';
 
-                // Get the year from the URL, fallback to the current year if not present
+                // ---- Read URL params ----
                 const urlParams = new URLSearchParams(window.location.search);
-                let selectedYear = urlParams.has('year') ? parseInt(urlParams.get('year')) : new Date().getFullYear();
-
-                // Populate year dropdown with current year, next year, and past 3 years
                 const currentYear = new Date().getFullYear();
+                let selectedYear = urlParams.has('year') ? parseInt(urlParams.get('year')) : currentYear;
+                let selectedLoc = urlParams.has('location') ? urlParams.get('location') : '';
+
+                // ---- Populate year dropdown ----
                 const nextYear = currentYear + 1;
                 const pastYears = [currentYear - 1, currentYear - 2, currentYear - 3];
-
-                // Populate the dropdown
                 $('#holiday-year').append(`<option value="${nextYear}">${nextYear}</option>`);
                 $('#holiday-year').append(`<option value="${currentYear}">${currentYear}</option>`);
-                pastYears.forEach(year => {
-                    $('#holiday-year').append(`<option value="${year}">${year}</option>`);
-                });
-                // Set the selected year based on the URL or default to current year
+                pastYears.forEach(y => $('#holiday-year').append(`<option value="${y}">${y}</option>`));
                 $('#holiday-year').val(selectedYear);
 
-                // On page load, fetch holidays for the selected year
-                fetchHolidays(selectedYear);
+                // ---- Load locations, then decide what to fetch ----
+                loadLocations().always(function () {
 
-                // Fetch holidays when the user selects a year
-                $('#holiday-year').on('change', function () {
-                    const selectedYear = $(this).val();
-                    fetchHolidays(selectedYear);
+                    if (selectedLoc) {
+                        const value = (selectedLoc === 'all' || selectedLoc === '__all__')
+                            ? '__all__'
+                            : selectedLoc;
 
-                    // Update the URL with the selected year without reloading the page
-                    const newUrl = window.location.pathname + `?year=${selectedYear}`;
-                    history.pushState(null, '', newUrl);
+                        const exists = $('#holiday-location option[value="' + value + '"]').length > 0;
+                        if (exists) {
+                            $('#holiday-location').val(value);
+                            fetchHolidays($('#holiday-year').val(), value);
+                            return;
+                        }
+                    }
+
+                    // No URL location → prompt user to pick one
+                    showLocationPrompt();
                 });
 
-                // Function to fetch holidays using AJAX
-                function fetchHolidays(year) {
-                    // Show spinner and hide table body
-                    $('#holiday-spinner').show();
-                    $('#holiday-table-body').html('');
-                    $.ajax({
+                // ---- Events ----
+                $('#holiday-year').on('change', function () {
+                    const y = $(this).val();
+                    const l = $('#holiday-location').val();
+                    if (!l) { showLocationPrompt(); return; }
+                    fetchHolidays(y, l);
+                    updateUrl(y, l);
+                });
+
+                $('#holiday-location').on('change', function () {
+                    const l = $(this).val();
+                    const y = $('#holiday-year').val();
+                    if (!l) { showLocationPrompt(); return; }
+                    fetchHolidays(y, l);
+                    updateUrl(y, l);
+                });
+
+                // ---- Load locations from payment-api.php ----
+                function loadLocations() {
+                    return $.ajax({
                         url: scriptURL,
-                        type: 'POST',  // Make it a POST request as per your requirement
-                        data: { year: year, 'form-type': 'holiday' },
-                        success: function (response) {
-                            const data = JSON.parse(response);
-                            $('#holiday-table-body').empty();
-                            if (data.length > 0) {
-                                data.forEach(function (holiday) {
-                                    const formattedDate = formatDate(holiday.holiday_date);
-                                    $('#holiday-table-body').append(`
-                            <tr>
-                                <td>${formattedDate}</td>
-                                <td>${holiday.day}</td>
-                                <td>${holiday.holiday_name}</td>
-                            </tr>
-                        `);
-                                });
-                            } else {
-                                $('#holiday-table-body').append(`
-                        <tr>
-                            <td colspan="3">No holidays found for this year.</td>
-                        </tr>
-                    `);
-                            }
-                            // Hide spinner after data is loaded
-                            $('#holiday-spinner').hide();
-                        },
-                        error: function () {
-                            alert('Error fetching holiday data. Please try again.');
-                            // Hide spinner on error too
-                            $('#holiday-spinner').hide();
-                            $('#holiday-table-body').append(`
-                            <tr>
-                                <td colspan="3">Error loading data. Please try again.</td>
-                            </tr>
-                            `);
-                        }
+                        type: 'POST',
+                        dataType: 'json',
+                        data: { 'form-type': 'locations' }
+                    }).done(function (locations) {
+                        if (!Array.isArray(locations)) return;
+                        locations.forEach(function (name) {
+                            $('#holiday-location').append(
+                                `<option value="${name}">${name}</option>`
+                            );
+                        });
+                    }).fail(function () {
+                        console.warn('Could not load locations');
                     });
                 }
 
-                // Function to format date in dd/mm/yyyy format
+                // ---- Fetch holidays ----
+                function fetchHolidays(year, location) {
+                    const locationParam = (location === '__all__') ? '' : location;
+
+                    $('#holiday-spinner').show();
+                    $('#holiday-table-body').html('');
+
+                    $.ajax({
+                        url: scriptURL,
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            year: year,
+                            location: locationParam,
+                            'form-type': 'holiday'
+                        }
+                    }).done(function (data) {
+                        const tbody = $('#holiday-table-body').empty();
+
+                        if (Array.isArray(data) && data.length > 0) {
+                            data.forEach(function (holiday) {
+                                tbody.append(`
+                        <tr>
+                            <td>${formatDate(holiday.holiday_date)}</td>
+                            <td>${holiday.day}</td>
+                            <td>${holiday.holiday_name}</td>
+                        </tr>
+                    `);
+                            });
+                        } else {
+                            tbody.append(`<tr><td colspan="3">No holidays found for this selection.</td></tr>`);
+                        }
+                    }).fail(function () {
+                        $('#holiday-table-body').append(
+                            `<tr><td colspan="3">Error loading data. Please try again.</td></tr>`
+                        );
+                    }).always(function () {
+                        $('#holiday-spinner').hide();
+                    });
+                }
+
+                // ---- Helpers ----
                 function formatDate(dateStr) {
                     const date = new Date(dateStr);
                     const day = String(date.getDate()).padStart(2, '0');
@@ -205,8 +243,25 @@
                     const year = date.getFullYear();
                     return `${day}/${month}/${year}`;
                 }
-            });
 
+                function updateUrl(year, location) {
+                    const params = new URLSearchParams();
+                    params.set('year', year);
+                    if (location && location !== '__all__') {
+                        params.set('location', location);
+                    }
+                    history.pushState(null, '', window.location.pathname + '?' + params.toString());
+                }
+
+                function showLocationPrompt() {
+                    $('#holiday-spinner').hide();
+                    $('#holiday-table-body').html(
+                        `<tr><td colspan="3" class="text-center text-muted">
+                Please select a location to view holidays.
+             </td></tr>`
+                    );
+                }
+            });
         </script>
         <!-- End Gallery Section -->
     </main>
