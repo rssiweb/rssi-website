@@ -445,18 +445,13 @@
                                     <td>
                                         <label for="branch">Preferred Branch:</label>
                                     </td>
-                                    <td><select class="form-select" id="branch" name="branch" required>
-                                            <option value>--Select Branch--</option>
-                                            <option value="Lucknow">Lucknow</option>
-                                            <option value="West Bengal">West
-                                                Bengal</option>
-                                            <option value="Gurugram">Gurugram</option>
+                                    <td>
+                                        <select class="form-select" id="branch" name="branch" required>
+                                            <option value="">--Select Branch--</option>
+                                            <!-- Options loaded dynamically from fetch_locations.php -->
                                         </select>
-                                        <small id="branch-help" class="form-text text-muted">Please select
-                                            the
-                                            preferred
-                                            branch of
-                                            study.</small>
+                                        <small id="branch-help" class="form-text text-muted">Please select the preferred
+                                            branch of study.</small>
                                     </td>
                                 </tr>
                                 <tr>
@@ -1665,6 +1660,65 @@
                 supportingDocumentInput.value = ''; // Clear the file input
                 supportingDocumentHelp.textContent = 'Upload the supporting document (PDF, JPG, JPEG, or PNG).';
             });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            const apiUrl = isLocalhost
+                ? 'http://localhost:8082/get_admission_locations.php'
+                : 'https://login.rssi.in/get_admission_locations.php';
+
+            const branchSelect = document.getElementById('branch');
+            const helpText = document.getElementById('branch-help');
+
+            if (!branchSelect) {
+                console.error('get_admission_locations: #branch element not found');
+                return;
+            }
+
+            branchSelect.innerHTML = '<option value="">--Select Branch--</option>';
+            helpText.textContent = 'Loading branches...';
+
+            // NOTE: no credentials: 'include' — matches how get_plans.php works
+            fetch(apiUrl)
+                .then(r => {
+                    const ct = r.headers.get('content-type') || '';
+                    if (!r.ok || !ct.includes('application/json')) {
+                        throw new Error('Unexpected response: HTTP ' + r.status);
+                    }
+                    return r.json();
+                })
+                .then(locations => {
+                    branchSelect.innerHTML = '<option value="">--Select Branch--</option>';
+
+                    if (!Array.isArray(locations) || locations.length === 0) {
+                        const opt = document.createElement('option');
+                        opt.textContent = 'No branches available';
+                        opt.disabled = true;
+                        branchSelect.appendChild(opt);
+                        helpText.textContent = 'No branches are currently accepting admissions.';
+                        return;
+                    }
+
+                    locations.forEach(loc => {
+                        const opt = document.createElement('option');
+                        opt.value = loc.id;          // submit the ID
+                        opt.textContent = loc.name;  // display the name
+                        branchSelect.appendChild(opt);
+                    });
+
+                    helpText.textContent = 'Please select the preferred branch of study.';
+                })
+                .catch(err => {
+                    console.error('Error loading branches:', err);
+                    branchSelect.innerHTML = '<option value="">--Select Branch--</option>';
+                    const opt = document.createElement('option');
+                    opt.textContent = 'Error loading branches';
+                    opt.disabled = true;
+                    branchSelect.appendChild(opt);
+                    helpText.textContent = 'Failed to load branches. Please refresh the page.';
+                });
         });
     </script>
 
