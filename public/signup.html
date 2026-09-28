@@ -265,22 +265,14 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="branch">Preferred
-                                        Branch:</label>
+                                    <label for="branch">Preferred Branch:</label>
                                 </td>
-                                <td><select class="form-select" id="branch" name="branch" required>
-                                        <option value>--Select
-                                            Branch--</option>
-                                        <option value="Lucknow">Lucknow</option>
-                                        <option value="Gurugram">Gurugram</option>
-                                        <option value="West Bengal">West
-                                            Bengal</option>
+                                <td>
+                                    <select class="form-select" id="branch" name="branch" required disabled>
+                                        <option value="">--Select Branch--</option>
+                                        <!-- Options loaded dynamically from fetch_locations.php?for=job -->
                                     </select>
-                                    <small id="branch-help" class="form-text text-muted">Please
-                                        select
-                                        the
-                                        preferred
-                                        branch.</small>
+                                    <small id="branch-help" class="form-text text-muted">Loading branches...</small>
                                 </td>
                             </tr>
                             <tr>
@@ -1085,6 +1077,63 @@
                     // Reset button to original state on error
                     verifyButton.disabled = false;
                     verifyButton.innerHTML = originalText;
+                });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            const apiUrl = isLocalhost
+                ? 'http://localhost:8082/fetch_locations_api.php?for=job'
+                : 'https://login.rssi.in/fetch_locations_api.php?for=job';
+
+            const branchSelect = document.getElementById('branch');
+            const helpText = document.getElementById('branch-help');
+
+            if (!branchSelect) return;
+
+            branchSelect.innerHTML = '<option value="">--Select Branch--</option>';
+            branchSelect.disabled = true;
+            helpText.textContent = 'Loading branches...';
+
+            fetch(apiUrl)
+                .then(r => {
+                    const ct = r.headers.get('content-type') || '';
+                    if (!r.ok || !ct.includes('application/json')) {
+                        throw new Error('Unexpected response: HTTP ' + r.status);
+                    }
+                    return r.json();
+                })
+                .then(locations => {
+                    branchSelect.innerHTML = '<option value="">--Select Branch--</option>';
+
+                    if (!Array.isArray(locations) || locations.length === 0) {
+                        const opt = document.createElement('option');
+                        opt.textContent = 'No branches available';
+                        opt.disabled = true;
+                        branchSelect.appendChild(opt);
+                        helpText.textContent = 'No branches are currently accepting job applications.';
+                        return;
+                    }
+
+                    locations.forEach(loc => {
+                        const opt = document.createElement('option');
+                        opt.value = loc.id;      // submit the ID
+                        opt.textContent = loc.name;
+                        branchSelect.appendChild(opt);
+                    });
+
+                    branchSelect.disabled = false;
+                    helpText.textContent = 'Please select the preferred branch.';
+                })
+                .catch(err => {
+                    console.error('Error loading branches:', err);
+                    branchSelect.innerHTML = '<option value="">--Select Branch--</option>';
+                    const opt = document.createElement('option');
+                    opt.textContent = 'Error loading branches';
+                    opt.disabled = true;
+                    branchSelect.appendChild(opt);
+                    helpText.textContent = 'Failed to load branches. Please refresh the page.';
                 });
         });
     </script>

@@ -1666,8 +1666,8 @@
         document.addEventListener('DOMContentLoaded', function () {
             const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
             const apiUrl = isLocalhost
-                ? 'http://localhost:8082/get_admission_locations.php'
-                : 'https://login.rssi.in/get_admission_locations.php';
+                ? 'http://localhost:8082/fetch_locations_api.php?for=admission'
+                : 'https://login.rssi.in/fetch_locations_api.php?for=admission';
 
             const branchSelect = document.getElementById('branch');
             const helpText = document.getElementById('branch-help');
