@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
     <!-- Template Main CSS File -->
-    <link href="/css/main.css?v=7.0.0" rel="stylesheet">
+    <link href="/css/main.css?v=7.1.0" rel="stylesheet">
 
     <!-- Google Tag (gtag.js) - Place After CSS to Ensure Fast Rendering -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11316670180"></script>
@@ -967,6 +967,162 @@
             }
         }
     </style>
+    <style>
+        /* Modal body layout for Voices members (modal is appended to <body>,
+           so we scope by [data-voices-modal] not #chefs) */
+        [data-voices-modal] .member-modal-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 20px;
+            padding: 30px 25px;
+        }
+
+        /* Circular photo */
+        [data-voices-modal] .member-modal-photo {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+            flex-shrink: 0;
+        }
+
+        [data-voices-modal] .member-modal-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        /* Quote-styled text */
+        [data-voices-modal] .member-modal-quote {
+            position: relative;
+            color: #4a4a52;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            font-style: italic;
+            margin: 0;
+            /* top padding leaves room for the decorative quote mark */
+            padding: 30px 10px 0 40px;
+            text-align: left;
+            white-space: pre-line;
+            max-height: 55vh;
+            overflow-y: auto;
+        }
+
+        /* Big decorative opening quote mark — kept fully inside the box */
+        [data-voices-modal] .member-modal-quote::before {
+            content: "\201C";
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 60px;
+            line-height: 1;
+            color: var(--color-primary);
+            opacity: 0.35;
+            font-family: Georgia, serif;
+            pointer-events: none;
+        }
+
+        /* Modal polish */
+        [data-voices-modal] .modal-content {
+            border-radius: 12px;
+            border: none;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        }
+
+        [data-voices-modal] .modal-header {
+            border-bottom: 1px solid #eee;
+            padding: 18px 22px;
+        }
+
+        [data-voices-modal] .modal-title {
+            font-weight: 600;
+            color: var(--color-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Voices carousel — equal height cards */
+        #voices-carousel .swiper-wrapper {
+            align-items: stretch;
+        }
+
+        #voices-carousel .swiper-slide {
+            height: auto;
+            display: flex;
+        }
+
+        #voices-carousel .chef-member {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+
+        #voices-carousel .chef-member .member-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Fixed-height quote block — reserve 5 lines so cards stay equal height */
+        #voices-carousel .chef-member .member-info .member-quote {
+            height: calc(1.6em * 5);
+            /* 5 lines of text */
+            line-height: 1.6;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        /* Fix image height so cards don't vary based on photo aspect ratio */
+        #voices-carousel .chef-member .member-img {
+            height: 320px;
+            overflow: hidden;
+        }
+
+        /* #voices-carousel .chef-member .member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        } */
+
+        /* Push the Read More button to the bottom of every card */
+        #voices-carousel .chef-member .member-info .btn-read-more {
+            margin-top: auto;
+            align-self: flex-start;
+        }
+
+        /* Outer wrapper clips the *page* boundary so neighbour slides never show. */
+        .voices-clip-wrapper {
+            position: relative;
+            /* Reserve a bit of vertical room for the hover shadow */
+            padding: 20px 0;
+            /* Mask horizontally at the swiper edges, with a small bleed
+               for the scaled card + shadow. Adjust the 12px if you want
+               more/less breathing room. */
+            clip-path: inset(-40px 12px -40px 12px);
+        }
+
+        /* Swiper itself is allowed to overflow so hovered cards are not clipped */
+        #voices-carousel.swiper {
+            overflow: visible;
+        }
+
+        #voices-carousel .swiper-wrapper,
+        #voices-carousel .swiper-slide {
+            overflow: visible;
+        }
+
+        /* Add a small horizontal padding inside the swiper so scaled cards
+           have room to grow before hitting the wrapper's clip-path. */
+        #voices-carousel {
+            padding: 0 12px;
+        }
+    </style>
 </head>
 
 <body>
@@ -1895,77 +2051,24 @@
                     </div>
                 </div>
 
-                <div class="row gy-4">
-
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                        <div class="chef-member">
-                            <div class="member-img">
-                                <img src="/img/key-members/members-img1.jpg" class="img-fluid" alt="">
-                                <div class="social">
-                                    <a href="#"><i class="bi bi-twitter"></i></a>
-                                    <a href="https://www.facebook.com/rina.saha.90410"><i
-                                            class="bi bi-facebook"></i></a>
-                                    <a href="#"><i class="bi bi-instagram"></i></a>
-                                    <a href="#"><i class="bi bi-linkedin"></i></a>
+                <!-- Swiper carousel (wrapped so hover-scale doesn't show neighbour slides) -->
+                <div class="voices-clip-wrapper">
+                    <div id="voices-carousel" class="swiper">
+                        <div class="swiper-wrapper">
+                            <!-- Populated by JS from API -->
+                            <div class="swiper-slide">
+                                <div class="chef-member">
+                                    <div class="member-info text-center p-4">
+                                        <p>Loading voices…</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="member-info">
-                                <h4>Rina Saha</h4>
-                                <span>Director</span>
-                                <p>As a mother, I understand the power of education. Shiksha is my heart's calling to
-                                    provide underprivileged children with the same opportunities my children have.</p>
-                            </div>
                         </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
                     </div>
-                    <!-- End Chefs Member -->
-
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                        <div class="chef-member">
-                            <div class="member-img">
-                                <img src="https://res.cloudinary.com/hs4stt5kg/image/upload/c_fill,w_300,h_300,g_auto/v1704613959/faculties/VKGP24119_Subhash_Chandra_Nag.jpg"
-                                    class="img-fluid" alt="">
-                                <div class="social">
-                                    <a href="#"><i class="bi bi-twitter"></i></a>
-                                    <a href="#"><i class="bi bi-facebook"></i></a>
-                                    <a href="#"><i class="bi bi-instagram"></i></a>
-                                    <a href="#"><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                            <div class="member-info">
-                                <h4>Subhash Chandra Nag</h4>
-                                <span>Director</span>
-                                <p>Every child deserves a chance. Through Shiksha, we're not just providing education,
-                                    but igniting dreams and building a brighter future for our nation.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Chefs Member -->
-
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                        <div class="chef-member">
-                            <div class="member-img">
-                                <img src="/img/key-members/members-img2.jpg" class="img-fluid" alt="">
-                                <div class="social">
-                                    <a href="#"><i class="bi bi-twitter"></i></a>
-                                    <a href="https://www.facebook.com/somnath.ecebppimt"><i
-                                            class="bi bi-facebook"></i></a>
-                                    <a href="#"><i class="bi bi-instagram"></i></a>
-                                    <a href="https://www.linkedin.com/in/somnath-saha-b10303162/"><i
-                                            class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                            <div class="member-info">
-                                <h4>Som</h4>
-                                <span>Director</span>
-                                <p>RSSI is a platform where you can work together to make someone smile which is
-                                    priceless.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Chefs Member -->
-
                 </div>
+
             </div>
         </section>
         <!-- End Chefs Section -->
@@ -2373,6 +2476,144 @@
         $(document).ready(function () {
             loadSuccessStories();
         });
+    </script>
+    <script>
+        // ===== Voices Behind the Mission — load from API =====
+        function loadTeamMembers() {
+            const API_BASE = window.location.hostname === 'localhost'
+                ? 'http://localhost:8082/'
+                : 'https://login.rssi.in/';
+
+            const wrapper = document.querySelector('#voices-carousel .swiper-wrapper');
+            if (!wrapper) return;
+
+            $.ajax({
+                url: API_BASE + 'get_team_members.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function (res) {
+                    if (res.success && res.members && res.members.length) {
+                        renderTeamMembers(res.members);
+                    } else {
+                        // No data — hide the whole section
+                        document.getElementById('chefs').style.display = 'none';
+                    }
+                },
+                error: function (xhr, status, err) {
+                    console.error('Error loading team members:', err);
+                    document.getElementById('chefs').style.display = 'none';
+                }
+            });
+        }
+
+        function renderTeamMembers(members) {
+            const wrapper = document.querySelector('#voices-carousel .swiper-wrapper');
+            wrapper.innerHTML = '';
+
+            // Card shows first 170 chars; longer quotes get a "Read More" button
+            const PREVIEW_CHARS = 170;
+
+            members.forEach(m => {
+                const modalId = 'modalMember' + m.id;
+                const fullQuote = (m.full_quote || '').trim();
+                const isLong = fullQuote.length > PREVIEW_CHARS;
+                const previewText = isLong
+                    ? fullQuote.substring(0, PREVIEW_CHARS).trim() + '…'
+                    : fullQuote;
+
+                const slide = document.createElement('div');
+                slide.className = 'swiper-slide';
+
+                slide.innerHTML = `
+        <div class="chef-member">
+            <div class="member-img">
+                <img src="${m.photo_url}" class="img-fluid" alt="${escapeHtml(m.name)}"
+                     onerror="this.src='/img/key-members/default.jpg'">
+                <div class="social">
+                    ${m.twitter_url ? `<a href="${m.twitter_url}"><i class="bi bi-twitter"></i></a>` : ''}
+                    ${m.facebook_url ? `<a href="${m.facebook_url}"><i class="bi bi-facebook"></i></a>` : ''}
+                    ${m.instagram_url ? `<a href="${m.instagram_url}"><i class="bi bi-instagram"></i></a>` : ''}
+                    ${m.linkedin_url ? `<a href="${m.linkedin_url}"><i class="bi bi-linkedin"></i></a>` : ''}
+                </div>
+            </div>
+            <div class="member-info">
+                <h4>${escapeHtml(m.name)}</h4>
+                <span>${escapeHtml(m.role)}</span>
+                <p class="member-quote">${escapeHtml(previewText)}</p>
+                ${isLong ? `
+                    <button class="btn btn-read-more"
+                            data-bs-toggle="modal"
+                            data-bs-target="#${modalId}">
+                        Read More
+                    </button>` : ''}
+            </div>
+        </div>
+
+            `;
+                wrapper.appendChild(slide);
+
+                // Append the modal to <body> so it escapes the swiper's stacking context
+                const modalHtml = `
+        <div class="modal fade" id="${modalId}" tabindex="-1" aria-hidden="true" data-voices-modal="1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">${escapeHtml(m.name)} - ${escapeHtml(m.role)}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body member-modal-body">
+                        <div class="member-modal-photo">
+                            <img src="${m.photo_url}" alt="${escapeHtml(m.name)}"
+                                 onerror="this.src='/img/key-members/default.jpg'">
+                        </div>
+                        <p class="member-modal-quote">${escapeHtml(fullQuote)}</p>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+                document.body.insertAdjacentHTML('beforeend', modalHtml);
+            });
+            // Destroy existing instance if any (safe on re-init)
+            if (window.voicesSwiper) window.voicesSwiper.destroy(true, true);
+
+            window.voicesSwiper = new Swiper('#voices-carousel', {
+                loop: false,
+                rewind: true,               // avoids loop-mode duplicate-ID issue
+                slidesPerView: 1,
+                spaceBetween: 20,
+                autoplay: {
+                    delay: 3500,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                },
+                navigation: {
+                    nextEl: '#voices-carousel .swiper-button-next',
+                    prevEl: '#voices-carousel .swiper-button-prev',
+                },
+                breakpoints: {
+                    768: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 },
+                },
+            });
+        }
+
+        // Pause carousel autoplay while any voices modal is open
+        document.addEventListener('show.bs.modal', function (e) {
+            if (e.target.id && e.target.id.startsWith('modalMember')) {
+                if (window.voicesSwiper && window.voicesSwiper.autoplay) {
+                    window.voicesSwiper.autoplay.stop();
+                }
+            }
+        });
+        document.addEventListener('hidden.bs.modal', function (e) {
+            if (e.target.id && e.target.id.startsWith('modalMember')) {
+                if (window.voicesSwiper && window.voicesSwiper.autoplay) {
+                    window.voicesSwiper.autoplay.start();
+                }
+            }
+        });
+
+        $(document).ready(loadTeamMembers);
     </script>
 </body>
 

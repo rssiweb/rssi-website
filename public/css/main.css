@@ -1195,7 +1195,9 @@ section {
 
 /* Navigation Arrows */
 #announcements-carousel .swiper-button-next,
-#announcements-carousel .swiper-button-prev {
+#announcements-carousel .swiper-button-prev,
+#voices-carousel .swiper-button-next,
+#voices-carousel .swiper-button-prev {
     color: #999;
     /* Light gray */
     background-color: rgba(255, 255, 255, 0.8);
@@ -1208,14 +1210,18 @@ section {
 }
 
 #announcements-carousel .swiper-button-next:hover,
-#announcements-carousel .swiper-button-prev:hover {
+#announcements-carousel .swiper-button-prev:hover,
+#voices-carousel .swiper-button-next:hover,
+#voices-carousel .swiper-button-prev:hover {
     background-color: rgba(255, 255, 255, 1);
     color: #666;
     /* Slightly darker on hover */
 }
 
 #announcements-carousel .swiper-button-next::after,
-#announcements-carousel .swiper-button-prev::after {
+#announcements-carousel .swiper-button-prev::after,
+#voices-carousel .swiper-button-next::after,
+#voices-carousel .swiper-button-prev::after {
     font-size: 1.75rem;
     /* Larger arrow icons */
 }
