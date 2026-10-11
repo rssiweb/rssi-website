@@ -1797,8 +1797,15 @@
             // ---------- helpers ----------
             const setVal = (name, val) => {
                 const el = document.querySelector(`[name="${name}"]`);
-                if (!el || val === null || val === undefined) return;
-                el.value = val;
+                if (!el) return;
+
+                // Treat null / undefined / empty-string as "clear the field"
+                if (val === null || val === undefined || String(val).trim() === '') {
+                    el.value = '';
+                } else {
+                    el.value = val;
+                }
+
                 el.classList.remove('is-invalid');
                 el.dispatchEvent(new Event('change', { bubbles: true }));
                 el.dispatchEvent(new Event('input', { bubbles: true }));
@@ -1881,6 +1888,22 @@
                     } else if (!aadharYes && d.aadhar_number) {
                         setVal('guardian-aadhar-number', d.aadhar_number);
                     }
+
+                    /* -------------------------------------------------
+                        3b) Relation with student (derived from aadhar_submitted_by)
+                       ------------------------------------------------- */
+                    const submittedBy = String(d.aadhar_submitted_by || '').toLowerCase().trim();
+                    let relation = '';
+                    switch (submittedBy) {
+                        case 'mother': relation = 'Mother'; break;
+                        case 'father': relation = 'Father'; break;
+                        case 'spouse': relation = 'Spouse'; break;
+                        case 'legal guardian':
+                        case 'guardian': relation = 'Other'; break;
+                        // 'self' or blank → leave relation empty (student's own Aadhar)
+                    }
+                    // Only apply if we actually derived something; otherwise clear the field
+                    setVal('relation', relation);
 
                     /* -------------------------------------------------
                        4) School required
