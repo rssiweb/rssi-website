@@ -1835,8 +1835,8 @@
             async function doFetch() {
                 const ref = String(input.value || '').trim();
 
-                // Accept 1 to 12 numeric digits (either a plain id or a 12-digit ref)
-                if (!/^\d{1,12}$/.test(ref)) {
+                // Accept exactly 12 numeric digits (a 12-digit ref)
+                if (!/^\d{12}$/.test(ref)) {
                     Swal.fire({
                         toast: true,
                         position: 'top-end',
