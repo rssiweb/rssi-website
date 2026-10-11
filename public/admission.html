@@ -1832,7 +1832,7 @@
                 });
 
             // ---------- fetch handler ----------
-            btn.addEventListener('click', async function () {
+            async function doFetch() {
                 const ref = String(input.value || '').trim();
 
                 // Accept 1 to 12 numeric digits (either a plain id or a 12-digit ref)
@@ -1975,6 +1975,16 @@
                 } finally {
                     spinner.style.display = 'none';
                     btn.disabled = false;
+                }
+            }
+
+            // Wire up BOTH: click and Enter
+            btn.addEventListener('click', doFetch);
+
+            input.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();   // stop any implicit form submission
+                    doFetch();
                 }
             });
 
