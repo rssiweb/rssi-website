@@ -39,6 +39,9 @@
             color: red;
         }
     </style>
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -62,6 +65,39 @@
                 <p>The One-Time Enrollment Fee is a non-refundable payment applicable once every academic year. Both the
                     enrollment fee and the first month’s fee must be paid in advance and are non-refundable.</p>
                 <hr>
+                <!-- ===== OPTIONAL: Fetch from Parent Admissions ===== -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h6 class="card-title mb-3">
+                            <i class="bi bi-search"></i> Already have an Application Reference?
+                            <small class="text-muted fw-normal">(Optional)</small>
+                        </h6>
+                        <div class="row g-2 align-items-end">
+                            <div class="col-md-4">
+                                <label for="parent-admission-id" class="form-label">Reference ID</label>
+                                <input type="number" class="form-control" id="parent-admission-id" placeholder="e.g. 12"
+                                    min="1">
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-outline-primary" id="btn-fetch-parent">
+                                    <span id="fetch-spinner" class="spinner-border spinner-border-sm"
+                                        style="display:none;"></span>
+                                    Fetch Details
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary" id="btn-clear-parent">
+                                    Clear
+                                </button>
+                            </div>
+                            <div class="col-md-5">
+                                <span id="fetch-status" class="form-text" aria-live="polite"></span>
+                            </div>
+                        </div>
+                        <small class="form-text text-muted d-block mt-2">
+                            If you have an existing reference number, fetch your details to avoid re-typing.
+                            You can still edit any field afterwards. If you don't have one, just fill the form below.
+                        </small>
+                    </div>
+                </div>
                 <form name="admission" id="admission" action="#" method="post" enctype="multipart/form-data">
                     <div class="form-page" id="page1">
                         <!-- First part of the form -->
@@ -1035,7 +1071,11 @@
                     reader.readAsDataURL(file);
                 } else {
                     // Unsupported file type
-                    alert('Unsupported file type! Please upload an image or a PDF.');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Unsupported file type',
+                        text: 'Please upload an image or a PDF.'
+                    });
                 }
             } else {
                 resetAadharCardPreview(); // Reset preview if no file is selected
@@ -1265,7 +1305,11 @@
                 document.getElementById('page1').style.display = 'none';
                 document.getElementById('page2').style.display = 'block';
             } else {
-                alert('Please fill all required fields before proceeding.');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Missing required fields',
+                    text: 'Please fill all required fields before proceeding.'
+                });
             }
         }
 
@@ -1581,14 +1625,28 @@
                     const result = await response.json();
 
                     if (result.success) {
-                        alert(`Submitted successfully! Message: ${result.message}`);
-                        location.reload();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Submitted successfully!',
+                            text: result.message,
+                            confirmButtonText: 'OK'
+                        }).then(() => {
+                            location.reload();
+                        });
                     } else {
-                        alert(`Error: ${result.message}`);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Submission failed',
+                            text: result.message
+                        });
                     }
                 } catch (error) {
                     console.error(error);
-                    alert("Error occurred during form submission. Please try again later.");
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Network error',
+                        text: 'Error occurred during form submission. Please try again later.'
+                    });
                 } finally {
                     this.disabled = false;
                     myModal.hide();
@@ -1719,6 +1777,211 @@
                     branchSelect.appendChild(opt);
                     helpText.textContent = 'Failed to load branches. Please refresh the page.';
                 });
+        });
+    </script>
+    <!-- ===== Optional: fetch existing parent_admissions record ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLocalhost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+            const apiUrl = isLocalhost
+                ? 'http://localhost:8082/rssi-member/fetch_parent_admission.php'
+                : 'https://login.rssi.in/rssi-member/fetch_parent_admission.php';
+
+            const btn = document.getElementById('btn-fetch-parent');
+            const btnClear = document.getElementById('btn-clear-parent');
+            const input = document.getElementById('parent-admission-id');
+            const spinner = document.getElementById('fetch-spinner');
+            const statusEl = document.getElementById('fetch-status');
+
+            // ---------- helpers ----------
+            const setVal = (name, val) => {
+                const el = document.querySelector(`[name="${name}"]`);
+                if (!el || val === null || val === undefined) return;
+                el.value = val;
+                el.classList.remove('is-invalid');
+                el.dispatchEvent(new Event('change', { bubbles: true }));
+                el.dispatchEvent(new Event('input', { bubbles: true }));
+            };
+
+            const ddmmyyyyToISO = (s) => {
+                if (!s) return '';
+                if (/^\d{4}-\d{2}-\d{2}/.test(s)) return s.slice(0, 10);
+                const m = String(s).match(/^(\d{2})-(\d{2})-(\d{4})/);
+                return m ? `${m[3]}-${m[2]}-${m[1]}` : '';
+            };
+
+            const waitForOption = (selectEl, value, timeout = 4000) =>
+                new Promise(resolve => {
+                    if (!selectEl || !value) return resolve(false);
+                    const t0 = Date.now();
+                    const tick = () => {
+                        const opt = Array.from(selectEl.options).find(o => String(o.value) === String(value));
+                        if (opt) return resolve(true);
+                        if (Date.now() - t0 > timeout) return resolve(false);
+                        setTimeout(tick, 150);
+                    };
+                    tick();
+                });
+
+            // ---------- fetch handler ----------
+            btn.addEventListener('click', async function () {
+                const id = parseInt(input.value, 10);
+                if (!id || id <= 0) {
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'warning',
+                        title: 'Please enter a valid numeric reference ID',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    return;
+                }
+
+                spinner.style.display = 'inline-block';
+                btn.disabled = true;
+
+                try {
+                    const r = await fetch(`${apiUrl}?id=${encodeURIComponent(id)}`);
+                    const ct = r.headers.get('content-type') || '';
+                    if (!ct.includes('application/json')) {
+                        throw new Error('Server did not return JSON (HTTP ' + r.status + ')');
+                    }
+                    const json = await r.json();
+                    if (!json.success) throw new Error(json.message || 'Record not found');
+
+                    const d = json.data;
+
+                    /* -------------------------------------------------
+                       1) Student basic info
+                       ------------------------------------------------- */
+                    setVal('student-name', d.name);
+                    setVal('telephone', d.mobile);
+                    setVal('postal-address', d.current_address);
+                    setVal('permanent-address', d.current_address);
+                    setVal('income', d.monthly_income);
+                    setVal('family-members', d.family_member_count);
+
+                    /* -------------------------------------------------
+                       2) Admission date
+                       ------------------------------------------------- */
+                    const doaISO = ddmmyyyyToISO(d.fees_submission_date);
+                    if (doaISO) setVal('admission-date', doaISO);
+
+                    /* -------------------------------------------------
+                       3) Aadhar
+                       ------------------------------------------------- */
+                    const aadharYes = String(d.aadhar_submitted_by || '').toLowerCase() === 'self';
+                    setVal('aadhar-card', aadharYes ? 'Yes' : 'No');
+                    if (aadharYes && d.aadhar_number) {
+                        setVal('aadhar-number', d.aadhar_number);
+                    } else if (!aadharYes && d.aadhar_number) {
+                        setVal('guardian-aadhar-number', d.aadhar_number);
+                    }
+
+                    /* -------------------------------------------------
+                       4) School required
+                       ------------------------------------------------- */
+                    const hasPrevSchool = !!(d.previous_school && String(d.previous_school).trim());
+                    setVal('school-required', hasPrevSchool ? 'No' : 'Yes');
+                    if (hasPrevSchool) {
+                        setVal('school-name', d.previous_school);
+                    }
+
+                    /* -------------------------------------------------
+                       5) Payment mode
+                       ------------------------------------------------- */
+                    if (d.payment_mode) {
+                        setVal('payment-mode', String(d.payment_mode).toLowerCase());
+                        if (String(d.payment_mode).toLowerCase() === 'online' && d.transaction_id) {
+                            setVal('transaction-id', d.transaction_id);
+                        }
+                    }
+
+                    /* -------------------------------------------------
+                       6) Class (best-effort — needs division/class already loaded)
+                       ------------------------------------------------- */
+                    if (d.class_id) {
+                        const classSel = document.getElementById('class');
+                        if (classSel && classSel.options.length > 1) {
+                            const ok = await waitForOption(classSel, d.class_id);
+                            if (ok) setVal('class', String(d.class_id));
+                        } else {
+                            // Stash it — apply later once dropdown is populated
+                            window.__pendingClassId = d.class_id;
+                        }
+                    }
+
+                    /* -------------------------------------------------
+                       7) Stamp hidden input so backend can link records
+                       ------------------------------------------------- */
+                    let origin = document.querySelector('input[name="parent_admission_id"]');
+                    if (!origin) {
+                        origin = document.createElement('input');
+                        origin.type = 'hidden';
+                        origin.name = 'parent_admission_id';
+                        document.getElementById('admission').appendChild(origin);
+                    }
+                    origin.value = id;
+
+                    statusEl.textContent = ''; // keep the inline area clean
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `Loaded "${d.name || 'record'}" (Ref ${id})`,
+                        text: 'Please verify the details and complete the rest of the form.',
+                        showConfirmButton: false,
+                        timer: 4000,
+                        timerProgressBar: true
+                    });
+
+                } catch (err) {
+                    console.error(err);
+                    statusEl.textContent = ''; // keep inline area clean
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Could not fetch record',
+                        html: `<p>${err.message}</p>
+                        <small class="text-muted">You may continue filling the form manually.</small>`,
+                        confirmButtonText: 'OK'
+                    });
+                } finally {
+                    spinner.style.display = 'none';
+                    btn.disabled = false;
+                }
+            });
+
+            /* -------------------------------------------------
+               Clear button — wipes the reference ID and status only.
+               (Does not touch the form fields, so users don't lose
+               anything they've manually typed.)
+               ------------------------------------------------- */
+            btnClear.addEventListener('click', function () {
+                input.value = '';
+                statusEl.textContent = '';
+                statusEl.className = 'form-text';
+            });
+
+            /* -------------------------------------------------
+               If class was pending (division dropdown loaded later),
+               apply it when class options appear.
+               ------------------------------------------------- */
+            const classSelect = document.getElementById('class');
+            if (classSelect) {
+                const observer = new MutationObserver(() => {
+                    if (window.__pendingClassId && classSelect.options.length > 1) {
+                        const ok = Array.from(classSelect.options)
+                            .some(o => String(o.value) === String(window.__pendingClassId));
+                        if (ok) {
+                            classSelect.value = window.__pendingClassId;
+                            classSelect.dispatchEvent(new Event('change', { bubbles: true }));
+                            window.__pendingClassId = null;
+                        }
+                    }
+                });
+                observer.observe(classSelect, { childList: true });
+            }
         });
     </script>
 
