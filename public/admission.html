@@ -74,9 +74,10 @@
                         </h6>
                         <div class="row g-2 align-items-end">
                             <div class="col-md-4">
-                                <label for="parent-admission-id" class="form-label">Reference ID</label>
-                                <input type="number" class="form-control" id="parent-admission-id" placeholder="e.g. 12"
-                                    min="1">
+                                <label for="parent-admission-id" class="form-label">Reference Number</label>
+                                <input type="text" class="form-control" id="parent-admission-id"
+                                    placeholder="e.g. 251820000204" maxlength="12" pattern="\d{1,12}"
+                                    inputmode="numeric">
                             </div>
                             <div class="col-md-3">
                                 <button type="button" class="btn btn-outline-primary" id="btn-fetch-parent">
@@ -1825,13 +1826,15 @@
 
             // ---------- fetch handler ----------
             btn.addEventListener('click', async function () {
-                const id = parseInt(input.value, 10);
-                if (!id || id <= 0) {
+                const ref = String(input.value || '').trim();
+
+                // Accept 1 to 12 numeric digits (either a plain id or a 12-digit ref)
+                if (!/^\d{1,12}$/.test(ref)) {
                     Swal.fire({
                         toast: true,
                         position: 'top-end',
                         icon: 'warning',
-                        title: 'Please enter a valid numeric reference ID',
+                        title: 'Please enter a valid reference number',
                         showConfirmButton: false,
                         timer: 3000
                     });
@@ -1842,7 +1845,7 @@
                 btn.disabled = true;
 
                 try {
-                    const r = await fetch(`${apiUrl}?id=${encodeURIComponent(id)}`);
+                    const r = await fetch(`${apiUrl}?ref=${encodeURIComponent(ref)}`);
                     const ct = r.headers.get('content-type') || '';
                     if (!ct.includes('application/json')) {
                         throw new Error('Server did not return JSON (HTTP ' + r.status + ')');
@@ -1913,7 +1916,7 @@
                     }
 
                     /* -------------------------------------------------
-                       7) Stamp hidden input so backend can link records
+                        7) Stamp hidden input so backend can link records
                        ------------------------------------------------- */
                     let origin = document.querySelector('input[name="parent_admission_id"]');
                     if (!origin) {
@@ -1922,14 +1925,14 @@
                         origin.name = 'parent_admission_id';
                         document.getElementById('admission').appendChild(origin);
                     }
-                    origin.value = id;
+                    origin.value = d.id;
 
                     statusEl.textContent = ''; // keep the inline area clean
                     Swal.fire({
                         toast: true,
                         position: 'top-end',
                         icon: 'success',
-                        title: `Loaded "${d.name || 'record'}" (Ref ${id})`,
+                        title: `Loaded "${d.name || 'record'}" (Ref ${d.ref_number || ref})`,
                         text: 'Please verify the details and complete the rest of the form.',
                         showConfirmButton: false,
                         timer: 4000,
