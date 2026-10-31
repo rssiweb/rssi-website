@@ -348,32 +348,26 @@
                                 <!-- Nav tabs -->
                                 <ul class="nav nav-tabs" id="announcementTabs" role="tablist">
                                     <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" id="news-tab" data-bs-toggle="tab"
-                                            data-bs-target="#news-tab-pane" type="button" role="tab"
-                                            aria-controls="news-tab-pane" aria-selected="true">News Highlights</button>
+                                        <button class="nav-link active" id="notices-tab" data-bs-toggle="tab"
+                                            data-bs-target="#notices-tab-pane" type="button" role="tab"
+                                            aria-controls="notices-tab-pane" aria-selected="true">Notices</button>
                                     </li>
                                     <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="notices-tab" data-bs-toggle="tab"
-                                            data-bs-target="#notices-tab-pane" type="button" role="tab"
-                                            aria-controls="notices-tab-pane" aria-selected="false">Notices</button>
+                                        <button class="nav-link" id="news-tab" data-bs-toggle="tab"
+                                            data-bs-target="#news-tab-pane" type="button" role="tab"
+                                            aria-controls="news-tab-pane" aria-selected="false">News Highlights</button>
                                     </li>
                                 </ul>
 
                                 <!-- Tab panes -->
                                 <div class="tab-content">
-                                    <div class="tab-pane fade show active" id="news-tab-pane" role="tabpanel"
-                                        aria-labelledby="news-tab" tabindex="0">
-                                        <ul class="list-group list-group-flush" id="news-list">
-                                            <!-- News items will be dynamically inserted here -->
-                                        </ul>
-                                        <!-- Load More News button (will be shown only for News tab) -->
-                                    </div>
-                                    <div class="tab-pane fade" id="notices-tab-pane" role="tabpanel"
+                                    <div class="tab-pane fade show active" id="notices-tab-pane" role="tabpanel"
                                         aria-labelledby="notices-tab" tabindex="0">
-                                        <ul class="list-group list-group-flush" id="notices-list">
-                                            <!-- Notice items will be dynamically inserted here -->
-                                        </ul>
-                                        <!-- Load More Notices button (will be shown only for Notices tab) -->
+                                        <ul class="list-group list-group-flush" id="notices-list"></ul>
+                                    </div>
+                                    <div class="tab-pane fade" id="news-tab-pane" role="tabpanel"
+                                        aria-labelledby="news-tab" tabindex="0">
+                                        <ul class="list-group list-group-flush" id="news-list"></ul>
                                     </div>
                                 </div>
                             </div>
@@ -665,23 +659,6 @@
                     </button>
                 `;
                     document.getElementById('notices-tab-pane').appendChild(noticesLoadMoreContainer);
-
-                    // Initially hide the notices load more container
-                    noticesLoadMoreContainer.style.display = 'none';
-
-                    // Set up tab change event listeners
-                    const newsTab = document.getElementById('news-tab');
-                    const noticesTab = document.getElementById('notices-tab');
-
-                    newsTab.addEventListener('shown.bs.tab', function () {
-                        newsLoadMoreContainer.style.display = 'block';
-                        noticesLoadMoreContainer.style.display = 'none';
-                    });
-
-                    noticesTab.addEventListener('shown.bs.tab', function () {
-                        newsLoadMoreContainer.style.display = 'none';
-                        noticesLoadMoreContainer.style.display = 'block';
-                    });
                 } else {
                     console.error('Failed to fetch data');
                 }
@@ -776,7 +753,29 @@
         // Fetch and render data when the page loads
         document.addEventListener('DOMContentLoaded', fetchData);
     </script>
+    <script>
+        // Keep the active tab in the URL: ?tab=notices | ?tab=news
+        (function () {
+            const TAB_BUTTONS = { notices: 'notices-tab', news: 'news-tab' };
+            const DEFAULT_TAB = 'notices';
 
+            // 1. Open the tab named in the URL (if valid)
+            const requested = new URLSearchParams(window.location.search).get('tab');
+            if (requested && requested !== DEFAULT_TAB && TAB_BUTTONS[requested]) {
+                bootstrap.Tab.getOrCreateInstance(document.getElementById(TAB_BUTTONS[requested])).show();
+            }
+
+            // 2. Update the URL whenever the tab changes
+            document.querySelectorAll('#announcementTabs [data-bs-toggle="tab"]').forEach(function (btn) {
+                btn.addEventListener('shown.bs.tab', function (e) {
+                    const key = e.target.id === 'news-tab' ? 'news' : 'notices';
+                    const url = new URL(window.location.href);
+                    url.searchParams.set('tab', key);
+                    window.history.replaceState(null, '', url);
+                });
+            });
+        })();
+    </script>
 </body>
 
 </html>
