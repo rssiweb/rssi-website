@@ -1866,6 +1866,7 @@
                        1) Student basic info
                        ------------------------------------------------- */
                     setVal('student-name', d.name);
+                    setVal('date-of-birth', ddmmyyyyToISO(d.date_of_birth));
                     setVal('telephone', d.mobile);
                     setVal('postal-address', d.current_address);
                     setVal('permanent-address', d.current_address);
