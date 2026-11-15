@@ -193,8 +193,9 @@
         <section class="sample-page">
             <div class="container">
                 <div class="container mt-3">
-                    <!-- Main Alert (will collapse to icon) -->
-                    <div class="alert alert-primary alert-dismissible fade show" role="alert" id="visitorAlert">
+                    <!-- Main Alert: hidden from the start -->
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert" id="visitorAlert"
+                        style="display: none;">
                         <h3 class="alert-heading">
                             <i class="bi bi-shield-check me-2"></i>Visitor Registration Requirement
                         </h3>
@@ -232,8 +233,8 @@
                         </div>
                     </div>
 
-                    <!-- Mini Notification Icon (hidden initially) -->
-                    <div class="mini-notification text-end" id="miniNotification" style="display: none;">
+                    <!-- Mini Notification: visible from the start -->
+                    <div class="mini-notification text-end" id="miniNotification">
                         <button type="button" class="btn btn-primary btn-sm rounded-pill" id="expandNotificationBtn"
                             title="Show visitor information">
                             <i class="bi bi-info-circle me-1"></i> Visitor Info
@@ -1296,6 +1297,7 @@
 
             // Start with the notification collapsed (mini version)
             function initializeNotification() {
+                isCollapsed = true;
                 // Hide the main alert initially
                 alertEl.style.display = 'none';
 
